@@ -1,0 +1,21 @@
+Closures
+-------------
+# js having lexical scoping. whcih means inside varaible not accessible outside.
+ but outside one will be accessible insides
+
+closers = functions with preserved data 
+# closure means bundle the variable with function. so that we can use it anytime. 
+ex:
+function mainfn(passParam){
+    return function subFn()
+    {
+        return 3+passParam;// this will be passed and become closer for subFn
+    }
+}
+
+var obj1 = new mainfn(2);
+var obj2 = new mainfn(3);
+console.log(obj1());
+//It preserves the values inside the function as a property
+
+//console.dir(fnName);// this will tell about the closer details associated with particular function

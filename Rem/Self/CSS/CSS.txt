@@ -1,0 +1,323 @@
+Quick remember
+----------------------
+ text-decoration: overline;//underline,line-through.... those  r decorations
+Inherit
+text-transform: uppercase;,lowercase, capitalize
+text-indent: 50px;//used to give indentention (space) of the first line of the text
+ letter-spacing: 3px;
+direction: rtl;
+font-size: 2.5em;//This means it is based on font size in browser settings. if we modify the font size in browser settings this size also will get vary based browser font's size. 
+ word-spacing: 10px;
+
+a:hover, a:active {
+    background-color: red;
+}
+
+
+CSS syntax
+------------
+1.Selector
+2.Declaration
+Ex:
+	p {color:red}
+
+three ways of inserting style sheet
+-----------------------------
+External style sheet
+Internal style sheet
+Inline style
+
+
+Do not add a space between the property value and the unit (such as margin-left: 20 px;). The correct way is: margin-left: 20px;
+
+
+selector will find the element using
+	id,name,class attribute and more
+Id Selector
+------------
+#para1 {
+    text-align: center;
+ }
+
+multi condition
+----------------
+p.classname{color:red}
+//Above will select p elements with class name as "classname"
+
+    color: red;
+
+css grouping
+--------------
+h1, h2, p {
+    text-align: center;
+    color: red;
+}
+//Here same style ll be applied to all three elements
+
+If multiple style class contains different property values then last read 
+will be used
+
+If the internal style is defined after the link to the external style sheet, then internal styles will get high precidence
+if viceversa then external style will get high precidence
+
+
+Colors in CSS are most often specified by:
+
+a valid color name - like "red"
+an RGB value - like "rgb(255, 0, 0)"
+a HEX value - like "#ff0000"
+
+
+set background image
+------------------------
+body {
+    background-image: url("paper.gif");
+}
+
+body {
+    background-image: url("gradient_bg.png");
+    background-repeat: repeat-x;
+}
+//Image repeates horizontally	
+//background-repeat: no-repeat; 
+//background-repeat: repeat-y;
+//    background-position: right top; //to set the image position
+//background-attachment: fixed;//Image will be fixed. scroll will not affect img position
+
+
+shorthand property for background is background:
+--------------------------------------------------
+background: #ffffff url("img_tree.png") no-repeat right top;
+
+When using the shorthand property the order of the property values is:
+
+background-color
+background-image
+background-repeat
+background-attachment
+background-position
+
+
+Border
+---------------
+p.solid {border-style: solid;}
+border-width: 5px;
+border-width: medium;
+border-width: 2px 10px 4px 20px;
+
+short hand - border: 5px solid red;
+border-radius: 5px;// Cornor rounded
+
+
+Margin
+-------------
+p {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 150px;
+    margin-left: 80px;
+}
+shorthand - margin: 100px 150px 100px 80px;
+margin: auto; // auto set margin widths for top,bottom,right,left
+
+Inheriting parent value
+---------------------------
+div.container {
+    border: 1px solid red;
+    margin-left: 100px;
+}
+
+p.one {
+    margin-left: inherit;
+}
+
+
+padding
+---------------
+Padding clears an area around the content (inside the border) of an element.
+
+
+width vs max-width
+-------------------------
+max-width: 200px;
+The problem with the <div> above occurs when the browser window is smaller than the width of the element (500px). The browser then adds a horizontal scrollbar to the page.
+
+Using max-width instead, in this situation, will improve the browser's handling of small windows.
+
+
+Text
+----------
+The color property is used to set the color of the text.
+h1 {
+    color: green;
+text-align: center;//Horizontal align
+text-align: justify;//Text will be stretched. every line will be in equal width
+text-decoration: none;//Remove the decoratoins. used to remove under line in hyper link
+ text-decoration: overline;//underline,line-through.... those  r decorations
+}
+For W3C compliant CSS: If you define the color property, you must also define the background-color
+
+text transformation
+---------------------------
+p.uppercase {
+    text-transform: uppercase;
+}
+
+p.lowercase {
+    text-transform: lowercase;
+}
+
+p.capitalize {
+    text-transform: capitalize;
+}
+
+
+text-indent: 50px;//used to give indentention (space) of the first line of the text
+ letter-spacing: 3px;//spacing between the text
+
+line-height: 0.7;//spacing btwn lines
+ word-spacing: 10px;space between the words in a text.
+
+
+
+
+
+font-family: "Times New Roman", Times, serif;
+font-style:italic,obliq
+
+font-size: 40px;
+font-size: 2.5em;//This means it is based on font size in browser settings. if we modify the font size in browser settings this size also will get vary based browser font's size. 
+			but previous one will not do this. it is fixed. so w3c recomends this type of size specification
+font-weight: bold;
+
+
+
+font-variant: small-caps;
+The font-variant property specifies whether or not a text should be displayed in a small-caps font.
+In a small-caps font, all lowercase letters are converted to uppercase letters. However, the converted uppercase letters appears in a smaller font size than the original uppercase letters in the text.
+
+
+icon library
+--------------
+Awesine icons
+bootstrap icons
+google icons
+above icon libraries are scalable vectors that can be customized with CSS (size, color, shadow, etc.)
+
+
+
+
+
+
+
+
+link
+-------
+a{
+colour:red;
+}
+
+a:link - a normal, unvisited link
+a:visited - a link the user has visited
+a:hover - a link when the user mouses over it
+a:active - a link the moment it is clicked
+
+a:visited
+{
+colour:green;
+}
+
+When setting the style for several link states, there are some order rules:
+link
+visited
+hover
+
+a:hover, a:active {
+    background-color: red;
+}
+
+
+List
+-----------
+unordered lists (<ul>) - the list items are marked with bullets
+ordered lists (<ol>) - the list items are marked with numbers or letters
+
+
+<ul class="b">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Coca Cola</li>
+</ul>
+
+<p>Example of ordered lists:</p>
+<ol class="cww">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Coca Cola</li>
+</ol>
+
+
+ul.a {
+    list-style-type: circle;
+}
+
+ul.b {
+    list-style-type: square;
+}
+
+ol.c {
+    list-style-type: upper-roman;
+}
+
+ol.d {
+    list-style-type: lower-alpha;
+}
+ul {
+    list-style-image: url('sqpurple.gif');
+
+list-style: square inside url("sqpurple.gif");//Short hand
+
+
+table {
+    border-collapse: collapse;//important..multiple borders colappsed to
+}
+
+table, td, th {
+    border: 1px solid black;
+padding: 15px;//padding controlls space btwn text and border
+    text-align: left;
+
+
+
+Do u know?? : <script> element use display: none; as its default. 
+}
+
+
+Media query is a CSS technique introduced in CSS3.
+It uses the @media rule to include a block of CSS properties only if a certain condition is true.
+
+
+
+Grid .. alternative row colouring for html table
+<style>
+         table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+         }
+         
+         table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+         }
+         
+         table tr:nth-child(even) {
+            background-color: #ffffff;
+         }
+      </style>
+
+
+Importing other css files or css 
+------------------------------------
+@import url("fineprint.css") print;
+@import url("bluish.css") projection, tv;
+@import 'custom.css';

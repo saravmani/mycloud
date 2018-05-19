@@ -1,0 +1,46 @@
+we instruct AngularJS that whenever it instantiates the controller, it should inject
+the scope that was created as part of the ng-controller directive declaration
+
+To resolve dependencies, AngularJS uses name matching
+Angular tries to locate the dependency from a list of components that have already been registered (Thats why we are reginstering every components in Angular JS).
+
+
+because of angular is using name matching to resolve dependency, javascript minification will affect angular process. to overcome this we are going with Anotation.
+here we will speficy the array with input parameter names in string format. String values will be touched by minification engines.
+Ex:
+angular.module('7minWorkout').controller('WorkoutController', ['$scope', '$http','$routeProvider',function($scope,$http,$routeProvider) {}] );// here Order is imporatnt
+
+
+
+how angular 2 DI works
+
+ Type definitions are specific to TypeScript, so our compiled JavaScript code should theoretically not know anything about what our http parameter is when it comes to running it in the browser.
+
+nside our tsconfig.json files we’ll likely have emitDecoratorMetadata set to true. This emits metadata about the type of the parameter into a decorator in our compiled JavaScript output.
+
+ex: Output of typescript compiler
+import { Component } from '@angular/core';
+import { Http } from '@angular/http';
+
+var ExampleComponent = (function () {
+  function ExampleComponent(http) {
+    this.http = http;
+  }
+  return ExampleComponent;
+}());
+ExampleComponent = __decorate([
+  Component({
+    selector: 'example-component',
+    template: '<div>I am a component</div>'
+  }),
+  __metadata('design:paramtypes', [Http])
+], ExampleCompon
+
+
+
+we can alternatively inject like belwo
+class ExampleComponent {
+  constructor(@Inject(Http) private http) {
+    // use `this.http` which is the Http provider
+  }
+}

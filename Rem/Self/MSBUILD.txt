@@ -1,0 +1,1 @@
+C:\Windows\system32>msbuild D:\VSTS\SB2.0\SilverBlade_2.0\SB2.0_CIB\SB2.0.6_CIB_1\WebApplication\Common\CommonEntity\Dnb.SB.Entity\Dnb.SB.BaseEntity.csproj /t:rebuild

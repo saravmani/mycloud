@@ -1,0 +1,64 @@
+nodemon 
+-----------
+used to monitor the application files. when we modify the file it will restart the server automatically
+
+npm install nodemon -g
+Instead of running 
+node filename.js
+we have to run below
+ nodemon filename.js
+
+
+
+
+
+
+
+
+npm install express --save
+
+var express = require('express');
+var app = express();
+app.get("/base64string", function (objRequest, objResponse) {
+         objResponse.setHeader('Content-Type','image/png' );
+        objResponse.write(exres.data, 'base64');//to send bas64 image string
+    });
+});
+
+app.get("/getText", function (objRequest, objResponse) {
+        objResponse.send('text');//send simple text
+        objResponse.send(200,'text');//send simple text with status code
+    });
+});
+
+var server = app.listen(8001, function () {
+    exporter.initPool();
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log("App listening at http://%s:%s", host, port)
+});//Listening port 8001
+
+
+
+
+
+To access query string we can directly use req.query.param.// no need for any middleware
+but for post we need body parser to parse the req data.//we have to install it
+
+for static file serving we need middleware.
+var expressServer = require("express")();
+ex: expressServer.use("/css", express.static(__dirname + "/www"));
+
+access cookies
+---------------
+install cookie-parser.
+
+
+
+
+scaffolding with express-generator
+-------------------------------------
+npm install -g express-generator
+express myExpressApp
+cd myExpressApp
+npm install

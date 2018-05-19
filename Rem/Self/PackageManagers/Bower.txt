@@ -1,0 +1,1 @@
+Npm and Bower are both dependency management tools. But the main difference between both is npm is used for installing Node js modules but bower js is used for managing front end components like html, css, js etc.

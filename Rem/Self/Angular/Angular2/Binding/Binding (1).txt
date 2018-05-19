@@ -1,0 +1,156 @@
+Internally ng2 converts interpolations {{}} into property binding (while compiling the template code)
+
+<img src="{{imgURL}}" />
+<img [src]="imgURL" />
+
+so normally we can go with interpolation for display text
+and property binding for other puropse
+
+class binding
+-------------------
+<div [boolProperty]="className" />
+
+two way binding
+------------------
+<input type=�text� [(ngModel)]=�firstName� />
+
+
+The asterisk is "syntactic sugar".
+ It simplifies ngIf and ngFor for both the writer and the reader. 
+ Under the hood, Angular replaces the asterisk version with a <template> form.
+
+<!-- Examples (A) and (B) are the same -->
+<!-- (A) *ngIf paragraph -->
+<p *ngIf="condition">
+  Our heroes are true!
+</p>
+
+<!-- (B) [ngIf] with template -->
+<template [ngIf]="condition">
+  <p>
+    Our heroes are true!
+  </p>
+</template>
+
+
+
+<my-component *ngFor="#item of items">
+</my-component>
+
+
+
+*ngIf
+---------
+ngIf will remove the element instead of hiding. Angular removes the element from DOM,
+
+When we hide an element, the component's behavior continues. It remains attached to its DOM element.
+ It continues to listen to events. Angular keeps checking for changes that could affect data bindings.
+  Whatever the component was doing it keeps doing.
+Although invisible, the component and all of its descendent components  tie up resources that might be 
+more useful elsewhere. The performance and memory burden can be substantial 
+and the user may not benefit at all.
+On the positive side, showing the element again is very quick. 
+The component's previous state is preserved and ready to displ
+
+
+Class binding
+-----------------
+[ngClass]="{'label label-success':boolVal}"
+[class.label-success]="boolVal"
+[ngStyle]="{'display':consumerDisplayStyle}">
+
+elvis operator (nullable properties)
+-------------------------------------------
+{{objectName?.peropertyObject?.someValue}}
+above expression will not throw any error if objectName is null
+
+
+ngFor, ngIf directives are availbale inside browser module
+and in commonModule also it is available.
+
+
+Event binding and and adding attribute
+---------------------------------------
+GenerateClick(elementObject: Element) 
+{
+
+   
+	var objElementRef = new ElementRef(elementObject);
+   
+	this.objRenderer.setElementAttribute(objElementRef.nativeElement.target, "disabled", "disabled");
+    
+	this.onGenerate.emit(this.subjectInfo);
+  
+}
+
+
+Binding custome attributes in template
+-----------------------------------------
+have to add custome attribute like below. this will be converted by angular 2 
+attr.customeattributename="valueee"
+Ex:
+<option *ngFor="let eachProductDetail of consumerFormControlValues?.consumerProductList" 
+attr.productBaseId="{{eachProductDetail.BaseProductId}}" 
+value="{{eachProductDetail.Code}}">{{eachProductDetail.DisplayText}}</option>
+
+<div *ngFor="let eachChunk of objopenAccountChunk;let i = index" id='blockidx{{i}}'
+ class="scrollSpyCls" [attr.block-Index]="i">
+
+
+
+View Encapsulation
+-------------------------
+
+@Component({
+  selector: 'rpt-cons-comprehensiv-index',
+  templateUrl: './rpt-cons-comprehensiv-index.component.html',
+ 
+ styles:[".HideOnSummeryView {display:none;}"],
+  
+encapsulation: ViewEncapsulation.None
+ // None, Emulated, Native
+})
+
+Emulated (default) - styles from main HTML propagate to the component. 
+Styles defined in this component's @Component decorator are scoped to this component only.
+Native - styles from main HTML do not propagate to the component.
+ Styles defined in this component's @Component decorator are scoped to this component only.
+None - styles from the component propagate back to the main HTML
+ and therefore are visible to all components on the page. 
+ Be careful with apps that have None and Native components in the application.
+  All components with None encapsulation will have their styles duplicated in all 
+  components with Native encapsulation.
+
+
+
+Dynamic component loading
+---------------------------
+For example ViewContainerRef that is required by DynamicComponentLoader instead of the default ElementRef
+Ex: 
+@ViewChild("ComponentHolder", { read: ViewContainerRef }) ComponentHolder;
+let factory = this.componentFactoryResolver.resolveComponentFactory(this.componentToBeLoaded);
+    this.cmpRef = this.ComponentHolder.createComponent(factory);
+    this.cmpRef.instance.dataCollection = this.reportDataObject;
+HTML:
+<div #ComponentHolder></div>
+
+
+ng-container vs template
+------------------------
+Both of them are at the moment (2.x, 4.x) used to group elements together without 
+having to introduce another element which will be rendered on the page (such as div or span).
+
+template, however, requires nasty syntax. For example,
+
+<li *ngFor="let item of items; let i = index; trackBy: trackByFn">...</li>
+would become
+
+<template ngFor let-item [ngForOf]="items" let-i="index" [ngForTrackBy]="trackByFn">
+  <li>...</li>
+</template>
+You can use ng-container instead since it follow the nice * syntax
+ which you expect and are probably already familiar with.
+
+<ng-container *ngFor="let item of items; let i = index; trackBy: trackByFn">
+  <li>...</li>
+</ng-container>

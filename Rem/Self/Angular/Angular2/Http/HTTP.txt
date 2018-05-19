@@ -1,0 +1,155 @@
+HTTP and Observable
+---------------------------
+constructor(private http:objHTTP){}
+this.http.get('URL.SVC');
+
+ng2 HTTP  will create the Observable and this observable is
+responsible for sending and receiving the request.
+This observable we can subscribe to listen the response
+
+dont use http in components.create seperate service to hold the Http services
+
+.http.get('URL.SVC'); // not do any action. if we Call subscribe method then 
+this will send the request to server.
+.http.get('URL.SVC').subscibe(); //this will return observable.
+
+component.ts
+   fetchService() {
+        this.objhttpServices.fetchData().subscribe(
+            (objData: Response) => {
+                console.log(objData.json().name);
+            }
+        );
+    }
+
+Services.ts
+    public fetchData() {
+        return this.objHttp.get("/app/ServerData.html");
+    }
+
+
+but best practice is extract and transfor the data in service itself instead of
+doing it in component
+
+for this we can use 'map' operator
+
+map operator is available in 
+import { Observable } from "rxjs/Rx";
+
+import 'rxjs/Rx';
+
+map operator will retrun observable. 
+
+ public fetchData() {
+        return this.objHttp.get("/app/ServerData.html")
+        .map((responseObject : Response)=>responseObject.json());
+       // return this.objHttp.get("http://www.google.com",{headers:objHeaders});
+    }
+
+
+Make multiple parallel ajax calls (joining multiple ajax calls)
+------------------------------------------
+
+var ObservableCol1 = this.objHttp.get("http://jsonplaceholder.typicode.com/posts").map(data => { return data.json() });
+var ObservableCol2 = this.objHttp.get("http://jsonplaceholder.typicode.com/posts").map(data => { return data.json() });
+  
+ var objsubscription =  Observable.forkJoin(ObservableCol1,ObservableCol2)
+	.subscribe(dd=>{ 
+	     console.log(dd);
+	})
+
+
+Convert result to json and get result
+-----------------------------------------
+   this.objCometService.webAPIServiceCall({ serviceURL: "src/Mock/Report1.json" })
+      .map((data) => {
+        return data.json()
+      })
+      .subscribe((data) => {
+        return data;
+      })
+
+
+http.request
+---------------------------
+return this.http.request(new Request({
+        method: verb,
+        url: url,
+        body: body,
+        WithCredentials:true,
+        headers: new Headers({
+                "Access-Key": "<secret>",
+                "Application-Name": "exampleApp"
+                })
+})).map(response => response.json());
+
+withCredentials : 
+When this property is true, the browser will include authentication
+cookies, and headers from the origin will be included in the request to the server.
+ This setting must be used only with servers that include the
+Access-Control-Allow-Credentials header in responses, as part of the Cross-Origin
+Resource Sharing (CORS) specification. See the “Making Cross-Origin Requests”
+section for details.
+
+CORS in Angular
+------------------------
+In Angular JS typically websevices hosted  outside of the origin that contains the application’s JavaScript code.
+
+Two URLs are
+considered to be in the same origin if they have the same protocol, host, and port and have different origins
+if this is not the case.
+
+
+You may see a request made using the OPTIONS verb, known as the preflight request, which the
+browser uses to check that it is allowed to make the POST or PUT request to the server.
+
+
+Exception handling
+--------------------
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/catch";
+import "rxjs/add/observable/throw";
+...
+return this.http.request(new Request({
+    method: verb,
+    url: url,
+    body: body,
+    headers: headers
+})).map(response => response.json())
+   .catch((error: Response) => Observable.throw(
+    `Network Error: ${error.statusText} (${error.status})`));
+
+The catch method is used to receive any errors that occur within an Observable sequence,
+and the throw method is used to create a new Observable that just contains the error.
+
+ErrorHandler - replace the built-in Angular error-handling 
+----------------------------------------------------------
+
+replace the built-in Angular error-handling feature, which responds to any
+unhandled errors in the application and, by default, writes them to the console.
+
+import { ErrorHandler, Injectable } from "@angular/core";
+import { MessageService } from "./message.service";
+import { Message } from "./message.model";
+@Injectable()
+export class MessageErrorHandler implements ErrorHandler {
+  constructor(private messageService: MessageService) {
+  }
+  handleError(error) {
+    let msg = error instanceof Error ? error.message : error.toString();
+    setTimeout(() => this.messageService
+      .reportMessage(new Message(msg, true)), 0);
+  }
+}
+
+module.ts
+
+import { NgModule, ErrorHandler } from "@angular/core";
+@NgModule({
+imports: [BrowserModule],
+declarations: [MessageComponent],
+exports: [MessageComponent],
+providers: [MessageService,
+{ provide: ErrorHandler, useClass: MessageErrorHandler }]
+})
+export class MessageModule { }

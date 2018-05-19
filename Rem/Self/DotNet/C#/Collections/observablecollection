@@ -1,0 +1,13 @@
+There are basically three types of Change:
+1. Active change/Statistical change -  ex: add or remove data from existing collection 
+2. Passive change/Non-statistical change  - ex: sorting or swapping
+3. Data sensitive change - ex: change the existing data
+
+The ObservableCollection<T> class implements two interfaces:
+1. INotifyCollectionChanged
+2. INotifyPropertyChanged
+
+INotifyCollectionChanged interface has an event called CollectionChanged, which
+is triggered when there is an active/statistical change. The INotifyPropertyChanged
+interface has an event, PropertyChanged, which can be triggered for any data sensitive
+change

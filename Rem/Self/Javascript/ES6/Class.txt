@@ -1,0 +1,40 @@
+
+Class is not a new type. it is actually a function
+
+
+class Task{
+}
+console.log(typeofTask);//function
+let task=newTask();
+console.log(typeoftask);//object
+console.log(task instanceof Task);//true
+
+Class is a keyword which is another way to work with prototypes
+Adding a method to a class is similar to adding a method to a prototype
+
+console.log(task.showId===Task.prototype.showId);//true
+//# actually the method will get added into a prototype of Task
+//It is same in in ES5.. create function and add other functions to its prototype
+
+we can't use the class before declaring it
+
+
+we can able to assign a class to a variable and use it
+let newClass=class Task{
+    constructor(){
+        console.log('constructingTask');
+        }
+        };
+new newClass();//constructingTask
+
+
+Difference between classes and functions
+--------------------------------------------------
+Class will not be added into window or any other global objects like functions
+--------------------------------------------------------------------------------------------------
+function Project(){};
+console.log(window.Project===Project);//true
+
+class Task{}
+console.log(window.Task===Task);//false
+

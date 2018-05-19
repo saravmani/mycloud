@@ -1,0 +1,6 @@
+I set expiry time as 1 min.
+but after authenticated, i keep on accessing the system. But Authentication was successfull at each time.
+But this is possible?
+when token reaches near to expiry time , server will create new token and set in cookie.. :-)
+
+my doubt still what will happen if objAuthentication.SignOut() call?

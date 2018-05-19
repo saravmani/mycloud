@@ -1,0 +1,17 @@
+When do new Class() runtime will calculate memory size, GC will allocate the object in managed heep
+and give the address reference. Now Object in Generation 0.
+
+when next time GC tries to allocate memory for another object, and that time if Gen 0's memory size
+exceeds the threshold then GC will start collecting (compacting) the dead object (the objects not having
+reference or root).
+The garbage collector then remove the dead objects from the heap and 
+live objects will move toward the older end of the memory segment
+
+when GC starts it will suspend all the running threads in application.
+But concurrent GC(before .net 4) and background GC (.4 and .4+), will pass less number of threads
+by locking only Gen0 area then do Compacting.
+
+after 1's GC collection, if any object still having reference root, that will be moved to 
+Gen1. if Gen1 threshold reached then living object in Gen1 will moved to Gen2.
+
+Gen 0 will get frequently cleared. and this will have only short living objects.

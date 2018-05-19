@@ -1,0 +1,52 @@
+nconfig module can be used to configure the application 
+like app.config in .net
+
+nconfig is haing 3 types,
+1. args
+2. env,
+3. file,
+
+we can have multi levels,
+ex: args can take presidance then env, this depends on which order we are using nconfig 
+
+config file should be in json formate
+ex:
+// development.json
+{
+    "name": "My App",
+    "db": {
+        "host": "localhost",
+        "user": "root",
+        "pass": "abc123"
+    }
+}
+
+
+var path = require('path');
+ 
+var options = {
+    "path": path.join(__dirname, 'config');
+};
+var nconfig = require('nconfig')(options);
+ 
+var config = nconfig.loadSync('development');
+ 
+console.log(config);
+
+
+
+ex2:
+-------------
+
+var nconfig = require("nconfig");
+nconfig.file("filename.json");
+
+nconfig.argv({
+    'cmannd':{
+        'alias':"http:port"
+    }
+    
+});
+
+
+nconfig.get("http:port");

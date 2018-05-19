@@ -1,0 +1,14 @@
+$ionicPopup
+
+
+.controller("controllerName",function($scope,$ionicPopup){
+$scope.btnClick=function(){
+$ionicPopup.prompt(
+{
+title:"title",
+template:"enter task",
+inputPlaceholder:"this is place holder text",
+okText:"some ok text"
+}).then(function(res){});//here .then is promise
+}
+})

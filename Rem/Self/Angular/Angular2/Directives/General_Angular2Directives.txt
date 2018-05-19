@@ -1,0 +1,88 @@
+Key words: ElementRef, @HostBinding,@HostListener, @Attribute
+
+There are two types of directives
+	Structural directives and attribute directives
+
+difference btn directive and component
+	It is possible that the same DOM element may have a number of directives.
+However, in case of component it is not possible, any DOM element can have only a
+single component.
+
+able to modify the behavior or appearance of the element
+
+Create a property binding or event
+binding on the host element -   Apply the @HostBinding or @HostListener decorators
+
+@Attribute - Access host element attribute values
+
+@Directive({
+selector: "[pa-attr]",
+})
+export class PaAttrDirective {
+constructor(element: ElementRef) {
+element.nativeElement.classList.add("bg-success");
+}
+}
+
+
+ElementRef - represents host element
+
+
+The ElementRef class defines a single property, nativeElement, which returns the object used by the
+browser to represent the element in the Domain Object Model. This
+
+element.nativeElement.classList.add("bg-success");
+
+
+
+Reading hostelement attributes
+-------------------------------------------
+we can configure directives using attributes applied to the host
+element, which allows each instance of the directive to be provided with its own configuration 
+information
+and to adapt its behavior accordingly.
+
+
+import { Directive, ElementRef, Attribute } from "@angular/core";
+@Directive({
+	selector: "[pa-attr]",
+})
+export class PaAttrDirective {
+constructor(element: ElementRef, @Attribute("pa-attr-class") bgClass: string) {
+	element.nativeElement.classList.add(bgClass || "bg-success");
+}
+}
+
+
+<td pa-attr pa-attr-class="bg-warning">{{item.category}}</td>
+
+
+Using a Single Host Element Attribute (directive selector and input both are rame)
+----------------------------------------------
+Using one attribute to apply a directive and another to configure it is redundant,
+ and it makes more sense to
+make a single attribute do double duty,
+
+import { Directive, ElementRef, Attribute } from "@angular/core";
+@Directive({
+selector: "[pa-attr]",
+})
+export class PaAttrDirective {
+constructor(element: ElementRef, @Attribute("pa-attr") bgClass: string) {
+element.nativeElement.classList.add(bgClass || "bg-success");
+}
+}
+
+<td pa-attr="bg-warning">{{item.category}}</td>
+
+
+but @Attribute can read static data only
+
+
+#if we use square brackets then assigning value will get automatically get evaluated
+# or else we have to use {{}}
+
+see below examples
+<button [appHostbindercheck]="sometxt" (click)="sometxtcall()" >some button info</button>
+0r
+<button appHostbindercheck="{{sometxt}}" (click)="sometxtcall()" >some button info</button>

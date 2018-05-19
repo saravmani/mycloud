@@ -1,0 +1,13 @@
+Mobile First means designing for mobile before designing for desktop or any other device (This will make the page display faster on smaller devices).
+The viewport is the user's visible area of a web page.
+
+HTML5 introduced a method to let web designers take control over the viewport, through the <meta> tag.
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+Many web pages are based on a grid-view, which means that the page is divided into columns:
+Using a grid-view is very helpful when designing web pages. It makes it easier to place elements on the page.
+A responsive grid-view often has 12 columns, and has a total width of 100%, and will shrink and expand as you resize the browser window.
+
+Example: Responsive Grid View
+

@@ -1,0 +1,29 @@
+Early requirement document
+ this contains high level features
+from this we have to extract use cases
+
+use this document - we can get idea of what is this project
+
+example, in below requirement line we can extract usecases
+User can login to their account and upload fav music files.
+
+from above high level requirement we extract below use cases. Those use cases are not 
+in detail. It should be simple and understandable
+User register
+Edit User info
+Login
+Logout
+Change password, forget password
+Upload option for sound file . Mp3, etc.,
+add the lable name for song
+view uploaded list for files
+delete those files
+play the song
+
+based on this use cases, BA or Client can add the missing part.
+
+Then find the dependencies
+
+ex: Change password needed Login and login needed User register
+
+so the use case order should start from User register

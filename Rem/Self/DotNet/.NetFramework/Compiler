@@ -1,0 +1,14 @@
+The C# compiler, by default,
+automatically looks in the MSCorLib.dll assembly even if you don’t explicitly tell it to. The MSCorLib.dll
+assembly contains the definitions of all of the core Framework Class Library (FCL) types, such as
+Object, Int32, String, and so on.
+
+
+
+namespace X {
+public sealed class B { ... } // TypeDef: CompanyName.X.B
+}
+}
+The comment on the right of the class definitions above indicates the real name of the type the
+compiler will emit into the type definition metadata table; this is the real name of the type from the
+CLR’s perspective.

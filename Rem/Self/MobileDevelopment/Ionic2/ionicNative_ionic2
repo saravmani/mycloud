@@ -1,0 +1,5 @@
+Ionic Native is a TypeScript wrapper for Cordova/PhoneGap plugins that make adding any native functionality you need to your Ionic mobile app easy.
+
+To add Ionic Native to your app, run following command to install the core package:
+npm install @ionic-native/core --save
+

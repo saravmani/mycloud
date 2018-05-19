@@ -1,0 +1,22 @@
+It is exactly opposite of software design Patterns. 
+Some the well known anti patterns are the problems which software industry faces. 
+Anti patterns are out comes of following bad practices, over engineering, implementation 
+of design patters without having enough knowledge of patterns or not 
+understanding the context of problem.
+
+Copy+Paste 
+------------------
+his is a favorite of any developer including myself. Ctrl + C, Ctrl + V is part of any developer's 
+It is good if you are doing it from external sources to boost your development
+ with good understanding of it, but it becomes Anti pattern when you do it with your own code. 
+ If you are doing copy and paste of your own code, then it is an Anti pattern.
+
+Spaghetti Code
+------------------------
+Spaghetti code is a code meaning unstructured code, written by a 
+developer who is less experienced or lacks knowledge of Object oriented programming. 
+Code written like a procedural programming. In this kind of code, the developer 
+himself can't understand his own code after a few days. The code looks like spaghetti.
+
+# so as per my understanding anit patterns means,
+the code which writtern is not flexible, non maintanable, over engineered, 

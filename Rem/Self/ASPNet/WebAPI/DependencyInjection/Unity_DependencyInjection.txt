@@ -1,0 +1,31 @@
+
+Dependency injection in WEBAPI
+=====================================
+
+install below nuget package 
+Unity.Webapi
+(remember for MVC controller we have to install Unity.MVC5 package)
+
+Add below code and call static method from global.asax in application start
+
+ public static class UnityConfig
+    {
+        public static void RegisterComponents()
+        {
+			var container = new UnityContainer();
+            
+            // register all your components with the container here
+            // it is NOT necessary to register your controllers
+            
+            // e.g. container.RegisterType<ITestService, TestService>();
+
+            container.RegisterType<AbstractPMRReportService, PMRReportService>();
+            
+            GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
+        }
+    }
+
+Now api controller's constructor will get injected with Object
+
+public FetchReportDataController(AbstractPMRReportService objPMRReportService){}
+        {

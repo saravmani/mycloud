@@ -1,0 +1,32 @@
+First program
+module.id was throwing error. to solve this
+1.  npm install @types/node --save
+2. add reference to below file
+/// <reference path="../../node_modules/@types/node/index.d.ts" />
+this works. got this solution from below link
+http://stackoverflow.com/questions/36700693/typescript-error-in-angular2-code-cannot-find-name-module
+
+
+Ajax After converting result to json format, parameter was null inside of subscrbe function
+----------------------------------------
+  this.objCometService.webAPIServiceCall({ serviceURL: "src/Mock/Report1.json" })
+    
+  .map((data) => {
+        return data.json()
+      })
+    
+  .subscribe((data) => {
+        return data;
+      }).
+
+But problem is inside map function i missed to return the value.
+
+
+
+Routing not working
+--------------------------
+buy default angular will not support # based routing.
+to support we have to import 
+import { HashLocationStrategy, Location, LocationStrategy } from '@angular/common';
+
+providers: [ Location, { provide: LocationStrategy, useClass: HashLocationStrategy }],

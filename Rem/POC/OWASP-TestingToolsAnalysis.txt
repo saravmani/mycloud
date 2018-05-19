@@ -1,0 +1,13 @@
+about list of all open sources
+http://resources.infosecinstitute.com/14-popular-web-application-vulnerability-scanners/#gref
+
+
+Security testing tools -OWASP Security scanners, Automated security testing
+---------------------------------------------------------------------------
+Zaproxy (called as ZAP). It is free opensource tool
+	https://github.com/zaproxy/zaproxy/wiki/Downloads
+
+
+WebScrab
+	https://sourceforge.net/projects/owasp/files/WebScarab/
+It is JAR file. you can directly double click to launch the application

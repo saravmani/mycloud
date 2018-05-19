@@ -1,0 +1,27 @@
+Pipes (Node JS)
+-----------
+if you have
+water coming from a source (such as a water heater) and you want to direct it to a
+destination (like a kitchen faucet), you can route that water from its source to its destination
+by adding a pipe to connect the two.
+Water can then flow from the source
+through the pipe to the destination.
+
+An example of using pipes is reading a file (ReadableStream) and writing its contents
+to another file (WritableStream)
+var readStream = fs.createReadStream('./original.txt')
+var writeStream = fs.createWriteStream('./copy.txt')
+readStream#pipe(writeStream);
+
+even we can write the stream directly into http response.
+
+ex: static file serving
+var server = http.createServer(function(req, res){
+var url = parse(req.url);
+var path = join(root, url.pathname);
+var stream = fs.createReadStream(path);
+stream.pipe(res);
+});
+in above example The file ReadStream is piped
+back to the HTTP response to
+complete the client request.

@@ -1,0 +1,9 @@
+
+The main notion garbage collection algorithms rely on is the notion of reference. 
+Within the context of memory management, an object is said 
+to reference another object if the former has an access to the latter 
+(either implicitly or explicitly). 
+JavaScript object has a reference to its prototype (implicit reference) 
+and to its properties values (explicit reference).
+
+(In JavaScript, the root is the global object)

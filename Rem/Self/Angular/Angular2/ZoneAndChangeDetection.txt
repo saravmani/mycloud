@@ -1,0 +1,185 @@
+In General Angular 2 Zone.js provides an execution context for
+asynchronous tasks and is used to evaluate template expressions.
+
+
+change detection process (zone, change detection, watch)
+--------------------------
+who notifies to angular about changes? Zone
+Zone can perform an operation each time code enters or exits the a task
+
+foo();
+setTimeout(doSth, 0);
+bar();
+
+
+zone.run(() => {
+  foo();
+  setTimeout(doSth, 0);
+  bar();
+});
+//setTimeout() at this time is already monkey-patched
+
+
+Zones hooks can be extended
+
+zone.fork({
+  name: 'loggerZone',
+  onEnter: () => { console.log('start'); },
+  onLeave: () => { console.log('end'); }
+})
+.run(() => {
+  foo();
+  setTimeout(doSth, 0);
+  bar();
+});
+
+
+
+ANGULAR HAS ITS OWN ZONE
+NgZone is a forked zone with additional APIs based on Observables
+
+onMicrotaskEmpty() - Emits after turn is done
+onError() - Emits when error occoured
+
+
+WHAT NOTIFIES ANGULAR?
+this.zone.onMicrotaskEmpty
+  .subscribe(() => {
+    this.zone.run(() => this.tick() })
+  }
+
+  tick() {
+  this.changeDetectorsRefs
+    .forEach((ref) => ref.detectChanges())
+}
+
+
+Directive to execute click event to ouside NgZone
+---------------------------------------------------------
+@Directive({
+  selector: '[outSideEventHandler]'
+})
+class OutSideEventHandlerDirective {
+  private handler: Function;
+
+  @Input() event: string = 'click'; // pass desired event
+  @Output('outSideEventHandler') emitter = new EventEmitter();
+
+  constructor(private ngZone: NgZone, private elRef: ElementRef) {}
+
+  ngOnInit() {
+    this.ngZone.runOutsideAngular(() => {
+      this.handler = $event => this.emitter.emit($event);
+      this.elRef.nativeElement.addEventListener(this.event, this.handler);
+    });
+  }
+
+  ngOnDestory() {
+    this.elRef.nativeElement.removeEventListener(this.event, this.handler);
+  }
+}
+
+
+
+
+Change detection processes
+--------------------------------------------
+Each component has its own Change Detector
+
+Change Detection is always performed in the same order starting from root
+
+Change Detection Graph is a directed tree Way more predictable
+
+Angular is conservative by default and checks every component every single time
+#Even in child component any property got changed, DoCheck hook will get called in 
+all the components
+
+# even any event happens (ex:btn click) without change in any property,
+ then also docheck,aftercontentchecked,afterviewchecked are getting called
+
+
+
+@Component({
+  template: `
+    <h2>{{vData.name}}</h2>
+    <span>{{vData.email}}</span>
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+class VCardCmp {
+  @Input() vData;
+}
+Perform change detection on view only if input has changed
+
+# But i tried with button click events (parent having button, 
+and on click of button input property of child component will changed) ..
+ with this ChangeDetectionStrategy property no effect :-)
+
+#But i tried with setTimeout (parent  will change input property of child component on timer)
+this works !!!!...yes.. OnPush, child component's  docheck,aftercontentchecked,
+afterviewchecked not called.
+so in child components of this child componet also change detection process will not run
+
+# so how to handle click events?? we can bind click event outside of angular context
+using NgZone 
+
+we can run change detection process for particular component.. by using
+ChangeDetectorRef
+we can call this.objChangeDetectorRef.detectChanges();.. this will detect changes
+ex: i create parent component with   changeDetection: ChangeDetectionStrategy.OnPush,.
+in child components i am making multiple ajax calls and getting data.. after multiple calls finished
+i called this.objChangeDetectorRef.detectChanges();.. so i avoided multiple change detection processes
+
+
+OnChanges Lifecycle Hook will trigger only when input property's instance changes. 
+# i have done POC - if we use array and if add elements to it.. 
+then ngOnChanges triggers. But if modify any refrence element within array then ngOnChanges not triggers
+
+
+Observables and Change Detection
+------------------------------------
+@Component()
+class AnotherCmp {
+
+  notifier:Observable<any>;
+
+  constructor(private cd: ChangeDetectorRef) {}
+
+  ngOnInit() {
+    this.cd.detach();
+    this.notifier.subscribe((attach) => {
+      attach ? this.cd.reattach() : this.cd.detach();
+    });
+  }
+}
+
+# i tried with some example for detach and reattach
+    this.objChangeDetectorRef.detach();//after this call change detection not happening
+    this.objChangeDetectorRef.reAttach();//After this call change detection happening
+  #one important thing.. i tried this within child component.. but it even stops change detection in 
+  parent component.. so i think.. it is a setting for application level
+
+
+POC
+---------
+Parent component having one Button and below code in ngAfterViewInit
+ ngAfterViewInit(): void {
+    this.objChangeDetectorRef.detach();
+   }
+   test_buttonclick() {
+    console.log("button clicked in parent");
+  }
+  detectChanges_button click()
+  {
+    this.objChangeDetectorRef.detectChanges();
+
+  }
+    autodetectchanges_Click(){
+    this.objChangeDetectorRef.reattach();
+  }
+
+  Result :
+  when i click test_buttonclick .. it is not calling child component's DoCHeck method
+  if click detectChanges_button then it is calling docheck of child component
+when i click autodetectchanges_Click, after that if i click test_buttonclick then 
+it is normally calling docheck of child component

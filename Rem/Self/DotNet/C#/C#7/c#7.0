@@ -1,0 +1,43 @@
+It is released in March2017
+
+Pattern Matching
+Exceptions as expressions
+Local functions - functions within functions..
+                  all of outer variables are available in inner functions
+Static Using
+
+New futures in tuple
+-----------------------------
+Tuple  types
+Tuple Literal
+
+C# 7.0 features may not be available as a part of Visual Studio 2017
+RC or other previous versions.
+from nuget package manager add System.ValueTuple 
+
+// tuple return type  
+public (string, string, long) TupleReturnLiteral(long id)  {  
+string name = string.Empty;  
+string title = string.Empty;  
+long year = 0;    
+if (id == 1000)  
+{  
+name = "Mahesh Chand";  
+title = "ADO.NET Programming";  
+year = 2003;  }    
+// tuple literal  
+return (name, title, year); 
+} 
+TupleSamples ts = new TupleSamples();  
+var author = ts.TupleReturnLiteral(1000);  
+Console.WriteLine($"Author {author.Item1} {author.Item2} {author.Item3} ");  
+
+
+To make the above code more readable, we can name the tuple return type values. 
+public (string name, string title, long year) TupleReturnLiteral(long id)  
+{  ....}
+  
+
+TupleSamples ts = new TupleSamples();  
+var author = ts.TupleReturnLiteral(1000);  
+Console.WriteLine($"Author {author.name} {author.title} {author.year} ");  

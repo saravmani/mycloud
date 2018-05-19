@@ -1,0 +1,89 @@
+An Angular application consist largely of components and their HTML templates.
+ Before the browser can render the application, the components and templates must be converted 
+ to executable JavaScript by the Angular compiler.
+
+
+ Just-in-Time (JIT), which compiles your app in the browser at runtime
+Ahead-of-Time (AOT), which compiles your app at build time.
+
+Rules to use AOT
+----------------------
+1. All we have to mentioned return types properly.
+Ex:
+	getServiceData():Obsevable<any>
+	{}
+	//here return type is mandatory to use the benifit of AOT
+
+2. The AOT compiler requires that @Component URLS for external templates and css
+ files be component-relative. That means that the value of @Component.templateUrl 
+ is a URL value relative to the component class file. For example, an 'app.component.html' 
+ URL means that the template file is a sibling of its companion app.component.ts file.
+ 3. No private method or variables be refered in template.   You may see warning messages about inaccessible properties and methods. This is caused by
+templates that rely on component properties and methods to which the private keyword has been applied.
+This doesn’t cause a problem during development because the browser processes the template using the
+JavaScript files, which have no concept of access controls, but it causes problems when using the AoT compiler
+because the template is processed using TypeScript. To correct the problem, remove the private keyword or
+replace it with public (which has the same effect).
+
+
+
+
+
+Advantages
+----------------
+AOT will do tree shaking, which means it will remove unused codes, and un referenced moduels.
+Ex: in our proj if we not referenced @angular/forms, then this tree shaking process will remove it.
+
+Rendering will be faster
+there are fewer opportunities for injection attacks.
+Detect template errors earlier
+Smaller Angular framework download size
+
+Disadvantages
+---------------
+For huge projects main.js file size will get increased. SO first time download will be slow
+
+
+Tree Shaking and AOT compilation are separate steps.
+
+
+Commands
+-----------
+ng build --aot --prod
+
+
+
+
+The AoT compiler creates the factory classes so that the browser doesn’t have to perform this step,
+
+
+Tree Shaking
+----------------
+shaking the tree refers to the process of inspecting all the dependencies in an application in order
+to ensure that only the files that are required to run the application are sent to the browser.
+
+
+
+
+gzip compression
+--------------------
+HTTP transfer between server and client almost always uses compression. In most cases this is gzip.
+
+So what matters for transfer times is not the size of your bundle.js but the size of bundle.js.gz
+ as content is practically always sent in its gzip compressed form.
+
+When bundle.js is requested, the server gzips it on the fly and puts it on the wire. 
+So gzip is run on every request, which is inefficient for static content.
+
+Also gzip's performance drops significantly with the level of compression (check out this article). 
+Using the highest compression level possible isn't efficient if at all possible on-the-fly. 
+A properly configured webserver would send bundle.js.gz when a gzipped version of bundle.js is
+ requested, so you could use the highest compression level gzip can provide.
+
+In my opinion, the performance bonus of this is negligible unless your server mainly 
+provides static content that can be compressed
+ ahead-of-time. For a small application, with static content and API being served 
+ from the same machine, there should be practically no impact.
+
+
+

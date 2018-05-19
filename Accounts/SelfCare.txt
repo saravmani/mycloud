@@ -1,0 +1,7 @@
+[{
+'domain':'https://www.lumosity.com',
+'loginId':'winnerrs.mani@gmail.com',
+'pwd':'stdpwd1#',
+'url':'https://www.lumosity.com',
+'Description':'Brain development'
+}]

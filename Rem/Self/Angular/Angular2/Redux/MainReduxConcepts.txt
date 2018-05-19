@@ -1,0 +1,5 @@
+Single Source of truth (Single big repository to store the data)
+State is read only (every time we ill take copy and modify it)
+Pure funcitons
+
+reducers - should be pure functoins

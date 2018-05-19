@@ -1,0 +1,65 @@
+
+If we set below Securtiy flag then secure flag for cookies will be setted by framework. this coolkis can be transmitted over 
+Secured transmission layer only
+<httpCookies requireSSL="true" />
+
+
+
+
+Impersonation (Use specific user account to access all the resources)
+------------------
+<identity impersonate="true" userName="AccountNAME" password="Password" />
+Impersonation is a technique to access application resources using the identity of some other user..
+By default, Impersonation is off.
+ By default, all ASP.NET code is executed using a fixed machine-specific account. 
+
+
+
+web Farm or Load Balancer
+--------------------------
+ when you are hosting your single web site on multiple web servers over load balancer is called “Web Farm”
+
+
+Web Garden or enabling Multiple worker process
+-------------------------------------------------
+each and every Application pool contains a single worker process. Application which contains the multiple worker process is called “Web Garden”
+
+
+Allow only Numbers i.e. Digits 0 – 9
+Ajax toolkit
+
+<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+<cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server" FilterType="Numbers"
+
+    TargetControlID="TextBox1" />
+
+
+postback page using javascript
+---------------------------------
+__doPostBack('<%=SubmitRelatedEntity.UniqueID %>', "");
+
+WCF - Create proxy CS - client file
+C:\Windows\system32>svcutil.exe /language:cs /out:c:\\WidgetDataClient.cs /confi
+g:app.config net.tcp://dnbtd101.dnbtechnology.com/sbwebsite/services/InvokeWidge
+t.svc
+
+svcutil.exe /language:cs /out:c:\\WidgetDataClient.cs /config:app.config net.tcp://localhost/sbwebsite/services/InvokeWidget.svc
+
+
+Register ASP.net 4.5 framework with IIS
+aspnet_regiis -i
+
+
+Output caching 
+----------------
+The output cache mechanism is implemented via a predefined HTTP module that kicks in for each request that hits the application. 
+The module fires after request authorization thus ensuring that you still go through authentication/authorization even for cached requests.
+ Frankly, output caching may not be a decisive factor to speed up your site, but I don’t see reasons for not using it on any site where 
+clogging could be causing real problems.
+
+
+
+IIS Express
+----------------
+enable 64 bit iis express
+Tools->Options -> Project and Solutions -> Web Projects -> "Check" "Use 64 bit version of IIS Express for web sites and projects"

@@ -1,0 +1,11 @@
+Local Storage
+var localStorage = window.localStorage;	
+ localStorage.setItem("Name", "John");
+console.log(localStorage.getItem("Name"));
+//or
+console.log(localStorage.key(0));
+//Local storage will save data in alphabetical order. so if we use key(0) it will give result based on alphabet. not based on storage
+
+localStorage.removeItem("Project");
+localStorage.clear()//Clear all
+localStorage.length()//Show storage count

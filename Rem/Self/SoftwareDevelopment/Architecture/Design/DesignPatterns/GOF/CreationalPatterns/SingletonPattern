@@ -1,0 +1,40 @@
+The Singleton Pattern ensures a class has only one
+instance, and provides a global point of access to it.
+
+
+public class SingleTonClass
+{
+    private SingleTonClass(){}
+    private static objInstance;
+    private static Object lockObject = new Object();
+    public static SingleTonClass GetInstance()
+    {
+        if(objInstance==null)
+        {
+        lock(lockObject)//LOCKING IS IMPORTANT. BCS LOCAL VARIABLE IS STATIC. SO WHEN MULTIPLE THREADS TRY TO ACCESS THE OBJECT, THERE IS POSSIBILITY OF GETTING NEW OBJECT CREATION
+        {
+          if(objInstance==null)
+            objInstance = new SingleTonClass();
+        }
+        }
+return objInstance;
+    } 
+}
+
+
+But synchronization is expensive; so we are checking null brefore go into synch block
+
+
+# even we can use other framework methods, or DI frameworks to create Singleton object.
+but the problem is we are not suere that how many DI Framework objects created by developers.
+so if many di objects then each object may create each Singleton object. so better we restrict object creation with singleton class
+
+# we can argue that singleton vialating SRP. bcs it does objection creation+Its own functionality.
+
+
+Inherit singleton
+-------------------
+You can’t extend a class with a private constructor. So, the first
+thing you’ll have to do is change
+your constructor so that it’s public or protected. But then, it’s not really
+a Singleton anymore, because other classes can instantiate it.

@@ -1,0 +1,17 @@
+Issues and solution.
+After setup the push notifications unable to build ionic app. It was throwing below error
+you have not accepted the license agreements of the following sdk components sdk patch applier v4, google repository, androidd support repository
+
+to solve this open sdk managerr and install Google Repository (under "Extras" node).
+
+
+In fire base have to create new app, and register your app's package name.
+Get the package name from conig.xml file
+ex: <widget id="com.ionicframework.marketwatcher383231"
+
+get the sender id from firebase cloud messages tab
+
+install phush notification pluggin in your app
+cordova plugin add phonegap-plugin-push --variable SENDER_ID=12341234 --save
+
+install native wrapper for pulgging

@@ -1,0 +1,480 @@
+﻿Why angular?
+decoupling 
+
+what ever we are adding in $rootScope will be automatically available in all $scope objectes
+
+Ex:
+app.run(function($rootScope) {
+  $rootScope.hello = function() {
+    console.log('hello');
+  }
+});
+
+function MainCtrl = function($scope) {
+  $scope.save = function() {
+    $scope.hello();//This will work
+  }
+};
+
+
+Third parthy angular components whichare usefule
+angularstrap - which is provided by bootstarp .
+Another commonly used AngularJS companion library that exposes
+directives for various Bootstrap components is UI Bootstrap, a project that
+the AngularUI organization maintains. To learn more about UI Bootstrap,
+please visit the documentation site located at http://angular-ui.github.io/
+bootstrap/.
+
+The view is nothing but a UI projection of model data.
+
+
+Tip: we should keep in mind: minimize the number of properties and functions that are attached to the $scope object.
+Only properties and functions that are required to be referenced in the view
+should be attached to the scope object.
+
+
+ngshow
+--------------
+<p ng-show="deviation<0" class="alert alert-warning">Your
+guess is higher.</p>
+
+<body ng-app="app">
+ng-app attribute tells Angular to search for a module named
+app and load it.
+
+
+In the AngularJS world, any configurations required before the app becomes usable
+are defined using the module API's config method.
+
+
+
+
+Exrpressions
+--------------
+Ex: {{1+2}}//THis will execute againes scope context. bt in general this executes against windo
+
+Advice - when an expression starts to become complex, move it into a
+controller function.
+
+You cannot use the following in an Angular
+expression: conditionals, loops, or exceptions.
+
+
+To keep the view and the model in sync, Angular creates bindings between view
+elements and model properties. Bindings are created for the interpolations and
+directives that we define on the view.
+
+expression inside the interpolation
+symbol is evaluated and the return value replaces the interpolation
+
+
+directive on the other hand can bind any HTML element attribute with the model
+depending upon the directive implementation.
+For example, the ng-show directive that we have used is as follows:
+<p ng-show="deviation<0" class="alert alert-warning">Your guess is
+higher.</p>
+deviation<0 is false, a CSS class .ng-hide (with style defined
+as display:none) is appended;
+
+
+
+
+
+When it comes to writing a controller, the golden rule is never ever,
+ever, ever reference the DOM element, either using plan JavaScript
+or with libraries such as jQuery, in the controller. Such code does not
+belong to the controller.
+If you want to do DOM manipulations, use existing directives or
+create your own.
+
+scopeobject binds the model properties
+and behavior (functions) to the HTML view
+
+scope object is not the
+model but it references our model.
+
+The framework can create multiple scope objects, depending on how the
+views are structured. The thing that we should keep in mind is that scope objects
+are always created in the context of a view element and hence follow a hierarchical
+arrangement similar to that of HTML elements
+
+
+
+Batarang chrome extension helps in debugging angualar js
+//This extension does not work if the file is loaded from a local
+filesystem (file:///).
+
+In fact,
+in any decent size app there are a number of scopes active during any given
+time.
+
+
+$rootScope and $scope are instances of the same class (a
+constructor function). The difference is just the context in which
+they are available. $rootScope is available throughout the HTML
+(within ng-app) whereas $scope is always scoped by a specific
+HTML element.
+
+
+During this bootstrapping/initialization process Angular does the following:
+It compiles the DOM starting from where ng-app is declared. In this
+compilation process, the framework traverses the DOM, looks for
+all directives and interpolations, and sets up the binding between the
+view and model.
+
+Post compilation, it links the view and scope to produce a live view where
+changes are synced across the model and viewed in real time as we interact
+with the app
+
+ng-controller declaration when compiled by the framework leads to
+the creation of a new scope
+
+There are a number of other directives in Angular that cause the
+creation of a new scope; this is precisely the reason why there can
+be multiple scopes active during the execution of the app.
+
+
+{{}} this symbol is called interpolation symbol
+• Inside a tag (<div>{{noOfTries}}</div>)
+• As an attribute value (<div class='cls-{{noOfTries}}'>)
+• As an attribute name (<input {{myAttributeName}}="">)
+
+
+	As a good practice, we should not use the $ prefix in any of our service
+names. to distinguish between our service and framework service
+
+
+Build in angular modules
+-------------------------------
+ngRoute
+ngCookies,
+ngAnimation
+ngTouch
+
+
+
+directives
+------------------
+ng-include
+ng-if
+ng-show
+
+
+
+Everything in AngularJS can be categorized into four buckets namely: controllers,
+directives, filters, and services.
+
+The main entry point for all AngularJS applications is the top‐level app module.
+module as a container
+for the different parts of your application.
+
+modules can
+be loaded asynchronously in any order, and code readability and reusability are enhanced.
+
+To start angular js in your mvc5 projects
+1. Install Angularjs
+2. Install defenitly typed for Angular and jQuery
+
+
+From asp.net MVC controller we can get the json with Camel format (C# we normally uses PasCal in JS we uses camel format).
+To solve this , we can use newton soft's serializer name space, which will provide json formater.
+
+Ex:
+var settings = new JsonserializerSettings();
+settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+var jsonREsult = new ContentResult
+{
+Content = JsonConvert.SerializeObject(objList,settings),
+ContentType= "application/json"
+}
+return jsonResult
+
+But if we use webapi we can set this at globally
+
+
+// In angular js to solve generic minification issue on function parameters, we are using arry kind of diclaration
+//i.e instead of  .factory("factname",function($http){})
+//We are using .factory("factname",["$http",function($http){}]);
+
+
+$locationProvider.path("/Navigateto");
+
+Angular js gives $scope .. this is equalent to this key word. $scope referes current object
+
+Once browser renders HTML page and generate the dom tree. but browser will not touch "-" ned tags.
+ONce dom is ready then angular start runs
+
+ONce angular parse started once it finds ng-app then angular will create $rootScope object
+and creates object tree . we can call it as angular document object model
+
+we can able to get this root scope like below code
+ex:
+  function controllfunction($scope,$rootScope)
+  {
+  $rootScope.somevariablename ="rerwe";//this will belcome global variable and it will be available to all controllers
+  }
+
+Angular is case sensitive
+
+
+
+in angular js the controllers will be isolated to each other. But those controllers are directly attached to It's parent app.
+It means controller objects are child object off App object.
+Note: In one Html page we can have ONLY ONE APP tag or APP object.
+
+Actually ng-controller will create the instance of the given controller class
+why angular uses "-"??
+bcs HTML says ti will not parse the tag with the keyword "-"
+
+Main components of Angular
+-----------------------------------
+1. Components,2. Directives,3.Services,Routers
+Components
+-------
+Encapsulates data, template and behaviour of the view
+
+Note: in angular we no need to have reference to dom element.
+we can bind data to a property this will reflect data in view.
+Advantage of this decouppling from dom is , components can be unit testable seperatly
+
+Router is responsible for navigation.
+Directives used to work with dom elements
+
+<div ng-app="" ng-init="name='king';ss='ee'">
+  <p>Name: <input type="text" ng-model="name"></p>
+  <p ng-bind="ss"></p>
+<p>{{ss}}</p> //This and above line both are same
+</div>
+
+
+outside of 'ng-app' ajgular js will not work
+
+//Initialise the model variable by default in bpage loading
+<div ng-app="" ng-init="firstName='John'">
+
+<p>The name is <span ng-bind="firstName">eee</span></p>
+
+</div>
+
+
+
+we can use data-ng-, instead of ng-, if you want to make your page HTML valid.
+
+
+angular js will written exactly what expression written
+ex:  {{ 5 + 5 }}// this  will written 10
+
+<div ng-bind="6+6"/> -- this also will written 12
+
+
+
+ 
+
+
+Module and directive
+-----------------------
+<div ng-app="myApp" w3-test-directive></div>
+
+<script>
+var app = angular.module("myApp", []);
+app.directive("w3TestDirective", function() {
+    return {
+        template : "I was made in a directive constructor!"
+    };
+});
+</script>
+
+
+
+
+
+Changing the html attributes
+-------------------------------------
+<div ng-app="" ng-init="myCol='lightblue'">
+<input style="background-color:{{myCol}}" ng-model="myCol" value="{{myCol}}">
+</div>
+
+Declare intiger is same as javascript variable declaration
+<div ng-app="" ng-init="quantity=1;cost=5">
+for string <div ng-app="" ng-init="firstName='John';lastName='Doe'">
+
+Declare json objects
+----------------------
+<div ng-app="" ng-init="person={firstName:'John',lastName:'Doe'}">
+
+<p>The name is {{ person.lastName }}</p>
+
+</div>
+
+
+Array
+-----
+<div ng-app="" ng-init="points=[1,15,19,2,40]">
+
+<p>The third result is {{ points[2] }}</p>
+
+</div>
+
+
+
+AngularJS Expressions vs. JavaScript Expressions
+---------------------------------------------------------
+Like JavaScript expressions, AngularJS expressions can contain literals, operators, and variables.
+Unlike JavaScript expressions, AngularJS expressions can be written inside HTML.
+AngularJS expressions do not support conditionals, loops, and exceptions, while JavaScript expressions do.
+AngularJS expressions support filters, while JavaScript expressions do not.
+
+
+
+
+
+ng-* attributes are called directives
+{{}} - called interpolation symbols
+
+Interpolation sybols are used in debuggin.. to see the model values
+
+Note **** have to check {{MethodName()}} and how it iworks
+
+Interpolations are flexible and can be placed almost anywhere in HTML:
+� Inside a tag (<div>{{noOfTries}}</div>)
+� As an attribute value (<div class='cls-{{noOfTries}}'>)
+� As an attribute name (<input {{myAttributeName}}="">)
+
+ng-show is shows or hids the elements based on the return value of the
+model property used
+Ex:
+<div ng-show="CanShow" >Now im visible</div>
+
+we can use epxression in both interpolation and directives
+
+ng-src
+------
+this directive allow us to set image path dynamically. so this is called interplated expressions
+ex:
+ng-src="\path\img\{{imagename}}"
+
+
+//outputs the result of boolean comparison. Ternary operator
+{{property1 >=0?'positive': 'negative'}}
+//call testMethod and outputs the return value
+{{testMethod()}}
+// assign value returned by testMethod to x. Creates "x" on scope
+if not available. Empty output
+{{x=testMethod()}}
+// calls testMethod() and testMethod2() and assign return values
+to x and y. Empty output
+{{x=testMethod();y=testMethod2()}}
+
+
+
+Tip:
+Try to avoid complex expressions. then only html ill be more readable and debuggabel
+
+To keep view and model sync angular framework creates binding between those both.
+
+Angular supports MathML and SVG markup and can perform
+interpolation on them.
+
+
+once html rendered by browser, angular framework will compile the html template
+and make binding with model and template and produces the outupt
+
+
+Tip:
+in controller done write DOM element code. controller only should act on model
+if u want to do dom manupulation then use exisiting directives or create new
+
+Scope object is not a model. it is reference the actual model. and it acts as bridge btwn view and model
+
+Framework can create multiple scope objects, depends on how view has structured
+
+whenever framework finds ng-app directive, it starts initialisation process. while doing initialisation frame will load module which is related to ng-app
+afterthat it does dependence injection(i.e inject scope obj)
+after that it traverse all directives within in ng-app element and sets binding btwn model and view
+
+ng-controller will create new scope object and it's scope is within this tag
+note: there r other directives which will cause creating scope object
+
+Everything in AngularJS can be categorized into four buckets namely: controllers,
+directives, filters, and services.
+
+Getting an existing module
+angular.module("ModuleName");
+
+create new module
+angular.module("modulename",[]);
+
+the only difference here is second argument. if we wrongly use secnod parameter , then
+frame work will create new modules and may overrides existing one
+
+
+
+ng-repeat
+---------------
+
+<div ng-app="myApp" ng-controller="namesCtrl">
+
+<p>Looping with objects:</p>
+<ul>
+  <li ng-repeat="x in names | orderBy:'country'">
+    {{ x.name + ', ' + x.country }}
+  </li>
+</ul>
+
+</div>
+
+<script>
+angular.module('myApp', []).controller('namesCtrl', function($scope) {
+    $scope.names = [
+        {name:'Jani',country:'Norway'},
+        {name:'Carl',country:'Sweden'},
+        {name:'Margareth',country:'England'},
+        {name:'Hege',country:'Norway'},
+        {name:'Joe',country:'Denmark'},
+        {name:'Gustav',country:'Sweden'},
+        {name:'Birgit',country:'Denmark'},
+        {name:'Mary',country:'England'},
+        {name:'Kai',country:'Norway'}
+        ];
+});
+</script>
+
+
+The great thing about AngularJS error reporting is that the Angular error contains a
+URL that we can navigate to to learn more about the error.
+
+Other origin pages will not load due to a security feature of AngularJS called Strict Contextual
+Escaping (SCE).
+The same origin is defined as the same domain, protocol, and port as the. i.e like in javascript permission denined for other domained iframes
+
+To over come this we have to do configuration using $sceDelegateProvider
+Ex:
+angular.module('app', ['ngRoute', '7minWorkout']).
+config(function ($routeProvider, $sceDelegateProvider) {
+
+$sceDelegateProvider.resourceUrlWhitelist([
+// Allow same origin resource loads.
+'self',
+'http://*.youtube.com/**']);
+});
+
+The self parameter refers to the same origin. The second array
+elements add trust for http://www.youtube.com/ and its subdomains
+
+
+
+
+AngularJS uses the $templateCache service to cache the partials that it
+loads during the lifetime of the application. All partials that we reference
+in ng-view and ng-include are cached for future use.
+The $templateCache service is injectable and we can use
+$templateCache to cache templates manually, such as
+$templateCache.put('myTemplate', 'Sample template
+content'). We can now reference this template in ng-view or nginclude.
+
+
+Scope hierarchy
+-----------------
+$rootScope, which is the parent of all the scopes, a scope hierarchy
+has been created. In this scope hierarchy, the properties/functions defined on the
+parent scope are available to the child scope to consume.

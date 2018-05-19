@@ -1,0 +1,22 @@
+The core features of the CLR (such as memory management,
+assembly loading, security, exception handling, and thread synchronization)
+any language which is poing to CLR will get above mentioined features.
+
+at runtime, the CLR has no idea which programming language the developer used
+
+Source code will be compiled into PE32(for 32 bit portable executable) or PE32+
+
+managed assemblies always take advantage of Data Execution Prevention
+(DEP) and Address Space Layout Randomization (ASLR) in Windows; these two features improve the
+security of your whole system.
+
+Parts of Managed Module
+---------------------------
+PE Header (standard windows PE file header) - has file type (GUI,CUI or DLL), Time stamp (build time)
+	Note: For modules that contain 	native CPU code, this header contains information about the native CPU code
+CLR Header -CLR version required, Entry point, Loacation information of metadata, resources, strong names etc.,,,,
+Meta Data - two main types of tables:
+		tables that describe the types and members defined in your source code and tables that
+		describe the types and members referenced by your source code.
+IL Code - Code the compiler produced as it compiled the source code. At run time, the CLR compiles
+	  the IL into native CPU instructions.

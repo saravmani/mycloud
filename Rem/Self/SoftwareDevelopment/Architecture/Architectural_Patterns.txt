@@ -1,0 +1,72 @@
+MVC is an architectural pattern to implement user interfaces
+it is not full application architecture. It only deals with UI part
+
+
+such as client/server, layered architecture, component-based architecture, message bus architecture, and service-oriented architecture (SOA), Micro services etc.,
+  
+architecture styles and patterns as sets of principles that shape an application
+  
+ some architectural styles describe deployment patterns, some describe structure and design issues, and others describe communication factors. Therefore, a typical application will usually use a combination of more than one of the styles
+ 
+ 
+ An understanding of architectural styles provides several benefits. The most important benefit is that they provide a common language. They also provide opportunities for conversations that are technology agnostic. 
+ 
+ 
+ Based on area of focus grouped below
+ ==================================================
+ Category			Architecture styles
+ --------------------------------------------
+Communication		Service-Oriented Architecture (SOA), Message Bus
+Deployment			Client/Server, N-Tier, 3-Tier
+Domain				Domain Driven Design
+Structure			Component-Based, Object-Oriented, Layered Architecture
+
+
+Client/Server
+--------------------
+Segregates the system into two applications, where the client makes requests to the server. In many cases, the server is a database with application logic represented as stored procedures.
+
+
+Component-Based Architecture
+-----------------------------------
+Decomposes application design into reusable functional or logical components that expose well-defined communication interfaces.
+
+Layered Architecture
+Partitions the concerns of the application into stacked groups (layers).
+
+Message Bus
+An architecture style that prescribes use of a software system that can receive and send messages using one or more communication channels, so that applications can interact without needing to know specific details about each other.
+
+
+N-Tier / 3-Tier
+--------------------
+Segregates functionality into separate segments in much the same way as the layered style, but with each segment being a tier located on a physically separate computer.
+typically application server,webserver and DB
+
+
+Service-Oriented Architecture (SOA)
+---------------------------------------------
+Refers to applications that expose and consume functionality as a service using contracts and messages.
+
+A combination of architecture styles is also useful if you are building a public facing Web application, where you can achieve effective separation of concerns by using the layered architecture style.
+ This will separate your presentation logic from your business logic and your data access logic. 
+ Your organization's SECURITY requirements might force you to deploy the application using either the 3-tier deployment approach, or a deployment of more than three tiers. The presentation tier may be deployed to the perimeter network, which sits between an organization's internal network and an external network. On your presentation tier, you may decide to use a separated presentation pattern (a type of layered design style), such as Model-View-Controller (MVC), for your interaction model. You might also choose a SOA architecture style, and implement message-based communication, between your Web server and application server.
+ 
+ 
+ If you are building a desktop application, you may have a client that sends requests to a program on the server. In this case, you might deploy the client and server using the client/server architecture style, and use the component-based architecture style to decompose the design further into independent components that expose the appropriate communication interfaces. Using the object-oriented design approach for these components will improve reuse, testability, and flexibility.
+ 
+  object-oriented design approach for these components will improve reuse, testability, and flexibility.
+  
+  
+  
+client/server
+-------------------
+  Today, some examples of the client/server architectural style include Web browser—based programs running on the Internet or an intranet; 
+  
+  
+  
+Component-Based Architectural Style
+---------------------------------------
+. It focuses on the decomposition of the design into individual functional or logical components that expose well-defined communication interfaces containing methods, events, and properties. 
+This provides a higher level of abstraction than object-oriented design principles.
+

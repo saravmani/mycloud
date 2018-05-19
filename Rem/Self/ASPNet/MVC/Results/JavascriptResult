@@ -1,0 +1,61 @@
+
+JavaScriptResult
+------------------------
+# I guess it is usded to call the client side javascript Method
+# sb2 example... we can set the configurations like IsAdminUser,HavingReportAccessRights etc.,. based on roles we can abel to set the global variables. 
+# we can use this when we want to generate javascript code dynamically based on server action.
+# But what will happen if we use json result in below example?
+
+[OutputCache(Duration = 999999)]
+public virtual JavaScriptResult Global()
+{
+    var script = string.Format(@"
+        MaxNotificaitonsToShow = {0};
+        ItemsPerPage = 25;",
+    GlobalSettings.MaxNotificaitonsToShow);
+    return JavaScript(script);
+}
+And in the page footer I load the page:
+
+<script type="text/javascript" src="/JS/Global"></script>
+Now I can get the values in any Javascript file:
+
+if(ItemsPerPage == 25)
+{
+   alert('it works!');
+}
+
+
+example 2.. Client code
+@Ajax.ActionLink("Customer from Germany", // <-- Text to display
+
+                 "Germany", // <-- Action Method Name
+
+                 new AjaxOptions
+
+                 {
+
+                     UpdateTargetId="CustomerList", // <-- DOM element ID to update
+
+                     InsertionMode = InsertionMode.Replace, // <-- Replace the content of DOM element
+
+                     HttpMethod = "GET" // <-- HTTP method
+
+                 })
+ 
+
+@Ajax.ActionLink("Customer from Mexico", // <-- Text to display
+
+                 "Mexico", // <-- Action Method Name
+
+                 new AjaxOptions
+
+                 {
+
+                     UpdateTargetId="CustomerList", // <-- DOM element ID to update
+
+                     InsertionMode = InsertionMode.Replace, // <-- Replace the content of DOM element
+
+                     HttpMethod = "GET" // <-- HTTP method
+
+                 })

@@ -1,0 +1,50 @@
+launchsettings.json
+-----------------------------
+used to set the the environment variables.. like development or production etc.,
+env.IsDevelopment() //whill read the env type from here.
+
+In launchsettings we can able to configure multiple profiles. And through visual studio
+Run button we can able to select the profile and launch the applicaiton.
+
+We can directly edit the launchsettings.json or through visual studio properties -> build   
+there we can able to add,edit, delete profiles
+
+Example profiles
+--------------------
+    "AllTest": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      },
+      "applicationUrl": "http://localhost:58436/"
+    },
+    "AllTestssss": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:58436/"
+    } 
+
+
+If we modify any settings in launchsettings, then we have to restart Kestrol, 
+or iisexpress or visual studio
+
+ASPNETCORE_ENVIRONMENT can be - Development, Staging, Production
+If ASPNETCORE_ENVIRONMENT isn't set, it will default to Production
+
+
+
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    if (env.IsDevelopment())
+    {...}
+
+    if (env.IsProduction() || env.IsStaging() || env.IsEnvironment("Staging_2"))
+    {
+        app.UseExceptionHandler("/Error");
+    }
+	...
+}

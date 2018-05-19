@@ -1,0 +1,29 @@
+install JDK 8
+install SDK
+
+add environment variables under system variables path
+C:\Users\SaravMani\AppData\Local\Android\android-sdk\platform-tools
+
+run below command in command prompt. if it shows some information then we can assume andorid sdk has successfully installed.
+
+
+
+
+install ionic 2 and cordova
+ 
+start new project
+----------------------
+npm install -g cordova
+npm install -g ionic
+ionic start myApp blank --v2
+cd myApp
+cordova platform add android
+
+
+To identify all cordova requirements are there check with below command
+cordova requirement
+
+
+
+push notification
+https://github.com/aggarwalankush/ionic2-push-base

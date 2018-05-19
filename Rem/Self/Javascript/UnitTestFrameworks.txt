@@ -1,0 +1,10 @@
+Jasmin
+Qunit
+
+JsUnit
+	Tests are run in the page and may be set up
+		for automatic testing and submission of results to a server.
+
+qUnit -> this one we can use for any code with out any dependency.
+		but it was originally designed for jquery. but we can use for any js.
+		also it is very easy to use

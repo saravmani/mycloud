@@ -1,0 +1,193 @@
+ECMAScript 5 introduced strict mode
+"use strict";  
+
+Strict mode helps out in a couple ways:
+----------------------------------------------------------------
+It catches some common coding bloopers, throwing exceptions.
+It prevents, or throws errors, when relatively "unsafe" actions are taken
+(such as gaining access to the global object).
+It disables features that are confusing or poorly thought out.
+
+
+Disallows global variables. (Catches missing var declarations and typos in variable names)
+
+Silent failing assignments will throw error in strict mode (assigning NaN = 5;)
+
+Attempts to delete undeletable properties will throw (delete Object.prototype)
+
+Requires all property names in an object literal to be unique (var x = {x1: "1", x1: "2"})
+
+Function parameter names must be unique (function sum (x, x) {...})
+
+eval in strict mode does not introduce new variables
+
+Forbids deleting plain names (delete x;)
+
+Forbids binding or assignment of the names eval and arguments in any form
+arguments.callee is not supported
+
+
+mode tends to throw errors in situations where nonstrict mode silently fails, increasing the
+likelihood of catching an error early on in development.
+
+Internet Explorer 10+, Firefox 4+,
+Safari 5.1+, and Chrome.
+Strict mode allows you
+to opt-in to stricter checking for JavaScript error conditions either globally or locally within
+a single function. The advantage of strict mode is that you�ll be informed of errors earlier,
+
+If you don�t have complete control over all of the scripts on a page, then it�s advisable to enable strict
+mode only within specifi c functions for which it has been tested
+
+
+1. Accedental creation of global variables
+//Variable is not declared
+//Non-strict mode: creates a global
+//Strict mode: Throws a ReferenceError
+message = �Hello world!�;
+//In strict mode, assigning a value to an
+//undeclared variable throws a ReferenceError when the code is executed.
+
+2. strict mode, an attempt to delete a variable causes an error:
+//Deleting a variable
+//Non-strict mode: Fails silently
+//Strict mode: Throws a ReferenceError
+var color = �red�;
+delete color;
+
+
+ 
+3. Strict mode also imposes restrictions on variable names. Specifi cally, it disallows variables named
+implements, interface, let, package, private, protected, public, static, and yield. These
+are now reserved words that are intended for use in future ECMAScript editions.
+
+4. After seeling, freezing , stopped extensibility then if we try to overcome the rule
+then in strict mode will throw error.
+
+5. object errors
+Assigning a value to a read-only property throws a TypeError.
+Using delete on a nonconfi gurable property throws a TypeError.
+Attempting to add a property to a nonextensible object throws a TypeError
+
+6.
+//Two properties with the same name
+//Non-strict mode: No error, second property wins
+//Strict mode: Throws a syntax error
+var person = {
+name: �Nicholas�,
+name: �Greg�
+};
+
+7.
+//Duplicate named arguments
+//Non-strict mode: No error, only second argument works
+//Strict mode: Throws a SyntaxError
+function sum (num, num){
+//do something
+}
+
+
+
+//Change to named argument value
+//Non-strict mode: Change is reflected in arguments
+//Strict mode: Change is not reflected in arguments
+function showValue(value){
+value = �Foo�;
+alert(value); //�Foo�
+alert(arguments[0]); //Non-strict mode: �Foo�
+//Strict mode: �Hi�
+}
+showValue(�Hi�);
+
+
+
+//Attempt to access arguments.callee
+//Non-strict mode: Works as expected
+//Strict mode: Throws a TypeError
+function factorial(num){
+if (num <= 1) {
+return 1;
+} else {
+return num * arguments.callee(num-1)
+}
+}
+var result = factorial(5);
+
+
+arguments.callee and arguments.caller
+will throw typeerror
+
+
+//Function declaration in an if statement
+//Non-strict mode: Function hosted outside of if statement
+//Strict mode: Throws a syntax error
+if (true){
+function doSomething(){
+//...
+}
+
+
+
+
+Evalve
+------------
+********
+The biggest change to eval()
+is that it will no longer create variables or functions in the containing context
+
+//eval() used to create a variable
+//Non-strict mode: Alert displays 10
+//Strict mode: Throws an ReferenceError when alert(x) is called
+function doSomething(){
+eval(�var x=10�);
+alert(x);
+}
+
+Variables and functions can be declared inside of eval(), but they remain inside a special scope
+that is used while code is being evaluated and then destroyed once completed. So the following code
+works without any errors:
+�use strict�;
+var result = eval(�var x=10, y=11; x+y�);
+alert(result); //21
+
+
+//Redefining eval and arguments as variables
+//Non-strict mode: Okay, no error.
+//Strict-mode: Throws syntax error
+var eval = 10;
+var arguments = �Hello world!�;
+
+
+//Access a property
+//Non-strict mode: Accesses the global property
+//Strict mode: Throws an error because this is null
+var color = �red�;
+function displayColor(){
+alert(this.color);
+}
+displayColor.call(null);//in non strict mode this will set global context
+
+
+***
+//Use of the with statement
+//Non-strict mode: Allowed
+//Strict mode: Throws a syntax error
+with(location){
+alert(href);
+}
+
+
+//Use of octal literal
+//Non-strict mode: value is 8.
+//Strict mode: throws a syntax error.
+var value = 010;
+
+ 
+function fn()
+{
+alert(this.sss);
+}
+
+instrict mode if we not pass the context to this function then 
+this will become undefined. But in non strict mode this value will be 
+exeucting context.

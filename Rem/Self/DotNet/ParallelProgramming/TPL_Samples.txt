@@ -1,0 +1,25 @@
+Passing parameter
+---------------------------
+Task task1 = new Task(new Action<object>(HelloConsole), "Task 1");   
+//lambda expression  
+Task task3 = new Task((obj) => HelloConsole(obj), "Task 3");  
+
+
+Get Task Result
+--------------------------
+// need to create an instance of Task<T> instead of just a pure Task
+Task<int> task1 = new Task<int>(() =>  
+     {  
+          int result = 1;  
+                  
+          for (int i = 1; i < 10; i++)  
+               result *= i;  
+  
+          return result;  
+     });  
+              
+     //starting the task  
+     task1.Start();  
+              
+     //waiting for result - printing to the console  
+     Console.WriteLine("Task result: {0}", task1.Result); 

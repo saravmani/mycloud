@@ -1,0 +1,6 @@
+   "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
+   
+ //above is we are running two commands parallely. one is compiling 
+TS in watch mode
+        //  Bcs of watch mode, if we modify TS in future then it will automatically compile the js file
+    //next one is starting lite server

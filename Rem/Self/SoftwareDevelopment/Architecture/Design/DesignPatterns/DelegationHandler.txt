@@ -1,0 +1,7 @@
+I have seen this pattern in WEBAPI's Message Handlers
+Typically, a series of message handlers are chained together.
+ The first handler receives an HTTP request, does some processing,
+  and gives the request to the next handler. At some point, the response is 
+  created and goes back up the chain. This pattern is called a delegating handler.
+
+#Check message handler file in webapi section

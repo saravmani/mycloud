@@ -1,0 +1,319 @@
+import { Component } from '@angular/core';
+//here @file path will directly go into node_modules folder
+
+
+@NgModule({
+  imports:      [ BrowserModule ],
+  declarations: [ ClsSubComponent, AddressClass],//This tells the directives and pipes which are going to use
+  bootstrap:    [ ClsSubComponent ] //bootstrap tells Angular, which component should be bootstrapped to run the application
+  providers:[]//used to indicate application wide services
+})
+
+
+
+
+component = Data+Template+Logic
+
+components needs only one template
+
+# symbol is used to declare local variable in template
+
+COmponents can contain other components.
+Components can interact with each other.
+
+Dependency injection with service
+check - RefImages\DependencyInjection.png
+
+
+attributes are a methods, those starts with @.
+@Component({selector:'tagNAME',template:'rewre',
+templateUrl:"rewre.htm",
+styleUrls:['./style.css']
+});
+//selector is a css selector
+//when angular engines finds the component which matches with this secor,
+then angular will create object of the component class.
+
+if
+selector:"#componentTag"// then
+this will work like id of the component
+<div id="componentTag"/>
+
+
+every component technically gives directive
+difference is component has a template
+but directive doesn't
+
+
+
+The core concept of any Angular 2 application is the component. In effect, the whole
+application can be modeled as a tree of these components.
+visual elements
+
+Actually From Anguler 1.5 we could able to create module.
+angular.module('ngcourse')
+.component('ngcHelloComponent', {
+bindings: { name: '=' },
+template: '<span>Hello, {{ $ctrl.name }}.</span>',
+controller: MyComponentCtrl
+});
+
+
+
+import {component} from '@angular/core';
+//here import is like using statement in c#
+
+@component({//meta data
+moduleId:module.id,
+selector:'tag-name'
+templateUrl:'htmlpage.html'
+})
+// Above code is like anotation in c#.. it is a meta data of the class
+
+export Class componentName{
+vehicles:Vehicle[];
+}
+
+Sample tag usage
+---------------------------
+<tag-name>loading....</tag-name>
+//bcs this is not valid html tag, b4 angular js got initiazed this loading..
+//will get shown on the UI
+
+
+
+A module exports some classes, function and values from its code.
+
+at run time angular js compiles the component. that time it will fetches the template
+pages Asynchronously.
+
+
+
+There are two ways to pass data into a component,
+with 'property binding' and
+'event binding"
+
+
+import {Component, Input} from '@angular/core';
+@Component({
+selector: 'hello',
+template: '<p>Hello, {{name}}</p>'
+})
+export class Hello {
+@Input() name: string;
+}
+
+<hello name="World"></hello>
+
+Unlike Angular 1.x, this is one-way binding.
+
+
+Events
+-------------
+round brackets used for eventt binding
+
+import {Component} from '@angular/core';
+@Component({
+selector: 'counter',
+template: `
+<div>
+<p>Count: {{ num }}</p>
+<button (click)="increment()">Increment</button>
+</div>
+`
+})
+export class Counter {
+num: number = 0;
+increment() {
+this.num++;//thisis oneway binding. so this number changes will be updated in template automatically
+
+
+@output  example
+http://plnkr.co/edit/iwQePN?p=preview
+
+
+[squareBrackets] to pass inputs and the (parenthesis) to handle
+outputs.
+
+
+To create your own component that supports two-way binding, you must define an @Output
+property to match an @Input , but suffix it with the Change .
+
+
+
+
+read data from child component
+---------------------------------
+
+
+@Component({
+  selector: 'my-profile',
+  templateUrl: 'app/my-profile.component.html'
+})
+
+export class MyProfile {
+  name: string = 'John Doe';
+}
+
+reference properties or methods of a child, this can be a simple and straightforward
+method of doing so
+
+
+Projection
+--------------------
+Projection is a very important concept in Angular 2. It enables developers to build reusable
+components and make applications more scalable and flexible.
+
+
+Ex:
+http://plnkr.co/edit/SEPQUS4MqWCftbwjBBi8?p=preview
+
+
+
+
+As the complexity and size of our application grows, we want to divide responsibilities
+among our components further
+Container components -  are application-specific, higher-level, container
+components, with access to the application's domain model
+Presentational components -  are components responsible for UI rendering and/or
+behavior of specific entities passed in via components API (i.e component properties
+and events). Those components are more in-line with the upcoming Web Component
+standards.
+
+<my-profile #profile></my-profile>
+
+My name is {{ profile.name }}
+}
+
+
+
+
+
+
+
+
+
+in main module we have to declare all modules which are required for that application
+import {NgModule} from '@angular/core';
+import {TodoInput} from './components/todo-input';
+import {TodoItem} from './components/todo-item';
+import {TodoList} from './components/todo-list';
+@NgModule({
+imports: [ ... ],
+declarations: [ TodoList, TodoItem, TodoInput ],
+bootstrap: [ ... ]
+})
+export class ToDoAppModule { }
+
+declarations expects an array of components, directives and pipes that are
+part of the module.
+
+
+if we are using child component, then we have to do below steps
+1. create child component
+2. in parent compoonent just use the tag
+3. in main.ts file, impor the child component and
+  add it inside of declarations property.
+
+
+
+if we specify style elements withing a component, then this style only
+applicable for particular component only.
+angular ensures this by adding special attributes and based on attributes it will
+apply the style.
+So style will not affect other components.
+
+this is called view encapsulaisation in angular js.
+if we want we can able to switch it offf
+
+
+
+in component's interpolation strings and any thing castable as string will work
+
+
+property & event binding
+1. DOM Properties -> binding with native properties and events
+	Ex: <img [src]='..'   , <div (click) ='...'
+2. Directive Properties -> Directives givent by angular
+	Ex: <div [ngClass]='--'>, <div (ngSubmit)='---'
+3. component properties
+	Ex;  <comp [prop]='..' (evn)='..'
+
+
+
+
+<input [value]="propname" //Property binding. if we use [] then angular knows that it this will refer actual dom property
+<input value="{{propname}}" //string interpolation
+
+
+in porperty binding we can use normal javascript code 
+<input [value] = 'a+b'
+
+But we cant use new keyword and we cant use multi line code -  within property bibnding
+
+[ngClass] = "{
+className:true
+}"
+
+[ngClass] = "{
+className:callMethod() //this method should return boolian
+}"
+
+if we use above code in any html element then this will add class name in that
+if it is set to false then it wont add that class
+
+
+[ngStyle]="{color:'blue'}"
+
+
+two way data binding
+----------------------
+In angular 2 by default binding is one way
+To make two way binding use below
+<input [(ngModel)]="propertyName"
+Note: we should import Forms
+
+import { FormsModule }   from '@angular/forms';
+@NgModule({
+  imports:      [ BrowserModule,FormsModule ],
+  declarations: [ SubjectSearchComponent,SubjectReult],
+  bootstrap:    [ SubjectSearchComponent ]
+})
+
+
+
+
+
+
+
+@Component({
+  selector: 'my-comp',
+  template: `
+    <input #myInput type="text" />
+    <div> Some other content </div>
+  `
+})
+export class MyComp implements AfterViewInit {
+  @ViewChild('myInput') input: ElementRef;
+
+  constructor(private renderer: Renderer) {}
+
+  ngAfterViewInit() {
+    this.renderer.invokeElementMethod(this.input.nativeElement,    
+    'focus');
+  }
+}
+
+
+
+to apply style url globally, (for All child components), make encapsulation as None
+
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+@Component({
+
+  selector: 'rpt-cons-comprehensiv-index',
+  templateUrl: './rpt-cons-comprehensiv-index.component.html',
+  styleUrls: ['../../../StyleObjects/styles.css'],
+  encapsulation: ViewEncapsulation.None
+
+})

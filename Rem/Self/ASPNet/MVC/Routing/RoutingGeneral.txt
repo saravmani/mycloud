@@ -1,0 +1,2 @@
+Whenever the application receives a request the framework matches it with the first registered route in the routing table and if it is ok then directs the request to the corresponding controller and action else tries for the next route and so on. 
+If no route matches the incoming request then the server issues a 404 to the client.

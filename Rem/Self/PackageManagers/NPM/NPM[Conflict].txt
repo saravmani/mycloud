@@ -1,0 +1,45 @@
+Commands
+------------
+npm -v //to get the npm version
+npm install npm@latest -g -> to update the npm
+
+
+npm install -g typescript@2.0   -> To install typescript version 2
+
+
+install and use jquery in Angular2
+----------------------------------------
+npm install jquery --save
+npm install @types/jquery --save-dev
+
+
+npm i concurrently --save-dev
+//this package used to execute start commands concorrently
+
+to get the list of packages installed
+------------------------------------------
+npm ls
+
+to remove the package
+----------------------------
+npm remove packageName
+npm uninstall packageName
+
+
+npm init // will create package.json
+
+
+
+npm ERR! Windows_NT 10.0...,
+if like this error comes
+then run command prompt in administrator mode 
+then try to install the package
+
+
+
+npm list - lists all installed packages
+npm prune - removes packages not depended on by your project according to your package.json
+npm outdated - tells you which installed packages are outdated with respect to what is current in the npm registry but allowable by the version definition in your package.json
+
+npm link <package-in-global> 
+//this command used to link global package into local folder

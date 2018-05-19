@@ -1,0 +1,26 @@
+public Class Enginebase
+{
+    public string EngineId{get;set;}
+    public string Execute()
+    {
+        GetConfiguration();
+        while(true)
+        {
+            var JobDetails = GetJob();
+            if(JobDetails!=null)
+            {
+                ProcessJob(JobDetails);
+            }
+        }
+        
+    }
+    abstract ProcessJob(JobDetails);
+    abstract StopEngine();
+}
+
+
+public Class ValidationEngine :Enginebase
+{
+        abstract ProcessJob(JobDetails);
+        abstract StopEngine();
+}

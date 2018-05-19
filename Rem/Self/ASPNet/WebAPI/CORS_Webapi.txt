@@ -1,0 +1,13 @@
+
+Client must send below header
+Origin:http://domainname.com
+
+
+Server side
+-----------------
+1. Install-Package Microsoft.AspNet.WebApi.Cors
+2. config.EnableCors(); //in WebApiconfig.cs
+3. [EnableCors(origins: "http://mywebclient.azurewebsites.net", headers: "*", methods: "*")]
+4. For Oauth
+    in ApplicationOAuthProvider.GrantResourceOwnerCredentials add below header
+    context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });

@@ -1,0 +1,20 @@
+buffer is temperoray storage . when buffer is filled then it will be flushed.
+stream of data pushed into buffer.
+
+
+we can stream the data usign streams in node.js
+
+
+writable streams  - allow nodejs to write data to a stream
+readable streams - allow nodejs to read data from a stream
+duplex stream  - can do both
+
+
+
+var fs = require('fs');
+var objReadStream = fs.createReadStream(__dirname+"/filename.txt","utf8");//__dirname tells current directory
+//read stream already inherited from events. so this will have event emiter option.
+
+objReadStream.on('read',function(chunk){
+console.log(chunk);//now data will be readed as chunk by chunk
+});

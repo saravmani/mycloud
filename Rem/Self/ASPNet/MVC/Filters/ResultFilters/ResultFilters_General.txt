@@ -1,0 +1,19 @@
+
+Result filters are general-purpose filters which operate on the results produced by action methods.
+
+public interface IResultFilter {
+void OnResultExecuting(ResultExecutingContext filterContext);
+void OnResultExecuted(ResultExecutedContext filterContext);
+}
+
+
+OnResultExecuting method is invoked after the action method has returned an action result but before the action result is executed.
+The OnResultExecuted method is invoked after the action result is executed.
+
+
+ResultExecutingContext and ResultExecutedContext objects, respectively,
+and they are similar to their action filter counterparts. They define the same properties, which have the same effects.
+
+MVC provides ActionFilterAttribute which includes both IActionFilter, IResultFilter.
+only benefit of ActionFilterAttribute is that you do not need to override and implement the methods that you do
+not intend to use. Otherwise, there is no advantage over implementing the filter interfaces directly.

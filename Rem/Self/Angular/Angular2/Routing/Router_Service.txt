@@ -1,0 +1,23 @@
+
+this.router.navigateByUrl("/");
+
+The Types of Event Provided by the Router.events Observer
+--------------------------------------------------------------------------------------------
+NavigationStart This event is sent when the navigation process starts.
+RoutesRecognized This event is sent when the routing system matches the URL to a route.
+NavigationEnd This event is sent when the navigation process completes successfully.
+NavigationError This event is sent when the navigation process produces an error.
+NavigationCancel This event is sent when the navigation process is canceled.
+
+
+All the event classes define an id property, which returns a number that is incremented each for each
+navigation, and a url property that returns the target URL.
+
+The RoutesRecognized and NavigationEnd
+events also define a urlAfterRedirects property that returns the URL that has been navigated to.
+
+
+router.events
+.filter(e => e instanceof NavigationEnd || e instanceof NavigationCancel)
+.subscribe(e => { this.lastMessage = null; });
+

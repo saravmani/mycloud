@@ -1,0 +1,22 @@
+The Razor View Engine compiles the views in your applications to improve performance. The views are translated into
+C# classes, and then compiled, which is why you are able to include C# code fragments so easily
+
+
+The views in an MVC application are not compiled until the application is started, so to see the classes that are
+created by Razor, you need to start the application and navigate to the /Home/Index action. 
+
+The initial request to MVC  application triggers the compilation process for all views.
+
+classes generated from the view files are written to the disk as C# code files and then compiled,
+which means that you can see the C# statements that represent a view. 
+
+You can find the generated files in  
+c:\Users\<yourLoginName>\AppData\Local\Temp\Temporary ASP.NET Files on Windows 7 and Windows 8.
+Finding the code file generated for a particular view requires a bit of poking around. There are usually a number of
+folders with cryptic names, and the names of the .cs files do not correspond to the names of the classes they contain.
+As an example, I found the generated class for the view in Listing 20-10 in a file called App_Web_ihpp0d0l.0.cs in the
+root\7bbfc2bc\bd7485cd folder
+
+
+As you now know, Razor is not really looking for the view files on disk, because they have already been compiled
+into C# classes. Razor looks for the compiled class that represents these views.

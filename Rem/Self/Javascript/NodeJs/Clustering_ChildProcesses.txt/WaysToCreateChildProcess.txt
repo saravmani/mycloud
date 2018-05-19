@@ -1,0 +1,8 @@
+spawn
+    - Used to execute the commands in seperate process
+fork
+exec
+    - It creates shell to execute the command. but spawn will not create shell
+    - It will buffer the output and sends the data at the end on 
+
+execFile

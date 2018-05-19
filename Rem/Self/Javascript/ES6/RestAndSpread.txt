@@ -1,0 +1,56 @@
+Rest used to gather all the parameters into array
+Spread used to spread all the elements
+
+Rest - ... is a rest parameter
+
+var showCategories=function(productId,...categories)
+{
+    console.log(categories instanceof Array);//true
+};
+showCategories(123,'search','advertising');
+
+
+var showCategories=function(productId,...categories)
+{
+    console.log(categories);//[] //empty array.. note it is not undefined
+};
+showCategories(123);
+
+
+var showCategories=function(productId,...categories)
+{console.log(arguments.length);
+};
+showCategories(123,'search','advertising');
+//answer 3
+
+var showCategories= new Function("...categories","returncategories;");
+console.log(showCategories('search','advertising'));
+//outputs array of input strings
+
+
+Spread operator 
+-----------------------
+it is opposit of rest
+
+var prices=[12,20,18];
+var maxPrice=Math.max(...prices);
+console.log(maxPrice);//ans 20
+
+var prices=[12,20,18];
+var newPriceArray=[...prices];
+console.log(newPriceArray);
+//Creates new array
+
+var maxCode=Math.max(..."43210");
+console.log(maxCode);//ans 4
+//here spread operator breaking string into individual charactors
+
+var codeArray=["A",..."BCD","E"];
+console.log(codeArray);
+["A","B","C","D","E"]
+
+Adding elements into array using spread operator
+-----------------------------------------------------
+var someArray = [2,3,4];
+var globalArray=[];
+globalArray.push(...someArray);

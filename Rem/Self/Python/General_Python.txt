@@ -1,0 +1,150 @@
+Python
+---------
+dynamic language.
+
+type(22) // used to tell the type
+type(True)
+
+type('a')// it will consider as string. NOT CHARACTOR
+
+variables
+--------------
+subjectName="saravmani";
+
+>>>one,two,three = 1,'two',3 // we can assign like this also
+
+dynamic nature
+-------------------
+>>>one =1
+>>>one ="rr" //this will work
+
+To get list of reserved keywords
+
+>>>import keyword
+>>>keyword.kwlist
+
+//this will print list key words reserved for python 
+
+clear the screen
+----------------------------
+import os
+clear = lambda:os.system('cls');
+
+commands
+------------
+use # for commands
+it is used for inline commands
+
+''' commans'''  // this for multi line commands
+
+
+exponent operator
+-------------------
+print(2**5)// it is 2^5
+
+print(23//5)//this will do dividant operation and round up the value
+
+
+conditional operators
+----------------------------
+all are like c# (i.e ==,!=,)
+# but below conditional check is differences
+# to check not true we have to use 'not' keyworkd
+
+print(not 8>7 or True)
+boolVar = 4>9
+print(not boolVar)
+
+If condition
+--------------------
+if,elif,else
+
+ex:
+if 4>2 :
+    print("success")
+elif 5>9:
+    print("elif")
+else:
+    print("else")
+
+
+functions
+-----------------
+def fnName(param1,param2):
+    print("sum is %s"%(param1+param2))
+    return "got it"
+
+print(fnName(1,2))
+
+
+
+import
+-------
+importing other modules
+
+import moduleName
+
+ex:
+import random
+
+print (random.randint(1,10))
+//this will print the value randomly btwn 1 to 10
+
+funciton import
+------------------------------
+# in python we can able to import specific funciton from moduleName
+
+ex:
+from random import randint
+print(randint(1,10))
+
+import math
+print(math.factorial(5))
+
+
+universol import (importing all the functions from a module)
+----------------------------------------------------------------
+from random import *
+
+
+build in functions
+--------------------------
+abs(-12)  //gives absolute value 12
+min(1,2,3,4) //1
+max(1,2,3,4) //4
+type(4.55)
+
+List data type
+---------------------------
+list is type where we can store multipule values.
+lstvariable = ["txt", 1, "anothertext", 2, True]
+to slice it we can use lstvariable[index:length from 0 index]
+print(lstvariable[:2]) //ans ["txt",1]
+
+range is a util function to create list
+range (20) //will create list from 0 to 20
+
+
+tuple
+---------
+tuple works same way as list. but difference s tuple is immutable (# like c# string).
+which means value cannt change
+Ex:
+tuple = (1,2,"str1",3,"str2")
+print(tuple[:1])
+
+
+for Loop
+-----------------
+for element in tuple:
+    print(element)
+
+
+DIctionary --it s a key value pair
+---------------------------------------
+objdictionsry = {"key1":"value",23:56,24:"val","gg":345}
+print(objdictionsry[23])
+print(objdictionsry["gg"])
+del objdictionsry["gg"]
+# it like javascript's object litterals :-)
+

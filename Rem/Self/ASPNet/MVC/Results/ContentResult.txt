@@ -1,0 +1,12 @@
+ContentResult represents a user-defined content type. 
+It is inherited from ActionResult. ContentResult has the following three properties:
+
+Content that we want to render on browser
+ContentEncoding that defines the encoding of the content
+ContentType that informs the browser about the content like "text/plain", "text/html", 
+"application/json" and so on.
+
+return Content("message","text/plain",Encoding.UTF8)
+
+If you return something other than an ActionResult the default behavior is to create a ContentResult 
+wrapping the result of calling ToString() on whatever you did return (or EmptyResult if you returned null

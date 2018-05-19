@@ -1,0 +1,21 @@
+StyleCop - to find out the code style issues
+FXCop - to find security and performance related issues
+NUnit - For Unit Testing
+DotCover - for test case coverage
+
+
+
+Debugging tools
+-------------------
+WinDbg - to debug the log files at client place. 
+This also provides option to generate log file. but we cant do it at every stage
+
+DebugDiag - Dual Purpose. 
+1. To capture the log file
+2. To Analyse the log file
+
+AdPlus - to capture the log files
+
+
+Productivity tools
+----------------------

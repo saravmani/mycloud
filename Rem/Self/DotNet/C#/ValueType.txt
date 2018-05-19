@@ -1,0 +1,4 @@
+
+
+To determine whether the instance fields in two struct instances have the same values, use the ValueType.Equals method. 
+Because all structs implicitly inherit from System.ValueType,

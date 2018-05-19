@@ -1,0 +1,26 @@
+Child process in node js
+------------------------------
+Mose of the OS functionalities are accessible via command line.
+
+Node enables us to run a system command within a new CHILD process, and
+listen in on its input/output.
+we can pass arguments to the
+command, and even PIPE the results of one command to another
+
+
+
+// On Windows Only ...
+const { spawn } = require('child_process');
+const bat = spawn('cmd.exe', ['/c', 'dir']);
+
+bat.stdout.on('data', (data) => {
+    console.log(data.toString());
+});
+
+bat.stderr.on('data', (data) => {
+    console.log(data.toString());
+});
+
+bat.on('exit', (code) => {
+    console.log(`Child exited with code ${code}`);
+});

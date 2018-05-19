@@ -1,0 +1,5 @@
+.NET Core 2.0 having more apis
+
+
+.NET Core 1.0 and 1.1 having LTS support
+but 2.0 is unkonwn

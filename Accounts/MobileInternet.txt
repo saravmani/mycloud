@@ -1,0 +1,20 @@
+MTS - 8925614873 - Customer care - 9150955955
+
+router - Admin - s-stdpwd
+net(wifi) pwd - c-stdpwd
+
+
+ACT id - 103015674452 /cw45vf
+
+
+network sharing from New PC
+MZ8iN3fN3w
+
+[{
+'domain':'airtel',
+'loginId':'9840004189',
+'pwd':'stdpwd1#',
+'url':'https://www.airtel.in/',
+'Description':'Airtel online recharge'
+}
+]

@@ -1,0 +1,20 @@
+Structural patterns deal with the arrangement and relationship between the classes in the system. They
+focus on how classes and objects are composed
+
+There are seven patterns in this category: adapter, bridge, composite, decorator, façade, flyweight,
+and proxy.
+
+Frequently used patterns
+Structural
+	Facade
+	Proxy - medium high
+	Adapter- medium high
+	Composite- medium high
+
+Structural patterns can be used while designing a new application or while modifying an existing
+application. Some structural patterns, such as adapter, are mostly used while extending an existing system.
+
+
+Adaptor pattern
+----------------------
+mainly used when deeling with third party components

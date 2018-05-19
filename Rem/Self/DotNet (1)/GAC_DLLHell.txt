@@ -1,0 +1,10 @@
+DLL Hell issue and solution (i.e versioning)
+------------------------------------------------
+
+Before some time, if we install an application then dll of that application get stored in the registry, then if we install other application that has same name .dll  that means previously installed .dll get overwrite by the same name new .dll. Ok for newly installed application but previously installed application cant get execute further. This is big problem in context of version of same application. This is Dell-Hell problem.
+OR
+Dll Hell refers to a set of problems caused when multiple applications attempt to share a common component like a dynamic link library (DLL).The reason for this issue was that the version information about the different components of an application was not recorded by the system.
+
+Solution of Dll-Hell Problem 
+
+This problem of dynamic link library (.dll) is resolved through Versioning.

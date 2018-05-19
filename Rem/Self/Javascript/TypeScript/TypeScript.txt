@@ -1,0 +1,308 @@
+type script is a transpiler + type checker + gives more syntatical sugar+
+allow us to write in OOPS and provide manyfeatures.
+
+why i need to use typescript instead javascript which i know already?
+
+with typescript we can write Tomorrow's javascript today.
+and we can transpile our typescript code to ES3, ES5,Es6 etc.,
+so we can target our latest code into any older browsers :-)
+
+
+
+Beinfits
+----------
+compile time type checking, IDE support and intelisense
+we can use next generation featurs
+	Ex: classes,imports/exports
+missing js features
+	Interfaces, Generics
+Documentation support
+
+
+TSLINT
+----------
+helping to write clean and fromated typescript code
+
+
+
+TypeScript is a superset of ES6, which means all
+ES6 features are part of TypeScript, but not all TypeScript features are part of ES6.
+
+Install typescript
+$ npm install -g typescript
+$ tsc test.ts //Compiles to ES5
+$ node test.js
+
+
+Modules
+	Classes,
+		functions,
+	Interfaces
+
+export
+------
+if we use export key workd for the class within a module,
+then this means the class is public and it can be accessible
+outsie the function.
+
+declare var variableName: any;
+this lines tells to typescript that , dont worry about  'variableName', and this will be taken care 
+
+
+In type script every page is considered as a module
+each page we can export class, function and variable
+
+in typescript we can use back tick charactor to do multiline
+
+`rewre
+rew
+`
+
+
+
+TypeScript will not flag any type errors for variable of type �any�.
+In TypeScript, we define a variable with a type by just appending the variable name with colon followed 
+by the type name as shown in below example
+var num: number = 30; //variable num is of type number	
+
+
+Array diclaration and usage
+--------------------------------
+var array: string[] = ['test', 'dummy'];
+var first: string = array[0];
+
+
+Complex data type
+---------------
+TypeScript also allows us to create complex variables as shown in below example
+
+var name = { firstName: 'Homer', lastName: 'Simpson' };
+name.firstName = 2; //This gives compile time error
+// in the above case notice that we had not defined the type of name variable, 
+but TypeScript is smart enough to infer that name is a complex object with �firstName� and �lastName� string variables and if we try to assign anything other than string to either of these variables, TypeScript will show a design time error 
+
+
+As we saw above TypeScript provides type inference wherein even if we don�t define a variable with a type, TypeScript infers the type with the value with which we would have initialized the variable. 
+If we don�t initialize the variable nor we define a type when declaring a variable, TypeScript assigns �any� type to the variable. But, as JavaScript does not distinguish between any of these types,
+ all the variable will be same for JavaScript.
+
+var dummy; //any type
+var num = 10; //number
+var str = 'Hello TypeScript'; //string
+var bln = true; //boolean
+var stringArray = ['Homer', 'Simpson']; //string[]
+
+
+
+Type checking is also available in functions. We can define types when defining the input parameters but, if type is not mentioned TypeScript takes it as �any�.
+ In case of return type if we don�t define the type TypeScript will infer the type depending on the use of those variables.
+
+Ex:
+var addFunction = function (n1: number, n2: number, n3: number) {
+var sum = n1 + n2 + n3;
+return sum;
+};
+var str1: string = addFunction(10, 20, 30); //Gives compile time error as return type of a function is number and is being assigned to a string
+
+var sum: number = addFunction(10, 20, 30); // This works
+var result = addFunction(10, 20, 30); // This also works
+
+ We can also explicitly define the return type by suffixing colon after the parameters 
+  //var addFunction = function (n1: number, n2: number, n3: number) : number {
+  //var sum = n1 + n2 + n3;
+  //return sum;
+   // };
+
+
+optional parameters in type script 
+--------------------------------------------
+
+var addFunction = function (n1: number, n2: number, n3?: number) : number {
+var sum = n1 + n2 + n3;
+return sum;
+};
+var sum: number = addFunction(10, 20);
+//Note : Optional parameter has to be the last parameter in the list and there cannot be a required parameter after the optional similar to C# convention.
+//Note : In javascript there is no optional parameter concept. so type script wont generate any specific javascript code for this.
+
+
+Output :
+var addFunction = function (n1, n2, n3) {
+var sum = n1 + n2 + n3;
+return sum;
+};
+var sum = addFunction(10, 20);
+
+
+Classes
+-----------
+ypeScript classes can contain constructor, fields, properties and functions
+TypeScript classes are basic unit of abstraction very similar to C#/Java classes.
+ It�s important to note that the �public/private� keyword are only available in TypeScript, once it�s converted to JavaScript there is no way to distinguish between the two and both can be called
+
+Ex: 
+class Student {
+    private firstName: string;
+    private lastName: string;
+    yearOfBirth: number;    //Public scope by default
+    schoolName: string;
+    city: string;
+    //Constructor            
+    constructor(firstName: string, lastName: string, schoolName: string, city: string, yearOfBirth: number) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.yearOfBirth = yearOfBirth;
+        this.city = city;
+        this.schoolName = schoolName;
+
+    }
+    //Function
+    age() {
+        return 2014 - this.yearOfBirth;
+    }         
+    //Function
+    printStudentFullName(): void {
+        alert(this.lastName + ',' + this.firstName);
+    }
+}
+
+Instead of defining class properties seperatly, we can define scope of the parameters in 
+constructure itself. If we define like this , then this parameters will becom as
+property of the class;
+
+Ex:
+constructor(private firstName: string, private lastName: string, public schoolName: string, public yearOfBirth: number) {}
+he scope mentioned along with the argument becomes the scope of the variable for that class.
+
+Default parameters also possible.
+
+Ex:age(defaultage:number = 30) {
+        return 2014 - this.yearOfBirth;
+    }   
+
+Output: 
+	function age(defaultage)
+	{
+		if(defaultage===vaoid 0)
+		defaultage = 30
+	}
+
+
+
+Interfaces
+------------------
+TypeScript offers support for Interfaces to use them as a contract for classes similar to C#.
+ To declare an interface, we use keyword �interface� followed by the 
+interface name. Important thing to know about interfaces is that when compiled in JavaScript, 
+interface code is ignored and there is no corresponding JavaScript generated.
+Ex:
+interface IStudent {
+     yearOfBirths: number;
+     age : () => number;
+   }
+
+class classname implements IStudent
+{
+ yearOfBirths:number;
+age():number
+{return 34;}
+}
+
+
+Optional parameters will not impact javascript outpu
+
+printStudentFullName(myVaraible?:string): void {
+
+        alert(this.lastName + ',' + this.firstName);
+    }//if we call subject method without passing any parameter value, TypeScript will not show any error.
+
+ouput :
+	printStudentFullName = function (myVaraible) {
+        alert(this.lastName + ',' + this.firstName);
+    };
+
+
+
+
+Get ts files for jquery and other js libraries from nugetpackage magnager using - "definitly typed" key word
+
+
+It supports structureal typing
+
+Javascript not having function overloadingS
+but with type script we can dos(but method body single :-( )
+
+
+this.span = document.createElement('span');//this will throw compile time error. read the code and understand :-)  
+
+
+
+declare var numberDataFromServer: string;
+//This tells compiler that this variable will declared in another page or js or somewhere
+//It will not impact any ouput. it just avoid compilation error
+
+
+
+casting
+----------------
+
+var ss = <any> 2;
+ss="sss";
+
+var item1 = <any>{ id: 1, name: "item 1" };
+item1 = { id: 2 };
+
+
+enumerator
+---------------
+enum kk { ss, dd, tt }
+
+
+default parameter and optional parameter
+---------------------------------------------
+getString(defaultParam="default Parameter Example",optionParam?:string): b {
+
+optional parameters must be the last parameters in the function
+definition. You can have as many optional parameters as you want, as
+long as non-optional parameters precede the optional parameters.
+Any explicit casting that you use will be compiled away in the
+resultant JavaScript and will not affect the code at runtime.
+
+function signatures, callbacks, events
+-------------------------------------------
+function myCallBack(text: string) {
+console.log("inside myCallback " + text);
+}
+function callingFunction(initialText: string,
+callback: (text: string) => void)
+
+callingFunction("myText", myCallBack);
+callingFunction("myText", "this is not a function");
+{
+callback(initialText);
+}
+
+Union types. Multi option types
+-------------------------------------
+   tstfn(paramName:string|number)
+    {
+        return "";
+    }
+
+var kk:string|number=2;
+
+
+Type aliases
+-------------
+type StringNumberOrBoolean = string | number | boolean;
+arg1: StringNumberOrBoolean;
+
+
+Access modifiers
+------------------------
+Public, Protected and Private
+
+
+(<any>window).somename="";
+# here we are casting window opject as any and then adding new property into it.
+this is useful.. bcs without casting typescript will not allow to add propery

@@ -1,0 +1,62 @@
+ngOnChanges - Called before ngOnInit() and whenever one or more data-bound input properties change.
+              SimpleChanges (OnChanges Lifecycle Hook will trigger only 
+              when input property's instance changes)
+ngOnInit  - Called once, after the first ngOnChanges()
+DoCheck
+ngAftercontentInit
+   - # input properties got filled
+ngAfterContentChecked
+ngAfterviewInit - at this stage, Angular has processed the component’s template 
+        and set the result of the query. @ViewChild, ViewChildren will have values
+ngAfterViewChecked
+ngOnDestroy
+
+It is actually not mandatory for the class to implement the interface, one could just create
+the method of the hook. But it is considered good practice and has benefits from strong
+typing and editor tooling
+
+AfterXXXInit hooks are only called once during the directive lifecycle, while the
+AfterXXXChecked hooks are called after every change detection cycle.
+
+change detection process
+--------------------------
+who notifies to angular about changes? Zone
+Zone can perform an operation each time code enters or exits the a task
+
+ngOnInit
+-----------
+The OnInit hook is called when your directive properties have been initialized, and before any of
+the child directive properties are initialized.
+
+ngOnChanges
+--------------------
+OnChanges Lifecycle Hook will trigger only when input property's instance changes. 
+# i have done POC - if we use array and if add elements to it.. then ngOnChanges triggers. 
+But if modify any refrence element within array then ngOnChanges not triggers
+The OnChanges hook is called after one or more of our component properties have been changed.
+  ngOnChanges(kk) {
+   //kk.somepropertyValue1.currentValue
+   //kk.somepropertyValue11.previousValue
+  } 
+ngOnChanges(changes: {[property: string]: SimpleChange }) {
+let change = changes["bgClass"];`//SimpleChanges will have dictionary of all the properties
+let classList = this.element.nativeElement.classList;
+  if (!change.isFirstChange() && classList.contains(change.previousValue)) {
+classList.remove(change.previousValue);
+}
+if (!classList.contains(change.currentValue)) {
+classList.add(change.currentValue);
+}
+}
+
+IsFirstChange() - This method returns true if this is the call to the ngOnChanges method that occurs
+before the ngOnInit method
+
+
+The easiest way to understand the way that changes are presented to the ngOnChanges method is to
+serialize the object as JSON and look at it then.
+
+  The ngOnChanges method receives a parameter which tells which properties have changed.
+
+  OnChanges is triggered every time the Angular
+change detection mechanism notices there was a change on any of the directive properties.

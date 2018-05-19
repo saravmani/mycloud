@@ -1,0 +1,5 @@
+NativeScript is a cross-platform framework for
+ building native apps using JavaScript, CSS and XML. NativeScript APIs are translated to native platform APIs at runtime.
+ You can use modern JavaScript, TypeScript or AngularJS and get the performance of Swift or Java.
+
+It is used to develop Android and IOS apps

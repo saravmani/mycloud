@@ -1,0 +1,26 @@
+
+
+
+{
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "sourceMap": true,
+    "outDir": "../lib",
+    "declaration": true
+  }
+}
+
+
+
+emitDecoratorMetadata and experimentalDecorators enable the use of annotations such as @Component
+target: 'es5' means that the output of the compilation is just plain Javascript, instead of for example ES6
+module: 'commonjs' means that each file will be exported as a separate CommonJs module. for example HelloWorld.tswill be converted into an isolated module
+moduleResolution: 'node' ensure that the import paths will work exactly the same way in the browser as in a node runtime
+outDir is where the output of the Typescript compiler is saved
+sourcemap: true triggers the generation of source maps
+declaration: true triggers the generation of the typings *.d.ts files, that enable IDE Intellisense

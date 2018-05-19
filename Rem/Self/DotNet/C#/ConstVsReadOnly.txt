@@ -1,0 +1,31 @@
+At compile time Const will hard code the value where ever it is used.
+So performance wise good when compare to read only.
+Because readonly will not hardcode the value, when run time it will read it from the readonly variable.
+
+but issue with Const is, it will hard code where ever it is used.
+Ex:
+
+utility.dll having below code
+
+public class configvalues{ 
+public const string teststring = "testvalue";
+}
+
+
+consumer.dll referencing utility.dll and having below code
+public class consumer{ 
+public string consuemeconfig = configvalues.teststring;
+}
+
+this will work fine. but issue is when consumer.dll got produced , comiler will replace
+configvalues.teststring; this line to "testvalue".
+
+So infuture if we modify the teststring's value to some other, we many need to rebuild all other dlls
+who are referencing. otherwise previously hardcoded value will not be replaced.
+
+So readonly is better in many ways
+
+ Try to avoid constants for outside access (btn dlls). instead use readonly. 
+ within assembly we can use consts it will not problem.
+ but if we try to access consts outside the dll then value will get hardcoded to that dll. so modification 
+ of source dll will not reflect on consumer dll

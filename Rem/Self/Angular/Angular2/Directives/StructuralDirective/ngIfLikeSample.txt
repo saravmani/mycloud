@@ -1,0 +1,43 @@
+
+
+ <template  [appHostbindercheck]="sometxt" [can-add-content]="canaddcontent">
+     some template text
+     <app-life-cycle-test></app-life-cycle-test>
+ </template>
+
+
+
+constructor(private container: ViewContainerRef,private template: TemplateRef<Object>){
+}
+  @Input("paIf") expressionResult: boolean;
+ngOnChanges(changes: { [property: string]: SimpleChange }) {
+  let change = changes["expressionResult"];
+  if (!change.isFirstChange() && !change.currentValue) {
+    this.container.clear();
+  } else if (change.currentValue) {
+    this.container.createEmbeddedView(this.template);
+  }
+}
+
+export class HostbindercheckDirective implements OnChanges {
+@Input("can-add-content") canAddContent:boolean;
+  @HostListener("click")
+  listeningfn() {
+    console.log("host clickedeee");
+  }
+  constructor(private objViewContainerRef:ViewContainerRef,private objTemplateRef:TemplateRef<object>)
+  {}
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.appHostbindercheck.currentValue == "dumdum")
+    this.txtcontent = this.appHostbindercheck;
+    if(this.canAddContent)
+    this.objViewContainerRef.createEmbeddedView(this.objTemplateRef);
+    else
+    this.objViewContainerRef.clear();
+  }
+
+
+
+The contents of the template element are being destroyed and re-created, not simply hidden and
+revealed. If you want to show or hide content without removing it from the HTML document, then you can use a
+style binding to set the display or visibility property.

@@ -1,0 +1,69 @@
+in arrow functions we can avoid "function" and "return" keywords
+
+
+var getPrice = ()=>5.9;
+console.log(typeof getPrice);//function
+console.log(getPrice())//5.9
+
+var getPrice = (input)=>input+5.9; 
+console.log(getPrice(.1))//6
+
+if we specifu the block then we have use return statement
+var fnname = ()=>{
+    var a = "";
+    var b=a+"";
+    return b;//Note here "return" statement is needed
+}
+
+Real advantage of arrow functions is to handle this keyword.
+
+
+Arrow function used to get the context of where the code is running
+
+ex: with arrow function
+var invoice = {
+    invocienumber:123,
+    process:()=> console.log(this)
+}
+invoice.process();
+//output is Window
+
+ex:without arrow function
+var invoice = {
+    invocienumber:123,
+    process:function(){ console.log(this);}
+}
+invoice.process();
+//output is similar to Object { invocienumber:123 }
+
+
+var invoice = {
+    invocienumber:123,
+    process:function(){
+        return ()=> console.log(this.invocienumber);
+    }
+}
+invoice.process()();//out put is 123
+//here execution context is set to arrow function
+
+Important example
+------------------------------
+//We cannot change the context by using bind
+var invoice = {
+    invocienumber:123,
+    process:function(){
+        return ()=> console.log(this.invocienumber);
+    }
+}
+var newInvoice ={
+    invocienumber:444,
+}
+invoice.process().bind(newInvoice)();//out put is 123
+//Note here bind context owinted
+
+invoice.process().call(newInvoice);//out put is 123
+// call, bind will not work
+
+
+var getPrice = ()
+=>5.9;// because of new line this will throw syntex error

@@ -1,0 +1,31 @@
+Third party cookies
+-------------------------
+A third party cookie is one that you set for a different domain than the domain of the page you are currently on. 
+Ex:
+if you visit widgets.com and the domain of the cookie placed on your computer is widgets.com, then this is a first-party cookie. 
+If, however, you visit widgets.com and the cookie placed on your computer says stats-for-free.com, then this is a third-party cookie.
+
+Even though you may be able to set a 3rd party cookie for a different domain such as bbb.com, you cannot read that bbb.com cookie from a 
+page in aaa.com, ever. Only pages from bbb.com can read that cookie.
+
+Third-party cookies are often blocked and deleted through browser settings and security settings such as same origin policy;
+ by default, Firefox blocks all third-party cookies.
+
+This capability is sometimes used for tracking purposes by ad services to help in tracking a given user across multiple domains.
+It can also be used to help share credentials across cooperating sites that use multiple domains.
+
+
+persistent and non persistent cookies
+--------------------------------------
+If the cookie setter does not specify a date, the cookie is removed once the user quits his or her browser.
+
+As a result, specifying a date is a way for making a cookie survive across sessions. For this reason, cookies with an expiration date are called persistent.
+
+
+from the server we can able to set and clear the cookies in browser.
+ex:
+in node js
+res.cookie('cookiename','value');// setting cookie in response header
+res.clearCookie('cookiename');// clear cookie in browser. this will send cookiename with empty value and expiry date as 01 Jan 1070
+when we try to clear the cookie in browser server will send the cookie with past expiry date.
+# so browser will cleare the cookie immediatly

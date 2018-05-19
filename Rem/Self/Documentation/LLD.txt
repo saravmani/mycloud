@@ -1,0 +1,7 @@
+Module Name
+Purpose of the module
+Validations
+    Client side
+    Server side
+
+Error messages

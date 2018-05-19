@@ -1,0 +1,17 @@
+var querystring = require('querystring');
+//used to transform json to querystring format. and this having many other utils which are related to work with querystirng
+
+  var post_data = querystring.stringify({
+      'compilation_level' : 'ADVANCED_OPTIMIZATIONS',
+      'output_format': 'json',
+      'output_info': 'compiled_code',
+        'warning_level' : 'QUIET',
+        'js_code' : codestring
+  });
+
+
+
+  var path = require('path');
+var options = {
+    "path": path.join(__dirname, 'config');
+};

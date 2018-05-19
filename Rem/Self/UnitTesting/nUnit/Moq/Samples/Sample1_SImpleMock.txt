@@ -1,0 +1,5 @@
+var mockRepository = new Mock<ICustomerRepository>();
+mockRepository.Setup(x=>x.Save(It.IsAny<Customer>()));
+var customerService = new CustomerService(mockRepository.Object);
+customerservice.Create (new CustomertoCreateDto());
+mockRepository.VerifyAll();

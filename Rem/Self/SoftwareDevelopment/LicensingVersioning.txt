@@ -1,0 +1,35 @@
+
+
+MIT is used for open source projects
+
+
+understand versioning
+   ex: what is semantic versioning
+        major.minor.patch
+        --MAJOR version when you make incompatible API changes, MINOR version when you add functionality in a backwards-compatible manner, and.
+         PATCH version when you make backwards-compatible bug fixes. 
+
+
+versioning (semantic,symantic)
+---------------
+npm uses symantic guidlines
+
+^ symbol tells that install all the minor and patch releases. but not any major version.
+ex:
+{
+    modulename:"^1.2.1"
+}
+
+this will install 1.2,1.3,1.4 ... but NOT 2.0
+because marjor releases will have breaking changes
+
+~ symbol will install all the patch releases
+ex:
+{
+    modulename:"~1.2.3"
+
+}
+
+this will install 1.2.3,1.2.3,1.2.4 but not 1.3
+
+if we want to install only any specific version then no need to mention ~ or ^

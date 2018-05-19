@@ -1,0 +1,21 @@
+with debugdiag we can do  below
+Crash Analysis
+Hang analysis
+Memory Leak Analysis
+Performance analysis
+
+The Debug Diagnostic Tool (DebugDiag) is designed to assist in troubleshooting issues such as hangs, slow performance, memory leaks or fragmentation,
+ and crashes in any user-mode process.
+The tool includes additional debugging scripts focused on Internet Information Services (IIS) applications, web data access components, COM+ and
+related Microsoft technologies.
+
+Speciffically it was designed for IIS. But we can use for any processes.
+
+
+Other tools used to create dumps include using ADPlus (included in the Debugging Tools for Windows), or even DebugDiag. 
+ Using DebugDiag lets you create rules for when dumps are captured, 
+such as when a particular exception is raised. 
+This can be very helpful for grabbing a snapshot of memory as the error occurs so that you can troubleshoot errors in ULS logs in SharePoint.
+
+
+ 

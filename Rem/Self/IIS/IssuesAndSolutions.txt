@@ -1,0 +1,5 @@
+Issue: when launching url in browser and getting below mentioned error
+401 Unauthorized: Access is denied due to invalid credentials
+	IIS Manager -> Sites -> Website
+	Double click "Authentication"
+	set Anonymus authentication and Form Authentication as true

@@ -1,0 +1,12 @@
+function Employee(){
+    this.name='MiltonWaddams';
+    this.salary=0;
+    }
+var e=new Employee();
+var p=new Proxy(e,{
+    get:function(target,prop,receiver){
+        console.log("accessed"+prop)
+        return Reflect.get(target,prop,receiver);
+        }
+    });
+console.log(p.salary);

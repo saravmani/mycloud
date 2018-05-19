@@ -1,0 +1,42 @@
+Create new fire base database
+
+Go to rules tab and remove the authentication flag like below
+{
+  "rules": {
+    ".read": "true",
+    ".write": "true"
+  }
+}
+
+go to Overview tab and click firebase to web app link
+it will open configuration details. Copy only the json configuration properties
+and to angular2 project like below.
+config.ts
+export const config = {
+    apiKey: "AIzaSyCcIdQYXxMk-mKTThD_1IQNniTTIaxMO0w",
+    authDomain: "stockwatcher-ec3db.firebaseapp.com",
+    databaseURL: "https://stockwatcher-ec3db.firebaseio.com",
+    projectId: "stockwatcher-ec3db",
+    storageBucket: "stockwatcher-ec3db.appspot.com",
+    messagingSenderId: "288941625103"
+}
+
+
+
+ 
+npm install angularfire2 firebase --save
+
+app.module.ts
+import AngularFIreModule
+import { AngularFireModule } from 'angularfire2';
+import { config } from './../config';
+
+Initialize it
+like below
+imports: [
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(config)
+  ],
+
+
+import below in your new component

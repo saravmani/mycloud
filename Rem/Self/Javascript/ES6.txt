@@ -1,0 +1,212 @@
+ES6 is ES2015
+ES7 is ES2016
+
+
+
+Modules
+Classes
+destructing
+Inheritance
+Scopped variables
+constants
+arrow functions
+
+• Promises
+• Symbols
+• Generators
+• Collections
+• let
+• the spread operator
+
+
+introduced back tick
+----------------------
+`erwew
+rew
+reww`
+
+Class example
+-----------------
+class className
+{
+constructor()
+{}
+functionname(
+{
+
+}
+}
+
+let burger = new Hamburger();
+burger.listToppings();
+
+
+Traditional class-based languages often reserve the word this to reference the current
+(runtime) instance of the class. In Javascript this refers to the calling context and therefore
+
+
+
+Arrow functions (like c# lamda expression)
+----------------------
+insteed of anonymus functions we can use arrow functions.
+Difference here is 'this'  will not work properly in anonymus. which means this will not refers its parent
+but arrow functions will take it's parent scope.
+
+items.forEach((x) => {
+console.log(x);
+incrementedItems.push(x+1);
+});
+
+When this is used inside an arrow function
+JavaScript uses the this from the outer scope
+
+
+Warning arrow functions do not have their own arguments variable,
+
+
+Template strings
+-----------------------
+var name = 'Sam';
+var age = 42;
+console.log(`hello my name is ${name}, and I am ${age} years old`);
+
+
+Inheritance
+-------------------
+// Base Class : ES6
+class Bird {
+constructor(weight, height) {
+this.weight = weight;
+this.height = height;
+}
+walk() {
+console.log('walk!');
+}
+}
+// Subclass
+class Penguin extends Bird {
+constructor(weight, height) {
+super(weight, height);//this is used to call parent's constructor
+}
+
+
+##remember in previous versions we used prototype inheritance
+function Bird(){}
+Bird.prototype.someFunction = function(){}
+
+function Penguin(){}
+Penguin.prototype = Object.create(Bird.prototype);//Note here we are inheriting base class functionalities before adding new prototypes to the derived function 
+Penguin.prototype.anotherFunction= function(){}
+
+in node js we have to use util module for inheritance
+require('util')
+util.inherits(InputChecker,eventEmitter);
+
+
+
+
+let,const
+-----------------
+let used mainly in loops,exception handler. bcs in js within brackets we cant define scope.
+let is same as var. except scope issues.
+for(let x=0; x<5; x++) {
+setTimeout(()=>console.log(x), 0)
+}
+
+
+const literal = {};
+literal.attribute = 'test'; // fine
+literal = []; // error;
+
+const myName = 'pat';
+let yourName = 'jo';
+yourName = 'sam'; // assigns
+myName = 'jan'; // error
+
+
+
+problem here is const will wor with root object level. not property level
+
+const person = {
+name: 'Tammy'
+};
+person.name = 'Pushpa'; // OK, name property changed.
+person = null;
+
+
+marking an object reference const does not make properties inside the object
+const.
+
+
+Destructing
+---------------------
+
+let foo = ['one', 'two', 'three'];
+let [one, two, three] = foo;
+console.log(one); // 'one'
+
+below example for objecct level destructing
+
+let myModule = {
+drawSquare: function drawSquare(length) { /* implementation */ },
+drawCircle: function drawCircle(radius) { /* implementation */ },
+drawText: function drawText(text) { /* implementation */ },
+};
+let {drawSquare, drawText} = myModule;
+drawSquare(5);
+drawText('hello');
+
+Destructuring can also be used for passing objects into a function
+It is also possible to assign default
+values to destructured arguments, which can be a useful pattern if passing in a configuration
+object.
+
+
+Modules
+-----------------
+it is like package or namespace
+it single file that allows code and data to
+be isolated, it helps in organizing and grouping code logically.
+
+code and data they are not
+accessible from code outside the module.
+to share the data we need to use export keyword
+ex:
+export const pi = 3.141592;
+export const circumference = diameter => diameter * pi;
+
+like c# 'use namespaceName', in Web Browsers have no concept of modules or import,
+they just know how to load javascript code.
+for that we need few module loaders
+RequireJS
+SystemJS
+Webpack
+
+
+SystemJs example
+
+<script src="/node_module/systemjs/dist/system.js"></script>
+<script>
+var promise = System.import('app')
+.then(function() {
+console.log('Loaded!');
+})
+.then(null, function(error) {
+console.error('Failed to load:', error);
+});
+</script>
+
+
+
+
+
+
+TypeScript is a superset of ES6, which means all
+ES6 features are part of TypeScript, but not all TypeScript features are part of ES6.
+
+
+
+Map
+---------
+The Map class is a collection that stores key/value pairs and is defined as part of the ES6 specification.
+TypeScript has built-in support for managing key/value pairs if the key is a string or a number,

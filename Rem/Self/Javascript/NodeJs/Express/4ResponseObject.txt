@@ -1,0 +1,6 @@
+res.end //# i think it ends the conneciton
+res.send
+
+.redirect
+.download //it is like sendFile. it used to download the file
+    

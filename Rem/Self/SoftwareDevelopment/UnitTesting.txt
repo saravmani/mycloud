@@ -1,0 +1,20 @@
+Why unit testing required? do we need to really implement unit testing for ALL the features?
+-------------------------------------------------------------------------------------------------
+    I tend to focus on writing unit tests for features and functions that I know will be hard to
+write and that are likely to be the source of bugs in deployment. In these situations, unit testing helps
+structure my thoughts about how to best implement what I need. I find that just thinking about what I
+need to test helps produce ideas about potential problems, and that’s before I start dealing with actual
+bugs and defects.
+
+
+#MyIdea
+----------
+Splitup the complex functionality as multiple testable logical parts 
+and create unit test for those seperately. So that based on unit test result, we can able to focus
+the logical part specifically and solve it.
+Ex: 
+Name search in Search Component we can write unit test for
+    scoring
+    ircs call
+    filtering
+    DB call

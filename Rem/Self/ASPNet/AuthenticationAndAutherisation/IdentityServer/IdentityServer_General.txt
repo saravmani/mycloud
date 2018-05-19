@@ -1,0 +1,19 @@
+It is officially certified by the openid foundation. And it is completely open source
+
+Identity Server provides 
+Extensible openid connect and oauth 2.0 security token service and autherization server
+
+Now a days we no need to have Authentication related stuffs (login, change pwd etc.,) in to our
+main applicaion. we can just seperate it(Identity provider)
+It's the responsibility of an identity provider (IDP) to authenticate the user and if needed safely
+provide proof of identity to an application
+
+In Oauth 2 we will define endpoints from the OAuth2 standard
+
+Oauth 2's Access_Token should'nt be used to sign in to client application. bcs it s 
+only autherization token to access the resources of another applicaiton.
+
+Identity server 4 is providing in memory certificate. but previous versions we have to configure 
+certificate by own.
+
+Once ur configure identity, it will provide discovery URL. in that it will have all other URLs

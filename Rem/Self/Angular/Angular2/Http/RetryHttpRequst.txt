@@ -1,0 +1,21 @@
+Retry attempt when error occurs
+---------------------------------------
+return this.http.get(url,options)
+    .retryWhen((errors) => {
+        return errors
+            .mergeMap((error) => (error.status === 429) ? Observable.throw(error) : Observable.of(error))
+            .delay(1000)
+            .take(2);
+    })
+    .catch((res) => this.handleError(res));
+
+Note that the error callback is not invoked during the retry phase. 
+If the request fails it will be retried and only after all the retry attempts fail 
+the stream throws an error.
+
+ search(term: string) {
+    let tryCount = 0;
+    return this.http.get('https://api.spotify.com/v1/dsds?q=' + term + '&type=artist')
+      .map(response => response.json())
+      .retry(3);
+  }

@@ -1,0 +1,27 @@
+Background sync
+-----------------
+It uses push messages and notifications, and it uses background sync. 
+If the user tries to send a message when they have zero connectivity, 
+then, thankfully, the message is sent in the background once they get connectivity.
+In Chrome by default it is on
+
+
+onsync service worker event which can fire in the background so that synchronization 
+attempts can continue 
+This API is intended to reduce the time between content creation and content synchronization 
+with the server.
+
+##SECURECONTEXT
+As this API relies on service workers, functionality provided by 
+this API is only available in a secure context.
+
+
+
+Reference
+------------
+https://developers.google.com/web/updates/2015/12/background-sync
+
+
+how to use this api?
+this api only available in Chrome?
+what is secure context? ##refer SECURECONTEXT

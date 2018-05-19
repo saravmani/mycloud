@@ -1,0 +1,47 @@
+DOM
+------------
+
+Dom is a representation of a web page . it is a map of web page.
+it is tree structure.
+if you modify the dom using js, then it will make changes in webpage
+example tree below
+document
+	head
+	body
+		div
+			div
+
+
+
+
+
+
+
+dom manipulatin best practices
+1. dont go with self closeing tags
+	write <table></table> instead of <table/>
+2. use proper HTML wrapping
+	<section>
+		<option>1</option>
+		<option>2</option>
+	</section>
+
+
+Virtual DOM
+--------------------
+In short - The virtual DOM is an in-memory representation of the real DOM elements
+
+React creates a tree of custom objects representing a part of the DOM. For example, instead of creating an actual DIV element containing a UL element, it creates a React.div object that contains a React.ul object. It can manipulate these objects very quickly without actually touching the real DOM or going through the DOM API. Then, when it renders a component, it uses this virtual DOM to figure out what it needs to do with the real DOM to get the two trees to match.
+
+You can think of the virtual DOM like a blueprint. It contains all the details needed to construct the DOM, but because it doesn't require all the heavyweight parts that go into a real DOM, it can be created and changed much more easily.
+
+ whenever you have any changes, as in you want to add another <div> to your DOM then the virtual DOM will be created which actually does not do any changes in the actual DOM. Now with this virtual DOM, you will be checking the difference between this and your current DOM. And only the part which is different (in this case the new <div>) will be added instead of re-rendering the whole DOM.
+
+When we change something in our Virtual DOM Tree, we get a new Virtual Tree. Algorithm compares these two trees (old and new), finds differences and makes only necessary small changes to real DOM so it reflects virtual
+
+
+
+
+DOM virtualization (# Data Virtualization)
+--------------------------------------------
+DOM virtualization is that is only renders the rows and columns that is visible to the end-user, it doesn’t generate the entire table with the data in your datasource. This in-turn makes the grid light weight with small memory footprint and quick with the overall data rendering. As the user scrolls, the jQuery grid uses the same cell (<td>) elements to recycle the content and update its data, giving the end-user and illusion that they are actually scrolling the grid, but actually the grid is simply re-using the same elements to display new set of scrolled data. 

@@ -1,0 +1,7 @@
+Angular Animation library is seperated. have to install manually
+$ npm install @angular/animations@latest --save
+
+Service Workers support
+--------------------------------
+Angular 5 has been released and the support for building Progressive Web Applications (PWA) 
+with Service Workers has now been build into the framework.

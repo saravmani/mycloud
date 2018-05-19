@@ -1,0 +1,5 @@
+
+microservices can scale out independently
+Microservices enable better maintainability in complex, large, and highly-scalable systems by letting you create applications based on many independently deployable services that each have granular
+autonomous lifecycles
+Architecting fine-grained microservices-based applications enables continuous integration and continuous delivery practices

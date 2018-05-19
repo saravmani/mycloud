@@ -1,0 +1,61 @@
+
+Cross-Origin Resource Sharing (CORS) --  is a W3C specification for cross domain access.
+Browser should send Origin off current page to the 3rd party server.
+third party can validate and send the response with Access controll header
+
+If this header is missing, or the origins don't match, then the browser disallows the request. If all
+is well, then the browser processes the request.
+
+
+in response will contain one or more Access-Control-Allow headers
+
+
+
+XHR (except IE)
+
+Image pings
+JSONP
+
+
+Image pings-> we can make a call to third party server by img tags to call third party domain.
+here client can send data by query string. but they cannot receive the response. so it is one way communication
+var img = new Image();
+img.onload = img.onerror = function(){
+alert(“Done!”);
+};
+img.src = “http://www.example.com/test?name=Nicholas”;
+
+JSONP
+------------------------
+JSONP is a more limited way to make cross-origin requests, and,
+unlike CORS, it skirts around the browser’s security policy, but it can be a useful fallback in a pinch.
+JSONP->JsonP works wih Script Tag.  like img tag script tag works with other domains without restriction.
+JSONP is short for “JSON with padding”.
+JSONP looks just like JSON except that the data is wrapped within what looks
+like a function call. For example:
+callback({ “name”: “Nicholas” });
+Ex: http://freegeoip.net/json/?callback=handleResponsess
+
+function handleResponse(response){
+alert(“You’re at IP address “ + response.ip + “, which is in “ +
+response.city + “, “ + response.region_name);
+}
+var script = document.createElement(“script”);
+script.src = “http://freegeoip.net/json/?callback=handleResponse”;
+//in server we have to use callback query parameter, and we have to send back the script like it should call the client function.
+ex: server response - handleResponse({'name':'sarvmani'});
+document.body.insertBefore(script, document.body.firstChild);
+
+function handleResponse(data)
+{
+alert(data.name);
+}
+
+These days (2015), CORS is the recommended approach vs. JSONRequest. JSONP is still useful for older browser support, but given the security implications, 
+unless you have no choice CORS is the better choice.
+
+Advantage of JSONP over Image Ping is, here we can able to send and receive the data.
+Disadvantage is
+If that domain isn’t trusted, it could very easily swap the response for something more malicious
+The second downside is that there is no easy way to determine that a JSONP request has failed
+  but we use timeout technique but all the end users will not have same band width right :-)

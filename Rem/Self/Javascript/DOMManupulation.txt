@@ -1,0 +1,33 @@
+textContent and innerHTML do the same job
+
+elementObject.textContent;//will give the inner html string of the element
+elementObject.textContent="some Text";
+
+
+innerHTML parses content as HTML and takes longer.
+textContent uses straight text, does not parse HTML, and is faster.
+
+
+Element.attribute to get the attributes of the element. and mofiy the value of the attribute
+
+objInput.type;// this gives text for text box control.
+// we can able to the controll type to any
+/ex:
+objInput.type="checkbox";// now in UI controll type will get changed to check box.
+
+
+
+Element.className;// used to set and get the class className
+rem: $(elem).css("className")
+
+elem.addEventListener("click",function(){}); //attach event to element
+elem.style ;// will give the list of all style elements and its values 
+
+create new elemnt and append to parenet node
+var someElem = document.createElement('li');
+someelem.textContent = "some text";
+objElement.appendChild(someelem);
+
+elem.removeChild(elem);
+
+elem.parentNode();//  to get the parent node

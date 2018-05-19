@@ -1,0 +1,11 @@
+Understand the system
+Ask more questions. so that if customer missed out anything we can able to find
+Try to figureout how client going to use the system
+find business cases
+try to find out issues in may upcoming in the system
+
+
+
+
+Use cases - used to find the requiremets
+

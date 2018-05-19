@@ -1,0 +1,13 @@
+Below three models should not be equal for good design
+--------------------------------------------------------
+Business models
+entity models
+outer facing models(like view models)
+
+To bind different models we can use AutoMappers (Nuget Package), instead manually
+copy the properties from one to other
+
+AutoMappers are object to object mapper. it is Nuget Package.
+It is convention based. It will mapp the same propeties (which are having same name),
+in different objects. and it will ignore null errors.
+we can able to configure the auto mappers, like if is there any transform is needed

@@ -1,0 +1,7 @@
+Cordova
+it s a framework to which will hnadle the web 
+app to native app completion steps
+
+ionic used to create nice looking mobile app.
+
+we no need to use cordova directly

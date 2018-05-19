@@ -1,0 +1,15 @@
+
+#My Ideas in OCP
+=======================
+in .net Extension methods
+    whithout touching existing class we can add new methods into its object
+in design patterns Decorator pattern can be used for OCP
+
+delegates can be used to provide HOOKS. so that we can extend it with our own code.
+Interface hooks also possible
+
+Decorator pattern
+FactoryMethod
+
+template
+strategy

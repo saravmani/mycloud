@@ -1,0 +1,27 @@
+
+Entity Framework lets us specify the field level concurrency so that if a user is
+trying to update a field and the same field has been updated by someone else,
+we will get a concurrency-related exception.
+DbUpdateConcurrencyException
+
+we need to catch the
+DbUpdateConcurrencyException exception thrown by Entity Framework, and let
+the user know about the potential concurrency problem. The user can then choose
+to request the latest data and try to perform the operation again.
+
+
+To implement this, we need to set the Concurrency Mode property of the entity field
+to Fixed.
+
+Set concurrency mode 
+-----------------------------
+go to Visual Entity Designer, and set the Concurrency
+
+
+The only downside of this approach is that it makes the application a little slower
+if we have Concurrency Mode set for more than one field of an entity (as the
+generated SQL query will be much larger). The alternative to this approach is using
+RowVersion for concurrency, which is comparatively more efficient
+
+If we use the field-specific concurrency mode for more than one field, then it will
+slow the application because, the generated SQL will be much larger.

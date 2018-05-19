@@ -1,0 +1,44 @@
+The core features of the CLR (such as memory management,
+assembly loading, security, exception handling, and thread synchronization)
+any language which is poing to CLR will get above mentioined features.
+
+at runtime, the CLR has no idea which programming language the developer used
+
+Source code will be compiled into PE32(for 32 bit portable executable) or PE32+
+
+managed assemblies always take advantage of Data Execution Prevention
+(DEP) and Address Space Layout Randomization (ASLR) in Windows; these two features improve the
+security of your whole system.
+
+Parts of Managed Module
+---------------------------
+PE Header (standard windows PE file header) - has file type (GUI,CUI or DLL), Time stamp (build time)
+	Note: For modules that contain 	native CPU code, this header contains information about the native CPU code
+CLR Header -CLR version required, Entry point, Loacation information of metadata, resources, strong names etc.,,,,
+Meta Data - two main types of tables:
+		tables that describe the types and members defined in your source code and tables that
+		describe the types and members referenced by your source code.
+IL Code - Code the compiler produced as it compiled the source code. At run time, the CLR compiles
+	  the IL into native CPU instructions.
+
+
+Name spaces
+----------------
+The CLR doesn’t know anything about namespaces. When you access a type, the CLR
+needs to know the full name of the type (which can be a really long name containing periods) and
+which assembly contains the definition of the type so that the runtime can load the proper assembly,
+find the type, and manipulate it.
+
+
+using System.IO; // Try prepending "System.IO."
+using System.Text; // Try prepending "System.Text."
+public sealed class Program {
+public static void Main() {
+FileStream fs = new FileStream(...);
+StringBuilder sb = new StringBuilder();
+}
+}
+  compiler interprets  the reference to FileStream in this example to mean System.IO.FileStream. Similarly, the
+compiler interprets the reference to StringBuilder to mean System.Text.StringBuilder.
+
+Static variables are like members of the Type object, and Type

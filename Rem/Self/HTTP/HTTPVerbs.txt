@@ -1,0 +1,40 @@
+GET -> Get is faster than POST for sam set of parameters
+POST -> Create
+By contrast, POST is not idempotent; making the same call using POST with same parameters each time will cause two different things to happen, hence why POST is commonly used for the Create scenario
+Put -> What this means is that if you make the same request twice using PUT, with the same parameters both times, the second request will have no effect. This is why PUT is generally used for the Update scenario; calling Update more than once with the same parameters doesn't do anything more than the first call did.
+DELETE
+
+CURD Vs Http Verbs
+---------------------------
+C - POST
+R - GET
+U - PUT
+D - Delete
+
+
+PATCH ->
+It is special. Update any partial resources.
+This verb should be used only to update the existing entry with 
+partial data. For this client must send JsonPatchDocument
+
+OPTIONS ->
+the OPTIONS request is most likely created by the client as part of a cross domain JavaScript 
+request. This is done automatically by Cross Origin Resource Sharing (CORS) compliant browsers. 
+The request is a preliminary or pre-flight request, made before the actual AJAX request to 
+determine which request verbs and headers are supported for CORS. 
+The server can elect to support it for none, all or some of the HTTP verbs.
+It used to check available communication OPTIONS. Response normally will be headers
+
+Safe methods
+-------------------
+which will not modify the resource
+GET,HEAD,OPTIONS
+unsafe methods - POST,PUT,PATCH,DELETE,PATCH
+
+idempotent
+------------------
+when called multiple times which result the same
+idempotent methods - GET,HEAD,OPTIONS,DELETE,PUT
+
+#note here PATCH is not an idempotent. bcs, if child array got added in PATCH update
+then it will affect the resource representation on each request differently

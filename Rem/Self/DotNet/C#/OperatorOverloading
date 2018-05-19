@@ -1,0 +1,29 @@
+My Example
+---------------
+# 
+Class Account
+{
+    SanctionedAmount objSanctionedAmount;
+}
+
+Class SanctionedAmount
+{
+   long AmountSanctionedForCurrentMonth
+   long PerDayLimit;//ex: 1000
+   public static SanctionedAmount operator+ (SanctionedAmount amt,SanctionedAmount amt2) {
+   }
+
+}
+
+now i can use
+
+var sumOfBoth = lastMSanctionedAmount+CurrentMonthSanctionedAmount;
+
+like this i can give more meaning to my code. and increase readability
+
+we can give good example with 4G Data plan whcih we are using for mobile
+if airtel company wants to carry forward previous month's data to next month then.. 
+
+
+In SB2 we can use operator overloading in Subject merger.
+we can add subject A and B and generate new one as C

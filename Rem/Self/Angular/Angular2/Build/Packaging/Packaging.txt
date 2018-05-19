@@ -1,0 +1,48 @@
+Create Npm package for angular
+--------------------------------
+npm install ng-packagr  --save-dev
+
+add below script in package.json
+"packagr": "ng-packagr -p ng-package.json"
+
+
+
+create ng-package.json and add below lines
+{
+  "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+  "lib": {
+    "entryFile": "public_api.ts"
+  }
+}
+
+create entry file public_api.ts and export the modules, services using that
+export * from "./src/app/zapp-uicomponents/zapp-uicomponents.module";
+export * from "./src/app/zapp-services/zapp-services.module";//Services already added in providers
+export * from "./src/app/zapp-services/logger-service.service";//client can choose this service to add into their provider
+
+
+components needs to be exported
+ex:
+@NgModule({
+  imports: [
+    CommonModule,
+    ZappServicesModule
+  ],
+  declarations: [LoaderComponent],
+  exports: [LoaderComponent]
+})
+export class ZappUicomponentsModule { }
+
+
+
+add below script in package.json
+"packagr": "ng-packagr -p ng-package.json"
+
+npm run packgr // will generate package in dist folder
+navigate to dist folder and run below command to create tarball file (.tgz)
+
+npm pack //generates .tgz file
+
+Now we can install it into other projects from the folder path
+-------------------------------------------------------------------
+npm install --save D:\..\dist\components-0.0.0.tgz

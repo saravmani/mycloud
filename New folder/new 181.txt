@@ -1,0 +1,2695 @@
+
+
+On Thu, Feb 15, 2018 at 8:21 AM, sirisha p <psirisha1592@gmail.com> wrote:
+import { Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed, inject, async, fakeAsync, tick } from '@angular/core/testing';
+import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Observable, Subject, BehaviorSubject, Subscription } from 'rxjs/Rx';
+import { ApiTimeoutService, DateUtils, LoggerService } from '../../lib/kpmgBteCore';
+import { detectMultiChanges, MockActivatedRoute, MockLoggerService } from '../../lib/kpmgBteCore/testing';
+import { Client, Project, Lookup, ProjectType, Rule5253, RuleType5253,ProjectPeriod } from '../../lib/kpmgBteEntities';
+import {
+    AllWhitespaceValidator,
+    AppSignalService,
+    ComponentCanDeactivate,
+    containsHtml,
+    LoadingIndicatorService,
+    SafeInputValidator,
+    ToastrService,
+    WindowRef,
+    MockIframeResizerHook,
+    MockToastrService,
+    MockWindowRef
+} from '../../lib/kpmgBteUiToolkit';
+
+import { IdValidator } from '../shared';
+
+import {
+    AppContextStore,
+    ClientsService,
+    ClientSummary,
+    EnvSettingsService,
+    ProjectsService
+} from '../core';
+
+import { CreateProjectComponent } from './create-project.component';
+import { createClients, createClient, createProject, createProjects, createProjectTypes, createRuleData, createClientSummaries, createProjectType, createRuleDataArray, createPeriods} from '../shared/testing';
+import { CreateProjectModule } from './create-project.module';
+import { Page } from './create-project.po';
+
+describe('CreateProjectComponent -', () => {
+    let component: CreateProjectComponent;
+    let fixture: ComponentFixture<CreateProjectComponent>;
+    let page: Page;
+
+    //Service dependencies
+    let clientService: ClientsService;
+    let projService: ProjectsService;
+    let appSignalService: AppSignalService;
+    let apiTimeoutService: ApiTimeoutService;
+    let loadingIndicatorService: LoadingIndicatorService;
+    let toastrService: ToastrService;
+    let envSettings: EnvSettingsService;
+    let loggerService: LoggerService;
+    let windowRef: WindowRef;
+    let appStoreService: AppContextStore;
+    let activatedRoute: any;
+    let route: any;
+
+    //Test data
+    let emptyLookup = { id: -1, code: '', description: '' };
+    let projectTypes: ProjectType[] = createProjectTypes();
+    let ruleData: Rule5253 = createRuleData();
+    let clients = createClients();
+    let client = clients[0];
+    let project = createProject(100, 1);
+    let clientSummaries = createClientSummaries();
+    let projectType = createProjectType(1);
+    let ruleDataArray = createRuleDataArray();
+    let periods = createPeriods();
+
+    let subProject = new BehaviorSubject<Project>(project);
+    let subClient = new BehaviorSubject<Client>(client);
+    let subProjectTypes = new BehaviorSubject<ProjectType[]>(projectTypes);
+    let subPeriods = new BehaviorSubject<ProjectPeriod[]>(periods);
+    let subRules = new BehaviorSubject<Rule5253[]>(ruleDataArray);
+
+    //Subjects and Subscriptions
+    let apiTimeoutSource = new Subject<number>();
+
+    // Service method spies
+    let spySearchClients: jasmine.Spy;
+    let spySaveProject: jasmine.Spy;
+
+    beforeEach(async () => {
+        //Mocks
+        let envSettingsSvcMock = {
+            appRoot: '/testapp'
+        };
+
+        let project: Project = createProject(100, 1);
+        let client: Client = createClient(100, 'client1');
+
+
+        let clientServiceMock = {
+
+            getClient(clientId: number): Observable<Client> {
+                return Observable.of(client);
+            },
+
+            searchClients(clientId: number, searchPhrase: string): Observable<Client[]> {
+                let clients = createClients();
+                return Observable.of(clients);
+            },
+            searchClientSummaries(term: string): Observable<ClientSummary[]> {
+                return Observable.of(clientSummaries);
+            }
+        };
+
+        let projServiceMock = {
+            saveProject(proj: Project): Observable<Project> {
+                let projects = createProjects();
+                return Observable.of(projects[0]);
+            },
+            getAllProjectTypes(): Observable<ProjectType[]> {
+                let projTypes = createProjectTypes();
+                return Observable.of(projTypes);
+            },
+            getAllProjectPeriods(): Observable<ProjectType[]> {
+                let periods = createProjectTypes();
+                return Observable.of(periods);
+            },
+            get5253RuleData(): Observable<Rule5253> {
+                let ruleData = createRuleData();
+                return Observable.of(ruleData);
+            },
+            getProject(clientId: number, projectId: number): Observable<Project> {
+                return Observable.of(project);
+            }
+
+        };
+
+        let mockAppContextStore = {
+            project$: subProject.asObservable(),
+            client$: subClient.asObservable(),
+            projectTypes$: subProjectTypes.asObservable(),
+            periods$: subPeriods.asObservable(),
+            ruleDataArray$: subRules.asObservable()
+        };
+
+        let apiTimeoutServiceMock = {
+            apiTimeout$: apiTimeoutSource.asObservable()
+        };
+
+        TestBed.configureTestingModule({
+            imports: [CreateProjectModule],
+            declarations: [],
+            providers: [
+                FormBuilder,
+                AppSignalService,
+                LoadingIndicatorService,
+                { provide: ApiTimeoutService, useValue: apiTimeoutServiceMock },
+                { provide: EnvSettingsService, useValue: envSettingsSvcMock },
+                { provide: ClientsService, useValue: clientServiceMock },
+                { provide: ProjectsService, useValue: projServiceMock },
+                { provide: AppContextStore, useValue: mockAppContextStore },
+                { provide: ToastrService, useValue: new MockToastrService() },
+                { provide: LoggerService, useValue: new MockLoggerService() },
+                { provide: ActivatedRoute, useValue: new MockActivatedRoute() },
+                { provide: WindowRef, useValue: new MockWindowRef(null) },
+                { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate"); } }
+            ],
+            schemas: [NO_ERRORS_SCHEMA]
+        }).compileComponents();
+    });
+
+    beforeEach(() => {
+
+        //Instantiate the component
+        fixture = TestBed.createComponent(CreateProjectComponent);
+        component = fixture.componentInstance;
+        page = new Page(component, fixture);
+
+        //Get dependent services
+        clientService = fixture.debugElement.injector.get(ClientsService);
+        projService = fixture.debugElement.injector.get(ProjectsService);
+        appSignalService = fixture.debugElement.injector.get(AppSignalService);
+        apiTimeoutService = fixture.debugElement.injector.get(ApiTimeoutService);
+        appStoreService = fixture.debugElement.injector.get(AppContextStore);
+        loadingIndicatorService = fixture.debugElement.injector.get(LoadingIndicatorService);
+        toastrService = fixture.debugElement.injector.get(ToastrService);
+        envSettings = fixture.debugElement.injector.get(EnvSettingsService);
+        loggerService = fixture.debugElement.injector.get(LoggerService);
+        route = fixture.debugElement.injector.get(ActivatedRoute);
+        windowRef = fixture.debugElement.injector.get(WindowRef);
+
+        //Setup spies
+        spyOn(envSettings, 'appRoot').and.callThrough();
+        spyOn(loggerService, 'error').and.callFake(err => { });
+        spyOn(appSignalService, 'broadcastModuleReady').and.callFake(setHeight => { });
+        spyOn(toastrService, 'setSuccessMessage').and.callThrough();
+        spyOn(toastrService, 'setWarningMessage').and.callThrough();
+        spyOn(toastrService, 'setErrorMessage').and.callThrough();
+        spyOn(windowRef, 'nativeWindow').and.callThrough();
+
+        //Hold a reference to these service spies so that we can manipulate the response.
+        spySearchClients = spyOn(clientService, 'searchClients');
+        spySaveProject = spyOn(projService, 'saveProject');
+
+        //Reset the subscription content
+        subClient.next(null);
+        subProject.next(null);
+        subProjectTypes.next(null);
+        subPeriods.next(null);
+        subRules.next(null);
+
+    });
+
+    describe('Component Instantiation -', () => {
+
+        it('creates the component', async () => {
+            expect(component).toBeTruthy();
+        });
+
+        it('defines the form', () => {
+            expect(component.projSetupForm).toBeDefined();
+        });
+    });
+
+    describe('Component Initialization - ', () => {
+
+        beforeEach(fakeAsync(() => {
+            spyOn(loadingIndicatorService, 'display').and.callThrough();
+            spyOn(component, 'initialize').and.callFake(() => { });
+            spyOn(component, 'setInitialFormValues').and.callFake(() => { });
+            route.testQueryParams = {};
+
+            detectMultiChanges(fixture, 3);
+        }));
+
+        describe('--Web Api timeouts--', () => {
+
+            it('subscribes to web api timeoutes', async(() => {
+                expect(component.isLogoutActive).toEqual(false);
+
+                apiTimeoutSource.next(1);
+
+                fixture.detectChanges();
+                fixture.whenStable().then(() => {
+                    expect(component.isLogoutActive).toEqual(true);
+                });
+            }));
+        });
+
+        describe('Query Params Resolutions--', () => {
+
+            describe('client and Project data initialization ', () => {
+
+                beforeEach(fakeAsync(() => {
+                    route.testQueryParams = { clientId: 1, projectId: 100 };
+                    subClient.next(client);
+                    subProject.next(project);
+                    subProjectTypes.next(projectTypes);
+                    subPeriods.next(periods);
+                    subRules.next(ruleDataArray);
+                    // 1st change detection triggers initial bindings and ngOnInit()
+                    // 2nd change detection resolves route queryParams observable
+                    // 3rd change detection resolve data service calls
+                    detectMultiChanges(fixture, 3);
+                    page.addPageElements();
+                }));
+
+                it('sets client and project', fakeAsync(() => {
+                    expect(component.client).toEqual(client);
+                    expect(component.project).toEqual(project);
+                    expect(component.initialClient).toEqual(client);
+                }));
+            });
+
+            describe('client initialization ', () => {
+
+                beforeEach(fakeAsync(() => {
+                    route.testQueryParams = { clientId: 1 };
+                    subClient.next(client);
+                    subProjectTypes.next(projectTypes);
+                    subPeriods.next(periods);
+                    subRules.next(ruleDataArray);
+                    // 1st change detection triggers initial bindings and ngOnInit()
+                    // 2nd change detection resolves route queryParams observable
+                    // 3rd change detection resolve data service calls
+                    detectMultiChanges(fixture, 3);
+                    page.addPageElements();
+                    page.setTaxYear(2017);
+                }));
+
+                it('sets client and project', fakeAsync(() => {
+                    expect(component.client).toEqual(client);
+                    expect(component.initialClient).toEqual(client);
+                }));
+            });
+        });
+
+        it('initializes form data', async(() => {
+            expect(component.initialize).toHaveBeenCalled();
+        }));
+
+    });
+
+    xdescribe('Form Initialization - ', () => {
+
+        beforeEach(() => {
+            spyOn(component, 'setSaveButtonText').and.callThrough();
+            spyOn(component, 'setInitialFormValues').and.callThrough();
+            spyOn(component, 'showInitializationError').and.callThrough();
+            spyOn(component, 'setProjectName').and.callThrough();
+            spyOn(component, 'setPeriods').and.callThrough();
+            spyOn(component, 'resetProjectSelection').and.callThrough();
+            spyOn(component, 'editingClientName').and.callThrough();
+            spyOn(component, 'checkManualProjNameChange').and.callThrough();
+            spyOn(component, 'checkDuplicateProject').and.callThrough();
+
+            // Reset spies for data service calls
+            spySearchClients.calls.reset();
+            spySaveProject.calls.reset();
+        });
+
+        describe('Common Initialization Processes - ', () => {
+
+            beforeEach(fakeAsync(() => {
+
+                spySearchClients.and.callThrough();
+                route.testQueryParams = {};
+                subClient.next(client);
+                subProject.next(project);
+                subProjectTypes.next(projectTypes);
+                subPeriods.next(periods);
+                subRules.next(ruleDataArray);
+
+                //1st change detection triggers initial bindings and ngOnInit()
+                //2nd change detection resolves route queryParams observable
+                //3rd change detection resolve data service calls
+
+                detectMultiChanges(fixture, 3);
+            }));
+
+            it('sets button text', () => {
+                expect(component.setSaveButtonText).toHaveBeenCalled();
+            });
+
+            it('sets project types', () => {
+                expect(component.projectTypes.length).toEqual(3);
+            });
+
+            it('sets project periods', () => {
+                expect(component.periods.length).toEqual(2);
+                expect(component.periods[0]).toEqual(projectTypes[0]);
+            });
+
+            it('sets RuleData', () => {
+                expect(Object.keys(ruleData).length).toEqual(2);
+                expect(component.ruleData).toEqual(ruleData);
+            });
+
+            it('sets clients', () => {
+                expect(component.clients.length).toEqual(0);
+            });
+
+            it('sets years', () => {
+                expect(component.taxYears).toBeDefined();
+            });
+        });
+
+        describe('Common Initialization Processes - Client Id provided and Project Id not provided', () => {
+
+            beforeEach(fakeAsync(() => {
+                // Setup spys
+                spySearchClients.and.returnValue(Observable.of(clients));
+                route.testQueryParams = { clientId: 1 };
+                subProjectTypes.next(projectTypes);
+                subPeriods.next(periods);
+                subRules.next(ruleDataArray);
+                // 1st change detection triggers initial bindings and ngOnInit()
+                // 2nd change detection resolves route queryParams observable
+                // 3rd change detection resolve data service calls
+                detectMultiChanges(fixture, 3);
+                page.addPageElements();
+            }));
+
+            it('sets client when value provided', () => {
+                expect(component.client).toEqual(client);
+            });
+
+            it('sets project to null when no value provided', () => {
+                expect(component.project).toBeNull();
+            });
+
+            it('sets button text', () => {
+                expect(component.buttonText).toEqual('Create Project');
+            });
+
+            it('sets clients', () => {
+                expect(component.clients.length).toEqual(0);
+            });
+
+            it('does not show the initialization error', () => {
+                expect(component.showInitializationError).not.toHaveBeenCalled();
+            });
+
+            it('sets selected client', () => {
+                const client = createClients()[0];
+                // Assert data
+                expect(component.client).toEqual(client);
+                // Assert form controls
+                expect(page.clientCtrl.value).toEqual(client);
+                // Assert function calls
+                expect(component.resetProjectSelection).not.toHaveBeenCalled();
+            });
+
+            it('resets project selection', () => {
+
+                expect(page.clientCtrl.value).toEqual(client);
+                expect(page.taxYearCtrl.value).toEqual('');
+                expect(page.projTypeCtrl.value).toEqual('');
+                expect(page.projNameCtrl.value).toEqual('');
+                expect(page.oppIdCtrl.value).toEqual('');
+                expect(page.engNumberCtrl.value).toEqual('');
+                expect(page.periodCtrl.value).toEqual('');
+                expect(page.beginDateCtrl.value).toEqual('');
+                expect(page.endDateCtrl.value).toEqual('');
+                //expect(page.ruleCtrl.value).toEqual('');
+                //expect(page.shortYearCtrl.value).toEqual('');
+            });
+
+        });
+
+        describe('Common Initialization Processes - Client Id and Project Id provided ', () => {
+
+            beforeEach(fakeAsync(() => {
+                // Setup spys
+                spySearchClients.and.callThrough();
+                route.testQueryParams = { clientId: 1, projectId: 100 };
+                subClient.next(client);
+                subProject.next(project);
+                subProjectTypes.next(projectTypes);
+                subPeriods.next(periods);
+                subRules.next(ruleDataArray);
+                // 1st change detection triggers initial bindings and ngOnInit()
+                // 2nd change detection resolves route queryParams observable
+                // 3rd change detection resolve data service calls
+                detectMultiChanges(fixture, 3);
+                page.addPageElements();
+            }));
+
+            it('sets client when value provided', () => {
+                expect(component.client).toEqual(client);
+            });
+
+            it('sets project when value provided', () => {
+                expect(component.project).toEqual(project);
+            });
+
+            it('sets button text', () => {
+                expect(component.buttonText).toEqual('Edit Project');
+            });
+
+            it('sets clients', () => {
+                expect(component.clients.length).toEqual(1);
+            });
+
+            it('resets project selection', () => {
+                expect(page.clientCtrl.value).toEqual(client);
+                expect(page.taxYearCtrl.value).toEqual(2018);
+                expect(page.projTypeCtrl.value).toEqual(1);
+                expect(page.projNameCtrl.value).toEqual('Project100');
+                expect(page.oppIdCtrl.value).toEqual('');
+                expect(page.engNumberCtrl.value).toEqual('');
+                expect(page.periodCtrl.value).toEqual(1);
+                expect(page.beginDateCtrl.value).toEqual(new Date('Mon Jan 01 2018 00: 00: 00 GMT - 0500(Eastern Standard Time)'));
+                expect(page.endDateCtrl.value).toEqual(new Date('Mon Dec 31 2018 00:00:00 GMT-0500 (Eastern Standard Time)'));
+                //expect(page.ruleCtrl.value).toEqual(null);
+                //expect(page.shortYearCtrl.value).toEqual(null)
+
+            });
+        });
+
+        describe('Failed Service Calls - ', () => {
+
+            beforeEach(async(() => {
+
+                route.testQueryParams = {};
+                // 1st change detection triggers initial bindings and ngOnInit()
+                fixture.detectChanges();
+            }));
+
+            describe('Failed ClientService.searchClients() - ', () => {
+                beforeEach(fakeAsync(() => {
+                    // Setup spys
+                    spySearchClients.and.callThrough();
+                    // 2nd change detection resolves route queryParams observable
+                    // 3rd change detection resolve data service calls
+                    detectMultiChanges(fixture, 2);
+                }));
+
+                it('does not initialize form data', () => {
+                    // Assert data
+                    expect(component.taxYears).toEqual([]);
+                    expect(component.projectTypes).toEqual([]);
+                    expect(component.periods).toEqual([]);
+                    expect(Object.keys(ruleData).length).toEqual(2);
+
+                    // Assert function calls
+                    expect(component.setInitialFormValues).not.toHaveBeenCalled();
+                });
+            });
+        });
+    });
+
+    xdescribe('Client Search - ', () => {
+
+        beforeEach(fakeAsync(() => {
+            spyOn(component, 'onClientSelected').and.callThrough();
+            spyOn(component, 'setSaveButtonText').and.callThrough();
+            spyOn(component, 'resetProjectSelection').and.callThrough();
+
+            spySearchClients.and.callThrough();
+            spySaveProject.and.callThrough();
+
+            route.testQueryParams = { clientId: 1, projectId: 100 };
+
+            subClient.next(client);
+            subProject.next(project);
+            subProjectTypes.next(projectTypes);
+            subPeriods.next(periods);
+            subRules.next(ruleDataArray);
+            //1st change detection triggers initial bindings and ngOnInit()
+            //2nd change detection resolves route queryParams observable
+            //3rd change detection resolve data service calls
+            detectMultiChanges(fixture, 3);
+
+            page.addPageElements();
+        }));
+
+        describe('Client Search - ', () => {
+
+            it('returns results when search phrase contains 3 or more characters', async(() => {
+                page.setClientSearchTerm('test');
+                fixture.whenStable().then(() => {
+                    const searchResults = page.getClientSearchResults();;
+                    expect(searchResults.length).toEqual(2);
+                    expect(component.clientSearchStream).toHaveBeenCalled();
+                });
+            }));
+
+            it('does not return results when search phrase contains less than 3 characters', async(() => {
+                spySearchClients.and.returnValue(Observable.of([]));
+                page.setClientSearchTerm('te');
+                fixture.whenStable().then(() => {
+                    const searchResults = page.getClientSearchResults();
+                    expect(searchResults.length).toEqual(0);
+                    expect(component.clientSearchStream).toHaveBeenCalled();
+                });
+            }));
+
+        });
+
+        describe('Client Selection - ', () => {
+            it('sets client when client name selected', async(() => {
+                page.setClientSearchTerm('test');
+                fixture.whenStable()
+                    .then(() => {
+                        page.selectClientSearchResult(0);
+                        return fixture.whenStable();
+                    })
+                    .then(() => {
+                        expect(component.clientId).toEqual(1);
+                        expect(component.client).toEqual(client);
+                        expect(page.clientInput.value).toEqual('Test Client 1');
+                        expect(component.onClientSelected).toHaveBeenCalled();
+                        expect(component.clientNameFormatter).toHaveBeenCalled();
+                    });
+            }));
+
+            it('sets client to undefined when search results are dismissed with no selection', async(() => {
+                page.setClientSearchTerm('test');
+                fixture.whenStable()
+                    .then(() => {
+                        page.dismissClientSearchResults();
+                        return fixture.whenStable();
+                    })
+                    .then(() => {
+                        expect(component.clientId).toBeNull();
+                        expect(component.client).toBeUndefined();
+                        expect(component.clientNameFormatter).not.toHaveBeenCalled();
+                    });
+            }));
+        });
+
+        describe('Error Indicators - ', () => {
+            it('does not initially show error', async(() => {
+                page.addErrorElements();
+                fixture.whenStable().then(() => {
+                    expect(page.clientReqError).toBeNull();
+                });
+            }));
+
+            it('shows required error when client selected and then removed', async(() => {
+                page.setClientSearchTerm('test');
+                fixture.whenStable()
+                    .then(() => {
+                        page.selectClientSearchResult(0);
+                        return fixture.whenStable();
+                    })
+                    .then(() => {
+                        page.setClientSearchTerm('test cli');
+                        page.addErrorElements();
+                        expect(page.clientReqError).toBeNull();
+                        expect(page.clientCtrl.hasError('required')).toEqual(false);
+                        return fixture.whenStable();
+                    })
+                    .then(() => {
+                        page.dismissClientSearchResults();
+                        return fixture.whenStable();
+                    })
+                    .then(() => {
+                        page.addErrorElements();
+                        expect(page.clientReqError).toBeDefined();
+                        expect(page.clientCtrl.hasError('required')).toEqual(true);
+                    });
+            }));
+
+            it('hides required error when client selected', async(() => {
+                page.setClientSearchTerm('test');
+                fixture.whenStable()
+                    .then(() => {
+                        page.setClientSearchTerm('test cli');
+                        page.addErrorElements();
+                        expect(page.clientReqError).toBeDefined();
+                        expect(page.clientCtrl.hasError('required')).toEqual(true);
+                        return fixture.whenStable();
+                    })
+                    .then(() => {
+                        page.selectClientSearchResult(0);
+                        return fixture.whenStable();
+                    })
+                    .then(() => {
+                        page.addErrorElements();
+                        expect(page.clientReqError).toBeNull();
+                        expect(page.clientCtrl.hasError('required')).toEqual(false);
+                    });
+            }));
+        });
+    });
+
+    xdescribe('Tax Year Selection - ', () => {
+
+        beforeEach(fakeAsync(() => {
+
+            subClient.next(client);
+            subProject.next(project);
+            subProjectTypes.next(projectTypes);
+            subPeriods.next(periods);
+            subRules.next(ruleDataArray);
+
+            detectMultiChanges(fixture, 3);
+
+        }));
+
+        describe('Auto-Formated Project Name - ', () => {
+
+            beforeEach(fakeAsync(() => {
+                //route.testQueryParams = { clientId: 1,projectId: 1 };
+
+                // 1st change detection triggers initial bindings and ngOnInit()
+                // 2nd change detection resolves route queryParams observable
+                // 3rd change detection resolve data service calls
+                //detectMultiChanges(fixture, 3);
+
+                page.addPageElements();
+                page.setTaxYear(2020);
+            }));
+
+            it('sets tax year when value selected', () => {
+                //expect(page.taxYearCtrl.value).toEqual('2020');
+                expect(component.projSetupForm.controls['taxYear'].value).toEqual('2020');
+            });
+
+            it('sets beginDate value by default when tax year selected', () => {
+                expect(component.projSetupForm.controls['beginDate'].value).toEqual('2010');
+            });
+
+            //it('sets endDate value by default when tax year selected', () => {
+            //    expect(component.projSetupForm.controls['endDate'].value).toEqual('2011');
+            //});
+
+            it('sets projectName value when tax year selected', () => {
+                expect(component.setProjectName).toHaveBeenCalled();
+            });
+
+            it('sets manual name change flag', () => {
+                expect(component.projNameChangedManually).toEqual(false);
+            });
+        });
+
+
+        xdescribe('Error Indicators - ', () => {
+
+            describe('Form Initialized with Blank Entries - ', () => {
+
+                beforeEach(fakeAsync(() => {
+                    route.testQueryParams = {};
+
+                    //1st change detection triggers initial bindings and ngOnInit()
+                    //2nd change detection resolves route queryParams observable
+                    //3rd change detection resolve data service calls
+                    detectMultiChanges(fixture, 3);
+
+                    page.addPageElements();
+                }));
+
+                it('does not initially show error', async(() => {
+                    page.addErrorElements();
+                    fixture.whenStable().then(() => {
+                        expect(page.taxYearInvalidIdError).toBeNull();
+                    });
+                }));
+
+                it('shows required error when tax year selected and then removed', async(() => {
+                    page.setTaxYear(2020);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.setTaxYear(-1);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.taxYearInvalidIdError).toBeDefined();
+                            expect(page.taxYearCtrl.hasError('invalidId')).toEqual(true);
+                        });
+                }));
+
+                it('hides required error when tax year selected', async(() => {
+
+                    page.setTaxYear(2020);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.setTaxYear(-1);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.taxYearInvalidIdError).toBeDefined();
+                            expect(page.taxYearCtrl.hasError('invalidId')).toEqual(true);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setTaxYear(2017);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.taxYearInvalidIdError).toBeNull();
+                            expect(page.taxYearCtrl.hasError('invalidId')).toEqual(false);
+                        });
+                }));
+
+            });
+
+            describe('Form Initialized with Project Data - ', () => {
+
+                beforeEach(fakeAsync(() => {
+                    route.testQueryParams = { clientId: 1, projectId: 100 };
+
+                    // 1st change detection triggers initial bindings and ngOnInit()
+                    // 2nd change detection resolves route queryParams observable
+                    // 3rd change detection resolve data service calls
+                    detectMultiChanges(fixture, 4);
+                    page.addPageElements();
+                }));
+
+                it('does not initially show error', async(() => {
+                    page.addErrorElements();
+                    fixture.whenStable().then(() => {
+                        expect(page.projTypeInvalidIdError).toBeNull();
+                    });
+                }));
+
+                it('shows required id error when tax year selected and then removed', async(() => {
+                    page.setTaxYear(2020);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.setTaxYear(-1);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.taxYearInvalidIdError).toBeDefined();
+                            expect(page.taxYearCtrl.hasError('invalidId')).toEqual(true);
+                        });
+                }));
+
+                it('hides required id error when tax year selected', async(() => {
+
+                    page.setTaxYear(2020);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.setTaxYear(-1);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.taxYearInvalidIdError).toBeDefined();
+                            expect(page.taxYearCtrl.hasError('invalidId')).toEqual(true);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setTaxYear(2017);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.taxYearInvalidIdError).toBeNull();
+                            expect(page.taxYearCtrl.hasError('invalidId')).toEqual(false);
+                        });
+                }));
+
+            });
+        });
+    });
+
+    xdescribe('Project Type Selection - ', () => {
+
+        beforeEach(() => {
+            subClient.next(client);
+            subProject.next(project);
+            subProjectTypes.next(projectTypes);
+            subPeriods.next(periods);
+            subRules.next(ruleDataArray);
+
+            //1st change detection triggers initial bindings and ngOnInit()
+            //2nd change detection resolves route queryParams observable
+            //3rd change detection resolve data service calls
+
+            detectMultiChanges(fixture, 3);
+
+        });
+
+        describe('Auto-Formated Project Name - ', () => {
+            beforeEach(fakeAsync(() => {
+                route.testQueryParams = { clientId: 1, projectId: 100 };
+                page.addPageElements();
+                page.setProjectType(201);
+            }));
+
+            it('sets project type when value selected', () => {
+                expect(component.projSetupForm.controls['projectType'].value).toEqual('201');
+            });
+
+            it('changes auto-formatted project name', () => {
+                expect(component.setProjectName).toHaveBeenCalled();
+                expect(component.setPeriods).toHaveBeenCalled();
+            });
+
+            it('sets manual name change flag', () => {
+                expect(component.projNameChangedManually).toEqual(false);
+            });
+        });
+
+        describe('Error Indicators - ', () => {
+
+            describe('Form Initialized with Blank Entries - ', () => {
+
+                beforeEach(fakeAsync(() => {
+                    route.testQueryParams = {};
+                    //1st change detection triggers initial bindings and ngOnInit()
+                    //2nd change detection resolves route queryParams observable
+                    //3rd change detection resolve data service calls
+                    detectMultiChanges(fixture, 3);
+
+                    page.addPageElements();
+                }));
+
+                it('does not initially show error', async(() => {
+                    page.addErrorElements();
+                    fixture.whenStable().then(() => {
+                        expect(page.projTypeInvalidIdError).toBeNull();
+                    });
+                }));
+
+                it('shows invalid id  when project type selected and then removed', async(() => {
+                    page.setProjectType(201);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.setProjectType(-1);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.projTypeInvalidIdError).toBeDefined();
+                            expect(page.projTypeCtrl.hasError('invalidId')).toEqual(true);
+                        });
+                }));
+
+                it('hides invalid id error when project type selected', async(() => {
+                    page.setProjectType(201);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.setProjectType(201);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.projTypeInvalidIdError).toBeDefined();
+                            expect(page.projTypeCtrl.hasError('invalidId')).toEqual(true);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setProjectType(201);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.projTypeInvalidIdError).toBeNull();
+                            expect(page.projTypeCtrl.hasError('invalidId')).toEqual(false);
+                        });
+                }));
+            });
+
+            describe('Form Initialized with Project Data - ', () => {
+
+                beforeEach(fakeAsync(() => {
+                    route.testQueryParams = { clientId: 1, projectId: 100 };
+
+                    //1st change detection triggers initial bindings and ngOnInit()
+                    //2nd change detection resolves route queryParams observable
+                    //3rd change detection resolve data service calls
+
+                    detectMultiChanges(fixture, 3);
+
+                    page.addPageElements();
+                }));
+
+                it('does not initially show error', async(() => {
+                    page.addErrorElements();
+                    fixture.whenStable().then(() => {
+                        expect(page.projTypeInvalidIdError).toBeNull();
+                    });
+                }));
+
+                it('shows invalid error when blank project type selected', async(() => {
+                    page.setProjectType(-1);
+                    fixture.whenStable().then(() => {
+                        page.addErrorElements();
+                        expect(page.projTypeInvalidIdError).toBeDefined();
+                        expect(page.projTypeCtrl.hasError('invalidId')).toEqual(true);
+                    });
+                }));
+
+                it('hides invalid error when project type selected', async(() => {
+                    page.setProjectType(-1);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.projTypeInvalidIdError).toBeDefined();
+                            expect(page.projTypeCtrl.hasError('invalidId')).toEqual(true);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setProjectType(201);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.projTypeInvalidIdError).toBeNull();
+                            expect(page.projTypeCtrl.hasError('invalidId')).toEqual(false);
+                        });
+                }));
+            });
+        });
+    });
+
+    xdescribe('Period Selection - ', () => {
+
+        beforeEach(() => {
+            subClient.next(client);
+            subProject.next(project);
+            subProjectTypes.next(projectTypes);
+            subPeriods.next(periods);
+            subRules.next(ruleDataArray);
+
+            //1st change detection triggers initial bindings and ngOnInit()
+            //2nd change detection resolves route queryParams observable
+            //3rd change detection resolve data service calls
+
+            detectMultiChanges(fixture, 3);
+        });
+
+        describe('sets period when selected', () => {
+
+            beforeEach(fakeAsync(() => {
+                route.testQueryParams = { clientId: 1, projectId: 100 };
+
+                page.addPageElements();
+                page.setPeriod(1);
+            }));
+
+            it('sets period when value selected', () => {
+                expect(component.projSetupForm.controls['period'].value).toEqual(1);
+            });
+
+            it('changes auto-formatted project name', () => {
+                expect(component.setProjectName).toHaveBeenCalled();
+            });
+
+            it('sets manual name change flag', () => {
+                expect(component.projNameChangedManually).toEqual(false);
+            });
+
+        });
+
+        describe('Error Indicators - ', () => {
+            describe('Form Initialized with Blank Entries - ', () => {
+                beforeEach(fakeAsync(() => {
+                    route.testQueryParams = {};
+                    //1st change detection triggers initial bindings and ngOnInit()
+                    //2nd change detection resolves route queryParams observable
+                    //3rd change detection resolve data service calls
+                    detectMultiChanges(fixture, 3);
+
+                    page.addPageElements();
+                }));
+
+                it('does not initially show error', async(() => {
+                    page.addErrorElements();
+                    fixture.whenStable().then(() => {
+                        expect(page.periodInvalidIdError).toBeNull();
+                    });
+                }));
+
+                it('shows required error when period selected and then removed', async(() => {
+                    page.setPeriod(1);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.setPeriod(-1);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.periodInvalidIdError).toBeDefined();
+                            expect(page.periodCtrl.hasError('invalidId')).toEqual(true);
+                        });
+                }));
+
+                it('hides required error when period is selected', async(() => {
+                    page.setPeriod(1);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.setPeriod(-1);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.periodInvalidIdError).toBeDefined();
+                            expect(page.periodCtrl.hasError('invalidId')).toEqual(true);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setPeriod(1);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.periodInvalidIdError).toBeNull();
+                        });
+                }));
+            });
+
+            describe('Form Initialized with Project Data - ', () => {
+                beforeEach(fakeAsync(() => {
+                    route.testQueryParams = { clientId: 1, projectId: 100 };
+                    //1st change detection triggers initial bindings and ngOnInit()
+                    //2nd change detection resolves route queryParams observable
+                    //3rd change detection resolve data service calls
+
+                    detectMultiChanges(fixture, 3);
+
+                    page.addPageElements();
+                }));
+
+                it('does not initially show error', async(() => {
+                    page.addErrorElements();
+                    fixture.whenStable().then(() => {
+                        expect(page.periodInvalidIdError).toBeNull();
+                    });
+                }));
+
+                it('shows required error when blank period is selected', async(() => {
+                    page.setPeriod(-1);
+                    fixture.whenStable().then(() => {
+                        page.addErrorElements();
+                        expect(page.periodInvalidIdError).toBeDefined();
+                        expect(page.periodCtrl.hasError('invalidId')).toEqual(true);
+                    });
+                }));
+
+                it('hides required error when period is selected', async(() => {
+                    page.setPeriod(-1);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.periodInvalidIdError).toBeDefined();
+                            expect(page.periodCtrl.hasError('invalidId')).toEqual(true);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setPeriod(1);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.periodInvalidIdError).toBeNull();
+                            expect(page.periodCtrl.hasError('invalidId')).toEqual(false);
+                        });
+                }));
+            });
+        });
+    });
+
+    xdescribe('Begin Date Selection- ', () => {
+
+        beforeEach(() => {
+            subClient.next(client);
+            subProject.next(project);
+            subProjectTypes.next(projectTypes);
+            subPeriods.next(periods);
+            subRules.next(ruleDataArray);
+
+            //1st change detection triggers initial bindings and ngOnInit()
+            //2nd change detection resolves route queryParams observable
+            //3rd change detection resolve data service calls
+
+            detectMultiChanges(fixture, 3);
+
+        });
+
+        describe('sets begin date when selected', () => {
+
+            beforeEach(fakeAsync(() => {
+                route.testQueryParams = { clientId: 1, projectId: 100 };
+
+                page.addPageElements();
+                page.setBeginDate(2017);
+            }));
+
+            it('sets beginDate when value selected', () => {
+                expect(component.projSetupForm.controls['beginDate'].value).toEqual(2017);
+            });
+
+        });
+
+        describe('Error Indicators - ', () => {
+
+            describe('Form Initialized with Blank Entries - ', () => {
+
+                beforeEach(fakeAsync(() => {
+
+                    route.testQueryParams = {};
+                    //1st change detection triggers initial bindings and ngOnInit()
+                    //2nd change detection resolves route queryParams observable
+                    //3rd change detection resolve data service calls
+
+                    detectMultiChanges(fixture, 3);
+
+                    page.addPageElements();
+                    page.addErrorElements();
+                }));
+
+                it('does not initially show error', async(() => {
+                    page.addErrorElements();
+                    fixture.whenStable().then(() => {
+                        expect(page.beginDateReqError).toBeNull();
+                    });
+                }));
+
+                it('shows required error when beginDate selected and then removed', async(() => {
+                    page.setBeginDate(200);
+                    fixture.whenStable().then(() => {
+                        page.addErrorElements();
+                        expect(page.beginDateReqError).toBeDefined();
+                    });
+                }));
+
+                it('hides required error when beginDate is selected', async(() => {
+                    page.setBeginDate(200);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.setBeginDate(201);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.beginDateReqError).toBeNull();
+                            expect(page.beginDateCtrl.hasError('required')).toEqual(false);
+                        });
+                }));
+            });
+
+            describe('Form Initialized with Project Data - ', () => {
+
+                beforeEach(fakeAsync(() => {
+
+                    route.testQueryParams = { clientId: 1, projectId: 100 };
+
+                    //1st change detection triggers initial bindings and ngOnInit()
+                    //2nd change detection resolves route queryParams observable
+                    //3rd change detection resolve data service calls
+
+                    detectMultiChanges(fixture, 3);
+
+                    page.addPageElements();
+                }));
+
+                it('does not initially show error', async(() => {
+                    page.addErrorElements();
+                    fixture.whenStable().then(() => {
+                        expect(page.beginDateReqError).toBeNull();
+                    });
+                }));
+
+                it('shows required error when blank date is selected', async(() => {
+                    page.setBeginDate(2017);
+                    fixture.whenStable().then(() => {
+                        page.addErrorElements();
+                        expect(page.beginDateReqError).toBeDefined();
+                    });
+                }));
+
+                it('hides required error when beginDate is selected', async(() => {
+                    page.setBeginDate(2017);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.setBeginDate(2017);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.beginDateReqError).toBeNull();
+                            expect(page.beginDateCtrl.hasError('required')).toEqual(false);
+                        });
+                }));
+            });
+        });
+    });
+
+    xdescribe('End Date Selection- ', () => {
+
+        beforeEach(() => {
+            spySearchClients.and.callThrough();
+        });
+
+        describe('sets end date when selected', () => {
+
+            beforeEach(fakeAsync(() => {
+                subClient.next(client);
+                subProject.next(project);
+                subProjectTypes.next(projectTypes);
+                subPeriods.next(periods);
+                subRules.next(ruleDataArray);
+
+                //1st change detection triggers initial bindings and ngOnInit()
+                //2nd change detection resolves route queryParams observable
+                //3rd change detection resolve data service calls
+
+                detectMultiChanges(fixture, 3);
+                page.addPageElements();
+                page.setEndDate(2017);
+            }));
+
+            it('sets endDate when value selected', () => {
+                expect(component.projSetupForm.controls['endDate'].value).toEqual(2017);
+            });
+
+        });
+
+        describe('Error Indicators - ', () => {
+            describe('Form Initialized with Blank Entries - ', () => {
+                beforeEach(fakeAsync(() => {
+                    route.testQueryParams = {};
+                    //1st change detection triggers initial bindings and ngOnInit()
+                    //2nd change detection resolves route queryParams observable
+                    //3rd change detection resolve data service calls
+                    detectMultiChanges(fixture, 3);
+
+                    page.addPageElements();
+                }));
+
+                it('does not initially show error', async(() => {
+                    page.addErrorElements();
+                    fixture.whenStable().then(() => {
+                        expect(page.endDateReqError).toBeNull();
+                    });
+                }));
+
+                it('shows required error when endDate selected and then removed', async(() => {
+                    page.setEndDate(200);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.setEndDate(-1);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.endDateReqError).toBeDefined();
+                        });
+                }));
+
+                it('hides required error when endDate is selected', async(() => {
+                    page.setEndDate(200);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.setEndDate(-1);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.endDateReqError).toBeDefined();
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setEndDate(2017);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.endDateReqError).toBeNull();
+                        });
+                }));
+            });
+
+            describe('Form Initialized with Project Data - ', () => {
+                beforeEach(fakeAsync(() => {
+                    route.testQueryParams = { clientId: 1, projectId: 100 };
+                    //1st change detection triggers initial bindings and ngOnInit()
+                    //2nd change detection resolves route queryParams observable
+                    //3rd change detection resolve data service calls
+
+                    detectMultiChanges(fixture, 3);
+
+                    page.addPageElements();
+                }));
+
+                it('does not initially show error', async(() => {
+                    page.addErrorElements();
+                    fixture.whenStable().then(() => {
+                        expect(page.endDateReqError).toBeNull();
+                    });
+                }));
+
+                it('shows required error when blank date is selected', async(() => {
+                    page.setEndDate(-1);
+                    fixture.whenStable().then(() => {
+                        page.addErrorElements();
+                        expect(page.endDateReqError).toBeDefined();
+                    });
+                }));
+
+                it('hides required error when endDate is selected', async(() => {
+                    page.setEndDate(-1);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.setEndDate(2017);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.endDateReqError).toBeNull();
+                            expect(page.endDateCtrl.hasError('required')).toEqual(false);
+                        });
+                }));
+            });
+        });
+    });
+
+    xdescribe('Project Name Entry - ', () => {
+
+        beforeEach(() => {
+            subClient.next(client);
+            subProject.next(project);
+            subProjectTypes.next(projectTypes);
+            subPeriods.next(periods);
+            subRules.next(ruleDataArray);
+
+            //1st change detection triggers initial bindings and ngOnInit()
+            //2nd change detection resolves route queryParams observable
+            //3rd change detection resolve data service calls
+
+            detectMultiChanges(fixture, 3);
+        });
+
+        describe('Auto-Formated Project Name - ', () => {
+            beforeEach(fakeAsync(() => {
+                route.testQueryParams = { clientId: 1, projectId: 100 };
+
+                page.addPageElements();
+                page.setProjectName('2001|Returns|q1');
+            }));
+
+            it('sets project name only after tax year and project type values selected', async(() => {
+                //Assert initial state
+                expect(page.projNameCtrl.value).toEqual('');
+                //Select tax year
+                page.setTaxYear(2020);
+                fixture.whenStable()
+                    .then(() => {
+                        //Assert name is still not set
+                        expect(page.projNameCtrl.value).toEqual('');
+                        //Select project type
+                        page.setProjectType(201);
+                        return fixture.whenStable();
+                    })
+                    .then(() => {
+                        //Assert name is set
+                        expect(page.projNameCtrl.value).toEqual('2020 | ProjType Two');
+                    });
+            }));
+
+            it('clears project name when blank tax year selected', async(() => {
+                page.setTaxYear(2020);
+                page.setProjectType(201);
+                fixture.whenStable()
+                    .then(() => {
+                        //Assert name is set
+                        expect(page.projNameCtrl.value).toEqual('2020 | ProjType Two');
+                        //Clear tax year
+                        page.setTaxYear(-1);
+                        return fixture.whenStable();
+                    })
+                    .then(() => {
+                        //Asser name is cleared
+                        expect(page.projNameCtrl.value).toEqual('');
+                    });
+            }));
+
+            it('clears project name when blank project type selected', async(() => {
+                page.setTaxYear(2020);
+                page.setProjectType(201);
+                fixture.whenStable()
+                    .then(() => {
+                        //Assert name is set
+                        expect(page.projNameCtrl.value).toEqual('2020 | ProjType Two');
+                        //Clear project type
+                        page.setProjectType(-1);
+                        return fixture.whenStable();
+                    })
+                    .then(() => {
+                        //Asser name is cleared
+                        expect(page.projNameCtrl.value).toEqual('');
+                    });
+            }));
+        });
+
+        describe('Error Indicators - ', () => {
+            let projName = '';
+            for (let i = 1; i <= 101; i++) { projName += 'a'; }
+
+            describe('Form Initialized with Blank Entries - ', () => {
+                beforeEach(fakeAsync(() => {
+                    route.testQueryParams = {};
+                    //1st change detection triggers initial bindings and ngOnInit()
+                    //2nd change detection resolves route queryParams observable
+                    //3rd change detection resolve data service calls
+                    detectMultiChanges(fixture, 3);
+
+                    page.addPageElements();
+                }));
+
+                it('does not initially show errors', async(() => {
+                    page.addErrorElements();
+                    fixture.whenStable().then(() => {
+                        expect(page.projNameMaxLenError).toBeNull();
+                    });
+                }));
+
+                it('shows max length error when project name longer than 100 characters', async(() => {
+                    page.setProjectName(projName);
+                    fixture.whenStable().then(() => {
+                        page.addErrorElements();
+                        expect(page.projNameMaxLenError).toBeDefined();
+                        expect(page.projNameCtrl.hasError('maxlength')).toEqual(true);
+                    });
+                }));
+
+                it('hides max length error when project name less than 100 characters', async(() => {
+                    page.setProjectName(projName);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.projNameMaxLenError).toBeDefined();
+                            expect(page.projNameCtrl.hasError('maxlength')).toEqual(true);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setProjectName('Correct Name');
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.projNameMaxLenError).toBeNull();
+                            expect(page.projNameCtrl.hasError('maxlength')).toEqual(false);
+                        });
+                }));
+            });
+
+            describe('Form Initialized with project Data - ', () => {
+                beforeEach(fakeAsync(() => {
+                    route.testQueryParams = { clientId: 1, engId: 100 };
+
+                    //1st change detection triggers initial bindings and ngOnInit()
+                    //2nd change detection resolves route queryParams observable
+                    //3rd change detection resolve data service calls
+
+                    detectMultiChanges(fixture, 3);
+
+                    page.addPageElements();
+
+                }));
+
+                it('does not initially show errors', async(() => {
+                    page.addErrorElements();
+                    fixture.whenStable().then(() => {
+                        expect(page.projNameReqError).toBeNull();
+                        expect(page.projNameMaxLenError).toBeNull();
+                    });
+                }));
+
+                it('shows max length error when project name longer than 100 characters', async(() => {
+                    page.setProjectName(projName);
+                    fixture.whenStable().then(() => {
+                        page.addErrorElements();
+                        expect(page.projNameMaxLenError).toBeDefined();
+                        expect(page.projNameCtrl.hasError('maxlength')).toEqual(true);
+                    });
+                }));
+
+                it('hides max length error when project name less than 100 characters', async(() => {
+                    page.setProjectName(projName);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.projNameMaxLenError).toBeDefined();
+                            expect(page.projNameCtrl.hasError('maxlength')).toEqual(true);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setProjectName('Correct Name');
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.projNameMaxLenError).toBeNull();
+                            expect(page.projNameCtrl.hasError('maxlength')).toEqual(false);
+                        });
+                }));
+            });
+        });
+    });
+
+    xdescribe('52/53 Rule', () => {
+
+        beforeEach(() => {
+            spySearchClients.and.callThrough();
+        });
+
+    });
+
+    xdescribe('Opportunity ID Entry - ', () => {
+
+        let oppId = '';
+        for (let i = 1; i <= 51; i++) { oppId += 'a'; }
+
+        beforeEach(() => {
+            spySearchClients.and.callThrough();
+        });
+
+        describe('Error Indicators - ', () => {
+
+            describe('Form Initialized with Blank Entries - ', () => {
+                beforeEach(fakeAsync(() => {
+                    route.testQueryParams = {};
+                    //1st change detection triggers initial bindings and ngOnInit()
+                    //2nd change detection resolves route queryParams observable
+                    //3rd change detection resolve data service calls
+                    detectMultiChanges(fixture, 3);
+
+                    page.addPageElements();
+                }));
+
+                it('does not initially show error', async(() => {
+                    page.addErrorElements();
+                    fixture.whenStable().then(() => {
+                        expect(page.oppIdMaxLenError).toBeNull();
+                    });
+                }));
+
+                it('shows max length error when opportunity ID longer than 50 characters', async(() => {
+                    page.setOpportunityId(oppId);
+                    fixture.whenStable().then(() => {
+                        page.addErrorElements();
+                        expect(page.oppIdMaxLenError).toBeDefined();
+                        expect(page.oppIdCtrl.hasError('maxlength')).toEqual(true);
+                    });
+                }));
+
+                it('hides max length error when opportunity ID less than 50 characters', async(() => {
+                    page.setOpportunityId(oppId);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.oppIdMaxLenError).toBeDefined();
+                            expect(page.oppIdCtrl.hasError('maxlength')).toEqual(true);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setOpportunityId('Correct Opp ID');
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.oppIdMaxLenError).toBeNull();
+                            expect(page.oppIdCtrl.hasError('maxlength')).toEqual(false);
+                        });
+                }));
+            });
+
+            describe('Form Initialized with Project Data - ', () => {
+                beforeEach(fakeAsync(() => {
+                    route.testQueryParams = { clientId: 1, projectId: 100 };
+                    //1st change detection triggers initial bindings and ngOnInit()
+                    //2nd change detection resolves route queryParams observable
+                    //3rd change detection resolve data service calls
+
+                    detectMultiChanges(fixture, 3);
+
+                    page.addPageElements();
+
+                }));
+
+                it('does not initially show errors', async(() => {
+                    page.addErrorElements();
+                    fixture.whenStable().then(() => {
+                        expect(page.projNameMaxLenError).toBeNull();
+                    });
+                }));
+
+                it('shows max length error when opportunity ID longer than 50 characters', async(() => {
+                    page.setOpportunityId(oppId);
+                    fixture.whenStable().then(() => {
+                        page.addErrorElements();
+                        expect(page.oppIdMaxLenError).toBeDefined();
+                        expect(page.oppIdCtrl.hasError('maxlength')).toEqual(true);
+                    });
+                }));
+
+                it('hides max length error when opportunity ID less than 50 characters', async(() => {
+                    page.setOpportunityId(oppId);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.oppIdMaxLenError).toBeDefined();
+                            expect(page.oppIdCtrl.hasError('maxlength')).toEqual(true);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setOpportunityId('Correct Opp ID');
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.oppIdMaxLenError).toBeNull();
+                            expect(page.oppIdCtrl.hasError('maxlength')).toEqual(false);
+                        });
+                }));
+            });
+        });
+    });
+
+    xdescribe('Opportunity Id Add Button', () => {
+
+        beforeEach(() => {
+            spySearchClients.and.callThrough();
+        });
+
+        it('should add oportunity id', async(() => {
+            spyOn(component, 'addOppurtunityIds');
+
+            let button = fixture.debugElement.nativeElement.querySelector('#btnAddOppId');
+            button.click();
+
+            fixture.whenStable().then(() => {
+                expect(component.addOppurtunityIds).toHaveBeenCalled();
+            })
+        }));
+
+    });
+
+    xdescribe('Engagement Number Entry - ', () => {
+
+        let engNum = '';
+        for (let i = 1; i <= 51; i++) { engNum += 'a'; }
+
+        beforeEach(() => {
+            spySearchClients.and.callThrough();
+        });
+
+        describe('Error Indicators - ', () => {
+
+            describe('Form Initialized with Blank Entries - ', () => {
+                beforeEach(fakeAsync(() => {
+                    route.testQueryParams = {};
+
+                    //1st change detection triggers initial bindings and ngOnInit()
+                    //2nd change detection resolves route queryParams observable
+                    //3rd change detection resolve data service calls
+                    detectMultiChanges(fixture, 3);
+
+                    page.addPageElements();
+                }));
+
+                it('does not initially show error', async(() => {
+                    page.addErrorElements();
+                    fixture.whenStable().then(() => {
+                        expect(page.engNumberMaxLenError).toBeNull();
+                    });
+                }));
+
+                it('shows max length error when opportunity ID longer than 50 characters', async(() => {
+                    page.setEngagementNumber(engNum);
+                    fixture.whenStable().then(() => {
+                        page.addErrorElements();
+                        expect(page.engNumberMaxLenError).toBeDefined();
+                        expect(page.engNumberCtrl.hasError('maxlength')).toEqual(true);
+                    });
+                }));
+
+                it('hides max length error when opportunity ID less than 50 characters', async(() => {
+                    page.setEngagementNumber(engNum);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.engNumberMaxLenError).toBeDefined();
+                            expect(page.engNumberCtrl.hasError('maxlength')).toEqual(true);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setEngagementNumber('Correct Eng Number');
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.engNumberMaxLenError).toBeNull();
+                            expect(page.engNumberCtrl.hasError('maxlength')).toEqual(false);
+                        });
+                }));
+            });
+
+            describe('Form Initialized with project Data - ', () => {
+                beforeEach(fakeAsync(() => {
+                    route.testQueryParams = { clientId: 1, projectId: 100 };
+                    //1st change detection triggers initial bindings and ngOnInit()
+                    //2nd change detection resolves route queryParams observable
+                    //3rd change detection resolve data service calls
+
+                    detectMultiChanges(fixture, 3);
+
+                    page.addPageElements();
+
+                }));
+
+                it('does not initially show errors', async(() => {
+                    page.addErrorElements();
+                    fixture.whenStable().then(() => {
+                        expect(page.engNumberMaxLenError).toBeNull();
+                    });
+                }));
+
+                it('shows max length error when Engagement Id longer than 50 characters', async(() => {
+                    page.setEngagementNumber(engNum);
+                    fixture.whenStable().then(() => {
+                        page.addErrorElements();
+                        expect(page.engNumberMaxLenError).toBeDefined();
+                        expect(page.engNumberCtrl.hasError('maxlength')).toEqual(true);
+                    });
+                }));
+
+                it('hides max length error when Engagement Id less than 50 characters', async(() => {
+                    page.setEngagementNumber(engNum);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.engNumberMaxLenError).toBeDefined();
+                            expect(page.engNumberCtrl.hasError('maxlength')).toEqual(true);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setEngagementNumber('Correct Number');
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.addErrorElements();
+                            expect(page.engNumberMaxLenError).toBeNull();
+                            expect(page.engNumberCtrl.hasError('maxlength')).toEqual(false);
+                        });
+                }));
+            });
+        });
+    });
+
+    xdescribe('Engagement Number Add Button', () => {
+
+        beforeEach(() => {
+            spySearchClients.and.callThrough();
+        });
+
+        it('should add Engagement Number', async(() => {
+            spyOn(component, 'addOppurtunityIds');
+
+            let button = fixture.debugElement.nativeElement.querySelector('#btnAddOppId');
+            button.click();
+
+            fixture.whenStable().then(() => {
+                expect(component.addOppurtunityIds).toHaveBeenCalled();
+            })
+        }));
+
+    });
+
+    xdescribe('Saving Project Data - ', () => {
+
+        beforeEach(() => {
+            subClient.next(client);
+            subProject.next(project);
+            subProjectTypes.next(projectTypes);
+            subPeriods.next(periods);
+            subRules.next(ruleDataArray);
+
+            //1st change detection triggers initial bindings and ngOnInit()
+            //2nd change detection resolves route queryParams observable
+            //3rd change detection resolve data service calls
+
+            detectMultiChanges(fixture, 3);
+            spySaveProject.calls.reset();
+        });
+
+        describe('Creating an Project - ', () => {
+
+            beforeEach(fakeAsync(() => {
+                activatedRoute.parent.testQueryParams = {};
+                detectMultiChanges(fixture, 3);
+                page.addPageElements();
+
+                // Setup spys
+                spyOn(component, 'setSaveButtonText').and.callThrough();
+                spyOn(loadingIndicatorService, 'display').and.callThrough();
+            }));
+
+            describe('Save Allowed - ', () => {
+                let savedProj: Project;
+
+                beforeEach(async(() => {
+                    savedProj = {
+                        projectId: 1,
+                        projectName: '2001|Returns|Q1',
+                        clientId: 2,
+                        year: 2018,
+                        projectType: { projectTypeId: 1, projectTypeCode: "Code1", projectTypeDesc: "Desc1", showInUi: true, projectPeriod: { projectPeriodId: 1, projectPeriodCode: "LAST", projectPeriodDesc: "Last", projectPeriodDispName: "Last" } },
+                        projectCategory: null,
+                        beginDate: null,
+                        endDate: null,
+                        is5253Week: false,
+                        isShortYear: false,
+                        rule5253: null,
+                        opportunityIds: [],
+                        engagementNumbers: []
+                    };
+
+                    spySaveProject.and.returnValue(Observable.of(savedProj));
+
+                    // Set required fields
+                    page.setClientSearchTerm('test');
+                    fixture.whenStable()
+                        .then(() => {
+                            page.selectClientSearchResult(0);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setTaxYear(2020);
+                            page.setProjectType(200);
+                            page.setPeriod(1);
+                        });
+                }));
+
+                it('save button is enabled', () => {
+                    expect(page.saveProjBtn.disabled).toEqual(false);
+                });
+
+                it('saves new project specifying all values', async(() => {
+                    page.setBeginDate(null);
+                    page.setEndDate(null);
+                    page.setOpportunityId('23');
+                    page.setEngagementNumber('23');
+
+                    fixture.whenStable()
+                        .then(() => {
+                            page.saveProject();
+                            return fixture.whenStable();
+                        })
+                }));
+
+                it('saves new project when manually entering project name', async(() => {
+
+                    savedProj.projectName = 'New Name';
+                    page.setProjectName(savedProj.projectName);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.saveProject();
+                            return fixture.whenStable();
+                        })
+
+                        .then(() => {
+                            let projData = {
+                                engagementId: null,
+                                clientDetails: { clientId: 1, clientName: 'Test Client 1' },
+                                taxYear: 2020,
+                                projectTypeDetails: { id: 200, code: 'PROJECTTYPE_ONE', description: 'ProjType One' },
+                                projectName: '2020 | EngType One',
+                                beginnDate: '10/31/2016',
+                                endDate: '11/31/2016',
+                                is5253Week: true,
+                                rule5253: { ruleType5253: '', ruleDay5253: '' },
+                                engagementNumber: null,
+                                opportunityId: 'OppId999'
+                            };
+                            expect(spySaveProject).toHaveBeenCalledWith(projData);
+                        });
+
+                }));
+
+                it('saves new project without opportunity ID', async(() => {
+
+                    //savedProj.engagementNumbers = 'EngNbr999';
+                    //page.setEngagementNumber(savedProj.engagementNbr);
+                    fixture.whenStable()
+                        .then(() => {
+                            //page.saveEngagement();
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+
+                            let projData = {
+
+                                engagementId: null,
+
+                                clientDetails: { clientId: 1, clientName: 'Test Client 1' },
+
+                                taxYear: 2020,
+
+                                projectTypeDetails: { id: 200, code: 'PROJECTTYPE_ONE', description: 'ProjType One' },
+
+                                projectName: '2020 | EngType One',
+
+                                beginnDate: '10/31/2016',
+
+                                endDate: '11/31/2016',
+
+                                is5253Week: true,
+
+                                rule5253: { ruleType5253: '', ruleDay5253: '' }
+
+							    engagementNbr: 'EngNbr999',
+
+                                opportunityId: ''
+
+                            };
+
+                            expect(spySaveProject).toHaveBeenCalledWith(projData);
+
+                        });
+                }));
+
+                it('saves new project without engagement number', async(() => {
+                    //savedProj.opportunityId = 'OppId999';
+                    //page.setOpportunityId(savedProj.opportunityId);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.saveProject();
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            let projData = {
+                                engagementId: null,
+                                clientDetails: { clientId: 1, clientName: 'Test Client 1' },
+                                taxYear: 2020,
+                                projectTypeDetails: { id: 200, code: 'PROJECTTYPE_ONE', description: 'ProjType One' },
+                                projectName: '2020 | EngType One',
+                                beginnDate: '10/31/2016',
+                                endDate: '11/31/2016',
+                                is5253Week: true,
+                                rule5253: { ruleType5253: '', ruleDay5253: '' },
+                                engagementNumber: '',
+                                opportunityId: 'OppId999'
+                            };
+                            expect(spySaveProject).toHaveBeenCalledWith(projData);
+                        });
+                }));
+
+                it('sets project in app context', async(() => {
+                    page.saveProject();
+                    fixture.whenStable().then(() => {
+                        //expect(component.project).toEqual(5);
+                    });
+                }));
+
+                it('changes button text to "Edit Project"', async(() => {
+
+                    //page.saveProjectr();
+                    fixture.whenStable().then(() => {
+                        expect(component.setSaveButtonText).toHaveBeenCalled();
+                        expect(component.buttonText).toEqual('Edit Project');
+                    });
+
+                }));
+
+                it('displays loading indicator when save starts and hides it when completed', async(() => {
+
+                    page.saveProject();
+                    expect(loadingIndicatorService.display).toHaveBeenCalledWith(true);
+                    fixture.whenStable().then(() => {
+                        expect(loadingIndicatorService.display).toHaveBeenCalledWith(false);
+                    });
+
+                }));
+
+                it('does not display warning toastr message"', async(() => {
+
+                    page.saveProject();
+                    fixture.whenStable().then(() => {
+                        expect(toastrService.setWarningMessage).not.toHaveBeenCalled();
+                    });
+
+                }));
+
+                it('does not display error toastr message', async(() => {
+
+                    page.saveProject();
+                    fixture.whenStable().then(() => {
+                        expect(toastrService.setErrorMessage).not.toHaveBeenCalled();
+                    });
+
+                }));
+
+                it('Navigate to client home page', async(() => {
+
+                    page.saveProject();
+                    fixture.whenStable().then(() => {
+                        expect(toastrService.setErrorMessage).not.toHaveBeenCalled();
+                    });
+
+                }));
+
+            });
+
+            describe('Save Not Allowed - ', () => {
+
+                let savedProj: Project;
+                beforeEach(async(() => {
+                    spySaveProject.and.callThrough();
+                }));
+
+                it('prevents save when client not specified', async(() => {
+                    page.setTaxYear(2020);
+                    page.setProjectType(200);
+                    //page.set5253Rule('closest');
+                    fixture.whenStable().then(() => {
+                        expect(page.saveProjBtn.disabled).toEqual(true);
+                    });
+                }));
+
+                it('prevents save when tax year not specified', async(() => {
+                    page.setClientSearchTerm('test');
+                    fixture.whenStable()
+                        .then(() => {
+                            page.selectClientSearchResult(0);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setProjectType(200);
+                        })
+                        .then(() => {
+                            expect(page.saveProjBtn.disabled).toEqual(true);
+                        });
+                }));
+
+                it('prevents save when project type not specified', async(() => {
+                    page.setClientSearchTerm('test');
+                    fixture.whenStable()
+                        .then(() => {
+                            page.selectClientSearchResult(0);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setTaxYear(2020);
+                        })
+                        .then(() => {
+                            expect(page.saveProjBtn.disabled).toEqual(true);
+                        });
+                }));
+
+                it('prevents save when project name is all whitespace', async(() => {
+                    page.setClientSearchTerm('test');
+                    fixture.whenStable()
+                        .then(() => {
+                            page.selectClientSearchResult(0);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setTaxYear(2020);
+                            page.setProjectType(200);
+                            page.setProjectName('    ');
+                            //page.set5253Rule('closest');
+                        })
+                        .then(() => {
+                            expect(page.saveProjBtn.disabled).toEqual(true);
+                        });
+                }));
+
+                it('prevents save when project name not specified', async(() => {
+                    page.setClientSearchTerm('test');
+                    fixture.whenStable()
+                        .then(() => {
+                            page.selectClientSearchResult(0);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setTaxYear(2020);
+                            page.setProjectType(200);
+                            page.setProjectName('');
+                        })
+                        .then(() => {
+                            expect(page.saveProjBtn.disabled).toEqual(true);
+                        });
+
+                }));
+
+                it('prevents save when project name contains HTML', async(() => {
+                    page.setClientSearchTerm('test');
+                    fixture.whenStable()
+                        .then(() => {
+                            page.selectClientSearchResult(0);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setTaxYear(2020);
+                            page.setProjectType(200);
+                            //page.setEngagementName('<script>bad content</script>');
+                        })
+                        .then(() => {
+                            expect(page.saveProjBtn.disabled).toEqual(true);
+                        });
+                }));
+
+                it('prevents save when opportunity ID is all whitespace', async(() => {
+                    page.setClientSearchTerm('test');
+                    fixture.whenStable()
+                        .then(() => {
+                            page.selectClientSearchResult(0);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setTaxYear(2020);
+                            page.setProjectType(200);
+                            page.setProjectName('Test Engagement');
+                            page.setOpportunityId('   ');
+                        })
+                        .then(() => {
+                            expect(page.saveProjBtn.disabled).toEqual(true);
+                        });
+                }));
+
+                it('prevents save when opportunity ID contains HTML', async(() => {
+                    page.setClientSearchTerm('test');
+                    fixture.whenStable()
+                        .then(() => {
+                            page.selectClientSearchResult(0);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setTaxYear(2020);
+                            //page.setEngagementType(200);
+                            // page.setEngagementName('Test Engagement');
+                            // page.setOpportunityId('<script>bad content</script>');
+                        })
+
+                        .then(() => {
+
+                            expect(page.saveProjBtn.disabled).toEqual(true);
+
+                        });
+
+                }));
+
+                it('prevents save when engagement number is all whitespace', async(() => {
+                    page.setClientSearchTerm('test');
+                    fixture.whenStable()
+                        .then(() => {
+                            page.selectClientSearchResult(0);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setTaxYear(2020);
+                            page.setProjectType(200);
+                            page.setProjectName('Test Project');
+                            page.setEngagementNumber('   ');
+                        })
+                        .then(() => {
+                            expect(page.saveProjBtn.disabled).toEqual(true);
+                        });
+
+                }));
+
+                it('prevents save when engagement number contains HTML', async(() => {
+                    page.setClientSearchTerm('test');
+                    fixture.whenStable()
+                        .then(() => {
+                            page.selectClientSearchResult(0);
+                            return fixture.whenStable();
+                        })
+
+                        .then(() => {
+                            page.setTaxYear(2020);
+                            page.setProjectType(200);
+                            page.setProjectName('Test Project');
+                            page.setEngagementNumber('<script>bad content</script>');
+                        })
+                        .then(() => {
+                            expect(page.saveProjBtn.disabled).toEqual(true);
+                        });
+                }));
+            });
+        });
+
+        describe('Editing an Project - ', () => {
+            beforeEach(fakeAsync(() => {
+
+                subClient.next(client);
+                subProject.next(project);
+                subProjectTypes.next(projectTypes);
+                subPeriods.next(periods);
+                subRules.next(ruleDataArray);
+
+                //1st change detection triggers initial bindings and ngOnInit()
+                //2nd change detection resolves route queryParams observable
+                //3rd change detection resolve data service calls
+
+                detectMultiChanges(fixture, 3);
+                // Setup spys
+                spyOn(component, 'setSaveButtonText').and.callThrough();
+                spyOn(loadingIndicatorService, 'display').and.callThrough();
+            }));
+
+            describe('Save Allowed - ', () => {
+                let savedProj: Project;
+                beforeEach(async(() => {
+                    //savedProj = {
+                    //    //engagementId: null,
+                    //    //clientDetails: { clientId: 1, clientName: 'Test Client 1' },
+                    //    //taxYear: 2020,
+                    //    //projectTypeDetails: { id: 200, code: 'PROJECTTYPE_ONE', description: 'ProjType One' },
+                    //    projectName: '2020 | EngType One',
+                    //    //beginnDate: '10/31/2016',
+                    //    endDate: '11/31/2016',
+                    //    is5253Week: true,
+                    //    rule5253: { ruleType5253: '', ruleDay5253: '' }
+                    //    //engagementNbr: '',
+                    //    //opportunityId: 'OppId999'
+                    //};
+                    spySaveProject.and.returnValue(Observable.of(savedProj));
+                }));
+
+                it('save button is disabled when form is pristine', () => {
+                    expect(page.saveProjBtn.disabled).toEqual(true);
+                });
+
+                it('saves project when changing tax year', async(() => {
+                    //savedProj.taxYear = 2019;
+                    //page.setTaxYear(savedProj.taxYear);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.saveProject();
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            let projData = {
+                                engagementId: 100,
+                                clientDetails: { clientId: 1, clientName: 'Test Client 1' },
+                                taxYear: 2020,
+                                projectTypeDetails: { id: 200, code: 'PROJECTTYPE_ONE', description: 'ProjType One' },
+                                projectName: '2020 | EngType One'
+                                //beginDate: '10/31/2016',
+                                //endDate: '11/31/2016',
+                                //is5253Week: true,
+                               //rule5253: { ruleType5253: '', ruleDay5253: '' }
+							   //engagementNbr: '',
+                                //opportunityId: 'OppId999'
+                            };
+                            //expect(spySaveProject).toHaveBeenCalledWith(engData);
+                        });
+                }));
+
+                it('saves project when changing project type', async(() => {
+                    //savedEng.projectTypeDetails = { id: 201, code: 'PROJTYPE_TWO', description: 'ProjType Two' };
+                    page.setProjectType(201);
+                    fixture.whenStable()
+                        .then(() => {
+                            //page.saveProjectt();
+                            return fixture.whenStable();
+                        })
+
+                        .then(() => {
+                            let projData = {
+                                engagementId: null,
+                                clientDetails: { clientId: 1, clientName: 'Test Client 1' },
+                                taxYear: 2020,
+                                projectTypeDetails: { id: 200, code: 'PROJECTTYPE_ONE', description: 'ProjType One' },
+                                projectName: '2020 | EngType One',
+                                beginnDate: '10/31/2016',
+                                endDate: '11/31/2016',
+                                is5253Week: true,
+                                rule5253: { ruleType5253: '', ruleDay5253: '' }
+							    //engagementNbr: '',
+                                //opportunityId: 'OppId999'
+                            };
+                            expect(spySaveProject).toHaveBeenCalledWith(projData);
+                        });
+
+                }));
+
+                it('saves project when changing project name', async(() => {
+                    savedProj.projectName = 'New Name';
+                    //page.setProjectName(savedProj.projectName);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.saveProject();
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            let projData = {
+                                engagementId: 100,
+                                clientDetails: { clientId: 1, clientName: 'Test Client 1' },
+                                taxYear: 2020,
+                                projectTypeDetails: { id: 200, code: 'PROJECTTYPE_ONE', description: 'ProjType One' },
+                                projectName: '2020 | EngType One',
+                                beginnDate: '10/31/2016',
+                                endDate: '11/31/2016',
+                                is5253Week: true,
+                                rule5253: { ruleType5253: '', ruleDay5253: '' }
+                                //engagementNbr: '',
+                                // opportunityId: 'OppId999'
+                            };
+                            //expect(spySaveEngagement).toHaveBeenCalledWith(engData);
+                        });
+                }));
+
+                it('saves project when changing opportunity ID', async(() => {
+                    //savedProj.opportunityId = 'New OppId';
+                    //page.setOpportunityId(savedEng.opportunityId);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.saveProject();
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            let projData = {
+                                engagementId: null,
+                                clientDetails: { clientId: 1, clientName: 'Test Client 1' },
+                                taxYear: 2020,
+                                projectTypeDetails: { id: 200, code: 'PROJECTTYPE_ONE', description: 'ProjType One' },
+                                projectName: '2020 | EngType One',
+                                beginnDate: '10/31/2016',
+                                endDate: '11/31/2016',
+                                is5253Week: true,
+                                rule5253: { ruleType5253: '', ruleDay5253: '' }
+							    ///engagementNbr: '',
+                                //opportunityId: 'OppId999'
+                            };
+                            expect(spySaveProject).toHaveBeenCalledWith(projData);
+                        });
+                }));
+
+                it('saves engagement when clearing opportunity ID', async(() => {
+                    //savedEng.opportunityId = '';
+                    //page.setOpportunityId(savedEng.opportunityId);
+                    fixture.whenStable()
+                        .then(() => {
+                            //page.saveEngagement();
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            let projData = {
+                                engagementId: null,
+                                clientDetails: { clientId: 1, clientName: 'Test Client 1' },
+                                taxYear: 2020,
+                                projectTypeDetails: { id: 200, code: 'PROJECTTYPE_ONE', description: 'ProjType One' },
+                                projectName: '2020 | EngType One',
+                                beginnDate: '10/31/2016',
+                                endDate: '11/31/2016',
+                                is5253Week: true,
+                                rule5253: { ruleType5253: '', ruleDay5253: '' }
+							//engagementNbr: '',
+                                //opportunityId: 'OppId999'
+                            };
+                            //expect(spySaveEngagement).toHaveBeenCalledWith(engData);
+
+                        });
+
+                }));
+
+                it('saves project when changing engagement number', async(() => {
+
+                    //savedEng.engagementNbr = 'New EngNbr';
+                    //page.setEngagementNumber(savedProj.engagementNbr);
+                    fixture.whenStable()
+                        .then(() => {
+                            //page.saveEngagement();
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            let projData = {
+                                engagementId: null,
+                                clientDetails: { clientId: 1, clientName: 'Test Client 1' },
+                                taxYear: 2020,
+                                projectTypeDetails: { id: 200, code: 'PROJECTTYPE_ONE', description: 'ProjType One' },
+                                projectName: '2020 | EngType One',
+                                beginnDate: '10/31/2016',
+                                endDate: '11/31/2016',
+                                is5253Week: true,
+                                rule5253: { ruleType5253: '', ruleDay5253: '' }
+							    //engagementNbr: '',
+                                //opportunityId: 'OppId999'
+                            };
+                            //expect(spySaveProject).toHaveBeenCalledWith(engData);
+
+                        });
+
+                }));
+
+                it('saves project when clearing engagement number', async(() => {
+                    //savedEng.engagementNbr = '';
+                    //page.setEngagementNumber(savedEng.engagementNbr);
+                    fixture.whenStable()
+                        .then(() => {
+                            page.saveProject();
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            let projData = {
+                                engagementId: null,
+                                clientDetails: { clientId: 1, clientName: 'Test Client 1' },
+                                taxYear: 2020,
+                                projectTypeDetails: { id: 200, code: 'PROJECTTYPE_ONE', description: 'ProjType One' },
+                                projectName: '2020 | EngType One',
+                                beginnDate: '10/31/2016',
+                                endDate: '11/31/2016',
+                                is5253Week: true,
+                                rule5253: { ruleType5253: '', ruleDay5253: '' }
+							    //engagementNbr: '',
+                                //opportunityId: 'OppId999'
+                            };
+                            expect(spySaveProject).toHaveBeenCalledWith(projData);
+                        });
+
+                }));
+
+                it('saves project when changing scopes of work', async(() => {
+                    //savedEng.scopesOfWork = [{ id: 300, code: 'SOW_ONE', description: 'Scope of Work One' }];
+                    //page.setScopesOfWork(['SOW_ONE']);
+                    fixture.whenStable()
+                        .then(() => {
+                            //page.saveEngagement();
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            let projData = {
+                                engagementId: null,
+                                clientDetails: { clientId: 1, clientName: 'Test Client 1' },
+                                taxYear: 2020,
+                                projectTypeDetails: { id: 200, code: 'PROJECTTYPE_ONE', description: 'ProjType One' },
+                                projectName: '2020 | EngType One',
+                                beginnDate: '10/31/2016',
+                                endDate: '11/31/2016',
+                                is5253Week: true,
+                                rule5253: { ruleType5253: '', ruleDay5253: '' },
+                                engagementNbr: '',
+                                opportunityId: 'OppId999'
+                            };
+                            expect(spySaveProject).toHaveBeenCalledWith(projData);
+                        });
+
+                }));
+
+                it('changes button text to "Edit Project"', async(() => {
+
+                    page.saveProject();
+                    fixture.whenStable().then(() => {
+                        expect(component.setSaveButtonText).toHaveBeenCalled();
+                        expect(component.buttonText).toEqual('Edit Project');
+                    });
+                }));
+
+                it('displays loading indicator when save starts and hides it when completed"', async(() => {
+                    page.saveProject();
+                    expect(loadingIndicatorService.display).toHaveBeenCalledWith(true);
+                    fixture.whenStable().then(() => {
+                        expect(loadingIndicatorService.display).toHaveBeenCalledWith(false);
+                    });
+                }));
+
+                it('succesfull Naqvigation to project Homepage', async(() => {
+
+                    page.saveProject();
+                    fixture.whenStable().then(() => {
+                        expect(toastrService.setSuccessMessage).toHaveBeenCalled();
+                    });
+                }));
+
+                it('does not display warning toastr message"', async(() => {
+
+                    page.saveProject();
+                    fixture.whenStable().then(() => {
+                        expect(toastrService.setWarningMessage).not.toHaveBeenCalled();
+                    });
+
+                }));
+
+                it('does not display error toastr message"', async(() => {
+
+                    page.saveProject();
+                    fixture.whenStable().then(() => {
+                        expect(toastrService.setErrorMessage).not.toHaveBeenCalled();
+                    });
+
+                }));
+
+            });
+
+            describe('Save Not Allowed - ', () => {
+
+                let savedProj: Project;
+                beforeEach(async(() => {
+                    spySaveProject.and.callThrough();
+                }));
+
+                it('prevents save when client and project not specified', async(() => {
+
+                    page.setClientSearchTerm('test');
+                    fixture.whenStable()
+                        .then(() => {
+                            page.dismissClientSearchResults();
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            expect(page.saveProjBtn.disabled).toEqual(true);
+                        });
+                }));
+
+                it('prevents save when tax year not specified', async(() => {
+
+                    page.setClientSearchTerm('test');
+                    fixture.whenStable()
+                        .then(() => {
+                            page.selectClientSearchResult(0);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setTaxYear(-1);
+                        })
+                        .then(() => {
+                            expect(page.saveProjBtn.disabled).toEqual(true);
+                        });
+                }));
+
+                it('prevents save when project type not specified', async(() => {
+                    page.setClientSearchTerm('test');
+                    fixture.whenStable()
+                        .then(() => {
+                            page.selectClientSearchResult(0);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setProjectType(-1);
+                        })
+                        .then(() => {
+                            expect(page.saveProjBtn.disabled).toEqual(true);
+                        });
+                }));
+
+                it('prevents save when project name not specified', async(() => {
+                    page.setClientSearchTerm('test');
+                    fixture.whenStable()
+                        .then(() => {
+                            page.selectClientSearchResult(0);
+                            return fixture.whenStable();
+                        })
+                        .then(() => {
+                            page.setProjectName('');
+                        })
+                        .then(() => {
+                            expect(page.saveProjBtn.disabled).toEqual(true);
+                        });
+                }));
+            });
+        });
+
+        describe('Save Error - ', () => {
+
+            beforeEach(fakeAsync(() => {
+
+                activatedRoute.parent.testQueryParams = { clientId: 1, projId: 100 };
+                // 1st change detection triggers initial bindings and ngOnInit()
+                // 2nd change detection resolves route queryParams observable
+                // 3rd change detection resolve data service calls
+                // 4th change detection resolves getEngagements() call
+                detectMultiChanges(fixture, 4);
+                page.addPageElements();
+                spySaveProject.and.returnValue(Observable.throw('service error'));
+                page.setTaxYear(2020);
+                // Setup spys
+
+                spyOn(component, 'setSaveButtonText').and.callThrough();
+                spyOn(appSignalService, 'broadcastMessage').and.callFake(setHeight => { });
+                spyOn(loadingIndicatorService, 'display').and.callThrough();
+            }));
+
+            it('displays error toastr message', async(() => {
+                page.saveProject();
+                fixture.whenStable().then(() => {
+                    expect(toastrService.setErrorMessage).toHaveBeenCalled();
+                });
+            }));
+
+            it('does not broadcast ProjectCreate message', async(() => {
+
+                page.saveProject();
+                fixture.whenStable().then(() => {
+                    expect(appSignalService.broadcastMessage).not.toHaveBeenCalled();
+                });
+            }));
+
+            it('does not change button text', async(() => {
+                page.saveProject();
+                fixture.whenStable().then(() => {
+                    expect(component.setSaveButtonText).not.toHaveBeenCalled();
+                });
+            }));
+
+            it('displays loading indicator when save starts', async(() => {
+                page.saveProject();
+                expect(loadingIndicatorService.display).toHaveBeenCalledWith(true);
+            }));
+
+            it('hides loading indicator when error returned', async(() => {
+                page.saveProject();
+                fixture.whenStable().then(() => {
+                    expect(loadingIndicatorService.display).toHaveBeenCalledWith(false);
+                });
+            }));
+
+            it('does not display successful toastr message"', async(() => {
+                page.saveProject();
+                fixture.whenStable().then(() => {
+                    expect(toastrService.setSuccessMessage).not.toHaveBeenCalled();
+                });
+            }));
+
+            it('does not display warning toastr message"', async(() => {
+                page.saveProject();
+                fixture.whenStable().then(() => {
+                    expect(toastrService.setWarningMessage).not.toHaveBeenCalled();
+                });
+            }));
+        });
+    });
+});
+Thanks and Regards
+
+Sirisha Pogaku
+937-815-8081
+
+
+
+
+-- 
+
+
+By,
+N.SaravanaManikandan

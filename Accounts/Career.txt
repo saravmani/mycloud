@@ -1,0 +1,17 @@
+[
+ 
+{
+	'domain':'career',
+	'purpose':'',
+	'loginId':'saravanamanikandan.n@gmail.com',
+	'pwd':'c-stdpwd123-#',
+	'url':'times'
+},
+{
+	'domain':'career',
+	'purpose':'',
+	'loginId':'saravanamanikandan.n@gmail.com',
+	'pwd':'c-stdpwd+#',
+	'url':'nauk'
+}
+]

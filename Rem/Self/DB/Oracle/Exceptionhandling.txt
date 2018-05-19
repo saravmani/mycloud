@@ -1,0 +1,34 @@
+
+//Handling user defined exception
+ECLARE
+          v_deptno NUMBER := 500;
+          v_name VARCHAR2 (20) := 'Testing';
+          e_invalid_dept EXCEPTION;
+         BEGIN
+          UPDATE departments
+          SET department_name = v_name
+          WHERE department_id = v_deptno;
+         IF SQL%NOTFOUND THEN
+            RAISE e_invalid_dept;
+         END IF;
+         ROLLBACK;
+         EXCEPTION
+           WHEN e_invalid_dept THEN
+           DBMS_OUTPUT.PUT_LINE ('No such department');
+           DBMS_OUTPUT.PUT_LINE (SQLERRM);
+           DBMS_OUTPUT.PUT_LINE (SQLCODE);
+        END;
+        /
+
+    
+    Handle all exceptions
+    -------------------------------------
+    DECLARE v_invalid PLS_INTEGER;
+        BEGIN
+          v_invalid := 100/0;
+        EXCEPTION  WHEN ZERO_DIVIDE THEN
+          DBMS_OUTPUT.PUT_LINE ('Attempt to divide by 0');
+        WHEN OTHERS THEN  -- handles all other errors
+            ROLLBACK;
+        END;
+    /

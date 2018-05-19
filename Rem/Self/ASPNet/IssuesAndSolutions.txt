@@ -1,0 +1,4 @@
+Register asp.net with IIS
+------------------------------
+Type cd C:\Windows\Microsoft.NET\Framework\v4.0.30319\ and press ENTER.
+Type aspnet_regiis.exe -ir and press ENTER again.

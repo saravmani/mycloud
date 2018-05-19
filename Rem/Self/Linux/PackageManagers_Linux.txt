@@ -1,0 +1,33 @@
+Linux package managers (to install software)
+-----------------------------------------------------
+Every linux distro has default package manager
+
+we can also manually install the software using tor file.
+## if do then we have to do the configurations :-(
+
+linux ubunt having .deb file. 
+## which is like msi files in windows
+
+
+default pacakge managers
+backend tool is - dpkg
+frontend - apt
+gui - aptitude
+
+apt - advance packaging tool
+----------------------------- 
+ex: sudo apt-get install vlc //to install vlc player
+
+Install visual studio cod 
+-----------------------------
+download .deb file from online
+open terminal
+type below command
+    sudo dpkg -i downloadedFilename.deb
+
+    
+dpkg -- ##to install downloaded softwares. ie. deb files
+
+sudo dpkg -i <file>.deb
+sudo apt-get install -f # Install dependencies
+

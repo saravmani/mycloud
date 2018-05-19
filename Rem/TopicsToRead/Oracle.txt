@@ -1,0 +1,8 @@
+nested transactions
+ isolation levels
+
+ database ACID properties  -
+ Concurrency is a way of managing multiple operations
+on a database and at the same time allowing atomicity, consistency, isolation, and
+durability (ACID)
+But need more details 

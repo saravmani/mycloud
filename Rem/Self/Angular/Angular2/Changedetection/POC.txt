@@ -1,0 +1,6 @@
+My POC on change detection process
+----------------------------------------
+Assume input for a component is array.
+if array reference itself changes then "ngOnChanges" called
+but if any one of the array element's value got changed then "ngOnChanges" not called
+but view is getting updated properly, if we used this input in template.

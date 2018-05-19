@@ -1,0 +1,28 @@
+ng build --prod --build-optimizer. 
+This way vendor.js and main.js are combined in main.js file. 
+To avoid that you have to add --vendor-chunk=true
+
+
+An --prod build defaults to --aot=true now; 
+by default --prod will do aot compilation
+
+
+
+To use a different relative path (like for ASP.NET or Java served index.html):
+ng build --prod --deploy-url=/other/rel/path
+So in output
+<!-- custom relative path `index.html` -->
+<!-- ng build --prod --deploy-url=/other/rel/path -->
+<link href="/other/rel/path/styles.01c9c7541bd61c4e640f.bundle.css" rel="stylesheet"/>
+...
+<script type="text/javascript" src="/other/rel/path/main.088b42e8ae877c102072.bundle.js"> 
+
+
+
+Similarly, to use a different host/server (like a CDN):
+ng build --prod --deploy-url=https://example-cdn.com/my-project
+<!-- custom relative path `index.html` -->
+<!-- ng build --prod --deploy-url=https://example-cdn.com/my-project -->
+<link href="https://example-cdn.com/my-project/styles.01c9c7541bd61c4e640f.bundle.css" rel="stylesheet"/>
+...
+<script type="text/javascript" src="https://example-cdn.com/my-project/main.088b42e8ae877c102072.bundle.js">

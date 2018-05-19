@@ -1,0 +1,458 @@
+with(location){
+var qs = search.substring(1);
+var hostName = hostname;
+var url = href;
+}
+
+By convention, constructor functions always begin with an uppercase letter
+
+Check the custome object type by following syntax
+alert(objectName.constructor == FunctionName); //true
+alert(person1 instanceof Object); //true
+alert(person1 instanceof Person); //true
+
+
+alert("propertyName" in objectName)// returns boolean
+
+function having two objects inside
+1. this
+2. arguments
+
+function having two properties inside
+1. prototype
+2. length // tells the number of arguments passed to the function
+
+function having below default methods. those are used to execute the function in sepcific context
+1. apply//here we can pass areguments property directly(parent functions arguments)
+2. call// here we have to pass parameters manually
+3. bind()//ecma 5
+
+
+check variable type
+var obj = "rewrew";
+alert(obj instanceof String); //true//string is passed into the Object constructor, an instance of String is created;
+
+var person = {
+name : “Nicholas”,
+age : 29
+};
+
+above and below are same
+var person = new Object();
+person.name = “Nicholas”;
+person.age = 29;
+
+
+var person = {}; //same as new Object()
+
+
+
+= new Array(“red”, “blue”, “green”);
+=new Array();
+var aa=new Array(20);//now aa.length value is 20
+
+
+
+var value = “25”;
+var number = Number(value); //casting function
+alert(typeof number); //”number”
+var obj = new Number(value); //constructor
+alert(typeof obj); //”object”
+
+var values = [1,2,]; //AVOID! Creates an array with 2 or 3 items
+var options = [,,,,,]; //AVOID! creates an array with 5 or 6 items
+inconsistent implementation
+of early versions of Internet Explorer, using this syntax is strongly discouraged
+
+Finding array
+--------------------
+Array.isArray(aa)//ECMA 5
+if(aa instanceof Array)//ECMA 3 and above .. If we use multiple frames this will not work well
+
+
+
+
+var colors = [“red”, “blue”, “green”]; //creates an array with three strings
+alert(colors.toString()); //red,blue,green
+alert(colors.valueOf()); //red,blue,green
+alert(colors); //red,blue,green
+
+StackMethods for array
+---------------------------
+aa.push("val");adds at top
+aa.pop();gets last added
+
+var colors = new Array(); //create an array
+var count = colors.push(“red”, “green”); //push two items
+alert(count); //2
+
+Stack and queueMethods for array
+---------------------------
+aa.push("val");adds at top
+aa.pop();gets last added
+aa.shift(); //get the first item-- it is queue method
+colors.unshift(“red”, “green”); //push two items
+
+var values = [1, 2, 3, 4, 5];
+values.reverse();
+alert(values); //5,4,3,2,1
+Even though the values in this example begin in correct numeric order, the sort() method changes
+that order based on their string equivalents. bcs., by default sort method call tostring() method while doing sorting
+to solve this 
+sort() method allows you to pass in a comparison
+function that indicates which value should come before which
+
+function compare(value1, value2) {
+if (value1 < value2) {
+return -1;
+} else if (value1 > value2) {
+return 1;
+} else {
+return 0;
+}
+}
+
+now - 
+values.sort(compare);
+alert(values); //0,1,5,10,15 `	
+
+
+
+every() — Runs the given function on every item in the array and returns true if the
+function returns true for every item.
+filter() — Runs the given function on every item in the array and returns an array of all
+items for which the function returns true.
+forEach() — Runs the given function on every item in the array. This method has no
+return value.
+map() — Runs the given function on every item in the array and returns the result of each
+function call in an array.
+some() — Runs the given function on every item in the array and returns true if the
+function returns true for any one item.
+
+
+
+
+
+
+As such,
+the Date type stores dates as the number of milliseconds that have passed since midnight on
+January 1, 1970 UTC (Universal Time Code).
+
+
+ISO 8601 extended format YYYY-MM-DDTHH:mm:ss.sssZ (such as 2004-05-
+25T00:00:00). This works only in ECMAScript 5–compliant implementations
+
+ 
+
+var start = Date.now();
+//call a function
+doSomething();
+//get stop time
+var stop = Date.now(),
+result = stop – start;
+
+
+Some of the most interesting parts of ECMAScript are its functions, primarily because functions
+actually are objects. Each function is an instance of the Function type that has properties and
+methods just like any other reference type. Because functions are objects, function names are simply
+pointers to function objects and are not necessarily tied to the function itself
+
+
+
+
+
+var sum = function(num1, num2){
+return num1 + num2;
+};
+Note that there is no name
+included after the function keyword, because it’s not needed — the function can be referenced
+by the variable sum.
+
+why in ecma script there is no function overloading??
+	bcs here function names are pointers. so if we use same name for two different functions
+then funcction name will refer  last or latest function object
+
+
+The last way to defi ne functions is by using the Function constructor, which accepts any number
+of arguments. The last argument is always considered to be the function body, and the previous
+arguments enumerate the new function’s arguments. Take this for example:
+var sum = new Function(“num1”, “num2”, “return num1 + num2”); //not recommended
+
+
+This syntax is not recommended because it causes a double interpretation of the code (once for the
+regular ECMAScript code and once for the strings that are passed into the constructor) and thus
+can affect performance
+
+Because function names are simply pointers to functions, they act like any other variable containing
+a pointer to an object. This means it’s possible to have multiple names for a single function,
+
+var a = function()
+{}
+var b = a;
+b();// valid
+
+
+
+
+
+Note: If we use function name without (), then it will refer function pointer
+by default functions are objects. function names are pointers
+
+
+
+
+
+function aa()//Called function declarations
+{}
+
+and 
+
+var aa=function()//Function Expressions
+{}
+
+above both will work. but wat is difference??
+The difference here is based on How JavaScript engine loads data into the execution context.so below code runs perfectly
+alert(sum(10,10));
+function sum(num1, num2){
+return num1 + num2;
+}
+
+function declarations are read and added to the execution context
+before the code begins running through a process called function declaration hoisting.
+As the code
+is being evaluated, the JavaScript engine does a fi rst pass for function declarations and pulls them
+to the top of the source tree
+
+but function expresiosn will get fail here
+
+
+
+Because functions are objectes and function names are pointers, 
+	we can able to pass function as a parameter to another function 
+	and we can able to return aother function
+
+
+
+Two special objects exist inside a function: arguments and this.
+
+function outer(){
+inner();
+}
+function inner(){
+alert(arguments.callee.caller);
+}
+outer();
+
+in strict mode arguments.callee results in an error
+
+
+Each function has two properties: length and prototype. The length property indicates
+the number of named arguments
+
+prototype is the actual location of all instance methods for reference types, meaning methods such
+as toString() and valueOf() actually exist on the prototype and are then accessed from the
+object instances.
+
+
+function can return another function
+
+function a(str)
+
+{
+
+return function(anotherparam)
+
+{
+
+return str +anotherparam;
+//See str variable able to access by inner function
+}
+}
+pointer1 = a("pointer1");//creates new function object and returns the pointer
+pointer2 = a("pointer2");
+pointer1("hh")
+ //"pointer1hh"
+
+pointer2("hh")
+//"pointer2hh";//still str able to gets its value
+
+
+
+Two special objects exist inside a function: arguments and this
+
+function factorial(num){
+if (num <= 1) {
+return 1;
+} else {
+return num * arguments.callee(num-1);// it is equaent to factorial(num-1).. here arguments.callee is refering the current function. withought using name we can go with this.
+// this will be helpful when we are using anonymus funcitons
+}
+}
+
+
+
+this object
+-------------
+reference to the context object
+
+when a function is called in the global scope of a web page, the this object points
+to window
+
+
+
+window.color = “red”;
+var o = { color: “blue” };
+function sayColor(){
+alert(this.color);
+}
+sayColor(); //”red”// imagin we are calling window.sayColor();
+o.sayColor = sayColor;
+o.sayColor(); //”blue”
+
+
+Remember that function names are simply variables containing pointers, so the
+global sayColor() function and o.sayColor() point to the same function even
+though they execute in different contexts.
+
+ECMAScript 5 also formalizes an additional property on a function object: caller.
+
+
+
+function having two objects inside
+1. this
+2. arguments
+
+function having two properties inside
+1. prototype
+2. length // tells the number of arguments passed to the function
+
+function having two methods
+1. apply
+2. call
+
+
+prototype is the actual location of all instance methods for reference types, meaning methods such
+as toString() and valueOf() actually exist on the prototype and are then accessed from the
+object instances.
+
+
+function sum(num1, num2){
+return num1 + num2;
+}
+function callSum1(num1, num2){
+return sum.apply(this, arguments); //passing in arguments object// here this is used to set the context
+}
+function callSum2(num1, num2){
+return sum.apply(this, [num1, num2]); //passing in array
+}
+alert(callSum1(10,10)); //20
+alert(callSum2(10,10)); //20
+
+In this example, callSum1() executes the sum() method, passing in this as the this value (which
+is equal to window because it’s being called in the global scope) and also passing in the arguments
+object.
+
+In strict mode, the this value of a function called without a context object is
+not coerced to window. Instead, this becomes undefined unless explicitly set by
+either attaching the function to an object or using apply() or call().
+
+
+The call() method exhibits the same behavior as apply(), but arguments are passed to it
+differently. The fi rst argument is the this value, but the remaining arguments are passed directly
+
+function sum(num1, num2){
+return num1 + num2;
+}
+function callSum(num1, num2){
+return sum.call(this, num1, num2);
+}
+alert(callSum(10,10)); //20
+
+
+here this is used to pass the context. we can able to pass any object
+window.color = “red”;
+var o = { color: “blue” };
+function sayColor(){
+alert(this.color);
+}
+sayColor(); //red
+sayColor.call(this); //red
+sayColor.call(window); //red
+sayColor.call(o); //blue
+
+
+The advantage of using call() (or apply()) to augment the scope is that the object doesn’t need to
+know anything about the method.
+
+ECMAScript 5 defi nes an additional method called bind(). The bind() method creates a new
+function instance whose this value is bound to the value that was passed into bind(). For example:
+window.color = “red”;
+var o = { color: “blue” };
+function sayColor(){
+alert(this.color);
+}
+var objectSayColor = sayColor.bind(o);
+objectSayColor(); //blue
+
+For functions, the inherited methods toLocaleString() and toString() always return the
+function’s code. The exact format of this code varies from browser to browser
+The
+inherited method valueOf() simply returns the function itself
+
+
+
+
+
+
+when we read the primitive data types (string, boolean, number), internally respective wrapper reference type's instance will get created, and its methods will be used
+
+
+
+Three special reference types are designed to ease interaction with primitive values: the Boolean
+type, the Number type, and the String type. These types can act like the other reference types
+but they also have a special behavior related to their primitive-type
+equivalents. Every time a primitive value is read, an object of the corresponding primitive wrapper
+type is created behind the scenes, allowing access to any number of methods for manipulating the
+data. Consider the following example:
+var s1 = “some text”;
+var s2 = s1.substring(2);
+In this code, s1 is a variable containing a string, which is a primitive value. On the next line, the
+substring() method is called on s1 and stored in s2. Primitive values aren’t objects, so logically
+they shouldn’t have methods, though this still works as you would expect. In truth, there is a lot
+going on behind the scenes to allow this seamless operation. When s1 is accessed in the second line,
+it is being accessed in read mode, which is to say that its value is being read from memory. Any time
+a string value is accessed in read mode, the following three steps occur:
+1. Create an instance of the String type.
+2. Call the specifi ed method on the instance.
+3. Destroy the instance.
+
+You can think of these three steps as they’re used in the following three lines of ECMAScript code:
+var s1 = new String(“some text”);
+var s2 = s1.substring(2);
+s1 = null;
+
+
+This behavior allows the primitive string value to act like an object. These same three steps are
+repeated for Boolean and numeric values using the Boolean and Number types, respectively.
+The major difference between reference types and primitive wrapper types is the lifetime of the
+object. When you instantiate a reference type using the new operator, it stays in memory until it goes
+out of scope, whereas automatically created primitive wrapper objects exist for only one line of code
+before they are destroyed. This means that properties and methods cannot be added at runtime.
+
+Take this for example:
+var s1 = “some text”;
+s1.color = “red”;
+alert(s1.color); //undefined
+
+It is possible to create the primitive wrapper objects explicitly using the Boolean, Number, and
+String constructors
+
+var obj = new Object(“some text”);
+alert(obj instanceof String); //true
+
+
+widow object is a global object. every 
+
+
+Any function that is called with the new operator acts
+as a constructor,

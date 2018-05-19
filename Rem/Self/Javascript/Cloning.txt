@@ -1,0 +1,17 @@
+Tags -> Javascript Cloning, shallow copy, deepcopy, duplicate object
+---------------------------------------------------------------------
+
+Jquery Utils for Copy
+-----------------------------------------
+// Shallow copy
+var newObject = jQuery.extend({}, oldObject);
+
+// Deep copy
+var newObject = jQuery.extend(true, {}, oldObject);
+
+.clone() method in jQuery only clones DOM elements.
+
+
+
+Assuming that you have only variables and not any functions in your object, you can just use:
+var newObject = JSON.parse(JSON.stringify(oldObject));

@@ -1,0 +1,77 @@
+ Key points
+---------
+MVCRouteHandler
+  RouteData
+MVCHttpHandler
+  Controller Factory
+  activator
+  ActionInvoker
+ 
+ if the request is the first request the first thing is to fill the route table with routes collection. 
+This filling of route table happens in the global.asax file.
+
+MVC requests are mapped to route tables which in turn specify which controller and action  to be invoked.
+
+Depending on the URL sent UrlRoutingModule searches the route table to create RouteData object which has the details of which
+ controller and action to invoke.
+
+The �RouteData� object is used to create the �RequestContext� object.
+
+This request object is sent to MvcHandler instance to create the controller class instance.
+ Once the controller class object is created it calls the Execute method of the controller class.
+
+
+
+
+UrlRoutingModule --->
+(MVCHttpHandler ->ControllerFactory,creates controller object, if any DI(controller's constructor) 
+    BuildModel from request, 
+    ActionFilter(OnActionExecuting ), 
+    ActionInvoker,
+    Action Executed filter
+    Result Execution (Razor or aspx)
+
+)
+
+ (MVCRouteHandler executes and gets the MVCHan)
+
+ Note: Before Action filter, model binding happened
+
+
+
+RouteTable
+--------------
+Routing Table is a static container of routes 
+If the route is found in the routing table MVCRouteHandler executes and brings the instance of MVCHttpHandler
+
+Life Cycle explained
+-----------------------
+Entry point of MVC Request life cycle is URL Routing module, 
+the incoming request from IIS pipeline is handed over to 
+URL Routing module which analyses the request
+and looks up Routing table to figure out which controller the incoming request maps to. 
+Routing Table is a static container of routes defined in MVC application 
+with corresponding controller action mapping. If the route is found in the routing table
+MVCRouteHandler executes and brings the instance of MVCHttpHandler. 
+Together they act as a gateway into the MVC Framework.
+
+MVCHandler begins initializing and executing controller. The MVCHttpHandler also takes of converting route data
+ into concrete controller
+ that is capable of serving the request. MVC handler does all this with the help of MVC Controllerfactory and activator
+  which are responsible for creating  an instance of the controller.
+  This is also the place where the Dependency Injection is performed if the application has been designed to 
+  invoke parameterized controller constructor and satisfy its dependencies.
+
+After the controller instance is created the next major step is to find and execute the corresponding action. 
+A component called ActionInvoker finds and executes the action defined in routing table. Before the action method is called model 
+bindings takes place which 
+maps data from http request to action method parameters. After the model binding, action filters are invoked which includes
+ OnActionExecuting filter.
+ This is followed by action execution and Action Executed filter execution and finally preparing Action Result.
+
+Once the Action method has been finished executing the next step is Result execution. 
+MVC separates the action declaration from Result execution.
+ If the Result from action execution is view, then depending upon configuration,
+  ASPX or Razor view engine will be called to find and render the html view as a
+  response of http request. If the result was not view then it’s passed as-is to http response.
+

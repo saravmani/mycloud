@@ -1,0 +1,13 @@
+Parts of speach
+-----------------
+
+Article
+noune
+adjuctive
+pronoune
+verb
+adverbe
+proposition
+conjunction
+insujection
+adverbe

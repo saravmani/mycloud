@@ -1,0 +1,299 @@
+angular2 will not access the form HTML tags always.
+instead of it will create json object from the HTML form. and used this to access.
+bcs accessing HTML tags always is very costly
+this json may be  look like
+
+{
+controls:controlName,
+value:{controlname:'',..}
+}
+
+
+ 
+Template drivven  - 
+	Form is setup and configured in HTML
+	ng2 will infers fromgroup from HTML code
+	submit using ngSubmit()
+Data or Model driven (or Reactive Forms)
+	from is setup and configured programmatically in class body
+
+
+template driven approch
+-------------------------
+angular js will automatically detect the form element
+and here <form> is a selector.
+automatically form is under controll of angular2.
+But it doesnt know about the controlls.
+we have to tell expilicitly what controlls form has
+
+use ngModel directive to register a controll
+also name attribute is mandatory
+
+ <input type="text" ngModel name="controlName" />
+//we can use ngModel without brackets to tell angular to that this controll is used in form
+ <input type="text" [(ngModel)] = "subjectTypess"  name="controlName"  />
+//for two way binding
+ <input type="text" [ngModel] = "subjectTypess"  name="controlName"  />
+//oneway binding
+//<input type="text" name="firstName" required ngModel>
+//only register the contontrol. so that validation will be fired
+
+
+Note: Note that NgModel includes all of the functionality of its Angular 1 counterpart.
+
+
+ng2 will take html5 validation attributes to validate the controlls
+<form (ngSubmit)="onSubmitMethodName(localVariable)" #localVariable="ngForm">
+ <input required  type="text" ngModel name="controlName" />
+ <input required required  pattern="rejexPattern"  type="text" ngModel name="email" />
+//here ng2 will tak this regex and validate the controll
+<input type="submit" />
+</form>
+
+
+when this page renders by default ng2 will add few class names like
+ng-dirty,ng-invalid,ng-touched like that.
+
+if we assign any default value then ng-perstine class name will be added automatically
+
+we can use this class names and define our own styles
+ angular2 will take form tag as selector and assign
+ngForm invisbily
+
+
+onSubmitMethodName(localVariable)
+{
+//here localVariable.value property will have json object for controlls and values
+}
+
+
+angular2 will track the state of the each control
+
+valid,touched,untouched
+
+
+Controll class 
+------------------
+controll class represents single input field in the from. and this having below properties
+touched or untouched
+valid or invalid
+pristine or dirty
+errors
+
+
+controll group
+---------------------
+each form is controll group by default.
+but we can have multiple controll group.
+all the properties of controll class availabe in control group
+
+
+this both controll and controll group are inherited from AbstractControl class
+
+
+Controll & controll group classes are created by two ways
+implicitly - by angular (simple)
+explicitly - by Us (we can have more controll on controll, and we can do unit test and we can do complex validation)
+
+
+templte driven example
+---------------------------
+ <form #f="ngForm" (ngSubmit)="onSubmitTemplateBased()">
+        <p>
+            <label>First Name:</label>
+            <input type="text"  
+                [(ngModel)]="user.firstName" required>
+        </p>
+        <p>
+            <label>Password:</label>
+            <input type="password"  
+                [(ngModel)]="user.password" required>
+        </p>
+        <p>
+            <button type="submit" [disabled]="!f.valid">Submit</button>
+        </p>
+    </form>
+
+.ts file
+---
+@Component({
+    selector: "template-driven-form",
+    templateUrl: 'template-driven-form.html'
+})
+export class TemplateDrivenForm {
+
+    user: Object = {};
+
+    onSubmitTemplateBased() {
+        console.log(this.vm);
+    }
+
+}
+
+
+disadvantages of template driven
+-------------------------------------
+As we add more and more validator tags to a field or when we start adding complex cross-field validations the readability of the form decreases, to the point where it will be harder to hand it off to a web designer.
+
+
+
+
+
+Model driven or reactive forms
+------------------------------------
+
+html
+-----------
+   <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <p>
+            <label>First Name:</label>
+            <input type="text" formControlName="firstName">
+        </p>
+        <p>
+            <label>Password:</label>
+            <input type="password" formControlName="password">
+        </p>
+        <p>
+            <button type="submit" [disabled]="!form.valid">Submit</button>
+        </p>
+    </form>
+
+Component.ts
+----------------
+import { FormGroup, FormControl, Validators, FormBuilder } 
+    from '@angular/forms';
+
+@Component({
+    selector: "model-driven-form",
+    templateUrl: 'model-driven-form.html'
+})
+export class ModelDrivenForm {
+    form: FormGroup;
+    
+    firstName = new FormControl("", Validators.required);
+    
+    constructor(fb: FormBuilder) {
+        this.form = fb.group({
+            "firstName": this.firstName,
+            "password":["", Validators.required]
+        });
+    }
+    onSubmitModelBased() {
+        console.log("model-based form submitted");
+        console.log(this.form);
+    }
+}
+
+
+Note that ngModel can still be used with model driven forms. Its just that the form value would be available in two different places: the view model and the FormGroup, which could potentially lead to some confusion.
+
+
+The FormGroup and 
+FormControl classes provide an API that allows us to build UIs using a completely different programming style known as Functional Reactive Programming.
+
+
+
+Functional Reactive Programming in Angular 2
+----------------------------------------------
+form controls and the form itself now provide an Observable-based API
+This mean that both the controls and the whole form itself can be viewed as a continuous stream of values, that can be subscribed to and processed using commonly used functional primitives.
+
+ex:
+this.form.valueChanges
+        .map((value) => {
+            value.firstName = value.firstName.toUpperCase();
+            return value;
+        })
+        .filter((value) => this.form.valid)
+        .subscribe((value) => {
+           console.log("Model Driven Form valid value: vm = ",JSON.stringify(value));
+        });
+
+Advantages of building UIs using Functional Reactive Programming (FRP)
+----------------------
+pre-save the form in the background at each valid state, or even invalid (for example storing the invalid value in a cookie for later use)
+typical desktop features like undo/redo
+
+
+fullUpdate() {
+    this.form.patchValue({firstName: 'Partial', password: 'monkey'});
+}
+
+
+we have patchValue() which partially updates the form. This method does not need to receive values for all fields of the form, which allows for partial updates
+there is also setValue(), to which we are passing all the values of the form. In the case of this method, values for all form fields need to be provided, otherwise we will get an error message saying that certain field values are missing
+
+
+We might think that we could use these same APIs to reset the form by passing blank values to all fields.
+That would not worked as intended, because the pristine and untouched statuses of the form and its fields would not get resetted accordingly.
+
+so  this.form.reset(); used to reset the form
+
+
+Form validation
+-----------------------
+<form #f="ngForm" (ngSubmit)="subjectSearch()">
+   <select (change)="onSearchTypeChange()"  #SearchType="ngModel"  class="form-control mandatory" id="dropDownConsumerSearchType" name="dropDownConsumerSearchType">
+                                <option selected="selected" value="">Select</option>
+                                <option value="ACCSRCH">Account Number Search</option> 
+                              </select>
+                             <span *ngIf="SearchType.errors && (SearchType.dirty || SearchType.touched)">
+                                <label [hidden]="!SearchType.errors.required" class="help-block">Name is required</label>
+                             </span>
+							 </from>
+
+
+
+
+
+
+
+
+Sample
+----------------------
+import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
+constructor(public objFormBuilder: FormBuilder, private objRouter: Router,
+
+
+
+  this.subjSrchForm = this.objFormBuilder.group({
+            RadioButtonCIRType: [defaultSubjectType],
+            consumerForm: this.objFormBuilder.group({
+                dropDownConsumerSearchType: [this._defaultSearchType, Validators.required],
+
+                consumerNameSearchForm: this.objFormBuilder.group({
+                    textboxConsumerName: ["", Validators.required],
+                    dropDownConsumerIDType: ["", Validators.required],
+                    textBoxConsumerID: ["", Validators.required],
+                }),
+                textBoxConsumerMobile: [{ value: "", disabled: true }, this.validateMobileNumberRequired.bind(this)],
+                dropdownConsumerProductType: ["", Validators.required],
+                dropDownConsumerLoanType: [""]
+
+
+            }),
+
+//Template code
+	     <div id="cunsumerform" formGroupName="consumerForm" 
+			<input formControlName="RadioButtonCIRType" 
+
+
+
+//disable and enable the form
+this.subjSrchForm.get(['consumerForm', 'consumerNameSearchForm']).disable();
+this.subjSrchForm.get(['consumerForm', 'consumerNameSearchForm']).enable();
+
+
+//subscribe events
+this.subjSrchForm.get("RadioButtonCIRType").valueChanges.subscribe(data => {});
+
+//display error messages
+<div label-ref="SearchTypeRequired" class="help-block" *ngIf="subjSrchForm.get(['consumerForm','dropDownConsumerSearchType']).touched && subjSrchForm.get(['consumerForm','dropDownConsumerSearchType']).hasError('required')">
+
+
+
+
+Issues and solution
+--------------------------
+Isse: angular 2 Can't bind to 'formGroup' since it isn't a known property of 'form'.
+Ans: Need to  import { ReactiveFormsModule} from '@angular/forms' in module file

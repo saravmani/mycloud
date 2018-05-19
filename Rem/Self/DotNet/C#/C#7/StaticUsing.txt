@@ -1,0 +1,13 @@
+using static System.Console;
+
+class program
+{
+    static void main()
+    {
+        WriteLine("some text");
+    }
+}
+//no need to mention Static class name in each line
+//with the help of static using, methods and 
+properties inside a static class is readily available
+

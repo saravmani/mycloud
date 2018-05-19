@@ -1,0 +1,18 @@
+[TestFixture]
+class SubjectManagerUnitTest
+{
+    Mock<DBLoggerImplementation> objDBLoggerImplementationMock;
+    [SetUp]
+    public void ConfigureTesting()
+    {
+        objDBLoggerImplementationMock = new Mock<DBLoggerImplementation>();
+        objDBLoggerImplementationMock.Setup(mockObject => mockObject.InformationLog(It.IsAny<string>())).Returns(true);
+    }
+    [Test]
+    public void OnGetSubjetInfo()
+    {
+        var objSubjectManager = new SubjectManager(objDBLoggerImplementationMock.Object);
+        Assert.AreEqual(objSubjectManager.GetSubjectInfo(), "sometext");
+    }
+
+}

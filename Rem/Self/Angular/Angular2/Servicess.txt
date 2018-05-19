@@ -1,0 +1,86 @@
+Sample
+---------
+Taken from 
+https://plnkr.co/edit/jty1DE?p=preview
+
+//greeter.service.ts
+import { Injectable } from '@angular/core';
+
+@Injectable()
+export 
+class Greeter {
+  public message: string = 'Registering Providers while Bootstrapping an Angular 2 application!';
+}
+
+
+//main.ts
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } '@angular/core';
+import { MyApp } from './app.component'
+import { Greeter } from './greeter.service';
+
+@NgModule({
+imports: [BrowserModule],
+providers: [Greeter],
+declarations: [MyApp],
+bootstrap: [MyApp]
+})
+export class MyAppModule {
+}
+
+
+if we want our service object should be specific to particular component (different instance)
+then use this provider property within that particular component.
+
+Without injectable decorator we can able to do this.
+
+sevices.ts
+export class className
+{
+funName()
+{}
+}
+
+
+component.ts
+//import services class
+@Component({
+provider:[className]
+export componentClassName
+{
+objEventEmiter = new EventEmitter<string>();
+constructor(objClassName:className)
+{
+objClassName.funName();
+}
+
+eventTriggerMthd()
+{
+this.objEventEmiter.emit("rere");
+}
+}
+
+})
+
+
+subjscribe this event in another component
+------------------------------------------------
+this.objService.objEventEmiter.subscribe(data=>{this.value=data});
+
+we can able to inject one service into another. that time we need
+@Injectable.
+on who is getting another service
+
+
+
+if we have services in hte root module of our application, then sub modules also will share the same instance :-)
+and if we provide the service inside of any submodule, and this will not be available for its parent
+[Tags-> same instance, same object, accross modules]
+
+
+
+
+@Injectable : is a decorator, that informs Angular 2 that the service has some dependencies itself.
+ Basically services in Angular 2 are simple classes with the decorator @Injectable on top of the class, that provides a method to return some items.
+
+The Injector is a service that keeps track of the injectable components by maintaining a registry and injects them when needed.

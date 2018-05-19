@@ -1,0 +1,7 @@
+asynch await in javascript 
+what is new  es2017?    
+
+websockets will give extra burden to server?
+how many connections can server make or hold?
+in which scenario we can go for websockets connection?
+websockets is possible between two browser windows? ( i mean without server)

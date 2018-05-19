@@ -1,0 +1,1 @@
+It does not describe the functionality of the system but it describes the components used to make those functionalities.

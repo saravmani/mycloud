@@ -1,0 +1,94 @@
+Key words - ForOf, ContentChild, ContentChildren,ViewContainerRef.createEmbeddedView,
+            , TemplateRef
+
+Structural directives change the layout of the HTML document by adding and removing elements.
+Structural directives use micro-templates to add content to the
+HTML document.
+
+built in Structural directives
+ex:  *ngIf and *ngFor.
+
+You can recognize when a structural directive is being used because its name will be prefixed
+with an asterisk.
+
+micro-templates, which are small fragments of contents defined within the templates used by
+components.
+
+Structural directives allow content to be added conditionally
+based on the result of an expression or for the same content to be
+repeated for each object in a data source, such as an array.
+
+Structural directives are applied to a template element.
+
+iterating (ForOf)
+-------------
+Define a ForOf input property in a structural
+directive class and iterate over its value
+
+The first indication that this is a structural directive comes from the constructor,
+
+constructor(private container: ViewContainerRef,
+private template: TemplateRef<Object>) {}
+
+
+
+Structural directives can provide templates with additional values to be assigned to template variables and
+used in bindings. For example, the ngFor directive provides odd, even, first, and last values. Context
+values are provided through the same object that defines the $implicit property,
+
+let-*
+--------------------------
+...
+<template [paForOf]="getProducts()" let-item>
+...
+In this example, I have used let-item to tell Angular that I want the implicit value to be assigned to a
+variable called item, which is then used within a string interpolation binding to display the name property
+
+
+Dealing with Property-Level Data Changes
+----------------------------------------------
+properties of an individual object change, Angular takes care of these
+changes automatically, reflecting any changes.
+# i tried this with example. and even single property of an object changes this view got reflected
+
+#so  ngChange - will get called if property of input object got changed. 
+# so in ngChange method we can clear rendered view (ViewContainerRef.clear()) and do re create
+this.container.clear();
+this.container.createEmbeddedView(this.template,new PaIteratorContext(this.dataSource[i],
+          i, this.dataSource.length));
+
+
+
+Dealing with collection level changes - (new item added , removed)
+--------------------------------------------
+#Angular will not detect invoke ngChange method. so we have to use doCheck() method
+
+But ngDoCheck method is that it is invoked every time Angular detects a change
+anywhere in the application—and those changes happen more often than you might expect.
+
+Receiving notifications about collection-level changes is done by implementing the ngDoCheck
+method, which is called whenever a data change is detected in the application, regardless of where that
+change occurs or what kind of change it is.
+
+Implementing the ngDoCheck method requires
+caution, however, because it represents a pitfall that can destroy the performance of a web application. 
+
+
+
+Angular provides some tools for managing updates more efficiently and updating content
+only when it is required. The ngDoCheck method will still be called for all changes in the application, 
+but the
+directive can inspect its data to see whether any changes that require new content have occurred,
+
+
+The IterableDiffers and
+ChangeDetectorRef objects are used to set up change detection on the data source collection in the
+ngOnInit method
+
+import { Directive, ViewContainerRef, TemplateRef,
+Input, SimpleChange, IterableDiffer, IterableDiffers,
+ChangeDetectorRef, CollectionChangeRecord } from "@angular/core";
+
+ngOnInit() {
+this.differ = this.differs.find(this.dataSource).create(this.changeDetector);
+}

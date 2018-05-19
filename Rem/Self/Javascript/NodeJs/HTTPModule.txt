@@ -1,0 +1,189 @@
+HTTP server, webserver
+-------------- -------------
+var http = require('http');
+var server = http.createServer(function(req, res){
+    res.setHeader('Content-Type', 'text/plain');
+res.write('Hello World');
+res.end();
+});
+server.listen(3000);
+
+default status code is 200
+
+Prior to the callback being triggered, Node will
+parse the request up through the HTTP headers and provide them as part of the req
+object. But Node doesn’t start parsing the body of the request until the callback has
+been fired.
+(but ASP.NET will parse both header and body by default)
+
+Node will not automatically write any response back to the client. After the request
+callback is triggered, it’s your responsibility to end the response using the res.end()
+
+This allows you to run any asynchronous logic you want during
+the lifetime of the request before ending the response. If you fail to end the
+response, the request will hang until the client times out or it will just remain open.
+
+Node servers are long-running processes that serve many requests throughout
+their lifetimes.
+
+First, call the res.write() method, which writes response data to the socket, and
+then use the res.end() method to end the response
+
+
+As shorthand, res.write() and res.end() can be combined into one statement,
+which can be nice for small responses
+
+
+
+Header manupulation
+---------------------
+res.setHeader('field','val');
+res.removeHeader('field')
+res.getHeader('field');
+
+You can add and remove headers in any order, but only up to the first res.write() or
+res.end() call. After the first part of the response body is written, Node will flush the
+HTTP headers that have been set.
+
+
+status code
+--------------
+res.statusCode(200);
+This property can be assigned at
+any point during the application’s response, as long as it’s before the first call to
+res.write() or res.end(). As shown in the following example, this means
+res.statusCode = 302 can be placed above the res.setHeader() calls, or below
+them:
+
+for body parsing, session, http cookies we have to use third party 
+
+
+
+rea.method // will tells which method used by the browser. ex: GET,POST
+
+
+var http = require('http')
+var server = http.createServer(function(req, res){
+req.on('data', function(chunk){
+console.log('parsed', chunk);//Data events are fired whenever a new chunk of data has been read. it is byte array
+});
+req.on('end', function(){
+console.log('done parsing');//The end event is fired when severything has been read
+res.end()
+});
+});
+
+
+to get the strins instead of byte array we can define the encoding
+req.setEncoding('utf8')
+req.on('data', function(chunk){
+console.log(chunk);
+});
+
+
+
+complete code  with get and put  with simple http server
+-----------------
+var http = require('http');
+var url = require('url');
+var items = [];
+var server = http.createServer(function(req, res){
+switch (req.method) {
+case 'POST':
+var item = '';
+req.setEncoding('utf8');
+req.on('data', function(chunk){
+item += chunk;
+});
+req.on('end', function(){
+items.push(item);
+res.end('OK\n');0887yuhjbn nm/, 
+});
+break;
+}
+});
+
+
+Set content length when ever possible.
+this will boos performance. also client can able to show progressbar.
+also re-download failed items
+res.setHeader('Content-Length', Buffer.byteLength(body));
+
+Content-Length value should represent the byte length, not character length, and the
+two will be different if the string contains multibyte characters. To avoid this problem,
+Node provides the Buffer.byteLength() method
+
+
+
+parse url
+-----------
+to parse URL we can use url module
+require('url').parse("http://url.com?a=1");
+
+
+Static file serving
+----------------------
+__dirname is a magic variable provided by Node that’s assigned the directory path to
+the file.
+you could configure
+root to specify any directory path.
+
+ex: 
+var http = require('http');
+var parse = require('url').parse;
+var join = require('path').join;
+var fs = require('fs');
+var root = __dirname;
+var server = http.createServer(function(req, res){
+var url = parse(req.url);
+var path = join(root, url.pathname);
+var stream = fs.createReadStream(path);
+stream.on('data', function(chunk){
+res.write(chunk);//this data event will fired on each chunk of data read happens.
+});
+stream.on('end', function(){
+res.end();
+});
+});
+server.listen(3000);
+
+A stream, like fs.ReadStream, is simply a specialized EventEmitter
+that contains predefined events such as data and end, which we’ve already looked at.
+By default, error events will be thrown when no listeners are present. This means that
+if you don’t listen for these errors, they’ll crash your server.
+
+
+stream.on('error',function(err)
+{
+    res.statusCode=500;
+    res.end('internal server error');
+});
+
+
+
+files transferred are static, so the stat() system call can be utilized to request
+information about the files, such as the modification time, byte size, and more. This
+information is especially important when providing conditional GET support, where a
+browser may issue a request to check if its cache is stale.
+
+fs.stat(path, function(err, stat){
+if (err) {
+if ('ENOENT' == err.code) {
+res.statusCode = 404;
+res.end('Not Found');
+} else {
+res.statusCode = 500;
+res.end('Internal Server Error');
+}
+} else {
+res.setHeader('Content-Length', stat.size);
+var stream = fs.createReadStream(path);
+stream.pipe(res);
+stream.on('error', function(err){
+
+
+
+    
+
+
+

@@ -1,0 +1,8 @@
+KISS - Keep it simple sutpid
+
+The programming language is for humans to understand, computers can only understand 0 1, so keep coding simple and straight, which should be easily understandable by human beings.
+
+Keep your methods small, each method should never be more than 40-50 lines.
+Each method should only solve one small problem, not many use cases. If you have a lot of conditions in the method, break these out into smaller methods. It will not only be easier to read and maintain but also can find bugs a lot faster.
+
+My advice is to avoid using fancy features from the programming language you’re working with only because the language lets you use them. This is not to say that you should not use those features, but use them only when there are perceptible benefits to the problem you’re solving. With this premise

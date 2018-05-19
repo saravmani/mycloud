@@ -1,0 +1,8 @@
+
+Find internet connectivity in javascript using below code
+--------------------------------------------------------
+Tags -> check internet connection, 
+
+navigator.onLine //true or false based on n/w connectivity
+window.ononline=function(){console.log("haha")}// //triggers when net connected
+window.onoffline=function(){console.log("disconnected")} //triggers when net disconnected

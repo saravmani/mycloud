@@ -1,0 +1,2 @@
+How windows authentication works ? how credential asked by browser, and how this information is passed to server?
+have to check how .. inranet is working?

@@ -1,0 +1,32 @@
+
+sample wrappfunction
+----------------------------
+example below code 
+const {exec} = require("child_process");
+var some="haha";
+exec("md sss",(err,stdout,stderr)=>{//Creates the file int the name sss
+    if(err){
+        console.error(`error:${err}`);
+        return;
+    }
+    console.log(`${stdout}`);
+})
+
+get converted as follows before compiling
+
+
+function(exports, require, module, _filename,_directoryname){
+    var exports = module.exports
+    var some="haha";
+    const {exec} = require("child_process");
+    exec("md sss",(err,stdout,stderr)=>{//Creates the file int the name sss
+        if(err){
+            console.error(`error:${err}`);
+            return;
+        }
+        console.log(`${stdout}`);
+    })
+}
+
+so if we modify the exports reference, this it will not refer module.exports. 
+so exports = {} will not work

@@ -1,0 +1,39 @@
+
+redirect to static page
+--------------------------------
+public class RangeExceptionAttribute : FilterAttribute, IExceptionFilter
+{
+    public void OnException(ExceptionContext filterContext)
+    {
+        if (!filterContext.ExceptionHandled &&
+        filterContext.Exception is ArgumentOutOfRangeException)
+        {
+            filterContext.Result
+            = new RedirectResult("~/Content/RangeErrorPage.html");
+            filterContext.ExceptionHandled = true;
+        }
+    }
+}
+
+
+
+use a view to display
+------------------------------------------------------------------------
+public void OnException(ExceptionContext filterContext)
+{
+    if (!filterContext.ExceptionHandled &&
+    filterContext.Exception is ArgumentOutOfRangeException)
+    {
+        int val = (int)(((ArgumentOutOfRangeException)
+        filterContext.Exception).ActualValue);
+        filterContext.Result = new ViewResult
+        {
+            ViewName = "RangeError",
+            ViewData = new ViewDataDictionary<int>(val)
+        };
+        filterContext.ExceptionHandled = true;
+    }
+}
+
+create a ViewResult object and set the values of the ViewName and ViewData properties to specify the name of
+the view and the model object that will be passed to it.

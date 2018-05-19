@@ -1,0 +1,216 @@
+rollback the deleted data or rows
+--------------------------------------
+FLASHBACK TABLE table_name
+  TO TIMESTAMP (timestamp till table should be rolled back); 
+
+
+Row Number - ranking - taking unique records based on condition
+-------------------------------------------------------------------
+select * from (select col1, col2,
+row_number() over (partition by col3, col4 order by col5) rankaliasname
+from table_name)
+where rankaliasname = 1;
+
+
+Loop
+----------
+
+DECLARE
+   x number := 10;
+BEGIN
+   LOOP
+      dbms_output.put_line(x);
+      x := x + 10;
+      IF x > 50 THEN
+         exit;
+      END IF;
+   END LOOP;
+   -- after exit, control resumes here
+   dbms_output.put_line('After Exit x is: ' || x);
+END;
+
+
+ DECLARE
+   a number(2) := 10;
+BEGIN
+   WHILE a < 20 LOOP
+      dbms_output.put_line('value of a: ' || a);
+      a := a + 1;
+   END LOOP;
+END;
+
+
+DECLARE
+   a number(2);
+BEGIN
+   FOR a in 10 .. 20 LOOP
+       dbms_output.put_line('value of a: ' || a);
+  END LOOP;
+END;
+
+
+
+
+   begin
+   for kk in (select 'rew' jj from dual)
+   loop 
+   dbms_output.put_line(kk.jj);
+   end loop;
+   end;
+   
+   
+
+
+
+
+Exception Handling
+------------------
+DECLARE
+   c_id customers.id%type := 8;
+   c_name  customers.name%type;
+   c_addr customers.address%type;
+BEGIN
+   SELECT  name, address INTO  c_name, c_addr
+   FROM customers
+   WHERE id = c_id;
+
+   DBMS_OUTPUT.PUT_LINE ('Name: '||  c_name);
+   DBMS_OUTPUT.PUT_LINE ('Address: ' || c_addr);
+EXCEPTION
+   WHEN no_data_found THEN
+      dbms_output.put_line('No such customer!');
+   WHEN others THEN
+      dbms_output.put_line('Error!');
+END;
+
+
+User defind exception
+-----------------------------
+DECLARE
+   c_id customers.id%type := &cc_id;
+   c_name  customers.name%type;
+   c_addr customers.address%type;
+
+   -- user defined exception
+   ex_invalid_id  EXCEPTION;
+BEGIN
+   IF c_id <= 0 THEN
+      RAISE ex_invalid_id;
+   ELSE
+      SELECT  name, address INTO  c_name, c_addr
+      FROM customers
+      WHERE id = c_id;
+	  
+      DBMS_OUTPUT.PUT_LINE ('Name: '||  c_name);
+      DBMS_OUTPUT.PUT_LINE ('Address: ' || c_addr);
+   END IF;
+EXCEPTION
+   WHEN ex_invalid_id THEN
+      dbms_output.put_line('ID must be greater than zero!');
+   WHEN no_data_found THEN
+      dbms_output.put_line('No such customer!');
+   WHEN others THEN
+      dbms_output.put_line('Error!'); 
+END;
+/
+
+
+Find Table size (table occupaied in Hard disk)
+-----------------------------------------------------
+select SEGMENT_NAME,BYTES/1024/1024 USED_MB,num_rows,last_analyzed 
+from DBA_SEGMENTS x, dba_tables y
+where SEGMENT_NAME='Table_Name'
+and X.SEGMENT_NAME=Y.TABLE_NAME;
+
+
+To see the procedure content
+	select * from user_source;
+
+
+Check db connections
+---------------------
+select * from v$parameter where lower(name) like '%sessions%';
+
+
+Check resource utilisation
+-------------------------------
+select resource_name, current_utilization, max_utilization, limit_value 
+    from v$resource_limit 
+    where resource_name in ('sessions', 'processes');
+
+
+
+
+
+
+ select replace('text   with          spaces',' ','') from dual;
+
+grand permission query
+-------------------------
+grant all on TableName to sbapi;
+
+create or replace procedure ProcName
+as
+begin
+dbms_output.put_line('test');
+end;
+
+
+--Get locked objects from DB
+select * from v$locked_object;
+
+--Getting DB Objects
+select * from dba_objects;--Full DB objects(from all schema)
+select * from user_objects;--Schema level DB objects
+
+
+for bug  - object SYS_PLSQL_753B97B_356_1 does not exist 
+sol - drop type SYS_PLSQL_753B97B_Dummy_1;
+
+to remove constraint with partition by 
+alter table sbinternal.sb_comm_DISHNR_SUB_LOOKUP enable row movement;
+
+
+
+Decode is like swithch case. for below mentioned code 
+first parameter is matching param (like switch('matchin param'), when second or fourth or sixth matchs with Matching param then 3,5,7 will return respectively)
+
+ORDER BY DECODE
+                  (
+                    UPPER(LV_SORT_COLUMN),
+                    'Sender',
+                    INB.SENDER,
+                    'Subject',
+                    INB.SUBJECT,
+                    'CreatedDate',
+                    INB.CREATEDDATE,
+                    INB.SENDER
+                  )
+
+
+
+Getting sessions, Oracle profiling, Find proc called
+-------------------------------------------------------
+select * from SYS.V_$SQL;
+select * from sys.v_$session  ;
+
+SELECT            
+ S.LAST_ACTIVE_TIME,     
+ S.MODULE,
+ S.SQL_TEXT, 
+ S.SQL_PROFILE,
+ S.EXECUTIONS,
+ S.LAST_LOAD_TIME,
+ S.PARSING_USER_ID,
+ S.SERVICE                                                                       
+FROM
+ SYS.V_$SQL S, 
+ SYS.ALL_USERS U
+WHERE
+ S.PARSING_USER_ID=U.USER_ID 
+-- AND UPPER(U.USERNAME) IN ('oracle user name here')   
+ORDER BY S.LAST_ACTIVE_TIME desc;
+
+
+
+Character large objects (CLOBs): These are variable-length strings that can be up to 128 terabytes.

@@ -1,0 +1,19 @@
+Where ever possible try to use CDN.
+Advantages of CDN is
+1. Jquery, Bootstraps are used by many websites from CDN. so if our website also
+uses CDN, then already cached files (when users already used in other websites), 
+will be loaded from browser itself
+
+to use CDN in MVC we can use bundlers
+
+bundle.UseCdn = true
+bundles.Add(new ScriptBundle("~/bundles/jqueryval","//google.cdmn.jquery.js").
+include("~scripts/jquery.js"));
+//and in web.config 
+<system.web><compilation debug="false"
+
+
+If CDN is down then it will refer local 
+
+//google.cdmn.jquery.js
+// // Means it can use HTTP or https based on page loaded

@@ -1,0 +1,16 @@
+ERD diagram
+Entity relation diagram. this used to describe the link on DB objects
+
+
+Row in tables are called Entity
+
+Relation types
+-----------------------
+one to many
+one to many or one
+one to one
+sero or one
+zero or many
+one or many
+only one 
+one

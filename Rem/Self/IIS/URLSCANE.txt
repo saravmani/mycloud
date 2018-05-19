@@ -1,0 +1,16 @@
+URL scan is a software to filter the server headers 
+UrlScan 3.1 is a security tool that restricts the types of HTTP requests that IIS will process. By blocking specific HTTP requests, the UrlScan 3.1 security tool helps to prevent potentially harmful requests from reaching applications on the server. UrlScan 3.1 is an update to UrlScan 2.5 supports IIS 5.1, IIS 6.0 and IIS 7.0 on Windows Vista and Windows Server 2008.
+
+
+Pre request (windows 2008 R2 server)iis8.5
+-------------------------------------------------
+IIS Metabase  should be enabled
+
+Enable IIS metabase 
+----------------------
+Click Start, click Administrative Tools, and then click Server Manager.
+In the navigation pane, expand Roles, right-click Web Server (IIS), and then click Add Role Services.
+In the Select Role Services pane, scroll down to IIS 6 Management Compatibility.
+Click to select the IIS 6 Metabase Compatibility, IIS 6 WMI Compatibility, and IIS 6 Management Console check boxes.
+In the Select Role Services pane, click Next.
+In the Confirm Installations Selections pane, click Install.

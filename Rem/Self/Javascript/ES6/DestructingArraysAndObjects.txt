@@ -1,0 +1,49 @@
+#Destructing used to assign the array values into individual variables
+
+let [a,b,c]=[21,34,"somevalue"];
+console.log(c);//some value
+
+[a,b,...c] = [1,2,3,4,5]
+console.log(c);//3,4,5
+
+we can able to assign the object properties to individual variables 
+
+let personInfo={
+    name:"saravMani",
+    role:"King",
+    age:32
+}
+
+let {personName,personRole,personAge} = personInfo;//this is not working.. i think variable name should be same
+console.log(personName, personRole);
+
+
+var {name,role,age} = personInfo;//this is working fine
+let {name,role,age} = personInfo;//this also working fine
+console.log(name, role);
+
+let {role,name} = personInfo;//changing the order also working. it depends on name of the variable only
+
+Destructing using functions
+----------------------------------
+function test([a,b]){
+    console.log(a);//some value
+}
+test([1,2,3,4,5]);//1
+
+//Destructing with rest parameter
+function testOne([a,...b]){
+    console.log(b);//some value
+}
+testOne([1,2,3,4,5]);//outputs array
+
+
+var book ={
+    bookId:1234,
+    bookName:"success"
+}
+
+let {bookId,bookName} = book;
+console.log(bookName);//success
+
+

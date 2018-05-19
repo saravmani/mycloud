@@ -1,0 +1,277 @@
+System.Diagnostics.Debug.WriteLine(this); // can be used to write debug information in 
+//Visual studio's output window
+
+In C# methods are sealed by default. In Java they're virtual by default.
+
+Assembly binding configuration in config file
+--------------------------------------------------
+"When you build a .NET Framework application against a specific version of a strong-named assembly, the application uses that version of the assembly at run time. However, sometimes you might want the application to run against a newer version of an assembly."
+
+Ex:
+ <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <qualifyAssembly partialName="Oracle.DataAccess" fullName="Oracle.DataAccess, Version=4.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342" />
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.0.0" newVersion="4.0.0.0" />
+      </dependentAssembly>
+
+
+
+
+finalise
+---------------
+dis will get called by garbage collector
+so this will not have any access modifiers. we cant make explicitly call this method
+in c# we implement the finalize with distructor. but compiler will change to finalize.
+
+Ex:
+class a
+{
+
+
+~a()
+{
+}
+}
+
+
+c# language version and compiler version are inter related
+but frame work is different
+
+Dynamic compilation
+---------------------
+We can  dynamically complie the C# code by invoking csc.exe with file input.
+or We can go with 
+using Microsoft.CSharp;
+.
+.
+ICodeCompiler comp = (new CSharpCodeProvider().CreateCompiler());
+ CompilerParameters cp = new CompilerParameters();
+            cp.ReferencedAssemblies.Add("system.dll");
+ cp.GenerateExecutable = false;
+            cp.GenerateInMemory = true;
+comp.CompileAssemblyFromSource(cp, "code.....");
+
+You'll also need to be aware that App_Code is compiled into a different assembly than your code-behind code, 
+so you can't access internal code across the different assemblies.
+
+CLR
+-----
+PE- Portable Executable
+The main difference between a Windows PE and a .NET PE is that the Windows PE is executed by the operating system, but .NET PEs are 
+turned over to the .NET Framework's CLR.
+
+If a Windows executable is to interoperate with the .NET Framework, it interfaces with a COM wrapper for the desired .NET
+functionality, instead of accessing the functionality directly. Similarly, if a .NET application utilizes Windows (COM) objects, 
+it needs a set of classes that expose the functionality, instead of accessing it directly. This communication between .NET and 
+Windows is called "interoperability". Included in the .NET SDK are two sets of two tools each. One set is for .NET-to-COM operations,
+ and the other is for COM-to-.NET operations.
+
+The CLR stands for  Common Language Runtime  is an Execution Environment . It works as a layer between 
+Operating Systems and the applications written in .Net languages that conforms to the Common Language Specification (CLS).
+
+
+When .Net application is executed at that time control will go to Operating System,then Operating System Create a process to load CLR
+The program used by the operating system for loading CLR is called runtime host,which are diffrent depending upon the type of 
+application that is desktop or web based application i.e.
+The runtime host for desktop applicaitons is API function called CorbinToRuntime.
+The runtime host for web based applications is asp.net worker process(aspnet-wp.exe).
+
+The runtime host loads the runtime into a process, creates the application domains within the process, and loads user code into the
+ application domains.
+The .NET Framework ships with a number of different runtime hosts, including the hosts listed in the following table.
+
+Creates application domains in which to run managed controls. The .NET Framework supports the download and execution of
+ browser-based controls. The runtime interfaces with the extensibility mechanism of Microsoft Internet Explorer through
+ a mime filter to create application domains in which to run the managed controls. By default, 
+one application domain is created for each Web site.
+"Runtime" rerers to CLR.
+
+Below metioned runtime hosts are included in .net framework
+	Asp.net, Windows shell and Internet Explorer (to run managed moduels which are created to run on IE )
+
+
+Debugging
+--------------
+There are two types of debuggers: kernel and user-mode. Kernel debuggers are used to debug drivers 
+and the Windows kernel. User-Mode debuggers are used for applications and services. We are interested
+ in user-Mode debuggers of which there are two in the Windows debugging toolkit: WinDbg, which is
+ GUI based (with a circa 1990�s interface) and cdb, which is a command line tool.
+Both of these debuggers provide a wrapper around dbgEng.dll, which actually does the debugging
+
+Dynamic(feature of .net 4.0)
+---------
+	Objects defined with dynamic keyword can change their type at runtime. Isn't it cool?
+
+
+Dbugging
+-----------------
+Generating PDB files for release executables does not affect any optimizations, or significantly alter the size of the generated files. Typically, the only difference is the path, and the file name of the PDB file is embedded in the executable. For this reason, you should always produce PDB files, even if you don't want to ship them with the executable.
+
+
+An async method will be run synchronously if it does not contain the await keyword.
+An async method can return only void or a Task.
+
+Async Programming
+---------------------
+ 1:	private async void btnCalculate_Click(object sender, RoutedEventArgs e)
+ 2:       {
+ 3:           int number1 = int.Parse(txtNumber1.Text);
+ 4:           int number2 = int.Parse(txtNumber1.Text);
+ 5:           int result = 0;
+ 6:           result = await Calculate(number1, number2);
+ 7:           txtAnswer.Text = result.ToString();
+ 8:
+ 9:       }
+ 10:
+ 11:       private Task<int> Calculate(int number1, int number2)
+ 12:       {
+ 13:           Task<int> t = new Task<int>(BeginCalculate, new Tuple<int, int>(number1, number2));
+ 14:           t.Start();
+ 15:           return t;
+ 16:       }
+in line 1 before the return type, the new async keyword takes it�s place. It tells the compiler that we are going to use the await keyword in this method. 
+
+
+
+
+
+Example for c# Task
+--------------------------
+  private void Calculate(int number1, int number2)
+ 17:        {
+ 18:            Task<int> t = new Task<int>(BackGroundCalculate, new Tuple<int, int>(number1, number2));
+ 19:            t.ContinueWith(EndCalculate);
+ 20:            t.Start();
+ 21:
+ 22:        }
+ 23:
+ 24:        /// <summary>
+ 25:        /// Method that goes into the task
+ 26:        /// </summary>
+ 29:        private int BackGroundCalculate(object numbersTuple)
+ 30:        {
+ 31:            Thread.Sleep(20000);
+ 32:            Tuple<int, int> numbers = (Tuple<int, int>)numbersTuple;
+ 33:            return numbers.Item1 + numbers.Item2;
+ 34:        }
+ 35:
+ 36:        /// <summary>
+ 37:        /// ContinuationMethod that gets executed when task finishes, similar to Callback functions from before...
+ 38:        /// </summary>
+ 41:        /// <returns></returns>
+ 42:        private void EndCalculate(Task<int> previousTask)
+ 43:        {
+ 44:            //to update the UI thread we need to use the dispatcher
+ 45:            this.Dispatcher.Invoke(new Action(() => txtAnswer.Text = previousTask.Result.ToString()));
+ 46:        }
+
+
+Immutable means, we can modify the object once it is set. Ex. String
+Point class is immutable
+when ever we modify the string value, then old object will be unreferenced and 
+ne object got created. 
+
+[System.Serializable()]        
+public class Employee  
+{
+    public int ID;
+    public string Name;        
+    [System.NonSerialized()] public int Salary; 
+}
+
+
+Convert date time to specific format
+------------------------------------
+System.DateTime.Now.ToString("MMM-yy");//Jan-14
+
+Change the culture
+----------------------
+System.Threading.Thread.CurrentThread.CurrentCulture=new CultureInfo("ar-AE");
+
+
+
+Set Maximum Parallelism - Threads,TPL, maxthreads,max threads
+---------------------------------------
+int concurrencyLevel =  Environment.ProcessorCount * idealThreadsPerProcessor;
+ParallelOptions options = new ParallelOptions { MaxDegreeOfParallelism = concurrencyLevel };
+Parallel.For(0, 3, options, delegate(int param) { taskWork(); });
+
+
+
+C:\Users\Administrator>sc.exe create "SB 2.0�CIRBulkEngine3" binPath= "C:\SB\Bul
+kEngine\SW\Dnb.SB.BulkEngine.WinService.exe" DisplayName= "SB 2.0�CIRBulkEngine3
+"
+
+
+Task parallelism
+------------------
+  Task<string> TaskObj = new Task<string>(() =>
+                {
+                    System.Threading.Thread.Sleep(1000);
+                    return "test string";
+                });
+                TaskObj.Start();
+                try
+                {
+// If the task got canceled, Result will throw an AggregateException
+      Console.WriteLine("The sum is: " + TaskObj.Result);   // An Int32 value
+                }
+                catch (AggregateException ae)
+                {
+                    ae.Handle(e => e is OperationCanceledException);
+                    Console.WriteLine("Sum was canceled");
+                }
+
+
+
+
+using 'sizeof' method we can check only the sizes of value types, you cannot check the size of a reference type. For example, you cannot check the size of a string.
+
+
+Checking the Two Objects Have the Same Type It Will Return True Otherwise False
+----------------------------------
+     Object.ReferenceEquals(obj1.GetType(), obj3.GetType()));
+     (y.GetType()) --used to to get the class details)
+
+
+
+camelCase in this we write first letter with lower case and second word with starting first letter in upper case, e.g., firstName, lastName
+2.PascalCase in this we write first letter with upper case and second word with starting first letter in upper case, e.g., FirstName, LastName
+
+Mostly, variable names are written by using camelCase naming convention. But it�s not mandatory, it is just a professional way of writing names like this:
+
+
+Data types such as integers, numeric, bytes, Booleans, char are called value type. Value types are derived from the ValueType class in System namespace.
+
+
+Garbage Collecter
+---------------------
+The managed heap is a series of allocated memory segments (approx 16Mb in size each) to store and manage objects. 
+ If the memory is insufficient to create the object, the garbage collector search the dead objects for memory reclaim for the newly object.
+
+
+c# 4.5 features
+------------------
+C# program that uses ProfileOptimization
+ static void Main()
+    {
+	// Profiles directory must exist.
+	// ... "profile" is created.
+	ProfileOptimization.SetProfileRoot("C:\\profiles\\");
+	ProfileOptimization.StartProfile("profile");
+    }
+
+rofileOptimization helps programs start up faster. We call the SetProfileRoot and StartProfile methods at startup. After the program exists, a profile file is created. At next startup, this profile is used to compile methods.
+Note:
+ProfileOptimization requires a computer with at least two logical processor cores.
+
+
+Create service using command prompt
+------------------
+SC CREATE "SERVERICDFDF NMAMAMAM" binPath= "c:\dfgdfgdfg�(file:///c:/dfgdfgdfg)"
+
+
+As a general rule, if you have under 4 GB of RAM in your computer, you don�t need a 64-bit CPU, but if you have 4 GB or more
+ The 64-bit version of Windows handles large amounts of random access memory (RAM) more effectively than a 32-bit system.

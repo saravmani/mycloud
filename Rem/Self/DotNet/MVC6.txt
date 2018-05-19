@@ -1,0 +1,50 @@
+appsettings.json
+	connection string
+project.json
+	dependent dlls, frame work to use
+
+global.json
+	It is for solution detials. it will have the project info 
+
+
+DI everywhere
+	Startup
+	Configuration
+	Middleware classes
+	Hosting
+
+
+Webapi + webpages + MVC = MVC6
+Can Run on IIS or Self Hosted
+Supports .Net Core
+Deep Integeration with DI
+
+
+
+Static files goes into wwwroot folter
+
+Demo
+	start up add Config files, Add environmentt name and show
+		based on evn name we can have different config files and check parallely 
+
+
+Microsoft.AspNet.Http.Abstractions
+
+
+
+
+iis for - rosyline
+other server - static content service
+
+what is bower and npm
+client side developmetn using Gulp(what it means)
+
+
+
+thr is no response.Write();
+new HttpContext().Response.WriteAsync()
+
+
+
+it is like nodejs style. add what we need
+

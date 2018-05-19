@@ -1,0 +1,6 @@
+what is WebRTC?
+  it read it combined with websockets
+why POST is costlier than GET?
+
+How windows authentication works ? how credential asked by browser, and how this information is passed to server?
+have to check how .. inranet is working?

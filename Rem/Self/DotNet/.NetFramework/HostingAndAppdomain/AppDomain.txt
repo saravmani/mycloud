@@ -1,0 +1,73 @@
+﻿When the CLR COM server initializes, it creates an AppDomain. An AppDomain is a logical container for
+a set of assemblies. The first AppDomain created when the CLR is initialized is called the default
+AppDomain; this AppDomain is destroyed only when the Windows process terminates.
+
+The whole purpose of
+an AppDomain is to provide isolation.
+
+
+AppDomain Advantages
+=============================
+
+The CLR doesn’t support the ability to unload a single
+assembly from an AppDomain. However, you can tell the CLR to unload an AppDomain, which
+will cause all of the assemblies currently contained in it to be unloaded as well.
+
+
+Objects created by code in one AppDomain cannot be accessed directly by code in
+another AppDomain When code in an AppDomain creates an object, that object is “owned”
+by that AppDomain. In other words, the object is not allowed to live beyond the lifetime of the
+AppDomain whose code constructed it. Code in other AppDomains can access another
+AppDomain’s object only by using marshal-by-reference or marshal-by-value semantics. This
+enforces a clean separation and boundary because code in one AppDomain can’t have a direct
+reference to an object created by code in a different AppDomain. This isolation allows
+AppDomains to be easily unloaded from a process without affecting code running in other
+AppDomains.
+
+AppDomains can be individually secured When created, an AppDomain can have a
+permission set applied to it that determines the maximum rights granted to assemblies running
+in the AppDomain. This allows a host to load some code and be ensured that the code cannot
+corrupt or read important data structures used by the host itself.
+• AppDomains can be individually configured When created, an AppDomain can have a
+bunch of configuration settings associated with it. These settings mostly affect how the CLR
+loads assemblies into the AppDomain. There are configuration settings related to search paths,
+version binding redirects, shadow copying, and loader optimizations.
+
+
+A great feature of Windows is that it runs each application in its own process address
+space. This ensures that code in one application cannot access code or data in use by another
+application. Process isolation prevents security holes, data corruption, and other unpredictable
+behaviors from occurring, making Windows and the applications running on it robust. Unfortunately,
+creating processes in Windows is very expensive. The Win32 CreateProcess function is very slow,
+and Windows requires a lot of memory to virtualize a process’s address space.
+
+
+there is no hard-coded limit to the number of
+AppDomains that could be running in a single Windows process
+
+
+
+
+
+Advantages of Appdomain
+=========================
+In addition to the protection guarantees built in by the process, an application domain further 
+introduces the following guarantees:
+
+Faulty code within an application domain cannot adversely affect code running in a 
+ different application domain within the same process.
+Code running within an application domain cannot directly access resources in a 
+different application domain.
+Code-specific configurations can be configured on a per application domain basis.
+ For example, you can configure security-specific settings on a per application domain basis.
+
+
+Good use case scenario for AppDomains : "NUnit was written by .NET Framework experts. 
+If you look at the NUnit source, you see that they knew how to dynamically create AppDomains 
+and load assemblies into these domains. Why is a dynamic AppDomain important? 
+What the dynamic AppDomain lets NUnit do is to leave NUnit open, 
+while permitting you to compile, test, modify, recompile, and retest code without ever shutting down. 
+You can do this because NUnit shadow copies your assemblies, loads them into a dynamic domain, 
+and uses a file watcher to see if you change them. If you do change your assemblies, 
+then NUnit dumps the dynamic AppDomain, recopies the files, creates a new AppDomain, 
+and is ready to go again."

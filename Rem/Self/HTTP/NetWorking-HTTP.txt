@@ -1,0 +1,18 @@
+First browser will make connecton (socket) to server using TCP.
+then on top tcp we can use athor protocols like http, FTP to send the data to server
+
+
+connection:keep-alive
+----------------------------
+browser will made tcp connection to server, and reuse the connection accross multiple requests.
+If you refresh the page request in the same browser, you’ll only get the request
+event message(s).
+The connection has already been established, and is
+maintained until the user closes the browser or some timeout occurs
+the same resource with difference browsers establishes a separate connection
+event for each.
+
+
+connection:close
+------------------------
+this will create new conneciton on each request

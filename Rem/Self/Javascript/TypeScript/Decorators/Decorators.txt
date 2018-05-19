@@ -1,0 +1,26 @@
+Decorators are used for Declartive programming
+
+to enable decorators in tsconfig.json file enable experimentalDecorators as true
+"experimentalDecorators":true
+
+it s eqaulent to c# attributes
+
+Class Decorators
+--------------------
+it will take constructor method as a input. type of input is Function
+function toClass(target:Function){
+}
+
+@toClass
+Class MyClassName{
+}
+
+Funciton Decorators
+------------------------
+function toFunction(vProto:any,name:string,dec:PropertyDescriptor){
+//vProto this will be prototype of the class on which targed function is declared or
+    constructor function if function is static
+
+//p - name of the decorated member
+//dec - PropertyDescriptor of the member
+}

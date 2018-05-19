@@ -1,0 +1,40 @@
+
+Avoid the overhead of caching and change tracking from the context object(AsNoTracking)
+--------------------------------------------------------------------------------
+If we want to only read the data and if we not going to update then we can avoid change tracking
+and caching. Can easily do this using the AsNoTracking method.
+
+ var users = objTaskList.TaskUsers.AsNoTracking().Include("TaskLists").ToList();
+ var cng = objTaskList.ChangeTracker.Entries().Count();
+ //#Now if above count will be 0. bcs we used AsNoTracking
+
+ When chaining the AsNoTracking method to your query, the objects resulting from that query are not tracked in
+the context object.
+By default, the results of your queries are tracked in the context object. This makes updating and deleting objects
+effortless, but at the cost of some memory and CPU overhead. For applications that stream large numbers of objects,
+such as browsing products at an ecommerce website, using the AsNoTracking option can result in less resource
+overhead and better application performance.
+As you are not caching the results of a query, each time you execute the query Entity Framework will need
+to materialize the query result. Normally, with change tracking enabled, 
+Entity Framework will not need to rematerialize
+a query result if it is already cached in the context object.
+
+POC on AsNoTracking
+------------------------
+ var Validatee  =  tsk.ToList();
+var users = objTaskList.TaskUsers.AsNoTracking().Include("TaskLists").ToList();
+var cng = objTaskList.ChangeTracker.Entries().Count();
+//cng is 0
+
+var users1 = objTaskList.TaskUsers.Include("TaskLists").ToList();
+var cng1 = objTaskList.ChangeTracker.Entries().Count();
+//cng is 4.... note we are not included asnotracking
+
+POC 2
+------------
+var valuuee = (from a in objTaskList.TaskLists.AsNoTracking()
+                select a).FirstOrDefault();
+valuuee.TaskDescription = DateTime.Now.Ticks.ToString();
+objTaskList.SaveChanges();
+//Above code not updating the column value.. 
+//but if remove AsNoTracking.. then it is updating the value in DB

@@ -1,0 +1,49 @@
+Service.ts
+----------------------------
+import { Injectable } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+//i.e in older way is http from @angular/http
+
+@Injectable()
+export class ServerinteractionService {
+  constructor(private objHttpClient: HttpClient) { }
+  fetchData() {
+    this.objHttpClient.get("http://localhost:61353/api/Values")
+    .subscribe(data => {
+      console.log(data);
+    })
+  }
+}
+
+Module.ts
+-------------------------------------------------
+import { NgModule }         from '@angular/core';
+import { BrowserModule }    from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    // import HttpClientModule after BrowserModule.
+    HttpClientModule,
+  ],
+  declarations: [
+    AppComponent,
+  ],
+  bootstrap: [ AppComponent ]
+})
+export class AppModule {}
+
+
+
+Error Handling in HttpClient
+-----------------------------
+ fetchData() {
+    this.objHttpClient.get("http://localhost:61353/api/Values")
+    .subscribe(data => {
+      console.log(data);
+    },
+    errorobj=>{
+      console.log(errorobj);
+    }
+  )

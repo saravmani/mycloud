@@ -1,0 +1,417 @@
+
+RESTful
+web services require more design and development effort but produce loosely coupled software systems that are
+easier to manage and maintain.
+
+As you will learn, decoupling the
+client from a web service requires more of an investment of time and effort, which is then paid back through increased
+flexibility and maintainability,
+
+RESTful web services are useful for decoupling clients and the web services they
+consume. They require more design and development effort, but they make it easier to
+maintain the web service.
+
+when we can choose RESTFUL service?
+when you expect a high rate of change in the API delivered by the web service.
+You should use RESTful web services when clients are being developed by third parties - because we
+expect more requirements from the client
+
+The less prior
+knowledge a client requires to consume a web service, the more RESTful that service is.
+
+
+
+The terms verbs and methods are equivalent when referring to HTTP and can be used interchangeably
+
+
+
+
+
+
+WebApiConfig.cs under App_Start folder
+The WebApiConfig.cs is configuration file for Web API. You can configure routes and other things for web API, 
+same like RouteConfig.cs is used to configure MVC routes.
+
+Required nuget packages for webapi
+---------------------------------
+first create empty project.
+then add below nuget package
+search for 'Microsoft ASP.NET Web API2.2' package and click on Install 
+
+Web API supports code based configuration. It cannot be configured in web.config file. We can configure Web API to customize the behaviour of Web API hosting infrastructure and components such as routes, formatters, filters, DependencyResolver, MessageHandlers, ParamterBindingRules, properties, services etc.
+
+HttpConfiguration supports below configurations
+----------------------------------------------
+ependencyResolver	Gets or sets the dependency resolver for dependency injection.
+Filters	Gets or sets the filters.
+Formatters	Gets or sets the media-type formatters.
+IncludeErrorDetailPolicy	Gets or sets a value indicating whether error details should be included in error messages.
+MessageHandlers	Gets or sets the message handlers.
+ParameterBindingRules	Gets the collection of rules for how parameters should be bound.
+Properties	Gets the properties associated with this Web API instance.
+Routes	Gets the collection of routes configured for the Web API.
+Services	Gets the Web API services.
+
+
+Setps to create standalone webapi project in empty application
+----------------------------------------------------------------------
+1. after create empty proj add  'Microsoft ASP.NET Web API2.2' package
+2. then create Webapiconfiguration.cs file in app_start (it can be any name) and below code
+	public static class HelloWebAPIConfig
+    {
+        public static void Register(HttpConfiguration config)
+        {
+        ##REFER-ATTRIBUTEROUTE
+            // To enable attribute routing
+            config.MapHttpAttributeRoutes();
+
+            //Conventional routing
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
+        }
+    }
+3. add Global.asax
+	 protected void Application_Start(object sender, EventArgs e)
+    {
+        GlobalConfiguration.Configure(HelloWebAPIConfig.Register);
+    }
+4.Now add empty api controller
+	public class HelloController : ApiController
+    {
+        public string Get()
+        {
+            return "Hello World";
+        }
+    }
+
+5. now u can run and chekc 
+	http://localhost:xxxx/api/hello
+
+
+The name of a controller class must end with "Controller"
+
+Controllers can be created i any folder. but  recomended is under controller folder
+Action method name can be the same as HTTP verb name or it can start with HTTP verb with any
+ suffix (case in-sensitive) or you can apply Http verb attributes to method.
+
+ name of the action methods in the Web API controller plays an important role.
+Method name must start with Http verbs otherwise apply http verbs attribute.
+
+ Action method name can be the same as HTTP verbs like Get, Post, Put, Patch or Delete
+ However, you can append any suffix with HTTP verbs for more readability. For example, Get method can be GetAllNames(), GetStudents() or any other name which starts with Get.
+
+ For GET request the action method name can be any of following
+Get() 
+get()
+GET()
+GetAllStudent()
+*any name starting with Get *
+if we are using HTTP verbs as method name then when calling web api we no need to metion the action name. based onH
+HTTP verb routing will happen
+http://localhost:1234/api/values // if we use GET call then Get() action method will be automatically called
+
+The reason to use api in the route template is just to avoid confusion between MVC controller and Web API controller. You can use any pattern based on your app architecture.
+
+
+
+Difference btn webapi and mvc controller
+------------------------------------------------
+Web API Controller	                                                             MVC Controller
+Derives from System.Web.Http.ApiController class	                            Derives from System.Web.Mvc.Controller class.
+Method name must start with Http verbs otherwise apply http verbs attribute.	Must apply appropriate Http verbs attribute.
+Specialized in returning data.	                                                Specialized in rendering view.
+Return data automatically formatted based on Accept-Type header attribute.      Returns ActionResult or any derived type.
+Default to json or xml.
+Requires .NET 4.0 or above	                                                    Requires .NET 3.5 or above
+
+
+
+
+Routing
+---------
+Web API routing is similar to ASP.NET MVC Routing. 
+It routes an incoming HTTP request to a particular action method on a Web API controller.
+
+Two types of routing
+---------------------------
+1. Convention-based Routing
+2. Attribute Routing
+
+1. Convention based routing
+----------------------------------
+In the convention-based routing, Web API uses route templates to determine which controller and action method to execute. At least one route template must be added into route table in order to handle various HTTP requests.
+
+2. Attribute routing
+------------------------
+Attribute routing is supported in Web API 2. Can be applied Controller level or Method level
+[Route()]
+In order to use attribute routing with Web API, it must be enabled in WebApiConfig by calling 
+config.MapHttpAttributeRoutes() method. ##REFER-ATTRIBUTEROUTE
+
+Ex: 
+public class StudentController : ApiController
+{
+    [Route("api/student/names")]
+    public IEnumerable<string> Get()
+    {
+        return new string[] { "student1", "student2" };
+    }
+}
+
+
+Parameter binding
+--------------------
+If action method's parameter type is premitive then by default value will try to take from querystirng.
+if it is complex type the it will try to take from body
+
+query stirn The order of the parameters can be different. But name (case-insensitive) should be match
+
+
+POST method by default take premitive data parameter from query stirng. and Complex data from Body
+Post action method cannot include multiple complex type parameters because at most one parameter is allowed to be read from the request body.
+
+by default Web API gets the value of a primitive parameter from the query string and complex type parameter from the request body. But, what if we want to change this default behaviour?
+
+for this we have to use [FromUri] [FromBody]
+public Student Get([FromUri] Student stud)
+
+Note : Name of the complex type properties and query string parameters must match.
+
+Note: FromBody attribute can be applied on only one primitive parameter of an action method. It cannot be applied on multiple primitive parameters of the same action method.
+
+
+Return types
+-----------------
+If return type is void then server will response with 204 status code. which means "No Content"
+
+webapi can return below
+-----------------------------
+Void
+Primitive type or Complex type
+HttpResponseMessage
+IHttpActionResult
+
+Web API controller always returns an object of HttpResponseMessage to the hosting infrastructure. 
+
+We can also send HttpResponseMessage
+The advantage of sending HttpResponseMessage from an action method is that you can configure a response your
+ way. You can set the status code, content or error message (if any) as
+  per your requirement.
+
+Ex:  
+public HttpResponseMessage Get(int id)
+{
+    Student stud = GetStudentFromDB(id); 
+
+    if (stud == null) {
+        return Request.CreateResponse(HttpStatusCode.NotFound, id);
+    }
+
+    return Request.CreateResponse(HttpStatusCode.OK, stud);
+} 
+
+
+The IHttpActionResult was introduced in Web API 2 (.NET 4.5).
+ An action method in Web API 2 can return an implementation of IHttpActionResult class which is more or
+less similar to ActionResult class in ASP.NET MVC.
+
+You can create your own class that implements IHttpActionResult or use various methods of ApiController class that returns an object that implement the IHttpActionResult.
+
+
+Ex:
+public IHttpActionResult Get(int id)
+{
+    Student stud = GetStudentFromDB(id);
+            
+    if (stud == null)
+    {
+        return NotFound();
+    }
+
+    return Ok(stud);
+}
+
+ As you can see, we don't have to write much code because NotFound() and Ok() method does it all for us.
+
+
+ InternalServerError()	Creates an InternalServerErrorResult with status code 500 Internal server error.
+NotFound()	Creates a NotFoundResult with status code404.
+Ok()	Creates an OkResult with status code 200.
+Redirect()	Creates a RedirectResult with status code 302.
+RedirectToRoute()	Creates a RedirectToRouteResult with status code 302.
+ResponseMessage()	Creates a ResponseMessageResult with the specified HttpResponseMessage.
+StatusCode()	Creates a StatusCodeResult with the specified http status code.
+Unauthorized()	Creates an UnauthorizedResult with status code 401
+
+
+
+
+The Accept header attribute specifies the format of response data which the client expects
+ and the Content-Type header attribute specifies the format of the data in the request body 
+ so that receiver can parse it into appropriate format.
+ Ex:
+ Accept: application/json
+ Content-Type: application/json
+
+
+ Web API converts request data into CLR object and also serialize CLR object into response data based on Accept and Content-Type headers.
+ Web API includes built-in support for JSON, XML, BSON, and form-urlencoded data.  
+ 
+ For return formates webapi uses media formaters
+below are build in media formaters
+
+1. JsonMediaTypeFormatter - Internally, JsonMediaTypeFormatter uses third-party open source library called Json.NET to perform serialization.
+2. XmlMediaTypeFormatter - It uses System.Runtime.DataContractSerializer class
+3. FormUrlEncodedMediaTypeFormatter - Handles HTML form URL-encoded data
+4. JQueryMvcFormUrlEncodedFormatter - Handles model-bound HTML form URL-encoded data
+5. BsonMediaTypeFormatter 
+
+Buy default those formaters are added in GlobalConfiguration.Configuration.Formatters.
+If we want we can remvoe or add formatters
+
+JsonMediaTypeFormatter
+By default web api generates JSON in PascalCase. we can change it to CamelCase by using below code in global.asax file.
+GlobalConfiguration.Configuration.Formatters.JsonFormatter.UseDataContractJsonSerializer = new CamelCasePropertyNamesContractResolver();
+
+To create a media formatter, derive from one of these classes:
+MediaTypeFormatter. This class uses asynchronous read and write methods.
+BufferedMediaTypeFormatter. This class derives from MediaTypeFormatter but uses sychronous read/write methods.
+
+
+Filters
+---------
+Web API includes filters to add extra logic before or after action method executes.
+
+
+ActionFilter - Used to add extra logic before or after action methods execute.
+AuthenticateionFilter
+AutherisationFilter
+ExceptionFilter
+
+ActionFilterAttribute 
+-------------------------
+two ways we can write actionfilter attribute. 
+1. we can inherit ActionFilter
+2. Implement IActionFilter and inherit Attribute
+
+1. 
+provides two virtual mehods
+ public override void OnActionExecuting(HttpActionContext actionContext)
+    {
+        Trace.WriteLine(string.Format("Action Method {0} executing at {1}", actionContext.ActionDescriptor.ActionName, DateTime.Now.ToShortDateString()), "Web API Logs");
+    }
+
+    public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
+    {
+        Trace.WriteLine(string.Format("Action Method {0} executed at {1}", actionExecutedContext.ActionContext.ActionDescriptor.ActionName, DateTime.Now.ToShortDateString()), "Web API Logs");
+    }
+
+
+	2. 
+	public class LogAttribute : Attribute, IActionFilter
+{
+    public LogAttribute()
+    {
+
+    }
+    public Task<HttpResponseMessage> ExecuteActionFilterAsync(HttpActionContext actionContext, CancellationToken cancellationToken, Func<Task<HttpResponseMessage>> continuation)
+    {
+        Trace.WriteLine(string.Format("Action Method {0} executing at {1}", actionContext.ActionDescriptor.ActionName, DateTime.Now.ToShortDateString()), "Web API Logs");
+
+        var result = continuation();
+
+        result.Wait();
+            
+        Trace.WriteLine(string.Format("Action Method {0} executed at {1}", actionContext.ActionDescriptor.ActionName, DateTime.Now.ToShortDateString()), "Web API Logs");
+
+        return result;
+    }
+
+    public bool AllowMultiple
+    {
+        get { return true; }
+    }
+} 
+
+
+Difference between System.Web.Mvc.ActionFilterAttribute and System.Web.Http.Filters.ActionFilterAttribute
+---------------------------------------------------------------------------
+The System.Web.Http one is for Web API; the System.Web.Mvc one is for previous MVC versions
+
+Web api's Action filter contains follows
+It has OnResultExecuting and OnResultExecuted handlers ("Called by the ASP.NET MVC framework before/after the action result executes.")
+It can be executed asynchronously
+It does not let you specify an order of execution
+
+
+Note: we should not retrun objects directly from database. Recomended is we should transform it (Ex: Use viewModel)
+
+
+BSON
+----
+Web API also supports BSON format. As the name suggests, BSON is binary JSON, 
+it is a binary-encoded serialization of JSON-like documents.
+ Currently there is very little support for BSON and no JavaScript implementation is available for clients 
+ running in browsers.
+  This means that it is not possible to retrieve and automatically parse BSON data to JavaScript objects.
+ 
+
+
+
+BSON is the binary encoding of JSON-like documents that MongoDB uses when storing documents in collections.
+ It adds support for data types like Date and binary that aren't supported in JSON.
+
+
+consuming webapi from mvc controller
+----------------------------------------
+public class StudentController : Controller
+{
+    // GET: Student
+    public ActionResult Index()
+    {
+        IEnumerable<StudentViewModel> students = null;
+
+        using (var client = new HttpClient())
+        {
+            client.BaseAddress = new Uri("http://localhost:64189/api/");
+            //HTTP GET
+            var responseTask = client.GetAsync("student");
+            responseTask.Wait();
+
+            var result = responseTask.Result;
+            if (result.IsSuccessStatusCode)
+            {
+                var readTask = result.Content.ReadAsAsync<IList<StudentViewModel>>();
+                readTask.Wait();
+
+                students = readTask.Result;
+            }
+            else //web api sent error response 
+            {
+                //log response status here..
+
+                students = Enumerable.Empty<StudentViewModel>();
+				//Note this model state object. This will be used to dsipaly error message at CSHTML
+				//We can use ValidationSummery() method to display the error messages
+				//Ex:  @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+				
+            }
+        }
+        return View(students);
+    }
+}
+
+
+
+We can use HttpClient in console,winform etc., any .net application. To use this we can get HttpClient from nuget by using
+below command
+Install-Package Microsoft.AspNet.WebApi.Client.
+
+Before .Net4.0 we have to using Webclient. But WebClient having some limitation . to overcome this HttpClient has introduced .
+
+
+

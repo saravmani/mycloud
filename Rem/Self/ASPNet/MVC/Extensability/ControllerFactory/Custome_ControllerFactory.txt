@@ -1,0 +1,78 @@
+The controller factory is responsible for creating instances of controllers to service
+a request and the action invoker is responsible for finding and invoking the action method in the controller class.
+The MVC Framework includes default implementations of both of these components
+
+# The default controller factory expects suffix controller  ...Controller 
+
+MVC Interface for controller factory
+--------------------------------------------------------
+namespace System.Web.Mvc
+{
+    public interface IControllerFactory
+    {
+        IController CreateController(RequestContext requestContext, string controllerName);
+        SessionStateBehavior GetControllerSessionBehavior(RequestContext requestContext,string controllerName);
+        void ReleaseController(IController controller);
+    }
+}
+
+
+
+Sample Controller Factory code
+-----------------------------------------
+public class CustomControllerFactory : IControllerFactory
+{
+    public IController CreateController(RequestContext requestContext,string controllerName)
+    {
+        Type targetType = null;
+        switch (controllerName)
+        {
+            case "Product":
+                targetType = typeof(ProductController);
+                break;
+            case "Customer":
+                targetType = typeof(CustomerController);
+                break;
+            default:
+                requestContext.RouteData.Values["controller"] = "Product";
+                targetType = typeof(ProductController);
+                break;
+        }
+        return targetType == null ? null :
+        (IController)DependencyResolver.Current.GetService(targetType);
+    }
+    public SessionStateBehavior GetControllerSessionBehavior(RequestContext
+    requestContext, string controllerName)
+    {
+        return SessionStateBehavior.Default;
+    }
+    public void ReleaseController(IController controller)
+    {
+        IDisposable disposable = controller as IDisposable;
+        if (disposable != null)
+        {
+            disposable.Dispose();
+        }
+    }
+}
+}
+
+set custome controller factory in app start
+------------------------------------------------
+protected void Application_Start()
+{
+    AreaRegistration.RegisterAllAreas();
+    RouteConfig.RegisterRoutes(RouteTable.Routes);
+    ControllerBuilder.Current
+    .SetControllerFactory(new CustomControllerFactory());
+}
+
+
+do not recommend creating a custom controller this way is that finding controller
+classes in the web application and instantiating them is complicated. You need to be able to locate controllers
+dynamically and consistently and deal with all sorts of potential problems, such as disambiguating between classes
+with the same name in different namespaces, constructor exceptions and
+
+
+The GetControllerSessionBehavior method is used by the MVC Framework to determine
+if session data should be maintained for a controller.

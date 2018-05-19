@@ -1,0 +1,32 @@
+
+ex:
+Class Bird
+{
+ public IBehaviour objBehaviour{get;set;}// run time we can able to assign functionality
+
+ public void PerformAction()
+ {
+     this.objBehaviour.DoFly();
+
+ }
+
+}
+
+
+
+inheritance
+=======================
+Advantages of inheritance
+-------------------------------
+Extensibility -- extending the base class logic as per business logic of the derived class
+Reusability -- facility to use public methods of base class without rewriting the same
+Overriding--With inheritance, we will be able to override the methods of the base class so that meaningful  implementation of the base class method can be designed in the derived class.
+# can be Used for OCP - in particular implementation if we want to do override the extending functionality we can do...
+# Used in template pattern , Factory Method pattern
+# Used in abstraction pattern ex: weapon.attack, gun.attack and gun.load etc.,
+# Using run time polymorphism, we can able to add change the functionality at runtime
+  Code reusability increased through inheritance.
+
+disadvantages of inheritance
+------------------------------------
+ two classes (base and inherited class) get tightly coupled.

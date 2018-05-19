@@ -1,0 +1,24 @@
+Requirement gathering
+Technology identification 
+Base architecture design
+Find out common features required accross all the modules 
+  ex: Db connection, Logging etc.,
+Create common utilities
+Create common functionalities seperatly
+Create a framework to do the common functionalities
+Find the modules which are already available in market ex: loggin framework, caching framewokrs,
+    and buy or borrow those modules and make use of them. So that we can focus on only
+    domain specific coding
+
+Try seperate the modules with LESS dependency to each other. 
+     so that teams can work independently
+
+Try to use dependency containers. so that teams can work with interfaces alone.
+(Microservers architecture used to develop the fearures independently)
+
+
+
+Component diagrams - Put all the components in component diagram and mention
+  what are the functionalities
+Sequence diagrams - to define the flows
+

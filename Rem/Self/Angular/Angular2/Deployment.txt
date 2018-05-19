@@ -1,0 +1,49 @@
+
+
+For deployment we dont need all the js files which are there in 
+project.json.
+in project.json there are two sections
+	dependencies
+	devDependencies.
+
+
+Here dependencies are important for production environment
+
+mainly we need following js files alone with our own js files.
+
+@angular
+Reflect-metadata
+system.js
+ES6-shim
+rxjs
+zone.js
+
+above are framework. and below are configurations and our own code
+
+system.config.js
+HTML files
+CSS files
+typescript generated js files (which we written i.e components)
+
+dont deploy all the node modules
+
+
+
+
+AOT compilation
+---------------------
+Ahead of time compilation - compiles templates and converts into pure javascript code. (ng2 will analyse what we are doing insdie of the template and translates into pure js code).
+
+nromally if we do ng build .. it will not compile view templates.
+
+
+
+Webpack
+-----------
+ is a JavaScript module bundler. It takes modules with their dependencies and generates static assets representing those modules. 
+ Webpack known only 
+
+Note: Webpack and browserify are the bundlers.
+advantages of those tools is, that it will go thorugh our js files and read the code and then create the bundles based on its dependencies.
+as we are doing module based programming, we are going to have different many js files. so to solve the confusion we will go for this kind of bundlers. remember in .net mvc we will use bundling. but we have to specify the order properly to work with.
+how to bundle JavaScript. To bundle other assets likes CSS, HTML, images or just about anything it uses additional loaders. 

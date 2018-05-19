@@ -1,0 +1,10 @@
+Connect - NodeJS framework
+------------------------------
+    Connect is a framework, it connects the middleware components together using dispatcher.
+
+
+    Connect is a framework that uses modular components called middleware to implement
+web application logic in a reusable manner
+
+higher-level frameworks like Express extends and builds upon Connect with additional higher-level sugar.
+If we work with express we no need do coding with connect seperatly

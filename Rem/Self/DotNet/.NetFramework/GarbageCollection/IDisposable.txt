@@ -1,0 +1,100 @@
+
+IDisposable
+------------
+If the program quits unexpectedly (for example you kill the process) 
+there are absolutely no guarantees that the IDisposable.Dispose method will be called. 
+
+
+class a:IDisposable
+{
+    public void Dispose()
+    {
+        GC.SuppressFinalize(this);//#Instructing the GC to suppress the finalize call 
+        //for "this" object.#to ensure that destroctor will not called if Dispose() method called
+    }
+
+    ~a()
+    {
+        //if user forget to call dispose then destroctor will get called
+    }
+}
+
+ remember that Dispose may be called more than once. 
+ If that happens, you should never throw an exception, but you may choose to 
+ ignore the subsequent calls
+
+
+ public class ComplexCleanupBase : IDisposable
+{
+    // some fields that require cleanup
+    private bool disposed = false; // to detect redundant calls
+
+    public ComplexCleanupBase()
+    {
+        // allocate resources
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposed)
+        {
+            if (disposing)
+            {
+                // dispose-only, i.e. non-finalizable logic
+            }
+
+            // shared cleanup logic
+            disposed = true;
+        }
+    }
+
+    ~ComplexCleanupBase()
+    {
+        Dispose(false);
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+}
+
+
+
+public class MyClass : IDisposable
+{
+   private TextReader reader;
+   private bool disposed = false; // to detect redundant calls
+
+   public MyClass()
+   {
+       this.reader = new TextReader();
+   }
+
+   protected virtual void Dispose(bool disposing)
+   {
+       if (!disposed)
+       {
+           if (disposing)
+           {
+               if (reader != null) {
+                   reader.Dispose();
+               }
+           }
+
+           disposed = true;
+       }
+   }
+
+   pulic void Close()
+   {
+       Dispose(true);
+       GC.SuppressFinalize(this);
+   }
+
+   public void Dispose()
+   {
+       this.Close();
+   }
+}

@@ -1,0 +1,10 @@
+StyleCop analyzes C# source code to enforce a set of style and consistency rules. 
+It can be run from inside of Visual Studio or integrated into an MSBuild project.
+
+1. #it can able to identify small grammer mistakes in commands
+
+# we can create checking policy in vsts, and we can select style cop rules (we can choose only specific rules),
+and only if those rules satisfies we can allow developers to do checking
+
+
+Use static analysis tools ex: Fxcop, stylecop - to find issues at earliar stage of development

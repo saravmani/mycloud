@@ -1,0 +1,9 @@
+//idoaboutmathcalculate.js
+let indexjscannotseeme = "great!"; 
+let plusTwoNumber= (a,b)=>{ 
+   return a+b;
+}  
+module.exports = plusTwoNumber;
+//index.js
+const plus2num = require('./idoaboutmathcalculate');
+console.log(plus2num(2,5)); //7

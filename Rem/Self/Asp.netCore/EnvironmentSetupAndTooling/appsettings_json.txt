@@ -1,0 +1,14 @@
+Configuration will take heirarchy as below
+-------------------------------------------------
+appsettings.json -> Environment variables -> Command line argument
+Environment variables will override appsettings.json values. 
+and command line argument will override both.
+This will be useful. we can have development settings in appsettings.json. 
+production settings in env varabiles.
+so appsettings.json changes will not affect the applicaiton
+
+We can able to configure multipe appsettings files.
+asp.net core will will check the files in below names
+appsettings.json
+appsettings.{EnvironmentName}.json //ex:appsettings.Development.json
+

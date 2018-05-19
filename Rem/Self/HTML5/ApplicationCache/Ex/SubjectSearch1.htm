@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html manifest="sv1.zzingg">
+<script src="search.js"> </script>
+<script src="Scripts/jquery.js"> </script>
+
+
+<body>Search Subject
+</body>
+<script>
+alert('sss');//Running correctly
+$(document).ready(function(){alert('check')})//NOt working
+var appCache = window.applicationCache;
+$(appCache).bind(
+            "noupdate",
+            function( event ){
+                alert( "Checking for manifest" );
+            }
+        );
+</script>
+</html>

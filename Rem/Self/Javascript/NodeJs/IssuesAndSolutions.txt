@@ -1,0 +1,4 @@
+Be aware, though, that this can cause issues, especially in a team environment.
+If your team members are using the version of npm that’s installed with
+Node, and you’ve manually upgraded npm to the newer version, you all can
+have inconsistent build results that may not be easy to discover.

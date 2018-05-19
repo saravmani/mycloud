@@ -1,0 +1,66 @@
+Arry extras [Tags -> Array functions, array utilities, array utils]
+------------------------------------------------------------------
+
+
+var foo = ["a", "b", "c", "d"];
+
+for (var i = 0, len = foo.length; i < len; i++) {
+  console.log(foo[i]);
+}
+//above code will not readable if we have multiple nested loops
+
+
+Array extras allow us to replace entire loops with function calls, often improving code readability
+
+["a", "b", "c", "d"].forEach(function(element, index, array) {
+  console.log(element);
+});
+
+The one drawback is the performance hit that comes from invoking a function for each element in the array. Luckily, this penalty is often negligible. 
+
+
+map()
+-----
+The map() function is nearly identical to forEach(). The only difference is that map() returns an array
+ containing the values returned by the callback function.
+
+Ex: var sqrts = [1, 4, 9, 16, 25].map(Math.sqrt);
+console.log(sqrts);
+// displays "[1, 2, 3, 4, 5]"
+
+filter()
+------------
+Like forEach() and map(), the filter() method takes a callback function and optional this value. And, like map(), filter() returns
+ an array of values based on the return value of the callback function.
+  The difference is that the filter() callback function should return a Boolean value.
+   If the return value is true, then the array element is added to the results array.
+
+
+every() and some()
+-----------------------
+The every() and some() functions also run a callback function on each array element. If every callback function returns true, then every() returns true, otherwise it returns false. Similarly, 
+some() returns true if at least one callback function returns true. 
+
+
+reduce() and reduceRight()
+-------------------------------
+The reduce() method processes each element in an array, starting from the beginning, and computes a single value. reduce() takes a callback function and an optional initial value as arguments. If the initial value is not present, then the first array element is used.
+
+Ex:var sum = [1, 2, 3, 4, 5].reduce(function(previous, current, index, array) {
+  return previous + current;
+});
+// sum = 15	
+reduceRight() method works in the same fashion as reduce(), except that the processing begins at the end of the array and moves towards the beginning.
+
+
+indexOf() and lastIndexOf()
+--------------------------------------
+The indexOf() method searches an array for a specific element, and returns the index of the first match. If no match is found, indexOf() returns -1.
+A second, optional, argument is used to specify the starting index of the search
+
+Ex:var foo = ["a", "z", "b", "z"];
+var first = foo.indexOf("z");
+var second = foo.indexOf("z", first + 1);
+// first = 1, second = 3
+
+he lastIndexOf() method works exactly the same way, except it starts searching from the end of the array.

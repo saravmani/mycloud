@@ -1,0 +1,18 @@
+REST PARAMETERS
+-------------------
+it uses uses the ... syntax and allows you to store trailing arguments in an array:
+function doSomething(x, ...remaining) {
+   return x * remaining.length;
+}
+
+doSomething(5, 0, 0, 0); // 15
+
+Default Parameters
+-----------------------
+function doSomething(x, y = 2) {
+   return x * y;
+}
+
+doSomething(5); // 10
+doSomething(5, undefined); // 10
+doSomething(5, 3); // 15

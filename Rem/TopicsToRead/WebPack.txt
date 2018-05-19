@@ -1,0 +1,7 @@
+How to use CDN ?
+
+
+analysing tools
+ webpack-bundle-analyzer plugin, official webpack analyze tool, webpack visualizer, webpack chart
+
+ CommonsChunkPlugin

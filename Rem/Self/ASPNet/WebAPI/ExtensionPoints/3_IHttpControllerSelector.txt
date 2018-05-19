@@ -1,0 +1,145 @@
+IHttpControllerSelector
+
+uses
+---------
+introduce a custom mechanism of action selection
+override the default action selection mechanism 
+introduce some versioning mechanism into your API, and dispatch 
+correct version of the action/controller based on the incoming request
+
+
+IHttpControllerSelector runs after the cache of controllers has been established 
+(in IHttpControllerTypeResolver). 
+Therefore, implementing your own type discovery logic at this level, 
+allows you to bypass any caching mechanism present at the earlier stages
+
+
+
+public class BypassCacheSelector : DefaultHttpControllerSelector
+{
+    private readonly HttpConfiguration _configuration;
+    public BypassCacheSelector(HttpConfiguration configuration)
+        : base(configuration)
+    {
+        _configuration = configuration;
+    }
+
+    public override HttpControllerDescriptor SelectController(HttpRequestMessage request)
+    {
+        var assembly = Assembly.LoadFile("c:/myAssembly.dll");
+        var types = assembly.GetTypes(); //GetExportedTypes doesn't work with dynamic assemblies
+        var matchedTypes = types.Where(i => typeof (IHttpController).IsAssignableFrom(i)).ToList();
+
+        var controllerName = base.GetControllerName(request);
+        var matchedController =
+            matchedTypes.FirstOrDefault(i => i.Name.ToLower() == controllerName.ToLower() + "controller");
+
+        return new HttpControllerDescriptor(_configuration, controllerName, matchedController);
+    }
+}
+
+
+
+config.Services.Replace(typeof(IHttpControllerSelector), new BypassCacheSelector(config));
+
+In this implementation, we load the assembly manually, 
+and then resolve the controller types by looking through all ExportedTypes. 
+Doing it at this level, will force the assembly to be reloaded and rescanned 
+at every request, which now allows us to freely recompile that assembly 
+and see the changes reflected upon next request, as there is no controller caching in place anymore.
+
+
+As briefly in IHttpCOntrollerTypeResolver.txt, if you use dynamic assemblies 
+(generated i.e. using CodeDom or Roslyn) this is the route you have to take 
+because otherwise Web API will ignore your dynamic assemblies.
+
+
+Versioning using HttpControllerSelector
+--------------------------------------------------------------------------------
+public class CustomControllerSelector : DefaultHttpControllerSelector  
+{  
+  
+    private HttpConfiguration _config;  
+    public CustomControllerSelector(HttpConfiguration config) : base(config)  
+    {  
+        _config = config;  
+    }  
+  
+    public override HttpControllerDescriptor SelectController(HttpRequestMessage request)  
+    {  
+        try  
+        {  
+            var controllers = GetControllerMapping();  
+            var routeData = request.GetRouteData();  
+  
+            var controllerName = routeData.Values["controller"].ToString();  
+  
+            HttpControllerDescriptor controllerDescriptor;  
+  
+            if (controllers.TryGetValue(controllerName, out controllerDescriptor))  
+            {  
+                return controllerDescriptor;  
+            }  
+            return null;  
+        }  
+        catch (Exception ex)  
+        {  
+            throw ex;  
+        }  
+  
+  
+    }  
+} 
+
+public override HttpControllerDescriptor SelectController(HttpRequestMessage request)  
+{  
+    try  
+    {  
+        var controllers = GetControllerMapping();  
+        var routeData = request.GetRouteData();  
+  
+        var controllerName = routeData.Values["controller"].ToString();  
+        HttpControllerDescriptor controllerDescriptor;  
+  
+        string versionNum= GetVersionFromQueryString(request);  
+  
+        if (versionNum == "v1")  
+        {  
+            if (controllers.TryGetValue(controllerName, out controllerDescriptor))  
+            {  
+                return controllerDescriptor;  
+            }  
+        }  
+        else   
+        {  
+            controllerName= string.Concat(controllerName,"V2");  
+            if (controllers.TryGetValue(controllerName, out controllerDescriptor))  
+            {  
+                return controllerDescriptor;  
+            }  
+        }  
+  
+        return null;  
+    }  
+    catch (Exception ex)  
+    {  
+        throw ex;  
+    }  
+}  
+  
+/// <summary>  
+/// Method to Get Query String Values from URL to get the version number  
+/// </summary>  
+/// <param name="request">HttpRequestMessage: Current Request made through Browser or Fiddler</param>  
+/// <returns>Version Number</returns>  
+  
+private string GetVersionFromQueryString(HttpRequestMessage request)  
+{  
+    var versionStr = HttpUtility.ParseQueryString(request.RequestUri.Query);  
+  
+    if (versionStr[0] != null)  
+    {  
+        return versionStr[0];  
+    }  
+    return "V1";  
+}

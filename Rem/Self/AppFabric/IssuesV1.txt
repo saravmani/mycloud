@@ -1,0 +1,12 @@
+ErrorCode<ERRCA0017>:SubStatus<ES0006>
+
+ Before intializing the DataCacheFactory modify the DataCacheFactoryConfiguration.ChannelOpenTimeout 
+of the dataCacheFactoryConfiguration
+ instance that you are using to a larger value of 2 minutes.
+ (can’t use configuration to set the value, since 20 seconds in the allowed limit) .
+ Also, this recommendation is only for debugging purposes and ideally should not be needed in production environments.
+
+
+
+After uninstalling we not able to re install appfabric. because previous installation had done some changes
+in machine.config file. we have to remove it manually before try to deploy the new.

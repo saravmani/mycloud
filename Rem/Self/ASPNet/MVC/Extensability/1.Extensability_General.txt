@@ -1,0 +1,18 @@
+Controller Factory
+-----------------------------------------
+CreateController:IController
+    GetControllerInstance :IController
+    GetControllerType : Type    
+    GetControllerSessionBehavior :SessionStateBehavior
+
+ControllerActivitor (this object needs to be passed to ControllerFactory)
+
+ActionInvoker (It is inside of Controller Base Class)
+
+
+ActionMethodSelectorAttribute - Used to set preference to select Action method ex: HttpPost, HttpGet
+
+Name space preference
+----------------------------
+If same controller name there in multiple namespaces, then we can set preference  of namespace
+ControllerBuilder.Current.DefaultNamespaces.Add("MyControllerNamespace.*");

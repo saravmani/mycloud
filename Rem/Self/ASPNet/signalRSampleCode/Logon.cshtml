@@ -1,0 +1,222 @@
+﻿@using Dnb.SB.Utils.DAC;
+@using Dnb.SB.Web.Models;
+@using Dnb.SB.Library.BilingualHandler;
+@using System.Threading;
+@using System.Globalization;
+@using System.Configuration;
+@using Dnb.SB.Web.WebClient.Models;
+@using System.Web.Script.Serialization;
+
+@model Dnb.SB.Web.Admin.CommonModel.LogonViewModel
+@{
+    Layout = null;
+    var defaultCultureCode = SystemConfiguration.GetConfigValueByKey("DefaultCultureCode");
+
+    if (string.IsNullOrEmpty(Request.QueryString.Get("Lang")) && Session["UICulture"] == null)
+    {
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(defaultCultureCode);
+    }
+    else
+    {
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(Request.QueryString.Get("Lang") ?? (string)Session["UICulture"]);
+    }
+    var serialization = new JavaScriptSerializer();
+    var cultureCodes = serialization.Deserialize<List<CultureModel>>(SystemConfiguration.GetConfigValueByKey("CultureCodes"));
+    var alternateLanguageCode = SystemConfiguration.GetConfigValueByKey("AlternateLanguageCode");
+
+    var newCulture = cultureCodes[0];
+    if (Thread.CurrentThread.CurrentUICulture.Name.Equals(defaultCultureCode))
+    {
+        newCulture = cultureCodes.Single(x => x.CultureCode == alternateLanguageCode);
+    }
+    else if (Thread.CurrentThread.CurrentUICulture.Name.Equals(alternateLanguageCode))
+    {
+        newCulture = cultureCodes.Single(x => x.CultureCode == defaultCultureCode);
+    }
+
+
+    Session.Add("culture", Request.QueryString.Get("Lang") ?? defaultCultureCode);
+    Session.Remove("UICulture");
+    Session.Add("UICulture", Session["culture"]);
+}
+<!DOCTYPE html>
+<html lang="en" style="height: 95%; width: 100%; ">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../content/ico/favicon.ico">
+    <title>@Messages.SilverBladeVer</title>
+
+    @Scripts.Render("~/LoginScripts.js")
+    @Styles.Render("~/Content/css/bootstrap.css")
+    @Styles.Render("~/Content/themes/default/LoginPage.css")
+
+    <script>
+        var IsEncryptURL = '@ViewBag.IsEncryptURL';
+        ////When Document is loaded
+        sessionStorage.defaultCultureCodeValue = "@SystemConfiguration.GetConfigValueByKey("DefaultCultureCode")";
+        sessionStorage.nativeCultureCodeValue = "@SystemConfiguration.GetConfigValueByKey("NativeLanguageCode")";
+        sessionStorage.cultureCode = "@(Session["UICulture"])";
+        var numberDataFromServer = '@(Session.Timeout * 60 * 1000)';
+        var alternateCUltureDispName = '@newCulture.DisplayName';
+        var langFrom = '@(Request["Lang"] ?? defaultCultureCode)';
+        var UnableProcessLoginRequestMsg = '@Messages.UnableProcessLoginRequest';
+        var cultureReloadURl = '@String.Concat("../Landing/Logon?Lang=", newCulture.CultureCode)';
+    </script>
+</head>
+<body class="body-login" style="height: 85%; width: 100%; ">
+    @Html.AntiForgeryToken()
+
+    @if (Request.QueryString.Get("SE") == "T")
+    {
+
+        <div class="container-fluid" style="height: 10%; width: 100%;">
+            <div class="alert alert-danger fade in margintop0" role="alert" id="divAlerts" style="display:block;">
+                <button type="button" class="close" data-dismiss="alert"></button>
+                <span class="message" style="font-family:'open_sanslight', sans-serif;font-size:15px;">
+                    <strong><u>Your session has expired !</u></strong>
+                </span>
+            </div>
+
+        </div>
+
+        <br>
+    }
+    else
+    {
+        <br><br><br><br>
+    }
+
+
+    <div class="container-fluid" style="height: 90%; width: 100%;">
+
+        <div class="row" style=" height: 90%; width: 100%;">
+            <div class="col-md-11">
+                <a id="languageSwitch" href="javascript:objLogonController.openLink('$');" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-globe"></span> @Tags.English
+                </a>
+            </div>
+
+            <div class="col-md-5 col-md-offset-1 bgimage" style=" height: 100%;">
+                <h2 class="bigcaption">
+                    @Messages.Welcome<br>
+                    @Messages.SilverBladeVer
+                </h2>
+                <p class="white">@Messages.CreditBureauSupports</p>
+            </div>
+            <div class="col-md-3 col-md-offset-2 " style=" height: 100%;">
+                <div class="row " style=" height: 100%;">
+                    <div class="col-md-10 margintop50">
+                        <form role="form" class="margintop50" method="get" autocomplete="off">
+                            @{
+                                <div class="alert alert-danger fade in margintop10" role="alert" id="divAlert" style="display:none;">
+                                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">@Tags.Close</span></button>
+                                    <span class="message" id="divAlertMessage"></span>
+                                </div>
+                            }
+
+                            <div class="form-group">
+                                @Html.Label(Tags.UserID, new { @class = "white" })
+                                @Html.TextBox(name: "textboxUserName", value: "", htmlAttributes: new { id = "textboxUserName", @class = "form-control" })
+                                @Html.Label(Messages.ValidUserId, htmlAttributes: new { id = "ValidateUserName", @class = "help-block hidden" })
+                            </div>
+                            <div class="form-group margintop10">
+                                @Html.Label(Tags.Password, new { @class = "white" })
+                                @Html.Password(name: "textboxPassword", value: "", htmlAttributes: new { id = "textboxPassword", @class = "form-control", @autocomplete = "off" })
+                                @Html.Label(Messages.ValidPassword, htmlAttributes: new { id = "ValidatePassword", @class = "help-block hidden" })
+                            </div>
+                            <div class="form-group margintop10">
+                                <a href='javascript:objLogonController.openLink("../Landing/ForgotPassword")'>@Tags.ForgotPassword</a>
+                            </div>
+                            <button type="button" class="margintop10 btn btn-primary" id="btnLogin">@Tags.LogOn</button>
+                        </form>
+                    </div>
+                    <div class="col-md-10 margintop50">
+                        <p class="white smalltext aligncenter">@Messages.Help</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="position: relative; height: 10%; width: 100%; top:14%">
+        <div class="row homefooter">
+            <div class="col-md-4">
+                <img src="../content/img/logo-dnb.png" alt="" />
+            </div>
+
+            <div id="myModalDis" class="modal fade">
+                <div class="modal-dialog" style="width:70%;max-height:60%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" style="color:black">@Tags.Disclaimer</h5>
+                        </div>
+                        <div class="modal-body" style="max-height: 50%; margin-top: 0px; margin-bottom: 0px;">
+                            <div style="color:black">
+                                @Html.Raw(Tags.DisclamierText)
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="myModalPrivacy" class="modal fade">
+                <div class="modal-dialog" style="width:70%;max-height:60%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" style="color:black">@Tags.PrivacyPolicy</h5>
+                        </div>
+                        <div class="modal-body" style="max-height: 90%; margin-top: 0px; margin-bottom: 0px;">
+                            <div style="color:black">
+                                @Html.Raw(Tags.PrivacyPolicyText)
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <p class="smalltext pull-right">
+                    © 2004 - 2016 D&amp;B<br>
+                    <a href="#myModalDis" data-toggle="modal" class="smalltext">@Tags.Disclaimer</a> |
+                    <a href="#myModalPrivacy" data-toggle="modal" class="smalltext">@Tags.PrivacyPolicy</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript" src="../Scripts/jquery.signalR-2.1.2.min.js"></script>
+<script src="../signalr/hubs"></script>
+
+<script>
+    var notifications = null;
+    $(document).ready(function () {
+        $("#btnLogin").click(function () {
+            TriggerSearch();
+        })
+        var notifications = $.connection.dashboardHub;              
+        //$.connection.hub.start().done(function () {         
+        //});//Promise after hub got started
+
+        notifications.client.flush = function (message) {
+            console.log(message);
+        }
+        $.connection.hub.start();
+
+        function TriggerSearch() {
+            notifications.server.pushDashboardData($("#textboxUserName").val());
+        }
+
+       
+    });
+</script>

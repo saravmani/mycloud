@@ -1,0 +1,48 @@
+V8 has Stack, Heap data structures
+Heap 
+---------
+If function executes, local scope for that funciton is saved in Heap
+
+
+Node adds apis like timers, emitters and wrappers around OS operations
+
+Stack and Heap are part of runtime engine not node itself
+
+
+Event Loop - It is simple Loop. This works btn event queue and call stack
+
+Event Queue - it is using libuv library
+It can also called Message Queue, Callback Queue.
+It will check if callstack is empty and event queue is not empty then it will de-queue one event
+from the queue and push its call back into the stack.
+When callstack and event queue is empty then node will exit the process
+
+
+Call stack
+----------------
+It is a list of functions
+Everytim when step into the function it is added into call stack. Once it got executed
+then pops out.
+
+thats why when get the error then browser can able to show the stack trace
+
+Note: In general programming we can implement recursive without using recursion .. 
+but using stack we can
+
+Console.log is non blocking function
+
+SetTimeOut is not provided by V8. it is provided by browser or Node
+
+Timer is outside of javascript runtime
+
+SetTimeOut(fn(),0)  vs setImmediate
+--------------------------------------
+setImmediate will take precidance
+
+setImmediate is recomended when we want to run immediat non blocking
+
+process.nextTick
+-------------------------
+it is similar to setImmediate, but  here node process the callback registered with nextTick
+after current operation is completed and before the event loop continuous.
+

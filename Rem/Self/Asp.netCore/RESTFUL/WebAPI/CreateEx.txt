@@ -1,0 +1,9 @@
+public IActionResult CreateUser(User objUser)
+{
+    //create logic
+    return CreatedAtRoute("GetUser",new {userid=232});
+    //this will generate the below header. which can be used by the clients to get the newly
+    //create user info
+    //Location : http://localhost/api/GetUser/232
+}
+

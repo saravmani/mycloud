@@ -1,0 +1,14 @@
+Both of them provide the same HTML output, “HTML.TextBoxFor” is strongly
+ typed while “HTML.TextBox” isn’t. 
+
+Html.TextBoxFor(m => m.CustomerCode)
+Html.TextBox("CustomerCode")
+@Html.ActionLink("Home","Gotohome")
+
+
+
+
+
+Temp data - Helps to maintain data when you move from one controller to another controller or from one action to another action. In other words when you redirect, tempdata helps to maintain data between those redirects. It internally uses session variables.
+View data - Helps to maintain data when you move from controller to view.
+View Bag - It’s a dynamic wrapper around view data. When you use Viewbag type, casting is not required. It uses the dynamic keyword internally.

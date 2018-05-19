@@ -1,0 +1,29 @@
+
+
+Transaction scope using system.transactions
+----------------------------------------------------
+using (var obj = new System.Transactions.TransactionScope())
+{
+    using (var objPMRDEMOEntities = new PMRData.PMRDEMOEntities())
+    {
+        var data = from a in objPMRDEMOEntities.ConsumerSubjects
+                    where a.RUID == 324324
+                    select a;
+        var subj = data.FirstOrDefault();
+        if (subj != null)
+            objPMRDEMOEntities.ConsumerSubjects.Remove(data.FirstOrDefault());
+        else
+        {
+            var objConsumerSubject = new ConsumerSubject
+            {
+                RUID = 324324,
+                SubjectName = "Muhammad Rafi123",
+                Gender = "001",
+                DOB = System.DateTime.Now.AddYears(-10)
+            };
+            objPMRDEMOEntities.ConsumerSubjects.Add(objConsumerSubject);
+        }
+        objPMRDEMOEntities.SaveChanges();
+    }
+    obj.Complete();
+}

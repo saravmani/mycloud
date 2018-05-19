@@ -1,0 +1,5 @@
+Tamper proof objects.
+apply method to set the execution context for cuntions
+Strict Mode introducted.
+window.ononline, onofline introducted
+

@@ -1,0 +1,63 @@
+HandleErrorAttribute
+=====================================
+
+You do not often need to create your own filters in real projects because
+Microsoft has included the HandleErrorAttribute in the MVC Framework, which is a built-in implementation of
+the IExceptionFilter interface. With it, you can specify an exception and the names of a view and layout using the
+properties
+
+HandleErrorAttribute Properties
+--------------------------------------------
+ExceptionType - The exception type handled by this filter. It will also handle exception types that
+                inherit from the specified value, but will ignore all others. The default value is System.
+                Exception, which means that, by default, it will handle all standard exceptions.
+
+View string    -The name of the view template that this filter renders. If you do not specify a value, it takes
+                a default value of Error, so by default, it renders /Views/<currentControllerName>/
+                Error.cshtml or /Views/Shared/Error.cshtml.
+Master string  - The name of the layout used when rendering this filter’s view. If you do not specify a
+                 value, the view uses its default layout page.
+
+
+The HandleErrorAttribute filter works only when custom errors are enabled in the Web.config file,
+
+sample
+-------------
+[HandleError(ExceptionType = typeof(ArgumentOutOfRangeException),View = "RangeError")]
+public string RangeTest(int id)
+{
+    if (id > 100)
+    {
+        return String.Format("The id value is: {0}", id);
+    }
+    else
+    {
+        throw new ArgumentOutOfRangeException("id", id, "");
+    }
+}
+
+HandleErrorInfo - model object
+--------------------------------------
+When rendering a view, the HandleErrorAttribute filter passes a HandleErrorInfo view model object, which is
+a wrapper around the exception that provides additional information that you use in your view.
+
+
+@model HandleErrorInfo
+@{
+ViewBag.Title = "title!";
+}
+
+<meta name="viewport" content="width=device-width" />
+<title>Range Error</title>
+</head>
+<body>
+<h2>Sorry</h2>
+<span>The value @(((ArgumentOutOfRangeException)Model.Exception).ActualValue)
+was out of the expected range.</span>
+
+
+HandleErrorInfo contains
+----------------------------------
+ActionName
+ControllerName
+Exception

@@ -1,0 +1,336 @@
+﻿HTML -> 304 calls are hitting server? if not date time modified then it will take from local cache??is it so?
+
+JS->try to call otherdomain url by using ajax. check wether the call is reaches the 3re prty server
+or rejected by client itself.
+
+Js -> xhr.open(�post�, �postexample.php�, true);
+var form = document.getElementById(�user-info�);
+xhr.send(new FormData(form));
+
+Js-> try to access other domain url using ajax.. theoritically it should throws error
+
+
+ Js-> How to cancel the ajax request -> tested this.  this not doing anything with already made request. But still i need to check, if request made, then how can i move to another page?????
+
+
+Js -> check reddaiah code that iframe message and how it works
+
+js->
+if variable initialized with out declaration, then this will b added to global scope.
+Is that real??
+
+
+javascript
+----------------
+function a()// Check the scope chain
+{
+{
+var kk ="";
+}
+alert(kk);
+{
+alert(kk);
+}
+}
+
+
+with(location){
+var qs = search.substring(1);
+var hostName = hostname;
+var url = href;
+}
+
+
+Task manager
+----------------
+Explore available columns
+
+
+windows
+-------
+You'll find that 64bit windows keeps two copies of system executables. There's c:\windows\system32 for 64bit apps, and "c:\windows\syswow64" for the 32bit versions.
+Navigate to the syswow64 folder and look for taskmgr.exe, double click it to run the 32bit version, after task manager opens you will notice "taskmgr.exe*32" in the list, any process in the list with *32 means it is a 32bit version running.
+
+
+
+c#
+---
+check symbol server path contains what kind of Pdb files??
+is it contains for windows libraries??really??? :-)))
+ Ans: No. it is not having all
+
+
+c#
+--
+run on simple console application create dump file and then
+try to debug it using VSTS
+
+c#
+---
+try to create dump file in server
+
+c#
+---
+check remote debugger installed machine and jst re call what u done:-)
+
+c#
+---
+	Objects defined with dynamic keyword can change their type at runtime.
+is it real?
+
+
+c#
+--------
+
+obj1 = new classA();
+callingMethod(obj1);//call it in insede task, and wait for some time until next line executes. and check wether reference also got modified or not
+obj1 = new classb();
+------------------
+
+try thisexample.
+fnciton a()
+{}
+a.protype.prop1 = "rewrew";
+a.protype.rew =function(){return this.prop1;}// define properties and methods
+obja = new a();
+obja.rew1=function(){}
+obja.constructor // try this
+
+obja.rew="11111";
+obja.rew();//check what is the value
+
+
+
+
+--------------------
+check javascript
+fnciton a()
+{}
+a.protype.rew =function(){}// define properties and methods
+
+obja = new a();
+now in debug mode check
+obja.prototype ???
+a.prototype ???
+
+
+-----------------------------------------------
+javascript create new custome object and chek this
+alert(objectName.constructor == FunctionName); //true
+alert(person1 instanceof Object); //true
+alert(person1 instanceof Person); //true
+
+try below code by setting context explicitly
+//call in the scope of another object
+var o = new Object();
+Person.call(o, �Kristen�, 25, �Nurse�);
+o.sayName(); //�Kristen�
+
+
+
+arguments
+object that contains all of the arguments that were passed
+into the function.
+check below...
+function (a,b,c)
+{
+//check what is the vlaue inside arguments object
+//check what is there in this object
+}
+---------------------------
+try apply and call methods of the function
+
+function sum(num1, num2){
+return num1 + num2;
+}
+function callSum1(num1, num2){
+return sum.apply(this, arguments); //passing in arguments object
+}
+function callSum2(num1, num2){
+return sum.apply(this, [num1, num2]); //passing in array
+}
+alert(callSum1(10,10)); //20
+alert(callSum2(10,10)); //20
+
+In this example, callSum1() executes the sum() method, passing in this as the this value (which
+is equal to window because it�s being called in the global scope) and also passing in the arguments
+object.
+
+
+
+
+
+---------------------------------
+javascript check
+var a = function()
+{}
+var b = a;
+b();// valid
+
+a=function(a,b)
+{}
+
+now what it wil be we call
+a();????????????????????????
+
+
+
+complete bundling for morocco
+
+
+javascript check
+------------------
+for array object we are haivnng follwoing methodss as per ecma stndard
+every() � Runs the given function on every item in the array and returns true if the
+function returns true for every item.
+filter() � Runs the given function on every item in the array and returns an array of all
+items for which the function returns true.
+forEach() � Runs the given function on every item in the array. This method has no
+return value.
+map() � Runs the given function on every item in the array and returns the result of each
+function call in an array.
+some() � Runs the given function on every item in the array and returns true if the
+function returns true for any one item.
+
+
+----------------
+Try
+....
+// similar behavior as an HTTP redirect
+window.location.replace("http://stackoverflow.com");
+
+// similar behavior as clicking on a link
+window.location.href = "http://stackoverflow.com";
+
+---------------
+
+
+
+TFS- Generate mail on checkin
+
+
+Usage of putty
+
+
+how to get awr report - done
+
+
+try - multiple sudeo styles  and with class name
+---
+a:hover, a:active {
+    background-color: red;
+}
+
+a.classname:hover, a:active {
+    background-color: red;
+}
+
+
+Style sheet
+-----------------
+//Check css multi condition
+//element.class name
+//and className.Element
+p.center {
+    text-align: center;
+    color: red;
+}
+
+Result: It is not working
+
+
+check inheritance
+---------------------
+div.container {
+    border: 1px solid red;
+    margin-left: 100px;
+}
+
+p.one {
+    margin-left: inherit;
+}
+Result: Yes it is working. inheriting parent CONTAINER'S style
+
+
+
+text transformation (try this with text box also..when human enters the text how it behaves??)
+---------------------------
+p.uppercase {
+    text-transform: uppercase;
+}
+
+p.lowercase {
+    text-transform: lowercase;
+}
+
+p.capitalize {
+    text-transform: capitalize;
+}
+
+Result: Yes while human enteres text is behaving based on what tranformation we have mentioned in style
+
+
+
+
+
+
+
+try to implement unit test with nUnit and Mocking with Moq and Code coverage which is default in VSTS.
+
+Get from others what is clustered and non clustered index
+
+Check unwanted modules and remove from machine.config file.
+ex: oauth twitter module is getting loading automatically .. when i do Hit F5 the application i found
+
+Objects defined with dynamic keyword can change their type at runtime.
+
+javascript
+----------------
+var parentElement = document.getElementById('deviceready');
+        var listeningElement = parentElement.querySelector('.listening');
+try   documnet.querySelector("#id");//doubting that wheter this is correct or not
+//Result - Done and working fine
+
+listeningElement.setAttribute('style', 'display:none;');
+
+
+dynamic rule builder
+https://mobiusstraits.com/2015/08/12/expression-trees/
+
+Add git-hub repository in Vsts
+Check FluentValidation - http://www.c-sharpcorner.com/uploadfile/3d39b4/asp-net-mvc-validation-using-fluent-validation/
+
+As the Promise.prototype.then() and Promise.prototype.catch() methods return promises, they can be chained.
+
+1. Create dll and add it on GAC and  try to add to ur project
+
+
+Try Async task
+
+ 1:	private async void btnCalculate_Click(object sender, RoutedEventArgs e)
+ 2:       {
+ 3:           int number1 = int.Parse(txtNumber1.Text);
+ 4:           int number2 = int.Parse(txtNumber1.Text);
+ 5:           int result = 0;
+ 6:           result = await Calculate(number1, number2);
+ 7:           txtAnswer.Text = result.ToString();
+ 8:
+ 9:       }
+ 10:
+ 11:       private Task<int> Calculate(int number1, int number2)
+ 12:       {
+ 13:           Task<int> t = new Task<int>(BeginCalculate, new Tuple<int, int>(number1, number2));
+ 14:           t.Start();
+ 15:           return t;
+ 16:       }
+
+
+
+Check wit senthil that how validation rules works -
+	RESULT: Checked. he did this with csc complailer. he has created .cs file in folder and invoked with csc.exe compiler. for this he deployed this exe within
+			Validaation engines folder
+
+
+
+
+

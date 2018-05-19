@@ -1,0 +1,8 @@
+Most of the UML diagrams are used to handle logical components but deployment diagrams are made to focus on the hardware topology of a system
+
+Deployment diagrams are used to visualize the topology of the physical components of a system, where the software components are deployed
+
+Deployment diagrams consist of nodes and their relationships.
+
+Component diagrams and deployment diagrams are closely related.
+Component diagrams are used to describe the components and deployment diagrams shows how they are deployed in hardware.

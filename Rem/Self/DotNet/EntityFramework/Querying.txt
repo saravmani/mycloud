@@ -1,0 +1,80 @@
+Include
+----------------
+foreach (var venue in context.Venues.Include("Events").Include("Events.Competitors"))
+
+
+
+Entity framework supports three types of queries: 1) LINQ to Entities, 2) Entity SQL, and 3) Native SQL
+
+Linq method syntex
+---------------------
+var L2EQuery = context.Students.where(s => s.StudentName == "Bill");
+    var student = L2EQuery.FirstOrDefault<Student>();
+
+Linq Query syntex
+---------------------
+var L2EQuery = from st in context.Students where st.StudentName == "Bill" select st;
+    var student = L2EQuery.FirstOrDefault<Student>();
+
+
+
+
+Parameterized Query:
+---------------------------------
+EF builds and executes parameterized query in the database if LINQ-to-Entities query uses parameters such as below.
+  string name = "Bill";
+    var student = ctx.Students.Where(s => s.StudentName == name)
+                  .FirstOrDefault<Student>();
+
+output
+FROM [dbo].[Student] AS [Extent1]
+WHERE ([Extent1].[Name] = @p__linq__0) OR (([Extent1].[Name] IS NULL) AND (@p__linq__0 IS NULL))',N'@p__linq__0 nvarchar(4000)',@p__linq__0=N'Bill'
+
+
+But below will generate normal query
+ var student = ctx.Students.Where(s => s.StudentName == "Bill")
+                  .FirstOrDefault<Student>();
+
+
+
+
+ GroupBy:
+Use group by operator or GroupBy extension method 
+
+ var students = from s in ctx.Students 
+                    group s by s.StandardId into studentsByStandard
+                    select studentsByStandard;
+
+ctx.Students.GroupBy(s => s.StandardId);
+
+
+
+Order by
+------------
+from s in ctx.Students
+                    orderby s.StudentName ascending
+                    select s;
+
+
+Anonymous Object:
+-----------------
+ from s in ctx.Students
+                             where s.StandardId == 1
+                             select new { 
+                                Id = st.StudentId, 
+                                Name = st.StudentName
+                             };
+
+
+QUery with primary key
+-----------------------------------
+ctx.Students.find(23);// this will do where condition with primary key and fetch the result
+
+Entity Framework allows your entities to have composite keys - that's a key that is made up of more than one property. 
+For example, you could have a BlogSettings entity that represents a users settings for a particular blog. 
+Because a user would only ever have one BlogSettings for each blog you could chose to make the primary key of BlogSettings a combination of BlogId and Username.
+ The following code attempts to find the BlogSettings with BlogId = 3 and Username = "johndoe1987":
+using (var context = new BloggingContext()) 
+{ 
+    var settings = context.BlogSettings.Find(3, "johndoe1987"); 
+}

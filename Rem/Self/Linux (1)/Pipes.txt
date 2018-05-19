@@ -1,0 +1,35 @@
+Pipes (|)
+------------
+Ref: https://www.youtube.com/watch?v=VgbnndezHbw&index=9&list=PLckPQEKYlbxebubMWdjcGR7K_ukm35ZjN
+2-Aug-2018
+
+Use pipes to run two commands consecutively
+
+ex:
+cat filename | less  // this command will shows page by page
+//in msdos we can do this with below commands
+dir /p    -- indicates paging
+dir|more -- it will show line by line
+
+dir| pg
+dir| more
+
+
+grep command used for text search
+-----------------------------------------
+cat filename | grep string to search
+cat filename | grep -i string to search
+
+like this many pipes we can used
+
+sort
+----------
+ sort command used for sorting
+
+
+output of filter 1 s first command can be input for another
+ex:
+cat filename.txt | grep -v a | sort -r
+
+above will search the letter a in filename.txt and then sort it in reverse order
+

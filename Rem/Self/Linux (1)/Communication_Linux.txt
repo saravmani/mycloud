@@ -1,0 +1,39 @@
+COmmunication in linux
+-----------------------
+
+ping //this utility used to check connection btn systems
+//this used to check performance
+wehn we use ping command system will send 64 byte data to the remote system. even
+one of the data pockets lost then it will suggests there is error in connection.
+
+FTP 
+ftp> dir 
+ftp> put filename  //this will upload the file
+ftp> get filename  // to download the file
+
+Telnet
+-----------
+used for remote connection
+run programs remotely
+it is smiliar to remote desktop feature in windows 
+ 
+telnet localhost //connect to local computer
+once connected then we can execute the commands remotely
+
+but now a days telet becom absolute because more secure protocol SSH came
+
+SSH (secure shell)
+-------
+ now a days telet becom absolute because more secure protocol SSH came
+
+ It is more secure
+ it used to securely connect to remote computer
+
+ it will use digital certificate for authentication
+
+syntex:
+ SSH username@ip-address or hostname
+
+ once SSH connecition made we can able to execute the commands on remote machine
+
+ 

@@ -1,0 +1,59 @@
+Sessionless Controllers
+=======================================
+By default, controllers support session state, which can be used to store data values across requests
+
+Creating and maintaining session state is an involved process. Data must be stored and
+retrieved, and the sessions themselves must be managed so that they expire appropriately. 
+Session data consumes
+server memory or space in some other storage location, and needing to synchronize the data across multiple Web
+servers makes it harder to run your application on a server farm.
+
+
+In order to simplify session state, ASP.NET will process only one query for a given session at a time. 
+If the client
+makes multiple overlapping requests, they will be queued up and processed sequentially by the server.
+The benefit is
+that you do not need to worry about multiple requests modifying the same data. 
+The downside is that you do not get
+the request throughput you might like.
+
+Not all controllers need the session state features. In such cases, you can improve the performance of your
+application by avoiding work involved in maintaining session state. You do this by using sessionless controllers.
+These are just like regular controllers, 
+with two exceptions: the MVC Framework will not load or store session state when
+they are used to process a request, and overlapping requests can be processed simultaneously.
+
+
+IControllerFactory interface contained a method called
+GetControllerSessionBehavior, which returns a value from the SessionStateBehavior enumeration
+
+SessionStateBehavior enumeration values
+--------------------------------------------
+Default, Required,Readonly, Disabled
+
+When you are using the built-in controller factory, 
+you can control the session state by applying the SessionState
+attribute to individual controller classes
+
+[SessionState(SessionStateBehavior.Disabled)]
+public class FastController : Controller
+{
+    public ActionResult Index()
+    {
+        return View("Result", new Result
+        {
+            ControllerName = "Fast ",
+            ActionName = "Index"
+        });
+    }
+
+    #In Disabled controller or view if we try like below then mvc framework will throw exception
+
+    Session["Message"] = "Hello";
+
+    When session state is Disabled, the HttpContext.Session property returns null
+
+    If you have specified the ReadOnly behavior, then you can read values that have been set by other controllers,
+but you will still get a runtime exception if you try to set or modify a value. 
+You can get details of the session through the
+HttpContext.Session object but trying to alter any values causes an error.

@@ -1,0 +1,9 @@
+What is migrations in entity framework?
+How to make right outerjoin and left outer join?
+wat is the use of AsQueriable() method? and where IQueriable is gettin used?
+
+Table per Type Inheritance Model - what is it? check appress book in library
+
+Bounded db context - https://msdn.microsoft.com/en-us/magazine/jj883952.aspx
+
+How connection pool works in EF

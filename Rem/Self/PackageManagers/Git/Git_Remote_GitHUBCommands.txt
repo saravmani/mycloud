@@ -1,0 +1,26 @@
+"!local repository" && "! remote repository"
+-----------------------------------------------
+
+CMD:git remote //give list of remote connecitons
+CMD:git remote add remoteName https://github... 
+//used to add remotes
+
+To remove remote repository
+CMD:git remote rm remoteName
+
+this informations are stored in 
+.git/config file
+
+we can able to add multiple remote repositories like this
+
+push files into server
+------------------------
+CMD: git push -u test_remote master
+//here we are pushing files into master !branch
+when first time run this command this will ask username and pwd
+we have to give our github credentials
+
+This will compress the files and push to remote server
+
+ once done this our "!local repository" knows aboute "! remote repository"
+

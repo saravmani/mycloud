@@ -1,0 +1,3 @@
+
+FIN says, "I finished talking to you, but I'll still listen to everything you have to say until you're done" (Wait for an ACK)
+RST says, "There is no conversation. I am resetting the connection!"

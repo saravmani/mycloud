@@ -1,0 +1,80 @@
+Two ways to do the code coverage
+1. Run the application as same as how application executes
+2. Run Unit tests find which test case covers which part of the application
+
+DotCover comes with own test runner it supports mstest, nunit.
+also using extension manager (Resharper's extension manager), we can able to add support for 
+other Unit testing frameworks like xunit
+
+It is having option to export the snapshot (coverage results)
+
+Coverage is important. but we should not aim for 100%.
+But we should cover the important code parts.
+we should decide which part of our code definetly shoul be coverd
+
+Dot cover porvides hotspot view to identify the area which needs coverage. But it depends.
+# I think this may find the area by number of usage and number of unittests available
+# but i think this is purely our call
+
+#Dot cover we can able to intergrate with build automation  and as part of the build
+it will run unittests and produce the coverage results
+
+Below lines are from stack overflow
+------------------------------------------
+I use dotCover from Jenkins. I have multiple DLL's that need testing, 
+so my job will execute dotcover for each DLL, merge the test snapshots, 
+and generate a HTML report. My Jenkins setup includes "HTML Publisher plugin"
+ and "NUnit plugin"
+ 
+ # So Jenkins and dotcover integration possible
+
+ Dot cover console
+ ---------------------
+ #We can able to run dot cover using command prompt. This will helpful for continuous integration
+ This used to Control execution of any test runner (MSTest, NUnit, xUnit, MSpec, etc.) and record coverage of executed tests.
+
+ It is having configuration xml file. using that we can able to do many configurations, paths, filters(we can remove classed to ignore test case execution)
+
+
+ Steps to run dot cover
+ ----------------------------
+ In Visual Studio, go to ReSharper | Options | dotCover | Remote Coverage and click Get Server Package. dotCover will generate an archive with all necessary files.
+Download dotCover command line tools package from JetBrains website.
+
+Exporting code coverage results
+-------------------------------------------
+we can able to export the test results as HTML, XML, JSON   formates
+
+Coverage result structure
+----------------------------------
+we can able to structure coverage results in many formates
+by default coverage results are organised in the formate of project structure, just like solution in Visual
+studio
+1. view results by namespace
+2. view results by hotspots view (order by risky parts)
+
+filters
+-------------------
+1 Permanent filters(coverage filters)
+2 Temperorary filters 
+
+we can use filters in following scenarios
+1. i dont want to run few tests to produce the result faster
+2. I dont want to run few tests now, or those are third party related.. etc.,
+
+just right click and execlude 
+
+also we can able to configure the coverage filters using seperate window 
+and there we can able to filter the assembly names, classes, methods etc., using wild card charactors.
+
+Also this provide another beautiful features.. attribute filter.
+we can able to create some attribute, and add it to filter.
+so we can use this filter to the classes or methods where we no need coverage 
+ex:
+public class hahaattribute:attribute
+{}
+[hahaattribute]
+public class acctualclass
+{}
+
+# and now in filters we can say that filter hahaattribute attributes... :-)

@@ -1,0 +1,21 @@
+we can say Object diagrams represent an instance of a class diagram. Object diagrams also 
+represent the static view of a system but this static view is a 
+SNAPSHOT of the system at a particular moment.
+
+ set of objects and their relationships as an instance.
+
+Diff btn class and object diagrams 
+ The difference is that a class diagram represents an abstract model consisting of classes and their relationships.
+ However, an object diagram represents an instance at a particular moment, which is concrete in nature.
+ both diagrams are made of same basic elements but in different form.
+ 
+ In class diagram elements are fixed. but in object diagram based on moment count may vary.
+ but when we draw we have to consider the objects which are having impact on the system
+ and 
+ consider only those instances, which will cover the functionality.
+ 
+ Purpose
+ -----------
+ It means the object diagram is closer to the actual system behavior. The purpose is to capture the static view of a system at a particular moment.
+ 
+ we can use it for rever engineering

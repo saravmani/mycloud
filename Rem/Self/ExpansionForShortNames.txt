@@ -1,0 +1,73 @@
+﻿CSRF - cross site request forgery
+	When an unauthorized system is able to access a resource, it is considered a cross-site request forgery
+(CSRF) attack.
+
+﻿CROS - Cross-Origin Resource Sharing (CORS) is a W3C Working Draft that defi nes how the browser and
+server must communicate when accessing sources across origins. The basic idea behind CORS is
+to use custom HTTP headers to allow both the browser and the server to know enough about each
+other to determine if the request or response should succeed or fail.
+
+SPA- Single page application
+
+
+CRUD - create read update delete
+SRS - SRS(Software Requirement Specifications)
+POCO - Plain Old CLR Objects
+
+
+OData  - Open data protocol - (supports by webapi. user can able to query the data using query string. Iqueriable<ClassName>)
+
+CSRF - Cross site request forgery
+
+ORM - object relational mapping (ORM)
+EF - Entity Framework
+XSS - Cross site script attack
+
+
+Code First development refers to the development mindset wherein
+your application�s model is the central focus and primary driver behind everything that
+happens during development.
+
+DOS attack - Denial of service
+
+
+UDF - user-defined functions
+
+UWP - Universal windows platform
+COBOL - Common Business oriented language
+
+SRN - Site recovery manager (used in DR site management. Sync the data from primary to secondary. It is VMWare's product)
+
+IOT - The Internet of Things (IoT) is a system of interrelated computing devices, mechanical and digital machines, objects, animals or people that are provided with unique identifiers and the ability to transfer data over a network without requiring human-to-human or human-to-computer interaction.
+SDLC - System development life cycle
+
+OWASP - Open web application security project
+
+PDB - Program database (PDB)
+OWIN - Open web interface for.net
+Realm has launched a new mobile database for .NET developers that is ideal for reactive app development, with live objects, change events, and support for unidirectional data flows. Built specifically for Xamarin, it offers easy object persistence and full query capabilities with a faster performance profile than incumbents.
+
+
+SoC - Seperation of Concern (Concern means is aspect or part or feature)
+	Concerns are the different aspects of software functionality. For instance, the "business logic" of software is a concern, and the interface through which a person uses this logic is another.
+The separation of concerns is keeping the code for each of these concerns separate. Changing the interface should not require changing the business logic code, and vice versa.
+Model-View-Controller (MVC) design pattern is an excellent example of separating these concerns for better software maintainability.
+
+XSD - XML Schema Defination
+XSLT - Extensible style sheet language
+
+REPL - read eval print loop
+Node, like many other languages, provides a REPL (read-eval-print-loop) interface,
+available by running node from the command line without any arguments. A REPL
+allows you to write snippets of code and to get immediate results as each statement
+is written and executed. It can be great for learning a programming language, running
+simple tests, or even debugging.
+
+
+BLOB - binary large objects
+
+SSH ##ex: putty
+-----------
+SSH, also known as Secure Socket Shell, is a network protocol that provides administrators with a secure way to access a remote computer. 
+
+L2E queries - linque to Entity queries. Term used in entity framework

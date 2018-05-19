@@ -1,0 +1,119 @@
+
+Node’s module system is patterned after the CommonJS module system
+
+
+when do require('module-name') then following thing happens
+------------------------------------------------------------------
+(#note this is not about npm install. this is about runtime require function)
+When your application requests a module, several things happen. First,
+Node checks to see if the module has been cached. Rather than re-load the
+module each time, Node caches the module the first time it’s accessed. 
+
+If the module isn’t cached, Node then checks to see if it’s a native module.
+Native modules are those that are pre-compiled binaries, such as the C++ addons
+
+If the module isn’t cached or isn’t a native module, a new Module object is
+created for it, and the module’s exports property is returned and this module is also cached
+
+to clear the cached module use below code
+
+delete require('./circle.js');
+##Tags - Remove cached module,Delete cached module,Clear cached module
+
+when we request new module It goes through a hierarchy of checks when looking for the module file.
+First, core modules
+
+(# we can also create module with same name of core module. but while accessing it we have use specific path)
+
+
+When you give a module
+name without the extension, Node first of all looks for the module in the current
+subdirectory with a .js extension. If found, the module is loaded. If not found,
+Node looks for a file with a .json extension. If a file with the proper name is
+found with a .json extension, the module contents are loaded as JSON. Finally,
+Node looks for a module with a .node extension. It assumes this module is a
+pre-compiled Node add-on, and handles it accordingly.
+
+##tags load json in node js
+JSON files don’t require an explicit exports statement. They only need to
+be proper JSON.
+
+
+we can use relative path or physical path to load the module.
+
+
+if we install module using npm we no need to mention path
+var async = require('async');
+
+Node looks for the module in a node_modules subdirectory, using a search
+hierarchy .
+
+first it will check in local directory node_moduels folder.
+then it will check in global cache
+
+
+see which module is loaded using require.resolve('modulename')
+require.resolve('async')
+The resolved location of the module is returned.
+
+If you provide a folder name as a module, Node looks for a package.json
+file that contains a main property flagging the module file to load:
+
+If Node can’t find a package.json file, it looks for an index.js or index.node
+
+
+Be aware that caching is based on the file name and path used to load the
+module. If you’ve cached a global version of a module, and then load a local
+version, the local version also gets cached.
+
+
+Each module wrapped with the Module object has a require function.
+
+
+main module (# i.e application index.js page)
+is assigned to a property,require.main of the global require object.
+
+
+
+eval() executes your JavaScript in the same context (# it will access current conexted properties and damage those)
+as the rest of your application. So we should avoid using this. bcs if any unwanted code injected by third person
+it will damage the application.
+so whereever we are using eval that place we have to do proper user input validation
+
+
+for some reason, you do need to execute an arbitrary chunk of JavaScript
+in your Node application, you can do so using the VM module to sandbox the
+script.
+
+The only safe way to execute an arbitrary chunk of JavaScript is in a
+separate process.
+
+Scripts can be pre-compiled first, using the vm.Script object, or passed in
+as part of a function called directly on vm.
+
+Ex:
+var vm = require('vm');
+var sandbox = {
+process: 'this baby',
+require: 'that'
+};
+vm.runInNewContext('console.log(process);console.log(require)',sandbox);
+
+runInThisContext
+---------------------------
+##global context will be available within sandbox. but local context will not be available
+var script = new vm.Script(txt);//this will precompiles the code
+script.runInThisContext({filename: 'count.vm'});
+
+runInContext
+--------------
+sandbox must be contextualized before function call
+
+var sandbox = {
+count1 : 1
+};
+vm.createContext(sandbox);
+if (vm.isContext(sandbox)) console.log('contextualized');
+vm.runInContext('count1++; counter=true;',sandbox,
+{filename: 'context.vm'});
+console.log(util.inspect(sandbox));

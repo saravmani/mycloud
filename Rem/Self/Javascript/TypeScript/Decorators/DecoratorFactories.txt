@@ -1,0 +1,9 @@
+Decorator Factories
+----------------------------
+using Decorator Factories we  can able to pass the additional parameters
+
+function factoryDecoratoryExample(someName:string){
+    return factoryExample(target:Function){//It is class Decorator
+    }
+}
+

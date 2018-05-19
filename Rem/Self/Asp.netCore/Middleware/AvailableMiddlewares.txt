@@ -1,0 +1,19 @@
+Order of the middleware is important
+app.UseWelcomePage() // this is the middleware for testing purpose. 
+it will provide default welcome page
+
+
+app.UseStaticFiles();//Used to serve static files.
+//This will serve files only from wwwroot folder and its subfolders
+//We can able to change the folder path where it needs to look in
+
+app.UseDefaultFiles();//used to serve default file, when root path navigated
+            //we can able to configure default file name.
+            // it will automatically detect index.html file
+            //this will not directly serve the file. it will just change the request's path, so that
+            UseStaticFiles middleware can abel to server the path
+            so order of middle wares should be - UseDefaultFiles() first then UseStaticFiles()
+
+app.UseFileServer();//this will internally include UseDefaultFiles,UseFileServer
+
+MVC itself is a middleware

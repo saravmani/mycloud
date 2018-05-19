@@ -1,0 +1,51 @@
+RequestContext
+     HttpContext
+        Request
+        Response
+     RouteData
+
+#I guess RequestContext is the base .. :-)
+
+
+RequestContext
+        HttpContext
+        RouteData
+        
+    And it is available in System.Web.dll
+
+
+HttpContext
+    this contains below important properties
+        Request and Response Objects 
+        User (IPrinciple)
+        Session
+        IsWebSocketRequest
+        Application (Application variables)
+    
+    This property's type is - HttpContextBase
+    And it is available in System.Web.dll
+
+Request
+
+    This property's type is - HttpRequestBase
+    And it is available in System.Web.dll
+
+
+
+
+
+ControllerContext
+------------------------------------
+ controller context properties
+----------------------------------------------------------------------------------------------
+RequestContext
+ControllerContext
+HttpContext
+RouteData
+IsChildRequest
+
+
+
+ViewEngineResult
+-------------------
+IViewEngine.FindView():ViewEngineResult

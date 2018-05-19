@@ -1,0 +1,5 @@
+when tsc start exectuing then it will firs search for tsconfig.json file.
+then it will start compiling of all ts files.
+
+but if we provide tsc filenmae.ts then compiler wont search for tsconfig.file.
+so we many need to give all the params in command prompt only

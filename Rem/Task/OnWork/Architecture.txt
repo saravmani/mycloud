@@ -1,0 +1,2 @@
+Create example for few important design patterns
+ex: strategy, template, Observable, command pattern

@@ -1,0 +1,22 @@
+Run node js application as windows service
+------------------------------------------
+npm install node-windows --g
+
+
+var Service = require('node-windows').Service;
+
+// Create a new service object
+var svc = new Service({
+  name:'Dnb.SB.PDFGenerator',
+  description: 'Node js service. Which is used for PMR PDF Generation',
+  script: require('path').join(__dirname,'index.js')
+});
+
+// Listen for the "install" event, which indicates the
+// process is available as a service.
+svc.on('install',function(){
+  svc.start();
+});
+
+svc.install();
+//svc.uninstall();//used to uninstall the service

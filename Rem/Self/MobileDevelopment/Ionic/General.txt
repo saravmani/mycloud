@@ -1,0 +1,14 @@
+Ionic framework build on top of angularjs and cordova
+
+Ionic gives look and feel for mobile applications
+
+For visual studio we can add the ionic templates by extension manager
+"ionic project templates for visual studio"
+
+
+3 types of templates available by default
+Tabs App:
+Blank App:
+Side menu app
+
+Ex: C:\Users\Username\Desktop> ionic start myApp tabs

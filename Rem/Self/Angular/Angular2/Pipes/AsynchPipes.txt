@@ -1,0 +1,95 @@
+Normally to render the result of a promise or an observable we have to:
+  Wait for a callback.
+  Store the result of the callback is a variable.
+  Bind to that variable in the template.
+But With AsyncPipe we can use promises and observables directly in our template, 
+without having to store the result on an intermediate property or variable.
+
+AsyncPipe accepts as argument an observable or a promise, 
+calls subcribe or attaches a then handler, then waits for the 
+asynchronous result before passing it through to the caller.
+
+#async pipes we can use for promises and observables
+
+
+Angular implements an unusual impure pipe, AsyncPipe—you can use it with the “async” name in
+component templates—, which works with a Promise or Observable input. This pipe automatically
+subscribes to the input stream, returns the emitted values, and does the necessary cleanup on the
+completion of the data stream.
+
+{{ getMouseMessage(mousepad.mouseEvents$ | async) }}
+
+
+export class AppComponent {
+@ViewChild(MousepadComponent) mousepad: MousepadComponent;
+getMouseMessage(m: MouseEvent) {
+return m ? `(${m.clientX}, ${m.clientY})` : '(?, ?)';
+}
+}
+
+
+Its changes are driven from outside of the view in which it is used, meaning that its transform
+method will be called often, even if a new event has not been received from the Observable.
+
+Angular includes the async pipe, which can be used to consume Observable objects directly in a view,
+
+
+<div class="bg-primary p-a-1" [class.bg-warning]="editing">
+<h5>{{editing ? "Edit" : "Create"}} Product</h5>
+Last Event: {{ stateEvents | async | json }}
+</div>
+
+
+The string interpolation binding expression gets the stateEvents property from the component, which
+is the Observable<SharedState > object, and passes it to the async pipe, which keeps track of the most
+recent event that has been received. The async filter then passes on the event to the json pipe,
+ which creates a JSON representation of the event object.
+
+
+
+example with promises
+-------------------------
+@Component({
+  selector: 'async-promise-pipe',
+  template: `<div>
+    <code>promise|async</code>: 
+    <button (click)="clicked()">{{ arrived ? 'Reset' : 'Resolve' }}</button>
+    <span>Wait for it... {{ greeting | async }}</span>
+  </div>`
+})
+export class AsyncPromisePipeComponent {
+  greeting: Promise<string>|null = null;
+  arrived: boolean = false;
+
+  private resolve: Function|null = null;
+
+  constructor() { this.reset(); }
+
+  reset() {
+    this.arrived = false;
+    this.greeting = new Promise<string>((resolve, reject) => { this.resolve = resolve; });
+  }
+
+  clicked() {
+    if (this.arrived) {
+      this.reset();
+    } else {
+      this.resolve !('hi there!');
+      this.arrived = true;
+    }
+  }
+}
+
+
+example with observable
+---------------------------
+
+@Component({
+  selector: 'async-observable-pipe',
+  template: '<div><code>observable|async</code>: Time: {{ time | async }}</div>'
+})
+export class AsyncObservablePipeComponent {
+  time = new Observable<string>((observer: Subscriber<string>) => {
+    setInterval(() => observer.next(new Date().toString()), 1000);
+  });
+}

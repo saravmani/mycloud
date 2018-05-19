@@ -1,0 +1,40 @@
+This Key word
+--------------
+
+javascript interpretor assigns value to this based on 4 scenarios
+normal functions -- will have window object
+methods within objects -- refer contained object
+within an object that has been constructed
+apply,call and bind
+in normal function calls
+
+normal functions
+-----------------
+function test()
+{
+    console.log(this);// it s global. it is winod object on browser
+}
+
+
+methods within objects
+------------------------
+var obj={
+    varName:12,
+    functionName:function()
+    {
+        console.log(this.varName);//here this refers obj
+
+    }
+}
+
+
+function anotherFunction()
+{
+console.log(this.varName);
+}
+
+obj.sss = anotherFunction;
+obh.sss();// this will return 12
+
+
+

@@ -1,0 +1,16 @@
+Use novalidate with a form declaration to disable any browser specific validation. 
+$dirty and $invalid can use for validations
+$error - states the exact error
+
+ng-click
+ng-dbl-click
+ng-mousedown
+ng-mouseup
+ng-mouseenter
+ng-mouseleave
+ng-mousemove
+ng-mouseover
+ng-keydown
+ng-keyup
+ng-keypress
+ng-change

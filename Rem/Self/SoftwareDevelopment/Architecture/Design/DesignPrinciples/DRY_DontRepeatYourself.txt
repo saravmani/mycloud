@@ -1,0 +1,16 @@
+DRY - Don't Repeat Yourself
+----------------------------------------
+#My Understanding - Every piece of knowledge shoul have single implementation. It should not be repeated
+ Knowledge can - Abstractions, Algorithms, Approches, Execution patterns
+
+Viloation of this principle will produce more maintanabilities issues
+ex: Bug fixes at multiple places, Feature implementation have to be done multiple times etc, Multiple testing
+multiple releases etc.,
+
+Even we can take authentication to seperate application, and make use of it by all client applications
+So, all the security related fixes goes to one place infuture
+
+Ex: Dont mention connections trings multiple places
+Connection Open Logic
+Complex object creation logic
+Logging

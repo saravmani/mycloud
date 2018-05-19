@@ -1,0 +1,127 @@
+# we can use it in report engine components.
+
+
+Uses
+---------------
+very useful in scenarios where similar kinds of objects are to be created with a slight variance.
+ Flyweight pattern would save us the memory space and would let us write the code which deals with lesser number of objects.
+
+
+
+GOF definition- “A flyweight is a shared object that can be used in multiple contexts simultaneously”
+
+A flyweight object can be described by 2 states:-
+Intrinsic State- Intrinsic state as the name suggests is the one which is 
+natural to the flyweight object and can be shared. The intrinsic state is independent of 
+flyweight’s context.
+Extrinsic state- The extrinsic state is one which varies with flyweight context 
+and therefore it cannot be shared.
+
+
+Below flyweight pattern example
+this a game, in this game millions of metal coins and rupee notes falling from sky. Instead of creating million currency objects , we are going to reuse only 2 type of currency object.
+
+
+
+
+public enum EnMoneyType
+{
+  Metallic,
+  Paper
+}
+
+public interface IMoney
+{
+  EnMoneyType MoneyType { get; } //IntrinsicState()
+  void GetDisplayOfMoneyFalling(int moneyValue); //GetExtrinsicSate()
+}
+
+
+public class MetallicMoney:IMoney
+{
+   public EnMoneyType MoneyType
+   {
+     get { return EnMoneyType.Metallic; }
+   }
+
+   public void GetDisplayOfMoneyFalling(int moneyValue)
+   {
+     //This method would display graphical representation of a metallic currency like a    
+       gold coin.
+       Console.WriteLine(string.Format("Displaying a graphical object of {0} currency of 
+                                        value ${1} falling from sky."
+                                        , MoneyType.ToString(), moneyValue)
+                                      );
+   }
+}
+
+class PaperMoney:IMoney
+{
+  public EnMoneyType MoneyType
+  {
+    get { return EnMoneyType.Paper; }
+  }
+
+  public void GetDisplayOfMoneyFalling(int moneyValue) //GetExtrinsicState()
+  {
+    // This method would display a graphical representation of a paper currency.
+       Console.WriteLine(string.Format("Displaying a graphical object of {0} currency                                        of value ${1} falling from sky."
+                                       ,MoneyType.ToString(), moneyValue));
+  }
+}
+
+
+public class MoneyFactory
+{
+   public static int ObjectsCount=0;
+   private Dictionary&lt;enmoneytype,imoney> _moneyObjects;
+   public IMoney GetMoneyToDisplay(EnMoneyType form) // Same as GetFlyWeight()
+   {
+      if (_moneyObjects == null)
+           _moneyObjects = new Dictionary&lt;enmoneytype,>();
+      if (_moneyObjects.ContainsKey(form))
+            return _moneyObjects[form];
+      switch (form)
+      {
+          case EnMoneyType.Metallic:
+              _moneyObjects.Add(form, new MetallicMoney());
+               ObjectsCount++;
+               break;
+          case EnMoneyType.Paper:
+              _moneyObjects.Add(form, new PaperMoney());
+               ObjectsCount++;
+               break;
+          default:
+               break;
+      }
+      return _moneyObjects[form];
+   }
+}
+
+
+class Program
+{
+   static void Main(string[] args)
+   {
+     const int ONE_MILLION=10000; // &lt;--- Suppose this is one million :)
+     int[] currencyDenominations = new[] { 1, 5, 10, 20, 50, 100 };
+     MoneyFactory moneyFactory = new MoneyFactory();
+     int sum = 0;
+     while (sum &lt;= ONE_MILLION)
+     {
+       IMoney graphicalMoneyObj=null;
+       Random rand = new Random();
+       int currencyDisplayValue=currencyDenominations[rand.Next(0,currencyDenominations
+                                                      .Length)];
+       if (currencyDisplayValue == 1 || currencyDisplayValue==5)
+          graphicalMoneyObj=moneyFactory.GetMoneyToDisplay(EnMoneyType.Metallic);
+       else
+          graphicalMoneyObj=moneyFactory.GetMoneyToDisplay(EnMoneyType.Paper);
+                
+       graphicalMoneyObj.GetDisplayOfMoneyFalling(currencyDisplayValue);
+       sum = sum + currencyDisplayValue;
+     }
+     Console.WriteLine("Total Objects created="+ MoneyFactory.ObjectsCount.ToString());
+            Console.ReadLine();
+        }
+}

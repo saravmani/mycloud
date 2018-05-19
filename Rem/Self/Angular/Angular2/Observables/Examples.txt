@@ -1,0 +1,14 @@
+ new Observable((obsrv) => {
+      obsrv.next("rewr");
+    }).subscribe((data)=>{
+      
+    });
+
+Observable.of([1, 2, 3]).subscribe(x => console.log(x));
+would print the whole array at once.
+Observable.from([1, 2, 3]).subscribe(x => console.log(x));
+//this will print one by ones
+
+Observable.throw(error)
+
+join multiple observables

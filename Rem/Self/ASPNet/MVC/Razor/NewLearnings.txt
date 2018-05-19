@@ -1,0 +1,47 @@
+we can modify the layout page based on conditions like below
+
+index.cshtml
+@{
+    if(Sessiont["IsAdminUser"]=="true")
+        Layout="~/Views/Shared/_Layout_admin.cshtml"
+    else
+        Layout="~/Views/Shared/_Layout_user.cshtml"
+
+}
+
+Another way is usign action methods conditionally we can able to return layouts
+public List < Student > GetStudentList() {  
+    return View("StudentList", "~/Views/Shared/AdminLayout.cshtml");  
+}  
+If Logged in as Teacher: public List < Student > GetStudentList() {  
+    return View("StudentList", "~/Views/Shared/TeacherLayout.cshtml");  
+}  
+
+2) Child view (ex:Index.cshtml) will get executed first before executing layout page (ex:layout.cshtml)
+so we can able to set viewbag in child view and can able to access it in laout page.
+
+@viewBag.Title="some page specific Title"
+
+in layoute page.cshtml
+<div>@viewbag.Title</div>
+
+
+3) _ViewStart (it is introduced in mvc3)
+_Viewstart.cshtml is used to place common UI logic across the Views.
+_Viewstart.cshtml will get called for every view page execution, event error page also 
+We can able to have _Viewstart for all views by placing /views/ folder,
+and we can able to specific controller by placing /views/controllername
+
+4)_ViewImports.cshtml
+it is a common page for all the views.
+we can use this to import the namespaces, so that we no need to specify the namespace at each view level
+@using Namespace1.namespace2
+@using Namespace1.namespace2
+@using Namespace1.namespace2
+we can have a list of namespaces like this
+
+5)way to specify the model type
+@using Namespace1.namespace2
+@model ClassName
+or
+@model Namespace1.namespace2.ClassName

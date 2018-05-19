@@ -1,0 +1,33 @@
+even if we import external libraries, but if we not used within the code,
+typescript will not include external libraries in output.
+
+ex:
+in belwo example we included lodash library. but we are not used lodash in code. 
+so in output of typescript will not contains lodash import option.
+
+
+/// <reference path="../typings/index.d.ts" />
+import * as _ from 'lodash';
+declare var postMessage: any;
+export class GraphUtils {
+    constructor() {
+        self.addEventListener("message", (msgObject) => {
+            console.log(msgObject);
+        });
+
+    }
+    populateMultiChartData(mainGridData, garaphSeriesParam: Array<string>, seriesFieldType: string, usePeriodKeyAsSeries: boolean = false, seriesColumnSuffix = "", isDifferentColourRequiredForSeries = true) {
+      
+    }
+    generateCartData() {
+        //self.postMessage("some Message from worker huhu");
+    }
+
+
+}
+
+var objGraphUtils = new GraphUtils();
+objGraphUtils.generateCartData();
+console.log("outside class");
+
+

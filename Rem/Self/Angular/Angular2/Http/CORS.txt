@@ -1,0 +1,79 @@
+http.request
+---------------------------
+return this.http.request(new Request({
+        method: verb,
+        url: url,
+        body: body,
+        WithCredentials:true
+})).map(response => response.json());
+
+withCredentials : When true, this property is used to include authentication cookies when making
+cross-site requests. This setting must be used only with servers that include the
+Access-Control-Allow-Credentials header in responses, as part of the Cross-Origin
+Resource Sharing (CORS) specification. See the “Making Cross-Origin Requests”
+section for details.
+
+CORS in Angular
+------------------------
+In Angular JS typically websevices hosted  outside of the origin that contains the application’s 
+JavaScript code.
+
+Two URLs are
+considered to be in the same origin if they have the same protocol, host, and port and have different origins
+if this is not the case.
+
+HTTP requests made using the Angular Http class will automatically use Cross-Origin Resource Sharing
+(CORS) to send requests to different origins. With CORS, the browser includes headers in the 
+asynchronous
+HTTP request that provide the server with the origin of the JavaScript code. The response from the server
+includes headers that tell the browser whether it is willing to accept the request. 
+
+
+Using JSONP Requests
+---------------------------
+CORS is available only if the server to which the HTTP requests are sent supports it. For servers that don’t
+implement CORS, Angular also provides support for JSONP, which allows a more limited form of crossorigin
+requests.
+
+The browser sends a GET request to the server, which returns JavaScript code that,
+when executed, provides the application with the data it requires. JSONP is, essentially, a hack that works around
+the browser’s same-origin security policy. JSONP can be used only to make GET requests, and it presents greater
+security risks than CORS. As a consequence, JSONP should be used only when CORS isn’t available.
+
+ex:
+// HttpModule, JsonpModule
+import { NgModule } from "@angular/core";
+import { HttpModule, JsonpModule } from "@angular/http"
+import { Model } from "./repository.model";
+import { RestDataSource, REST_URL } from "./rest.datasource";
+@NgModule({
+  imports: [HttpModule, JsonpModule],
+  providers: [Model, RestDataSource,
+    { provide: REST_URL, useValue: `http://${location.hostname}:3500/products` }]
+})
+export class ModelModule { }
+
+
+servicsss.ts
+import { Http, Request, RequestMethod, Jsonp } from "@angular/http";
+getData(): Observable<Product[]> {
+return this.jsonp.get(this.url + "?callback=JSONP_CALLBACK")
+.map(response => response.json());
+}
+
+# here callback=JSONP_CALLBACK is convention
+
+When you use JSONP, the URL you request must include a callback parameter, and it must be set to
+JSONP_CALLBACK.
+
+When Angular makes the HTTP request, it replaces JSONP_CALLBACK with the name of a dynamically
+generated function
+If you look at the network requests that the browser makes, you will see that the initial
+request is sent to a URL like this one:
+http://localhost:3500/products?callback=__ng_jsonp__.__req0.finished
+
+JSONP is a more limited way to make cross-origin requests, and,
+unlike CORS, it skirts around the browser’s security policy, but it can be a useful fallback in a pinch.
+
+The Jsonp class defines the same set of methods as the Http class but supports only GET requests.
+An error will occur if you try to send any other request type

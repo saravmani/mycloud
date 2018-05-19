@@ -1,0 +1,124 @@
+The fi rst step is toensure that the application knows whether an Internet connection is available or not in order
+to perform the correct operation. 
+Then, the application still needs to have access to a subset of
+resources (images, JavaScript, CSS, and so on) in order to continue working properly. 
+The last piece is a local data storage area that can be written to and read from regardless of Internet availability.
+
+
+
+navigator.onLine //This will be true when system in online. but in chrome browser there is open bug .. bcs this property always true:-(
+But still we can do the code like this.
+
+if (navigator.onLine){
+//work as usual
+} else {
+//perform offline behavior
+}
+
+
+HTML5 defines two events, to detect online offline.
+
+window.ononline
+window.onofline
+
+For determining if an application is offl ine, it’s best to start by looking at navigator.onLine to
+get the initial state when the page is loaded. After that, it’s best to use the events to determine when
+network connectivity changes.
+
+Application Cache
+---------------------
+application cache, or appcache for short, is designed specifi cally for use with offl ine
+web applications. The appcache is a cache area separate from the normal browser cache. You specify
+what should be stored in the page’s appcache by providing a manifest fi le listing the resources to
+download and cache.
+
+<html manifest=”/offline.manifest”>
+The fi le must be served with a content type of text/cache-manifest to be used.
+Primary object whichis used to work with appcahce is applicationCache.
+This object has one property, status, which indicates the current
+status of the appcache .
+
+0 for uncached, meaning that there is no appcache associated with the page.
+1 for idle, meaning the appcache is not being updated.
+2 for checking, meaning the appcache manifest fi le is being downloaded and checked for
+updates.
+3 for downloading, meaning the appcache is downloading resources specifi ed in the
+manifest fi le.
+4 for update ready, meaning that the appcache was updated with new resources and all
+resources are downloaded and may be put into use via swapCache().
+5 for obsolete, meaning the appcache manifest fi le is no longer available and so the
+appcache is no longer valid for the page.
+There are also a large number of events associated with the appcache to indicate when its status has
+changed. The events are:
+checking — Fires when the browser begins looking for an update to the appcache.
+error — Fires if there’s an error at any point in the checking or downloading sequence.
+noupdate — Fires after checking if the appcache manifest hasn’t changed.
+downloading — Fires when the appcache resources begin downloading.
+progress — Fires repeatedly as fi les are being downloaded into the appcache.
+updateready — Fires when a new version of the page’s appcache has been downloaded and
+is ready for use with swapCache().
+cached — Fires when the appcache is complete and ready for use.
+
+applicationCache.update();
+Once update() is called, the appcache goes to check if the manifest fi le is updated (fi res checking)
+and then proceeds as if the page had just been loaded. If the cached event fi res, it means the new
+appcache contents are ready for use and no further action is necessary. If the updateready event fi res,
+that means a new version of the appcache is available and you need to enable it using swapCache():
+EventUtil.addHandler(applicationCache, “updateready”, function(){
+applicationCache.swapCache();
+});
+
+
+
+Cookies
+-----------------
+two types - persistant, non persistant
+Restriction in cookies
+	1. specific to domain (for security reason). we can make cookie valid for subdomain :-)
+	2. total number of cookies per domain is limited, although it varies from browser to browser. When cookies are set above the per-domain limit, the browser starts to eliminate previously set
+cookies.
+	3. also there is size limit. If you attempt to create a cookie that exceeds the maximum cookie size, the cookie is silently
+dropped. Note that one character typically takes one byte, unless you’re using multibyte characters.
+
+
+Cookie names are NOT case-sensitive, so myCookie and MyCookie are considered to be the same
+The cookie name must be URL-encoded.
+
+
+parts of cookie
+---------------------
+Name
+Value
+Domain 
+Path -> if specify the URL path, then cookie informaion will be sent for ONLY this specific path :-)
+Expiration -> if we didn set the value then cookie will get expired once browser is colosed
+Secure Flag ->When specifi ed, the cookie information is sent to the server only if an SSL connection is used. For instance, requests to https://www.wrox.com should send cookie
+information, whereas requests to http://www.wrox.com should not.
+Ex: Set-Cookie: name=value; domain=.wrox.com; path=/; secure
+
+Here, a cookie is created that is valid for all subdomains of wrox.com and all pages on that domain
+(as specifi ed by the path argument).
+These other arguments are not actually sent as part of the cookie information to the server; only the name-value pairs are sent.
+
+when we deal with cookie using javascript, All of the names and values are URL-encoded and so must be decoded via decodeURIComponent().
+
+To get around the per-domain cookie limit imposed by browsers, some developers use a concept
+called subcookies
+--------------------------------------------------------------------------------------------------------------------
+
+
+Webstorage
+---------------------
+we can store only string values in webstorage
+Its intent is to overcome some
+of the limitations imposed by cookies when data is needed strictly on the client side, with no need to
+continuously send data back to the server. The two primary goals of Web Storage are:
+To provide a way to store session data outside of cookies.
+To provide a mechanism for storing large amounts of data that persists across sessions.
+
+localStorage.setItem("hihi","haha")
+localStorage.hihi// this will work. bcs all the values stored as properties.
+localStorage["hihi"]//this also will work;
+
+
+

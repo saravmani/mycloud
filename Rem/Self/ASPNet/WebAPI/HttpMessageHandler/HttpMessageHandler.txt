@@ -1,0 +1,223 @@
+Message handlers
+------------------------
+
+A message handler is a class that receives an HTTP request and returns an HTTP response.
+Message handlers derive from the abstract HttpMessageHandler class.
+
+# I guess i have used this to provide custome encryption from auth service to web client
+
+Typically, a series of message handlers are chained together. 
+The first handler receives an HTTP request, does some processing, 
+and gives the request to the next handler. At some point, 
+the response is created and goes back up the chain. This pattern is called a delegating handler.
+
+
+# I guess beore routing this is getting called
+
+#We can able to add this filter at global level also router path level
+
+
+
+Server-Side Message Handlers
+On the server side, the Web API pipeline uses some built-in message handlers:
+
+HttpServer gets the request from the host.
+HttpRoutingDispatcher dispatches the request based on the route.
+HttpControllerDispatcher sends the request to a Web API controller.
+# I can compare this with nodejs webserver.
+
+
+
+
+To write a custom message handler, derive from System.Net.Http.DelegatingHandler 
+and override the SendAsync method.
+If a delegating handler creates the response without calling base.SendAsync, 
+the request skips the rest of the pipeline. 
+This can be useful for a handler that validates the request (creating an error response).
+
+public class MessageHandler1 : DelegatingHandler
+{
+    protected async override Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        Debug.WriteLine("Process request");
+        // Call the inner handler.
+        var response = await base.SendAsync(request, cancellationToken);
+        Debug.WriteLine("Process response");
+        return response;
+    }
+}
+
+//A delegating handler can also skip the inner handler and directly create the response:+
+
+
+
+public class MessageHandler2 : DelegatingHandler
+{
+    protected override Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        // Create the response.
+        var response = new HttpResponseMessage(HttpStatusCode.OK)
+        {
+            Content = new StringContent("Hello!")
+        };
+
+        // Note: TaskCompletionSource creates a task that does not contain a delegate.
+        var tsc = new TaskCompletionSource<HttpResponseMessage>();
+        tsc.SetResult(response);   // Also sets the task state to "RanToCompletion"
+        return tsc.Task;
+    }
+}
+
+
+Adding a Handler to the Pipeline
+To add a message handler on the server side, add the handler to the HttpConfiguration.MessageHandlers collection. 
+If you used the "ASP.NET MVC 4 Web Application" template to create the project, you can do this inside the WebApiConfig class:
+
+Message handlers are called in the same order that they appear in MessageHandlers collection. 
+
+public static class WebApiConfig
+{
+    public static void Register(HttpConfiguration config)
+    {
+        config.MessageHandlers.Add(new MessageHandler1());
+        config.MessageHandlers.Add(new MessageHandler2());
+
+        // Other code not shown...
+    }
+}
+
+
+Simple HTTP server without COntroller actions.
+-------------------------------------------------------------
+we can achieve this with HttpMessageHandler class
+
+1. Create HttpMessageHandler class
+class MyWebAPIMessageHandler : HttpMessageHandler
+{
+    protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
+    {
+        var task = new Task<HttpResponseMessage>(() => {
+            var resMsg = new HttpResponseMessage();
+            resMsg.Content = new StringContent("Hello World!");
+            return resMsg;
+        });
+
+        task.Start();
+        return task;
+    }
+}
+
+
+
+Adding Custome header 
+-------------------------------
+// .Net 4.5
+public class CustomHeaderHandler : DelegatingHandler
+{
+    async protected override Task<HttpResponseMessage> SendAsync(
+            HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
+        response.Headers.Add("X-Custom-Header", "This is my custom header.");
+        return response;
+    }
+}
+
+
+
+Example: Checking for an API Key
+-------------------------------------------------------------------------------
+Some web services require clients to include an API key in their request. The following example shows how a message handler can check requests for a valid API key:
+public class ApiKeyHandler : DelegatingHandler
+{
+    public string Key { get; set; }
+
+    public ApiKeyHandler(string key)
+    {
+        this.Key = key;
+    }
+
+    protected override Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        if (!ValidateKey(request))
+        {
+            var response = new HttpResponseMessage(HttpStatusCode.Forbidden);
+            var tsc = new TaskCompletionSource<HttpResponseMessage>();
+            tsc.SetResult(response);    
+            return tsc.Task;
+        }
+        return base.SendAsync(request, cancellationToken);
+    }
+
+    private bool ValidateKey(HttpRequestMessage message)
+    {
+        var query = message.RequestUri.ParseQueryString();
+        string key = query["key"];
+        return (key == Key);
+    }
+}
+
+
+If the API key applies only to certain controller actions, consider using an action filter instead of a message handler. Action filters run after URI routing is performed.
+
+
+
+
+Per-Route Message Handlers (Tages : Router level, Route path level,Route level)
+======================================================================================
+you can add a message handler to a specific route when you define the route:
+
+public static class WebApiConfig
+{
+    public static void Register(HttpConfiguration config)
+    {
+        config.Routes.MapHttpRoute(
+            name: "Route1",
+            routeTemplate: "api/{controller}/{id}",
+            defaults: new { id = RouteParameter.Optional }
+        );
+
+        config.Routes.MapHttpRoute(
+            name: "Route2",
+            routeTemplate: "api2/{controller}/{id}",
+            defaults: new { id = RouteParameter.Optional },
+            constraints: null,
+            handler: new MessageHandler2()  // per-route message handler
+        );
+
+        config.MessageHandlers.Add(new MessageHandler1());  // global message handler
+    }
+}
+
+if the request URI matches "Route2", the request is dispatched to MessageHandler2. 
+It replaces the default HttpControllerDispatcher for particular Route match.
+In this example, MessageHandler2 creates the response, and requests that match "Route2" never go to a controller.
+ This lets you replace the entire Web API controller mechanism with your own custom endpoint.
+
+ HttpControllerDispatcher : HttpMessageHandler
+
+
+
+Alternatively, a per-route message handler can delegate to HttpControllerDispatcher, 
+which then dispatches to a controller.
+----------------------------------------------------------------------------------------------------------------------------------
+
+// List of delegating handlers.
+DelegatingHandler[] handlers = new DelegatingHandler[] {
+    new MessageHandler3()
+};
+
+// Create a message handler chain with an end-point.
+var routeHandlers = HttpClientFactory.CreatePipeline(
+    new HttpControllerDispatcher(config), handlers);
+
+config.Routes.MapHttpRoute(
+    name: "Route2",
+    routeTemplate: "api2/{controller}/{id}",
+    defaults: new { id = RouteParameter.Optional },
+    constraints: null,
+    handler: routeHandlers
+);

@@ -1,0 +1,4 @@
+DebugElement - to query component's template
+whenStable - method: Use the whenStable method to defer the test until the
+effect of the operation has been processed.
+async and whenStable

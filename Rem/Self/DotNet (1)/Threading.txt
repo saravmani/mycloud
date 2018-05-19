@@ -1,0 +1,38 @@
+Mutex
+--------
+Same like lock. but it can be used accross the multiple processes
+Ex: 
+	var objMutex = new Mutex();
+
+            var firsttask = new System.Threading.Tasks.Task(() =>
+             {
+                 var ss = "";
+                 objMutex.WaitOne();
+                 objMutex.ReleaseMutex();
+                 ss = "";
+             });
+
+            new System.Threading.Tasks.Task(() =>
+            {
+                var ss = "";
+                objMutex.WaitOne();
+                Thread.Sleep(5000);
+                objMutex.ReleaseMutex();
+
+                ss = "";
+
+            }).Start();
+            firsttask.Start();
+
+Thread Vs Process
+-------------------------
+Threads are used for small tasks, whereas processes are used for more 'heavyweight' tasks – basically the execution of applications. Another difference between a thread and a process is that threads within the same process share the same address space, whereas different processes do not.
+
+Foreground vs Background threads
+---------------------------------------
+Foreground threads have the ability to prevent the current application from terminating. The CLR will not shut down an application (which is to say, unload the hosting AppDomain) until all foreground threads have ended.
+Background threads (sometimes called daemon threads) are viewed by the CLR as expendable paths of execution that can be ignored at any point in time (even if they are currently laboring over some unit of work). Thus, if all foreground threads have terminated, any and all background threads are automatically killed when the application domain unloads.
+
+The notion of a "background thread" means very little in .NET. The Thread.IsBackground property is just a simple flag that helps the CLR decide whether or not it should rudely abort the thread when the AppDomain gets unloaded or whether it should wait for the thread to exit voluntarily.
+
+  Thread.CurrentThread.IsBackground = false;

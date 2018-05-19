@@ -1,0 +1,2 @@
+start . // this ll open file explorer for current folder
+start .. //this ll open previous folder

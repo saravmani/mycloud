@@ -1,0 +1,214 @@
+Command Pattern allows you to decouple the requester of an action
+from the object that actually performs the action. So, here the requester would be
+the remote control and the object that performs the action would be an instance
+of one of your vendor classes.
+
+
+object making a request from the objects that receive and execute those requests
+
+The actions and the Receiver are bound together in the command object.
+
+
+once the command is loaded into  the invoker, it may be used and discarded, or it may remain and be used many times.
+
+Command pattern having following items
+------------------------------------------
+Receiver - (who is going to perform action)
+Command - (Actions)
+invoker - Gets command object and calls execute() - he doesn’t know what command it is.
+Client - who knows both command and receiver
+
+
+Command object
+-------------------
+The ConcreteCommand defines a binding between an action and a Receiver.
+receiver of the request gets bound to  the command it’s encapsulated in.
+
+
+
+
+
+
+public interface Command {
+    public void execute();
+}
+
+public class LightOnCommand implements Command {
+    Light light;
+    public LightOnCommand(Light light) {
+        this.light = light;
+    }
+    public void execute() {
+        light.on();
+    }
+}
+
+//#Invoker
+public class SimpleRemoteControl {
+    Command slot;
+    public SimpleRemoteControl() {}
+    public void setCommand(Command command) {
+        slot = command;
+    }
+    public void buttonWasPressed() {
+        slot.execute();
+    }
+}
+
+//#TEST APPLICATION
+public class RemoteControlTest {
+    public static void main(String[] args) {
+        SimpleRemoteControl remote = new SimpleRemoteControl();
+        Light light = new Light();
+        LightOnCommand lightOn = new LightOnCommand(light);
+        remote.setCommand(lightOn);
+        remote.buttonWasPressed();
+    }
+}
+
+
+
+
+
+Undo option
+===============================================================================================
+# undo should supported by command object
+
+When commands support undo, they have an undo() method that mirrors the execute()
+method. Whatever execute() last did, undo() reverses.
+
+public interface Command {
+    public void execute();
+    public void undo();
+}
+
+concrete command object which implements undo option
+
+public class LightOnCommand implements Command
+{
+    Light light;
+public LightOnCommand(Light light)
+{
+    this.light = light;
+}
+public void execute()
+{
+    light.on();
+}
+public void undo()
+{
+    light.off();
+}
+}
+
+
+NoCommand
+------------
+In the remote
+control, we didn’t want to check to see if a command was loaded every
+time we referenced a slot. For instance, in the onButtonWasPushed()
+method, we would need code like this:
+public void onButtonWasPushed(int slot) {
+if (onCommands[slot] != null) {
+onCommands[slot].execute();
+}
+}
+So, how do we get around that? Implement a command that does nothing!
+public class NoCommand implements Command {
+public void execute() { }
+}
+Then
+
+
+Null object
+---------------
+The NoCommand object is an example of a null object. A null object is useful
+when you don’t have a meaningful object to return, and yet you want to remove
+the responsibility for handling null from the client.
+You’ll find uses for Null Objects in conjunction with many Design Patterns and
+sometimes you’ll even see Null Object listed as a Design Pattern
+
+
+
+
+
+What is metta command pattern?
+The Meta Command Pattern allows you to create
+macros of commands so that you can execute multiple commands
+at once.
+
+public class MacroCommand implements Command
+{
+    Command []
+    commands;
+public MacroCommand(Command[] commands)
+{
+    this.commands = commands;
+}
+public void execute()
+{
+    for (int i = 0; i < commands.length; i++)
+    {
+        commands[i].execute();
+    }
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+primary design goal was to keep the remote control code as simple as possible so that
+it doesn’t require changes as new vendor classes are produced.
+
+# Abov sentance is mentioned head first design patterns book.
+ This means implementation should not affect if multiple concrete vendors are added in future
+
+this will reduce the cost of producing
+the remote as well as drastically reduce your ongoing maintenance costs.
+
+
+Advantages of command pattern
+-------------------------------
+queuing requests
+History rollback
+decouple the requester of an action from the object that actually performs the actio
+Can implement macros - (i.e execute multiple commands)
+
+
+Places where command pattern can use
+------------------------------------------
+schedulers,
+job queues,(web server make use of queue)
+logging requests
+# Engine Cockpit
+# DMM - intermediate of acctions -- refer LoggingActionsWIthCOmmandpattern.txt file
+# Inbox actions
+
+Queuing requests
+-----------------
+job queue classes are totally decoupled from the objects
+that are doing the computation.
+
+
+
+
+
+BULLET POINTS
+------------------------
+1.  The Command Pattern decouples an object, making  a request from the one that  knows how to perform it.
+2. A Command object is at the center of this decoupling and encapsulates a receiver with an action (or set of actions).
+3. An invoker makes a request of a Command object by calling  its execute() method, which invokes those actions on the receiver.
+4. Invokers can be parameterized with Commands, even dynamically at runtime.
+5. Commands may support undo by implementing an undo method that restores the object to its previous  state before the execute() method was last called.
+6. Macro Commands are a simpleextension of Command that
+allow multiple commands to be invoked. Likewise, Macro Commands can easily support undo().
+7. In practice, it is not uncommon for “smart” Command objects to implement the request themselves rather than delegating to a receiver.
+8. Commands may also be used to implement logging and transactional systems.

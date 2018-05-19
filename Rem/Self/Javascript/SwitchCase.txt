@@ -1,0 +1,11 @@
+//Switch case with or condition
+function kk(s){
+switch(s)
+{
+case "aa":
+case "bb":
+console.log("aa or bb");
+break;
+case "cc":
+console.log ("cc");
+}}

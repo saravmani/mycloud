@@ -1,0 +1,119 @@
+IL Code chek for
+========================
+Generics,
+Asynch await
+Var keyword
+Partial class
+
+Try Operator overloading
+
+public static Box operator+ (Box b, Box c) {
+   Box box = new Box();
+   box.length = b.length + c.length;
+   box.breadth = b.breadth + c.breadth;
+   box.height = b.height + c.height;
+   return box;
+}
+
+
+
+
+
+Try Observables
+===========================
+
+ private ObservableCollection<string> collection;
+
+    public Handler()
+    {
+        collection = new ObservableCollection<string>();
+        collection.CollectionChanged += HandleChange;
+    }
+
+    private void HandleChange(object sender, NotifyCollectionChangedEventArgs e)
+    {
+        foreach (var x in e.NewItems)
+        {
+            // do something
+        }
+
+        foreach (var y in e.OldItems)
+        {
+            //do something
+        }
+        if (e.Action == NotifyCollectionChangedAction.Move)
+        {
+            //do something
+        }
+    }
+
+
+
+
+Asynch await
+===================================================
+public static async Task Method1()
+        {
+            await Task.Run(() =>
+            {
+                for (int i = 0; i < 100; i++)
+                {
+                    Console.WriteLine(" Method 1");
+                }
+            });
+        }
+
+
+Try below example
+----------------------
+class Program
+    {
+        static void Main(string[] args)  {
+            Method1();
+            Method2();
+            Console.ReadKey();
+        }
+        public static async Task Method1(){
+            await Task.Run(() =>
+            {
+                for (int i = 0; i < 100; i++)  {
+                    Console.WriteLine(" Method 1");
+                }
+            });
+        }
+public static void Method2()  {
+            for (int i = 0; i < 25; i++)  {
+                Console.WriteLine(" Method 2");
+            }
+        }  }
+
+
+
+Try Memberwiseclone
+-----------------------------
+This is protected method of object. so within class we can get access to this method.
+
+
+Deploy one assembly in gac and try to access it. Try with different versions
+Try assembly redirecting
+
+
+
+
+
+
+
+
+Are there other examples of
+template methods in the Java API?
+A: Yes, you’ll find them in a few
+places. For example, java.io has a read()
+method in InputStream that subclasses
+must implement and is used by the tempate
+method read(byte b[], int off, int len).
+
+in c# system.io using template pattern?
+
+
+Write one custome attribute and restrict its access.. and check with reflection coding
+[AttributeUsage(AttributeTargets.All)]

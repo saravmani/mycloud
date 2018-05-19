@@ -1,0 +1,3 @@
+WebKit is a layout engine software component for rendering web pages in web browsers. 
+It powers Apple's Safari web browser. It was forked by Google to create Blink, 
+used by Chromium-based browsers such as Google Chrome and Opera.

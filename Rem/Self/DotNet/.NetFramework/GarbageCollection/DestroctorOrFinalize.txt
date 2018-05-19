@@ -1,0 +1,31 @@
+
+Finalize
+---------------
+there is not keyword called finalize.
+in c# we can implement finalize by writing destractor
+
+class a
+{
+~a()
+{}
+}
+#when we compile this code... destractor will converted into finalize
+in c# using destractor we are implementing finalize. 
+If we check it in reflector, we can able to see Finalize():void method.
+
+
+#when garbage collectors, if it finds the object which implements destractor  
+it will move it to finalize queue.
+but we are not sure when this queue will looked 
+
+This   method is called when the garbage collector determines that the object is garbage
+and before the memory for the object is reclaimed.
+
+
+Destructor or finalize
+------------------------
+.Net Framework will try to run all finalizers, but there is no guaranty that they ever be executed.
+
+
+The C# automatically generated finalizer chaining does call Dispose(bool) multiple times, 
+which is why it is especially important to implement the pattern only once in the inheritance chain.

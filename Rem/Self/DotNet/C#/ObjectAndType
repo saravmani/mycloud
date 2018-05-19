@@ -1,0 +1,135 @@
+
+Object is base for all types in c#
+object contains     Virtual GetHashCoe() 
+-------------------------------------------------
+ Returns a hash code for this object’s value. A type should override this method if its objects are to
+be used as a key in a hash table collection, like Dictionary.
+
+# I tried it in cosole. and it gives some integer number ex 1707556
+
+
+GetType()
+--------------
+ The returned Type object can be used with the reflection classes to obtain metadata
+information about the object’s type
+
+
+MemberwiseClone
+----------------
+This nonvirtual method creates a new instance of the type and sets the new object’s instance
+fields to be identical to the this object’s instance fields. A reference to the new instance is
+returned.
+#This is protected method of object. so within class we can get access to this method.
+
+
+Object Creation
+-----------------------
+It calculates the number of bytes required by all instance fields defined in the type and all of its
+base types up to and including System.Object (which defines no instance fields of its own).
+Every object on the heap requires some additional members—called the type object pointer
+and the sync block index—used by the CLR to manage the object. The bytes for these
+additional members are added to the size of the object.
+
+The type’s instance constructor is called, passing it any arguments (the string
+"ConstructorParam1" in the preceding example) specified in the call to new. Most compilers
+automatically emit code in a constructor to call a base class’s constructor. Each constructor is
+responsible for initializing the instance fields defined by the type whose constructor is being
+called. Eventually, System.Object’s constructor is called,
+
+One of the most important features of the CLR is type safety. At runtime, the CLR always knows what
+type an object is. You can always discover an object’s exact type by calling the GetType method.
+Because this method is nonvirtual, it is impossible for a type to spoof another type
+
+Type Casting
+==============================
+C# doesn’t require any special syntax to cast
+an object to any of its base types, because casts to base types are considered safe implicit conversions.
+However, C# does require the developer to explicitly cast an object to any of its derived types since
+such a cast could fail at runtime.
+
+IS operator
+----------------------
+The is operator checks whether an
+object is compatible with a given type, and the result of the evaluation is a Boolean: true or false
+Boolean b1 = (o is Object); // b1 is true.
+
+as operator
+-------------
+Employee e = o as Employee;
+if (e != null) {
+// Use e within the 'if' statement.
+}
+
+In this code, the CLR checks if o is compatible with the Employee type, and if it is, as returns a
+non-null reference to the same object. If o is not compatible with the Employee type, the as operator
+returns null. Notice that the as operator causes the CLR to verify an object’s type just once. The if
+statement simply checks whether e is null; this check can be performed faster than
+The as operator works just as casting does except that the as operator will never throw
+an exception. Instead, if the object can’t be cast, the result is null.
+
+C# allows a type to define conversion operator methods .
+These methods are invoked only when using a
+cast expression; they are never invoked when using C#'s as or is operator.
+
+
+Type safety
+-------------------
+before do explicit type casting CLR checks the cast and detects, types of the object and the type which it want to be converted. 
+#If the asked convertions is not a base type or same type then it will throw InvalidCastException
+
+If the CLR allowed the cast, there would be no type safety, and the results would be unpredictable,
+including the possibility of application crashes and security breaches caused by the ability of types to
+easily spoof other types. Type spoofing is the cause of many security breaches and compromises an
+application’s stability and robustness. Type safety is therefore an extremely important part of the CLR
+
+The CLR’s type checking improves security, but it
+certainly comes at a performance cost, because the CLR must determine the actual type of the object
+referred to by the variable (o), and then the CLR must walk the inheritance hierarchy, checking each
+base type against the specified type (Employee).
+
+
+
+namespace X {
+public sealed class B { ... } // TypeDef: CompanyName.X.B
+}
+}
+The comment on the right of the class definitions above indicates the real name of the type the
+compiler will emit into the type definition metadata table; this is the real name of the type from the
+CLR’s perspective.
+
+Be aware that a namespace and an assembly (the file that implements a type) aren’t necessarily
+related
+
+
+
+
+all objects on
+the heap contain two overhead members: the type object pointer and the sync block index.
+
+
+Static variables are like members of the Type object, and Type
+
+
+Compare two objects
+---------------------------
+ public class comptst
+    {
+        public string name { get; set; }
+        public override bool Equals(object obj)
+        {
+            return ((comptst)obj).name == this.name;
+         }
+    }
+
+
+    client
+    -------------
+     var one = new comptst { name = "king" };
+            var two = new comptst { name = "king" };
+one.Equals(two)
+//true
+Object.Equals(one,two)
+//true
+
+
+

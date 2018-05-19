@@ -1,0 +1,28 @@
+var debug = false;//;process.env.NODE_ENV !== "production";
+var webpack = require('webpack');
+var path = require('path');
+//const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+module.exports = {
+  context: __dirname,
+  devtool: true ? "inline-sourcemap" : null,
+  entry: "./typeScriptOut/index.js",
+  output: {
+    //path: path.resolve(__dirname + "/TestApplication/www/Scripts"),
+    //path: __dirname + "/TestApplication/www/Scripts",
+    //path:"E:/Mani/Lab/Angular2/Angular4Chart/Dnb-SB-PMR_Demo/content/Scripts",
+    path: path.resolve("E:/PMR/PMRClient/Dnb-SB-PMR_Demo/content/Scripts"),
+
+
+    //path:"E:\Mani\Lab\Angular2\Angular4Chart\Dnb-SB-PMR_Demo\content\Scripts",
+
+    filename: "ReportDataGenerator.min.js"
+  },
+  plugins: debug ? [] : [
+  //new UglifyJSPlugin({compress:true})
+    // new webpack.optimize.DedupePlugin(),
+    // new webpack.optimize.OccurenceOrderPlugin(),
+     new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }),
+    //new webpack.optimize.UglifyJsPlugin({ mangle: true, sourcemap: true, compress: { warnings: false } }),
+  ],
+};
+

@@ -1,0 +1,27 @@
+Cluser index vs Non Cluser index
+-------------------------------------
+
+Clustered Index
+----------------
+Only one per table
+Usually made on the primary key.
+Faster to read than non clustered as data is physically stored in index order
+
+Non Clustered Index
+--------
+Non-clustered indexes are stored separately, and you can have as many as you want.Can be used many times per table
+Quicker for insert and update operations than a clustered index
+Both types of index will improve performance when select data with fields that use the index but will slow down update and insert operations.
+Because of the slower insert and update clustered indexes should be set on a field that is normally incremental ie Id or Timestamp.
+SQL Server will normally only use an index if its selectivity is above 95%.
+There can be only 249 non-clustered indexes for a table.
+Do not affect the physical order. Create a logical order for data rows and use pointers to physical data files
+Use extra space to store logical structure
+
+
+
+
+
+Clustered indexes physically order the data on the disk. This means no extra data is needed for the index, but there can be only one clustered index (obviously). Accessing data using a clustered index is fastest.
+
+All other indexes must be non-clustered. A non-clustered index has a duplicate of the data from the indexed columns kept ordered together with pointers to the actual data rows (pointers to the clustered index if there is one). This means that accessing data through a non-clustered index has to go through an extra layer of indirection. 

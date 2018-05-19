@@ -1,0 +1,71 @@
+NPM Tasks
+---------------
+Common task
+    Build
+    start /restart webserver
+    transpilation
+    bundling
+    Run Tests
+    etc.,
+    
+    the commands whcih we are providing under script section of 
+    package.json file
+it will be executed on Operating system's commandline.
+
+{"scripts":{
+    "<name>":"<command to be executed>"
+}}
+
+
+
+we can even pring some thing in command line
+
+  "scripts": {
+    "mytest":"echo \" hihihaha\" "
+  },
+
+//npm run mytest -- this ll print the echo vlaue in command prompt
+
+even we can move the files
+
+  "scripts": {
+    "move-files":"mv source/* destination/"
+    
+  },
+
+
+copy task (copy the files from one folder to another folder)
+------------
+
+  "scripts": {
+    "copy-files":"cp src/* destination/ & cp src_css/*.css content/",
+    "move-files":"mv source/* destination/",
+    "combine-scirpt":"npm run copy-files && npm run move-files", //run two different task items with single command
+
+  },
+above command will copy all the files form src and move to destination folder
+and copy all the css files from src_css folder into content folder
+
+
+two types of Tasks
+-----------------------
+default or build-in task
+arbitory task
+
+
+built in task not require run command
+ex: 
+npm Test
+
+but arbitory task which we created for specific non common purpose
+
+ex:
+npm run compile
+
+
+Run tasks parallel
+------------------------
+1. install below node module 
+npm install concurrently --save-dev
+2. modify the script as mentioned below
+"start": "concurrently --kill-others \"tsc -p tsconfig.json -w \" \"http-server\""

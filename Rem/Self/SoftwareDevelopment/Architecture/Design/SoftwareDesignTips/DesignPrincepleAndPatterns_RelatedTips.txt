@@ -1,0 +1,23 @@
+Design principles and patterns we can able to apply at any stage of develelopment cycle.
+But better place is before starting develelopment we have to identify the places where we can 
+implement those principles.
+
+ Program to an interface not an implementation
+ -------------------------------------------------
+ here the word "interface " overridden. It can be super class, abstract class or interface.
+ we can reword it as "program to super class".
+
+ Identify the aspects of your application that vary and seperate them from what stays the same
+ ---------------------------------------------------------------------------------------------------
+ this is the term which bassis for almost all design patterns.
+ all patterns provide a way to let some part of a system vary independently of all other parts
+
+
+ Design patterns and princeples are used to structure the code, with more flexibility and maintanability
+
+ design patterns are very heighlevel. so we have to implement them. there is no readily available libraries.
+ # but from my point of of MVC is a pattern, in .net. it seems it is readily available right :-)
+# I understnad the ans. Actually MVC in .net is a framework to implement MVC pattern. Even with 
+MVC framework also we can able to write not MVC pattern code...:-)
+
+ moste of the patterns and principles are to solve issue in "Change in software"

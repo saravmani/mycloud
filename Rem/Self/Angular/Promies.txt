@@ -1,0 +1,40 @@
+
+promises are specification. it is implemented in may framework js libraries.
+ex: Angular JS.
+
+Normally when we do the callbacks (ex: ajax), we will do the nesting.
+Ex:
+step1(functin(param1) {
+    step2(function(param1)) {
+
+    }
+})
+
+But as js promises we have to in following way.
+
+a.fcall(steop1).then(step2).then(step3).catch(function(error){}).done();
+
+The power of chaining instead of nesting allows us to keep code more organized.
+
+Technically speaking, a promise is an object that provides a value or exception in the
+future for an operation that it wraps.
+
+A promise-based asynchronous function hence does not  take callbacks but instead returns a promise object
+This promise object gets resolved
+some time in the future when the data or error from the asynchronous operation
+is received.
+
+
+
+
+
+Angular promises implemented as follows
+then(successCallback, errorCallback, notifyCallback):
+
+
+
+.then(fn).catch(fntohandleerror).finally(finalyoperation);
+
+
+Chaining of promises is possible because the then method
+itself returns a promise

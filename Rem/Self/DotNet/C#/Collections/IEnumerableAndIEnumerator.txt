@@ -1,0 +1,16 @@
+IEnumerator
+----------------
+IEnumerator interface, this in turn allows readonly access to a collectio.
+IEnumerable<string> dd = new List<string>();
+            dd.GetEnumerator().MoveNext()
+            dd.GetEnumerator().Current;
+            
+I remembers the cursor.
+
+
+IEnumerable
+-----------
+#it is sugared version of IEnumerator.
+it cant remember the cursor
+ A collection that implements IEnumerable can be used with a foreach statement.
+ it has GetEnumerator method which gives enumerator object

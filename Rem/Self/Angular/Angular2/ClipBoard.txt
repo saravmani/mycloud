@@ -1,0 +1,9 @@
+<rb-header></rb-header>
+<div class="container">
+  <rb-recipes></rb-recipes>
+		 <rb-recipe-list (recipeSelected)="selectedRecipe = $event"></rb-recipe-list>
+			<rb-recipe-item *ngFor="let recipe of recipes" [recipe]="recipe" (click)="onSelected(recipe)"></rb-recipe-item>
+		 <rb-recipe-detail [selectedRecipe]="selectedRecipe"></rb-recipe-detail>
+  <rb-shopping-list></rb-shopping-list>
+		<rb-shopping-list-add></rb-shopping-list-add>
+</div>

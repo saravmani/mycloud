@@ -1,0 +1,130 @@
+ 
+ 
+ npm is a javascript package manager
+ npm may contain images, js .css,cofeescript,typescript etc
+
+ in nodejs npm packages are called modules
+
+
+
+famouse modules
+express - webframework
+passport - authentication ramework
+
+npm can install command line tools
+ex: gulp, grunt
+
+npm can install cordova,ionic whic are used for building mobile hybrid apps
+
+
+npm can install tools for electronic items. below packages are used for micro controllers
+Johnny-five, tessel 2 
+
+
+How to choose the packages
+---------------------------
+See 
+	last release date
+	number of bugs open
+	number of downloades
+	check what are the open issues
+
+git hub
+check in git hub, check how many stars it is having
+how many fork it is having
+check contibutions
+
+actually we have to look how active that particular packages
+
+
+
+
+
+NPM - Commands
+--------------------
+npm  // this will give all the Commands
+npm install -h // this will display the parameter details of install
+
+npm install <package name> // this will install latest version
+
+npm install <package> -g //install packages globally
+
+node environment variables
+=-----------------------------
+c:\mani> NODE_ENV = production npm install package_name
+this will only install dependencies which needs to be run. not for development env;
+
+by default npm will think as development environment
+
+
+usin npm we can install from 
+    NPM 
+    or we can use direct git hub URL
+
+ex:
+npm install jquery@latest
+npm install https://github_URL_FOR JQUERY
+
+
+if we put any proj in git hub we have to ingnore node_modules folder
+
+.gitignore 
+this configuration file is used to mention what are the files or folders to be ignored
+
+
+versioning (semantic)
+---------------
+npm uses symantic guidlines
+
+^ symbol tells that install all the minor and patch releases. but not any major version.
+ex:
+{
+    modulename:"^1.2.1"
+}
+
+this will install 1.2,1.3,1.4 ... but NOT 2.0
+because marjor releases will have breaking changes
+
+~ symbol will install all the patch releases
+ex:
+{
+    modulename:"~1.2.3"
+
+}
+
+this will install 1.2.3,1.2.3,1.2.4 but not 1.3
+
+if we want to install only any specific version then no need to mention ~ or ^
+
+
+how to find what is outof date
+------------------------------------
+npm outdated
+
+this will tells that if any outdated packages in current projects
+
+npm update   // this command used to update the already installed packages.
+
+when we run npm update will work only if we use ^ or ~ symbols.
+bsed on the symbols it will update major or patch releases
+
+if we dont have package.json and run npm update command then it will
+update all the packages in node_moduel folder
+
+
+update global packages
+------------------
+npm update http-server -g
+
+un install global packages
+-------------------------------
+npm uninstall http-server -g
+
+
+modules
+------------
+npm install colors --save //used to give colour for the npm projects
+express
+passport
+mocha  //test framework for js
+uglify

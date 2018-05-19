@@ -1,0 +1,46 @@
+Using the Built-in Action Invoker
+-----------------------------------------
+The built-in action invoker, which is the ControllerActionInvoker class,
+
+To qualify as an action, a method must meet the following criteria:
+1. Methods should be public
+2. Methods should not be static
+3. Method Name should not be used by Controller class (ToString and GetHashCode are excluded)
+4. It should not have any special charactors
+no class member that has the IsSpecialName flag from System.Reflection.MethodBase
+5. #should not have generic parameters
+
+
+By default, the ControllerActionInvoker finds a method that has the same name as the requested action.
+
+#In real time there will be multiple Actions in same name but with diff parameters
+The action invoker uses action method selectors to resolve ambiguity when selecting an action
+
+The invoker gives preference to the actions that have selectors
+
+There are built-in attributes that work as selectors for 
+the different kinds of HTTP requests: HttpPost for POST
+requests
+
+HttpGet,HttpPost,HttpPut etc
+
+
+Another built-in attribute is NonAction
+
+
+
+[NonAction]
+public ActionResult MyAction()
+{
+    return View();
+}
+}
+}
+The MyAction method in the listing will not be considered as an action method
+
+If the action invoker is unable to find an action method to invoke, it returns false from its InvokeAction method.
+When this happens, the Controller class calls its HandleUnknownAction method. By default, this method returns a
+404—Not Found response to the client.
+
+but
+you can choose to override this method in your controller class if you want to do something special

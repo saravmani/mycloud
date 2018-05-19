@@ -1,0 +1,11 @@
+isolation levels - https://docs.microsoft.com/en-us/sql/connect/jdbc/understanding-isolation-levels
+read about Roslyn Compiler
+CLR lifecycle?
+what is clientprofile framework?
+What is asynch await? how it works?
+How to auto span the windows services?
+Alternative for windows services
+
+https://msdn.microsoft.com/en-us/library/9x0wh2z3(v=vs.90).aspx
+https://msdn.microsoft.com/en-us/library/01918c6x(v=vs.90).aspx
+http://www.grimes.nildram.co.uk/workshops/fusionWS.htm

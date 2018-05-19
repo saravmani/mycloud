@@ -1,0 +1,14 @@
+Creating and starting a new asynchronous task
+Task.Factory.StartNew(() => AddNewFruitNames());
+
+Creating a task and starting it off a little later
+Task keepAdding = new Task(() => AddNewFruitNames());
+//Some other code that has to be done before this task gets started.
+keepAdding.Start();
+
+
+Task.WaitAny(someTask);
+Task.WaitAll(task1, task2);
+
+Starting a task with an initial parameter
+Task voting1 = new Task((obj) => VoteThisOne(obj), "initial value");

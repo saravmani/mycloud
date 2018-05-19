@@ -1,0 +1,12 @@
+
+using (var context = new EFRecipesEntities())
+{
+// using SqlQuery()
+    var result1 =
+    context.Resumes.SqlQuery("select ResumeId, Title, Name,'' Body from chapter13.Resume",
+    "Resumes", MergeOption.AppendOnly).Single();
+    //Or
+    var result2 =context.Database.SqlQuery<Resume>("select * from chapter13.Resume", "Resumes",
+    MergeOption.OverwriteChanges).Single();
+     
+}

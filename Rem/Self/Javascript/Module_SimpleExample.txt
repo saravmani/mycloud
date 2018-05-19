@@ -1,0 +1,15 @@
+Javascript simple module pattern example
+------------------------------------------------
+
+var ClassName = (
+    function () {
+        var ClassName = function () {
+
+        }
+        ClassName.prototype.someMethod = function ()
+        { }
+        return ClassName;
+    }
+)();
+
+var objClassName = new ClassName();

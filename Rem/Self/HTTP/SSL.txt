@@ -1,0 +1,4 @@
+TSL
+----------
+
+The Transport Layer Security protocol (TLS), defined by RFC 5246, is an evolution of the Secure Socket Layer protocol (SSL).[9] Both these protocols aim to provide a secure bidirectional connection between two communicating entities, usually called peers, with the following properties:

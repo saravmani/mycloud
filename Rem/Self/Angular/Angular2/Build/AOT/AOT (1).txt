@@ -1,0 +1,25 @@
+An Angular application consist largely of components and their HTML templates. Before the browser can render the application, the components and templates must be converted to executable JavaScript by the Angular compiler.
+
+Rules to use AOT
+----------------------
+1. All we have to mentioned return types properly.
+Ex:
+	getServiceData():Obsevable<any>
+	{}
+	//here return type is mandatory to use the benifit of AOT
+
+2. The AOT compiler requires that @Component URLS for external templates and css files be component-relative. That means that the value of @Component.templateUrl is a URL value relative to the component class file. For example, an 'app.component.html' URL means that the template file is a sibling of its companion app.component.ts file.
+
+
+Advantages
+----------------
+AOT will do tree shaking, which means it will remove unused codes, and un referenced moduels.
+Ex: in our proj if we not referenced @angular/forms, then this tree shaking process will remove it.
+
+
+Tree Shaking and AOT compilation are separate steps.
+
+
+Commands
+-----------
+"node_modules/.bin/ngc" -p tsconfig-aot.json

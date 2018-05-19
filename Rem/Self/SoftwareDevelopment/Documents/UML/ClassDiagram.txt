@@ -1,0 +1,96 @@
+Class Diagram
+
+- private
++ public
+# protected
+~ internal
+
+
+Multiplicity
+----------------------
+Aggrigation or composition specify Multipliccity
+
+0..1 object can exist or not 
+1..* count can be one or grater
+m..n  - 
+n  specific exact number
+0...*
+
+
+we can specify multipilicty on both the sides on some cases
+example 3 child object belong to 2 parent objects
+#but i dont know the real world reason
+
+
+
+Assiciation
+--------------------
+Association means amount two classes one class know about another. But it not depends on each other. aslo lifecycle of both are independent of each other.
+There can be Unary association and binary association. 
+
+ Class A --------> Class B
+  (# in real it is not dotted line it should be actual line)
+ Class A
+ {
+ objClassB = new B()
+ }
+
+
+Aggrigation
+
+Class A  <<------------> Class B
+
+
+Compostion
+
+Class A <<<------------> Class But
+# Note Composition, aggrigation and association all are having right arrow.
+because right arrorw indicates association. +Actually Aggrigation, composition are one type of association
+
+
+
+
+Is a Relationship
+------------------------------------------------------------
+# In heritance should be  proper, we should not inherit some thing and overriding it with tottally different functionality
+Inheritance is called "is a " relationship
+
+ex: if we derive tiger from Animal class, then we can say tiger "IS A " Animal
+
+
+
+Has-A relation (Composition) - Normal line with Arrow  ______>
+
+Is-A Relation (Inheritance - extends) - Normal line with holo Arrow ___________>>
+
+Implements (interface Implements)  - Dotted line with holo Arrow ------->>
+
+(# ithink we can call interface Implementation also "Is-A")
+
+
+Strong dependency (solid line with arrow)
+----------------------------
+___________>
+strong dependency example
+public class ClassA {
+    ClassB theClassB = ...
+    ...
+}
+
+
+
+
+Week dependency (dotted line with arrow (not hollow arrow or dararrow))
+-------------------------------------------------------------------------
+----------->
+
+week dependency example
+public class ClassA {
+    ...
+    public void someMethod(ClassB arg1) {...}
+    ...
+    public void someOtherMethod() {
+        ClassB localReferenceToClassB = ...
+    }
+    ...
+}

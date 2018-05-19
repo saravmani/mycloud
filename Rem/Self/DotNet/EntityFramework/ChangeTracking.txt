@@ -1,0 +1,120 @@
+#Two types of change tracking
+ Snapshot Change Tracking
+ Change Tracking using proxies
+
+ Proxies benifit is - Change traking when ever changes, Lazy Loading
+
+Change Tracking using proxies
+------------------------------------------
+wraps the underlying entity POCO object with a proxy
+object that implements the IEntityWithChangeTracking interface. 
+This proxy is responsible for notifying the
+Object State Manager of changes to values and relationships on the object. 
+Entity Framework automatically
+creates these proxies for your POCO object when you mark all of the properties 
+on your POCO class as virtual
+and mark all Navigation properties that return a collection as ICollection<T>.
+# NOTE: All the properties of SINGLE poco class should be virtual
+
+In which scenario we can choose Proxies for change detection?
+---------------------------------------------------------------------
+#if we are going to use big poco object and only very few of properties are going to get modified 
+then we can choose this. bcs this will help to avoid object comparison at SaveChanges() time
+
+To Disable change detection process
+----------------------------------------
+ public partial class TaskManagerEntities : DbContext
+    {
+        public TaskManagerEntities()
+            : base("name=TaskManagerEntities")
+        {
+            this.Configuration.AutoDetectChangesEnabled = false;
+        }
+
+Change tracking with POCO entity classes occurs using either snapshots or proxy classes. 
+With the snapshot
+approach, Entity Framework takes a picture, so to speak, of the data values of an 
+entity as it is loaded into the context
+object from a query or an Attach() operation. Upon a SaveChanges() operation, 
+the original snapshot is compared to the
+current data values to determine the data values that have changed. 
+Using this approach, Entity Framework maintains
+two copies of each object and compares them, generating the necessary 
+corresponding SQL Update, Insert, and Delete statements.
+
+The Add() operation from the context object does not invoke a snapshot as 
+the entity is new and there is no need to track changes to the individual values. 
+Entity Framework marks the entity as added, and it will issue a SQL Insert
+statement upon a SaveChanges() operation
+
+Each property as virtual and each collection a type of
+ICollection<T>. This allows Entity Framework to create proxies for our POCO entities 
+that enable change tracking.
+When creating instances of POCO entity types, Entity Framework often creates 
+instances of a dynamically generated
+derived type that acts as a proxy for the entity. This proxy overrides some virtual 
+properties of the entity that inserts
+hooks for performing actions automatically when the property is accessed. 
+This mechanism is used to support lazy
+loading of relationships and change tracking of objects. 
+Note that Entity Framework will not create proxies for types
+where there is nothing for the proxy to do.
+
+By default, Entity Framework uses a snapshot-based approach 
+for detecting changes made to POCO entities. If you
+make some minor code changes to your POCO entities, 
+Entity Framework can create change-tracking proxies that
+keep the DbContext synchronized with the runtime changes in your POCO entities.
+There are two important benefits that come with change-tracking proxies. 
+First, the DbContext stays informed of the changes, 
+and it can keep the entity object graph state information synchronized with your POCO entities.
+This means that no time need be spent detecting changes using the snapshot-based approach.
+
+For the Entity Framework to create the change-tracking proxies for your POCO classes, 
+the following conditions must be met.
+The class must be public, nonabstract, and nonsealed.
+• The class must implement virtual getters and setters for all properties that are persisted.
+• You must declare collection-based relationships navigation properties as ICollection<T>.
+They cannot be a concrete implementation or another interface that derives from ICollection<T>.
+
+
+var donor1 = context.Donors.Create();
+donor1.Name = "Jill Rosenberg";
+context.Donors.Add(donor1);
+.Create() method creates the instance of the proxy for your POCO
+
+Proxy creation mechanism is used to support lazy loading of relationships. 
+EF will not create proxies for types where there is nothing for the proxy to do. 
+In other words if you don't have virtual properties on your 
+POCO classes then there is no effect either you have disabled it or not.
+to diable Proxy creation 
+
+public class YourContext : DbContext 
+{ 
+    public YourContext() 
+    { 
+        this.Configuration.ProxyCreationEnabled = false; 
+    }  
+
+    public DbSet<Blog> Blogs { get; set; } 
+    public DbSet<Post> Posts { get; set; } 
+}
+
+
+to disabl change detection
+----------------------------
+
+public class YourContext : DbContext 
+{ 
+    public YourContext() 
+    { 
+        this.Configuration.AutoDetectChangesEnabled = false; 
+    }  
+} 
+
+
+In Entity Framework, complex types do not leverage change tracking. 
+Changes to complex types will not be
+reflected in change tracking. This means that if you mark the properties on a complex type as virtual,
+there is no change-tracking proxy support. 
+All change tracking is snapshot-based

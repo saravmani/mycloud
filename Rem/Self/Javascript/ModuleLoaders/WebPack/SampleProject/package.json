@@ -1,0 +1,19 @@
+{
+  "name": "myfirsttest",
+  "version": "1.1.1",
+  "description": "some discription",
+  "main": "index.html",
+  "dependencies": {
+    "webpack": "^1.14.0"
+  },
+  "devDependencies": {
+    "concurrently": "^3.1.0",
+    "lite-server": "^2.2.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack && concurrently \"lite-server\" "
+  },
+  "author": "",
+  "license": "ISC"
+}

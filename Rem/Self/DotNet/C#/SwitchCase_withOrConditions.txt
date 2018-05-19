@@ -1,0 +1,21 @@
+
+	private static void test(string s)
+	{
+		 switch (s)
+        {
+            case "aa":
+            case "bb":
+                {
+                    Console.WriteLine("aa or bb");
+                    break; 
+                }
+            case "cc":
+                {
+                    Console.WriteLine("cc");
+                    break;
+                }
+            default:
+                Console.WriteLine("default");break;
+        }
+		
+	}

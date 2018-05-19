@@ -1,0 +1,5 @@
+
+Owin hosting   available in Asp.net core?
+what is ITypeHelperService interface in asp.net core
+What is HATEOAS enabled webservices?
+	 Hyer media as the engine of application state (it is like hyper link.. but it is about medias like video, songs)

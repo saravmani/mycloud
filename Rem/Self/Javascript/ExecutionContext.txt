@@ -1,0 +1,82 @@
+global execution context is the outermost one
+
+
+In web browsers, the
+global context is said to be that of the window object (discussed in Chapter 8), so all global variables
+and functions are created as properties and methods on the window object.
+
+execution
+context has executed all of its code, it is destroyed.
+But global context isn’t destroyed until the application exits
+
+when function get called, execution context flows into a function
+after function call finished the stack is popped, returning control to the previously executing context.
+
+
+within a function if we try to use any varaible name,
+ then it will search in local context, then it goes to parent Execution context, finally it will search in global context
+
+inner context can access everything from all outer contexts through the scope chain, but
+the outer contexts cannot access anything within an inner context. The connection between the
+contexts is linear and ordered.
+
+
+Function arguments are considered to be variables and follow the same access rules
+as any other variable in the execution context.
+
+
+there is no block level scopes in js. scope will not get impacted bcs of brackets.
+
+if (true) {
+var color = “blue”;
+}
+alert(color); //”blue”
+
+
+for (var i=0; i < 10; i++){
+doSomething(i);
+}
+alert(i); //10
+Note- In other languages with block-level scoping, the initialization part of the for statement defi nes variables
+that exist only within the context of the loop. but in In JavaScript, the i variable is created by the for
+statement and continues to exist outside the loop after the statement executes.
+
+
+When a variable is declared using var, it is automatically added to the most immediate context
+available. In a function, the most immediate one is the function’s local context;
+
+if variable initialized with out declaration, then this will b added to global scope
+
+
+Initializing variables without declaring them is a very common mistake in JavaScript
+programming and can lead to errors. It’s advisable to always declare variables
+before initializing them to avoid such issues. In strict mode, initializing variables
+without declaration causes an error.
+
+
+when identifier is used , first search will happen in local context, if not found then it will go to parent context
+
+Variable lookup doesn’t come without a price. It’s faster to access local variables
+than global variables
+
+
+
+
+JavaScript is a garbage-collected language, meaning that the execution environment is responsible
+for managing the memory required during CODE EXECUTION
+
+The basic idea is simple: fi gure
+out which variables aren’t going to be used and free the memory associated with them.
+This process
+is periodic, with the garbage collector running at specifi ed intervals
+
+js garbage ccollector implemented as Mark-and-Sweep concept.
+
+Marking outof scope varaibles and then do the memory sweep at once
+
+
+When data is no longer necessary, it’s best to set the value to null, freeing
+up the reference — this is called dereferencing the value. This advice applies mostly to global values
+and properties of global objects.
+
+but try-catch, with are having its own scopes. except this there is no block level scopes. others are only function level scopes

@@ -1,0 +1,17 @@
+Kernal
+------
+	Kernal is the first software which is loaded when system bootsup. And then this kernal software will
+loads other applications, processes and gui applications. kernal is responsible to interact with the hardware.
+Applications will call the api in kernal and kernal will interact with HW. kernal is responsible for memory 
+management and allocating ram to the application processes
+
+
+windows 7 and above
+-------------------
+You'll find that 64bit windows keeps two copies of system executables. There's c:\windows\system32 for 64bit apps, and "c:\windows\syswow64" for the 32bit versions.
+Navigate to the syswow64 folder and look for taskmgr.exe, double click it to run the 32bit version, after task manager opens you will notice "taskmgr.exe*32" in the list, any process in the list with *32 means it is a 32bit version running.
+
+
+
+
+	

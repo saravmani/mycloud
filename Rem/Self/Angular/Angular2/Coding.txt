@@ -1,0 +1,77 @@
+for in look remains same. 
+<div ng-for="eachitemIndex in itemList" />
+
+ng-For the main difference is 
+for-in will give each index 
+bug ngFor gives each item
+
+<div ngFor="#eachitem of list" />
+
+# symbol is used to declare local variable in template
+
+##remember we used ng-repeat we used in anglur1. but dont know still this exists in ng2
+
+
+ngClick,ngHide, ngShow etc., is not thr in ng2. we have to directly use the click event
+
+<div class="zippy__title" (click)="toggle()">
+  &blacktriangledown; Details
+</div>
+
+binding to dom element's direct attribute
+<div class="zippy__content" [hidden]="!visible">
+  This is some content.
+</div>
+
+<input type="text" [value]="propertyName1"/>
+
+Angular 2 binds to properties rather than attributes in order to work with Web Components, 
+
+
+<div class="zippy__title" (click)="toggle()">
+  {{ visible ? '&blacktriangledown;' : '&blacktriangleright;' }} Details
+</div>
+
+
+selectors
+--------------
+selector : "[subComponent]",
+
+<div subComponent />
+
+selector : "subComponent",
+<subComponent/>
+
+
+{{variableName}}
+//when angular compiles the template it will translate 
+interpolation into property binding
+in property binding - it will bind the value into property of the 
+dom element.
+
+<div>{{title}}</div>
+<img src="{{URL}}" / >
+<img [src]="URL" / >// this is best opproch
+
+class binding
+----------------------
+<button class="btn" [class.className]="boolPropertyOfComponentClass" />
+//if this boo value is true then className will get added 
+//like <button class="btn className"/> 
+
+style binding
+-----------------
+<button style="width:100px" [style.backgroundColor]="boolPropertyOfComponentClass ? black:red" />
+if boolPropertyOfComponentClass is tru then black will be asigned
+
+
+
+data binding
+-------------
+local variable binding
+<input type="text"  #inputsss />
+<input type="button"  (click)="alertest(inputsss.value)" />
+
+two way binding
+-------------------
+<input type="text" [(ngModel)] = "subjectTypess" />

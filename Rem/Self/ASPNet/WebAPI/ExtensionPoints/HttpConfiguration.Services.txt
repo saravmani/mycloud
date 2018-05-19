@@ -1,0 +1,9 @@
+The HttpConfiguration.Services collection contains a set of global services that Web
+API uses to perform various tasks, such as 
+controller selection and content negotiation
+
+The Services collection is initialized with a default set of services,
+ and you can provide your own custom implementations. Some services support multiple instances, 
+ while others can have only one instance.
+  (However, you can also provide services at the controller level; 
+using Per-Controller Configuration.

@@ -1,0 +1,22 @@
+debug is node module
+
+instead of 
+console.log("normal txt"+chalk.green("green coloured text"));
+
+we can use
+var debug = require("debug")("app")
+debug("normal txt"+chalk.green("green coloured text"));
+
+advantage of this is it will log only on debug mode
+Debug mode command is 
+
+windows - set DEBUG=* & node app.js
+Linux - DEBUG=*  node app.js
+
+express also uses debug inside.. so we can see lots of lines in console when we run 
+in debug mode
+
+DEBUG=app node app.js
+this will logs only "app" logs alone
+
+this "app" word prefixed in all the lines

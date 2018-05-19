@@ -1,0 +1,55 @@
+In bootstrap everything should goes inside container.
+two types of container 
+  1. container //for fixed length
+  2. container-fluid  //for full screen
+
+in bootstrap  browsere is splitted in to 12 parts(horizontally)
+
+
+Bootstrap also has some contextual classes that can be used to provide "meaning through colors".
+The classes for text colors are:.text-muted, .text-primary, .text-success, .text-info, .text-warning, and .text-danger:
+
+Re momrise form related things form below URL
+http://www.w3schools.com/bootstrap/bootstrap_forms.asp
+
+button
+-------------
+.btn-default
+.btn-primary
+.btn-success
+.btn-info
+.btn-warning
+.btn-danger
+.btn-link
+
+Create Button group and menu
+---------------------------------
+<div class="btn-group">
+  <button type="button" class="btn btn-primary">Apple</button>
+  <button type="button" class="btn btn-primary">Samsung</button>
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+    Sony <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu">
+      <li><a href="#">Tablet</a></li>
+      <li><a href="#">Smartphone</a></li>
+    </ul>
+  </div>
+</div>
+
+
+Bootstrap's global default font-size is 14px.
+Grid classes
+xs,sm,md,lg
+
+Ex of grid
+------------
+<div class="row">
+  <div class="col-sm-1 col-md-4 col-xs-1">.col-sm-4</div>
+  <div class="col-sm-1 col-md-4 col-xs-1">.col-sm-4</div>
+</div>
+
+
+Give offset (place the element in particular cell)
+--------------
+ col-md-offset-* (ex: col-md-offset-10)

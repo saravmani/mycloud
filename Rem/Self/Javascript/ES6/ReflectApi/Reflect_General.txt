@@ -1,0 +1,3 @@
+typeof Reflect -- is object. so we no need to create new object for Reflect
+
+Reflect.construct(target,argumentList[,newTarget])

@@ -1,0 +1,17 @@
+
+Constraints in routing
+--------------------------
+[HttpGet("{id:int}")]
+public string GetById(int id)
+{
+    return "item " + id;
+}
+
+
+ Adding a question mark to the constraints {id:int?} indicates that the parameter is optional. Therefore with a question mark we can call /GetByID/123 or /GetByID without additional parameters. 
+
+
+ routes.MapRoute(
+    name: "getProductById",
+    template: "Products/{id:int}",
+    defaults: new { controller = "Products", action = "GetById" });

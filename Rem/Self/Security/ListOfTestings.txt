@@ -1,0 +1,12 @@
+XSS,
+CSRF,
+SQL Injection,
+Validate HTTP headers,
+
+Is Secured Cookies?
+Is HTTPS only allowed?
+Is SSL certificate is valid?
+Is Same origine policy enabled? (by default it will noe be allowed.)
+Is any sensitive information disclosed?
+
+

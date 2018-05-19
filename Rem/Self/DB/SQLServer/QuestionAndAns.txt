@@ -1,0 +1,26 @@
+recursive stored procedure
+SQL Server supports recursive stored procedure which calls by itself. Recursive stored procedure can be defined as a method of problem solving wherein the solution is arrived repetitively. It can nest up to 32 levels.
+
+local and global temp tables
+-------------------------------------
+Local temporary tables are visible only to their creators during the same connection to an instance of SQL Server as when the tables were first created or referenced. Local temporary tables are deleted after the user disconnects from the instance of SQL Server. Global temporary tables are visible to any user and any connection after they are created, and are deleted when all users that are referencing the table disconnect from the instance of SQL Server.
+
+local
+CREATE TABLE #<tablename>
+
+global
+CREATE TABLE ##<tablename>
+
+
+Can SQL servers linked to other servers?
+SQL server can be connected to any database which has OLE-DB provider to give a link.
+ Example: Oracle has OLE-DB provider which has link to connect with the SQL server group.
+
+i.e: in oracle we will use dblink and materialized view
+
+
+ What is SQL server agent? (tags -sql server - scheduler jobs, sql jobs, sql scheduler)
+The SQL Server agent plays  a vital role in day to day tasks of SQL server administrator(DBA).
+ Server agent’s purpose is to implement the tasks easily with the scheduler engine which allows 
+ our jobs to run at scheduled date and time.
+ Scheduled tasks or jobs are used to automate processes that can be run on a scheduled time at a regular interval

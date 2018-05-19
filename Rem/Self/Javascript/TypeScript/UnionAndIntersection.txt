@@ -1,0 +1,45 @@
+Union 
+----------------------------------------
+TypeScript 1.4 gives programs the ability to combine one or two types. 
+Union types are a powerful way to express a value that can be one of the several types.
+Two or more data types are combined using the pipe symbol (|) to denote a Union Type. 
+In other words, a union type is written as a sequence of types separated by vertical bars.
+
+ex:
+function disp(name:string|string[]) { 
+   if(typeof name == "string") { 
+      console.log(name) 
+   } else { 
+      var i; 
+      
+      for(i = 0;i<name.length;i++) { 
+         console.log(name[i])
+      } 
+   } 
+} 
+disp("mark") 
+console.log("Printing names array....") 
+disp(["Mark","Tom","Mary","John"])
+
+
+Intersection (&)
+----------------------
+intersection type combines multiple types into one. This allows you to add together 
+existing types to get a single type that has all the features you need
+
+class Student{
+    name:string,
+    age:string
+}
+
+class StudentAddress{
+    addressLine:string
+}
+
+let studentDetails:Student & StudentAddress = {
+    name:"successPerson",
+    age:33,
+    addressLine:"London"
+}
+
+Note : this expects all the types in student & StudentAddress class

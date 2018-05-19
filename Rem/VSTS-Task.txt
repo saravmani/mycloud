@@ -1,0 +1,4 @@
+1. Check how to configure different version of complier or c# version with different .net framework versions
+1. Create sample snippet file and check
+2. Try to use code analysis tool
+3. Try to use memory management tools

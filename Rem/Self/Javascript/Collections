@@ -1,0 +1,10 @@
+Arrays javascript
+-------------------------
+var objArray=[];
+
+var newCopy = objArray.concat(3); //concat will creae new copy of existing array and add the element into into
+objArray.push(3); this wont create new copy. but this will modify existing array itself
+
+objArray = [1,2,3,4,5]
+objArray.slice(0,2);//results [1,2]. but this will not modify existing array. it will create copy of new array
+obj.slice(indexFrom, lengthFrom 0th position)

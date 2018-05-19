@@ -1,0 +1,26 @@
+
+//#Note:This option is avaialble in EF6 only. For EF5 we have to use transaction scope only
+decimal amountToTransfer = 1000;
+int accountId = 1;
+using (SampleDatabaseEntities db = new SampleDatabaseEntities())
+{
+	using (DbContextTransaction tx = db.Database.BeginTransaction())
+	{
+		try
+		{
+			db.Database.ExecuteSqlCommand("Update SalaryAccount set
+			Balance = Balance - @amountToDebit where id = @accountId",
+			new SqlParameter("@amountToDebit", amountToTransfer),
+			new SqlParameter("@accountId", accountId));
+			SavingAccount savingAccount = db.SavingAccounts.
+			Find(accountId);
+			savingAccount.Balance += amountToTransfer;
+			db.SaveChanges();
+			tx.Commit();
+		}
+		catch
+		{
+			tx.Rollback();
+		}
+	}
+}

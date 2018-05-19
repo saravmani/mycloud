@@ -1,0 +1,24 @@
+Use following comments for fresh installation
+------------------------------------------------
+Use-CacheCluster
+Get-CacheHost
+Start-CacheHost DNBTD004.DNBTECHNOLOGY.COM:22233
+
+
+
+Create cache
+--------------
+New-Cache default
+New-Cache ReportEngineCache
+
+
+Listdown all cache
+---------------------
+get-cache
+
+Giving access rights
+------------------------------
+Grant-CacheAllowedClientAccount -Account "DNBTECHNOLOGY\DNBTD004$"
+Grant-CacheAllowedClientAccount -Account "NT Authority\Network Service"
+Grant-CacheAllowedClientAccount -Account "dnbtechnology\10935"
+Grant-CacheAllowedClientAccount -Account "everyone"

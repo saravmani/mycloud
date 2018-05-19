@@ -1,0 +1,108 @@
+SOLID
+Class to host
+	Class to controll flow
+
+Even dac framework we can split into two
+1. Read
+2. Write
+
+
+Close
+-------
+Once a class is done, it is done.
+
+when new change is then new class.
+But if any bugs then we do it in old class
+
+two principles to achieve this is
+Meyer vs Polymorphic
+
+meyr - inherit. So our base class should be so Engineeric to be extened, or getting injected
+polymorphic 
+
+
+SOLID
+
+
+
+Single Responsibility Principle
+----------------------------------------------------------------------------------------------------------------------
+Every object should have a single responsibility,
+class should have one and only one responsibility
+A class is like container. One can add any amount of data, properties, and methods into it. However, if you
+try to achieve too much through a single class, soon that class will become bulky. Any small change you
+need will result in your changing this single class. And since you changed the class, you will also need to
+test it again. If you follow SRP, your classes will become compact and neat—each is responsible for a single
+problem, task, or concern. This way a change in the system requires a change in the corresponding class,
+and only that class needs to be tested again.
+
+
+
+Open/Closed Principle (OCP)
+Open/Closed Principle ( OCP ) states that a class should be open for extension and closed for modifications.
+This means that once you create a class and other parts of the application start using it, you should not
+change it. Why? Because if you change the class, it is quite possible that your changes may cause the
+otherwise working system to break. If you require some additional features, you should extend that class
+rather than modifying it. This way the existing system won’t see any impact from the new changes. Also,
+you need to test only the newly created class.
+
+
+abstraction and polymorphism plays a
+very important role in SOLID principles, as well as in design patterns in general. 
+
+
+wherever there is a switch statement or a ladder of if-else blocks, such a code is fragile. Such code can break
+and may need changes whenever system requirements change. Polymorphism helps you to avoid such code.
+Even if you need to write such code, make a point to keep it outside of your primary system classes.
+
+
+
+
+Liskove's substitution principle
+------------------------------------
+Ex: for violating principle
+inherit SquareShape From rectangleShape
+here square needs only lenght but rectangle needs width and height. 
+
+# In heritance should be  proper, we should not inherit some thing and overriding it with tottally different functionality
+Inheritance is called "is a " relationship
+
+ex: if we derive tiger from Animal class, then we can say tiger "IS A " Animal
+
+
+
+
+Dependency INVERSION Principle
+===================================
+high level module must not depend on the low level module, but they should depend on abstractions.
+Depends on obstraction not concrete class
+
+#Low level modules dependes their Abstraction (i.e inherit from abstractclass or implements interface).
+#High level moudles also depends Abstraction to use low level classes
+
+DI principle inverts  the way you typically might think about your oo design
+
+#one way to achieve is factory method design pattern. because here client will know only abstract level. factory will decide which object to be given.
+
+Guid lines to avoid DI principle violation
+-------------------------------------------
+1. No variable should hold reference to concrete class (use a factory go create object)
+2. no class should drive from concrete class (if you drive from concrete class then you are depending on that concrete class.
+ drive from abstract class)
+3. No method should override an implemented method of any of its base classes.
+ (if you override then your base class is not really abstraction. those methods implemented in the base class are
+  meant to be share by all your subclasses)
+
+Like many of our principles, this is a guideline
+you should strive for, rather than a rule you should follow all the time.
+Clearly, every single Java program ever written violates these guidelines!
+But, if you internalize these guidelines and have them in the back of
+your mind when you design, you’ll know when you are violating the
+principle and you’ll have a good reason for doing so. For instance, if you
+have a class that isn’t likely to change, and you know it, then it’s not the
+end of the world if you instantiate a concrete class in your code. Think
+about it; we instantiate String objects all the time without thinking twice.
+Does that violate the principle? Yes. Is that okay? Yes. Why? Because
+String is very unlikely to change.
+If, on the other hand, a class you write is likely to change, you have some
+good techniques like Factory Method to encapsulate that change.

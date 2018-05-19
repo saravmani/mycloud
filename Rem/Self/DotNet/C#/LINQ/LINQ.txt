@@ -1,0 +1,12 @@
+LINQ 
+==========
+Key Words
+-------------------
+    group by  (group obj.Prop1 by)
+    orderby
+    join
+
+    into 
+    from
+    select
+    where

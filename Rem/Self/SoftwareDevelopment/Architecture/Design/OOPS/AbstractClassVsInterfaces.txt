@@ -1,0 +1,17 @@
+Abstract Class Animal
+{}
+
+Class Tiger:Animal{} // IS-A Relation ship// Tiger IS-A Animal
+
+Interfaces are contracts. Which is for CAN relation.
+Example, what perticular can perform some thing. 
+Example - 
+
+interface ISwimmable{doSwim()}
+
+Class Tiger:Animal,ISwimmable{}// Here Tiger CAN do Swim
+
+
+So when we use Abstract class it should be IS-A relation. and For Interface it should be CAN Relation
+Interfaces are contracts. 
+So in above Example Tiger CAN do what ISwimmable contract requires to do

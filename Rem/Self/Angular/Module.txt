@@ -1,0 +1,61 @@
+Build in angular modules
+-------------------------------
+ngRoute
+ngCookies,
+ngAnimation
+ngTouch
+
+Module is the container for set of components
+
+Module and controller
+------------------------------
+angular.module('7minWorkout', []); // creates a new module
+angular.module('7minWorkout'); //get an existing module. The difference is just the extra parameter []
+If we use the first syntax multiple times for the same module, it will create the module again and override all existing module dependencies
+Module is a container or parent for below constructs
+  Controller, Service, Directive, Filter;
+
+  AngularJS provides a mechanism to manage dependencies between AngularJS
+constructs in a declarative manner using dependency injection.
+
+To resolve dependencies, AngularJS uses name matching. For each dependency
+(a parameter such as $scope) defined on the function, Angular tries to locate the
+dependency from a list of components that have already been registered.
+
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+First Name: <input type="text" ng-model="firstName"><br>
+Last Name: <input type="text" ng-model="lastName"><br>
+//Global functions should be avoided in JavaScript. They can easily be overwritten or destroyed by other scripts.
+//AngularJS modules reduces this problem, by keeping all functions local to the module.
+
+<br>
+Full Name: {{firstName + " " + lastName}}
+
+</div>
+
+<script>
+//The [] parameter in the module definition can be used to define dependent modules.
+//Without the [] parameter, you are not creating a new module, but retrieving an existing one.
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.firstName= "John";
+    $scope.lastName= "Doe";
+});
+</script>
+
+
+when ng-app founds angular js start load the linked module and dependent module and linked dependent modules.. chain of loading
+Every module goes through two stages as it becomes available for consumption
+1. config
+	Services in modules that require initial setup are configured during this stage. Limited DI capabilities are available at this. we can't use all services. Only limited we can. ex: $routeProvider
+2. run
+	At this stage, the application is fully configured and ready to be used.Here we can use any DI. This run will be used for initialize any thing
+
+
+Run block in angularis  like main method in other programming languages.  A run block is the code which needs to run to kickstart the application. It is executed after all of the services have been configured and the injector has been created. Run blocks typically contain code which is hard to unit-test, and for this reason should be declared in isolated modules, so that they can be ignored in the unit-tests.
+angular.moeuld("moduleName",[]).run(function($ionicPlatform){
+//Constants
+//Instances
+});

@@ -1,0 +1,36 @@
+When Microsoft came out with Internet Explorer, they also used "Mozilla" in their string because websites specifically checked for the "Mozilla" string in order to support newer features that only Netscape Navigator was known to handle. This trend caught on.
+
+
+Permanent 301 
+ To summarize in a few lines, permanent 301 redirects are just as they sound.
+ They are permanent redirects from an old URL to a new one. These redirects tell the search engines 
+that the old location is to be removed from their index and replaced with the new location.
+ Using 301 redirects is the most search engine friendly way to redirect traffic and engines,
+ and far out weighs that of various JavaScript and Meta refresh redirects.
+
+Temporary 302
+ Temporary 302 redirects are also as they sound; temporary. Here you are telling the search engines 
+to read and use the content on the new page, but to keep checking the original URL first as it
+ will ultimately be reestablished.
+
+
+
+
+MIME stands for "Multipurpose Internet Mail Extensions. It's a way o
+f identifying files on the Internet according to their nature and format. For example, using the "Content-type" header value defined in a HTTP response, the browser can open the file with the proper extension/plugin.
+
+
+
+In such cases, html converter is required to convert .html/.htm extension files into other formats and vice versa. Concisely, .htm and .html are both recognised as HTML files. The only difference between the two is that 
+.htm is used as an alternate to .html by few servers that do not accept four character extensions.
+We always use the shorter .htm for our file names since file extensions are typically 3 characters long.
+
+
+Chuncked response
+-----------------
+A 'chunked' response means that instead of processing the whole page, generating all of the html and sending it to the client, we can split the html into 'chunks' and send one after the other, without telling the browser how big the response will be ahead of time.
+header for chuncked response - Transfer-Encoding: chunked
+
+asp.net implementation for chuncked response
+HttpContext.Current.Response.Flush();
+Response.BufferOutput = false

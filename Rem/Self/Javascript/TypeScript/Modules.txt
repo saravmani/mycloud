@@ -1,0 +1,8 @@
+Modules
+-------------
+each file treated as modules
+
+There are different types of JavaScript module, each of which is supported by a different set of module
+loaders. The TypeScript compiler can be configured to produce the most popular formats, specified
+through the module property in the tsconfig.json file. The commonjs format is used for Angular
+development,

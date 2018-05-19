@@ -1,0 +1,30 @@
+Should have below 3 items
+1. Correct value
+2. Start and End
+3. External Initiator
+
+Use case is stroy(multiple steps) about how the goal should achieved
+
+Use case will have 
+1. Main path (Happy path)
+2. Alternative Path(s)
+
+
+Each use case will have one specic goal to target
+
+use case should be nontechnical and should be clear to boss and client
+
+
+Advantages of use cases
+---------------------------
+1. If client missed some requirement then use cases will help us to find that
+
+
+
+if system does multiple goals - then we have to have multiple use cases
+
+Usecases means - Steps done by system to accompalish particular task
+
+
+Moste of the Nouns in the use cases will become Classes in software
+Moste of the verbs will become methods in software

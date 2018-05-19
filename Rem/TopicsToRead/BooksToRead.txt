@@ -1,0 +1,11 @@
+Pro C# books by Andrew Troelsen.
+
+Adam Freeman’s Pro ASP.NET MVC 5 Platform book.
+
+
+Adam Freeman’s  - Pro .NET Parallel Programming in C# (about TPL)
+
+Parallel programming - Adam Freeman’s 
+--------------------------
+Pro .NET 4 Parallel Programming in C# book or Pro Asynchronous
+Programming with .NET, written by Richard Blewett and Andrew Clymer

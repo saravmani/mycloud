@@ -1,0 +1,4 @@
+
+lots of low-level unit tests for models (dependencies are stubbed)
+Integration tests, where you check how your models interact with each other (dependencies are not stubbed)
+End-to-end tests, where you call your actual endpoints (dependencies are not stubbed).

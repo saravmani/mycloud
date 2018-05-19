@@ -1,0 +1,106 @@
+create or replace PROCEDURE         "Get_Grid_Data" 
+(
+    P_VIEW_TO_ROLE IN VARCHAR,
+    P_USERID       IN VARCHAR2,
+    P_TABID        IN NUMBER,
+    P_SEARCH_KEY   VARCHAR2,
+    --Sorting & Pagin
+    P_SORT_COLUMN VARCHAR2,
+    P_SORT_DIRECTION VARCHAR2,
+    P_PAGE_NO_NEEDED NUMBER,
+    P_NUM_PER_PAGE NUMBER,
+    ROWCOUNT OUT NUMBER,
+    RESULT_SET OUT SYS_REFCURSOR
+) 
+is
+  LV_SORT_COLUMN VARCHAR2(100) := P_SORT_COLUMN;
+  LV_SORT_DIRECTION VARCHAR2(10) := P_SORT_DIRECTION;
+  LV_FROM_ROWNUM NUMBER;
+  LV_TO_ROWNUM NUMBER;
+  LV_REC_PER_PAGE NUMBER := P_NUM_PER_PAGE;
+  LV_PAGE_NO NUMBER := P_PAGE_NO_NEEDED;
+BEGIN
+    IF (LV_SORT_COLUMN IS NULL OR LENGTH(LV_SORT_COLUMN) = 0) THEN
+      LV_SORT_COLUMN := 'INVOICE_NUMBER';
+    END IF;
+    IF (LV_SORT_DIRECTION IS NULL OR LENGTH(LV_SORT_DIRECTION) = 0) THEN
+      LV_SORT_DIRECTION := 'ASC';
+    END IF;
+    --Paging Stuff
+    IF (LV_REC_PER_PAGE IS NULL OR LV_REC_PER_PAGE <= 0) THEN
+      LV_REC_PER_PAGE := 25;
+    END IF;
+    IF (LV_PAGE_NO IS NULL OR LV_PAGE_NO <= 0) THEN
+      LV_PAGE_NO := 1;
+    END IF;
+    LV_FROM_ROWNUM := ((LV_PAGE_NO - 1) * LV_REC_PER_PAGE) + 1;
+    LV_TO_ROWNUM := LV_FROM_ROWNUM -1 + LV_REC_PER_PAGE;
+    --Row Selection
+    OPEN RESULT_SET FOR
+    SELECT *
+      FROM
+      (
+        SELECT ROWNUM ROWNUMBER,
+          RECORDID,
+          COALESCE(SENDER,'ALERT') SENDER,
+          RECEIVER,
+          SUBJECT,
+          CONTENT,
+          WARNINGLEVEL,
+          ACTIONTYPE
+          FROM
+          (
+            SELECT *
+              FROM
+              (
+                SELECT 
+                  INB.RECORDID,
+                  INB.SENDER,
+                  INB.RECEIVER,
+                  INB.SUBJECT,                 
+                  INB.ACTIONTYPE
+                  FROM SB_INBOX INB
+                    INNER JOIN SB_INBOX_TAB TABS ON INB.INBOXTYPE=TABS.INBOX_TYPE
+                  WHERE TABS.INBOX_TAB_ID= P_TABID
+                    AND (((VIEWTOROLE IS NULL OR VIEWTOROLE=0) AND INB.RECEIVER = P_USERID) OR ( INB.RECEIVER = P_USERID)) 
+                    AND (UPPER(INB.SUBJECT) LIKE '%'|| UPPER(P_SEARCH_KEY) ||'%' OR LENGTH(P_SEARCH_KEY)=0)
+                  ORDER BY DECODE
+                  (
+                    UPPER(LV_SORT_COLUMN),
+                    'Sender',
+                    INB.SENDER,
+                    'Subject',
+                    INB.SUBJECT,
+                    'CREATEDDATE',
+                    INB.CREATEDDATE,
+                    INB.SENDER
+                  )
+              )
+              ORDER BY
+                CASE
+                  WHEN UPPER(LV_SORT_DIRECTION) = 'DESC' THEN
+                    ROWNUM * -1
+                  ELSE
+                    ROWNUM
+                END
+          )
+      )
+      WHERE ROWNUMBER >= LV_FROM_ROWNUM
+        AND ROWNUMBER <= LV_TO_ROWNUM
+      ORDER BY ROWNUMBER;
+  
+    SELECT COUNT(0)
+      INTO ROWCOUNT
+      FROM SB_INBOX INB
+          INNER JOIN SB_INBOX_TAB TABS ON INB.INBOXTYPE=TABS.INBOX_TYPE
+      WHERE TABS.INBOX_TAB_ID= P_TABID
+          AND (((VIEWTOROLE IS NULL OR VIEWTOROLE=0) AND INB.RECEIVER = P_USERID) OR ( INB.RECEIVER = P_USERID)) 
+          AND (UPPER(INB.SUBJECT) LIKE '%'|| UPPER(P_SEARCH_KEY) ||'%' OR LENGTH(P_SEARCH_KEY)=0);
+  
+    EXCEPTION
+      WHEN NO_DATA_FOUND THEN
+        NULL;
+      WHEN OTHERS THEN
+        -- Consider logging the error and then re-raise
+        RAISE;
+END Get_Grid_Data;

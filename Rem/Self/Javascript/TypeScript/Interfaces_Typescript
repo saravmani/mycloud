@@ -1,0 +1,19 @@
+interface interfaceName{
+    (param1:string,param2:number):number;
+}
+
+interface interfaceNameGeneric<T>{
+    (param1:T,param2:number):number;
+}
+
+#We can use above interfaces for functions
+
+let funName:interfaceNameGeneric<string> = (param1:string,param2:number)=>{
+    return 0;
+};
+
+extending interfaces
+---------------------
+interface AddMessageAction extends Action {
+12 message: string;
+13 }

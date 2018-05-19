@@ -1,0 +1,133 @@
+How to use putty (SSH)
+SSH, also known as Secure Socket Shell, is a network protocol that provides administrators with a secure way to access a remote computer.
+
+Analyse google response headers
+----------------------------------
+Access-Control-Allow-Origin: http://localhost:4200
+Access-Control-Allow-Credentials: true
+Date: Sun, 02 Apr 2017 05:08:29 GMT
+Pragma: no-cache
+Expires: Fri, 01 Jan 1990 00:00:00 GMT
+Cache-Control: no-cache, no-store, must-revalidate, proxy-revalidate
+X-UA-Compatible: IE=EmulateIE7
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+Server: GSE
+Set-Cookie: SC=RV=:ED=us; expires=Mon, 02-Oct-2017 05:08:29 GMT; path=/finance; domain=.google.com
+Alt-Svc: quic=":443"; ma=2592000; v="37,36,35"
+ 
+
+
+
+
+SLICK GRID - JQUERY GRID (ON SCROLL LOADING POSSIBLE)
+ALASQL - WRIETE SQL LIKE QUERIES FOR INDEXD DB (Broser DB)
+
+kendo UI - read properly
+Jquery - read properly
+what is the best way to do client side redirection?
+
+what is cloud native app?
+what is open stack developmnt?
+
+How to do code coverage?
+what is the best fot library we can use ?
+Awesine icons
+bootstrap icons
+google icons
+
+Test driven developmentt and what is red green and refactor processes
+
+
+what is Behaviour driven development??
+Behavior Driven Development (BDD)
+what is seperation of concern?
+
+how to do complex testing with mock ?
+MOQ mock testing framework
+what is usecases?
+how to convert requirement to technical design?
+LLD HLD
+learn design pattern??
+Factory , template pattern
+Read about SOA architechture
+ Aspect-Oriented Programming (AOP) 
+
+how to a software design??
+	UML (colabration diagram, class diagram, class diagram etc.,)
+	Design patterns
+	aggrigation and composition (tells about life time of a object comparing with another)
+	function points (use to give the estimation)
+	WBS (also use to give the estimation)
+
+
+DB - Optimistic locking and pesimistic locking
+
+
+Static code analysis will find if there are any unreachable code or hanging code,
+what is GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS?
+
+what is MIT licence?
+
+drawbacks in hybrid applications on mobile
+what is angular-resource.min.js?
+
+Hacking
+cross-site scripting (XSS)
+and clickjacking.
+
+Session cookies with security flag.. what is this statement. i got ti from saravanana Murugan. in cinet  security vulnarability testing related
+
+
+Javascript - Prototype, DefineProperty
+
+Angular js.. how to solve caching issue?
+
+
+what is svchost?
+MVC grid view
+what is NET Compact Framework?
+Windows Process Activation Service (WAS)
+what is javascript promises?
+
+GPU Usage
+Do remote debugging - done
+What is the use of temp folder for asp.net -done
+Google developer tools features
+what is ipv6
+OWIN
+
+
+Post Sharp
+Veracode security scanning
+code coverage tools
+instrumentation
+Dapper
+Nunit
+XUnit
+Nsubstitute Mock
+ATTD Process
+Jenkins Build
+AWS Cloud hosting
+
+Queuing technologies - Kafka, RabbitMQ
+
+
+Intelli Trace in vsts 2015
+IIS express?
+Javascript module pattern
+Custome value provider
+
+what is *.vhost.exe
+How edit and go worksin (VSTS2013 debugging mode editing)
+diff btn iis vs iis express?
+Windows shell
+how to cancel http request
+How does a .NET application start?
+Sandboxing in .net
+what is UTF-8?
+what is IPV4?
+
+iis architecture
+http://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture

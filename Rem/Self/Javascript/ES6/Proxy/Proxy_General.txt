@@ -1,0 +1,22 @@
+Proxy object is used to represent original object.
+Proxy is an object that maps an another object.
+it used in 
+    profiling
+    securing
+    Monitor
+
+
+Traps
+
+
+Revokable Proxy
+------------------
+var t={tableId:99}
+let{proxy,revoke}=Proxy.revocable(t,{
+    get:function(target,prop,receiver){
+        returnReflect.get(target,prop,receiver)+100;
+        }
+    });
+console.log(proxy.tableId);
+revoke();
+console.log(proxy.tableId);

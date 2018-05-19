@@ -1,0 +1,22 @@
+1. Visual studio enterprise  edition already having code coverage tool within it
+2.  JetBrains dotCover, for instance.  This comes with ReSharper Ultimate, which costs only $399 per year. 
+    Detailed reporting.
+    Both Visual Studio and CI integration of coverage measurements.
+    Navigate to covering tests.
+
+3. NCover 
+Other tools are come bundled with other products. But NCover is only for code coverage.
+    Detailed and centralized data about coverage.
+    Extensive documentation and user support.
+    32- and 64-bit support, plus memory consumption optimization.`
+
+4. OpenCover - THIS IS THE ONLY FREE
+It is free open source. 
+32- and 64-bit support.
+Both branch and statement coverage support (two subtly different ways to measure coverage).
+Generation of an XML-based report that, combined with ReportGenerator, produces a nice HTML-based report on coverage.
+Free and open source, so you can adjust to suit your needs.
+
+
+4. NCrunch
+Crunch constantly runs your tests, in real-time, as you type.  With NCrunch, you don’t need to run your tests, or even compile, to get feedback on whether your code changes are breaking anything.  The dots will change as you type.  And its pricing is very reasonable, starting at $159 per seat for an individual developer.

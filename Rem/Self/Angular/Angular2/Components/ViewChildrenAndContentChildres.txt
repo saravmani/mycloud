@@ -1,0 +1,40 @@
+
+<div class="col-xs-4 p-a-1">
+    <paProductForm>
+        <span paDisplayValue></span>
+    </paProductForm>
+</div>
+paDisplayValue is a content children of paProductForm component
+
+paProductForm is a component
+paDisplayValue is a directive
+
+in paProductForm's html page
+
+<div class="bg-info m-t-1 p-a-1">
+    View Child Value: <span paDisplayValue></span>
+</div>
+<div class="bg-info m-t-1 p-a-1">
+    Content Child Value: <ng-content></ng-content>
+</div>
+
+
+in general, whatever child components, directives, pipes are there in component's 
+view is called 
+viewchildres. what ever within content is called content child
+
+
+Content children ex
+--------------------
+@ContentChildren(PaCellColor) contentChildren: QueryList<PaCellColor>;
+
+ngOnChanges(changes: { [property: string]: SimpleChange }) {
+    this.updateContentChildren(changes["modelProperty"].currentValue);
+}
+private updateContentChildren(dark: Boolean) {
+    if (this.contentChildren != null && dark != undefined) {
+        this.contentChildren.forEach((child, index) => {
+        child.setColor(index % 2 ? dark : !dark);
+        });
+}
+}

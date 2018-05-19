@@ -1,0 +1,16 @@
+
+Using a Module Alias (renaming the modules)
+--------------------------------------------------
+import { Name as OtherName } from "./modules/DuplicateName";
+import * as NameAndWeatherLocation from "./modules/NameAndWeather";
+
+each  file is treated as a module
+
+Angular has a convention of defining one class per file,
+ which means that every class in an Angular
+project is contained in a separate module,
+
+There are different types of JavaScript module, each of which is supported by a different set of module
+loaders. The TypeScript compiler can be configured to produce the most popular formats, specified
+through the module property in the tsconfig.json file. The commonjs format is used for Angular
+development,

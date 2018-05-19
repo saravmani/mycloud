@@ -1,0 +1,15 @@
+
+Built in data types - numbers, strings, tuples, lists, dictionaries, and sets
+
+Data values in Python are known as objects;
+each object has a type
+An object’s type determines which operations the object supports
+
+The type also determines the object’s attributes and
+items (if any) and whether the object can be altered
+
+An object that can be altered is
+known as a mutable object, while one that cannot be altered is an immutable object
+
+type(obj) - returns the type object that is the type of obj
+isinstance(obj, type) - True when object obj has type type

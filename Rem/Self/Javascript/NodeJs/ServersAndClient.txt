@@ -1,0 +1,15 @@
+First browser will make connecton (socket) to server using TCP.
+then on top tcp we can use athor protocols like http, FTP to send the data to server
+
+
+var objHTTP = require('http');//core module
+var server = objHttp.CreteServer(function(req,res)(){ 
+console.log(req.url);//this will prit the url
+	res.writeHead(200,{"Content-Type":"text/plain"});
+	res.end("some message");	
+});
+
+server.listen(3000);
+//server.listen(3000,'127.0.0.1');
+console.log("im listening you");
+

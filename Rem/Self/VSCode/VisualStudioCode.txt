@@ -1,0 +1,2 @@
+To debug with chrome we need to set remote debutting port in chrome.so start chrome with below option
+C:\Program Files (x86)\Google\Chrome\Application\chrome.exe --remote-debugging-port=9222

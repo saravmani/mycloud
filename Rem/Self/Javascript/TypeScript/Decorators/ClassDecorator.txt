@@ -1,0 +1,34 @@
+ The class decorator is applied to the constructor of the class and can be used to 
+ observe, modify, or replace a class definition
+Note: If the class decorator returns a value, it will replace the class declaration
+ with the provided constructor function.
+
+//decorator used to seale the target on which it is applied
+export function sealed(target:Function){
+    Object.seal(target);
+    Object.seal(target.prototype);
+}
+
+Exmple decorator with logger functionality
+------------------------------------
+function Logger<TFunction extends Function>(target: TFunction): TFunction {
+  let newConstructor: Function = function () {
+    console.log("haha hihisss");
+  }
+  newConstructor.prototype = Object.create(target.prototype);
+  newConstructor.prototype.constructor = target;
+  var oritestMethod = newConstructor.prototype.testMethod;
+  newConstructor.prototype.testMethod = function () {
+    console.log("overriddennnnn******");
+    oritestMethod();
+    
+  }
+  return <TFunction>newConstructor;
+}
+
+@Logger
+export class SomeClass {
+  testMethod() {
+    console.log("text from test method##########");
+  }
+}

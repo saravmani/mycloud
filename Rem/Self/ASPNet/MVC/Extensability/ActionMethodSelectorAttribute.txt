@@ -1,0 +1,72 @@
+
+
+Some Default Framework implementations
+HttpGet,HttpPost,HttpPut etc
+
+Action method selectors are derived from the ActionMethodSelectorAttribute
+
+
+using System.Reflection;
+namespace System.Web.Mvc
+{
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
+    public abstract class ActionMethodSelectorAttribute : Attribute
+    {
+        public abstract bool IsValidForRequest(ControllerContext controllerContext,MethodInfo methodInfo);
+    }
+}
+
+MethodInfo object, which you can use to get information about the method to which your selector has been applied.
+
+
+Custome Action method selector Attribute
+----------------------------------------------
+namespace ControllerExtensibility.Infrastructure
+{
+    public class LocalAttribute : ActionMethodSelectorAttribute
+    {
+        public override bool IsValidForRequest(ControllerContext controllerContext,MethodInfo methodInfo)
+        {
+            return controllerContext.HttpContext.Request.IsLocal;
+        }
+    }
+}
+
+
+
+public class LocalAttribute : ActionMethodSelectorAttribute {
+    public override bool IsValidForRequest(ControllerContext controllerContext,MethodInfo methodInfo)
+    {
+        return controllerContext.HttpContext.Request.IsLocal;
+    }
+}
+
+public class HomeController : Controller
+{
+    public ActionResult Index()
+    {
+        return View("Result", new Result
+        {
+            ControllerName = "Home",
+            ActionName = "Index"
+        });
+    }
+    [ActionName("Index")]
+    public ActionResult LocalIndex()
+    {
+        return View("Result", new Result
+        {
+            ControllerName = "Home",
+            ActionName = "LocalIndex"
+        });
+    }
+}
+
+#in above example there is two index actions. one is Index() another one is ActionName("Index").
+#so this will throw ambigious error
+
+#if we apply [Local] attribute then it will get called on local calls
+
+If there are no action methods with selectors, then the invoker looks at those without selectors.
+If there is exactly one such method, then this is the one that is invoked. If there is more than one
+method without a selector, an exception is thrown, because the invoker can’t choose between them.

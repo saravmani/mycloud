@@ -1,0 +1,5 @@
+var numberArray = [1,2,34,56,8799];
+    var total = 0;
+    angular.forEach(numberArray, function (exercise) {
+        total = total + exercise;
+    });

@@ -1,0 +1,9 @@
+Microsoft ASP.NET Identity v2
+
+OWIN is that it acts as a layer of
+abstraction between a web application and the hosting environment
+
+ 
+[AllowAnonymous]
+this attribute used to mention anonymous access to specific method. 
+if we mention then Autherise filter not be execute on this particular method call

@@ -1,0 +1,7 @@
+Main 4 features
+-------------------
+middleware
+routing
+Extensions to request and response objects—Express extends the request and response
+objects with extra methods and properties for developer convenience.
+views

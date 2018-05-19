@@ -1,0 +1,89 @@
+javascript is loosely typed. variable type and value can be changed at life type.	
+two different types of data: primitive values and reference
+values.
+
+Five primitive types in javascript
+	number, boolean, string, null, undefined
+Note: in many other languages string is reference type. 
+
+Reference values are objects stored in memory. Unlike other languages, JavaScript does not permit
+direct access of memory locations, so direct manipulation of the object’s memory space is not
+allowed.
+When you manipulate an object, you’re really working on a reference to that object
+
+with reference values, you can add, change, or delete properties and methods at any time.But with primitive types we can do this. see below example of primitive type
+
+var name = “Nicholas”;
+name.age = 27;// here we trying to add new property with primitive type. but this will no thorow error. but this will not work :-)
+alert(name.age); //undefined
+
+When a primitive value is assigned from one variable to
+another, the value stored on the variable object is created and copied into the location for the new
+variable.
+
+but in reference type, it behaves like c#. actually reference will get copied. but actual object 1.
+
+var obj1 = new Object();
+var obj2 = obj1;
+obj1.name = “Nicholas”;
+alert(obj2.name); //”Nicholas”
+
+
+function setName(obj) {
+obj.name = “Nicholas”;
+}
+var person = new Object();//Global object.. stroed in heap
+setName(person);//reference passed to the function and this refered object has got modified inside the funciton... it is behaves like c#
+alert(person.name); //”Nicholas”
+
+
+function setName(obj) {
+obj.name = “Nicholas”;
+obj = new Object();//Local object//That local object is destroyed as soon as the function fi nishes executing
+obj.name = “Greg”;
+}
+var person = new Object();
+setName(person);
+alert(person.name); //”Nicholas”;
+
+
+Best way to find the variable type for primitive data type is 
+typeof operator
+
+
+var s = “Nicholas”;
+var b = true;
+var i = 22;
+var u;
+var n = null;
+var o = new Object();
+alert(typeof s); //string
+alert(typeof i); //number
+alert(typeof b); //boolean
+alert(typeof u); //undefined
+alert(typeof n); //object .. value is an object or null, then typeof returns “object”
+alert(typeof o); //object
+
+
+Fore reference types we can use instanceof operator
+result = variable instanceof constructor;// returns true or false
+
+alert(person instanceof Object); //is the variable person an Object?
+alert(colors instanceof Array); //is the variable colors an Array?
+alert(pattern instanceof RegExp); //is the variable pattern a RegExp?
+
+
+
+All reference values, by defi nition, are instances of Object, so the instanceof operator always
+returns true when used with a reference value and the Object constructor.
+
+Similarly, if instanceof
+is used with a primitive value, it will always return false, because primitives aren’t objects
+
+
+Each execution context has an associated variable object upon
+which all of its defi ned variables and functions exist. This object is not accessible by code but is used
+behind the scenes to handle data.
+
+global context isn’t destroyed until the application exits(i.e browser closed )
+Each function call has its own execution context.

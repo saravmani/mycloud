@@ -1,0 +1,52 @@
+Cancling task
+---------------------------------
+If we have more complex tasks that take some time to complete,
+we undoubtedly need a way how to cancel them before they finish if needed. 
+For this purpose, the TPL introduced cancellation 
+tokens that are used to cancel the given tasks. 
+To be able to cancel a started task, we need to provide an instance of 
+a CancellationToken in the task's constructor.
+
+Task task = new Task(() =>  
+{  
+     //task's body  
+}, token); 
+
+static void Main(string[] args)  
+{  
+     //creating the cancelation token  
+     CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();  
+     CancellationToken token = cancellationTokenSource.Token;  
+  
+     //creating the task  
+     Task task = new Task(() =>  
+     {  
+          for (int i = 0; i < 100000; i++)  
+          {  
+               if (token.IsCancellationRequested)  
+               {  
+                    Console.WriteLine("Cancel() called.");  
+                    return;  
+               }  
+                   
+               Console.WriteLine("Loop value {0}", i);  
+          }  
+     }, token);  
+  
+     Console.WriteLine("Press any key to start task");  
+     Console.WriteLine("Press any key again to cancel the running task");  
+     Console.ReadKey();  
+              
+     //starting the task  
+     task.Start();  
+              
+     //reading a console key  
+     Console.ReadKey();  
+              
+     //canceling the task  
+     Console.WriteLine("Canceling task");  
+     cancellationTokenSource.Cancel();  
+  
+     Console.WriteLine("Main method complete. Press any key to finish.");  
+     Console.ReadKey();  
+}  

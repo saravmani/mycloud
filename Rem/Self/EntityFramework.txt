@@ -1,0 +1,47 @@
+
+
+*.edmx - entity data model file formate
+navigation - property. used to link with other table (example subject class will have list of address table)
+DBSet is the object which is used to CRUD operations
+
+Simple where condition
+-----------------------------
+using (var context = new SchoolDBEntities())
+{
+    var L2EQuery = context.Students.where(s => s.StudentName == "Bill");
+        
+    var student = L2EQuery.FirstOrDefault<Student>();
+//The difference between First and FirstOrDefault is that First() will throw an exception if there is no result data for the supplied criteria whereas FirstOrDefault() returns default value (null) if there is no result data.
+
+
+//To get single object
+ var student = (from s in context.Students
+                    where s.StudentID == 1
+                    select s).SingleOrDefault<Student>();
+//Use Single or SingleOrDefault where you are sure that the result would contain only one element. If the result has multiple elements then there must be some problem.
+
+//Group by
+  var students = from s in ctx.Students 
+                    group s.StandardId by into studentsByStandard
+                    select studentsByStandard;
+
+
+}
+
+Linq style
+--------------
+using (var context = new SchoolDBEntities())
+{
+    var L2EQuery = from st in context.Students
+                    where st.StudentName == "Bill"
+                    select st;
+   
+    var student = L2EQuery.FirstOrDefault<Student>();
+    }
+
+Native SQL formate
+----------------------
+using (var ctx = new SchoolDBEntities())
+{
+    var studentName = ctx.Students.SqlQuery("Select studentid, studentname, standardId from Student where studentname='Bill'").FirstOrDefault<Student>();
+} 

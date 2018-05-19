@@ -1,0 +1,4 @@
+1. MOQ, How to test exceptions in Unit testing
+1. Entity Framework refresh
+2. Try one single signon page
+3. .Net Core

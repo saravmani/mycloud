@@ -1,0 +1,46 @@
+debug in chorme
+----------------------
+run node file using below command
+node --inspect --debug-brk index.js
+this will print URL to debug. 
+just copy paste it in google chorme
+
+
+
+debug using vscode
+----------------------
+package.json
+--------------
+"scripts": {
+
+  "debug": "node --nolazy --debug-brk=5858 index.js"
+  
+}
+
+launch.json
+---------------
+ "configurations": [
+   {
+            "type": "node",
+              "request": "attach",// used for attaching with exising node processes. while attaching vscode will ask for process id to which we need to attach
+            "name": "Attach by Process ID",
+            "port": 5858,
+            "processId": "${command:PickProcess}"
+        },
+        {
+        
+ "type": "node",
+            "request": "launch",
+            "name": "Launch via NPM",
+            "runtimeExecutable": "npm",
+        "windows": {
+                "runtimeExecutable": "npm.cmd"
+            },
+            
+"runtimeArgs": [
+"run-script","debug"
+],
+
+"port": 5858
+
+ },

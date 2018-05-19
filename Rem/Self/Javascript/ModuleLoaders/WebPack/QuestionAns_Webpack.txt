@@ -1,0 +1,78 @@
+
+Supported Module patterns
+---------------------------------
+CommonJs,AMD,ES6
+
+Question: Which version(s) of webpack support es6 modules out the box?
+Answer: webpack 2+
+
+Question: Which version(s) of webpack support json-loader out the box?
+
+Answer: webpack 2+
+
+Question: Is it possible to have multiple entry points in a singe webpack configuration file?
+Answer: Yes
+
+Question: Is it possible to define multiple configurations for different environments?
+Answer: Yes
+
+Question: How can we generate webpack config file automatically?
+Answer: Using webpack-cli init
+
+Question: Do loaders work in a synchronous or an asynchronous way?
+Answer: Both. Loaders can work synchronous or asynchronous.
+
+Question: Is it possible to use multiple loaders in the rules single object?
+Answer: Yes, its possible to chain loaders.
+
+Question What are some advantages of using webpack-dev-server over simple http server or nginx?
+Answer: webpack-dev-server simplifies development process due to integrated fast in-memory access to the webpack assets and hot-modules-replacement features.
+
+Question: Is it possible to use other languages (except javascript) for the webpack config file?
+Answer: Yes, webpack accepts configuration files written in multiple programming and data languages, such as typescript, coffeescript, babel and jsx.
+
+
+Question: What is Hot-Modules-Replacement?
+Answer: Hot-Modules-Replacement(HMR) is webpack feature which allows to update modules
+in application without page reload. HMR can be used as an advanced replacement for livereload.
+
+
+Question: How to automatically build and update bundles in the browser after a change in source code?
+Answer: Using watch: true and devServer: { hot: true } options together.
+
+Question: What is parallel-webpack and how does it affect webpack's build process
+Answer: parallel-webpack useful for webpack configurations with multiple entry points. It allows to run multiple 
+webpack builds in parallel, spreading the work across your processors and thus helping to significantly speed up build.
+
+
+Question: Briefly describe long-term caching and how to achieve it using webpack?
+Answer: Browsers should cache static assets to save traffic and users time. But after each change or bugfix, 
+browser have to download newer version of files. The most easy way to achieve this is changing file name. 
+It could be buildId or unique hash in the end of file's name like
+
+    app.js?build=1
+    app.js?build=2
+or
+
+  app.js.2a6c1fee4b5b0d2c9285.js
+  app.js.70b594fe8b07bcedaa98.js
+To achieve this using webpack simple configuration should be done
+
+   module.exports = {
+    ...
+    output: {
+     filename: "[name].[hash].js"
+    }
+    ...
+   }
+
+
+Question: What is difference between hash and chunkhash
+Answer: [hash] will generate unique hash for each build and use it for all chunks. 
+Replace [hash] with [chunkhash] to generate unique hashes for each chunk. This is useful when you dont want to re-download vendors (dependencies) 
+file but you have changes in your application code and want to update it.
+
+
+Question: What analyzing tools you use to inspect your webpack bundle?
+Answer: webpack-bundle-analyzer plugin, official webpack analyze tool, webpack visualizer,
+ webpack chart

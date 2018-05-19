@@ -1,0 +1,23 @@
+Microsoft.Aspnet.MVC core package need to be installed
+
+Microsoft.AspNetCore.All // is  a base package
+//it is META PACKAGE. this brings other packages    
+
+If we having this meta package, we no need to install other packages expilicitly.
+
+Add Below middleware in configruation
+app.UseMvcWithDefaultRoute();
+
+Add Below MVC framework service in service 
+services.AddMvc();
+
+app.UseMvcWithDefaultRoute();//it is having default routing
+app.UseMvc(ConfigRoute);// Not having default routing. we have to configure it
+private void ConfigRoute(IRouteBuilder routeBuilder)
+{
+    routeBuilder.MapRoute("Default","{controller}/{action}/{id?}");
+    //here id with ? mark is optional parameter
+}
+
+in .net core all the middlewares are placed into 
+Microsoft.AspnetCore.Builder. Microsoft follows this standard.

@@ -1,0 +1,8 @@
+PowerTools
+StyleCOP - set the rules to ensure the coding standards
+Locate in tfs - Find Solution's files in TFS path
+Resurrect - to reattach to previously attached processes
+Find in solution explorer - find the selected file in soultion explorer
+
+Re-sharper
+(it costs)

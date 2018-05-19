@@ -1,0 +1,31 @@
+EJS is popular because this made by the people who created Express.
+
+npm install ejs --save.
+
+
+var express = require("express");
+var path = require("path");
+var app = express();
+app.set("views", path.resolve(__dirname, "views")); //Tells Express that your views will be in a folder called views
+app.set("view engine", "ejs"); //Tells Express that you’re going to use the EJS templating engine Licensed wtow
+
+app.get("/", function(request, response) {
+response.render("index", {
+message: "Hey everyone! This is my webpage."
+});
+});
+
+
+
+index.ejs
+-----------
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Hello, world!</title>
+</head>
+<body>
+<%= message %>
+</body>
+</html>

@@ -1,0 +1,65 @@
+
+the most commonly
+used action result is ViewResult, which causes a view to be rendered and returned to the client.
+
+The whole purpose of views is to allow you to render parts of your domain model as a user interface.
+
+
+Create a custom view engine                       Implement the IViewEngine and IView interfaces
+Customize the Razor view engine                   Derive from the RazorViewEngine class 
+Define regions of content for use in a layout     Use Razor sections 
+Apply sections in a layout                        Use the RenderSection and RenderBody helpers
+Define reusable fragments of markup               Use partial views 
+Define reusable business logic                    Use child actions 
+
+
+
+The role of a view engine is to translate requests for views into ViewEngineResult objects.
+
+
+ViewEngineResult class
+--------------------------
+namespace System.Web.Mvc
+{
+    public class ViewEngineResult
+    {
+        public ViewEngineResult(IEnumerable<string> searchedLocations)
+        {
+            if (searchedLocations == null)
+            {
+                throw new ArgumentNullException("searchedLocations");
+            }
+            SearchedLocations = searchedLocations;
+        }
+        public ViewEngineResult(IView view, IViewEngine viewEngine)
+        {
+            if (view == null) { throw new ArgumentNullException("view"); }
+            if (viewEngine == null) { throw new ArgumentNullException("viewEngine"); }
+            View = view;
+            ViewEngine = viewEngine;
+        }
+
+#this is having two constructors
+
+public ViewEngineResult(IEnumerable<string> searchedLocations)
+this constructor used to searched to find a view
+
+
+ViewContext Properties
+--------------------------------
+RequestContext
+RouteData
+ViewData
+ViewBag
+TempData
+
+
+ViewData, which returns a ViewDataDictionary object
+
+ViewDataDictionary contains below peroperties
+------------------------------------------------
+Model
+ModelState
+Keys
+
+

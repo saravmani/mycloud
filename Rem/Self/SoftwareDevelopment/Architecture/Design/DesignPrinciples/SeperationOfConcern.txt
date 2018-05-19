@@ -1,0 +1,23 @@
+separation of concerns (SoC) is a design principle for 
+separating a computer program into distinct sections,
+such that each section addresses a separate concern.
+
+
+ is the process of breaking a computer program into distinct features that overlap in functionality as little as possible
+
+ Seperation of Concerns states that applications should be split in to modules whose functionalities overlap as little as possible.
+
+
+  is the process of breaking a computer program into distinct features that overlap in functionality as little as possible. A concern is any piece of interest or focus in a program. Typically, concerns are synonymous with features or behaviors.
+
+
+  uses
+  ----------
+  When concerns are well-separated, individual sections can be reused, as well as developed and updated independently
+  later improve or modify one section of code without having to know the details of other sections
+
+
+  Aspect-oriented programming[edit]
+
+
+# SOC can be at any level. at high level or class level or function level. SOC is a Art. it is a guidance

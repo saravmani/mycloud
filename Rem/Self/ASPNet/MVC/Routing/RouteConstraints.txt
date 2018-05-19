@@ -1,0 +1,58 @@
+route constraints
+=========================================
+These constraints are used to avoid from directing invalid requests to the controller actions.
+
+refer url
+http://www.prideparrot.com/blog/archive/2012/3/creating_custom_route_constraints_in_asp_net_mvc
+
+#Advantages
+---------------------
+# 1. Avoid Controller object creation - if controller having object 
+compositons and DI constructors then this will be helpful
+
+
+
+public class DateConstraint : IRouteConstraint
+{
+    public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
+    {
+        DateTime dt;
+ 
+        return DateTime.TryParseExact(values[parameterName].ToString(), 
+        "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out dt);
+    }
+}
+
+
+routes.MapRoute(
+    name: "archive",
+    url: "blog/archive/{datetime}",
+    defaults: new { controller = "Blog", action = "Archive" },
+    constraints: new { datetime = new DateConstraint() }
+);
+
+
+But event desired Action not got invoiked with above mentioned route, default route is still there .. with this again routing will happen. so have to add one mre 
+route contraint to default routing path, which should say for specific controllr and action avoid routing.
+
+
+public class EliminateControllerAction : IRouteConstraint
+{
+    private readonly string _controller;
+    private readonly string _action;
+ 
+    public EliminateControllerAction(string controller, string action)
+    {
+        _controller = controller;
+        _action = action;
+    }
+ 
+    public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
+    {
+        return String.Compare(values["controller"].ToString(), _controller, true) != 0 
+            || String.Compare(values["action"].ToString(), _action, true) != 0;
+    }
+}
+
+
+

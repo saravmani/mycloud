@@ -1,0 +1,43 @@
+Login.cs
+----------------------------
+ public ActionResult Login(LoginModel objLoginModel)
+        {
+
+            // Initialization.    
+            var claims = new List<Claim>();
+            try
+            {
+                // Setting    
+                claims.Add(new Claim(ClaimTypes.Name, objLoginModel.UserName));
+                claims.Add(new Claim(ClaimTypes.Role, "dingdong"));
+                claims.Add(new Claim(ClaimTypes.Role, "dingdong12"));
+                var claimIdenties = new ClaimsIdentity(claims, "ApplicationCookie");
+                var ctx = Request.GetOwinContext();
+                var authenticationManager = ctx.Authentication;
+                // Sign In.    
+                authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, claimIdenties);
+
+
+
+AuthOwinConfig.cs
+------------------------------------
+using Owin;
+using Microsoft.Owin;
+using Microsoft.Owin.Security.Cookies;
+using Microsoft.AspNet.Identity;
+
+[assembly: OwinStartup(typeof(AspNetIdentityDemo.App_Start.Startup))]
+
+namespace AspNetIdentityDemo.App_Start
+{
+    public class Startup
+    {
+        public void Configuration(IAppBuilder app)
+        {
+            CookieAuthenticationOptions options = new CookieAuthenticationOptions();
+            options.AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie;
+            options.LoginPath = new PathString("/home/login");
+            app.UseCookieAuthentication(options);
+        }
+    }
+}

@@ -1,0 +1,9 @@
+public HttpResponseMessage Get(int id)
+    {
+        Product product = _repository.GetById(id);
+        if (product == null)
+        {
+            return Request.CreateResponse(HttpStatusCode.NotFound);
+        }
+        return Request.CreateResponse(product);
+    }

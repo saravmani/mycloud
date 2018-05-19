@@ -1,0 +1,30 @@
+The Properties Common to All DOM Event Objects
+--------------------------------------------------
+timestamp - This property returns a number that contains the time that the event was triggered,
+            expressed as milliseconds since January 1, 1970.
+target - This property returns the object that triggered the event, which will generally be the
+        object that represents the HTML element in the DOM.
+type - This property returns a string that identifies the type of event that has been triggered
+
+
+$event.target.value
+-----------------------------
+{{selectedProduct}}
+<input class="form-control" (input)="selectedProduct=$event.target.value" />
+
+//this assigns user input value into selectedProduct varaible
+
+The event object is assigned to a template variable called $event,
+
+The input element is represented in the DOM by an HTMLInputElement object, which defines a value
+property that can be used to get and set the contents of the input element.
+# here target is dom object of the element
+
+The input event is triggered when the user edits the contents of the input element, so the component’s
+selectedProduct property is updated with the contents of the input element after each keystroke. As the
+user types into the input element, the text that has been entered is displayed at the top of the browser
+window using the string interpolation binding.
+
+<input  class="form-control" (input)="inputVarable = $event.target.value" />
+{{inputVarable}}
+# above code will print the user input on each key stroke

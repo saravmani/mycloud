@@ -1,0 +1,30 @@
+How Http/2 works
+-----------------------
+When a user connects to a server, their browser negotiates an HTTP session with the server. 
+The type of session created will vary depending on the features supported by the browser and
+ the server. If both parties support HTTP/2, the server uses the HTTP/2 protocol to shape
+  and optimize traffic before it passes through the network to the user.
+
+Features
+------------
+Server Push: With HTTP/1.1, servers have to wait for the client to initiate a connection. 
+With HTTP/2, servers can push resources to the client proactively.
+
+Binary format: HTTP/1.1 sends data in a textual format, whereas HTTP/2 sends data in a binary format. 
+While binary is more difficult to visually read, it reduces the amount of errors and inefficiencies 
+present in textual formats.
+
+Header optimization: Each and every request over HTTP contains header information. With HTTP/1.1, 
+many of these headers are repeated over a single session. 
+HTTP/2 removes redundant headers while compressing the remaining headers.
+
+Simultaneous connections, or multiplexing: HTTP/1.1 can only fetch one resource at a time, 
+whereas HTTP/2 can fetch multiple resources over a single connection simultaneously.
+
+
+Most major browsers support HTTP/2 including Microsoft Edge, Firefox, Chrome, Safari, and Chrome for Android.
+Many popular web servers include native support for HTTP/2 including the 
+Apache HTTP Server, NGINX, and Tomcat. 
+
+
+ It’s fully backwards-compatible with HTTP/1.1, meaning websites will work the same with either protocol.

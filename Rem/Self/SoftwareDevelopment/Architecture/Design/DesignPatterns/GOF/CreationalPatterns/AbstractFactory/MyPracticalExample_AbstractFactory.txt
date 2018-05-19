@@ -1,0 +1,19 @@
+Dashboards
+	IT persons
+	Admin Users
+	Bank Users
+
+    IWidgetConfigurationManager (admin user can configure their widgets, but bank users widgets are role based)
+        IFetchConfigList
+        IFetchConfigDetails
+        IUpdateConfigDetails
+    IWidgetManager (totally different data sources)
+        IFetchComplete
+        IFetchEachWidgetdata
+        IAnyChange
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+Advantages over constants
+-----------------------------
+nums limit you to the required set of inputs whereas even if you 
+use constant strings you still can use other String not part of your logic.
+
+This helps you to not make a mistake, to enter something out of the domain, 
+while entering data and also improves the program readability.
+
+
+General Advantages
+-----------------------
+#more code readability,
+#avoid errors (restricting clients to use only set of values)
+Makes it easy to change values in the future.

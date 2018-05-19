@@ -1,0 +1,85 @@
+Distributed transactions
+---------------------------------
+
+Keywords used 
+Resource managers - Ex: Multiple databases
+Transaction Manager - # i think it is System.Transaction
+Middleware package - Microsoft Distributed Transaction Coordinator (MSDTC)
+two-phase commit protocol - 
+
+For Distributed transactions we need a 
+middleware package that listens to and coordinates the final result between resource managers. 
+
+Middleware package 
+--------------------------
+The transaction manager that ships with Windows is the Microsoft Distributed 
+Transaction Coordinator (MSDTC). You can consume the services provided by MSDTC 
+by using MTS/COM+, System.EnterpriseServices and the new System.
+Transactions namespace in .NET 2.0.
+
+#Just go to component services in windows
+You can check the status of the distributed transaction when it's 
+running by going to the Control Panel | Administrative Tools | 
+Component Services and navigate through the tree on the left side to view the transaction list
+Seeimage (DistributedTransaction.jpg)
+
+two-phase commit protocol
+------------------------------
+In order to implement an atomic commit, we need a protocol for the communication of resource managers and transaction managers. 
+A lot of atomic commit protocols have been proposed, but the one that is in common use is 
+called two-phase commit protocol. This protocol is initiated by the transaction manager
+or coordinator when the underlying transaction requests to commit. 
+To perform correctly this protocol, the coordinator needs to know 
+the identities of all the resource managers involved in the transaction. 
+Thus, each time a resource manager joins the transaction; 
+its identification is sent to the coordinator.
+
+The two-phase commit protocol comprises two phases. 
+The first phase involves preparing the changes required for the commit. 
+The purpose is to determine whether resource managers are willing and ready to commit, 
+but not actually committed yet. Once all the other resource managers notify to 
+the transaction manager or coordinator to agree to commit, 
+then the coordinator lets the resource managers to go ahead and commit their changes.
+
+Resource Managers
+-----------------------
+In a distributed transaction, anything, which has the capability to enlist itself in 
+an MSDTC transaction, can participate as resource managers. 
+
+using(TransactionScope tsInstance = new TransactionScope())
+            {
+                OracleConnection objOracleConn = new OracleConnection("oracleconnstring");
+                SqlConnection objSqlConn = new SqlConnection("oracleconnstring");
+
+                string strDebitCmd = String.Format("UPDATE tbAccount SET amount={0} WHERE accountid={1}", fDebitAmount, nDebitAccount);
+                string strCreditCmd = String.Format("UPDATE tbAccount SET amount={0} WHERE accountid={1}", fCreditAmount,
+nCreditAccount);
+
+                OracleCommand cmdDebit = new OracleCommand(strDebitCmd, objOracleConn);
+                SqlCommand cmdCredit = new SqlCommand(strCreditCmd, objSqlConn);
+
+                cmdCredit.ExecuteNonQuery();
+                cmdDebit.ExecuteNonQuery();
+
+                tsInstance.Complete();
+            }
+
+
+TransactionScopeOption
+---------------------------
+Required	    It is default value for TransactionScope. If any already exists 
+                any transaction then it will join with that transaciton otherwise create new one.
+RequiredNew	    When select this option a new transaction is always created. 
+                This transaction is independent with its outer transaction.
+Suppress	    When select this option, no transaction will be created. Even if it already
+
+
+IsolationLevel (it is about locking)
+-----------------------------------------------
+Serializable, Read Committed, Read Un Committed, Repeatable Read
+Serializable - It locks data exclusively at the time of read/write operations. 
+                For that reason, many times it may create a deadlock, and as a result you 
+                may get a timeout exception. You can use this isolation level for a 
+                highly secured transactional application like a financial application.
+Read Committed - Most of the applications you can use it. SQL Server default isolation level is this.
+Read Un-Committed - Applications with these have no need to support concurrent transactions.

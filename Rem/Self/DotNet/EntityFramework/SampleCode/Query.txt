@@ -1,0 +1,44 @@
+
+                //Below query generates left outer join
+                /*
+                 * SELECT 
+                    1 AS [C1], 
+                    [Extent1].[Id] AS [Id], 
+                    [Extent1].[TaskName] AS [TaskName], 
+                    [Extent2].[TaskTypeName] AS [TaskTypeName]
+                    FROM  [dbo].[TaskList] AS [Extent1]
+                    LEFT OUTER JOIN [dbo].[TaskType] AS [Extent2] 
+                    ON [Extent1].[TaskTypeId] = [Extent2].[TaskTypeId]
+                 * 
+                 * */
+                //var tsk = from a in objTaskList.TaskLists
+                //          select new
+                //          {
+                //              a.Id,
+                //              a.TaskName,
+                //              a.TaskDescription,
+                //              a.TaskType.TaskTypeName
+                //          };//This generates left outer join
+
+
+                //Below query produces innerjoin
+                /*
+                 * SELECT 
+                        [Extent2].[TaskTypeId] AS [TaskTypeId], 
+                        [Extent1].[Id] AS [Id], 
+                        [Extent1].[TaskName] AS [TaskName], 
+                        [Extent1].[TaskDescription] AS [TaskDescription], 
+                        [Extent2].[TaskTypeName] AS [TaskTypeName]
+                        FROM  [dbo].[TaskList] AS [Extent1]
+                        INNER JOIN [dbo].[TaskType] AS [Extent2] ON [Extent1].[TaskTypeId] = [Extent2].[TaskTypeId]
+                */
+var tsk = from a in objTaskList.TaskLists
+            from b in objTaskList.TaskTypes
+            where a.TaskTypeId == b.TaskTypeId
+            select new
+            {
+                a.Id,
+                a.TaskName,
+                a.TaskDescription,
+                b.TaskTypeName
+            };//This generates left outer join

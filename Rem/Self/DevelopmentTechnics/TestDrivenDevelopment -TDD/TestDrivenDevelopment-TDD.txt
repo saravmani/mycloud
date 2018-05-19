@@ -1,0 +1,41 @@
+TDD is not a technology it is a development approch or development decipline
+
+
+In normal tredetional way,
+we will do design->Implement->Test
+But this will take very long time, bcs when the testing get started application will be very huge. so when we fix one thing it may create 
+another bug. also we may miss very big important logic when do the development
+
+
+In test/Design -> development
+	. Design the system by writing tests
+	. Quickly and easily regression test
+	. fix bugs soon after they are intoduced
+
+
+TDD process
+	.thnik
+	. write a ttest
+	. implement so that test passess
+	. Urn all unit tests and fix failures
+	. Refactor new code
+	. Run all unit tests and fix failures
+	. check in :-)
+
+unit test frameworks
+	nUnit for c# (open source)
+	nUnit2 is current version 
+	jUnit for Java
+	cppUnit for c++
+also there are frameworks for javascript and python
+	
+
+Other tools
+	- Mocking framework, continuouus integration software, 
+	  DI framework(Ex:Unity framework)
+
+When you are planning to perform data driven unit test for any large scale application, it is very difficult to manage and speed up the task due to vast interaction of the application with its databases, services, etc. Unit testing for these kinds of large applications can be performed manually but it will be very time consuming and will involve lots of money.
+So, here the concept and role of mock or mocking framework comes useful.
+So, what does mock mean? Mock means that you are planning to test a process without its actual data input with some other replacement mock/dummy/fake data 
+
+There are three replacement objects that are used to replace dependencies of the unit being tested and these are – stubs, fakes and mocks.

@@ -1,0 +1,32 @@
+# even any event happens (ex:btn click) without change in any property,
+ then also docheck,aftercontentchecked,afterviewchecked are getting called
+ #but (click) event binding should be there to change detection happen
+
+
+Routing with query string
+------------------------------------
+{ path: "form/:mode/:id", component: FormComponent },
+
+ <button class="btn btn-warning btn-sm" (click)="editProduct(item.id)"
+[routerLink]="['/form', 'edit', item.id,{name: item.name, category: item.category, price: item.price}]">
+
+http://localhost:3000/form/edit/5;name=Stadium;category=Soccer;price=79500
+Note: In normal url query string will be & seperated but here ; seperated
+
+RouteLink attribute
+-------------------------
+This directive can be applied to any element, although it is 
+typically applied to button and anchor elements
+ex: <button routeLink="/product/newproduct" (click)="somefunctionCall()"></button>
+
+
+
+pipes can chained together.. in which order we are mentioning .. same ortder it will execute
+ex:
+{{item.price | pipe1 | pipe2:"USD":true }}
+
+
+Using a Module Alias (renaming the modules)
+--------------------------------------------------
+import { Name as OtherName } from "./modules/DuplicateName";
+import * as NameAndWeatherLocation from "./modules/NameAndWeather";

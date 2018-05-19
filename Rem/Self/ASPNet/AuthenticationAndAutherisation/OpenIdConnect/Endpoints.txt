@@ -1,0 +1,16 @@
+OpenID Connect Endpoints
+---------------------------------------
+Authorization Endpoint (IDP - identity provider)
+    Used by client via redirection. 
+Token Endpoint (IDP - identity provider)
+Discovery Endpoint(IDP - identity provider)
+    IdentySever  provides this Discovery end point automatically. this will be used by others
+    Ex: google's Discovery Endpoint is 
+    https://accounts.google.com/.well-known/openid-configuration
+    {
+        "issuer": "https://accounts.google.com",
+        "authorization_endpoint": "https://accounts.google.com/o/oauth2/v2/auth",
+        "token_endpoint": "https://www.googleapis.com/oauth2/v4/token",
+        "userinfo_endpoint": "https://www.googleapis.com/oauth2/v3/userinfo",
+
+Redirection End point (Client)

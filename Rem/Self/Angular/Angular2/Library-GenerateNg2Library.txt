@@ -1,0 +1,5 @@
+Build library
+----------------
+1. CommonJs module format is best suit (so have to configure typescript compiler into CommonJs format)
+2. each Javascript file is published together with the Typescript type definitions and source maps
+3. the lib folder contains the bulk of the library, 

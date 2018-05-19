@@ -1,0 +1,12 @@
+This will work on same machine
+It can clone the applicaiton and host it and do the load balancing
+
+Used for server availability and fault tolerance
+We can use Process managers (ex PM2), it is very simple
+
+Master prcoess - it uses round robin
+Worker processes
+
+Each process will have own event loop and own memory space
+
+under the hood Cluster module uses Fork API for child process

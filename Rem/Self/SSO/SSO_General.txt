@@ -1,0 +1,4 @@
+The three most common web security protocols (at the time of this writing) are 
+OpenID, OAuth, and SAML.
+Implementations and libraries exist in multiple languages already, 
+and going with a standardized protocol 

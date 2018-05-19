@@ -1,0 +1,13 @@
+ public IActionResult FirstTest()
+        {
+            return this.Content("some text content");// this will not immediatly respond back. 
+            //insteed it will pass the action reslut to 
+            //frame work. frame work will send the reponse
+            
+            //so we can able to create object directly to controller and call the action method and
+            //from unit testing applicaitons
+        }
+
+Content //for text content 
+new ObjectResult(objModel) // used to send the complex models
+//by default thiw will give json response in browser

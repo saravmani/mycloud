@@ -1,0 +1,75 @@
+One to One
+one to many
+many to many
+
+
+One to many
+--------------
+public partial class Standard
+{
+    public Standard()
+    {
+        this.Students = new HashSet<Student>();
+        this.Teachers = new HashSet<Teacher>();
+    }
+    
+    public int StandardId { get; set; } 
+        public Nullable<int> StandardId { get; set; }
+
+    
+    public virtual ICollection<Student> Students { get; set; }
+    public virtual ICollection<Teacher> Teachers { get; set; }
+}
+//# note Students is virtual. it is called navigation property
+
+
+Many to many
+-------------
+Entity framework supports many-to-many relationship only when the joining table (StudentCourse in this case) does NOT include any columns other than PKs of both the tables.
+If the join tables contain additional columns, such as DateCreated, then the EDM creates entity for middle table as well and you will have to manage CRUD operation for many-to-many entities manually.
+
+Student and Course have Many-to-Many relationships marked by * multiplicity. It means one Student can enrol for many Courses and also, one Course can be be taught to many Students.
+
+The database design includes StudentCourse joining table which includes the primary key of both the tables (Student and Course table). Entity Framework represents many-to-many relationships by not having entityset for the joining table in CSDL, instead it manages this through mapping.
+
+public partial class Student
+{
+    public Student()
+    {
+        this.Courses = new HashSet<Course>();
+    }
+    
+    public int StudentID { get; set; }
+     public virtual ICollection<Course> Courses { get; set; }
+}
+    
+public partial class Course
+{
+    public Course()
+    {
+        this.Students = new HashSet<Student>();
+    }
+    
+    public int CourseId { get; set; }
+  public virtual ICollection<Student> Students { get; set; }
+}
+
+Entity framework supports many-to-many relationship only when the joining table (StudentCourse in this case) does NOT include any columns other than PKs of both the tables. If the join tables contain additional columns, such as DateCreated, then the EDM creates entity for middle table as well and you will have to manage CRUD operation for many-to-many entities manually.
+
+Open EDM in XML view. You can see that SSDL has StudentCourse entityset, but CSDL doesn't have StudentCourse entityset. Instead, it's being mapped in the navigation property of the Student and Course entity. In MSL (C-S Mapping), it has mapping between Student and Course put into the StudentCourse table in 
+
+
+
+
+
+
+
+
+
+
+
+Entity Graph:
+
+When an entity has a relationship with other entities, then the full object hierarchy is called an 'entity graph'.
+
+

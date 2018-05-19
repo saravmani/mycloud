@@ -1,0 +1,6 @@
+Different ways to create object in javascript
+------------------------------------------------
+Object.Create
+Function literals
+with new keyword
+with Reflect Api

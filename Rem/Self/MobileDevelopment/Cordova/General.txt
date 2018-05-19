@@ -1,0 +1,63 @@
+https://taco.visualstudio.com/en-us/docs/run-app-apache/#android-devices
+--TO connect device
+
+https://www.youtube.com/watch?v=wb57TI8cDOg
+
+https://www.youtube.com/watch?v=LLX2FEg0TjU
+
+Problems faced and steps used to fix
+  1. Unable to build apk file. got java error
+    setp 1: env variable was missing for java home. so setted it
+    sstep 2: saw some thin on net and using android sdk manager started downloading version 4.2.2 version android
+
+next step: log off and come back
+
+
+
+ The Visual Studio Emulator for Android is only available in Visual Studio 2015
+
+Appachi cordova
+it is opensource - own by appachi software foundation
+Phone gap is distirbution of appachi cordova by adobe
+
+cordova version 4 has got released mid of 2015
+
+Using visual studio we can do profiling for cordova applications
+
+in visual studio we are having 3 types of debugging
+1. rippele - browser based
+2. emulators/simulators android,ios and windows
+3. physical devvices
+
+
+
+while writing code there are mainly two events.
+ 1. device ready - when all the items are ready - dom+images+content etcc.,
+ 2. dom ready - when dom is ready - this is the first thing will get ready actually
+
+Ex:
+document.addEventListener( 'deviceready', onDeviceReady.bind( this ), false );
+    function onDeviceReady() {
+
+
+Cordova developed by phone gap team
+
+
+
+Cordova security policy doesn't allow inline events so we will add event listeners 
+We should always add event listeners in our js instead of inline event calling since Cordova "Content Security Policy" doesn't allow inline Javascript.
+If we try to call event inline, we will get the following error.
+we have to keep in mind this when we create application for desktop and mobile. bcs in desktop inline events will work but not in mobile app.
+
+
+
+
+Cordova plugman is useful command line tool for installing and managing plugins. You should use plugman if you want your app to run on one specific platform. If you want to create cross-platform app you should use cordova-cli which will modify plugins for different platforms.
+
+
+npm install -g plugman
+C:\Users\username\Desktop\CordovaProject>plugman 
+   install --platform android --project platforms\android 
+   --plugin cordova-plugin-camera
+   plugman uninstall --platform android --project platforms\android 
+   --plugin cordova-plugin-camera

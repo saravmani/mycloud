@@ -1,0 +1,37 @@
+How the enterprice congiruaton manager should be?
+	1. Should have multiple levels. Sub levels can be override parent -ex: Global level,Institution level, user level etc
+	2. Should have Module level grouping
+	3. Culture Specific
+	2. Should be centeralised for all applications in enterprice applications. Ex: Common WCF applications should be consumed by all other apps
+	3. Should be common way to access the configuraion (ex: Common UTIL class (proj or dell) which should have caching mechanism) 
+	3. Enterprice specific (Global), Application specific, User specific
+	4. even further we can have configuration settings in environment level 
+			ex: DR site, Primary site, Low end server, Hight end server ect.,, Linux machine, windows machine :-)
+	
+	
+what are the input params required for COmmon UTIL DLL?
+	1. Config Key
+	2. Application ID
+	3. Module Id
+	3. User Id
+	4. EnvironmentId (ex: DR or primary)
+	5. Culture Info
+	
+	
+	Table design
+	------------------
+	ConfigId (unique key)
+	ApplicationId
+	ModuleId
+	ConfigKey
+	ConfigValue
+	Is_Culture_Specific  (if true  then it will have multiple ConfigValues. And those we can store in other tables)
+	Status 
+	
+	
+	Culture Specif Values
+	-------------------------
+	ConfigId
+	ConfigValue
+	Status
+	

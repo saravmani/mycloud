@@ -1,0 +1,10 @@
+https://www.youtube.com/watch?v=tfq9FlkyaUM
+
+It is based on TDD
+It tries to bridge the gap between Business analyst and developers
+BDD is a clear text test cases. so BA also can able to understand.
+It is for test automation engineers
+
+
+Specflow is a frame work for c#
+	GHERKIN is a language used in BDD framework

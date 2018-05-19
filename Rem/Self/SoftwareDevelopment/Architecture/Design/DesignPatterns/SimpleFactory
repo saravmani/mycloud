@@ -1,0 +1,9 @@
+imple Factory Design Pattern doesn’t belong to the Gangs of Four
+
+
+there are 3 factorys are there
+1. Abstract Factory
+2. Factory Method
+3. SImple factory - not mentioned in GOF
+
+those all three satisfies "Code for interface principle". because clients only knows interface.

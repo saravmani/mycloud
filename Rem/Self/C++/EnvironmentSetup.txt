@@ -1,0 +1,7 @@
+Most C++ compilers don't care what extension you give to your source code, but if you don't specify otherwise, many will use .cpp by default.
+
+Most frequently used and free available compiler is GNU C/C++ compiler, otherwise you can have compilers either from HP or Solaris if you have the respective Operating Systems.
+
+
+To install GCC at Windows you need to install MinGW.
+Add the bin subdirectory of your MinGW installation to your PATH environment variable so that you can specify these tools on the command line by their simple names.

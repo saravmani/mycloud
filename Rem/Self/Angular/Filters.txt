@@ -1,0 +1,60 @@
+The primary aim of an Angular filter is to format the value
+Filters can be used across views, services, controllers, and
+directives.
+
+Frame work haivng below
+date,
+number, lowercase, uppercase, and others.
+
+standard filter expression
+------------------------------------
+{{ expression | filterName : inputParam1 }}
+
+
+Ex:
+$scope.myDate=new Date(2014,7,7,10,30,50);
+<br>{{myDate}} <!--2014-08-07T05:00:50.000Z-->
+<br>{{myDate | date}} <!--Aug 7, 2014-->
+<br>{{myDate | date : 'medium'}} <!--Aug 7, 2014 10:30:50 AM-->
+<br>{{myDate | date : 'short'}} <!--8/7/14 10:30 AM-->
+<br>{{myDate | date : 'd-M-yy EEEE'}} <!--7-8-14 Thursday-->
+
+also we can use filters inside directives,controllers and services
+
+Ex:
+MyController($scope, dateFilter)
+{
+$scope.myDate1 = dateFilter(new Date(2014,8,7),"MMM d,
+yyyy");
+}
+
+or we can use like this
+
+function MyController($scope, $filter)
+{
+$scope.myDate2 = $filter("date")(new Date(2014,8,7),"MMM d,yyyy");
+}
+
+
+
+filter - filter :-)
+---------------------------
+filter: This very confusing filter is used to filter an array based on a predicate
+expression. It is often used with the ng-repeat directive such as:
+exercise in workout.exercises | filter: 'push'
+This code will filter all exercises where any string property on an exercise
+object contains the word push.
+
+
+
+Custome Filter
+-------------------------
+moduleObject.filter("filterName", function ()
+{
+    return function (input)//Should return function to this angular will pass the value
+    {
+        return input + "modified";
+    }
+})
+
+//In Angular Expression we can use like {{message|filterName}}

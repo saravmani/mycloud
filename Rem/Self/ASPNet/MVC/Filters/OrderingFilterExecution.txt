@@ -1,0 +1,37 @@
+Ordering filter execution
+========================================================================================
+
+The sequence is authentication filters, authorization filters,
+action filters, and then result filters. The framework executes exception filters 
+at any stage if there is an unhandled
+exception. However, within each type category, you can take control 
+of the order in which individual filters are used.
+
+
+The MVC Framework does not guarantee any particular order or execution. Most of the time, the order does not
+matter. When it does, you can use the Order property,
+ex:
+[SimpleMessage(Message = "A", Order = 1)]
+[SimpleMessage(Message = "B", Order = 2)]
+public string Index() {
+return "This is the Customer controller";
+}
+
+
+If I do not specify a value for the Order property, it is assigned a default value of -1. 
+This means that if you mix
+filters so that some have Order values and others do not, 
+the ones without these values will be executed first, since
+they have the lowest Order value.
+If multiple filters of the same type (say, action filters) have the same Order value (say 1), then the MVC
+Framework determines the execution order based on where the filter has been applied.
+
+
+If we not specify any order then
+Global filters are executed
+first, then filters applied to the controller class, and then filters applied to the action method.
+
+The order of execution is reversed for exception filters. If exception filters are applied with the same Order
+value to the controller and to the action method, the filter on the action method will be executed first. 
+Global exception
+filters with the same Order value are executed last.

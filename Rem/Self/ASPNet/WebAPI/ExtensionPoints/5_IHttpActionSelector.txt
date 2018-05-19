@@ -1,0 +1,54 @@
+IHttpActionSelector (ApiControllerActionSelector)
+-----------------------------------------------------
+#Below example tells how to select different action methods based on body content's
+parameter (i.e post parameter)
+
+public class MyActionSelector : ApiControllerActionSelector
+{
+    public override HttpActionDescriptor SelectAction(HttpControllerContext context)
+    {
+        HttpMessageContent requestContent = new HttpMessageContent(context.Request);
+        var json = requestContent.HttpRequestMessage.Content
+                                .ReadAsStringAsync().Result;
+        string type = (string)JObject.Parse(json)["type"];
+
+        var actionMethod = context.ControllerDescriptor.ControllerType
+        .GetMethods(BindingFlags.Instance | BindingFlags.Public)
+            .FirstOrDefault(m => m.Name == "Create" + type);
+
+        if (actionMethod != null)
+        {
+            return new ReflectedHttpActionDescriptor(context.ControllerDescriptor, actionMethod);
+        }
+
+        return base.SelectAction(context);
+    }
+}
+
+public class Abc
+{
+    public string Type { get; set; }
+    public string Type1Data { get; set; }
+}
+Here is the action method.
+
+public void Createtype1(Abc a)
+{
+
+}
+Finally, plug-in the action selector.
+
+public static class WebApiConfig
+{
+    public static void Register(HttpConfiguration config)
+    {
+        config.Routes.MapHttpRoute(
+            name: "DefaultApi",
+            routeTemplate: "api/{controller}/{id}",
+            defaults: new { id = RouteParameter.Optional }
+        );
+
+        config.Services.Replace(typeof(IHttpActionSelector),
+                                    new MyActionSelector());
+    }
+}

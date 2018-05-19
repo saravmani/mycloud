@@ -1,0 +1,4 @@
+Service boundaries are explicit
+Services are autonomous
+Services share operational contracts and data schema, not type-specific metadata
+Services are compatible based on policy

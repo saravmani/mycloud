@@ -1,0 +1,20 @@
+npm install -g typescript
+npm install typings --global  //this is the utility to manage typings for third party libraries
+
+typings search --name lodash //to search typings for specific library
+typings install lodash --save  //to install typing files . this will create new folder cald typings and install the files in it
+
+tsc --init
+//this will create tsconfig.json file automatically
+
+
+in js file add reference to below file
+/// <reference path="../typings/index.d.ts" />
+//note : if we open this file this will have reference to all other typing files. So our vscode will get intellisence
+
+
+watch mode build
+----------------------
+in tsconfig.json if we enable watch mode as true under "compiler options", then when ever we do changes then automatically .js files will get generated
+
+"watch": true

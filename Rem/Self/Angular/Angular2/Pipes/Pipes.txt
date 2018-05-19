@@ -1,0 +1,93 @@
+Pipes
+-----------------
+Pipes are classes that transform data BEFORE it is received by a directive or component
+
+When Angular processes the expression, it obtains the data value and passes it to the pipe for
+transformation. The result produced by the pipe is then used as the expression result for the data binding.
+
+{{propertyName|uppercase}}
+{{propertyName|date:"dd/mm/yyyy"}} //pipes with input parameter
+{{propertyName|slice:2}} //cutting first two letters
+
+Custome Pipe example
+------------------------
+import { Pipe, PipeTransform } from '@angular/core';
+@Pipe({
+  name: 'tstpipe',
+  pure:true
+})
+export class TstpipePipe implements PipeTransform {
+  transform(value: any, args?: any): any {
+    return (<string>value).toUpperCase();
+  }}
+
+<div>{{objSubjectName | tstpipe:'upper'}}</div>
+
+
+pipes can chained together.. in which order we are mentioning .. same ortder it will execute
+ex:
+{{item.price | pipe1 | pipe2:"USD":true }}
+ 
+
+
+Pipes are classes to which the @Pipe decorator has been applied and that implement a method called
+transform. (Pipes can also implement an interface called PipeTransform, but this is optional,
+
+
+pure and impure pipes
+------------------------------------
+Pure: Called only when input data got changes
+      The pure decorator property is used to tell Angular when to call the pipe’s transform method.
+When true, this pipe is reevaluated only when its input value or its arguments are changed.
+Default value is true;
+it has no independent internal state and all its dependencies can be managed using the 
+Angular change detection process.
+ 
+
+ Impure pipes : called on every change detection process. even if input not changed also it will called
+          Setting the pure decorator property to false creates an impure pipe 
+and tells Angular that the pipe has
+its own state data or that it depends on data that may not be picked up in the change detection
+ process when there is a new value.
+When Angular performs its change detection process, it treats impure pipes as sources of data values in
+their own right and invokes the transform methods even when there has been no data value or argument
+changes.
+
+The most common need for impure pipes is when they process the contents of arrays and the elements
+in the array change. As you saw in Chapter 16, Angular doesn’t automatically detect changes that occur
+within arrays and won’t invoke a pure pipe’s transform method when an array element is added, edited, or
+deleted because it just sees the same array object being used as the input data value
+
+
+@Pipe({
+  name: 'myPipe',
+  pure:false
+})
+** Here pure property is by default ture. 
+if it is true then if assigned value gets modified then it wont reflect.
+ (pipe will not rerun on change)
+(but for premitive data types it will change).
+
+But if we set false, this it will give performance hit
+
+async pipe
+----------------
+using this pipe we can able to listen observable or promise, and once got result
+we can display.
+this one we can use to display any simple data fetch from ajax and update template
+Ex:
+	//inside component create one promise
+export class componentclass
+{
+asyncValue = new Promise((resolve,reject)=>{
+setTimeout(()=>resolve('some data'),2000)
+});
+}
+
+//inside template
+<div>{{asyncValue|async}}</div>
+
+
+
+
+ 

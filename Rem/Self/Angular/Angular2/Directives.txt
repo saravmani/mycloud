@@ -1,0 +1,87 @@
+Directives are instructions.
+which will say angular js that what needs to be done
+
+Ex:
+<li *ngFor="let eachObject of ObjectList">
+{{eachObject.propertyName}}
+</li>
+
+<my-component></my-component>
+
+there are two type of directives
+attribute directives and structure level directives
+
+1. Attribute (ngClass, ngStyle)
+<div [ngClass]="{className:true,className2:false}">/attribute directive needs property binding then it requires square brackets
+//it accepts json object
+another way is 
+<div [class.className]="true" />
+
+
+2. Structural Directives 
+this will change the structure of the element
+ngIf 
+ngFor
+ngSwitch
+
+Directive Example
+
+import { Directive, Input, HostListener, Renderer, ElementRef,OnInit } from '@angular/core';
+
+@Directive({
+    selector: "[subdetails]"
+
+})
+export class SubjectDetailsDirective {
+    @HostListener("mouseenter") onmouseEnterEventListener() {
+        this.objRenderer.setElementStyle(this.objElementRef.nativeElement, "background-color", this.mouseEnterColour);
+    }
+    @HostListener("mouseleave") onmouseLeaveEventListener() {
+        this.objRenderer.setElementStyle(this.objElementRef.nativeElement, "background-color", "green");
+    }
+    @Input() mouseEnterColour:string = "blue";
+    @Input() defaultColour="yellow";
+    constructor(private objElementRef: ElementRef, private objRenderer: Renderer) {
+        this.objRenderer.setElementStyle(this.objElementRef.nativeElement, "background-color", this.defaultColour);
+    }
+
+    ngOnInit()  // note we are using ng as prefix wit this lefecycle event
+    {
+       property bindings will be available in this event only
+       this.objRenderer.setElementStyle(this.objElementRef.nativeElement, "background-color", this.defaultColour); 
+    }
+}
+
+
+
+
+ngIf
+--------
+this is structural directive. this will remove and insert the dom element. not just hidding and showing. 
+* symbol is part of key word.
+
+
+<div *ngFor="let eachItem of subjectList;let intx=index">{{eachItem}} - : {{intx}}</div>
+//Note here index (which is the keyword to get the current index) used to get the current index
+
+
+ngSwitch
+-----------------
+
+<div [ngSwitch]="propName">
+   <p *ngSwitchWhen="nmsearch">dispay name search</p>
+   <p *ngSwitchWhen="accsearch">Account number search</p>
+
+
+
+OnChanges event will fire when input param changes. so we can use this for directives lazy loading purpose 
+Key: directive lazy loading, directive late binding, directive ajax binding
+
+
+
+HostBinder
+--------------
+ @HostBinding('class.open') get opened() {
+    return this.isOpen;
+  }
+@HostBinding("textContent")     elementContent: string;

@@ -1,0 +1,90 @@
+You can add dynamic content to views in the different ways
+
+Inline Code
+Html Helper methods
+Sections
+Partial views
+Child Actions
+    Use for creating reusable UI controls or widgets that need to contain business logic. When you
+use a child action, it invokes an action method, renders a view, and injects the result into the
+response stream
+
+
+
+Sections
+------------------
+@section Header {
+<div class="view">
+@foreach (string str in new [] {"Home", "List", "Edit"}) {
+@Html.ActionLink(str, str, null, new { style = "margin: 5px" })
+}
+</div>
+}
+
+Layout.cshtml
+----------------------
+@RenderSection("Header")
+<div class="layout">
+This is part of the layout
+</div>
+@RenderBody()
+
+
+When Razor parses the layout, the RenderSection helper method is replaced with the contents of the section
+in the view with the specified name.
+
+#RenderBody helper method will render other parts of cshtml except sections
+
+A view can define only the sections that are referred to in the layout. The MVC Framework will throw an
+exception if you attempt to define sections in the view for which there is no corresponding @RenderSection helper call
+in the layout.
+
+@if (IsSectionDefined("Footer")) {
+@RenderSection("Footer")
+} else {
+<h4>This is the default footer</h4>
+}
+
+The IsSectionDefined helper takes the name of the section you want to check and returns true if the view you
+are rendering defines that section.
+
+if section is not mandatory then we can go for below approch
+@RenderSection("section name",false)
+
+
+
+
+Partial views
+-----------------------
+What makes a view a partial is its content 
+(it only contains a fragment of HTML, rather than a complete HTML document, and doesn't reference layouts) and
+
+below method used in razor to render the partial view
+@Html.Partial("PartialViewName")
+
+#this having overloaded methods with model
+
+Razor view engine searches partial views in below folders.
+~/Views/<controller> and ~/Views/Shared folders
+This means that you can create specialized versions of partial
+views that are controller-specific and override partial views of the same name in the Shared folder.
+
+
+Child Actions
+-----------------
+Any action can be used as a child action.
+
+Sample code
+-------------------
+[ChildActionOnly]
+public ActionResult Time(DateTime time) {
+return PartialView(time);
+}
+
+.cshtml
+
+<p>The time is:@Html.Action("Time", new { time = DateTime.Now })</p>
+
+The ChildActionOnly attribute ensures that an action method can be called only as a child method from
+within a view. An action method doesn’t need to have this attribute to be used as a child action, but I tend to use it to
+prevent the action methods from being invoked as a result of a user request

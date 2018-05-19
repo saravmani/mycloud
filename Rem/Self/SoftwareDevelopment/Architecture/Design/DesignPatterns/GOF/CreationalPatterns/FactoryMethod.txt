@@ -1,0 +1,129 @@
+Factory Method
+	At times you will have a set of classes performing a similar operation, 
+	but the exact class to be used to get the
+job done is dependent on some logic or condition. In such cases, a client doesn’t know exactly which class
+from the available set has been instantiated. The client relies on some other classes to supply it the required
+object. These other classes in turn implement what is known as a factory method, which does the job of
+creating the required object instance.
+As the name suggests, the factory method pattern defines a way to create an object. And the
+subclasses decide which class to instantiate. How do these subclasses decide which class to instantiate?
+This is quite application specific, and may involve some programmatic logic or configuration setting.
+
+The Factory Method is a  specialization of Template  Method.
+
+example we can say 
+subjectsearch
+	abstract validation
+
+ivalidation.Validate
+IconsumerValidator
+ICommercialValidator
+ICRCConsumerValidator
+IMoroccoValidator
+
+
+Define an interface for creating an object, but let subclasses decide which class to instantiate.
+
+FactoryMethod relies on INHERITANCE. Object creation is delegeated to subclasses which implement the factory method to create objects.
+
+AbstractFactory relies on object composition. object creation is implemeted in methods exposed in the factory interface.
+
+
+#In Design principles "Find out the variying part and have to move away". as this principle, if we identify Object creation  is getting varry, then we can move away this part to factory
+
+
+Factory can be static. mostly it used as static. but if it is static we cant inherit it.
+#but static is best practice
+
+Question?
+    Do FactoryMethod and It's FactoryClass should be always abstract?
+        No. you can define default factory method to product some concrete product. But always have a means of creating products even if there are no subclass of 
+        FactoryClass
+
+I am seeing advantage of Factory method over Abstract Factory is.. in factory method 
+we can give default implementation
+so in subject search product will provide default validation, and implementation bureaus can modify it based on their own need
+
+
+"Code for interface principle". because clients only knows interface.
+
+
+Factory Method - A framework needs to standardize the architectural model for a range of applications, 
+but allow for individual applications to define their own domain objects and provide for their instantiation.
+
+usually
+implement code in the abstract creator that makes use of
+the concrete types the subclasses create.
+
+
+  whole point of the Factory Method Pattern is that
+you’re using a subclass to do your creation for you. In
+that way, clients only need to know the abstract type they
+are using, the subclass worries about the concrete type
+
+
+public interface Product { }
+
+public abstract class Creator 
+{
+	public void anOperation() 
+	{
+		Product product = factoryMethod();
+	}
+	
+	protected abstract Product factoryMethod();
+}
+
+public class ConcreteProduct implements Product { � }
+
+public class ConcreteCreator extends Creator 
+{
+	protected Product factoryMethod() 
+	{
+		return new ConcreteProduct();
+	}
+    ... Other methods
+}
+
+public class Client 
+{
+	public static void main( String arg[] ) 
+	{
+		Creator creator = new ConcreteCreator();
+		creator.anOperation();
+	}
+}
+
+
+
+
+
+
+Factory Method relies on
+inheritance: object creation is
+delegated to subclasses which
+implement the factory method to
+create objects.
+ß Abstract Factory relies on object
+composition: object creation
+is implemented in methods
+exposed in the factory interface.
+ß All factory patterns promote
+loose coupling by reducing the
+dependency of your application
+on concrete classes.
+ß The intent of Factory Method
+is to allow a class to defer
+instantiation to its subclasses.
+ß The intent of Abstract Factory
+is to create families of related
+objects without having to depend
+on their concrete classes.
+ß The Dependency Inversion
+Principle guides us to avoid
+dependencies on concrete types
+and to strive for abstractions.
+ß Factories are a powerful
+technique for coding to
+abstractions, not concrete
+classes

@@ -1,0 +1,39 @@
+
+Customise Razor view engine
+==========================================================================
+
+Razor View Engine Search Properties
+-------------------------------------------
+
+ViewLocationFormats	~/Views/{1}/{0}.cshtml,
+MasterLocationFormats	
+PartialViewLocationFormats	~/Views/Shared/{0}.cshtml,
+	
+AreaViewLocationFormats	~/Areas/{2}/Views/{1}/{0}.cshtml
+AreaMasterLocationFormats	
+AreaPartialViewLocationFormats	~/Areas/{2}/Views/Shared/{0}.cshtml
+
+
+
+{0} represents the name of the view.
+• {1} represents the name of the controller.
+• {2} represents the name of the area.
+To change the search locations, you create a new class that is derived from RazorViewEngine and change the
+values for one or more of the properties
+
+Sample to Customise view location
+----------------------------------------------------------
+public class CustomLocationViewEngine : RazorViewEngine
+{
+    public CustomLocationViewEngine()
+    {
+        ViewLocationFormats = new string[]
+        {"~/Views/{1}/{0}.cshtml", "~/Views/Common/{0}.cshtml"};
+    }
+}
+
+ViewEngines.Engines.Clear();
+ViewEngines.Engines.Add(new CustomLocationViewEngine());
+
+
+action invoker goes to each view engine in turn to see if a view can be found

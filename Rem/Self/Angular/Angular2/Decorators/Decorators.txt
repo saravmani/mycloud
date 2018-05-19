@@ -1,0 +1,67 @@
+
+Decorators are actually just functions, it’s as simple as that, 
+and are called with whatever they are decorating. A method decorator 
+will be called with the value of the method it’s decorating, 
+and a class decorator will be called with the class to be decorated.
+
+function that will be called at runtime with information about the decorated declaration.
+
+#my understanding is - mostly in angular we using decorators - to tell about 
+the class or property .. 
+and to set configuration parameters 
+
+
+decorators are a core concept when developing with Angular
+
+decorators can decoreate below four things
+Classes,
+Properties,
+Method Parameters,
+Methods
+
+Class decorators, e.g. @Component and @NgModule
+Property decorators for properties inside classes, e.g. @Input and @Output
+Method decorators for methods inside classes, e.g. @HostListener
+Parameter decorators for parameters inside class constructors, e.g. @Inject
+
+Class Decorators
+Angular offers us a few class decorators. These are the top-level decorators 
+that we use to express intent for classes. They allow us to tell Angular that a 
+particular class is a component, or module,
+
+
+Property Decorators
+---------------------------
+#Without decorator Typescript knows the input. But for angular we have to tell some way that
+particular property is for input. this work done by @input decorator
+
+Angular’s compiler will automatically create an input binding 
+from the property name and link them.
+
+
+Example decorator
+----------------------------
+function Console(message) {
+  console.log('Message', message);
+  return function (target) {
+    console.log('Our decorated class', target);
+  }
+}
+
+@Console('Hey!')
+class ExampleClass {
+	constructor() {
+  	console.log('Yo!');
+  }
+}
+// console output: 'Hey!'
+// console output: 'Our decorated class', class ExampleClass{}...
+
+They first of all take a configuration value and then receive the class/method/property 
+to apply the decoration to
+
+Reflect
+
+
+Decorators are called when the class is declared— not when an object is instantiated.
+Decorators are not allowed on constructors.

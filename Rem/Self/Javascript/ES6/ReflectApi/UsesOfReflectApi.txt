@@ -1,0 +1,6 @@
+Used in
+Object construction
+Method calls
+prototypes -- access or modify
+properties
+property extensions

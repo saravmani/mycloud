@@ -1,0 +1,179 @@
+How to Start?
+	For oracle we have to install oracle developer tools.
+Problems and Solution
+-------------------------
+1. While running the project got below error
+	{"Schema specified is not valid. Errors: \r\nCreditBureauModel.ssdl(2,88) : error 0175: The specified store provider cannot be found in the configuration, or is not valid."}
+Solution
+	In edmx file changed Provider="Oracle.ManagedDataAccess.Client" to Provider="Oracle.DataAccess.Client" 
+
+2. 
+Table Model not getting created with oracle db
+	Sol: I checked tale. table not having primary key. after creating primary key then i am able to generate the modal
+
+
+
+
+*.edmx - entity data model file formate
+navigation - property. used to link with other table (example subject class will have list of address table)
+DBSet is the object which is used to CRUD operations
+
+Simple where condition
+-----------------------------
+using (var context = new SchoolDBEntities())
+{
+    var L2EQuery = context.Students.where(s => s.StudentName == "Bill");
+        
+    var student = L2EQuery.FirstOrDefault<Student>();
+//The difference between First and FirstOrDefault is that First() will throw an exception if there is no result data for the supplied criteria whereas FirstOrDefault() returns default value (null) if there is no result data.
+
+
+//To get single object
+ var student = (from s in context.Students
+                    where s.StudentID == 1
+                    select s).SingleOrDefault<Student>();
+//Use Single or SingleOrDefault where you are sure that the result would contain only one element. If the result has multiple elements then there must be some problem.
+
+//Group by
+  var students = from s in ctx.Students 
+                    group s.StandardId by into studentsByStandard
+                    select studentsByStandard;
+
+
+}
+
+Linq style
+--------------
+using (var context = new SchoolDBEntities())
+{
+    var L2EQuery = from st in context.Students
+                    where st.StudentName == "Bill"
+                    select st;
+   
+    var student = L2EQuery.FirstOrDefault<Student>();
+    }
+
+Native SQL formate
+----------------------
+using (var ctx = new SchoolDBEntities())
+{
+    var studentName = ctx.Students.SqlQuery("Select studentid, studentname, standardId from Student where studentname='Bill'").FirstOrDefault<Student>();
+} 
+
+
+
+By default, Entity Framework enables
+cascade deletes for on-nullable foreign keys,
+Ex: Consider - Products and Category table relationss
+ meaning that if the CategoryID was not
+nullable, then all the products associated with a category would be deleted when the
+category was deleted.
+
+
+ex:
+namespace BabyStore.Models
+{
+public class Product
+{
+public int ID { get; set; }
+public string Name { get; set; }
+public string Description { get; set; }
+public decimal Price { get; set; }
+public int? CategoryID { get; set; }
+public virtual Category Category { get; set; }
+}
+}
+Navigation Property 
+-----------------------
+Category —A navigation property . Navigation properties contain other entities that
+relate to this entity so in this case this property will contain the category entity that
+the product belongs to. If a navigation property can hold multiple entities, it must be
+defined as a list type. Typically the type used is ICollection . Navigation properties
+are normally defined as virtual so that they can be used in certain functionality such
+as with LAZY LOADING
+
+
+
+Database context
+---------------------
+The database context is the main class that coordinates Entity Framework functionality for a data model.
+typically one database context class per database, although in more complex projects it is possible to have more
+
+
+ex:
+public class StoreContext:DbContext
+{
+public DbSet<Product> Products { get; set; }
+public DbSet<Category> Categories { get; set; }
+}
+
+DbSet property in the class is known as an Entity Set and each typically corresponds to a table
+
+
+Connection string
+----------------------
+<add name="StoreContext" connectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDb
+Filename=|DataDirectory|\BabyStore.mdf;Initial Catalog=BabyStore;Integrated Security=True"
+providerName="System.Data.SqlClient" />
+
+//Note "DataDirectory"  - this referes App_Data Folder
+
+AttachDb
+Filename=|DataDirectory|\BabyStore.mdf; specifies to create the database in the App_Data folder.
+
+
+instantiates a new context object for use
+by the controller. This is then used throughout the lifetime of the controller and disposed of by the Dispose
+method at the end of the controller code.
+
+View All data 
+---------------------
+private StoreContext db = new StoreContext();
+db.Categories.ToList()
+
+add
+----------
+db.Categories.Add(category);
+
+Find 
+----------
+Category category = db.Categories.Find(id);
+
+Edit
+------------
+if (ModelState.IsValid)
+{
+db.Entry(category).State = EntityState.Modified;
+db.SaveChanges();
+return RedirectToAction("Index");
+}
+
+
+Remove
+------------
+db.Categories.Remove(category);
+db.SaveChanges();
+
+
+eager loading
+--------------------
+It tells Entity Framework to perform a single query and retrieve all the products and also all the related
+categories. Eager loading typically results in an SQL join query that retrieves all the required data at once.
+You could omit the Include method and Entity Framework would use lazy loading, which would involve
+multiple queries rather than a single join query.
+
+var products = db.Products.Include(p => p.Category);
+products = products.Where(p => p.Category.Name == category);
+
+There are performance implications to choosing which method of loading to use. Eager loading results in
+one round trip to the database, but on occasion may result in complex join statements that are slow to process.
+However, lazy loading results in several round trips to the database
+
+deferred dexecution
+-------------------------------
+A common error often made by programmers new to using Entity Framework is using T oList()
+in the wrong place. During a method, LINQ is often used for building queries and that is precisely what is does;
+it simply builds up a query, it does not execute the query! The query is only executed when ToList() is called.
+
+This topic is known as deferred execution due to the fact that
+the execution of the query is deferred until after ToList() is called.

@@ -1,0 +1,10 @@
+A function can be synch or asynch. it cannot be both based on conditions
+
+callback
+------------
+function(err,callBackFunction){
+
+}
+
+err is a first argument. this is the standard. so that all the node users assumes the 
+same. dont change it

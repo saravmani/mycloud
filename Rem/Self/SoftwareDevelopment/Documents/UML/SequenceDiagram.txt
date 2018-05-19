@@ -1,0 +1,24 @@
+It is allabout interaction with how and which sequence
+
+it tells life time of the objects
+interactions btn objects
+
+request in dark arrow
+response in dotted in arrow
+
+type of interactions
+--------------------
+messages, recursive, conditions (specific conditions),
+
+messaging
+--------------
+synchronous - indicate with dark lined dark arrow 
+asynchronous - indicate with dark lined THIN arrow 
+
+recursive
+-----------
+   small rectangle within big rectangle with bending arrow
+
+conditions
+----------
+

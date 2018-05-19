@@ -1,0 +1,27 @@
+public void Configure(IApplicationBuilder app, IHostingEnvironment env,IConfiguration configuration)
+    {
+        if (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+        }
+
+        app.Run(async (context) =>
+        {
+            await context.Response.WriteAsync("Hello Wereorldss!"+configuration["TestKeyName"]);
+        });
+    }
+This is the place where we can configure middlewares
+
+Logger,
+Authorizer
+Router,
+Static file server,
+MVC (if we need MVC frame work then we need to register group of services required for MVC framework),
+etc.,
+
+Order of the middleware is important. 
+
+MVC itself is a middleware
+
+Each middlewares can handle the request and response both
+each middleware can choose wether they can pass the request other middleware or not

@@ -1,0 +1,24 @@
+ 
+return Json(objComplexType,JsonRequestBehavior.AllowGet);
+//note by default JsonRequestBehavior is DenyGet
+
+
+
+ To return huge size of json result we need to create new JsonResult object and set the MaxJsonLength parameter.
+
+ return new JsonResult()  
+    {  
+        Data = data,  //Huge volume data
+        ContentType = contentType,  
+        ContentEncoding = contentEncoding,  
+        JsonRequestBehavior = behavior,  
+        MaxJsonLength = Int32.MaxValue  
+    }; 
+
+
+    same way we can able to set RecursionLimit also
+    RecursionLimit: Indicates the constraining number of object levels to process. 
+The default value is 100. It means you can serialize the objects that are nested to a depth of 100 objects referencing each other. 
+In a general scenario the default limit 100 is obviously sufficient when you deal with a
+ JsonResult so there is no need to increase it even though you have the option to increase the limit if required.
+

@@ -1,0 +1,52 @@
+ //objTaskList.SaveChanges();//this will return int. so based on the return
+ //we can able to identify commit is success 
+if .SaveChanges() >= 0 then success
+
+//Updating the row in table without selecting the value again
+Sample 1
+-------------------
+
+ [HttpPut]
+        public IHttpActionResult UpdateTaskList(ReqObject objReqObject)
+        {
+            using (var objTaskList = new TaskManagerEntities())
+            {
+                 
+               var objTask = new TaskList
+                {
+
+                   TaskDescription = objReqObject.TaskDescription,
+                   TaskName = objReqObject.TaskName,
+                   UserId = 1,
+                    TaskTypeId = objReqObject.TaskTypeId,
+                    Id = objReqObject.TaskId
+                };
+                objTaskList.TaskLists.Attach(objTask);
+                objTaskList.Entry<TaskList>(objTask).State = EntityState.Modified;
+                //((IObjectContextAdapter)objTaskList).ObjectContext.ObjectStateManager.ChangeObjectState(objTask, EntityState.Modified);
+                objTaskList.SaveChanges();
+            }
+
+            return Ok();
+        }
+
+//#to check old and current value
+Console.WriteLine("Original Donor Id: {0}",context.Entry(donation).OriginalValues["DonorId"]);
+Console.WriteLine("Current Donor Id: {0}",
+context.Entry(donation).CurrentValues["DonorId"]);
+
+
+Sample 2
+---------------------------
+
+
+public void UpdateEmployee(Employee employee)
+{
+    using (SampleDatabaseEntities db = new SampleDatabaseEntities())
+    {
+        ((IObjectContextAdapter)db).ObjectContext.CreateObjectSet<Employee>().Attach(employee);
+        ((IObjectContextAdapter)db).ObjectContext.ObjectStateManager
+        .ChangeObjectState(employee, EntityState.Modified);
+        db.SaveChanges();
+    }
+}

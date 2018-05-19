@@ -1,0 +1,75 @@
+Web api Action filter
+------------------------------------
+ Action filters are executed after controller dispatch and model binding has occurred,
+
+
+Sample Code with ActionFilterAttribute
+---------------------------------------------------------------
+public class LogAttribute : ActionFilterAttribute 
+ {
+    public LogAttribute()
+    {
+
+    }
+       
+
+    public override void OnActionExecuting(HttpActionContext actionContext)
+    {
+        Trace.WriteLine(string.Format("Action Method {0} executing at {1}", actionContext.ActionDescriptor.ActionName, DateTime.Now.ToShortDateString()), "Web API Logs");
+    }
+
+    public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
+    {
+        Trace.WriteLine(string.Format("Action Method {0} executed at {1}", actionExecutedContext.ActionContext.ActionDescriptor.ActionName, DateTime.Now.ToShortDateString()), "Web API Logs");
+    }
+}
+
+Sample code with IActionFilter interface
+----------------------------------------
+
+public class LogAttribute : Attribute, IActionFilter
+{
+    public LogAttribute()
+    {
+
+    }
+    public Task<HttpResponseMessage> ExecuteActionFilterAsync(HttpActionContext actionContext, CancellationToken cancellationToken, Func<Task<HttpResponseMessage>> continuation)
+    {
+        Trace.WriteLine(string.Format("Action Method {0} executing at {1}", actionContext.ActionDescriptor.ActionName, DateTime.Now.ToShortDateString()), "Web API Logs");
+
+        var result = continuation();
+
+        result.Wait();
+            
+        Trace.WriteLine(string.Format("Action Method {0} executed at {1}", actionContext.ActionDescriptor.ActionName, DateTime.Now.ToShortDateString()), "Web API Logs");
+
+        return result;
+    }
+
+    public bool AllowMultiple
+    {
+        get { return true; }
+    }
+} 
+
+
+
+
+ActionFilterAttribute is the basis for filtering actions and results, since is a implementation of IActionFilter, IResultFilter and inherit from FilterAttribute.
+#So ActionFilterAttribute is a complete one. it provides override methods for  Before action, afteraction and before result, after result.
+# without ActionFilterAttribute we have to implement IActionFilter and IResultFilter and Attribute 
+
+#When to choose ActionFilterAttribute?
+ #If we need controll on all those 4 stages 
+ (it provides override methods for  Before action, afteraction and before result, after result) 
+ then we can go for this
+
+
+
+
+HttpMessageHandler vs ActionFilter?
+-----------------------------------------
+HttpMessageHandler is applied for all the incoming requests. but AF will be applicable for where they mentioned.
+and AF will be called after authentication and autherisation filters
+ Action filters are executed after controller dispatch and model binding has occurred,
+ Actionfilters - having direct access to the typed model objects that are passed to the action method.

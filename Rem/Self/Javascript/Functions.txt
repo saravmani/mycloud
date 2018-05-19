@@ -1,0 +1,2 @@
+var newFnction = new Function("inptuParam","return inptuParam");
+console.log(newFnction(33));//33

@@ -1,0 +1,60 @@
+Key words : ActivatedRoute, ActivatedRouteSnapshot
+
+
+ActivatedRoute returns ActivatedRouteSnapshot
+
+ActivatedRouteSnapshot Properties
+--------------------------------------
+url  - This property returns an array of UrlSegment objects, each of which describes a
+            single segment in the URL that matched the current route.
+params  - This property returns a Params object, which describes the URL parameters, indexed
+            by name.
+queryParams -  This property returns a Params object, which describes the URL query parameters,
+                indexed by name.
+fragment -  This property returns a string containing the URL fragment.
+
+
+
+
+Route parameters
+----------------------
+Angular routes can be more flexible and include route parameters, which allow any value for a
+segment to match the corresponding segment in the navigated URL. This means routes that target the same
+component with similar URLs can be consolidated into a single route
+
+const routes: Routes = [
+{ path: "form/:mode", component: FormComponent },
+{ path: "", component: TableComponent }
+]
+
+constructor(private model: Model, activeRoute: ActivatedRoute) {
+    this.editing = activeRoute.snapshot.params["mode"] == "edit";
+}
+
+This route will match any
+URL that has two segments where the first segment is form,
+
+
+const routes: Routes = [
+{ path: "form/:mode/:id", component: FormComponent },
+{ path: "form/:mode", component: FormComponent },
+{ path: "", component: TableComponent }]
+
+<button [routerLink]="['/form','edit',item.itemId]">
+
+constructor(private model: Model, activeRoute: ActivatedRoute) {
+    this.editing = activeRoute.snapshot.params["mode"] == "edit";
+    let id = activeRoute.snapshot.params["id"];
+    if (id != null) {
+        Object.assign(this.product, model.getProduct(id) || new Product());
+    }
+}
+
+
+
+Pass query string
+--------------------------
+<button class="btn btn-warning btn-sm" (click)="editProduct(item.id)"
+[routerLink]="['/form', 'edit', item.id,{name: item.name, category: item.category, price: item.price}]">
+
+http://localhost:3000/form/edit/5;name=Stadium;category=Soccer;price=79500

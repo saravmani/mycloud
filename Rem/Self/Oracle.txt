@@ -1,0 +1,112 @@
+To see the procedure content
+	select * from user_source;
+
+
+Check db connections
+---------------------
+select * from v$parameter where lower(name) like '%sessions%';
+
+
+Check resource utilisation
+-------------------------------
+select resource_name, current_utilization, max_utilization, limit_value 
+    from v$resource_limit 
+    where resource_name in ('sessions', 'processes');
+
+
+
+
+    select
+       substr(a.spid,1,9) pid,
+       substr(b.sid,1,5) sid,
+       substr(b.serial#,1,5) ser#,
+       substr(b.machine,1,6) box,
+       substr(b.username,1,10) username,
+--       b.server,
+       substr(b.osuser,1,8) os_user,
+       substr(b.program,1,30) program
+from v$session b, v$process a
+where
+b.paddr = a.addr
+and type='USER'
+order by spid;
+
+Check ideal time to kill the connection by oracle DB server
+-------------------------------------------------------------
+select profile, resource_name, limit from dba_profiles where --profile='PROFILE1' and
+resource_name ='IDLE_TIME';
+
+
+
+
+
+
+
+ select replace('text   with          spaces',' ','') from dual;
+
+grand permission query
+-------------------------
+grant all on TableName to sbapi;
+
+create or replace procedure ProcName
+as
+begin
+dbms_output.put_line('test');
+end;
+
+
+--Get locked objects from DB
+select * from v$locked_object;
+
+--Getting DB Objects
+select * from dba_objects;--Full DB objects(from all schema)
+select * from user_objects;--Schema level DB objects
+
+
+for bug  - object SYS_PLSQL_753B97B_356_1 does not exist 
+sol - drop type SYS_PLSQL_753B97B_Dummy_1;
+
+to remove constraint with partition by 
+alter table sbinternal.sb_comm_DISHNR_SUB_LOOKUP enable row movement;
+
+
+
+Decode is like swithch case. for below mentioned code 
+first parameter is matching param (like switch('matchin param'), when second or fourth or sixth matchs with Matching param then 3,5,7 will return respectively)
+
+ORDER BY DECODE
+                  (
+                    UPPER(LV_SORT_COLUMN),
+                    'Sender',
+                    INB.SENDER,
+                    'Subject',
+                    INB.SUBJECT,
+                    'CreatedDate',
+                    INB.CREATEDDATE,
+                    INB.SENDER
+                  )
+
+
+Compress and Uncompress (zip and unzip)
+-----------------------------------------
+select utl_raw.cast_to_varchar2( utl_compress.lz_uncompress(RESPONSE_XML)) as my_blob 
+from sb_xml_request_master where live_request_id=28379; 
+
+above query used to uncompress the data from oracle
+
+
+Loop and print table of content
+---------------------------------------
+begin FOR cur IN (select * from sb_configuration where lower(config_name) like 'third%803%' ) LOOP 
+BEGIN 
+ DBMS_OUTPUT.PUT_LINE(cur.config_name);
+EXCEPTION
+  WHEN OTHERS THEN NULL; 
+END;
+end loop;
+end;
+
+
+Combile procedure by query
+---------------------------------
+alter PROCEDURE "SBAPI"."GETCONSUMERPROFILE2" compile body

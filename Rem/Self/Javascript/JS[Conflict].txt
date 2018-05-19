@@ -1,0 +1,515 @@
+
+To find wethere empty object or having value
+------------------------------------------------
+if (Object.getOwnPropertyNames(RejSegment).length == 0)
+
+
+strict equal (===)
+---------------------
+This will do compare with VALUE and TYPE. Normal equal will do with only value
+"2"==2
+    //true
+
+"2"===2
+   //false
+
+
+
+
+
+
+
+
+
+everything in JavaScript has an inherent Boolean value, generally known as either truthy or falsy
+
+
+The following values are always falsy:
+false
+0 (zero)
+"" (empty string)
+null
+undefined
+NaN (a special Number value meaning Not-a-Number!)
+
+
+Ex;
+!(0);//true
+!("rew");//false
+
+
+falsy values false, 0 (zero), and "" (empty string) are all equivalent and can be compared against each other:
+var c = (false == 0); // true
+var d = (false == ""); // true
+var e = (0 == ""); // true
+
+
+var f = (null == false); // false
+var g = (null == null); // true
+var h = (undefined == undefined); // true
+var i = (undefined == null); // true
+
+NaN is not equalent to anything
+var j = (NaN == null); // false
+var k = (NaN == NaN); // false
+
+var l = (false == 0); // true
+var m = (false === 0); // false
+
+You should also be aware that typeof(NaN) returns "number". Fortunately, the core JavaScript function isNaN() can be used to evaluate whether a value is NaN or not.
+
+
+
+with statement
+---------------------
+The with statement sets the scope of the code within a particular object.
+
+var qs = location.search.substring(1);
+var hostName = location.hostname;
+var url = location.href;
+
+in above code location object used many times.
+we can rewrite like below
+with(location){
+var qs = search.substring(1);
+var hostName = hostname;
+var url = href;
+}
+
+
+10-oct-2016
+------------------
+var obj = document.querySelector("#controlID")
+obj.setAttribute('style', 'display:none;');
+
+
+25-Sep- 2016
+-------------------
+Array
+----------
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+var tOpObject =  fruits.shift();// this emthod will remove the  first item of an array and returns in calling funciton
+
+
+
+24-Sep-2016
+
+function Exercise(args) {
+this.name = args.name;
+this.related = {};//Just we are creating one object and assigning the properties
+this.related.videos = args.videos;
+
+}
+
+Javascript strict mode
+------------------------
+"use strict";
+ "use strict" directive is new in JavaScript 1.8.5 (ECMAScript version 5).
+Strict mode is supported in:
+IE from version 10. Firefox from version 4.
+Chrome from version 13. Safari from version 5.1.
+Opera from version 12.
+
+Strict mode example:
+"use strict";
+myFunction();
+
+function myFunction() {
+    y = 3.14;   // This will also cause an error (y is not defined)
+}
+
+<script>
+x = 3.14;        // This will not cause an error.
+myFunction();
+
+function myFunction() {
+    "use strict";
+    y = 3.14;    // This will cause an error (y is not defined).
+}
+</script>
+
+in normal JavaScript, mistyping a variable name creates a new global variable. In strict mode, this will throw an error
+"use strict";
+var x = 3.14;
+delete x;// This will cause an error
+
+"use strict";
+function x(p1, p2) {};
+delete x;// This will cause an error
+
+"use strict";
+var x = 010;             // This will cause an error
+
+
+Future reserved keywords are not allowed in strict mode. These are:
+
+implements
+interface
+let
+package
+private
+protected
+public
+static
+yield
+
+
+The "use strict" directive is only recognized at the beginning of a script or a function.
+
+
+
+
+In javascript comparision having two types.
+Regular comparison (a==b)
+and strict comparison (a===b).
+strict comparison will consider data type, but regualar will not
+Ex:
+(2 == '2')// true
+(2 === '2')//false --Strict comparison
+('2' === '2')//true --Strict comparison
+
+
+Note: switch statements use strict comparison:
+
+Note: breaking a statement in the middle of a string will not work
+var x = "Hello
+World!";//This will throw error -- syntax error exception
+
+
+//Below function will return undefined. bcs javascript will end with return statement. so it will not execute next statuement. so Never break a return statement.
+
+
+
+function myFunction(a) {
+    var power = 10;
+    return
+    a * power;
+}
+
+
+
+Arrays with named indexes are called associative arrays (or hashes).
+
+Normally in javascript Arrays will not supprt named index.
+But if we try to give named index ,JavaScript will redefine the array to a standard object.
+So it will not act as array
+
+ar person = [];
+person["firstName"] = "John";
+person["lastName"] = "Doe";
+person["age"] = 46;
+var x = person.length;         // person.length will return 0
+var y = person[0];             // person[0] will return undefined
+
+
+With JavaScript, null is for objects, undefined is for variables, properties, and methods.
+
+To be null, an object has to be defined, otherwise it will be undefined.
+if (myObj !== null && typeof myObj !== "undefined") {} // this will through error
+
+if (typeof myObj !== "undefined" && myObj !== null) {}// this is correct
+
+
+JavaScript does not create a new scope for each code block.
+for (var i = 0; i < 10; i++) {
+    // some code
+}
+return i;// Here i will return value.. but check the scope, this will not work in C#
+
+
+
+
+
+
+Basic object orianted program in JS
+----------------------------------------
+var ClsStudent = function()
+{
+this.StudentName="SaravMani";
+this.GetStudentInfo= function()
+{
+return this.studentName;
+}
+
+}
+
+
+
+//Note: Here this.Function name will attach the function to the object
+//How to Call?
+var obj = new ClsStudent()
+obj.GetStudentInof();
+
+we can write the same code as below by using proto type
+var ClsStudent = function()
+{
+this.StudentName="SaravMani";
+}
+
+ClsStudent.prototype.GetStudentInfo= function()
+{
+return this.studentName;
+}
+
+
+//Second way of creation is makes object creation is faster
+//Using the prototype makes for faster object creation, since that function does not have to be re-created each time a new object is created.
+//But Advantage of first option is , functin will get access to \
+//local variables
+
+
+
+
+
+
+createDocumentFragment()
+-------------------------
+	This Method creates a imaginary Node object, with all the properties
+ and methods of the Node object.
+If we want to take part of document (Ex: Div panel with multiple child), and manupulate it (remove or add child elements), and want to update back to parnt document, this method will be useful
+You can also use the document's Document object to perform these changes, but to prevent destroying the document structure, it can be safer to extract only parts of the document, make the changes, and insert the part back to the document.
+Ex:
+ 	<ul>
+<li>Coffeess</li>
+<li>Tea</li>
+</ul>
+
+<button onclick="myFunction()">Try it</button>
+
+<script>
+function myFunction() {
+    var d = document.createDocumentFragment();
+    d.appendChild(document.getElementsByTagName("LI")[0]);
+    d.childNodes[0].childNodes[0].nodeValue = "Milk";
+    document.getElementsByTagName("UL")[0].appendChild(d);
+}
+</script>
+
+Browser is a event processing machines.
+Browser will get the events from hardware (ex: click, blur, focus etc.,)
+and browser will convert it into a browser events.
+Note: Domloaded event will not raised by browser.
+Browser works in observer and callback pattern.
+Browser is single threaded asynchronous (PER TAB :-))
+
+Steps in browser execution
+1. Render HTML
+2. Construct DOM
+3. Combine DOM and CSS
+4. Render DOM
+NOte: Rendering agent works in seperate thread and it will modify the page based on
+dom manupulation(i.e bcs of this DHTML works :-))
+
+Mainly browser does two things
+	1. Parse and Rendering HTML and generating DOM
+	2. They Process events
+
+
+ANgular js extends browser's event loop and parser
+
+
+
+
+
+window.open("http://www.w3schools.com", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
+
+
+1.toString() will not work. bcs here 1 is number
+var a = 1; a.toString(); will works. bcs 1 is evaluated
+(1).toString(); works
+
+
+How self executed method works.
+var ss = (function(){})();
+as said in above example (function(){}) if v put anonymus function within () then it will be evaluated
+
+in js everything r objeccts
+
+
+Javascript primitive datatypes
+1. string
+2. Number
+3. bool
+4. null
+5. undefined
+
+
+
+
+In javascript comparision having two types.
+Regular comparison (a==b) 
+and strict comparison (a===b).
+strict comparison will consider data type, but regualar will not
+Ex:
+(2 == '2')// true
+(2 === '2')//false --Strict comparison
+('2' === '2')//true --Strict comparison
+
+
+Note: switch statements use strict comparison:
+
+Note: breaking a statement in the middle of a string will not work
+var x = "Hello
+World!";//This will throw error -- syntax error exception
+
+
+//Below function will return undefined. bcs javascript will end with return statement. so it will not execute next statuement. so Never break a return statement.
+
+
+
+function myFunction(a) {
+    var power = 10;  
+    return
+    a * power;
+}
+
+
+
+Arrays with named indexes are called associative arrays (or hashes).
+
+Normally in javascript Arrays will not supprt named index.
+But if we try to give named index ,JavaScript will redefine the array to a standard object.
+So it will not act as array
+
+ar person = [];
+person["firstName"] = "John";
+person["lastName"] = "Doe";
+person["age"] = 46;
+var x = person.length;         // person.length will return 0
+var y = person[0];             // person[0] will return undefined
+
+
+With JavaScript, null is for objects, undefined is for variables, properties, and methods.
+
+To be null, an object has to be defined, otherwise it will be undefined.
+if (myObj !== null && typeof myObj !== "undefined") {} // this will through error
+
+if (typeof myObj !== "undefined" && myObj !== null) {}// this is correct
+
+
+JavaScript does not create a new scope for each code block.
+for (var i = 0; i < 10; i++) {
+    // some code
+}
+return i;// Here i will return value.. but check the scope, this will not work in C#
+
+
+
+
+
+
+Basic object orianted program in JS
+----------------------------------------
+var ClsStudent = function()
+{
+this.StudentName="SaravMani";
+this.GetStudentInfo= function()
+{
+return this.studentName;
+}
+
+}
+
+
+
+//Note: Here this.Function name will attach the function to the object
+//How to Call?
+var obj = new ClsStudent()
+obj.GetStudentInof();
+
+we can write the same code as below by using proto type
+var ClsStudent = function()
+{
+this.StudentName="SaravMani";
+}
+
+ClsStudent.prototype.GetStudentInfo= function()
+{
+return this.studentName;
+}
+
+
+//Second way of creation is makes object creation is faster
+//Using the prototype makes for faster object creation, since that function does not have to be re-created each time a new object is created.
+//But Advantage of first option is , functin will get access to \
+//local variables
+
+
+
+
+
+
+createDocumentFragment() 
+-------------------------
+	This Method creates a imaginary Node object, with all the properties
+ and methods of the Node object.
+If we want to take part of document (Ex: Div panel with multiple child), and manupulate it (remove or add child elements), and want to update back to parnt document, this method will be useful
+You can also use the document's Document object to perform these changes, but to prevent destroying the document structure, it can be safer to extract only parts of the document, make the changes, and insert the part back to the document.
+Ex:
+ 	<ul>
+<li>Coffeess</li>
+<li>Tea</li>
+</ul>
+
+<button onclick="myFunction()">Try it</button>
+
+<script>
+function myFunction() {
+    var d = document.createDocumentFragment();
+    d.appendChild(document.getElementsByTagName("LI")[0]);   
+    d.childNodes[0].childNodes[0].nodeValue = "Milk";
+    document.getElementsByTagName("UL")[0].appendChild(d);
+}
+</script>
+
+Browser is a event processing machines.
+Browser will get the events from hardware (ex: click, blur, focus etc.,)
+and browser will convert it into a browser events.
+Note: Domloaded event will not raised by browser.
+Browser works in observer and callback pattern.
+Browser is single threaded asynchronous (PER TAB :-))
+
+Steps in browser execution
+1. Render HTML
+2. Construct DOM
+3. Combine DOM and CSS
+4. Render DOM
+NOte: Rendering agent works in seperate thread and it will modify the page based on 
+dom manupulation(i.e bcs of this DHTML works :-))
+
+Mainly browser does two things
+	1. Parse and Rendering HTML and generating DOM
+	2. They Process events
+
+
+ANgular js extends browser's event loop and parser
+
+
+
+
+
+window.open("http://www.w3schools.com", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
+
+
+1.toString() will not work. bcs here 1 is number
+var a = 1; a.toString(); will works. bcs 1 is evaluated
+(1).toString(); works
+
+
+How self executed method works.
+var ss = (function(){})();
+as said in above example (function(){}) if v put anonymus function within () then it will be evaluated
+
+in js everything r objeccts
+
+
+Javascript primitive datatypes
+1. string
+2. Number
+3. bool
+4. null
+5. undefined
+
+
+
+ 

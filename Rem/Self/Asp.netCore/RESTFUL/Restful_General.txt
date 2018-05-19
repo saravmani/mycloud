@@ -1,0 +1,4 @@
+3 Main concepts in restuful services
+1. Resource identifier - i.e URI
+2. Http Methods
+3. Mime types

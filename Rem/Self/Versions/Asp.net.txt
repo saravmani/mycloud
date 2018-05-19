@@ -1,0 +1,45 @@
+ASP.NET 5 
+=============================================================
+
+.NET 2015 includes ASP.NET 5, which is a lean .NET implementation for building modern cloud-based apps. ASP.NET 5 is modular so you can include only those features that are needed in your application. It can be hosted on IIS or self-hosted in a custom process, and you can run apps with different versions of the .NET Framework on the same server. It includes a new environment configuration system that is designed for cloud deployment.
+
+MVC, Web API, and Web Pages are unified into a single framework called MVC 6. You build ASP.NET 5 apps through the new tools in Visual Studio 2015. Your existing applications will work on the new .NET Framework; however to build an app that uses MVC 6 or SignalR 3, you must use the project system in Visual Studio 2015.
+
+
+HTTP/2 Support
+---------------------
+This is new protocol. For this support needed at multiple levels(windows,network, IIS, Asp.net and browser).
+Asp.net 5(from .net 4.6) having http/2 support
+HTTP/2 support has been added to ASP.NET in the .NET Framework 4.6. Because networking functionality exists at multiple layers, new features were required in Windows, in IIS, and in ASP.NET to enable HTTP/2. You must be running on Windows 10 to use HTTP/2 with ASP.NET.
+
+Support for the Token Binding Protocol
+
+Microsoft and Google have been collaborating on a new approach to authentication, called the Token Binding Protocol.
+
+
+
+ADO .NET now supports the Always Encrypted feature available in SQL Server 2016 Community 
+Technology Preview 2 (CTP2). With Always Encrypted, SQL Server can perform operations
+on encrypted data, and best of all the encryption key resides with the application inside the
+customer’s trusted environment and not on the server. Always Encrypted secures customer data
+so DBAs do not have access to plain text data. Encryption and decryption of data happens
+transparently at the driver level, minimizing changes that have to be made to existing applications. 
+
+Assembly loader improvements
+----------------------------------
+The assembly loader now uses memory more efficiently by unloading IL assemblies after a corresponding NGEN image is loaded. This change decreases virtual memory, which is particularly beneficial for large 32-bit apps (such as Visual Studio), and also saves physical memory.
+
+What is NGEN?
+--------------------
+Ngen.exe creates native images, which are files containing compiled processor-specific machine code, and installs them into the native image cache on the local computer. The runtime can use native images from the cache instead of using the just-in-time (JIT) compiler to compile the original assembly
+
+
+CultureInfo.CurrentCulture and CultureInfo.CurrentUICulture
+
+The CultureInfo.CurrentCulture and CultureInfo.CurrentUICulture properties are now read-write rather than read-only. If you assign a new CultureInfo object to these properties, the current thread culture defined by the Thread.CurrentThread.CurrentCulture property and the current UI thread culture defined by the Thread.CurrentThread.CurrentUICulture properties also change.
+
+
+Enhancements to garbage collection (GC)
+-------------------------------------------------
+The GC class now includes TryStartNoGCRegion and EndNoGCRegion methods that allow you to disallow garbage collection during the execution of a critical path.
+A new overload of the GC.Collect(Int32, GCCollectionMode, Boolean, Boolean) method allows you to control whether both the small object heap and the large object heap are swept and compacted or swept only.

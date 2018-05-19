@@ -1,0 +1,24 @@
+etherium is a platform and programming language
+we can able to built and publish distributed application called dapps
+
+
+it is opensource
+so that we can use it for private block chains
+
+it is having own currency called etherium
+it is faster then bitcoins
+
+
+in block chain each node will have code and data together
+there is not centeral point.
+each node should not depend on any central point
+
+smart contracts
+---------------------
+it is a piece of code that live in block chain
+Solidity is a language to create smart contracts
+
+it will execute commands 
+it is having data logics, it can read other contracts, make decision, send ether
+it can be programmed to self destroy	
+

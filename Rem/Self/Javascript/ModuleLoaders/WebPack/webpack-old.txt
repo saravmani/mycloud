@@ -1,0 +1,38 @@
+Reference
+----------------
+https://gist.github.com/learncodeacademy/25092d8f1daf5e4a6fd3
+
+Module loaders
+-------------------
+require.js
+browserify
+Webpack
+
+
+require("./jsfilename.js");// this is commonJS code and this will work in nodejs by default.
+//but for browsser we need module loaders
+
+web pack commands
+-------------------
+webpack // this will gather the required js files and generate the output
+
+
+
+webpack config file (webpack.config.js)
+------------------------------------------------
+var debug = process.env.NODE_ENV !== "production";
+var webpack = require('webpack');
+module.exports = {
+  context: __dirname,
+  devtool: debug ? "inline-sourcemap" : null,
+  entry: "./app/main.js",
+  output: {
+    path: __dirname + "/app",
+    filename: "main.min.js"
+  },
+  plugins: debug ? [] : [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+  ],
+};

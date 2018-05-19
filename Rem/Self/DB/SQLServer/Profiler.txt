@@ -1,0 +1,5 @@
+from the profiler we can able to get the tracefile to find out which is causing the slowness.
+it is like AWR report in oracle .. i guess so :-)
+
+clustered and non clustered indexes
+	1. we  can have many non clustered indexes and one clustered index

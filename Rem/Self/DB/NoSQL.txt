@@ -1,0 +1,18 @@
+NO SQL
+----------
+nonrelational DBMSs are called no sql or not only sql.
+Performac.
+
+Although relational DBMSs sacrifice performance for reliability, many NoSQL databases
+put performance first. For this reason, NoSQL databases may be a better choice
+for real-time analytics or messaging. NoSQL databases also usually don’t require data
+schemas to be predefined, which is useful for applications in which stored data is hierarchical
+but whose hierarchy varies.
+
+
+Popular No SQL databases
+-----------------------------
+Mango DB
+Redis
+
+

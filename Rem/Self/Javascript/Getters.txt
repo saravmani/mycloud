@@ -1,0 +1,12 @@
+class Restaurant{
+    constructor(){
+        this._id=9000;
+        }
+    get id(){
+        return this._id;
+        }
+    }
+let r=new Restaurant();
+undefined
+r.id
+9000

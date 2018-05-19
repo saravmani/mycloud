@@ -1,0 +1,11 @@
+Usescases used to find the requirements clearly. 
+But analysis will used to find how the system will behave in REAL WORLD CONTEXT
+
+
+Open use cases and textual analysis and find out the Classes and Mehods for the software.
+By analysing use cases we could able to find moste of the Classes and methods for the software.
+it is called textual analysis
+
+In use case moste of the nouns will become Classes. and moste of the verbs will become as methods
+
+

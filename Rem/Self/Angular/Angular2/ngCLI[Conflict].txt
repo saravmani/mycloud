@@ -1,0 +1,273 @@
+reference - https://www.sitepoint.com/ultimate-angular-cli-reference/
+
+to install angular CLI
+	npm install -g angular-cli
+to create new project
+	ng new PROJECT_NAME
+	cd PROJECT_NAME
+	ng serve
+
+Command to delete and install latest angular cli
+---------------------------------------------------
+npm uninstall -g @angular/cli
+npm cache clean
+npm install -g @angular/cli@latest
+
+You can configure the default HTTP port and the one used by the LiveReload server with two command-line options :
+ng serve --host 0.0.0.0 --port 4201 --live-reload-port 49153
+
+ng serve --prod //this will produce sorce with reduced debug info
+
+ng build --prod
+
+to get the angularu CLI verison installed in machine
+ng --version
+ng --help
+
+Build
+-----
+ng build -o D:\\outputFolder
+
+
+
+install loadash and typings
+-------------------
+$ npm install --save lodash
+$ npm install --save @types/lodash
+
+
+install and use jquery in Angular2
+----------------------------------------
+npm install jquery --save
+npm install @types/jquery --save-dev
+
+
+
+generate component
+-------------------------
+ng g c compoent-name  --flat --inline-style
+options
+--flat: boolean, default false, generate component files in src/app instead of src/app/site-header
+--inline-template: boolean, default false, use an inline template instead of a separate HTML file
+--inline-style: boolean, default false, use inline styles instead of a separate CSS file
+--prefix: boolean, default true, use prefix specified in angular-cli.json in component selector
+--spec: boolean, default true, generate spec file with unit test
+
+
+
+
+ng help command output
+---------------------------------
+ng build <options...>
+  Builds your app and places it into the output path (dist/ by default).
+  aliases: b
+  --target (String) (Default: development)
+    aliases: -t <value>, -dev (--target=development), -prod (--target=production
+)
+  --environment (String) (Default: )
+    aliases: -e <value>
+  --output-path (Path) (Default: null)
+    aliases: -o <value>
+  --watch (Boolean) (Default: false)
+    aliases: -w
+  --watcher (String)
+  --suppress-sizes (Boolean) (Default: false)
+  --base-href (String) (Default: null)
+    aliases: -bh <value>
+  --aot (Boolean) (Default: false)
+  --sourcemap (Boolean) (Default: true)
+    aliases: -sm
+  --vendor-chunk (Boolean) (Default: true)
+  --verbose (Boolean) (Default: false)
+  --progress (Boolean) (Default: true)
+
+ng completion
+  Adds autocomplete functionality to `ng` commands and subcommands
+
+ng doc <keyword>
+  Opens the official Angular documentation for a given keyword.
+
+ng e2e
+  Run e2e tests in existing project
+
+ng generate <blueprint> <options...>
+  Generates new code from blueprints.
+  aliases: g
+  --dry-run (Boolean) (Default: false)
+    aliases: -d
+  --verbose (Boolean) (Default: false)
+    aliases: -v
+  --pod (Boolean) (Default: false)
+    aliases: -p
+  --classic (Boolean) (Default: false)
+    aliases: -c
+  --dummy (Boolean) (Default: false)
+    aliases: -dum, -id
+  --in-repo-addon (String) (Default: null)
+    aliases: --in-repo <value>, -ir <value>
+
+ng get
+  Get a value from the configuration.
+
+ng help
+  Shows help for the CLI
+
+ng init <glob-pattern> <options...>
+  Creates a new angular-cli project in the current folder.
+  aliases: i
+  --dry-run (Boolean) (Default: false)
+    aliases: -d
+  --verbose (Boolean) (Default: false)
+    aliases: -v
+  --link-cli (Boolean) (Default: false)
+    aliases: -lc
+  --skip-npm (Boolean) (Default: false)
+    aliases: -sn
+  --skip-bower (Boolean) (Default: true)
+    aliases: -sb
+  --name (String) (Default: )
+    aliases: -n <value>
+  --source-dir (String) (Default: src)
+    aliases: -sd <value>
+  --style (String) (Default: css)
+  --prefix (String) (Default: app)
+    aliases: -p <value>
+  --mobile (Boolean) (Default: false)
+  --routing (Boolean) (Default: false)
+  --inline-style (Boolean) (Default: false)
+    aliases: -is
+  --inline-template (Boolean) (Default: false)
+    aliases: -it
+
+ng lint
+  Lints code in existing project
+
+ng new <options...>
+ng new upgrade-project --skip-install //this will create proj skeliton but not isntall the packages
+
+  Creates a new directory and runs ng init in it.
+  --dry-run (Boolean) (Default: false)
+    aliases: -d
+  --verbose (Boolean) (Default: false)
+    aliases: -v
+  --link-cli (Boolean) (Default: false)
+    aliases: -lc
+  --skip-npm (Boolean) (Default: false)
+    aliases: -sn
+  --skip-bower (Boolean) (Default: true)
+    aliases: -sb
+  --skip-git (Boolean) (Default: false)
+    aliases: -sg
+  --directory (String)
+    aliases: -dir <value>
+  --source-dir (String) (Default: src)
+    aliases: -sd <value>
+  --style (String) (Default: css)
+  --prefix (String) (Default: app)
+    aliases: -p <value>
+  --mobile (Boolean) (Default: false)
+  --routing (Boolean) (Default: false)
+  --inline-style (Boolean) (Default: false)
+    aliases: -is
+  --inline-template (Boolean) (Default: false)
+    aliases: -it
+
+ng serve <options...>
+  Builds and serves your app, rebuilding on file changes.
+  aliases: server, s
+  --port (Number) (Default: 4200)
+    aliases: -p <value>
+  --host (String) (Default: localhost) Listens only on localhost by default
+    aliases: -H <value>
+  --proxy-config (Path)
+    aliases: -pc <value>
+  --watcher (String) (Default: events)
+    aliases: -w <value>
+  --live-reload (Boolean) (Default: true)
+    aliases: -lr
+  --live-reload-host (String) Defaults to host
+    aliases: -lrh <value>
+  --live-reload-base-url (String) Defaults to baseURL
+    aliases: -lrbu <value>
+  --live-reload-port (Number) (Defaults to port number within [49152...65535])
+    aliases: -lrp <value>
+  --live-reload-live-css (Boolean) (Default: true) Whether to live reload CSS (d
+efault true)
+  --target (String) (Default: development)
+    aliases: -t <value>, -dev (--target=development), -prod (--target=production
+)
+  --environment (String) (Default: )
+    aliases: -e <value>
+  --ssl (Boolean) (Default: false)
+  --ssl-key (String) (Default: ssl/server.key)
+  --ssl-cert (String) (Default: ssl/server.crt)
+  --aot (Boolean) (Default: false)
+  --sourcemap (Boolean) (Default: true)
+    aliases: -sm
+  --vendor-chunk (Boolean) (Default: true)
+  --verbose (Boolean) (Default: false)
+  --progress (Boolean) (Default: true)
+  --open (Boolean) (Default: false) Opens the url in default browser
+    aliases: -o
+  --hmr (Boolean) (Default: false) Enable hot module replacement
+
+ng set <options...>
+  Set a value in the configuration.
+  --global (Boolean) (Default: false)
+    aliases: -g
+
+ng test <options...>
+  Runs your app's test suite.
+  aliases: t
+  --watch (Boolean) (Default: true)
+    aliases: -w
+  --code-coverage (Boolean) (Default: false)
+    aliases: -cc
+  --lint (Boolean) (Default: false)
+    aliases: -l
+  --single-run (Boolean) (Default: false)
+    aliases: -sr
+  --progress (Boolean) (Default: true)
+  --browsers (String)
+  --colors (Boolean)
+  --log-level (String)
+  --port (Number)
+  --reporters (String)
+  --build (Boolean) (Default: true)
+  --sourcemap (Boolean) (Default: true)
+    aliases: -sm
+
+ng version <options...>
+  outputs angular-cli version
+  aliases: v, --version, -v
+  --verbose (Boolean) (Default: false)
+
+
+upgrate angular 2 
+-------------------
+npm install @angular/common@latest @angular/compiler@latest @angular/compiler-cli@latest @angular/core@latest @angular/forms@latest @angular/http@latest @angular/platform-browser@latest @angular/platform-browser-dynamic@latest @angular/platform-server@latest @angular/router@latest @angular/animations@latest typescript@latest --save
+
+
+
+ 
+Use awesome fonts in angular 2
+------------------------------------
+
+npm install font-awesome --save
+
+.angular-cli.json
+	    "styles": [
+ 
+	       "styles.css",
+	       "../node_modules/font-awesome/css/font-awesome.css" 
+ 
+	     ],
+  
+    "scripts": [],
+
+
+
+
+ng eject
+--------------
+this command will generate webpack.config.js based on the configurations that the cli uses, so that you can then customize it further.

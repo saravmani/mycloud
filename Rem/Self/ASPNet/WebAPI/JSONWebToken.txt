@@ -1,0 +1,49 @@
+What Is a Token-Based Authentication System?
+The token-based authentication systems allow users to enter their username and password in order to obtain a token which allows them to fetch a specific resource - without entering their username and password at each request. Once their token has been obtained, the user can use the token to access specific resources for a set time period.
+
+JWT (pronounced 'jot') is a token based authentication system. It is a compact, URL-safe means of representing claims to be transferred between two parties. The claims in a JWT are encoded as a JSON object that is digitally signed using JSON Web Signature. The JWT is a self-contained token which has authentication information, expire time information, and other user defined claims digitally signed.
+
+How We Used to Do Authentication
+HTTP is a stateless protocol. That means it doesn't store any state from request to response. If you login for one request, you'll be forgotten and will need to login again to make another request. As you can imagine, this can get very annoying, very fast.
+
+The old-school solution was to create what's called a "session." A session is implemented in two parts:
+
+An object stored on the server that remembers if a user is still logged in, a reference to their profile, etc.
+
+A cookie on the client-side that stores some kind of ID that can be referenced on the server against the session object's ID.
+This solution still works, but nowadays we have different  requirements, i.e. hybrid application or single page application contacting multiple backends (split up into separate micro-service authetication servers, databases, image processing servers, etc). In these types of scenarios, the session cookie we get from one server won't correspond to another server.
+
+
+JWTs don't use sessions and have no problem with micro-service architectures. Instead of making a session and setting a cookie, the server will send you a JSON Web Token instead. Now you can use that token to do whatever you want to do with the server (that you have authorization to do).
+
+Think of it like a hotel key: you register at the front-desk, and they give you one of those plastic electronic keys with which you can access your room, the pool, and the garage, but you can't open other people's rooms or go into the manager's office. And, like a hotel key, when your stay has ended, you're simply left with a useless piece of plastic (i.e., the token doesn't do anything anymore after it's expired).
+
+Advantages of JWTs 
+No Session to Manage (stateless): The JWT is a self contained token which has authetication  information, expire time information, and other user defined claims digitally signed.
+
+Portable: A single token can be used with multiple backends.
+
+No Cookies Required, So It's Very Mobile Friendly
+
+Good Performance: It reduces the network round trip time.
+
+Decoupled/Decentralized: The token can be generated anywhere. Authentication can happen on the resource server, or easily separated into its own server.
+
+
+he user agent should send the JWT, typically in the Authorization header using the Bearer schema. The content of the header should look like the following:
+Authorization: Bearer <token>
+
+ex: 
+Authorization: 
+Bearer gefa--_CKtY7WAnMJn7HVgBMTtFPktclOinUMPSiuRBscZm0ZznKo9Cr3KT0Dx-t9WA6maCIkCiKLk8G9ogTk_HMgard2sowq8fahuWpfKeqlR4DLXM9t4J8VpI1bgOINGMfzQW0NjxiRgCYwx_aG_I6k-VCSk7x0mnNQNUXTiWEyTxDRifnI03ahMKUkgNhu5PN7GXeJrzEjbd8hRKCb6R5Mm-RUScEDFckt--iYXGh_9REdnJ7iqGXPkkX1s9i74GrYe5jS3BU2L5U1RrAcorhrU8sdkxERWaheXYVvMg-6EBgj0z3NfM5dIlnKN5SisqW0qB7Xr5Xdc7GZMbQk8f341sL924jBzwgji62D79sp4WQbIc59tJec6gMeO6tcF9X1ML4nBw8Dv--IWF3g70bRutWujZVBJc_PMWQg-Gx22br_1wqBrvKoY7X39EN8ZIUaIE6pZ_-dQG1lrXJcpLa6G6LAn62qqDd_fAN7hxzU2xuNb1Tc7PSLZ7me0AH
+
+
+ I would strongly recommend on passing your access token within the Authorization header instead of going with custom headers. If they are really bearer tokens follow the rules of RFC 6750, if not, you can always create a custom authentication scheme and still use that header.
+Authorization headers are recognized and specially treated by HTTP proxies and servers. Thus, the usage of such headers for sending access tokens to resource servers reduces the likelihood of leakage or unintended storage of authenticated requests in general, and especially Authorization headers.
+
+
+Difference between Oauth and JWT
+------------------------------------
+# Oauth can uses JWT. 
+real difference is that JWT is just a token format, OAuth 2.0 is a protocol 
+ OAuth 2.0 defines a protocol, i.e. specifies how tokens are transferred, JWT defines a token format.

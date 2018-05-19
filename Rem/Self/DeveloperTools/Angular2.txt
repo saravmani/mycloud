@@ -1,0 +1,8 @@
+ angular-in-memory-webapi
+ -------------------------------
+Data sources that make network requests can be hard to isolate for unit testing because it is hard to
+differentiate between the behavior of the data source class and any unexpected effects caused by the
+network and the server.
+There is an NPM package available that provides an in-memory API service that can be used to simulate
+HTTP requests using data that has been defined locally. This provides a way to isolate a data source
+class and ensure that only its behavior is being tested. The package is called angular-in-memory-webapi,

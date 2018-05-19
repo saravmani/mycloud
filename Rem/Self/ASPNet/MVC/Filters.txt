@@ -1,0 +1,71 @@
+
+[AllowAnonymous]
+this attribute used to mention anonymous access to specific method. if we mention then Autherise filter not be execute on this particular method call
+ 
+
+Order of filter call executtion
+Authentication Filters ==>  Authorization filter ==> Action filter ==> Result filter ==> Exceptionfilter
+
+
+The authentication filter executes before any other filter
+The authorization filter executes after Authentication filter and action method, or before any other filter
+The action filter executes before and after any action method
+The result filter executes before and after the execution of any action result
+The exception filter executes only if any action methods, filters, or results throws an exception
+
+CUstome Authentication Filters
+-------------------------------------
+    public class AdminSuperAdminAttribute : FilterAttribute, IAuthenticationFilter
+
+
+Authorization Filters:
+
+The AuthorizeAttribute and RequireHttpsAttribute are the examples of Authorization Filters. Authorization Filters are responsible for checking User Access; these implement the IAuthorizationFilterinterface in the framework.
+
+
+Autherisation Filter
+---------------------------
+public class SBAutherise : AuthorizeAttribute
+    {
+         
+        protected override bool AuthorizeCore(HttpContextBase httpContext)
+        {
+            return false; // true or false based on condition
+        }
+    }
+
+
+
+Authentication Filter
+==============================================
+-----------------------------------
+The OnAuthenticationChallenge method is called by the MVC Framework whenever a request has failed the
+authentication or authorization policies for an action method
+
+public interface IAuthenticationFilter {
+void OnAuthentication(AuthenticationContext context);
+void OnAuthenticationChallenge(AuthenticationChallengeContext context);
+}
+
+
+ActionDescriptor Returns an ActionDescriptor that describes the action method to which the filter has been applied
+
+Authentication filters are also run after an action method has been executed but before the
+ActionResult is processed.So we can do redirection or other activities
+
+ex:
+ public void OnAuthenticationChallenge(AuthenticationChallengeContext context)
+{
+    if (context.Result == null || context.Result is HttpUnauthorizedResult)
+    {
+        context.Result = new RedirectToRouteResult(new RouteValueDictionary {
+{"controller", "GoogleAccount"},
+{"action", "Login"},
+{"returnUrl", context.HttpContext.Request.RawUrl}
+});
+    }
+    else
+    {
+        FormsAuthentication.SignOut();
+    }
+}

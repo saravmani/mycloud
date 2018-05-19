@@ -1,0 +1,12 @@
+Windows OS is highly integrated
+Linux OS is highly moduler
+
+so to run containers in windows it needs extra processes (system process to manage the resources), when
+compare to linux
+
+
+For .net core we need below windows container image
+windows nano server image
+
+for Full .net frame we need below windows container image
+windows server core base

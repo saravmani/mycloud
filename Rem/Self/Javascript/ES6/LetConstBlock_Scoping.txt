@@ -1,0 +1,40 @@
+console.log(variablename);
+let variablename="haha";
+//this throws error. 
+
+console.log(variablename);
+var variablename="haha";
+//this wont throw error. it will print undefined
+
+
+
+
+const
+----------------
+const CONST_Nam = "haha";
+
+const CONST_Nam;
+console.log(CONST_Nam);//thorows syntex error.
+so if declare const key word then we have to initialise it
+
+const CONST_Nam = "haha";
+CONST_Nam="some other";//thorows type error
+
+
+Block scoping
+-------------------
+let and const are supports block scoping. its life is within the block
+let variablename = 12;
+{
+    let variablename = 19;
+}
+
+console.log (variablename)//prints 12
+
+
+const variablename = 12;
+{
+    const variablename = 19;
+}
+
+console.log (variablename)//prints 12

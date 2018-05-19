@@ -1,0 +1,6 @@
+Try to avoid multiple layers and tires (where ever possible. But those are needed)
+More layers and tiers then more maintanability
+
+Find the modules which are already available in market ex: loggin framework, caching framewokrs,
+    and buy or borrow those modules and make use of them. So that we can focus on only
+    domain specific coding

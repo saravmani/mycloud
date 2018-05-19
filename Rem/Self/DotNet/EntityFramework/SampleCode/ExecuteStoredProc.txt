@@ -1,0 +1,2 @@
+var objReqObjectSS  = objTaskList.Database.SqlQuery<ReqObjectSS>("EXEC SP_Get_Task_List  @Param1", 
+                    new SqlParameter("@Param1","value")).ToList();

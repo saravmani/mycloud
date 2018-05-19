@@ -1,0 +1,88 @@
+Key wods
+--------------------------
+authorisation_code - Is a short lived single use credentials.
+access_token (or authorisation_token),
+refresh_token
+client_id
+app_key (secret for client. it s a client secret)
+
+Oauth defines 4 different roles
+==============================================
+    1.resource owner (ex: Me)
+    2. resource server (ex: Google)
+    3.client (ex: application whow wants to access my data from google11)
+    4. Autherization server
+
+
+
+
+Clients are two types
+==============================================
+    1. Confidential Clients
+    client capable of maintaining the confidentiality of their credentials
+    ex: MVC based server application. Because here server to server communication happens
+    2. public clients
+    clients incapable of maintaining the confidentiality of their credentials
+    ex: Angular client, javascript based, windows phone. - here every thing will stored on client itself. so security issues
+
+
+    # so based on client type we have to implement the flow
+
+
+Different protocol end points
+==============================================
+Oauth also defines different protocol end points. Those are used by client or server depends 
+on flow in Autherization.
+
+    Autherization Server
+    ----------------------------
+    1. Autherisation endpoint - Used by client to obtain authorisation from the resource owner (me) 
+                                via user-agent redirection
+    2. Token end point - used by client to exchange an authorization grant for an access token, 
+                            typically with client authentication
+        #i understand this like - once client got  authorization code, 
+        then it will use this end point and pass authorization code to token_end_point 
+        to get the authentication token
+
+    Client
+    -----------------
+    3. Redirection endpoint - used by the authorization server to return responses containing authorization 
+    credentials (i.e authorisation_code) 
+    to the client via the resource owner user agent
+
+After Register with Resource server (ex: Goole), client will get client id and app_key
+
+Autherisation Grand types (# it is flow types (i.e # work flow))
+=============================================================================
+Oauth2 defines 4 types of authorisation grand types. those are used in different flows
+1. authorisation Code Grant - this flow suitable for confidential clients. Used to obtain access tokens and refresh tokens (IT is optimized for Confidential clients)
+In this client will redirect user-agent to authentication endpoint, and authontication endpoint once authenticate the user
+it i will redirect back to client page with authorisation_code. And client will call the token endpoint with authorisation_code and get the
+access_token.
+
+    Client must have capable of interact with the resource owner's user-agent(browser) and receive 
+    incoming requests (via redirection) from the authorization server (authorization endpoint)
+    # in this case client id need to be stored on client side (ex: mobile). but app_key not need to be stored
+    # i guess on redirection, client will not share client secret code (app_key). it will send's client id only.
+     but after it got authorization code, then client (it's server application) will send the 
+    client's secret code (app_key) to the server along with authorisation_code to get authorisation token.
+
+2. Implicit Grant - Used to obtain access tokens , but no refresh tokens.
+Here access_token will get directly from authorisation server (authorization endpoint)
+    It is optimized for PUBLIC clients (ex: angular js,   native mobile app)
+    Client must have capable of interact with the resource owner's user-agent(browser) and receive 
+    incoming requests (via redirection) from the authorization server.
+    # important difference here is the access_token will be sent back to the client, through redirect uri
+
+3. CLient credentials grant
+    it must be used only by confidential clients
+    typcally used for api access. Client will share send clien id and app_key to get the details 
+    from the other server.
+    it used for server to server communication only.
+    normally we can go like this approch, if the client and resource owner are controlled by same person.
+    ex: in sb2 webapplication can access the ircs , we can introduce this kind of  client credentials grant.
+
+4. Resource owner password credentials grant.
+    this only used for trusted clients. but it not recomended approch. in this resource owner will provoide username/pwd to client . and client will
+    use that to authenticate with authorization server to get access token
+

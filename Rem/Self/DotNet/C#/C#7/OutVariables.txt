@@ -1,0 +1,29 @@
+out VARIABLES vs out PARAMS
+------------------------------------------------------------
+
+Normally we will use Out PARAMS in older versions.
+in out params, we cant use it without declaring it
+cannot use Var to declare them
+
+but in Out VARIABLES we can able to do those said
+
+
+public void DoCalculation(out int inputData)
+{
+    inputData = 23;
+}
+
+public void Caller()
+{
+    DoCalculation(out int inputData);//note here we have declared in treditional way
+    Console.WriteLine(inputData);
+}
+
+in older way we have to delcare it outside
+
+public void Caller_Old()
+{
+    int inputData;
+    DoCalculation(out inputData);
+    Console.WriteLine(inputData);
+}

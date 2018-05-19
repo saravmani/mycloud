@@ -1,0 +1,29 @@
+azure
+--------------
+subscriptions
+
+
+free
+--------------
+app services.. using this we can able to hoste asp.net application and other
+
+storage
+------------
+blob storage - we have to create it seperatly
+table storage - it is key value pair
+file storage
+
+app services
+-------------------
+we can hoste asp.net webapplicaiton or others (ex nodejs) using this 
+we can able to publish we application from vsts to azure directly
+aslo we can able to enable remote debugging and can debug it from vsts
+
+functions
+----------
+it is serverless autonomus nano services.
+it is simple autonomus funciton we can hoste it on azure, it will be
+triggerd by timer, or can execute by calling from externally
+we can able to create functions from vsts and can able to publish
+can able to create wehbooks
+timer functions -- are jobs

@@ -1,0 +1,41 @@
+Compare Visual studio Communi vs prefessional vs ultimate
+https://www.visualstudio.com/vs/compare/
+
+
+System.Diagnostics.Debug.WriteLine(this); // can be used to write debug information in 
+//Visual studio's output window
+
+Connect to Github repository
+-------------------------------
+
+
+Snippets
+-------
+prop - property
+
+
+Shortcuts
+-----------
+cntrl+shift+E to build without open new browser
+Click on any class name and click cntrl+,
+Alt+F12 for small preview screen
+alt+f12 references
+
+
+
+json visulalizer
+
+while viewingg object using visualizer if we press cntrl visualizer will get transperent
+
+run to cursour, F11, F10 will start the application and startt the debugging
+
+while debugging we can type commands, and in commands we can type variables and hoverit tool tip will show the value
+//j+i will show the sum result
+//this --will refer the current object
+
+check -  call stacck, fnval
+
+right click and will get a menu to stop step into operators
+
+Web essentials for visual stutio
+http://vswebessentials.com/

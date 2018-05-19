@@ -1,0 +1,5 @@
+Continuous integration (daily, hourly builds) required. As part build we can run the unit tests
+to find out the issues at early stage
+
+Code review
+Unit tests

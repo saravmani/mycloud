@@ -1,0 +1,6 @@
+It is a module used to log the HTTP traffic for express
+
+var morgan  =  require("morgan");
+objexpress.use(morgan('combined'));
+//combined - lengthy loggs
+//tiny - short logs

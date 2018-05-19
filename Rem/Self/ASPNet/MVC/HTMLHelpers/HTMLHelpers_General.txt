@@ -1,0 +1,43 @@
+
+
+Inline HTML Helpers: These are created by the @helper tag of Razor Syntax. 
+These Helpers can be reused only on the same view. 
+
+Built-In HTML Helpers: These HTML Helpers are extension methods on the HtmlHelper class. 
+These are categorized in to three parts:
+
+Standard HTML Helpers: These helpers are used to create the most common types of HTML elements.
+    @Html.TextBox("textbodName")
+
+Strongly Typed HTML Helpers: The HTML is generated through Model Class Properties. These helpers work on lambda expression.
+    @Html.TextBoxFor(modeobj=>modelobj.SubjectName)
+
+Templated HTML Helpers: These helpers defines what HTML elements are required to render based on properties of our Model class.
+
+Custom HTML Helpers: You can also create your own custom helper methods by creating an extension method on the HtmlHelper class or by creating static
+ methods within a utility class.
+
+
+
+Inline helpers
+=====================
+@helper helperMethodName(string Parameter)
+{
+    <div>@Parameter</div>
+}
+
+@helperMethodName("name 1 ")
+@helperMethodName("name 2 ")
+
+
+
+Custome helpers
+---------------------
+public static class helperutils
+{
+    public static MvcHtmlString generateSubjectControl(this HtmlHelper objHtmlHelper,string someinput)
+    {
+        return new MvcHtmlString("<div>subject name</div>");
+
+    }
+}

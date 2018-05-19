@@ -1,0 +1,11 @@
+Mocha is written by the creator of Express
+
+asynchronous test
+support and easy-to-read output. It’s not specifically tied to Express, so you can use it
+to test Express applications, JavaScript functions, database models, and anything else
+that runs inside the Node runtime.
+
+Mocha and Chai
+Mocha is the test runner
+Chai is an assertion library. There are a number of assertion libraries
+

@@ -1,0 +1,5 @@
+Nginx - this used to do load balancing of our applicaiton which are running on multiple ports
+
+(normally clustor module we can able to run multiple child process which are using same port
+but clustor module is not reliable . so we are going for Nginx
+)

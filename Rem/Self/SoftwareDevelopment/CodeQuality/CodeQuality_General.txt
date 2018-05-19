@@ -1,0 +1,6 @@
+Write unit tests that cover your model (Code coverage tools)
+Code Review
+Follow a style - (style cop, fxcop)
+Code commands
+
+Static analysis tools - (not a true substitute for a code review)

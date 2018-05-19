@@ -1,0 +1,8 @@
+Reflect.preventExtensions(target);//we can ensure that no more properties added
+
+letrest={id:2000};
+Reflect.preventExtensions(rest);
+rest.location='Goleta';
+console.log(rest.location);//undefined
+
+Reflect.isExtensible(target);//object is extensible or not?

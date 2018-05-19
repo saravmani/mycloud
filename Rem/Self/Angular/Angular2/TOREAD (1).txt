@@ -1,0 +1,3 @@
+Join multiple observables
+Providers -> how to create object each time? single ton?
+Ahead of Time compilation (AOT)

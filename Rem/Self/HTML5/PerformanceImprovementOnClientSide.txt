@@ -1,0 +1,2 @@
+Specify the image height and width. 
+This will help the browser to render the page fastly

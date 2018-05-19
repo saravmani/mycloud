@@ -1,0 +1,29 @@
+Reference
+https://www.youtube.com/watch?v=sKriDWgnbf8
+https://angular.io/docs/ts/latest/quickstart.html#!#create-and-configure
+
+Angular2 config files.
+package.json
+tsconfig.json
+systemjs.config.js
+
+vsccode config files
+add launch.json (click debug button and click settings icon. this file will automatically added)
+add tasks.json (cntr+shift+p and type tasks and select first list item and choose for typescript)
+
+go to command probmt and navigate to applicaiton folder
+then type
+npm install 
+(this ill take time. bcs around 70 MB files will get downloaded .. includeing lite-server)
+
+npm start 
+//this will start the lite server
+
+if we run commands in watch mode then the changes will get automatically
+get reflected
+
+"start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
+   
+ //above is we are running two commands parallely. one is compiling TS in watch mode
+        //  Bcs of watch mode, if we modify TS in future then it will automatically compile the js file
+    //next one is starting lite server

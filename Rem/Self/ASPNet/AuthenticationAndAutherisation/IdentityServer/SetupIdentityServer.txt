@@ -1,0 +1,7 @@
+Create webapplicaiton. In properties enable https url
+
+install-package microsoft.owin.host.systemweb
+install-package thinktecture.identityserver3
+
+Clients (it is not actual client)
+--------------------------------------

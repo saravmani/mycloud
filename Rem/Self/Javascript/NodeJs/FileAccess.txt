@@ -1,0 +1,31 @@
+var objFile = require('fs');
+
+//Read and write files synchronously
+var fileCOntetn = objFile.readFileSync("filename.txt","utf8");
+fs.writeFileSync("file2Name.txt",fileContent);
+
+
+//Read and write files Asynchronously
+
+fs.readFile("fileTOREad.txt","utf8",function(err,data){
+console.log(data);//content
+fs.writeFile("fileTOWrite.txt",data);
+});
+
+
+
+Delete the file
+-------------------
+fs.unlink('fileToDelete.txt');
+
+create Directory
+--------------------------
+fs.mkdirSync('DirName');//to create directory synchronously
+fs.rmdirSync('DirName');//to delete directory synchronously
+
+fs.mkdir('DirName',function(){
+console.log('created')});//to create directory Asynchronously
+fs.rmdir('DirName');//to delete directory Asynchronously
+
+if directory is not emty then we cant delete it. rmdir will throw error.
+in this case we have to remove the files wich are inside directory first, then we have to remvoe dir

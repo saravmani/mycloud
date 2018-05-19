@@ -1,0 +1,71 @@
+This principle helps you remember that you should design your components by focusing on their behavior 
+and by hiding their internal working using encapsulation technic.
+
+
+Procedural code gets information then makes decisions. Object-oriented code tells objects to do things.
+
+
+Remember that you don’t have to ask your components about their state in order to do an operation, just tell them to do it.
+
+Tell-Don't-Ask is a principle that helps people remember that object-orientation is about bundling data with the functions that operate on that data
+It reminds us that rather than asking an object for data and acting on that data, we should instead tell an object what to do. This encourages to move behavior into an object to go with the data.
+
+
+# as per my understanding.. components should not ask how to do or what to do.. instead, if we say do it then it should know how to do it.
+# and Class's datastructure and Operations bound together within the class
+
+
+
+Ex: Ask Version (i.e viloates principle)
+
+public class RemoteService
+{
+    public bool IsOperationAvailable()
+    {
+        // some logic
+        return true;
+    }
+ 
+    public void DoOperation()
+    {
+        // some operations
+    }
+}
+ 
+public class Client
+{
+    public void CallRemote()
+    {
+        var service = new RemoteService();
+        if (service.IsOperationAvailable()) // network latency here
+            service.DoOperation();          // network latency again
+    }
+}
+
+
+Tell Version
+-----------------
+public class RemoteService
+{
+    private bool IsOperationAvailable()
+    {
+        // some logic
+        return true;
+    }
+ 
+    public void DoOperation()
+    {
+        if (!IsOperationAvailable())
+            return;
+        // some operations
+    }
+}
+ 
+public class Client
+{
+    public void CallRemote()
+    {
+        var service = new RemoteService();
+        service.DoOperation();      // network latency only here
+    }
+}  

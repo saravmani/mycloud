@@ -1,0 +1,4 @@
+
+Refactoring Tools -  Refactoring Essentials
+Code Styling - Stylecop
+Duplication Detection

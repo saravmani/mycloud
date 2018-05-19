@@ -1,0 +1,13 @@
+Johnny -five
+----------------------
+it is a javascript IOT & Robotic platform
+
+
+
+MIT is used for open source projects
+under stand licencing
+understand versioning
+   ex: what is symantic versioning
+        major.minor.patch
+        --MAJOR version when you make incompatible API changes, MINOR version when you add functionality in a backwards-compatible manner, and.
+         PATCH version when you make backwards-compatible bug fixes. 

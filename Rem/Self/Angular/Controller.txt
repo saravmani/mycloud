@@ -1,0 +1,40 @@
+Always contcoller will not have reference to view and any other dom elements. it always works on model only
+
+Module and controller
+------------------------------
+angular.module('7minWorkout', []); // creates a new module
+angular.module('7minWorkout'); //get an existing module. The difference is just the extra parameter []
+If we use the first syntax multiple times for the same module, it will create the module again and override all existing module dependencies
+Module is a container or parent for below constructs
+  Controller, Service, Directive, Filter;
+
+  AngularJS provides a mechanism to manage dependencies between AngularJS
+constructs in a declarative manner using dependency injection.
+
+To resolve dependencies, AngularJS uses name matching. For each dependency
+(a parameter such as $scope) defined on the function, Angular tries to locate the
+dependency from a list of components that have already been registered.
+
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+First Name: <input type="text" ng-model="firstName"><br>
+Last Name: <input type="text" ng-model="lastName"><br>
+//Global functions should be avoided in JavaScript. They can easily be overwritten or destroyed by other scripts.
+//AngularJS modules reduces this problem, by keeping all functions local to the module.
+
+<br>
+Full Name: {{firstName + " " + lastName}}
+
+</div>
+
+<script>
+//The [] parameter in the module definition can be used to define dependent modules.
+//Without the [] parameter, you are not creating a new module, but retrieving an existing one.
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.firstName= "John";
+    $scope.lastName= "Doe";
+});
+</script>
+

@@ -1,0 +1,14 @@
+  Domain logic patterns
+ Data source architectural patterns
+ Object-relational behavioral patterns
+ Object-relational structural patterns
+ Object-relational metadata mapping patterns
+ Web presentation patterns
+ Distribution patterns
+ Offline concurrency patterns
+ Session state patterns
+ Base patterns
+
+
+ Martin Fowler’s book, Patterns of Enterprise Application Architecture , groups the patterns in such a way
+that they can be associated with one of these three layers (UI,BC,DAC).

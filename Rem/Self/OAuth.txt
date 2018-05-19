@@ -1,0 +1,26 @@
+OAuth is a protocol that allows end users to give access to third party applications to access their resources stored on a server
+
+OAuth Vs OpenID
+----------------------
+OAuth and OpenId both are authentication protocol
+
+In OAuth we can make user to authenticate and also we can able to controll their access on resources.
+But in OpeId we can't controll the access
+
+In simple words 
+OAuth = Authentication+Autherisation
+OpenId = Authentication
+
+
+
+OAuth 2.0 Framework: a set of protocols and patterns addressing access control in HTTP-based APIs.
+
+Oauth logout
+--------------------
+OAuth uses server-side and client-side storage. If you want to do real logout you must go with OAuth2.
+Authentication with JWT token can not logout actually. 
+Because you don't have an Authentication Server that keeps track of tokens. 
+If you want to provide an API to 3rd party clients, you must use OAuth2 also.
+OAuth2 is very flexible. JWT implementation is very easy and does not take long to implement. 
+If your application needs this sort of flexibility, you should go with OAuth2. 
+But if you don't need this use-case scenario, implementing OAuth2 is a waste of time.

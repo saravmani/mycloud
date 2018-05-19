@@ -1,0 +1,41 @@
+
+Muliple types
+-------------------
+funcitonName(param:string|number)
+
+Tuples
+------------
+Tuples are fixed length arrays. each item in array is specific data type
+let someName: [string, string, string];
+someName = ["London", "raining", TempConverter.convertFtoC("38")]
+
+Indexable Types
+-----------------------
+let someHashTable:{[keyName:string]:[string,string]}
+this.someVariable["arrkey"] = ["arrvalue1"];
+
+someVariableNormal: { [index: string]: string } = {};
+this.someVariable1["arrkey"] = "normal vlaues";
+
+  for (let key in this.someVariable1) {
+      console.log(this.someVariable1[key]);
+    }
+
+
+Implementing hash table
+--------------------------
+class Person {
+    name: string;
+}
+
+interface HashTable<T> {
+    [key: string]: T;
+}
+
+var persons: HashTable<Person> = {};
+persons["bob"] = new Person();
+var bob = persons["bob"];
+
+
+
+ 

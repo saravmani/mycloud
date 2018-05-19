@@ -1,0 +1,18 @@
+##Tags - Event emitter, EventEmitter,Util,events
+
+ex:
+var utils = require("util");
+var events = require("events");
+
+function EventTestFunction() { }
+utils.inherits(EventTestFunction, events.EventEmitter);
+
+EventTestFunction.prototype.testEvent = function () {
+    this.emit("someevent", { testObj: "value" });
+}
+
+var objEventTestFn = new EventTestFunction();
+objEventTestFn.on("someevent", function (eventData) {
+    console.log(eventData);
+});
+objEventTestFn.testEvent();

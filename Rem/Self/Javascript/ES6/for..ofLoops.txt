@@ -1,0 +1,26 @@
+
+for...in loop
+--------------------
+var kk =['one','tow']
+
+for(var each in kk)
+{
+    console.log(kk[each]);
+}
+//one,tow
+
+for...of loop
+------------------
+for(var each of kk)
+{
+console.log(each);
+}
+//one,tow
+
+
+var codes="ABCDF";
+var count=0;
+for(var code of codes)
+{count++;}console.log(count);
+
+//5

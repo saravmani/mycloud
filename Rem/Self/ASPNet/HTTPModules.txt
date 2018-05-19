@@ -1,0 +1,93 @@
+Difference btn addin module sections under
+system.web vs system.weserver
+------------------------------------------------
+The system.web section is for configuring IIS 6.0, while the system.webserver version is used to configure IIS 7.0. IIS 7.0 includes a new ASP.NET pipeline and
+ some configuration differences, hence the extra config sections.
+If you're running IIS 7.0 in integrated mode only, you shouldn't need to add the handlers to both sections. Adding it to system.web as well is a fallback for 
+IIS 7.0 operating in classic mode, 
+
+
+The system.webServer section in the Web.config file specifies settings for IIS 7.0 that are applied to the Web application. The system.WebServer is a child of 
+the configuration section. 
+
+Some settings in the system.webServer section apply only to IIS 7.0 Integrated mode and do not apply to Classic mode
+
+ In particular, any managed-code modules and handlers specified in the system.WebServer section of the Web.config file are ignored if the application is running in Classic mode. Instead, the managed-code modules and handlers must be defined as in earlier versions of IIS,
+
+
+
+web.config entry
+------------------------
+<configuration>
+  <system.webServer>
+    <modules> 
+      <add name="CustomModule" type="Samples.CustomModule" /> 
+    </modules>
+  </system.webServer>
+</configuration>
+
+
+HTTPModules and Middler ware concept
+--------------------------------------------
+HttpModules helps me to attach my code specific to a application events. 
+Owin middleware is independent of these events
+
+
+HttpApplication
+-------------------
+Instances of the HttpApplication class are created in the ASP.NET infrastructure, 
+not by the user directly. One instance of the HttpApplication class is used 
+to process many requests in its lifetime. However, it can process only one request at a time. 
+Thus, member variables can be used to store per-request data.
+
+Session state
+---------------------
+Session would be available after through the HttpApplication.PostAcquireRequestState event 
+essionStateModule is ASP.NET's default session-state handler. 
+It writes session data to and retrieves it from the session-state 
+store and raises the Session_OnStart and Session_OnEnd events. 
+
+
+
+Ex:
+--------
+
+public class CustomHTTPModule : IHttpModule
+    {
+        public CustomHTTPModule()
+        {
+            // Class constructor.
+        }
+
+        // Classes that inherit IHttpModule 
+        // must implement the Init and Dispose methods.
+        public void Init(HttpApplication app)
+        {
+
+            app.AcquireRequestState += new EventHandler(app_AcquireRequestState);
+			app.PostAcquireRequestState += new EventHandler(app_PostAcquireRequestState);
+		}
+
+        public void Dispose()
+        {
+            // Add code to clean up the
+            // instance variables of a module.
+        }
+
+        // Define a custom AcquireRequestState event handler.
+        public void app_AcquireRequestState(object o, EventArgs ea)
+        {
+            HttpApplication httpApp = (HttpApplication)o;
+            HttpContext ctx = HttpContext.Current;
+            ctx.Response.Write(" Executing AcquireRequestState ");
+        }
+
+        // Define a custom PostAcquireRequestState event handler.
+		public void app_PostAcquireRequestState(object o, EventArgs ea)
+		{
+			HttpApplication httpApp = (HttpApplication)o;
+			HttpContext ctx = HttpContext.Current;
+			ctx.Response.Write(" Executing PostAcquireRequestState ");
+		}
+
+	}

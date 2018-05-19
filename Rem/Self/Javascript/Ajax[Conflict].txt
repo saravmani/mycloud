@@ -1,0 +1,207 @@
+﻿XMLHttpRequest Level 2
+----------------------------
+XMLHttpRequest Level 2 specification introduces the FormData type
+var data = new FormData(document.forms[0]); //thiss will serialize the form
+data.append(�name�, �Nicholas�); this will append the data
+we can directly use this in ajax
+xhr.open(�post�, �postexample.php�, true);
+var form = document.getElementById(�user-info�);
+xhr.send(new FormData(form));
+
+
+Cross-Origin Resource Sharing (CORS) --  is a W3C specification for cross domain access.
+Browser should send Origin off current page to the 3rd party server.
+third party can validate and send the response with Access controll header
+to allow third party to connect to website use below header
+//Response.AddHeader("Access-Control-Allow-Origin", "*");//instead of * we can use specific website to give access
+
+
+
+Request Header: Origin: http://www.fromdomain.com
+Response Header from 3rd party: Access-Control-Allow-Origin:http://www.fromdomain.com
+
+If this header is missing, or the origins don�t match, then the browser disallows the request. If all
+is well, then the browser processes the request.
+
+
+POST requests have more overhead associated with them than do GET requests.
+In terms of performance, GET requests can be up to two times faster than POST
+requests sending the same amount of data.
+
+Once used XHR object we have deference it. dont try to re use. bcs this cause memory issue
+
+By default, the following headers are sent when an XHR request is sent:
+Accept � The content types that the browser can handle.
+Accept-Charset � The character sets that the browser can display.
+Accept-Encoding � The compression encodings handled by the browser.
+Accept-Language � The languages the browser is running in.
+Connection � The type of connection the browser is making with the server.
+Cookie � Any cookies set on the page.
+Host � The domain of the page making the request.
+Referer � The URI of the page making the request. Note that this header is spelled incorrectly
+in the HTTP specifi cation and so must be spelled incorrectly for compatibility purposes.
+(The correct spelling of this word is �referrer�.)
+User-Agent � The browser�s user-agent string.
+
+
+
+
+Internet Explorer 7+, Firefox, Opera, Chrome, and Safari all support a native XHR object that can
+be created using the XMLHttpRequest constructor as follows:
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function(){
+if (xhr.readyState == 4){
+if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
+alert(xhr.responseText);
+} else {
+alert(�Request was unsuccessful: � + xhr.status);
+}
+}
+};
+
+xhr.timeout = 1000; //set timeout for 1 second (IE 8+ only)
+xhr.ontimeout = function(){
+alert(�Request did not return in a second.�);
+};
+xhr.overrideMimeType(�text/xml�);//it wont support in older browsers. if we set like this then response will be treated like XML even response is not XML.
+//so xhr.responseXML will have the data
+xhr.open(�get�, �example.txt�, false);
+xhr.setRequestHeader(�MyHeader�, �MyValue�);
+xhr.send(null);
+
+xhr.abort();//Cancel the request
+
+
+If no body data needs to be sent, you must pass in null, because this argument is required for some
+browsers.
+
+
+responseText � The text that was returned as the body of the response.
+responseXML � Contains an XML DOM document with the response data if the response
+has a content type of �text/xml� or �application/xml�.
+status � The HTTP status of the response.
+statusText � The description of the HTTP status.
+
+xhr.readyState
+
+0� Uninitialized. The open() method hasn�t been called yet.
+1 � Open. The open() method has been called but send() has not been called.
+2 � Sent. The send() method has been called but no response has been received.
+3 � Receiving. Some response data has been retrieved.
+4 � Complete. All of the response data has been retrieved and is available.
+
+You can access only URLs that exist on the same origin, which means the same
+domain, using the same port, and with the same protocol. If the URL specifi es any
+of these differently than the page making the request, a security error is thrown.
+
+
+
+CORS
+--------------
+XHR (except IE)
+
+Image pings
+JSONP
+
+
+Image pings-> we can make a call to third party server by img tags to call third party domain.
+here client can send data by query string. but they cannot receive the response. so it is one way communication
+var img = new Image();
+img.onload = img.onerror = function(){
+alert(“Done!”);
+};
+img.src = “http://www.example.com/test?name=Nicholas”;
+
+JSONP->JsonP works wih Script Tag.  like img tag script tag works with other domains without restriction.
+JSONP is short for “JSON with padding”.
+JSONP looks just like JSON except that the data is wrapped within what looks
+like a function call. For example:
+callback({ “name”: “Nicholas” });
+Ex: http://freegeoip.net/json/?callback=handleResponsess
+
+function handleResponse(response){
+alert(“You’re at IP address “ + response.ip + “, which is in “ +
+response.city + “, “ + response.region_name);
+}
+var script = document.createElement(“script”);
+script.src = “http://freegeoip.net/json/?callback=handleResponse”;
+document.body.insertBefore(script, document.body.firstChild);
+
+Advantage of JSONP over Image Ping is, here we can able to send and receive the data.
+Disadvantage is
+If that domain isn’t trusted, it could very easily swap the response for something more malicious
+The second downside is that there is no easy way to determine that a JSONP request has failed
+  but we use timeout technique but all the end users will not have same band width right :-)
+
+
+  Comet
+  ------------
+  AJAX is clinet requesting server. Here COMET is server pushing to client
+  There are two popular approaches to Comet:
+long polling and streaming.
+Long Poling ->we can do a long poling with setTimeout().
+browsers support this through the XHR object and using setTimeout().
+
+HTTP Streaming ->The second popular approach for Comet is HTTP streaming. Streaming is different than either
+polling technique, because it uses a single HTTP connection for the entire lifetime of the page.
+The browser sends a request to the server and the server holds that connection open, periodically
+sending data through the connection to the server.
+we can get the server data by listening for the readystatechange event and focusing on readyState 3. A readyState of 3
+will fi re periodically in all of these browsers as data is being received from the server.
+readyState is 4,the fi nished callback is executed and the entire content of the response is passed in
+
+function createStreamingClient(url, progress, finished){
+var xhr = new XMLHttpRequest(),
+received = 0;
+xhr.open(“get”, url, true);
+xhr.onreadystatechange = function()
+{
+var result;
+if (xhr.readyState == 3){
+//get only the new data and adjust counter
+result = xhr.responseText.substring(received);
+received += result.length;
+//call the progress callback
+progress(result);
+} else if (xhr.readyState == 4){
+finished(xhr.responseText);
+}
+};
+xhr.send(null);
+return xhr;
+}
+
+
+
+IE6 and below
+--------------------
+ActiveX controll used for ajax purpose
+
+//function for IE versions prior to 7
+function createXHR(){
+if (typeof arguments.callee.activeXString != �string�){
+var versions = [�MSXML2.XMLHttp.6.0�, �MSXML2.XMLHttp.3.0�,
+�MSXML2.XMLHttp�],
+i, len;
+for (i=0,len=versions.length; i < len; i++){
+try {
+new ActiveXObject(versions[i]);//if throws exception .21
+arguments.callee.activeXString = versions[i];
+break;
+} catch (ex){
+//skip
+}
+}
+}
+return new ActiveXObject(arguments.callee.activeXString);
+}
+
+
+
+
+
+CROSS
+-----
+To allow cross use bleow settings at server side
+<add name="Access-Control-Allow-Credentials" value="true" />
+<add name="Access-Control-Allow-Origin" value="*" />

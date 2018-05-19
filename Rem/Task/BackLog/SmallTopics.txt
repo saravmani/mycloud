@@ -1,0 +1,11 @@
+async await
+understand OWIN
+Understand OAuth
+Understand Garbage collection
+Push notifications on browsers
+Indexed DB
+Try some canvas
+
+
+asp.net
+how to secure and authenticate signalr or websocket

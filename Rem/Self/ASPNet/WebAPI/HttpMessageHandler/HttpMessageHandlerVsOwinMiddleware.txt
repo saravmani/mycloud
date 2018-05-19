@@ -1,0 +1,25 @@
+HttpmessageHandler Vs Owin Middleware
+1.#Main advantage of HttpMessageHanlder is we can inject it with routing logic 
+(This will called only on this particular routing logic).Also we could able to short certicute particualr routing, 
+like httpmessagehanler itself will produce the result without calling the Action
+
+2.#HttpmessageHandler  We can inject it before particular Action got invoked(it will called before on only that particular Action ). 
+Also global messagehandler also possible
+
+
+3. # HttpmessageHandler available for webapi. Owin can be done for webapi and MVC
+4. # Middleware will  intercept the request at very early stage of httprequest before 
+HttpMessageHandler of web api can process it.
+5. HttpmessageHandler By doing that, actually, you are strongly depend on web api pipeline
+6. #in HttpMessageHandler we will have complete builded RequestObject
+
+
+HttpMessageHandler
+------------------
+It is a part of web api. At this level, we have HttpRequestMessage, HttpResponseMessage, 
+so we can easily manipulate with those rather 
+than owin middleware( for example you can read the data from request message body
+ without worrying we did something that is effecting the message).
+
+
+# we can say middleware is more advance than HttpMessageHandler

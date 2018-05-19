@@ -1,0 +1,19 @@
+
+To change selecter default prefix
+--------------------------------------------
+Adjust your angular-cli.json: "prefix": "defaultPrefix" so that angular-cli will 
+use that for generating components.
+Ajust tslint.json like this:
+
+"directive-selector": [
+  true,
+  "attribute",
+  ["prefix1", "prefix2", "prefix3"],
+  "camelCase"
+],
+"component-selector": [
+  true,
+  "element",
+  ["prefix1", "prefix2", "prefix3"],
+  "kebab-case"
+],

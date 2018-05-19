@@ -1,0 +1,3 @@
+
+To generate App Id
+ionic io init

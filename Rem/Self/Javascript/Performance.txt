@@ -1,0 +1,26 @@
+Chrome was the fi rst browser to introduce
+an optimizing engine that compiles JavaScript into native code. Sin
+
+reduce scope chain. bcs if chain size increase thn search also will get increase
+It is always slower to access a global variable than it is to
+access a local variable, because the scope chain must be traversed
+
+
+Global variables and functions are always more expensive to use than local
+ones because they involve a scope chain lookup
+
+Ex: 
+If we use document object directly in many places will give performance hit. bcs
+it will do scope chain lookup
+
+to avoid this we do like this
+
+function fn()
+{
+var doc = document;
+//use doc variale insteed of directly using document object.
+}
+
+
+The with statement should be avoided where performance is important
+because of the extra steps in the scope chain lookup.

@@ -1,0 +1,125 @@
+Performance tuning
+---------------------
+	Dont take length of the array inside loop. Take and assign it into seperate variable then use to gain performance
+	var myLength = myArray.length; 
+	for ( var i = 0; i < myLength; i++ ) {
+ 
+ 	   // do stuff
+ 
+	}
+
+The DOM is slow; you want to avoid manipulating it as much as possible. jQuery introduced detach() in version 1.4 to help address this issue, 
+allowing you to remove an element from the DOM while you work with it.
+Ex:
+	var table = $( "#myTable" );
+	var parent = table.parent();	 
+	table.detach(); 
+	// ... add lots and lots of rows to table 
+	parent.append( table );
+
+
+
+
+Foreach in jQuery
+------------------
+$.each( myArray, function( i, item ) {
+ 
+    myHtml += "<li>" + item + "</li>";
+ 
+});
+
+
+
+$(function () {
+	$("#album-list img").mouseover(function () {
+		$(this).animate({ height: '+=25', width: '+=25' })
+			.animate({ height: '-=25', width: '-=25' });
+});
+});
+
+
+
+Paste Event
+---------------------
+  $("#textBoxBusinessRegNo").bind('paste', function (e) {//Do something});
+
+Since compiling the template is often the most expensive operation in
+the process, it’s often a good idea to compile it once and save the compiled
+function in a variable.
+This way, you can execute the compiled template multiple times while
+only performing the compilation once.
+
+
+JSON objects leverage two types of data structures to represent
+data: collections of name/value pairs, and ordered lists of values (aka arrays).
+
+
+$("#container").load('ajax_content.html')
+
+
+Unobtrusive JavaScript doesn't inter mix JavaScript code in your page markup. Eg : Instead of using events like onclick and onsubmit,
+ the unobtrusive JavaScript attaches to elements by their ID or class based on the HTML5 data- attributes.
+
+.css({color: "red"});
+
+
+Now, let’s see how easy it is to access elements with a parent-child relation and grab
+the <span> from our original example:
+<div class="normal">
+<p>Hello World!</p>
+<div>
+<span>Welcome!</span>
+</div>
+</div>
+
+$(".normal > span").text("Welcome to jQuery!");
+
+
+
+Remember that the DOM tree is loaded in a top-to-bottom
+fashion, with the browser loading each element as it encounters it in the tree structure.
+The browser triggers a window.onload event as soon as it is done parsing the DOM tree
+and loading all the scripts, style sheets, and other resources. The $() listens for this
+event and executes the function (which is actually an event handler!) that attaches
+various element event handlers.
+
+Select the controls which are having custome attributes
+-------------------------------------------------------
+$("input[CusomeAttribute='Value']")
+
+
+Preventing default behaviour of the control
+-------------------------------------------
+$("a").click(function(event){
+  event.preventDefault();
+	}); 
+//preventDefault method is used stop the default behaviour of the controls
+
+
+
+Convert jsont to Object
+-------------------------------
+jQuery.parseJSON(RuleScoringFiled);
+
+Serialize object to json string
+---------------------------------------
+JSON.stringify()
+
+$("#select_id option[value='foo']").
+
+
+
+ $("form").serialize();
+
+
+Jquery Ajax
+ $("#div1").load("demo_test.txt #p1");//Binds respose data (data contains p1 as id) to given div1 element
+Ed: <p id="p1">This is some text in a paragraph.</p>
+
+
+
+$("p").filter(".intro")
+
+
+ $("p").not(".intro");
+//returns all <p> elements that do not have class name "intro":

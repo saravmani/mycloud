@@ -1,0 +1,142 @@
+Latest .net Famework 4.7.1
+
+
+Framework 4.7.1
+--------------------------
+ The .NET Framework 4.7.1 fully supports .NET Standard 2.0 
+ Support for configuration builders - Configuration builders allow developers to inject and build configuration 
+ settings for applications dynamically at run time. Custom configuration builders can be used to modify existing data in a 
+ configuration section or to build a configuration section entirely from scratch. 
+
+ Run-time feature detection
+
+ Value tuple types are serializable -  System.ValueTuple and its associated generic types are marked as Serializable, 
+ which allows binary serialization. This should make migrating Tuple types, such as Tuple<T1,T2,T3> and Tuple<T1,T2,T3,T4>, 
+ to value tuple types easier.
+
+ Portable PDB - this files can be created and read in all platroms. if the application generates dll at run time 
+ then this portable pdb will give good performance improvement
+
+ .net 4.5
+ ----------------------
+ Edit and Continue feature -  while debugging time we can able to modify the code on the fly
+ $ReturnValue - Inspecting Method return value while debugging using Autos 
+ 	Window as well as a pseudo variable
+
+
+Famework 4.6
+---------------
+	MVC 6, ASP.NET 5, Roslyn Compiler
+as part of .net 2015 release - .net core, .net framework 4.6, 
+
+
+Framework 4.0
+-------------------
+Lots of thread safe collections has released.Pre .net 4.0 most collections in .Net are not thread safe and we have to use locking for thread safty
+
+
+MVC6 Features
+-------------
+	Self hosting is possible()
+	In ASP.NET vNext uses the Roslyn Compiler. Using the Roslyn Compiler we do not need to compile the application, it automatically compiles the application code. You will edit a code file and can then see the changes by refreshing the browser without stopping or rebuilding the project.
+	MVC6 includes a new environment-based configuration system. Unlike something else it depends on just the Web.Config file in the previous version.
+
+
+
+Framework 4.5 new Features
+----------------------------
+	1. Built in support for zip file. Now in 4.5 framework we can abel to use inbuild system utilities to create zip file.
+		Ex:
+			system.io.compression.ZipFile.CreateFromDirectory(@"D:\data",@"D:\data.zip");
+
+	2. async and await
+	3. Regex timeout (Regex constructor will accept time out now. this will be helpful to avoid DOS attack)
+	Ex:
+	 var regEx = new Regex(@”^(\d+)+$”, RegexOptions.Singleline, TimeSpan.FromSeconds(2));)
+	4. Profile optiomisation(to improve application startup performance)
+		We all know .NET code is in a half compiled format. During runtime, the JIT (Just-in-Time) compiler runs and translates this half compiled IL code to native machine code. One of the big complaints about JIT is that when a .NET applications runs the first time, it runs slow as JIT is busy translating IL code to machine code.
+		 Profile is nothing but a simple file which has a list of methods which the application will need during startup. So when the application starts, a background JIT runs and starts translating IL code for those methods into machine / native code.
+		This background JIT compilation of startup methods happens across multiple processors thus minimizing the start up time further. Also note you need to have a multicore box to implement profile optimization. In case you do not have a multicore box then this setting is ignored.
+		ProfileOptimization.SetProfileRoot(@"D:\ProfileFile");
+
+	5. GC Background cleanup
+		In previous .net versions normally if GC thread doing the cleanup activity, all the application threads are suspended.
+		Because of this application will be less responsive for that moveement.
+		To overcome this "Server GC" has introduced. In server GC there is one more thread created which runs in the background. This thread works in the background and keeps cleaning generation 2 objects.
+		 Due to double GC threads running, the main application threads are less suspended.
+		 To enable server GC, we need to use the gcServer XML tag and enable it to true.
+			<configuration>
+			   <runtime>
+			      <gcServer enabled="true"/>
+			   </runtime>		
+			</configuration>
+
+	6. Setting Default culture to app domain
+		In 4.5 we can set culture at the app domain level and all the threads inside that appdomain will inherit that culture 
+			CultureInfo culture = CultureInfo.CreateSpecificCulture("fr-FR");
+			  qCultureInfo.DefaultThreadCurrentCulture = culture;
+
+	7. Array support more than 2GB size
+	8. Expando object
+		The ExpandoObject is part of the Dynamic Language Runtime (DLR). One can add and remove members from this object at run time.
+	Create a dynamic instance.
+		dynamic Person = new ExpandoObject();
+		Person.ID = 1001;
+		Person.Name = "Princy";
+		Person.LastName = �Gupta�; 
+
+
+
+
+
+.net framework 4.5 - c# 5.0 - VSTS 2012
+
+
+
+VSTS 2013 - MVC5 - webapi2
+.net framework 4.0 - CLR 4.0 - DLR(in frame 4.0 DLR has added as part of CLR)
+
+VSTS 2008
+	LINQ - language integrated query
+
+
+
+
+
+NOTE:
+# Applications that target an earlier version of the .NET Framework but are running on the .NET Framework 4.7.1  is possible
+
+
+#.net Standard
+=========================
+If we build Class library project in .Net Standard (Target framework) then we can use this created library in 
+.net core, Xamarine,(DBT) .net Framework (4.6 and above)
+For example, a library that targets .NET Standard 1.3 will be compatible with apps that target .NET Framework 4.6, .NET Core 1.0, Universal Windows Platform 10.0, and any other platform that supports .NET Standard 1.3.
+
+ The .NET Framework 4.7.1 fully supports .NET Standard 2.0 
+
+ADO.NET versions
+---------------------------
+ADO
+ADO.NET (2002)
+ADO.NET 2.0 (2004)
+ADO.NET 3.5 (2008)
+ADO.NET 4.0 (2010)
+
+Entity Framework
+------------------------
+EF - 2008
+EF4 - 2010
+EF5 - 2012
+EF6 - 2013
+EF6.1.3 - March 10 2015
+EF Core 1.0 (EF7) -  27th June 2016 
+	Entity Framework 7, but was renamed as "Entity Framework Core 1.0" to
+	highlight that it was a complete 
+	rewrite rather than an incremental upgrade and it doesn't replace EF6.
+EF Core 2.0 - 14 August 2017  
+	was released on 14 August 2017 along with Visual Studio 2017 15.3
+	and ASP.NET Core 2.0
+
+
+SignalR 3 (released along with MVC 6, vsts 2015)

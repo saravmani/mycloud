@@ -1,0 +1,7 @@
+Typesafety
+better performance
+code reusability
+
+#.net 2.0 introduced
+
+before generics the Generalisation accomplished by casting types to and from the universal base type Object. 

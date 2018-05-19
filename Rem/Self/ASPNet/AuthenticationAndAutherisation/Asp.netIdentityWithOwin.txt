@@ -1,0 +1,18 @@
+ASP.Net Identity on top of OWIN
+
+The "Microsoft.AspNet.Identity.Owin" package provides many useful 
+extensions and we will use this while working with ASP.Net Identity on top of OWIN. 
+It also downloads some other dependency packages. One of those dependency packages is 
+"Microsoft.Owin.Security.OAuth". This is a core package required to 
+support any standard OAuth 2.0 authentication workflow. 
+The “Microsoft.Owin.Host.SystemWeb” namespace contains the types 
+related to handling OWIN requests. 
+It helps us to run OWIN-based applications on IIS using the ASP.NET request pipeline.
+
+PM> Install-Package Microsoft.AspNet.Identity.Owin
+PM> Install-Package Microsoft.Owin.Host.SystemWeb
+
+ASP.NET Identity also supports the Entity Framework. 
+Here we will use ASP.Net identity with Entity Framework, so we need to install this via Nuget packages.
+
+PM> Install-Package Microsoft.AspNet.Identity.EntityFramework

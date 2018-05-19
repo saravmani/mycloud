@@ -1,0 +1,25 @@
+
+The semantics of some applications require that we log all actions and be able to
+recover after a crash by reinvoking those actions. The Command Pattern can support
+these semantics with the addition of two methods: store() and load(). In Java we could
+use object serialization to implement these methods, but the normal caveats for using
+serialization for persistence apply.
+How does this work? As we execute commands, we store a history of them on disk.
+When a crash occurs, we reload the command objects and invoke their execute()
+methods in batch and in order.
+Now, this kind of logging wouldn’t make sense for a remote control; however, there
+are many applications that invoke actions on large data structures that can’t be quickly
+saved each time a change is made. By using logging, we can save all the operations
+since the last check point, and if there is a system failure, apply those operations to our
+checkpoint. Take, for example, a spreadsheet application: we might want to implement
+our failure recovery by logging the actions on the spreadsheet rather than writing a copy
+of the spreadsheet to disk every time a change occurs. In more advanced applications,
+these techniques can be extended to apply to sets of operations in a transactional
+manner so that all of the operations complete, or none of them do.
+<<interface>>
+Command
+execute()
+undo()
+store()
+load()
+As each command  is executed, it is stored on disk.

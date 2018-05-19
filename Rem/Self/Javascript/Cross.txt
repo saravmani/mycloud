@@ -1,0 +1,3 @@
+To allow cross use bleow settings at server side
+<add name="Access-Control-Allow-Credentials" value="true" />
+<add name="Access-Control-Allow-Origin" value="*" />

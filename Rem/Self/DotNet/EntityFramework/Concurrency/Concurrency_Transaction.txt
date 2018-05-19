@@ -1,0 +1,74 @@
+Entity Framework Concurrency and TransactionManagement
+------------------------------------------------------------
+
+Optimistic concurrency: 
+--------------------------------
+    In this approach, whenever data is requested from
+the database, the data is read and kept in the application memory. No explicit
+locks are put at the database level.
+Entity Framework supports
+optimistic concurrency control as we are working at the entity layer. Thus,
+all the data will be present in memory once it is read.
+when using optimistic concurrency is that if there are any conflicts, these conflicts
+will need to be handled by the application itself.
+The most important thing when
+using optimistic concurrency control is to have a conflict handling strategy in our
+application, and to let the application user know if their changes are not persisted
+due to conflicts. Optimistic concurrency essentially means allowing the conflict to
+happen and then dealing with it in an appropriate manner.
+
+
+Pessimistic concurrency: 
+------------------------------
+    In this approach, whenever data is requested
+from the database, the data is read, and an explicit lock will be acquired
+on this data so that no other user can request this data. This will decrease
+the chances of having concurrency-related problems.
+Entity Framework supports optimistic concurrency control as we are working at the entity layer. 
+Thus,all the data will be present in memory once it is read. We can configure
+Entity Framework to use pessimistic concurrency too but pessimistic
+concurrency is not directly supported by Entity Framework.
+
+the goal of pessimistic concurrency is to never let any conflicts happen.
+
+This is achieved by putting an explicit lock on the
+records before using them.
+
+1. A read-only lock
+2. An update lock
+
+
+When a read-only lock is put on a record, the application can only read the record.
+If the application wants to update the records, it will have to acquire an update lock
+on the record. If a read-only lock is put on a record, this record can still be used by
+the requests that want a read-only lock. However, if an update lock is required, the
+request will have to wait till all the read-only locks are released. Along the same
+lines, if an update lock is put on the record, no other request can put a lock on this
+record, and the request will have to wait until the existing update lock is released.
+From the preceding description of pessimistic concurrency, it might appear as if
+using pessimistic concurrency will solve all the concurrency-related issues, as we
+won't have to deal with these issues in our application. However, this is actually
+not true. There are a few problems and overheads with using pessimistic
+concurrency that we need to keep in mind before we decide to choose it for
+concurrency management. The following are a few of the problems that we face
+while using pessimistic concurrency:
+• Our application will have to manage all the locks that every operation
+is acquiring
+• The application performance will decrease due to the memory requirements
+of the locking mechanism
+The possibility of deadlock conditions increases as multiple requests are waiting
+for locks acquired by each other. Due to these reasons, Entity Framework does not
+support pessimistic concurrency directly. If we want to use pessimistic concurrency,
+we have to write custom code for database access. Also, when using pessimistic
+concurrency, LINQ to Entities will not work properly.
+
+
+We should try not to use pessimistic concurrency as much as
+possible. The concurrency-related conflicts can be handled using
+a TIMESTAMP field or the ROWVERSION type
+
+
+-----------------------------------------------------------------------------------
+The default behavior is always the last request wins.
+It doesn't matter whether multiple requests modify
+the same data or not.

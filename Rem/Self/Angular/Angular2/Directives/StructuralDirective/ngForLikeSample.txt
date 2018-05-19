@@ -1,0 +1,47 @@
+object. The TemplateRef provides the content to insert
+into the container, and the context object provides the data for the implicit value.
+
+# I tried to change $implicit name. but it doesn't work
+
+To provide templates with the context object
+in a type-safe way,  defined a class called PaIteratorContext, whose only property is called $implicit.
+
+he directive has no special knowledge about the data it is working with and no knowledge of the
+content that is being generated. Angular takes care of providing the directive with the context
+
+ template can be reused to create multiple views
+
+
+ Providing Additional Context Data
+ -----------------------------------------
+ export class PaIteratorDirective {
+  constructor(private container: ViewContainerRef,private template: TemplateRef<Object>) { 
+
+  }
+  @Input("paForOf")  dataSource: any;
+  ngOnInit() {
+    this.container.clear();
+    for (let i = 0; i < this.dataSource.length; i++) {
+      this.container.createEmbeddedView(this.template,
+        new PaIteratorContext(this.dataSource[i],i, this.dataSource.length));
+    }
+  }
+}
+class PaIteratorContext {
+  odd: boolean; even: boolean; first: boolean; last: boolean;
+  constructor(public $implicit: any, public index: number, total: number) {
+    this.odd = index % 2 == 1;
+    this.even = !this.odd;
+    this.first = index == 0;
+    this.last = index == total - 1;
+  }
+}
+
+<template [paForOf]="getProducts()" let-item let-i="index" let-odd="odd" let-even="even">
+    <tr [class.bg-info]="odd" [class.bg-warning]="even">
+        <td>{{i + 1}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.category}}</td>
+        <td>{{item.price}}</td>
+    </tr>
+</template>

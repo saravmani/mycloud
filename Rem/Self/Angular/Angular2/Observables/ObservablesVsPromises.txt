@@ -1,0 +1,15 @@
+Observables Vs Promises
+------------------------------
+
+Observables are cancellable
+retryWhen and retry availabile
+# It is stream of events. for each event callback will get called 
+Observable provides map, forEach, reduce, debounce etc.,
+There are also powerful operators like retry(), or replay()
+
+
+Observables can be retried using one of the retry operators provided by the API, 
+such as retry and retryWhen. On the other hand, Promises require the caller to have access 
+to the original function that returned the promise in order to have a retry capability.
+
+Often Observable is preferred over Promise because it provides the features of Promise and more.

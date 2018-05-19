@@ -1,0 +1,93 @@
+NPM is best when compare to bower. bower is only for front end css maager.
+but NPM can be used for All purpose. js, css etc.,
+
+References:
+	1. https://addyosmani.com/blog/using-npm-offline/
+	    //For offline installation
+
+Commands
+------------
+npm -v   ->to check node js versio which is installed
+npm install npm@latest -g -> to update the npm
+
+
+npm install -g typescript@2.0   -> To install typescript version 2
+
+
+npm init
+--this will create package.json file with default settings.
+--once package.json got created then if we install any other package
+--then we have to use npm install <packageName> --save
+--this will add the package details in package.json's dependencies section
+
+
+npm i concurrently --save-dev
+//this package used to execute start commands concorrently
+
+
+npm link <<global module>> // used to link existing global module witth local directory
+//ex: we can install express @ globally and we can link to multiple projects with npm link command
+
+
+to update npm
+----------------
+npm install npm -g
+
+
+npm update modulename   //to updaate module specificattly
+npm update //all modules
+
+If you just want to check to see if any packages are outdated, use the following:
+npm outdated
+
+npm ls  //to find list installed modules
+npm ls -g // to find list of moudels installed globally
+
+npm la modulename // this will tell more details of module PLUS
+#IF ANY DEPENDENCY TO INSTALLED THIS WILL GIVE SUGGESTION
+
+
+You can also install a module that’s in a folder on the filesystem, or a tarball
+that’s either local or fetched via a URL:
+npm install http://somecompany.com/somemodule.tgz
+
+#tarball is one on the file format
+
+
+If you just want to check to see if any packages are outdated, use the following:
+npm outdated
+
+install from git directly
+----------------------------
+npm install https://github.com/visionmedia/express/tarball/master
+
+
+npm via PUTTY
+--------------------
+If you’re working with Node/npm in Linux using the PuTTY application in
+Windows, you may notice that you don’t get a clean print out when using
+the npm commands. Instead of nicely defined lines showing dependencies,
+you get strange characters.
+To fix this problem, you need to instruct PuTTY to translate characters
+using UTF-8 encoding. In PuTTY, click the Window->Translation option,
+and select UTF-8 from the dropdown window.
+
+
+working with npm configuration
+-------------------------------------
+npm config list  //gives list of configurations
+
+npm config delete keyname
+npm config set keyname value
+
+npm config set save=true
+npm config set save-exact=true
+This automatically adds a --save flag (to save package in dependencies)
+and a --save-exact flag (saved with exact version, not npm’s semver range default)
+when you install new packages.
+
+
+
+You can also search for a module using whatever terms you think might return
+the best selection:
+npm search html5 parser

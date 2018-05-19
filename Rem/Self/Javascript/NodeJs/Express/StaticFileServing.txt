@@ -1,0 +1,34 @@
+//this example writes both text
+var express = require("express");
+var app = express(); 
+var path=require('path');
+
+app.get("/test",(req,res)=>{
+    res.sendFile(path.join(__dirname,"parthPart1"));
+})
+app.listen(3000,()=>{
+console.log("express listening on 3000");
+});
+
+
+using static middleware
+----------------------
+var express = require("express");
+var path = require("path");
+var http = require("http");
+var app = express();
+var publicPath = path.resolve(__dirname, "public");//it is telling static directory to express
+app.use(express.static(publicPath));
+app.use(express.static(__dirname+"/node_modules/jquery/dist));
+//If we want to serve files directly from node moudules
+//because in later if we update node pacakge then it will automatically pick latest
+app.use(express.static(__dirname+"/node_modules/bootstrap/dist/css));
+app.get("/someAPi", (req, res) => {
+    res.end("some data");
+});
+app.use(function (request, response) {
+    response.statusCode = 404;
+    response.end("no resource");
+});
+http.createServer(app).listen(3000);
+

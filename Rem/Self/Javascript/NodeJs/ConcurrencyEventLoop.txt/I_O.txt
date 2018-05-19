@@ -1,0 +1,8 @@
+What is I/O?
+Input and output
+
+any communication btn process and external is I/O
+
+process to disk, memory etc.,
+
+Node uses Event loop to handle the requests without locking main execution

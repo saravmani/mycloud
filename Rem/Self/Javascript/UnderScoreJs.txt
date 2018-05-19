@@ -1,0 +1,14 @@
+Underscore is a JavaScript library that provides a whole mess of useful functional programming helpers without 
+extending any built-in objects. It’s the answer to the question: “If I sit down in front of a blank HTML page, and want to start being productive
+ immediately, what do I need?” … and the tie to go along with jQuery's tux and Backbone's suspenders.
+
+
+we can use it for paging, of collections
+
+_take(arrayObject,1,2).. like this. but this is not correct syntax
+
+_.debounce(function(){},300);
+this will call the funciton in 300 ms delay. in middle if this code execute again, this wont call the function secondtime within 300 ms.
+this we can use it for quick search text boxes. there users will type fastly.
+
+

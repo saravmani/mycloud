@@ -1,0 +1,16 @@
+Tags-> how to trust self signed certificate
+
+In IIS express we can able to hoste https.
+IIS express will provide the certificate.
+this certificate will be available in 
+
+In run prompt type MMC
+right lick->> select add remove snapping-> selec certificate-> computer account
+then add for current user
+right lick->> select add remove snapping-> selec certificate-> my user account
+
+Console root-> Certificates ->Personal-> Certificates
+from here we can export it as .cer formate
+and import into trusted root certificates.
+to import
+Console root-> Certificates ->Trusted Root Certificate Authority->Certificates

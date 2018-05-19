@@ -1,0 +1,1 @@
+Gang of Four (GoF) patterns are classified into three categories: creational, structural, and behavioral.

@@ -1,0 +1,24 @@
+import { Injectable } from "@angular/core";
+import { Http, Headers, RequestOptions } from "@angular/http";
+import { Observable } from "rxjs/Rx";
+
+@Injectable()
+export class CometService {
+    objHeaders: Headers;
+    objRequestOptions: RequestOptions;
+    constructor(private objHttp: Http) {
+         
+        var objHeaders = new Headers({ 'Content-Type': 'application/json', 'Accept': 'q=0.8;application/json;q=0.9' });
+        this.objRequestOptions = new RequestOptions({ headers: objHeaders});
+
+    }
+    postData(data: any) {
+        var postData = JSON.stringify(data);
+        this.objHttp.post("http://localhost:63930/api/DriveManager/AddUserActivity", postData, this.objRequestOptions).subscribe();
+    }
+    private requestServer(verb, data: string) {
+
+
+    }
+
+}

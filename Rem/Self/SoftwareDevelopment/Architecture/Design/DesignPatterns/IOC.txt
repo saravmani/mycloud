@@ -1,0 +1,19 @@
+IOC is a design concept. Inversion of control.
+Frome work will Invoke methods instead of we are calling it.
+IOC we can achive using DI(dependency injection)
+
+Inversion of Control (IoC) means that objects do not create other objects on
+ which they rely to do their work. 
+ Instead, they get the objects that they need from an outside source 
+ (for example, an xml configuration file).
+
+
+Dependency Injection is sometimes compared with Abstract Factory Design Pattern, 
+but there is a slight difference between both approaches. 
+DI has a Framework working behind to solve dependencies by calling the factories and the
+ registered services.
+
+
+"IoC" stands for "inversion of control", which is a general pattern where a 
+framework calls into application code. 
+An IoC container constructs your objects for you, which "inverts" the usual flow of control.

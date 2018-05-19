@@ -1,0 +1,70 @@
+Need to do two steps to host webapi as self hosting
+1. Use HttpConfiguration to configure a Web API - HttpSelfHostConfiguration
+2. Create HttpServer and start listening to incoming http requests -HttpSelfHostServer
+
+
+
+In colsole application add below nuget package
+Microsoft ASP.NET Web API 2.2 Self Host
+Microsoft.AspNet.WebApi.WebHost.5.2.4
+
+
+static void Main(string[] args)
+{
+
+    var config = new HttpSelfHostConfiguration("http://localhost:1234");
+    config.Routes.MapHttpRoute("default",
+                                "api/{controller}/{id}",
+                                new { controller = "Home", id = RouteParameter.Optional });
+
+    var server = new HttpSelfHostServer(config);//Server      
+    var task = server.OpenAsync();
+    task.Wait();
+
+    Console.WriteLine("Web API Server has started at http://localhost:1234");
+    Console.ReadLine();
+}
+
+This will automaticall calls controller and controller's method.
+
+
+
+
+Another simple HTTP server without COntroller actions.
+-------------------------------------------------------------
+we can achieve this with HttpMessageHandler class
+
+1. Create HttpMessageHandler class
+class MyWebAPIMessageHandler : HttpMessageHandler
+{
+    protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
+    {
+        var task = new Task<HttpResponseMessage>(() => {
+            var resMsg = new HttpResponseMessage();
+            resMsg.Content = new StringContent("Hello World!");
+            return resMsg;
+        });
+
+        task.Start();
+        return task;
+    }
+}
+2. Then use it :-)
+
+class Program
+{
+    static void Main(string[] args)
+    {
+
+        var config = new HttpSelfHostConfiguration("http://localhost:1234");
+
+        var server = new HttpSelfHostServer(config, new MyWebAPIMessageHandler());
+        var task = server.OpenAsync();
+        task.Wait();
+
+        Console.WriteLine("Web API Server has started at http://localhost:1234");
+        Console.ReadLine();
+    }
+}
+
+Note: for this also we need HttpSelfHostCOnfiguration and HttpSelfHostServer from Nuget package manager

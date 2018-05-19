@@ -1,0 +1,30 @@
+MOQ is a mock testing framework to mock the part of the application.
+we can able to do modular testing also with this.
+
+in this, we can by pass the certain module.
+
+ex:
+
+public void main()
+{
+var objMailComponent = new MailComponent();
+objMailComponent.sendMail();//this can be mocked
+
+//other code
+}
+	public class MailComponent()
+{
+public virtual void sendMail()//the methods should be virtual then only MOQ can override this method
+{}
+}
+
+
+Test application
+----------------
+public void test()
+{
+Mock<MailComponentt> objMockcomp= new Mock<MailComponentt> ();
+objMockcomp.setup(x=>x.sendMail()).Returns(true);
+}
+
+

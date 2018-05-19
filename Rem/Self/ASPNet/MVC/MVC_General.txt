@@ -1,0 +1,58 @@
+MVC is an architectural pattern to implement user interfaces
+
+//MvcAction methods can return IActionReslut
+//so we can able to create object directly to controller and call the action method 
+//from unit testing applicaitons. so unit testing will be easier
+
+The ASP.NET MVC is a Framework  which implements the MVC pattern
+    provides greatly improved separation of concerns
+Generally MVC is a architectural pattern
+
+
+Model - They are often referred
+to as POCOs which stands for Plain Old CLR Objects. These classes are also used to
+model and enforce any business logic such as shopping basket logic,
+
+
+Controllers
+    getting request from view, 
+    obtain data model data, and typically return this data to a view for displaying as HTML.
+
+
+Main Advantages of MVC
+    distinct layers, testable, and maintainable
+
+
+Annotations and MetadataType
+--------------
+Splitting DataAnnotations into Another File Using MetaDataType
+
+Some developers prefer the model classes as clean as possible, therefore preferring not to add
+DataAnnotations to them. This is achieved by using a MetaDataType class as follows.
+This can be a useful strategy when working with
+classes that have been automatically created that you do not want to alter, for example, when using Entity
+Framework Database First. I
+
+ex:
+medatadata.cs file
+----
+[MetadataType(typeof(ProductMetaData))]
+public partial class Product
+{
+}
+public class ProductMetaData
+{
+[Display(Name = "Product Name")]
+public string Name;
+}
+
+model.cs file
+public partial class Product
+{
+public int ID { get; set; }
+public string Name { get; set; }
+public string Description { get; set; }
+public decimal Price { get; set; }
+public int? CategoryID { get; set; }
+public virtual Category Category { get; set; }
+}

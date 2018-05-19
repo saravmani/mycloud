@@ -1,0 +1,11 @@
+npm install typings --global
+
+typings is utility to manage typescript definitions.
+
+Typings is the simple way to manage and install TypeScript definitions. 
+It uses typings.json, which can resolve to the Typings Registry, GitHub, NPM, Bower, HTTP and local files.
+ Packages can use type definitions from various sources and different versions, knowing they will never conflict for users.
+
+
+declaring array with specific type
+private _listeners: MyType[] = [];

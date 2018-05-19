@@ -1,0 +1,5 @@
+encrypt mobile soruce code
+----------------------------------
+
+cordova plugin add cordova-plugin-crypt-file
+plugin to encrypt all mobile source code, so if hacker will unzip the file he will get that all the encrypted files inside the www folder of our apps (the files that are included in the generated APK).

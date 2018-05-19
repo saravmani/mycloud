@@ -1,0 +1,34 @@
+Difference btn EventEmitter and callbacks
+----------------------------------------------
+EventEmitter we can have multiple listeners
+
+EventEmitter s are extension points,
+EventEmitter are hooks
+
+
+EventEmitter used for communication btn objects in node
+it is a core of asynchronous event drivven architecture
+Many of node modules inherited from EventEmitter
+
+Event emitters emits named events. that cause listeners to be called
+
+Two main features of EventEmitter
+------------------------------------
+registering listeners
+emitting named events
+
+Ex:
+
+const EventEmitter = require('events');
+
+class Logger extends EventEmitter{
+
+}
+
+const objLogger = new Logger();
+objLogger.emit('eventName');
+objLogger.on('eventName',()=>{})
+
+EventEmitter provides once method. this will call once
+
+objLogger.once('uncaughtexception',(err)=>{});

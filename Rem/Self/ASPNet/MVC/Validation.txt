@@ -1,0 +1,250 @@
+  ModelState object to record validation errors
+
+  Generate a summary of validation errors Use the Html.ValidationSummary helper method
+  Display property-level validation errors Use the Html.ValidationMessageFor helper method
+
+  Create a custom validation attribute Derive from the ValidationAttribute class
+  Define a self-validating model Implement the IValidatableObject interface. 20
+
+  Use client-side validation Add the Microsoft unobtrusive validation package to the applicatiton
+
+  Perform remote validation Define an action method that returns a JsonResult and add  the Remote attribute to the model property to be validated.
+
+
+
+[DataType(DataType.Date)]
+public DateTime Date { get; set; }
+
+[DataType()]
+public DateTime Date { get; set; }
+
+
+
+
+Explicit validation
+------------------------
+if (string.IsNullOrEmpty(appt.ClientName)) {
+ModelState.AddModelError("ClientName", "Please enter your name");
+}
+if (ModelState.IsValidField("Date") && DateTime.Now > appt.Date) {
+ModelState.AddModelError("Date", "Please enter a date in the future");
+}
+
+
+Built in validation attributes
+----------------------------------------
+Require
+Range
+Compare
+RegularExpression
+StringLength
+
+//Used for check box.
+[Range(typeof(bool), "true", "true", ErrorMessage="You must accept the terms")]
+
+
+Custome Validation
+-------------------------
+inherit ValidationAttribute
+
+ex:
+public class MustBeTrueAttribute : ValidationAttribute {
+public override bool IsValid(object value) {
+return value is bool && (bool)value;
+}
+}
+
+
+[MustBeTrue(ErrorMessage="You must accept the terms")]
+public bool TermsAccepted { get; set; }
+
+
+can also derive new classes from the built-in
+attributes, which gives me the ability to extend their behavior
+
+public class FutureDateAttribute : RequiredAttribute
+{
+    public override bool IsValid(object value)
+    {
+        return base.IsValid(value) && ((DateTime)value) > DateTime.Now;
+    }
+}
+
+
+Model Level Validation
+------------------------------
+Normally we will do validaitons on property level.
+if we want to do some business validations on Model level ex: one peroperty value should be validated with other fields
+
+public class NoJoeOnMondaysAttribute : ValidationAttribute
+{
+    public NoJoeOnMondaysAttribute()
+    {
+        ErrorMessage = "Joe cannot book appointments on Mondays";
+    }
+    public override bool IsValid(object value)
+    {
+        Appointment app = value as Appointment;
+        if (app == null || string.IsNullOrEmpty(app.ClientName)
+...................
+..................
+
+
+namespace ModelValidation.Models
+{
+    [NoJoeOnMondays]
+    public class Appointment
+    {
+        [Required]
+        public string ClientName { get; set; }
+        [DataType(DataType.Date)]
+        [FutureDate(ErrorMessage = "Please enter a date in the future")]
+        public DateTime Date { get; set; }
+        [MustBeTrue(ErrorMessage = "You must accept the terms")]
+        public bool TermsAccepted { get; set; }
+    }
+}
+
+An important point to note is that model-level validation attributes will not be used when a property-level
+problem is detected.
+#After user clears all property level errors then only model level error will get displaied
+
+
+
+
+Self-Validating Models
+--------------------------
+Another validation technique is to create self-validating models, where the validation logic is part of the model class.
+A self-validating model implements the IValidatableObject interface.
+
+public class Appointment : IValidatableObject
+{
+    public string ClientName { get; set; }
+    [DataType(DataType.Date)]
+    public DateTime Date { get; set; }
+    public bool TermsAccepted { get; set; }
+    public IEnumerable<ValidationResult> Validate(ValidationContext
+    validationContext)
+    {
+        List<ValidationResult> errors = new List<ValidationResult>();
+        if (string.IsNullOrEmpty(ClientName))
+        {
+            errors.Add(new ValidationResult("Please enter your name"));
+        }
+        if (DateTime.Now > Date)
+        {
+            errors.Add(new ValidationResult("Please enter a date in the future"));
+        }
+        if (errors.Count == 0 && ClientName == "Joe"
+        && Date.DayOfWeek == DayOfWeek.Monday)
+        {
+            errors.Add(
+            new ValidationResult("Joe cannot book appointments on Mondays"));
+        }
+        if (!TermsAccepted)
+        {
+            errors.Add(new ValidationResult("You must accept the terms"));
+        }
+        return errors;
+    }
+}
+
+If the model class implements the IValidatableObject interface, then the Validate method will be called after
+the model binder has assigned values to each of the model properties.
+
+One benefit of this approach is that the model- and property-level validation is combined in one place, which
+means that all of the errors are displayed together
+
+
+
+
+Client side validation
+====================================================================================================================
+<add key="ClientValidationEnabled" value="true" />
+<add key="UnobtrusiveJavaScriptEnabled" value="true" />
+</appSettings>
+
+
+You can also configure client-side validation on a per-view basis by setting the
+HtmlHelper. ClientValidationEnabled and HtmlHelper.UnobtrusiveJavaScriptEnabled in a Razor code block
+
+
+client side packages
+----------------------
+Install-Package jQuery –version 1.10.2
+Install-Package jQuery.Validation –version 1.11.1
+Install-Package Microsoft.jQuery.Unobtrusive.Validation –version 3.0.0
+
+
+if enable client side validaiton then data-val attribtes will get generated while rendering the control
+
+<input class="text-box single-line" data-val="true" data-val-length="The field ClientName must be a string with a minimum length of 3 and a maximum length of 10."
+ data-val-length-max="10" data-val-length-min="3" data-val-required="The ClientName field is required." id="ClientName" name="ClientName" type="text" value="" />
+
+Individual validation rules are specified using an attribute in the form data-val-<name>, where name is the rule to be
+applied. So, for example, the Required attribute I applied to the model class has resulted in a data-val-required attribute
+in the HTML. The value associated with the attribute is the error message associated with the rule. Some rules require
+additional attributes. You can see this with the length rule, which has data-val-length-min and data-val-length-max
+attributes
+
+novalidate attribute 
+----------------------------
+Some of the current generation of HTML5 browsers support simple client side validation based on the attributes
+applied to input elements
+jQuery validation and the browser validation can both operate on the form, which is just confusing to the user.
+To avoid this problem, you can add the novalidate attribute to the form element.
+
+
+
+The MVC client-validation features are built on top of the jQuery Validation library. If you prefer, you can use
+the Validation library directly and ignore the MVC features.
+
+
+Remote Validation
+--------------------------
+
+public JsonResult ValidateDate(string Date)
+{
+    DateTime parsedDate;
+    if (!DateTime.TryParse(Date, out parsedDate))
+    {
+        return Json("Please enter a valid date (mm/dd/yyyy)",
+        JsonRequestBehavior.AllowGet);
+    }
+    else if (DateTime.Now > parsedDate)
+    {
+        return Json("Please enter a date in the future",
+        JsonRequestBehavior.AllowGet);
+    }
+    else
+    {
+        return Json(true, JsonRequestBehavior.AllowGet);
+    }
+}
+
+Actions methods that support remote validation must return the JsonResult type
+
+In addition to the result, validation action methods must
+define a parameter that has the same name as the data field being validated: this is Date for the example.
+
+
+As a general rule, the best approach to remote validation is to accept a
+string parameter in the action method and perform any type conversion, parsing, or model binding explicitly.
+Because if specify any specific data type and if the user enters wront data type then validation will not work
+
+validation pass
+return Json(true, JsonRequestBehavior.AllowGet);
+
+validation message
+return Json("Please enter a date in the future", JsonRequestBehavior.AllowGet);
+
+JsonRequestBehavior.AllowGet value as a parameter. This is because the
+MVC Framework disallows GET requests that produce JSON by default
+
+[Remote("ValidateDate", "Home")]//Action method name and controller name
+public DateTime Date { get; set; }
+
+The validation action method will be called when the user first submits the form and then again each time
+he or she edits the data. In essence, every keystroke will lead to a call to the server. For some applications, this can be
+a significant number of requests and must be taken into account when specifying the server capacity and bandwidth
+that an application requires in production.

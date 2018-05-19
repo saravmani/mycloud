@@ -1,0 +1,30 @@
+-----------------------------------------------------------
+When build first time with below command 
+ionic build android
+
+got error like --RAM un availablility.
+Solution :-------------------------------------------
+Added below envrionment variable under system variable
+variable name : _JAVA_OPTIONS  
+variable value: -Xmx512M
+
+and restarted the system
+
+**********************************************
+Got eorr like below when do the build
+You have not accepted the license agreements of the following SDK components:
+[Android SDK Platform 25].
+
+Solution:
+Change android version from 25 to 24 @ below files
+	D:\Mine\Lab\Ionic2\Firstest\marketWatcher\platforms\android\project.properties
+	D:\Mine\Lab\Ionic2\Firstest\marketWatcher\platforms\android\CordovaLib\project.peroperties
+
+Create license files using below commands
+	C:\Users\SaravMani>mkdir "%ANDROID_HOME%\licenses"
+	C:\Users\SaravMani>echo |set /p="8933bad161af4178b1185d1a37fbf41ea5269c55" > "%ANDROID_HOME%\licenses\android-sdk-license"
+	C:\Users\SaravMani>echo "84831b9409646a918e30573bab4c9c91346d8abd" > "%ANDROID_HOME%\licenses/android-sdk-preview-license"
+
+
+
+

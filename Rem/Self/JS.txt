@@ -1,0 +1,30 @@
+createDocumentFragment() 
+-------------------------
+	This Method creates a imaginary Node object, with all the properties and methods of the Node object.
+If we want to take part of document (Ex: Div panel with multiple child), and manupulate it (remove or add child elements), and want to update back to parnt document, this method will be useful
+You can also use the document's Document object to perform these changes, but to prevent destroying the document structure, it can be safer to extract only parts of the document, make the changes, and insert the part back to the document.
+Ex:
+ 	<ul>
+<li>Coffeess</li>
+<li>Tea</li>
+</ul>
+
+<button onclick="myFunction()">Try it</button>
+
+<script>
+function myFunction() {
+    var d = document.createDocumentFragment();
+    d.appendChild(document.getElementsByTagName("LI")[0]);   
+    d.childNodes[0].childNodes[0].nodeValue = "Milk";
+    document.getElementsByTagName("UL")[0].appendChild(d);
+}
+</script>
+
+
+
+
+
+
+
+
+window.open("http://www.w3schools.com", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");

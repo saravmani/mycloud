@@ -1,0 +1,5 @@
+VSCODE debug with Chrome
+-------------------------------
+Launch.json
+
+Augury - chrome extension to view the components hierarchy

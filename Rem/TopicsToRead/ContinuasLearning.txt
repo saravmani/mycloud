@@ -1,0 +1,9 @@
+Took WEBAPI.
+Covered overall. still below items are pending
+1. Dependency injection. but dont find the good artical
+		check this:http://www.tutorialsteacher.com/webapi/configure-dependency-injection-with-web-api
+
+2. ODATA options
+3. Check advanced options
+4. have to try out examples
+	(try verbs, try self hosting, try filters, try parameter bindings, try content negotiation)

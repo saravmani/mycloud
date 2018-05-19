@@ -1,0 +1,3 @@
+A tightly coupling, means where the one object/entity needs to have knowledge of other objects
+
+As a general rule, if you have under 4 GB of RAM in your computer, you don’t need a 64-bit CPU, but if you have 4 GB or more

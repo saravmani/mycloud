@@ -1,0 +1,25 @@
+npm install -g angular-cli
+
+ng new Application_Name
+
+
+re install if angular commans not working properly angular CLI
+reinstalled npm to latest version
+npm uninstall -g angular-cli
+npm cache clean
+npm install -g angular-cli@latest
+
+
+
+Create component using CLI
+-----------------------------
+ng create component component.Name
+
+
+Issues faced
+----------------
+Once generate angular project using angular CLI,
+It will not directly work with VSCODE.Because following items are missing
+	1. lite server and its configuration
+	2. 
+

@@ -1,0 +1,33 @@
+Note: vc++ is not a longuage. it is editor name. it is used to 
+develop c++ applications on windows
+
+it is middle level programming language.
+so we can do low level (close to hardware) and high level programms with c++
+
+It is used to create other programming languages
+
+Toolsets, IDE
+
+Toolset
+----------
+ Combination of Compilers,Archivers,Linkers called toolset
+those are used to build c++ applications
+
+Compilers
+--------------
+it will complile the source and produce object files. 
+this object files are mixture off machine-executable code (0s and 1s)
+and symbolic references to functions and data
+
+archiever takes collecction of object files as input andproduce static library
+or archive which is simply  a collection of object files grouped for 
+convenient use.
+
+the linker takes a collection of object files and libraries and resolves teir
+symbolic references to produce either and executable or dynamice library
+
+best editors
+----------------------
+visual c++ (only for windows)
+code block (download this editor with mingw toolset)
+ 

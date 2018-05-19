@@ -1,0 +1,93 @@
+WHat is good Software
+-----------------------------
+1. customer satisfaciton
+2. Apply OO principles and make software is flexible and easy enhancable
+     encaptualisation,
+3. Apply go design patterns and design principles for long running maintanance
+
+
+
+Software design tips
+------------------------
+If a class contains many number of properties, 
+and if some properties used by some client and some other properties used by another client 
+then take away some properties from that class and create another class and 
+refer that new class in older class
+
+class Subject
+{
+subjectid
+subjectGender
+
+IsHavingLoan
+IsHavingRelation
+IsLoyaltyCustomer
+}
+ 
+
+the above one we can splitup into two and refer with older
+
+Class Subject
+{
+    subjectid
+    subjectGender
+    objSubjectLoanProperties:SubjectLoanProperties
+
+}
+class SubjectLoanProperties
+{
+    IsHavingLoan
+    IsHavingRelation
+    IsLoyaltyCustomer
+}
+
+here we use the power of encaptualisation and also we can avoid unwanted properties 
+for spection functionality
+
+
+
+Power of encaptualisation
+---------------------------
+All about making re use the piece of code. 
+re use already return piece
+
+1. wrapping the data (variables) and code acting on the data (methods) together as a single unit. --  bundling of data with the methods 
+2. mechanism for restricting direct access to some of the object's components
+This mechanism is not unique to object-oriented programming.
+in javascript . modules also encaptualisation
+
++
+
+Properties And action methods related to particular functionality should be in single unit (ex: class). 
+So that we can able re use that unit, 
+also if any change related to that functionality we can touch that particular unit. 
+
+Delegation
+------------------
+dont write other module's functionalities in other modules.
+Just Delegate functionalities to the module wich are responsible for that
+ex:
+  object's ToString() function, should be written relavent module. Consumer will not do ToString() functionality
+
+
+Usecases - Customer requirements can be gathered through use Cases
+SequenceDiagram - used to tell us design problems, and used to make well designed applications
+Encaptualisation, Composition, delegation - if we use these there then application Change or add new feature cost will be less
+
+OCP and SRP - mainly used in reusing the code. if we try to re use the a software for different clients then OCP will be helpful
+
+Find out the part of application which frequently changes, and seperate it from rest of the application
+
+
+Use cases 
+--------------
+3 main parts in use cases
+1. Clear value
+2. start and stop
+3. external initiator - every use case should triggerd by external system or person
+
+
+if system does multiple goals - then we have to have multiple use cases
+
+Usecases means - Steps done by system to accompalish particular task
+

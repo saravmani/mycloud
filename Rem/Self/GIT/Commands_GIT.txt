@@ -1,0 +1,16 @@
+git add * -- to add all files
+git commit -m "commit message"
+
+git push 
+
+
+git rm file_to_remove.txt -- to remove the file
+
+git pull -- #to get latest version
+
+
+checkin changed file
+1. git add .
+# Adds the file to your local repository and stages it for commit. To unstage a file, use 'git reset HEAD YOUR-FILE'.
+2. git commit -m "Add existing file"
+3. git push

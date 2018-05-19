@@ -1,0 +1,56 @@
+Thread pooling in TPL is possible? bcs thread creation is costly
+
+C# 5,6,7 features
+DIfference between blocking collections and observables?
+learn about generics - what is the real world use except lists
+expression tree
+partial compile
+advantages of lamda expression over anonymus methods
+
+use of dll signing
+
+what is first-class object?
+
+is there any equalent in c# for  java's final method?
+ final void templateMethod() {
+primitiveOperation1();
+primitiveOperation2();
+concreteOperation();
+}
+
+
+
+
+C# microsoft coding standards
+COM DCOM  and Calling un managed codes
+
+Advantages of IOC
+IOC
+DI Frameworks
+
+What is reference? is it address? or any name? if it is not directly address then what this?
+Why Default appdomain is required ?
+
+what is assembly redirecting? How it is works?
+
+what are the uses of USING key word in c#?
+
+
+what is mean by "C# Compiler static delegate caching optimization"
+
+Lazy class
+
+
+IS THERE ANY EQUALEN TO JAVA'S synchronized keyword in c#?
+public static synchronized Singleton getInstance() {
+if (uniqueInstance == null) {
+uniqueInstance = new Singleton();
+}
+return uniqueInstance;
+}
+
+
+
+
+What is the use Trace?
+ex: Trace.WriteLine(string.Format("Action Method {0} executing at {1}", actionContext.ActionDescriptor.ActionName, DateTime.Now.ToShortDateString()), "Web API Logs");

@@ -1,0 +1,37 @@
+﻿Authorization 
+-------------------
+ I would strongly recommend on passing your access token within the Authorization header instead 
+ of going with custom headers. If they are really bearer tokens follow the rules of RFC 6750, if not, you can always create a custom authentication scheme and still use that header.
+Authorization headers are recognized and specially treated by HTTP proxies and servers. 
+Thus, the usage of such headers for sending access tokens to resource servers reduces 
+the likelihood of leakage or unintended storage of authenticated requests in general, 
+and especially Authorization headers.
+
+By default, the following headers are sent when an XHR request is sent:
+Accept  The content types that the browser can handle.
+Accept-Charset  The character sets that the browser can display.
+Accept-Encoding  The compression encodings handled by the browser.
+Accept-Language  The languages the browser is running in.
+Connection  The type of connection the browser is making with the server.
+Cookie  Any cookies set on the page.
+Host The domain of the page making the request.
+Referer  The URI of the page making the request. Note that this header is spelled incorrectly
+in the HTTP specifi cation and so must be spelled incorrectly for compatibility purposes.
+(The correct spelling of this word is referrer.)
+User-Agent  The browser's user-agent string.
+
+content-length - To speed up responses, the Content-Length field should be sent with your response
+when possible. Also it used to show progress bar in browser in file download scenarios
+
+
+Setting the Content-Length header implicitly disables chunked encoding, providing a performance boost because less data needs to be transferred.
+for small content of data we can disable content-length property.
+: for streaming media, it's pointless to use output buffering or response size; for large files, output buffering doesn't make sense, but Content-Length and byte
+ serving makes a lot of sense
+  (restarting a failed download is possible).
+   if the content length is really unpredictable beforehand (e.g. when your intent is to zip several files together and send it as one), then sending it in chunks may be faster than buffering it in server's memory or writing to local disk file system first. But this indeed impacts the user experience negatively because the download progress is unknown. The impatient may then abort the download and move along.
+Another benefit of knowing the content length beforehand is the ability to resume downloads
+
+Content-Length value should represent the byte length, not character length
+
+Content-Type:application/x-www-form-urlencoded

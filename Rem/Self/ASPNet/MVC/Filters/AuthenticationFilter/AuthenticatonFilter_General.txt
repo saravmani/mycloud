@@ -1,0 +1,104 @@
+Authentication Filter
+--------------------------------
+
+Runs first, before any other filters or the
+action method,  but can be run again after the authorization filters
+
+Authentication filters are new in MVC version 5
+    Authentication filters can  also be combined with authorization filters to provide 
+    authentication challenges for requests
+that don’t comply to the authorization policy
+     Authentication filters are also run after an action method has been executed but before the
+ActionResult is processed.
+
+The OnAuthenticationChallenge method is called by the MVC Framework whenever a request has failed the
+authentication or authorization policies for an action method.
+
+public interface IAuthenticationFilter {
+    void OnAuthentication(AuthenticationContext context);
+    void OnAuthenticationChallenge(AuthenticationChallengeContext context);
+}
+ 
+
+AuthenticationChallengeContext object's the most important property is Result, 
+because it allows the authentication 
+filter to pass an ActionResult to the MVC Framework, a process known as short-circuiting
+
+ OnAuthenticationChallenge - This allows me to avoid challenging the user when
+the filter is run after the action method has executed.
+
+Authentication filters can use all of the ActionResult types
+
+OnAuthentication
+-------------------------------
+The controller will call the OnAuthentication method before running any other kind
+of filter, providing an opportunity to perform a broad authentication check.
+
+AuthenticationContext class  defines the below properties
+Result, Principle, ActionDescriptor
+
+If the OnAuthentication sets a value for the Result property of the context object, 
+then the MVC Framework will
+call the OnAuthenticationChallenge method
+
+OnAuthentication method to create a result that reports an authentication error to the user, which can
+then be overridden by the OnAuthenticationChallenge method to challenge the user for credentials instead.
+
+The MVC Framework calls the OnAuthenticationChallenge method one final time after the action method has been
+executed, but before the ActionResult is returned and executed. 
+This provides authentication filters an opportunity
+to respond to the fact that the action has completed or even alter the result
+
+
+The only reason I have found for responding to this last method call is to clear 
+the authentication for the request.
+which can be useful when important action methods require temporarily elevated 
+credentials that you want entered
+each and every time the action is to be executed.
+
+public class GoogleAuthAttribute : FilterAttribute, IAuthenticationFilter
+{
+    public void OnAuthentication(AuthenticationContext context)
+    {
+        IIdentity ident = context.Principal.Identity;
+        if (!ident.IsAuthenticated || !ident.Name.EndsWith("@google.com"))
+        {
+            context.Result = new HttpUnauthorizedResult();
+        }
+    }
+    public void OnAuthenticationChallenge(AuthenticationChallengeContext context)
+    {
+        if (context.Result == null || context.Result is HttpUnauthorizedResult)
+        {
+            context.Result = new RedirectToRouteResult(new RouteValueDictionary {
+                            {"controller", "GoogleAccount"},
+                            {"action", "Login"},
+                            {"returnUrl", context.HttpContext.Request.RawUrl}
+                        });
+        }
+        else
+        {
+            FormsAuthentication.SignOut();
+        }
+    }
+}
+
+You can see the effect by starting the application and requesting the Home/List URL. 
+You will be prompted to
+provide credentials and you will be able to execute the action method 
+if you authenticate as bob@google.com. But you
+will be prompted for credentials again if you reload the browser, 
+essentially targeting the List method a second time.
+
+
+Combining Authentication and Authorization Filters
+-------------------------------------------------------------
+You can combine authentication and authorization filters on the same action methods 
+to narrow the scope of your
+security policy. The MVC Framework will call the OnAuthentication method of the authentication filter,
+just as in the
+previous example, and move on to run the authorization filter 
+if the request passes the authentication check. If the
+request doesn’t pass the authorization filter, then the OnAuthenticationChallenge 
+method of the authentication filter
+will be called so that you can challenge the user for the required credentials.

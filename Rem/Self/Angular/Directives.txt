@@ -1,0 +1,236 @@
+ng-init
+ng-class
+ng-style
+ng-controller
+ng-app
+ng-view
+n-repeat
+ng-if
+ng-show
+ng-hide
+ng-switch
+ng-bind-html - used to display HTML content
+
+
+
+Directives
+----------------
+allow us to extend the standard HTML functionality
+allow us to create our own elements as well! This makes directives the
+most powerful and the most celebrated feature of the framework
+Directives are the way to create and package reusable components in the Angular framework
+
+In Angular, some directives accept interpolated expressions instead of standard
+expressions, for example, the ng-src directive that allows setting the src property
+of the image tag dynamically:
+ng-src="http://www.google.com/images/{{imageName}}"
+
+
+
+<img class="img-responsive" src ="{{currentExercise.details.image}}" />
+<img class="img-responsive" ng-src ="{{currentExercise.details.image}}" />
+
+Both will work. but first one will make call to sever with {{currentExercise.details.image}} as URL, when initial page loading. To avoid this 
+we are using ng-src. Actually b4 Angular updates DOM browser continuous to render raw template HTML.
+When we use ng-src, the framework delays the evaluation of the src attribute till the model data is available and hence none of the request fails;
+
+Therefore, it is always
+advisable to use ng-src with the <img>
+
+
+
+AngularJS has a directive to manipulate the style  of any HTML element and the directive is aptly named ng-style.
+
+<div class="progress time-progress">
+<div class="progress-bar" role="progressbar"
+aria-valuenow="0" aria-valuemin="0" aria-valuemax=
+"{{currentExercise.duration}}" ng-style="{'width'
+:(currentExerciseDuration/currentExercise.duration)
+* 100 + '%'}">
+</div>
+</div>
+
+
+"{{'width:' + (currentExerciseDuration/currentExercise.duration)
+* 100 + '%'}}"  this also will work insteed of {}. But if we want to apply many styles then {{}} will is not readable. So angular js allows {} for ng-style
+
+The ng-style directive is a very powerful directive as it allows us to do all types
+of CSS manipulation and drive them through model changes, as we saw with the
+progress bar implementation. We should still minimize its usage as inline styling
+is frowned upon and less maintainable in the long run.
+
+
+ng-class
+------------
+
+<div  ng-class="{classname:modelobj.isTrue}" />
+<!--this class will be applied to the element when model property is get true-->
+
+
+ng-include
+-----------------
+<div  ng-include="'Partials/Include1.html'"></div> //Notice '' mark within "". otherwise it will not work
+This will work within another partial view also.. waavvv
+
+
+The ng-include directive, like the ng-view directive, allows us to embed HTML
+content, but unlike ng-view it is not tied to the current route of the app.
+
+
+The ng-include directive references this script HTML using its ID
+(ng-include = "'video-panel.html'"). We are free to use any ID
+value and it need not end with .html. 
+Here angular will download the template from server and cache it for future use
+
+Include example for same page emplate
+
+Ex2:
+<div ng-include="'SomeInpageTemplate'"></div>
+
+<script type="text/ng-template" id="SomeInpageTemplate">
+    <div>
+        Data from same page include
+        {{message}}
+        <br />
+        Data from same page include
+
+    </div>
+
+
+Note: The template script declaration should have the type set to text/ngtemplate;
+if not, the framework will not locate it.
+
+The ng-include directive is a perfect way to split a page into smaller, more
+manageable chunks of HTML content. By doing this, we can achieve some level of
+reusability as these chunks can be embedded across views or multiple times within
+a single view.
+</script>
+
+
+AngularJS uses the $templateCache service to cache the partials that it
+loads during the lifetime of the application. All partials that we reference
+in ng-view and ng-include are cached for future use.
+The $templateCache service is injectable and we can use
+$templateCache to cache templates manually, such as
+$templateCache.put('myTemplate', 'Sample template
+content'). We can now reference this template in ng-view or nginclude.
+
+
+In general, if the partial view is small, it is fine to include it in the parent view as a
+script block (the inline embedded approach).
+
+Dynamic page loading in ng-include
+
+<div ng-include='template'></div>
+if(someCondition) {
+$scope.template='view1' // Loads view1 into the above div
+}
+else
+{
+$scope.template='view2' // Loads view2 into the above div
+}
+//Using this dynamic loading we can able to change the views at run time
+ex:
+$scope.changeIncludedView = function ()
+    {
+        boolvar = !boolvar;
+        if(boolvar)
+            $scope.PartialVieName = "SomeInpageTemplate1";
+        else
+            $scope.PartialVieName = "SomeInpageTemplate";
+    }
+
+//html code <input type="button"  ng-click="changeIncludedView()"/>
+
+//parent scope properties are visible
+to the child scope and hence the HTML templates can reference these properties
+seamlessly.
+
+
+ng-repeat
+--------------------
+ng-repeat responsible
+for iterating over a collection and repeatedly rendering DOM content. When
+items are added, removed, or moved in the underlying collection, it does
+some performance optimization so that it does not have to re-create the entire
+DOM again based on these model changes. It adds a tracking expression in
+the form of $$hashKey (a unique key) to every element that we bind to ngrepeat.
+Now, when we add or remove or move elements in the collection,
+ng-repeat can add/remove and move only those specific elements. So
+basically tracking expressions is used to track array element identities.
+
+we can explicitly say the traking id
+ ng-repeat="task in taskList by task.id"
+
+property must be unique or we will get error.
+jsfiddle example:
+http://jsfiddle.net/cmyworld/n972k/
+
+The ng-repeat directive, like ng-include, also creates a new scope. However,
+unlike ng-include, it creates it every time it renders a new element. So, for an
+array of n items, n scopes will get created. Just like ng-include, scopes created
+by ng-repeat also inherit from the parent scope.
+
+ng-if
+--------------
+<h3 class="col-sm-6 text-right" ng-if=
+"currentExercise.details.name=='rest'">Next up:
+<strong>{{workoutPlan.exercises[0].details.title}
+}</strong></h3>
+
+
+
+difference between ng-if and ng-show/ng-hide is that ng-if
+creates and destroys the DOM element, whereas ng-show/ng-hide achieves the
+same effect by just changing the display CSS property of the HTML element to none.
+
+
+With ng-if, whenever the expression changes from false to true, a complete
+re-initialization of the ng-if content happens. A new scope is created and watches
+are set up for data binding. If the inner HTML has ng-controller or directives
+defined, those are recreated and so are child scopes, as requested by these controllers
+and directives. The reverse happens when the expression changes from true to false.
+All this is destroyed. Therefore, using ng-if can sometimes become an expensive
+operation if it wraps a large chunk of content and the expression attached to ng-if
+changes very often.
+
+
+ng-switch
+------------
+<div id="parent" ng-switch on="userType">
+<div ng-switch-when="admin">I am the Admin!</div>
+<div ng-switch-when="powerUser">I am the Power User!</div>
+<div ng-switch-default>I am a normal user!</div>
+</div>
+
+
+ng-bind-html
+--------------------
+Behind the scenes, ng-bind-html uses the $sanitize service to sanitize the
+HTML content. The $sanitize service parses the HTML tokens and only allows
+whitelisted tokens to be rendered and removes the others. This includes removal of
+embedded script content such as onclick="this.doSomethingEvil()" from the
+rendered HTML.
+
+
+We can override this behavior if we trust the HTML source and want to add the
+HTML as it is to the document element. We do this by calling the $sce.trustAsHtml
+function in the controller and assigning the return value to a scope variable:
+$scope.trustedHtml=$sce.trustAsHtml('<div
+onclick="this.doSomethingGood() />');
+And then bind it using ng-bind-html:
+<div ng-bind-html="trustedHtml"></div>
+
+
+
+angular.module('app', ['ngRoute', 'ngSanitize',
+'7minWorkout']).
+
+
+
+ng-init
+-------------
+<div ng-app = "" ng-init = "countries = [{locale:'en-US',name:'United States'}, {locale:'en-GB',name:'United Kingdom'}, {locale:'en-FR',name:'France'}]">
+   ...
+</div>
+//initializes an AngularJS Application data

@@ -1,0 +1,17 @@
+DRY - dont repeat yourself
+KISS - keep it simple stupid
+YAGNI - You aren't gonna need it
+
+Patterns Disconnected architecture
+
+what is extreme programming? - it is one agail framework. 
+
+Try design patterns interview questions
+try design principles interview questions
+
+what is convention-over-configuration pattern?
+i have seen this in .net mvc... here every conroller should be created with suffix of "Controller" word. 
+DefaultControllerFactory class follows the convention-over-configuration pattern. You do not
+need to register your controllers in a configuration file, because the factory will find them for you.
+All you need to do is
+create classes that meet the criteria that the factory is seeking.

@@ -1,0 +1,7 @@
+refer : https://www.w3schools.com/xml/xml_xslt.asp
+With XSLT you can transform an XML document into HTML.
+XSLT is a declarative programming language, you write an XSLT stylesheet to transform XML to HTML or XML or plain text.
+
+XSLT (eXtensible Stylesheet Language Transformations) is the recommended style sheet language for XML.
+
+XSLT is far more sophisticated than CSS. With XSLT you can add/remove elements and attributes to or from the output file. You can also rearrange and sort elements, perform tests and make decisions about which elements to hide and display, and a lot more.

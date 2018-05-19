@@ -1,0 +1,5 @@
+Data Structues
+-------------------
+1. hash tables
+2. List
+3. key/value pairs

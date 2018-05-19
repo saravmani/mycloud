@@ -1,0 +1,158 @@
+Key Words : ReactiveFormsModule
+
+Reactive Froms (model based forms)
+-----------------------------------------
+Details of the form and its validation are defined in code rather in a template.
+This approach scales up better, but it requires some  up-front effort
+
+Advantages
+-----------------
+Template will be simple
+We will have more controll .. ex: if we want to conditionally set the default values, if we want to 
+diable group of form controlls, if we want to validate group of validation controls... etc.,
+IF WE WANT TO HAVE DIFFERENT GROUPING AND CHILD GROUPING
+
+
+module.ts
+----------------
+import {ReactiveFormsModule} '@angular/forms'
+imports:[ReactiveFormsModule]
+
+component.ts
+----------------------
+import {FormGroup} '@angular/forms'
+
+export class componentName{
+myForm:FormGroup;
+constructor(){
+	this.myForm=new FromGroup({
+	userName:new FormControl('defaultValue',Validators.required),//This what created by
+	// automatically in template driven
+	'control with space':new FromControl('defaultvalue',[Validators.required,Validators.pattern('regex pattern')])//secornd argumet is for validators. this can be array of validator pointers or single validatro  pointer
+	});
+  }
+}
+//Validators.required is a function. but while creating control we will pass the pointer alone. angluar will execute this pointer
+<form [formGroup]="myForm">
+<input type="text" formControlName="userName" >
+<div *ngIf="myForm.find('userName')">invalid name</div>
+<input type="submit" [disabled]="!myForm.valid" >
+</form>
+
+
+Note: we have to initialise the form in onInilize method. bcs form initialisation will have heavy lifting.
+
+
+Form Group
+----------------
+export class componentName{
+myForm:FormGroup;
+constructor(){
+	this.myForm=new FromGroup({
+	anotherFromGroup:new FormGroup({
+		userName:new FormControl('defaultValue',Validators.required),//This what created by automatically in template driven
+	}),
+	'control with space':new FromControl('defaultvalue',[Validators.required,Validators.pattern('regex pattern')])//secornd argumet is for validators. this can be array of validator pointers or single validatro  pointer
+	});
+  }
+}
+
+
+<form [formGroup]="myForm">
+	<div formGroupName="anotherFormGroup">
+		<input  type="text" formControlName="userName" >
+		<div *ngIf="myForm.find(['anotherFormGroup'.'userName'])">invalid name</div>
+	</div>
+	<input type="submit" [disabled]="!myForm.valid" >
+</form>
+
+note: check the validation , how we are finding the controll within the form group
+
+
+Radio button
+-----------------
+.ts
+generList=['male','female']
+
+genderControllName:new FormControl('male');
+
+<div *ngFor="let eachGender of generList">
+<input type='radio' formControlName="genderControllName" [value]='eachGender'>
+<div>{{eachGender}}</div>
+</div>
+
+
+
+FormArray
+--------------
+import {FormArray}
+
+.ts
+---
+this.myForm=new FromGroup({
+	formContrllArrayName:new FormArray([new FormControl('defaultValue')])
+});
+
+<div FormArrayName="formContrllArrayName"
+
+
+FormBuilder (just differnt way to create .. it will faster complaratively. bcs we write much code for form control)
+---------------
+.ts
+constructor(private objFormBuilder FormBuilder)
+{
+this.myForm = formBuilder.group({
+	 userName:['defaultValue',Validator,Required]
+	 'control with space':['defaultvalue',[Validators.required,Validators.pattern('regex pattern')]]//secornd argumet is for validators. this can be array of validator pointers or single validatro  pointer
+});
+}
+
+
+Custom Validators
+-------------------------
+.ts
+exampleValidator(objFormControl:FormControl):{[s:string]:boolean}
+{
+if(objFormControl.value==="somevalue")
+return {'invalid':true}//validation fails
+return null;//return null will be considered as validation is success. but dont return true. this will not workout 
+}
+
+
+this.myForm = formBuilder.group({
+	 userName:['defaultValue',this.exampleValidator]
+	 'control with space':['defaultvalue',[Validators.required,Validators.pattern('regex pattern')]]//secornd argumet is for validators. this can be array of validator pointers or single validatro  pointer
+});
+
+
+Asyinc Validators
+--------------------
+asynExample(control:FormControl):promise<any> | Observable<any>{
+const objPromise = new Promise<any>((resolve,reject)=>{
+setTimeOut(()=>{
+if(control.value==="rewre")
+resolve({'invalid':true});
+else
+resolve(null);
+},1500)
+})
+return objPromise;
+}
+
+Form Observable.. this may useful to save form values intermediatly, or give undo option etc.,
+----------------------
+this.myForm.ValueChanges.subscribe(
+(data)=>{console.log(data);}//each value changes data will be logged
+
+this.myForm.statusChanges.subscribe(
+(data)=>{console.log(data);}//prints each status changes
+);
+
+
+
+Validators.Compose used to combine multipe validations together
+category: new ProductFormControl("Category", "category", "",
+Validators.compose([Validators.required,
+Validators.pattern("^[A-Za-z ]+$"),
+Validators.minLength(3),
+Validators.maxLength(10)])),

@@ -1,0 +1,30 @@
+Async Aswait will work only for single promise
+but we combine all promises to gether with promise.all and we can wait at end
+
+
+export class TestAsync {
+  async testPromiseMethodWithAsyncAwait() {
+    var objPromise = this.promiseMethod();
+    var data = await objPromise;
+    console.info(data);
+  }
+  testPromiseMethod() {
+    this.promiseMethod().then(data => {
+      console.info(data);//output is yes it is Executing
+    });
+  }
+  promiseMethod(): Promise<string> {
+    return new Promise((resolvess) => {
+      setTimeout(() => {
+        resolvess("yes it is Executing")
+      }, 2000);
+    });
+  }
+}
+
+
+var objTestAsync = new TestAsync();
+objTestAsync.testPromiseMethodWithAsyncAwait();
+objTestAsync.testPromiseMethod();//both are giving same result
+
+we can use async aswait for promises

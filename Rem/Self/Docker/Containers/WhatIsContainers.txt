@@ -1,0 +1,20 @@
+Containers are like virtual machine.
+but technology is completely different.
+it is verly light weight. startup time is very less.
+when the container got created we can able to set the constraints
+it is light weight , 
+***when it is created it will not preallocate
+any resources
+
+what ever changes made within container will get modified or affected by
+host or other container
+
+
+Container is isolated resource controlled & portable
+operating env.,. the application within container will not
+be affected by system and system will not get 
+affected by the application which running inside container
+
+
+
+Containers can't run any UI part like WPF, WInforms. It can only host back end part

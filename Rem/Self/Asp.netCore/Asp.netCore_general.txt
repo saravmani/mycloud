@@ -1,0 +1,3 @@
+In Asp.net core
+there is no seperate items for webapi and mvc. 
+Both are combined into one as "Asp.net Core MVC"

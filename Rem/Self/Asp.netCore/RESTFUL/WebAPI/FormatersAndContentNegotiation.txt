@@ -1,0 +1,27 @@
+Media types
+----------------
+application/json
+application/gzip
+application/xml
+
+
+Asp.net core having output formaters. so based on the "accept header" provided
+by the client it can choose specific formaters
+ex: Accept:application/json
+Accept:application/xml
+
+also having input formaters. based on "content-type" header.
+
+services.AddMvc((setupAction)=>
+{
+    setupAction.ReturnHttpNotAcceptable = true;//if it is true then if unsupported media type 
+    //requested by the client then server will return 406 error code
+    //by default asp.net core supports json formate. to support another formate
+    //we need to add belwo line
+
+    setupAction.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
+    //we need Microsoft.AspNetCore.Mvc.Formatters.Xml nuget package
+    //if client didn't send any accept header, then asp.net core will choose
+    //default formate. the default formate will be the first one 
+    //which is available in outputformattters list
+});

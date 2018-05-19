@@ -1,0 +1,5 @@
+ Builder : Separates object construction from its representation
+
+Examples:
+    angular 2 - FormBuilder - used to create form controlls , controll groups
+    c# - SqlConnectionStringBuilder

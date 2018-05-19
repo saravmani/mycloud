@@ -1,0 +1,13 @@
+node -v //To check the node js version
+npm init // will create package.json
+npm -p "1==1"//this evalualte the code and print the result on screen. this ll be useful to check env varaibles
+
+
+
+
+npm Scripts
+-----------------
+1. "start":"port=1337 npm start ./index.js"
+//this script will run node js file on specific port
+//when we hit npm start on command prompt
+

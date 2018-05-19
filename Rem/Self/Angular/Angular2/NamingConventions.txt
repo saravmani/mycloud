@@ -1,0 +1,46 @@
+two way binding - *Chagne
+--------------------
+event property should be same as input property + Change word
+<input class="bg-primary" [paModel]="newProduct.name"
+(paModelChange)="newProduct.name=$event" />
+</div>
+
+structural directive - let-*
+-------------------------
+...
+<template [paForOf]="getProducts()" let-item>
+...
+In this example, I have used let-item to tell Angular that I want the implicit value to be assigned to a
+variable called item, which is then used within a string interpolation 
+binding to display the name property of
+the current data item.
+
+
+structural directive - $implicit
+---------------------------------------
+class PaIteratorContext {
+constructor(public $implicit: any) {}
+}
+
+
+callback=JSONP_CALLBACK
+--------------------------------
+import { Http, Request, RequestMethod, Jsonp } from "@angular/http";
+getData(): Observable<Product[]> {
+return this.jsonp.get(this.url + "?callback=JSONP_CALLBACK")
+.map(response => response.json());
+}
+
+# here callback=JSONP_CALLBACK is convention
+
+
+$event
+-------------
+The event object is assigned to a template variable called $event,
+
+<input type="text"  (input)="propertyName = $event.target.value"
+
+
+Custome attributes
+-------------------------
+[attr.block-Index]

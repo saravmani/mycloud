@@ -1,0 +1,63 @@
+﻿Burp Suit is used to security testing
+
+in URL if we enter <K as value, then .net framework identifying this as dangerous query string
+
+
+websecurity leakes
+---------------
+Requiring a POST instead of a GET — This is easily changed.
+Using the referrer as a determination of origin — Referrers are easily spoofed.
+Validating based on cookie information — Also easily spoofed.
+
+
+
+
+<add name="Strict-Transport-Security" value="max-age=31536000" /> header (HSTS)
+---------------------------------------------------------------------------------
+?Because servers are usually not connected directly to each other, they must pass their requests and responses through a series of network routers. These routers, located in-between servers, have complete access to requests sent via HTTP connections. Since the data is transferred as unencrypted plain text, the routers can act as a “man in the middle” and read or manipulate data in transit.
+This can cause users to receive manipulated information or be directed to hostile servers used by attackers to steal information like passwords and credit card info. This kind of interception can go undetected since a compromised HTTP response looks the same as a genuine response.
+
+From: https://www.maxcdn.com/one/visual-glossary/hsts/?utm_source=text
+
+
+?This instructs the browser to only connect to the server and the entire domain through HTTPS. The browser will then remember to use the HTTPS connection for the specified max-age.
+
+Even if a user types http://www.domain.com, types the domain name without “http”, uses a bookmark, or a third party HTTP link, the browser will automatically upgrade the request to HTTPS. Once the max-age expires, the browser starts accessing the server through HTTP unless the user specifies HTTPS.
+
+From: https://www.maxcdn.com/one/visual-glossary/hsts/?utm_source=text
+
+
+Asp.net Security configurations
+------------------------------------
+    <httpProtocol>
+      <customHeaders>
+        <remove name="X-Powered-By" />
+        <remove name="Etag" />
+        <remove name="Server" />
+        <remove name="X-AspNet-Version" />
+        <remove name="X-AspNetMvc-Version" />
+        <add name="X-Frame-Options" value="SAMEORIGIN" />
+        <add name="Strict-Transport-Security" value="max-age=31536000" />
+      </customHeaders>
+    </httpProtocol>
+
+
+Disadvantage s of query string
+-----------------------------------------------
+1 . Complete URL will be saved in webserver's logs. If we send password as a query string then password will be exposed to ITadmin people
+2. URLS stored in browser's hisotry
+3. URLs are passed in Referrer headers. 
+	Sometimes the query string parameters may be delivered to and stored by third party 
+	Ex: to google analtics referer URL will be sentsites
+
+
+XSS
+---------
+Cross site scriptin or script injection.
+injected script running in the browser on a particular website could simply read all cookies that the website had set.
+If an attacker was able to exploit an XSS vulnerability, the first thing they would do would be to steal any cookies they could read.
+Solution 
+1.If we set HttpOnly flag then by javascript code we cann't access the cookies
+2. Validate all user inputs before saving to DB
+
+

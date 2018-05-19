@@ -1,0 +1,164 @@
+
+socket
+---------
+A socket is an endpoint in a communication, and a network socket is an endpoint
+in a communication between applications running on two different computers
+on the network. The data flows between the sockets in what’s known as
+a stream. 
+The data in the stream can be transmitted as binary data in a buffer,
+or in UNICODE AS STRING.
+Both types of data are transmitted as packets: parts of
+the data split off into similar-sized pieces
+
+finish packet (FIN), that is sent by a socket to signal that the transmission is
+done.
+
+
+
+  ip address  - internet protocl
+    range from 0 to 255
+ip numbering system 
+-----------------------
+128 64 32 16  8 4 2 1
+0    0  1  0  0 1 0 0
+--.--.--.36
+
+see above example. based on binary 1 or 0, numbers are picked
+and added to generate the ip address. so the max number can be generated is 
+255 if all the binrary valuse are 1
+
+IP address tells two informations.
+1. which network
+2. computer
+subnet mask used to tell which part of the ip address used for 
+ networking and host
+
+ if subnet mask is 255.255.255.0 then first 3 artifacts are used to identify the network.
+ and last one for host or computer.
+
+other 3 artifacts are used to create multiple sub networks.
+
+three types of subnets
+Class A,B,C
+A - 255.0.0.0
+B - 255.255.0.0
+C - 255.255.255.0
+//if class C only 254 computres can be placed. this my understanding?
+we can't add more into it
+formula is 2^8 -2
+
+
+Router connects different subnets
+
+    main purpose is used to communicate 
+
+DNS used to resolve the domain name to ip
+
+Default ports for few protocols
+dns 53
+http 80
+https 404
+
+MAC - Media Access Controll
+it is a built in hardware address
+
+Each interfaces (ex: network card) will have unique mac address.
+it s unique ly identified within local network
+
+
+
+DHCP server
+---------------
+Dynamic Host Configuration Protocol (DHCP) 
+------------------------------------------
+is a  network protocol that enables a server to
+  automatically assign an IP address to a computer
+   from a defined range of numbers (i.e., a scope) 
+   configured for a given network.
+DHCP will used to automatically assign 
+IP, Subnet mask, Default gateway, DNS.
+In huge network it is difficult to assing all those addresses manually
+DHCP also have lease period. In this lease period 
+IP addresses can be used by the computer. after that
+it will get changed. this lease time can be 1 day or 4 day.. it is based on 
+system admin who conigured DHCP server
+
+TCP/IP 6 is much different than TCP/IP4
+
+
+ subnet mask because it is used to identify network address of an IP address by perfoming a bitwise AND operation on the netmask. A Subnet mask is a 32-bit number that masks an IP address, and divides the IP address into network address and host address.
+
+ 
+
+
+ TCP/IP protocol is a group of multiple protocols
+
+ IP - internet protocol is a routable protocol
+ IP used to connect the computers
+ and TCP used to how the transmission should happen.
+ TCP is deals with the communication
+
+ Default gateway
+ ---------------
+ when computer on some local network wants communicate to 
+ another server or computer, first it will check in local network.
+ If it not find then it will ask Default gateway
+Default gate way is a router or DSL Modam etc.,
+
+basically default gate way is used to connect the sub network with other 
+networs
+in home i am having DSL modom. it s a gate way.
+if use ipconfig command then we can abel to find the 
+default gateway's ipaddress
+
+
+DNS
+---
+Domain name server. which used to resolve the domain name.
+
+
+
+
+
+
+
+Windowing process
+---------------------
+TCPIP uses this process to ensure transmission complete. it will detect transmission packtes count based on ack.,
+given by end system.
+ windowing, is used by the Internet's Transmission Control Protocol (TCP) as a method of controlling the flow of packets between two computers or network hosts.
+
+
+
+NAT (It is built in to router)
+---------
+Network  address translation.
+because of this NAT, devices no need to have unique ipaddress on whole world.
+to external world router(default gateway) will communicate. and it will internally
+link to internal n/w comuptures with their interal ip address. this routers
+will remember whcih computer made a call or request
+
+
+Router will have IP which is unique to the world.
+internal network computers will have none unique/world ip
+
+
+
+
+OSI
+----
+7. APplication Layer
+6. Presentation Layer
+5. session
+4. Transport Layer - tcp ip
+3. Network Layer
+2. Data link
+1. Physical Layer
+
+7,6,5,4 are related to OS
+others are related to network
+bottom 3 layers are applicable all the nodes.
+ex: computers, routers, etc.,
+
+
+

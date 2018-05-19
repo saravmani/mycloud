@@ -1,0 +1,41 @@
+
+
+
+
+UNITY Framework sample code for MVC
+===========================================
+Unity sample code
+----------------------
+using Unity;
+using Unity.Mvc5;
+using WebApplication1.App_Start;
+
+namespace WebApplication1
+{
+    public static class UnityConfig
+    {
+
+        public static void RegisterComponents()
+        {
+            var container = new UnityContainer();
+            container.RegisterSingleton(typeof(SubjectSearch));
+            System.Web.Mvc.DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+        }
+    }
+}
+
+
+global.asax
+applicationstart event
+UnityConfig.RegisterComponents()
+
+
+Controller
+---------------
+public class Default1Controller : Controller
+    {
+        private SubjectSearch _objSubjectSearch { get; set; }
+        public Default1Controller(SubjectSearch objSubjectSearch)
+        {
+            _objSubjectSearch = objSubjectSearch;
+        }

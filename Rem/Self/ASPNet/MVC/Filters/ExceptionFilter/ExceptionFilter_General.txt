@@ -1,0 +1,53 @@
+Exception Filter
+===================================
+Runs only if ANOTHER FILTER ((authorization, action, or result filter)), 
+the action method, or the action result throws an exception
+
+The Result property is used by the exception filter to tell the MVC Framework what to do. The two main uses for
+exception filters are to log the exception and to display a message to the user.
+
+namespace System.Web.Mvc
+{
+    public interface IExceptionFilter
+    {
+        void OnException(ExceptionContext filterContext);
+    }
+}
+
+ExceptionContext contains following properties
+-------------------------------------------------
+ActionDescriptor ActionDescriptor  - Provides details of the action method
+Result ActionResult -  The result for the action method; a filter can cancel the request by
+                        setting this property to a non-null value
+Exception Exception -  The unhandled exception
+ExceptionHandled bool -  Returns true if another filter has marked the exception as handled
+
+
+ExceptionContext inherited from controller context. controller context properties
+----------------------------------------------------------------------------------------------
+RequestContext
+ControllerContext
+HttpContext
+RouteData
+IsChildRequest
+
+
+All of the exception filters applied
+to an action are invoked even if this property is set to true, so it is good practice to check whether another filter has
+already dealt with the problem, 
+
+
+If none of the exception filters for an action method set the ExceptionHandled property to true, the MVC
+Framework uses the default ASP.NET exception handling procedure which will display the dreaded “yellow screen of death.”
+
+
+
+built-in exception filter, which
+I describe in the next section, can be used to achieve the same effect more elegantly
+
+
+Draback in returning view in exception filter's result
+--------------------------------------------------------------
+The drawback is that you must thoroughly test your view to make sure that you do not just generate another
+exception. I see this a lot, where the testing focus is on the main features of the application and does not properly
+cover the different error situations that can arise.

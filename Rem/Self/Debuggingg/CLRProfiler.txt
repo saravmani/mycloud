@@ -1,0 +1,3 @@
+CLR Profiler enables you to look at the managed heap of a process and investigate the behavior of the garbage collector.
+Using the various views in the tool, you can obtain useful information about the execution, allocation, and memory 
+consumption of your application.

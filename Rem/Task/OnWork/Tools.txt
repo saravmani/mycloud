@@ -1,0 +1,35 @@
+FxCop
+Refactoring Essentials
+Stylecop
+
+How to setup default code analysis in visual studio?
+
+CLR Profiler - now having good knowledge on CLR.. so just try it
+
+Code violation detection Tools:
+FXCOP
+
+Checking Style Tools:
+StyleCop
+
+Quality Metric Tools:
+NDepend
+
+
+Duplication Detection:
+Simian, based on source code. Works with plenty languages.
+CloneDR, detects parameterized clones only on language boundaries (also handles many languages other than C#)
+Clone Detective a Visual Studio plugin. (It uses ConQAT internally)
+Atomiq, based on source code, plenty of languages, cool "wheel" visualization
+
+
+General Refactoring tools
+
+ReSharper - Majorly cool C# code analysis and refactoring features
+
+
+TRY ANY CODE COVERAGE Tools
+
+TRY UNIT TESTING
+C# and
+ANGULAR 2

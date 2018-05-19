@@ -1,0 +1,77 @@
+#Remember AAA principle- Arrange - Act - Assert
+
+TestBed
+-------------
+heart of Angular unit testing is a class called TestBed, which is responsible for simulating the Angular
+application environment so that tests can be performed.
+
+configureTestingModule - used to configure the Angular testing module. Like NgModule this will accept
+declarations, providers, imports etc. same properties supported by the @NgModel decorator
+createComponent
+compileComponent
+
+to unit test the component we have to declare it in configureTestingModule.
+
+first step in most unit tests is to configure the testing module.
+
+
+import { TestBed, ComponentFixture } from "@angular/core/testing";
+import { FirstComponent } from "../app/ondemand/first.component";
+describe("FirstComponent", () => {
+  let fixture: ComponentFixture<FirstComponent>;
+  let component: FirstComponent;
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [FirstComponent]
+    });
+    fixture = TestBed.createComponent(FirstComponent);
+    component = fixture.componentInstance;
+    //component = fixture.debugElement.componentInstance;
+  });
+  it("is defined", () => {
+    expect(component).toBeDefined()
+  });
+});
+
+
+If you try to use the TestBed outside of this function, you will see an error about using Promises
+
+
+usefull component fixture methods n properties
+------------------------------------------------
+componentInstance
+debugElement - returns the test host element for the component
+nativeElement - returns the DOM object representing the host element for the component.
+detectChanges() - This method causes the test bed to detect state changes and reflect them in the
+                    component’s template.
+whenStable()
+
+
+The Angular test bed
+will take care of resolving dependencies as long as they are configured through the test module.
+ Effective unit testing generally requires components to be 
+ isolated from the rest of the application, which means that mock
+or fake objects (also known as test doubles) are used as substitutes for real services in unit tests.
+
+
+DebugElement
+-----------------
+Useful DebugElement Properties and Methods
+
+nativeElement - This property returns the object that represents the HTML element in the DOM.
+children  - This property returns an array of DebugElement objects representing the children of this element.
+query(selectorFunction)  - The selectorFunction is passed a DebugElement object for each
+        HTML element in the component’s template, and this method
+        returns the first DebugElement for which the function returns true.
+queryAll(selectorFunction)-  Similar to the query method, except the result is all the
+        DebugElement objects for which the function returns true.
+triggerEventHandler(name, event) - This method triggers an event.  
+
+
+By Methods (see template binding example)
+-----------------
+By.all() This method returns a function that matches any element.
+By.css(selector) This method returns a function that uses a CSS selector to match elements.
+By.directive(type) This method returns a function that matches elements to which the specified
+directive class has been applied, as demonstrated in the “Testing Input
+Properties” section.

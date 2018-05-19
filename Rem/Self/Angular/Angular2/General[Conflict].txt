@@ -1,0 +1,103 @@
+﻿angular 2 having below advantages
+--------------------------------------
+1. fast
+2. focused on mobile devices
+3. Once we bundle,tree shaking then the application size is very less
+
+
+Providers used to mention the dependency injection items
+ providers:[LoggerService],
+
+
+Components
+Services and DI (Angular 2 core components)
+Directives
+Routers
+
+
+
+
+main advantange in angular is ,
+we will not do the direct dom manupulation like jQuery
+so we no need to have direct reference to dom element.
+
+So we can do a unit test of our component without dom element.
+
+Services should not do any UI related operations.
+Purpose of services is
+	making HTTP call
+	logging
+	business rules etc.,
+
+Directive
+---------------
+Modify DOM elements and modify their behaviours
+Mostly used to add behaviour to existing dom element
+
+
+In type script every page is considered as a module
+
+One of the complexities of Angular 1 is its digest loop, which helps Angular 1 figure out
+the changes in the model and refresh the view. In Angular 2 we don�t have this concept
+anymore.
+In Angular 2, all browser events are �monkey-patched�, so even if you an
+event handler outside your Angular app, it will still be notified and can detect changes in
+objects. Angular team have extracted this part from the core Angular script and opensourced
+it as a separate library that can be re-used by others. This library is called
+zone.js.
+
+
+
+
+
+
+
+
+
+we can use angularjs for
+Electron,Mobile and web
+
+Compatibility
+-----------------------
+It supports latest the version of browsers and also supports old browsers including IE9+ and Android 4.1+.
+
+It is mobile first approach.
+
+
+
+Advantages
+--------------
+If an application is a heavy load, then Angular 2 keeps it fully UI responsive.
+
+It uses server side rendering for fast views on mobile.
+
+It works well with ECMAScript and other languages that compile to JavaScript.
+
+It uses dependency injection to maintain applications without writing too long code.
+
+Everything will be the component based approach.
+supports data anotation
+
+
+Services,
+Components - it is actually a ui elements
+
+
+in angular main.ts is the entry point.
+
+
+angular2/core library which is a primary Angular library module will be imported by another component.
+
+
+
+Decorators not available in ES6. but type script provides this.
+
+
+
+
+During the alpha stage of Angular, the Angular bundles where initially published in SystemJs format, 
+but now they are published in CommonJs (see here).
+
+CommonJS is used in NodeJS to require modules at build time. E.g. the modules are compiled and are then delivered to the browser with all code loaded up front.
+
+SystemJS however replaces requireJS. SystemJS loads modules dynamically at run time. In Angular2 if you watch your browser's NET tab you will see SystemJS loading files as you explore more parts of you app.

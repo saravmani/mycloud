@@ -1,0 +1,9 @@
+we can use this technology for SOA
+all the communication technologies under one umbrella
+	msmq
+	tcpip
+	basic http binding (webservices)
+	namedpipelines
+
+
+	webHttpBinding is the REST-style binding, where you basically just hit a URL and get back a truckload of XML or JSON from the web service

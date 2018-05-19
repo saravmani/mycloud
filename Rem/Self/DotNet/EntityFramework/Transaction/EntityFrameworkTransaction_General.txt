@@ -1,0 +1,82 @@
+ADO.NET provides a very clean and
+efficient API for transaction management. Since Entity Framework runs on top of
+ADO.NET, it is able to utilize the transaction management features of ADO.NET.
+
+
+transaction should
+be treated as a unit of work.
+
+The default behavior of Entity Framework is that whenever we perform any
+operation that involves a CREATE, UPDATE, or DELETE query on the database,
+it will create a transaction by default. This transaction will be committed whenever
+the SaveChanges() method on the DbContext class is called
+
+Entity Framework never uses transactions on the
+operations involving SELECT query on the database.
+Since putting READ operations within transactions provides
+no benefits but decreases the overall performance of the
+application,
+
+ 
+ If we have a scenario where we have multiple DbContext objects, and we want to
+associate operations involving multiple DbContext objects as a single unit of work,
+we need to wrap the call to SaveChanges() within a TransactionScope object.
+
+
+decimal amountToTransfer = 1000;
+int accountId = 1;
+using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+{
+    SampleDatabaseEntities db1 = new SampleDatabaseEntities();
+    SampleDatabaseEntities db2 = new SampleDatabaseEntities();
+    // let us retrieve the accounts involved in transaction
+    SalaryAccount salaryAccount = db1.SalaryAccounts.Find(accountId);
+    SavingAccount savingAccount = db2.SavingAccounts.Find(accountId);
+    // Lets debit from the SalaryAccount
+    salaryAccount.Balance -= amountToTransfer;
+    // Now lets credit the SavingAccount
+    savingAccount.Balance += amountToTransfer;
+    db1.SaveChanges();
+    db2.SaveChanges();
+    ts.Complete();
+}
+
+In the preceding code, we used two separate instances of DbContext to perform
+the debit and credit operations. So the default behavior of Entity Framework will not work.
+
+the transaction will only be
+committed when the Complete() method of TransactionScope gets called. If any of
+the operations fail, an exception will occur and TransactionScope will end without
+calling Complete(), which will effectively roll back the changes.
+
+With Entity Framework 6 onwards, Entity Framework provides the Database.
+BeginTransaction() method on the DbContext object. This is particularly useful
+when we want to execute raw SQL commands using our context class and associate
+them with transactions.
+
+Sample code
+-------------------
+decimal amountToTransfer = 1000;
+            int accountId = 1;
+            using (SampleDatabaseEntities db = new SampleDatabaseEntities())
+            {
+                using (DbContextTransaction tx = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        db.Database.ExecuteSqlCommand("Update SalaryAccount set
+                        Balance = Balance - @amountToDebit where id = @accountId",
+                        new SqlParameter("@amountToDebit", amountToTransfer),
+                        new SqlParameter("@accountId", accountId));
+                        SavingAccount savingAccount = db.SavingAccounts.
+                        Find(accountId);
+                        savingAccount.Balance += amountToTransfer;
+                        db.SaveChanges();
+                        tx.Commit();
+                    }
+                    catch
+                    {
+                        tx.Rollback();
+                    }
+                }
+            }

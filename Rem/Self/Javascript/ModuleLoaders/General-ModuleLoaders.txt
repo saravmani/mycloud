@@ -1,0 +1,65 @@
+Ref: https://auth0.com/blog/javascript-module-systems-showdown
+
+Module formates
+-----------------------------------
+CommonJS, AMD,UMD, ES2015 are specifications.
+CommonJS vs AMD vs ES2015
+CommonJS - used by node jss
+
+Module Loaders
+---------------------
+Webpack,SystemJs,Browserify,RequireJs
+
+
+UMD - universal module definition
+
+CommonJS
+================================================
+CommonJS modules were designed with server development in mind. Naturally, the API is synchronous.
+In other words, modules are loaded at the moment and in the order they are required inside a source file.
+
+CommonJS specification defines how modules in JavaScript work , how they can be exposed and 
+how they can be called. SystemJS is a loader which follows CommonJS specs and other specs.
+
+CommonJS is a specificaiton.
+CommonJS is used in NodeJS to require modules at build time. 
+CommonJS specification defines how modules in JavaScript work , how they can be exposed and how they can be called. 
+E.g. the modules are compiled and are then delivered to the browser with all code loaded up front.
+
+Advantages of Commonjs module format
+-----------------------------------------
+CommonJs is easily consumable by existing popular tools such as Browserify or Webpack
+CommonJs can also be easily consumed by SystemJs
+CommonJs is the node.js module format, which allows for components to be more simply used in server-side rendering
+the size of CommonJs bundles is smaller (in the case of Angular the gain was around 20%)
+
+
+Asynchronous Module Definition (AMD)
+================================================
+AMD was born out of a group of developers that were displeased with the direction adopted by CommonJS. 
+In fact, AMD was split from CommonJS early in its development. 
+The main difference between AMD and CommonJS lies in its support for asynchronous module loading.
+
+
+ES2015 Modules
+================================================
+Fortunately, the ECMA team behind the standardization of JavaScript decided to tackle the issue of modules.
+The result can be seen in the latest release of the JavaScript standard: ECMAScript 2015
+ (previously known as ECMAScript 6). The result is syntactically pleasing and compatible with both synchronous and asynchronous modes of operation.
+
+
+
+--------------------------------------------------------------------------------
+
+System.js: a universal module loader that supports CommonJS, AMD and ES2015(ES6) modules.
+SystemJs is module loader. it is open source
+SystemJS however replaces requireJS. SystemJS loads modules dynamically at run time.
+In Angular2 if you watch your browser's NET tab you will see SystemJS loading files as you
+explore more parts of you app.
+
+
+
+RequireJs
+------------------
+RequireJS is a JavaScript file and module loader. It is optimized for in-browser use,
+but it can be used in other JavaScript environments, like Rhino and Node.

@@ -1,0 +1,7 @@
+//idoaboutmathcalculate.js
+export default const plusTwoNumber= (a,b)=>{ 
+   return a+b;
+}
+//index.js
+import plus2num from './idoaboutmathcalculate';
+console.log(plus2num(2,5)); //7

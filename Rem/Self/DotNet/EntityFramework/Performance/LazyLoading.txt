@@ -1,0 +1,6 @@
+
+Lazy loading is the default setting when generating an Entity Data Model. The navigation entity properties are also
+marked as virtual by default. You don’t need to do anything explicitly to get this to work.
+
+Lazy loading enables the access of related entity properties at the
+moment you access them in your code.

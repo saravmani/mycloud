@@ -1,0 +1,37 @@
+<ol class="cww">
+  <li>Coffee</li>
+
+ol.c {
+    list-style-type: upper-roman;
+
+ul.a {
+    list-style-type: circle;
+ul {
+    list-style-image: url('sqpurple.gif');
+li {
+    display: inline;// it is very important. used to display elements in row :-)
+}
+
+
+
+table {
+    border-collapse: collapse;//it is important..multiple borders colappsed into single
+}
+
+table, td, th {
+    border: 1px solid black;
+}
+
+tr:hover {background-color: #f5f5f5}
+tr:nth-child(even) {background-color: #f2f2f2}
+
+inline elements (will not take new line) - a, span, img
+block element - div,h1,header,footer,section,form
+a block-level element (if we not set width) always takes up the full width available (stretches out to the left and right as far as it can
+
+
+display : block //this means blocking the area. element will be visible
+
+a{display:block}// this means blocks(create) one line break for element.
+    display: none;//hides the element and space
+visibility:hidden;//hides element not space

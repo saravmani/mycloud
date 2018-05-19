@@ -1,0 +1,11 @@
+csurf
+------------------
+csurf is npm package can be use to provide CSRF token
+it provides middleware which used to produce CRSF token and verification
+
+helmet
+------------------
+it provides middleware
+by default this middleware will add most of security related headers as part of response
+app.use(helmet);//this is generic.. it will add most of security related headers
+app.use(helmet.xframe("sameorigin"));//this is used to allow to load appliation in same domain

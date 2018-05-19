@@ -1,0 +1,2 @@
+Download SDK from online
+Runtime is required for produciton

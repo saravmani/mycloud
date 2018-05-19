@@ -1,0 +1,218 @@
+Redux - Data Architecture pattern
+----------------------------------------
+
+When application is huge and having multiple components, and components get
+data from its parent component.. it is very difficulut to get the snapshot of application.
+
+Moving chiled component to other place also difficult
+because it may need input from its current parent
+
+so what can we do? then we may need to maintain all data in seperate place
+and every componet should refer it
+
+Building Blocks
+Store
+Actions
+reduce
+
+
+store
+--------
+	A single js object that contains the state of the application
+it is like local client side database
+
+Actions
+-----
+plain js objects that represent something that has happend in application. it is more like events.
+
+{type:"ACTION_NAME",BODY:"EXTRA VALUES TO DESCRIBE THE ACTION"}
+
+
+Reducer
+----------
+A function that specifies how the sate change in response to an action.
+
+Reducer will not reduce the state. it just returns the state
+
+
+pure function
+----------------------
+same input -> same output.
+this output should not affect with any other factors.
+No side effects.
+
+even if we give the output based on 
+other factors like other application stats then it is impure functions.
+
+below are impure functions. 
+function increment(input){
+	input.count++;//bcs every time out put modifies.
+}
+
+function serviceCall(input){
+	service.call(..);// impure bcs it will have side effect from external service
+}
+
+
+pure function ex:
+function increment(input){
+	return {count:input.count+1};//if we give same input on each time, 
+	//the out put also will not differe on each time.
+//here we are returning new object. we r not modifying existing obj.
+
+
+in redux reducers should be pure functions.
+
+function reducer(state,action){
+//reducer always have two prop. state and action. based on action it will return new state.
+
+switch(action.type)
+{
+	case 'ACTION1'
+		return {count:state.count+1}
+}
+
+}
+
+benifits of pure functions.
+1. easy testable. we no need of mock
+2. undo/redo . bcs always we are returning new state and maintaining old state.
+3. time travel debugging (using tools. ) we can track each user steps and check the bug
+
+
+popular ng libraries for redux
+------------------------------
+1)ngrx/store
+	re implementing redux  pattern with rx family way. 
+	it is not compatible with other libraries for redux
+	
+2)ng2-redux
+	it is compatible with much of redux eco system.
+
+both are similar. but ng2-redux having traditional way. so other redux libraries will 
+work with this
+
+installation
+-------------------
+npm install redux ng2-redux --save
+install both redux, ng2-redux
+
+
+import {NgRedux,NgReduxModule} from 'ng2-redux';
+.
+.
+imports:[NgReduxModule]
+
+
+constructor(private objNgRedux:NgRedux<IMyAppState>){
+}
+
+
+
+simple reducers
+------------------------
+interface Action {
+ type: string;
+ payload?: any;
+ }
+
+ interface Reducer<T> {
+ (state: T, action: Action): T;
+ }
+ let reducer: Reducer<number> = (state: number, action: Action) => {
+ return state;
+ };
+
+ console.log( reducer(0, null) ); // -> 0
+
+
+Redux we do not modify
+the state. Instead, we create actions which instruct the reducer on how to generate a new state.
+
+
+Having your state changes centralized in one place can help a ton in maintaining
+your program, particularly because it’s easy to track down where the changes are
+happening
+
+
+anotehr sample reducer
+--------------------------
+let reducer: Reducer<number> = (state: number, action: Action) => {
+11 switch (action.type) {
+12 case 'INCREMENT':
+13 return state + 1;
+14 case 'DECREMENT':
+15 return state - 1;
+16 case 'PLUS':
+17 return state + action.payload;
+18 default:
+19 return state;
+20 }
+21 };
+
+
+
+store
+-------
+
+The store has the responsibility of running the reducer
+and then keeping the new state
+In Redux, we generally have 1 store and 1 top-level reducer per application.
+
+
+ex:
+class Store<T> {
+    private _state: T;
+	constructor( private reducer: Reducer<T>, initialState: T ) {
+		this._state = initialState;
+	}
+	getState(): T {
+		return this._state;
+	}
+	dispatch(action: Action): void {
+		this._state = this.reducer(this._state, action);
+	}
+}
+
+
+notice dispatch will not return anything.
+
+
+in reducer function we should not mute (change) current state. instead we have to create new copy of exisitng state and modify it
+for that we can use below generic way. (i.e any how there are lots of other ways are there)
+
+Object.assign({}, oldObject, newObject)
+
+You can think of Object.assign as merging objects in from the right into the object on
+the left. newObject is merged into oldObject which is merged into {}. This way all of the
+fields in oldObject will be kept, except for where the field exists in newObject. Neither
+oldObject nor newObject will be mutated.
+
+to avoid mistakes many people use Immutable.js¹⁰⁷, which is a set of data structures
+that help enforce immutability.
+
+
+
+Using standard redux library
+----------------------------
+impor {Store,Reducer,CreateStore,Action,ActionCreator} from 'redux';
+
+let initialState: AppState = { messages: [] };
+};
+
+ let reducer: Reducer<AppState> =
+ (state: AppState = initialState, action: Action) => {
+	 //reducer implementation
+ }
+
+ let store: Store<AppState> = createStore<AppState>(reducer);
+ console.log(store.getState()); // -> { messages: [] }
+
+ store.dispatch(
+ MessageActions.addMessage('Would you say the fringe was made of silk?'));
+store.dispatch(
+ MessageActions.addMessage('Wouldnt have no other kind but silk'));
+
+
+Chrome extensions are there to watch redux dispatech and application state 
+

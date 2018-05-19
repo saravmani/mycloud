@@ -1,0 +1,62 @@
+There are two type of tests
+1. Unit testing
+2. End to End testing
+
+karma - Test runner we can use jasmin for unit testing
+
+protractor - For end to end testing for angular js (written by angular team). 
+It used with Jasmin
+
+wallaby js.. used to get feed back on IDE (test results on screen)
+
+.spec.ts files is testing file
+
+
+
+Some Angular building blocks, such as pipes and services, can be readily tested in 
+isolation using the basic testing tools
+
+Components (and, to a lesser extent, directives) have complex
+interactions with their host elements and with their template content and require special 
+features for unit testing
+
+Test Bed
+----------
+Angular provides a test bed that allows a realistic application
+environment to be created and then used to perform unit tests
+
+It can take some time and effort to get to the point where unit tests are
+easily written and run and you are sure that you have isolated the
+correct part of the application for testing.
+
+# we should isolate the part, to do the unit testing
+
+
+Use the DebugElement class to query the component’s
+template. Trigger the events using the debug element
+
+
+Perfom the test which relies on asynchronous operations
+--------------------------------------------------------------
+Use the whenStable method to defer the test until the
+effect of the operation has been processed.
+
+
+Tips to test directives
+----------------------------
+Create a test component whose template applies the directive under test.
+
+Why unit testing required? do we need to really implement unit testing for ALL the features?
+-------------------------------------------------------------------------------------------------
+    I tend to focus on writing unit tests for features and functions that I know will be hard to
+write and that are likely to be the source of bugs in deployment. 
+In these situations, unit testing helps
+structure my thoughts about how to best implement what I need. I find that just thinking about what I
+need to test helps produce ideas about potential problems, 
+and that’s before I start dealing with actual bugs and defects.
+
+
+Unit testing are not required for creation of new code. It is required for regression testing
+
+
+we can keep unit test files seperately.. in seperate folder

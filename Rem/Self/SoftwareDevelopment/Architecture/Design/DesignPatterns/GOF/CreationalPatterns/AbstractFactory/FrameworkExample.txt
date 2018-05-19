@@ -1,0 +1,5 @@
+SqlClientFactory
+    public override DbCommand CreateCommand();
+    public override DbConnection CreateConnection();
+    public override DbConnectionStringBuilder CreateConnectionStringBuilder();
+    public override DbDataAdapter CreateDataAdapter();

@@ -1,0 +1,8 @@
+ViewData
+ViewBag
+
+TempData  - it is used to transfer data accross actions while doing redirection.
+actually TempData internally using session provider.
+
+TempData.Peak
+TempData.Keep

@@ -1,0 +1,37 @@
+Linting
+--------------------
+Finds potential errors and deviation from accepted coding style
+TSLint for Type script Linting
+TSLint pluggin available for visual studio code.
+
+# i have tried this.. it showing error in the code line itself. and when hover it it shows idea symbol.
+using this i can able to fix the specific lint rule error
+
+#i thinkg angular cli provides wrapper and gives new command calld "ng lint"
+
+but for normal projects we can use tslint file.ts
+
+similarly there JSLint, ESLint for javascirpts
+
+TSLint config file contains set of default rules. 
+rules can be single line with bool value, or with configurations with first value as bool.
+here this bool indicats wether the rules is enabled or disabled.
+ex:
+"import-spacing": true,//single line rule
+ "quotemark": [ //rule with configuraiton array
+      true,  //rule is enabled
+      "single"
+    ],
+
+Default rules mostly give more errors.
+normally i will change the below default rules
+//disable quotemark rule. so that i can use ' or "
+"quotemark": [  
+      false,  //rule is disabled
+      "single"
+    ],
+
+Normally i will try to avoid space related issues
+
+#some rule is thr to avoid var instead we have to use let or const.
+var is depricated

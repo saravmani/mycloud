@@ -1,0 +1,45 @@
+Express is a frame work which sits on top of node.js's Webserver functionality
+it adds helpful
+utilities to Node.js’s HTTP objects; 
+
+require("http");//this is used by expressjs 
+
+Express is an abstraction layer
+on top of Node’s built-in HTTP server
+
+Main features of expressjs
+--------------------------
+routing, middleware
+
+Competitors for express
+------------------------
+Meteor - Meteor is full-stack, running code on both client and server
+Hapi.js
+
+Express doesn’t come with any templating languages built
+in, but it plays nicely with almost every Node.js-based templating engine
+
+
+templating
+-----------
+EJS, PUG
+
+
+
+
+response.sendFile("/path/to/cool_song.mp3");// used to send the file directly
+
+
+redirect 
+--------------
+response.redirect("/hello/world");
+response.redirect("http://expressjs.com");
+
+get ip
+-------------
+request.ip
+
+useful modules
+morgan  --  logging component
+body-parser
+ ejs   -- view engine

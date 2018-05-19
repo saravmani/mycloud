@@ -1,0 +1,167 @@
+Blocking collections System.Collections.Concurrent.BlockingCollection
+-----------------------------------
+
+
+It implements the producer-consumer pattern. In this pattern, there are two threads 
+one is called producer and other is called consumer. Both threads share a common collection 
+class to exchange data between them. BlockingCollection can be used as the collection class.
+
+Producer thread generates the data and consumer thread is consuming the data.
+We set the maximum limit of collection class. Producer cannot add new objects 
+more than maximum limit 
+
+BlockingCollection has two features which differentiate it from other concurrent classes.
+
+Bounding
+Blocking
+
+
+Bounding means we can set the maximum number of objects that we can store in the collection.
+ When a producer thread reaches BlockingCollection maximum limit, it is blocked to add new objects.
+ In the blocked stage, thread goes in the sleep mode. It will unblock when consumer thread remove item from the collection.
+#even single item taken by consumer, then producer thread will add another one item.
+#ex bounding size is 10, and producer added 10 items then it will wait consumer to remove item.
+ #If consumer takes one item from collection and went for sleep mode then producer add 1 item. 
+ #If consumer takes items continuously from collection  then producer some times try to add item in middle 
+
+
+
+When collection class is empty, the consumer thread is blocked until the producer thread adds new item.
+
+
+
+At the end, producer thread calls the CompleteAdding method. CompleteAdding set the IsCompleted property to true. A consumer thread monitors the IsCompleted property to know that there are no more items to add.
+
+
+BlockingCollection<int> bCollection = new BlockingCollection<int>(10);
+We can also create BlockingCollection with no max limit then it will take any number of items.
+
+
+
+By default, BlockingCollection use ConcurrentQueue as its collection class. We can also provide another collection class. But we can pass only those collection classes which implements the IProducerConsumerCollection<T> interface. ConcurrentStack and ConcurrentBag implements the IProducerConsumerCollection<T> interface. We can also define our own collection class which implements the IProducerConsumerCollection<T> interface and pass that class to BlockingCollection constructor. Below is the example of passing ConcurrentBag to BlockingCollection which has maximum limit of 10 objects.
+
+BlockingCollection<int> bCollection = new BlockingCollection<int>(new ConcurrentBag<int>(), 10);
+
+
+add
+------------
+Add method is blocked when maximum limit is reached
+
+BlockingCollection<int> bCollection = new BlockingCollection<int>(boundedCapacity: 2);
+bCollection.Add(1);
+bCollection.Add(2);
+
+In the above example, we have created BlockingCollection with maximum capacity of 2 items. When we try to add third item, it will block until any item is not removed from the collection.
+
+
+TryAdd
+---------------
+This method with takes a TIMEOUT VALUE. If the add operation is not completed within the timespan value then TryAdd method returns with false value.
+
+
+BlockingCollection<int> bCollection = new BlockingCollection<int>(boundedCapacity: 2);
+bCollection.Add(1);
+bCollection.Add(2);
+ 
+if (bCollection.TryAdd(3, TimeSpan.FromSeconds(1)))
+{
+    Console.WriteLine("Item added");
+}
+else
+{
+    Console.WriteLine("Item does not added");
+}
+
+
+Take
+-----------
+Take Method
+Take method removes an item from the collection. Take method is blocked when the collection is empty. It'll unblock when any item is added by other thread.
+
+TryTake
+------------
+TryTake method also removes an item and returns item in the out parameter. This method also takes a timeout parameter. If the collection is empty then this method will wait for time specify in timeout parameter. If new item is not added within the timeout value, then it returns false.
+
+BlockingCollection<int> bCollection = new BlockingCollection<int>(boundedCapacity: 2);
+bCollection.Add(1);
+bCollection.Add(2);
+ 
+int item = bCollection.Take();
+item = bCollection.Take();
+ 
+if (bCollection.TryTake(out item, TimeSpan.FromSeconds(1)))
+{
+    Console.WriteLine(item);
+}
+else
+{
+    Console.WriteLine("No item removed");
+}
+
+
+Producer thread call the CompleteAdding method. It marks the BlockingCollection instance that it will not add any more items. CompleteAdding method mark the IsAddingCompleted property to true.
+
+IsCompleted property is used by consumer threads. It returns true when IsAddingCompleted is true and the BlockingCollection is empty. That means when IsCompleted is true there are no items in the collection and other producer threads will not add any new item.
+
+
+
+FOREACH LOOP
+==========================
+BlockingCollection provides a GetConsumingEnumerable() method. This method returns IEnumerable<T> so that we can use that method in the foreach loop. This method returns items as soon as item is available in the collection.
+
+This method has a blocking feature. It will block the foreach loop when the collection is empty. A foreach loop ends when the producer thread calls the CompleteAdding method. Below is the example.
+
+
+BlockingCollection<int> bCollection = new BlockingCollection<int>(boundedCapacity: 10);
+    Task producerThread = Task.Factory.StartNew(() =>
+        {
+            for (int i = 0; i < 10; ++i)
+            {
+                Thread.Sleep(TimeSpan.FromSeconds(1));
+                bCollection.Add(i);
+            }
+ 
+            bCollection.CompleteAdding();
+        });
+ 
+    foreach (int item in bCollection.GetConsumingEnumerable())
+    {
+        Console.WriteLine(item);
+    }
+ 
+    //Output:
+    // 0
+    // 1
+    // 2
+    // 3
+    // 4
+    // 5
+    // 6
+    // 7
+    // 8 
+    // 9
+
+
+
+
+Work with Multiple Producers and Consumers
+==================================================
+Sometime, we have multiple producers and consumers threads. BlockingCollection gives some static methods to work with multiple collections. Below are the methods.
+
+AddToAny
+TryAddToAny
+TakeFromAny
+TryTakeFromAny
+All three methods are static. They take an array of BlockingCollection as parameter. AddToAny and TryAddToAny add item into any of the BlockingCollection array item. TryTakeFromAny also takes an array of BlockingCollection and try removes the item from any of the array item.
+
+ while (!producers[0].IsCompleted ||
+        !producers[1].IsCompleted ||
+        !producers[2].IsCompleted)
+    {
+        int item;
+        BlockingCollection<int>.TryTakeFromAny(producers, out item, TimeSpan.FromSeconds(1));
+        if (item != default(int))
+        {
+            Console.WriteLine(item);
+        }
+    }

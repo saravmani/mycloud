@@ -1,0 +1,206 @@
+Angular 2 provides validation based on the approach used by the HTML5 standard.
+
+There are four attributes that you can add to input elements,
+The Built-in Angular Validation Attributes
+required,minlength,maxlength,pattern
+
+You may be familiar with these attributes because they are part of the HTML specification,
+Angular builds on these properties with some additional features.
+
+<form novalidate (ngSubmit)="addProduct(newProduct)">
+    <input class="form-control" name="name" [(ngModel)]="newProduct.name"
+    required  minlength="5" pattern="^[A-Za-z ]+$"/>
+
+Angular requires elements that are being validated to define the name attribute, which is used to identify
+the element in the validation system.
+
+why novalidate required?
+    novalidate attribute to the form element, which tells the browser not to use its native
+validation features, which are inconsistently implemented by different browsers and generally get in the
+way.
+
+
+Angular validation features work only when there is a form element present, and Angular
+will report an error if you add the ngControl directive to an element that is not contained in a form.
+
+The ngSubmit binding handles the form element’s submit event. You can achieve the same effect
+binding to the click event on individual button elements within the form if you prefer.
+
+
+Valiudation Classes
+========================
+ng-pristine ng-derty
+ng-touched ng-untouched
+ng-invalid ng-valid
+
+three sets of validation classe. Always form control will have one class from each set.
+so always three classes.
+
+<style>
+    input.ng-dirty.ng-invalid {
+        border: 2px solid #ff0000
+    }
+
+    input.ng-dirty.ng-valid {
+        border: 2px solid #6bc502
+    }
+</style>
+<div class="bg-info p-a-1 m-b-1">Model Data: {{jsonProduct}}</div>
+<form novalidate (ngSubmit)="addProduct(newProduct)">
+    <div class="form-group">
+        <label>Name</label>
+        <input #name="ngModel" class="form-control" name="name" [(ngModel)]="newProduct.name" required minlength="5" pattern="^[A-Za-z ]+$"
+        />
+        <ul class="text-danger list-unstyled" *ngIf="name.dirty && name.invalid">
+            <li *ngIf="name.errors.required">
+                You must enter a product name
+            </li>
+            <li *ngIf="name.errors.pattern">
+                Product names can only contain letters and spaces
+            </li>
+            <li *ngIf="name.errors.minlength">
+                Product names must be at least {{name.errors.minlength.requiredLength}} characters
+            </li>
+        </ul>
+
+    </div>
+    <button class="btn btn-primary" type="submit">
+        Create
+    </button>
+</form>
+
+Note: #name="ngModel" 
+
+
+Validation runs alongside data bindings, and
+you should not act on form data without checking that the overall form is valid,
+
+The ngModel directive provides access to the validation status
+of the elements it is applied to, which
+
+
+path     -  This property returns the name of the element.
+valid     -  This property returns true if the element’s contents are valid and false otherwise.
+invalid     -  This property returns true if the element’s contents are invalid and false otherwise.
+pristine     -  This property returns true if the element’s contents have not been changed.
+dirty     -  This property returns true if the element’s contents have been changed.
+touched     -  This property returns true if the user has visited the element.
+untouched     -  This property returns true if the user has not visited the element.
+errors     -  This property returns an object whose properties correspond to each attribute for
+                which there is a validation error.      
+value     -  This property returns the value of the element, which is used when defining custom
+            validation rules, as described in the “Creating Custom Form Validators” section.
+
+Safe Navigation Property (# in my terms  - nullable properties)
+------------------------------------------------------------------
+The errors property is created only when there are validation errors, which is why I check the
+value of the invalid property in the expression on the ul element. An alternative approach is to use
+the safe navigation property,
+
+<li *ngIf="name.errors?.required">
+    You must enter a product name
+</li>
+
+Appending a ? character after a property name tells Angular not to try to access any subsequent
+properties or methods if the property is null or undefined.
+
+
+In practical forms will have multiple controlls.. so writing validaiton error message for each controll is complex.
+so we can create common function to display the messages
+
+ex: 
+getValidationMessages(state: any, thingName ?: string) {
+  let thing: string = state.path || thingName;
+  let messages: string[] = [];
+  if (state.errors) {
+    for (let errorName in state.errors) {
+      switch (errorName) {
+        case "required":
+          messages.push(`You must enter a ${thing}`);
+          break;
+        case "minlength":
+          messages.push(`A ${thing} must be at least
+  ${state.errors['minlength'].requiredLength}
+  characters`);
+          break;
+        case "pattern":
+          messages.push(`The ${thing} contains
+  illegal characters`);
+          break;
+      }
+    }
+  }
+  return messages;
+}
+
+<ul class="text-danger list-unstyled" *ngIf="name.dirty && name.invalid">
+<li *ngFor="let error of getValidationMessages(name)">
+{{error}}
+</li>
+</ul>
+
+To display the error messages after form has submitted
+-----------------------------------------------------------------------
+
+export class ProductComponent {
+  model: Model = new Model();
+  // ...other methods omitted for brevity...
+  formSubmitted: boolean = false;
+  submitForm(form: NgForm) {
+    this.formSubmitted = true;
+    if (form.valid) {
+      this.addProduct(this.newProduct);
+      this.newProduct = new Product();
+      form.reset();
+      this.formSubmitted = false;
+    }
+  }
+
+<div class="bg-danger p-a-1 m-b-1" *ngIf="formSubmitted && form.invalid">
+  There are problems with the form
+</div>
+<input class="form-control" name="name" [(ngModel)]="newProduct.name" #name="ngModel" required minlength="5" pattern="^[A-Za-z ]+$"
+/>
+<ul class="text-danger list-unstyled" *ngIf="(formSubmitted || name.dirty) && name.invalid">
+  <li *ngFor="let error of getValidationMessages(name)">
+    {{error}}
+  </li>
+</ul>
+
+add some boolean property (ex: formSubmitted), and with that we can able to display the messages after 
+click of submit button
+
+NgForm object's reset method, which resets the validation status of the form and returns it to
+its original and pristine state
+
+display summery validation message
+-------------------------------------------
+//Note : because the path property isn’t set on the objects I get from the controls property.
+ getFormValidationMessages(form: NgForm): string[] {
+  let messages: string[] = [];
+  Object.keys(form.controls).forEach(k => {
+    this.getValidationMessages(form.controls[k], k)
+      .forEach(m => messages.push(m));
+  });
+  return messages;
+}
+
+<form novalidate #form="ngForm" (ngSubmit)="submitForm(form)">
+  <div class="bg-danger p-a-1 m-b-1" *ngIf="formSubmitted && form.invalid">
+    There are problems with the form
+    <ul>
+      <li *ngFor="let error of getFormValidationMessages(form)">
+        {{error}}
+      </li>
+    </ul>
+  </div>
+
+
+  Disabling the Submit Button
+  ----------------------------
+  The final adjustment in this section is to disable the button once the user has submitted the form, preventing
+the user from clicking it again until all the validation errors have been resolved. This is a commonly used
+technique
+
+<button class="btn btn-primary" type="submit"
+[disabled]="formSubmitted && form.invalid"  [class.btn-secondary]="formSubmitted && form.invalid">

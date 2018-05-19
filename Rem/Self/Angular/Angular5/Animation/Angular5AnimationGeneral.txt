@@ -1,0 +1,14 @@
+Angular Animation library is seperated. have to install manually
+$ npm install @angular/animations@latest --save
+
+
+query
+-----------------
+query is an animation-specific function that is designed to be used inside of Angular's 
+animation DSL language.
+
+query() is used to find one or more inner elements within the current element that is being 
+animated within the sequence. 
+The provided animation steps are applied to the queried element
+
+It internally by using element.querySelectorAll

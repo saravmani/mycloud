@@ -1,0 +1,57 @@
+@Directive({
+	selector: "[paDisplayValue]"
+})
+export class PaDisplayValueDirective {
+constructor( @Inject(VALUE_SERVICE) serviceValue: string) {
+    this.elementContent = serviceValue;
+}
+    @HostBinding("textContent") elementContent: string;
+}
+
+
+Working with the DOM API in an Angular
+application is a useful technique, but it does mean that your directive can be
+ used only in applications that  are run in a web browser.
+
+but angulars intend is to running in different execution environments , not all of them can be assumed to provide the DOM API.
+
+HostBinding - for attribute binding
+HostListener - to listen events from html elements
+
+Behind the scenes, Angular implements these features using the DOM API when the directive is used in
+a web browser—or some equivalent mechanism when the directive is used in a different environment.
+
+@HostBinding("class")
+@HostListerner("click")
+
+
+@Input("pa-attr") @HostBinding("class") bgClass: string;
+binding between the class property on the host element and the
+decorator’s bgClass property.
+
+to manage the contents of an element, you can use the @HostBinding decorator to bind to
+the textContent property.
+
+
+
+The @HostListener decorator is used to set up an event binding on the host element
+and applied to a method
+
+@HostListener("click")
+triggerCustomEvent() {
+if (this.product != null) {
+    this.click.emit(this.product.category);
+}
+}
+
+if we are using host bind then no need of ElementRef object. bcs angular will take care of it
+
+
+
+
+@HostListener("mouseenter", ["$event.type"])
+@HostListener("mouseleave", ["$event.type"])
+setHighlight(type: string) {
+    this.highlighted = type == "mouseenter";
+}
+#note: how we are passing event property values to the methods

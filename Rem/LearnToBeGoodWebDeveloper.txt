@@ -1,0 +1,53 @@
+Webdeveloper to learn below technologies
+----------------------------------------------
+SSH
+Gihub basics (Repository)
+
+
+level -2
+ES6/ES2015  (babel or typescript  -> Transpiler)
+CSS Tools (preprocessors (SASS(more poupular), LESS,Stylus))
+CSS framewors (bootstrap/foundation)
+Responsive design with css (actually bootstrap do this. but we should know internaly)
+
+javascript world - 
+	Task runners
+		Gulp
+		Grunt
+
+	dependency management
+		browserify
+		webpack
+	build tools
+		bower/package management
+		yeoman.io
+
+	Unit testing
+		Karma
+		Jasmine
+		Mocha
+	Reactive Programming
+		Redux
+
+		
+Server side
+------------------
+	Unit testing framework
+	Restful services, web apis
+	security
+	autherization/authentication
+		Oauth2
+		JSON webtoken
+	SOA
+	Websocket
+	ORM/Data structure
+	Docker 
+	------
+		Big scale (kubernetes, mesos)
+		Small Scale : Docker swarm, docker 1.12 swarm
+		UI-Driven : Rancher, docker cloud, docker datacenter/universal control plane
+		
+		
+tools to continus testing and deployment
+
+	

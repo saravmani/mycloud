@@ -1,0 +1,5 @@
+what is  Shadow DOM and Light DOM
+ Ans : The Light DOM is simply the plain old DOM tree inside a HTML element.
+The term is only used in the context of components to distinguish it from the Shadow DOM. I suppose the normal DOM was redefined as Light in contrast with Shadow.
+
+How many background workers can be created?

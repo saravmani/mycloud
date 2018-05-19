@@ -1,0 +1,37 @@
+Exporting a Directive for Use in a Template Variable
+-----------------------------------------------------------
+ngForm directive is a built in example of exporting directive.
+we can use Template variables to access the properties of the directive
+
+<form novalidate #form="ngForm" (ngSubmit)="submitForm(form)">
+
+Ex:
+ <button [appHostbindercheck]="sometxt"  #_someExportname="someExportname" >some button info</button>
+
+@Directive({
+  selector: '[appHostbindercheck]',
+  exportAs: "someExportname"
+})
+export class HostbindercheckDirective implements OnChanges {
+
+  @HostBinding("class") objClassRef;
+  @HostBinding("textContent") txtcontent;
+  @Input("appHostbindercheck") appHostbindercheck;
+  @HostListener("click")
+  listeningfn() {
+    console.log("host clickedeee");
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.appHostbindercheck.currentValue == "dumdum")
+    this.txtcontent = this.appHostbindercheck;
+  }
+
+}
+
+Once the template variable has been defined, it can be used in interpolation bindings or as part of
+a binding expression
+
+
+Tip You don’t have to use the same names for the variable and the directive,
+ but it does help to make the source of the functionality clear.

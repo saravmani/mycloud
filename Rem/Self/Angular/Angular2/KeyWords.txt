@@ -1,0 +1,16 @@
+Renderer,Renderer2
+ElementRef,
+HostBinder,
+HostListener,
+
+
+Directives
+-------------------
+ViewContainerRef, -- referes container
+TemplateRef, -- refers template 
+
+OnChange, DoCheck(to identify the input chagnges)
+-----------------------------------------------------
+IterableDiffer, IterableDiffers,
+ChangeDetectorRef, CollectionChangeRecord,
+SimpleChange, 

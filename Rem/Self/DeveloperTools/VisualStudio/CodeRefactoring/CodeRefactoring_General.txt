@@ -1,0 +1,7 @@
+Code refactoring is a controller technique or process of restructuring your code without changing its external behavior for easier maintenance, better readability, understand and extend support. 
+
+Code refactoring transforms a mess into clean code and simple design
+
+Tools
+    Refactoring Essentials - opensource
+    Resharper

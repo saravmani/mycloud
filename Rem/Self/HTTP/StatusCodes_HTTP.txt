@@ -1,0 +1,38 @@
+400 - bad request.
+   if the user sends invalid request we can return with 400.
+
+ex: query param which expects integer, but instead of 
+sending integer if the users sends string we can
+return with 400
+
+
+100 - informational
+Moste of the apis doesn't need this
+200
+201 - created
+204 - success but no content
+
+300 - redirect
+
+400 - bad request
+401 - un authorised
+403 - forbidden - user forbidden to access particular resource
+404 - not found
+405 - method not allowed 
+(ex - if api not support POST and client tries with POST)
+406  - not acceptable 
+(ex: if api not support XML mime type and client tries it )
+409 - conflict (this is offen used.)
+(ex: client try to create the resource which already created,
+or updating resource and which is updated (i.e pesimistic locking))
+
+415 - it is like 406 . Unsupported media type
+422 - Unprocessable entity. it is part of webhttp extension standard.
+ex: valdation fails
+
+500 - server made a mistake
+
+Errors Vs Faults
+------------------------
+Errors  ex: 400, 401 etc.,
+Faults ex: Server faults.. 500

@@ -1,0 +1,4 @@
+in general once we submit the form, we should not return html output from the server.
+Because if ther user tries to refresh the page then previous form will get submitted again.
+To avoid this best practice is have to return with redirect result from ther server, 
+and browser will redirect to another page. so if the user refresh the page it will not affect

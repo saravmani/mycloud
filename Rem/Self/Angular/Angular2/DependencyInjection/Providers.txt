@@ -1,0 +1,236 @@
+Providers (Tages -> Service Providers, Angular Providers, Dependency Injection, Dependency providers)
+
+Key words : useValue, useClass, useFactory, deps,useExisting, OpqueToken,Injectable, Inject
+viewProviders
+
+Types of providers
+----------------------------
+Class Provider
+Value Provider
+Factory Provider
+Existing Service provider - This provider is configured using the name of another service and allows
+							aliases for services to be created
+
+
+provide -  This property is used to specify the token, which is used to identify the provider and the
+          dependency that will be resolved. See the “Understanding the Token” section.
+useClass  - This property is used to specify the class that will be instantiated to resolve the
+          dependency by the provider. See the “Understanding the useClass Property” section.
+multi  - This property can be used to deliver an array of service objects to resolve dependencies.
+          See the “Resolving a Dependency with Multiple Objects” section.
+
+
+providers:[{
+  privide:"logger",
+  useClass:ClassName
+}]
+
+
+export class ClientClass
+{
+  constructor( @Inject("logger") private objLogger:LoggerClass)
+  {
+    //Angular will automatically
+//match providers whose token is a class. For other token types it needs some additional help 
+  }
+
+}
+
+
+Understanding the Token
+-------------------------------
+All providers rely on a token, which the dependency injection system uses to 
+identity the dependency that
+the provider can resolve. The simplest approach is to use a class as the token,
+
+However, you can use any object as the token, which allows the dependency and the type of the object
+to be separated. This increases the flexibility of the dependency injection configuration
+because it allows a
+provider to supply objects of different types,
+
+Angular will automatically
+match providers whose token is a class but needs some additional help for other token types.
+
+@Inject used to specify the provider token.
+
+
+Using Opaque Tokens
+----------------------------------
+When using simple types as provider tokens, there is a chance that two different
+ parts of the application will
+try to use the same token to identify different services, 
+which means that the wrong type of object may be
+used to resolve dependencies and cause errors.
+To help work around this, Angular provides the OpaqueToken class, which provides an object wrapper
+around a string value and which can be used to create unique token values
+
+
+import { Injectable, OpaqueToken } from "@angular/core";
+export const LOG_SERVICE = new OpaqueToken("logger");
+..
+providers: [DiscountService, SimpleDataSource, Model,
+{ provide: LOG_SERVICE, useClass: LogService }],
+..
+constructor( @Inject(LOG_SERVICE) private logger: LogService) { }
+
+
+
+
+useClass
+---------------------
+The class provider’s useClass property specifies the class that will be instantiated to 
+resolve dependencies.
+The provider can be configured with any class, which means that you can change the implementation
+of a service by changing the provider configuration.
+
+TypeScript type enforcement has no effect on
+dependency injection because it occurs at runtime
+
+
+
+# we can use interfaces in constructors, and concrete classes in providers. so implementation
+ will be loosly coupled
+
+
+ use Factory
+ ---------------
+providers: [DiscountService, SimpleDataSource, Model,
+{
+provide: LogService, useFactory: () => {
+let logger = new LogService();
+logger.minimumLevel = LogLevel.DEBUG;
+return logger;
+}
+}],
+
+
+Use Value
+-------------
+let logger = new LogService();
+providers: [DiscountService, SimpleDataSource, Model,
+{ provide: LogService, useValue: logger }],
+
+This value provider is configured to resolve dependencies on the LogService token with a specific
+object that has been created and configured outside of the module class.
+--
+
+providers: [LoggServiceService,
+{
+      provide: 'CanAlwaysActivateGuard',
+      
+        useValue: () => {
+        return false;
+      }
+    
+}
+
+
+deps
+------------
+
+This property specifies an array of provider tokens that will be resolved and passed to
+the function specified by the useFactory property.
+
+providers: [DiscountService,
+  { provide: LOG_LEVEL, useValue: LogLevel.DEBUG },
+  { provide: LogService,
+  deps: [LOG_LEVEL],
+  useFactory: (level) => {
+    let logger = new LogService();
+    logger.minimumLevel = level;
+    return logger;
+  }
+  }],
+
+
+
+Using the Existing Service Provider
+----------------------------------------------
+This provider is used to create aliases for services so they can be targeted using more than one token
+#useExisting
+providers: [DiscountService, SimpleDataSource, Model,
+{ provide: LOG_LEVEL, useValue: LogLevel.DEBUG },
+{ provide: "debugLevel", useExisting: LOG_LEVEL },
+{ provide: LogService, deps: ["debugLevel"],
+
+
+
+It is an
+injector that is responsible for inspecting the constructors of classes to
+ determine what dependencies have
+been declared and resolving them using the available providers.
+
+
+Local Providers
+-----------------------
+Each component and
+directive can have its own injector, and each injector can be configured with its own set of providers, 
+known
+as local providers.
+#My Understanding - Injecter will maintain the list of injectables. so above lines are telling
+there is posibility of multiple injectors.
+
+When there is a dependency to resolve, Angular uses the injector for the nearest component or directive.
+The injector first tries to resolve the dependency using its own set of local providers. If no local providers have
+been set up or there are no providers that can be used to resolve this specific dependency, then the injector
+consults the parent component’s injector.
+  parent component’s injector tries to resolve the dependency using its own set of local providers.
+
+  At the top of
+the hierarchy is the root Angular module, whose providers are the last resort before reporting an error.
+
+Creating a Local Provider for All Children
+----------------------------------------------
+The @Component decorator’s providers property is used to define providers that will be used to resolve
+service dependencies for all children,
+
+@Component({
+selector: "paProductForm",
+templateUrl: "app/productForm.component.html",
+providers: [{ provide: VALUE_SERVICE, useValue: "Oranges" }]
+})
+
+Creating a Provider for View Children
+----------------------------------------------
+The viewProviders property defines providers that are used to resolve dependencies for view children but
+not content children
+
+@Component({
+selector: "paProductForm",
+templateUrl: "app/productForm.component.html",
+viewProviders: [{ provide: VALUE_SERVICE, useValue: "Oranges" }]
+})
+
+
+Controlling Dependency Resolution
+---------------------------------------
+Angular provides three decorators that can be used to provide instructions about how a dependency is
+resolved.
+@Host, @SkipSelf,@Optional
+
+@Host           This decorator restricts the search for a provider to the nearest component.
+@Optional       This decorator stops Angular from reporting an error if the dependency cannot be resolved.
+@SkipSelf       This decorator excludes the providers defined by the component/directive whose dependency is being resolved.
+
+The @Host decorator restricts the search for a suitable provider so that it stops once the closest component
+has been reached. The decorator is typically combined with @Optional, which prevents Angular from
+throwing an exception if a service dependency cannot be resolved.
+
+@Directive({
+  selector: "[paDisplayValue]"
+  })
+  export class PaDisplayValueDirective {
+  constructor( @Inject(VALUE_SERVICE) @Host() @Optional() serviceValue: string) {
+        this.elementContent = serviceValue || "No Value";
+  }
+    @HostBinding("textContent")  elementContent: string;
+  }
+
+
+  @Optional decorator, you must ensure that the class is able to function if the service
+cannot be resolved, in which case the constructor argument for the service is undefined.
+
+
+The @SkipSelf decorator can be applied to constructor arguments to tell Angular to ignore the local
+providers and start the search at the next level in the application hierarchy, which means that the
+local providers will be used only to resolve dependencies for children.

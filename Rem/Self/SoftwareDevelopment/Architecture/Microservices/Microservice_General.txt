@@ -1,0 +1,12 @@
+
+Requirements for a microservices architecture
+-----------------------------------------------------
+Service contracts
+exposing new and existing services
+DISCOVERY OF SERVICES
+coordination accross services
+managing complex deployments and their scalability
+visibility and correlation across services
+
+
+Containers are enablers and a great fit for microservices But Containers are not mandatory for micro services

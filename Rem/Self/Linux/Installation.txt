@@ -1,0 +1,31 @@
+Download ubuntu 16.04  ISO
+Format Pendrive as NTFS
+Using rufus 2.0 and above make USB drive as bootable
+	while doing this select NTFS file system, and select Ubuntu ISO file
+
+now your bootable pendrive is ready with OS 
+
+restart laptop and while it is startingg press esc button continuously.
+now boot order will get open
+select USB drive
+Now ubunto installation will run
+
+Installation steps
+	1. select third party softwares installation selection
+	2. select drive where u need to install ubuntu
+		3. u can reduce the size of installation and use balance memory for swap memory (which is used as RAM where more RAM is required)
+	4. then go for installation
+
+But after installation wifi didn work. Only few wifi net works was displaied. but my won wifi not listed..
+ 
+
+what is the issue?
+don know. Just i done below. and it works.
+
+Go to modem configuration
+
+http://192.168.0.1/index.asp
+
+Change channel to 5. (Previously it was 13). after change it restart wifi modem. 
+
+Now it works Happy .. :-)

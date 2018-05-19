@@ -1,0 +1,13 @@
+
+Avoid politics, blame, emotions 
+
+Remember we cant review entire code base. it will time consuming
+
+Dont try to redesign by code review.. it is costly
+dont focus on bugs. if you find bugs also dont include in report
+Try to find Patterns to fix
+
+Just copy paste the code in a file into msword and add comments. check below image
+CodeReview_ByCopyPaste_MSWord.jpg
+
+Need to focus on what is good and what needs improvement in code

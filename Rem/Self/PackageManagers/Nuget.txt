@@ -1,0 +1,24 @@
+vsts 2012 and above nuget package mager will be automatically come.
+
+vsts 2010 we have to install through extension magager
+
+while downloading package from nuget, it will automatically download dependencies and install
+
+If you are adding a package for the first time, then it will create a file named packages.config.
+
+It also creates a folder named packages in the directory where your solution (.sln) file resides. Packages folder contains a subfolder for each installed package with version number.
+
+NuGet automatically adds the reference of library and makes the necessary changes in config file.
+
+
+Visual Studio also provides the command line interface to manage NuGet packages. 
+It provides Power Shell based console named “Package Manager Console”.
+
+Package manager console commands
+---------------------------------------
+Install-Package <PackageName>
+Update-Package <PackageName>//This command will update to the latest version of package.
+Update-Package Elmah -version 1.1
+Update-Package  //To update all NuGet packages in your project
+Uninstall-Package <PackageName>
+List-Package //list all installed packages

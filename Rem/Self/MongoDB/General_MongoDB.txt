@@ -1,0 +1,65 @@
+install mango db 
+navigate to installed path and create blow folders
+log
+data
+data\db
+
+
+open command propt and navigate to bin folder
+
+then type below to configure mongo db
+
+mongod --directoryperdb --dbpath F:\mangodb\data\db --logpath F:\mangodb\log\mongo.log --logappend --rest --install
+
+
+then type below to start
+
+
+commands
+-------------
+show dbs  //to listdown databases
+
+use nedbName //to create database and switched to created db context
+
+db //to display current working db
+
+
+
+Create user for DB
+-------------------------
+db.createUser({
+user:"saravmani",
+pwd:"pass@123",
+roles: [ "readWrite", "dbAdmin" ]
+});
+
+fetch User details
+------------------------
+db.getUser('userName');
+
+
+db.createCollection('customer');
+show collections // will show all collections in the db
+
+db.customer.insert({name:"hihi",age:21});
+
+
+//see documents iin collection
+
+db.customer.find();
+db.customer.find().pretty();
+
+db.customer.update({name:'hihi'},{name:"hihi",age:22})
+
+delete row
+-----------------------
+db.customer.remove({name:'hihi'})
+
+
+
+net start MongoDB
+
+
+type below to connect to db
+
+mogodb   //this will connect to db server

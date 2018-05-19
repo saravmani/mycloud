@@ -1,0 +1,42 @@
+
+@ViewChild(class) This decorator tells Angular to query for the first directive or component
+object of the specified type and assign it to the property. The class name can
+be replaced with a template variable. Multiple classes or templates can be
+separated by commas.
+@ViewChildren(class) This decorator assigns all the directive and component objects of the
+specified type to the property. Template variables can be used instead of
+classes, and multiple values can be separated by commas. The results are
+provided in a QueryList object, described in Chapter
+
+@ViewChildren(PaCellColor) viewChildren: QueryList<PaCellColor>;
+ngAfterViewInit() {
+    this.viewChildren.changes.subscribe(() => {
+    this.updateViewChildren();
+    });
+    this.updateViewChildren();
+}
+private updateViewChildren() {
+setTimeout(() => {
+        this.viewChildren.forEach((child, index) => {
+        child.setColor(index % 2 ? true : false);
+    })}, 0);
+}
+# So using viewchldren we can able to access the instance of the child components, and can able to 
+call the method of that children components.
+Components can query the content of their templates to locate instances of 
+directives or components, which are known as view children
+
+
+Evaluate expression on events
+<td (mouseover)="propertyName='some text value'">{{i + 1}}</td>
+
+Dynamically Defined Properties
+----------------------------------
+ <button (click)="hahavariable='hahavalue'"  >some button info</button>
+---- {{hahavariable}}------
+
+here hahavariable is not defined in component. but it still works
+
+Angular application is plain JavaScript at runtime. This means
+you can take advantage of JavaScript’s dynamic features when it is useful to do so
+

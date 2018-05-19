@@ -1,0 +1,21 @@
+Angular components are compiled into factory classes, either within the browser or by the Ahead-of-
+Time compiler that I demonstrated in Chapter 10. As part of this process, Angular processes any external
+templates and includes them as text in the JavaScript code that is generated similar 
+to an inline template.
+When unit testing a component with an external template, the compilation step must be performed
+explicitly.
+
+Components are compiled using the TestBed.compileComponents method. The compilation process
+is asynchronous, and the compileComponents method returns a Promise, which must be used to complete
+the test setup when the compilation is complete. To make it easier to work with asynchronous operations
+in unit tests, the @angular/core/testing module contains a function called async, 
+which is used with the beforeEach method.
+
+
+beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        AppComponent
+      ],
+    }).compileComponents();
+  }));

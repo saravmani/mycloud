@@ -1,0 +1,94 @@
+AngularJS services
+-------------------------------
+Services are reusable pieces of code that can be shared across controllers, directives,
+filters, and services itself. Services are singleton in nature so they also provide a
+mechanism for sharing data across these constructs.
+
+angular.module("ModuleName"[]).service("servicename",function(){});
+//This allows your  service to be referenced elsewhere by injecting WatchlistService into the desired component  implementation function
+//Angular instantiates a singleton by calling new on the function supplied to .service()
+
+
+Internal  Angular Services
+---------------------------------
+$routeProvider,
+$locationProvider,
+$http
+$watch -  it is under $scope object
+$modal - angular strap's service
+$interval -  service is a wrapper over the window.setInterval method
+$timeout  -  it is like $interval is an Angular service that calls a function after a specific duration but only once.
+$watchCollection - Used for watching collection
+$route //Part of ngRoute Module (it is exgternal module. angular-route.js)
+$location //$route and $location both used together
+$interval
+$templateCache
+
+
+
+$interval 
+--------------
+	Ex:
+		$interval(function() 
+		{
+			++$scope.currentExerciseDuration;
+		}
+	, 1000 //Interval, 
+	10 //Howmany Times funciton need to invoke
+	);
+	//Remember that, if we do not provide the third argument to the $interval service, the callback method will be repeatedly invoked and the process can only be stopped explicitly by calling the cancel function of $interval.  
+	
+	
+	As a good practice, we should not use the $ prefix in any of our service
+names. to distinguish between our service and framework service
+
+$watch
+---------
+$scope.$watch(watchExpression, [listener], [objectEquality]);
+watchExpression, can be either a string expression or a function. If the watchExpression value changes, the listener is invoked. expression is evaluated in the context of the current
+scope.  If we pass a function as
+the first argument, AngularJS will call it at predefined times;
+Listern Function invoked with three  parameters namely newValue, oldValue, and the current scope.
+third parameter is a Boolean argument objectEquality that determines how
+the inequality or change is detected.
+Ex:
+	$scope.$watch('obj',function(n,o){console.log('Data changed!');});
+	$scope.$watch('obj', function(n,o){console.log('Datachanged!'},true);//For strict comparison (it will use !==)
+	
+	
+	$watchCollection
+	--------------------------
+	Ex:  $watchCollection(expression, listener);
+	Here, an expression can be an object or array property on scope. For an
+object, the listener is fired whenever a new property is added or removed
+For an array listener will get invoked when element added, removed and moved
+
+
+$route
+----------
+
+
+$location
+------------
+The $location service parses the URL in the browser address bar (based on the window.location), but it will not directly apply the changes in address bar
+Changes to the URL in the address bar are reflected into $location service and changes to $location are reflected into the browser address bar.
+
+Ex: $location.path('/finish');//we should not use #
+
+Make note of the difference in terms when referencing the paths. In the anchor (<a>) tag, we used href='#/wokout', whereas we are not using the # s
+ymbol with the $location.path function.
+
+
+$locationProvider.html5Mode(true);//Used to give real time url in browser address bar. i.e to get away from # symbol in address bar
+Remember if this new concept, if we refresh the page we will get 404 because this new url resource will not b there in server. so for this we need to provide support
+on server too.
+
+
+
+AngularJS uses the $templateCache service to cache the partials that it
+loads during the lifetime of the application. All partials that we reference
+in ng-view and ng-include are cached for future use.
+The $templateCache service is injectable and we can use
+$templateCache to cache templates manually, such as
+$templateCache.put('myTemplate', 'Sample template
+content'). We can now reference this template in ng-view or nginclude.

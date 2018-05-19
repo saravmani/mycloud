@@ -1,0 +1,59 @@
+Browsers may choose to implement Web Workers in any number
+of ways, including threads, background processes, and processes run on other processor cores.
+
+to avoid frozen screen we can go for web for long runnging logics.
+
+Ex:
+var worker = new Worker('stufftodo.js');
+
+now browser will  download stufftodo.js .
+
+pass the message to the worker 
+----------------------------------
+worker.postMessage('start!');
+worker.postMessage({
+    type: 'command',
+    message: 'start!'
+});
+
+worker to parent callee
+-------------------------
+simply use postMessage()
+ex:
+      calculate: function () {
+            var kk = 0;
+            for (i = 0; i < 100; i++) {
+                kk = i;
+            }
+            postMessage(kk);
+            setTimeout(() => {
+                this.calculate();
+            }, 1000);
+        }
+
+//Actually we can pass any object which can be serialized can passed
+The worker communicates back to the page through two events: message and error.
+
+workers run in another global context that is different from the current window
+
+Thus, using the window shortcut to get the current global scope (instead of self)
+within a Worker will return an error.
+you can't directly manipulate the DOM from inside a worker, or use some default 
+methods and properties of the window object. 
+
+import third party libraries within web workers
+-----------------------------------------------------
+self.importScripts('../relative/path/lib.min.js', '../../other/lib.js');
+
+Jquery or any other library which expects to be able to access the DOM or Window Object 
+is never going to work in there.
+
+in webworker we can able to access only following objects and methods (tags: allowable objects inside webworkers)
+-----------------------------------------------------------------------------------------------------------------
+The navigator object
+The location object
+XMLHttpRequest
+The setTimeout and clearTimeout functions.
+The Application Cache
+Spawning other Web Workers
+Using a webworker specific method to load other scripts

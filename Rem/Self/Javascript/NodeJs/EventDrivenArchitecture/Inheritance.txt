@@ -1,0 +1,36 @@
+
+
+Inheritance
+-------------
+to support inheritance we can use below module.
+
+var refEvntEmiter = require('events');//core module. so we no need to mention path
+var objUtils = requie('util');
+
+
+var myFn = function(name){
+this.name = name;
+};
+
+objUtils.inherits(myFn,refEvntEmiter.EventEmitter);
+//Now events inherted into myFn.
+
+var objobjMyFn1 = new myFn("king");
+var objobjMyFn2 = new myFn("king2");
+
+var objArray = [objobjMyFn1,objobjMyFn2];
+
+objArray.forEach(fuction(obj){
+obj.on("someEvntName",function(msg){
+console.log(msg);
+});
+});
+
+
+objobjMyFn1.emit("someEvntName","hihihaha");
+
+
+
+
+
+

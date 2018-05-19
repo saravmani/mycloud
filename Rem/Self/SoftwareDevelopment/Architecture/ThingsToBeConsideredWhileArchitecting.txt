@@ -1,0 +1,14 @@
+Maintanability
+Extensibiliy
+High Availability
+Security
+Reliability
+Scalability
+DR
+Performance
+Standards
+
+Interoperatability
+----------------------
+capability of different programs to exchange data via a common set of exchange formats, 
+to read and write the same file formats, and to use the same protocols. 

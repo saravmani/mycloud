@@ -1,0 +1,1 @@
+ use ads in your app, you need to sign up to admob and create a banner. When you do this, you will get Ad Publisher ID. 

@@ -1,0 +1,32 @@
+To improve the quality of the code we have to do code review
+
+Learn by looking at code base
+Search For patterns and anti-patterns
+No need to go thourgh all the classes. it is based on periority, 
+    need to go thorugh the code, where ever needed
+    Code review is not bug hunt
+
+Code review means what is being done well and what can be done better
+
+sharing the findings of code reiew makes all developers better
+
+
+code review
+--------------------
+Style level(standards)
+Performance level
+Design level  
+	Is it maintanable code?
+	Re usability
+	cost of adding new features
+Give importance for maintanace
+    Change complex unreadable code to more maintanable
+
+
+is there encaptualisation is there in the code. 
+
+SRP - should viloated. 
+Will check is there proper delegation
+-----------------------------------------------------
+dont write other module's functionalities in other modules.
+Just Delegate functionalities to the module wich are responsible for that

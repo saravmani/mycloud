@@ -1,0 +1,15 @@
+Check constraints
+----------------------
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    City varchar(255),
+    CONSTRAINT CHK_Person CHECK (Age>=18 AND City='Sandnes')
+);
+
+check constraint is a type of integrity constraint in SQL which specifies
+a requirement that must be met by each row in a database table. 
+The constraint must be a predicate. It can refer to a single column,
+or multiple columns of the table.

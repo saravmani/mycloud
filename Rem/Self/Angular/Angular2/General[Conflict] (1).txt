@@ -1,0 +1,126 @@
+﻿angular 2 having below advantages
+--------------------------------------
+1. fast
+2. focused on mobile devices
+3. Once we bundle,tree shaking then the application size is very less
+
+
+Providers used to mention the dependency injection items
+ providers:[LoggerService],
+
+
+Components
+Services and DI (Angular 2 core components)
+Directives
+Routers
+
+
+
+
+main advantange in angular is ,
+we will not do the direct dom manupulation like jQuery
+so we no need to have direct reference to dom element.
+
+So we can do a unit test of our component without dom element.
+
+Services should not do any UI related operations.
+Purpose of services is
+	making HTTP call
+	logging
+	business rules etc.,
+
+Directive
+---------------
+Modify DOM elements and modify their behaviours
+Mostly used to add behaviour to existing dom element
+
+
+In type script every page is considered as a module
+
+One of the complexities of Angular 1 is its digest loop, which helps Angular 1 figure out
+the changes in the model and refresh the view. In Angular 2 we don�t have this concept
+anymore.
+In Angular 2, all browser events are �monkey-patched�, so even if you an
+event handler outside your Angular app, it will still be notified and can detect changes in
+objects. Angular team have extracted this part from the core Angular script and opensourced
+it as a separate library that can be re-used by others. This library is called
+zone.js.
+
+
+
+
+
+
+
+
+
+we can use angularjs for
+Electron,Mobile and web
+
+Compatibility
+-----------------------
+It supports latest the version of browsers and also supports old browsers including IE9+ and Android 4.1+.
+
+It is mobile first approach.
+
+
+
+Advantages
+--------------
+If an application is a heavy load, then Angular 2 keeps it fully UI responsive.
+
+It uses server side rendering for fast views on mobile.
+
+It works well with ECMAScript and other languages that compile to JavaScript.
+
+It uses dependency injection to maintain applications without writing too long code.
+
+Everything will be the component based approach.
+supports data anotation
+
+
+Services,
+Components - it is actually a ui elements
+
+
+in angular main.ts is the entry point.
+
+
+angular2/core library which is a primary Angular library module will be imported by another component.
+
+
+
+Decorators not available in ES6. but type script provides this.
+
+
+During the alpha stage of Angular, the Angular bundles where initially published in SystemJs format, 
+but now they are published in CommonJs (see here).
+
+CommonJS is used in NodeJS to require modules at build time. E.g. the modules are compiled and are then delivered to the browser with all code loaded up front.
+
+SystemJS however replaces requireJS. SystemJS loads modules dynamically at run time. In Angular2 if you watch your browser's NET tab you will see SystemJS loading files as you explore more parts of you app.
+
+CommonModules and browsermodule
+-----------------------------------
+First of all, to use ngFor, you need to import the CommonModule. However, if you’re using the BrowserModule in the root module,
+ you won’t need to import it, as the BrowserModule exposes the CommonModule for us - so you only need to
+ import the CommonModule when creating further modules with @NgModule.
+
+
+
+
+
+gzip compression
+--------------------
+HTTP transfer between server and client almost always uses compression. In most cases this is gzip.
+
+So what matters for transfer times is not the size of your bundle.js but the size of bundle.js.gz as content is practically always sent in its gzip compressed form.
+
+When bundle.js is requested, the server gzips it on the fly and puts it on the wire. So gzip is run on every request, which is inefficient for static content.
+
+Also gzip's performance drops significantly with the level of compression (check out this article). Using the highest compression level possible isn't efficient if at all possible on-the-fly. 
+A properly configured webserver would send bundle.js.gz when a gzipped version of bundle.js is requested, so you could use the highest compression level gzip can provide.
+
+In my opinion, the performance bonus of this is negligible unless your server mainly provides static content that can be compressed
+ ahead-of-time. For a small application, with static content and API being served from the same machine, there should be practically no impact.
+

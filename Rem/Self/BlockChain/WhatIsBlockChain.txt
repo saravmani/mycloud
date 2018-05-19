@@ -1,0 +1,24 @@
+It is distributed database
+
+Think it is a large wold wide computer
+every one can access the data  and execute
+transactional code
+
+all transactions are stored in blocks of data
+
+block chain is not the place to store the 
+large data. ex: instead of storing image,
+we can able to check that wether image is
+tamperd or not
+
+No central control
+It is a global Singleton
+
+
+we cannt alter or remove the functionality or code block
+from block chain
+
+hashing algorithm used in block chain is
+SHA 256
+
+SHA is familiy of hasihg algorithms

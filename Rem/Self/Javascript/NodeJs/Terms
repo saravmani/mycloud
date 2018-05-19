@@ -1,0 +1,5 @@
+Pyramid Doom
+----------------
+callback spaghetti or Pyramid Doom
+in javascript , node js  we ll have multip call backs to handle asnychronous function resutls.
+this is called pyramid doom. it is difficult to maintain and understand

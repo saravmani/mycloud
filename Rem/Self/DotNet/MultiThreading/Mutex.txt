@@ -1,0 +1,36 @@
+
+Mutex
+=========================
+this works in OS level. to synchronoise the area which are there in DIFFERENT PROCESSES 
+but on SAME MACHINE
+I.E lock will work within appdomain
+
+
+Mutex Sample code
+--------------------------
+
+      using (var objMutex = new Mutex(false, "someName2"))
+                {
+
+                    var gotAccess = false;
+                    Console.WriteLine("before mutex access controll" + Thread.CurrentThread.ManagedThreadId);
+                    try
+                    {
+                        gotAccess = objMutex.WaitOne(15000);
+                    }
+                    catch (AbandonedMutexException AEx)
+                    {
+                        gotAccess = true;//AbandonedMutexException get generated when any other process or thread releases the mutex
+                    }
+                    if (gotAccess)
+                    {
+                        Console.WriteLine("after mutex access controll" + Thread.CurrentThread.ManagedThreadId);
+                        System.Threading.Thread.Sleep(10000);
+                        objMutex.ReleaseMutex();
+                        Console.WriteLine("after relese mutex controll" + Thread.CurrentThread.ManagedThreadId);
+                    }
+                    else
+                    {
+                        Console.WriteLine("no access");
+                    }
+                }

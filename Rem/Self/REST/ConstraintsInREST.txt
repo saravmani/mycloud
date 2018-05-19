@@ -1,0 +1,41 @@
+REST Constraints
+---------------------------------
+There are 6 Constraints. one is optional.
+we should see this Constraints as design decisions, those can be positive or negative
+
+1. Client And Server should seperated
+    those should evalove seperatly
+2. Stateless
+    Necessary state to handle the request, should be there in request itself.
+    So scalling is easy. While scalling the REST services, we should not care about state maintanance
+3. Cacheable
+    Each response must expilicitly state it it can be cached or not
+
+4. Layered System
+    Each layer can have knowledge about its upper layer. it should not bypass the layers
+
+5. Code On Demand
+    Server can extend Clients functionality
+    Ex: Server can send piece of javascript code to client , extent client application's functionality
+
+6. Unifrom interface
+    Server to should share the single technical Interface.
+    in http protoco this technical URI is a compination of 
+    URI, Http Method, Media Type
+    Unifrom Interface Subconstraints
+    ---------------------------------------
+    1. Identification of resources
+    2. Manipulation of the resource
+        Representation+Metadata should be enough to modify or delete the data if api supports for this
+
+    3. Self descriptive. Each message should contain enough information that
+    how to process it. For example if the server or client sends the message,
+    it should specify the media type (xml or json etc.,). So that server or client can 
+    use correct parser to processt he message 
+    4. Hyer media as the engine of application state (it is like hyper link.. 
+    but it is about medias like video, songs)
+    5. Self documenting (used by the clients)
+
+
+All the RESTFUL api applications cant completely adher to theis all 6 constraints.
+Based on some valid scenearios we may skip some of this constraints.

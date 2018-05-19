@@ -1,0 +1,20 @@
+.NET Framework exceptionhandling
+mechanism is built using the Structured Exception Handling (SEH) mechanism offered by
+Windows. 
+
+
+in .net catch block with out any catch type 
+ is equivalent to having a catch block that specifies a catch type
+of System.Exception 
+
+Note:
+$exception
+When debugging through a catch block by using Microsoft Visual Studio, you can
+see the currently thrown exception object by adding the special $exception variable name
+to a watch window.
+
+NOte: we can able to modify the catch block parameter-- But i m not suere. we have to test it
+catch(Exception ex)
+{
+here ex is not read only we can able to modify it. But i m not suere. we have to test it
+}

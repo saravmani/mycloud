@@ -1,0 +1,116 @@
+MVC - Tasks On Work
+
+Download MVC source code from net and try to debug it.
+	routing module, mvc handler, action invoker
+	https://github.com/aspnet/AspNetWebStack
+
+
+create form page with validation errors
+one custome validation,
+model level validation (#After user clears all property level errors then only model level error will get displaied)
+Self-validating model - IValidatableObject
+(If the model class implements the IValidatableObject interface, then the Validate method will be called after
+the model binder has assigned values to each of the model properties.)
+
+
+Try FilePathResult,FileStreamResult,FileCOntentResult
+
+
+Try Action with complex return type.
+
+
+Try below example with JsonResult and JavaScriptResult
+
+JavaScriptResult (try this )
+------------------------
+# I guess it is usded to call the client side javascript Method
+# sb2 example... we can set the configurations like IsAdminUser,HavingReportAccessRights etc.,. based on roles we can abel to set the global variables.
+# But what will happen if we use json result in below example?
+
+[OutputCache(Duration = 999999)]
+public virtual JavaScriptResult Global()
+{
+    var script = string.Format(@"
+        MaxNotificaitonsToShow = {0};
+        ItemsPerPage = 25;",
+    GlobalSettings.MaxNotificaitonsToShow);
+    return JavaScript(script);
+}
+And in the page footer I load the page:
+
+<script type="text/javascript" src="/JS/Global"></script>
+Now I can get the values in any Javascript file:
+
+if(ItemsPerPage == 25)
+{
+   alert('it works!');
+}
+
+
+Try ajax.action and ajax.beginform
+------------------------------------------------
+@Ajax.ActionLink("Customer from Germany", // <-- Text to display
+
+                 "Germany", // <-- Action Method Name
+
+                 new AjaxOptions
+
+                 {
+
+                     UpdateTargetId="CustomerList", // <-- DOM element ID to update
+
+                     InsertionMode = InsertionMode.Replace, // <-- Replace the content of DOM element
+
+                     HttpMethod = "GET" // <-- HTTP method
+
+                 })
+
+
+try mvc 5 how action method with void
+-------------------------------------------
+
+
+Try output chace and add dynamic code in view and check only view is getting executed??
+1. OutputCache
+ [OutputCache(Duration=20)]
+          public string Index()
+          {
+               return "The time is " +  DateTime.Now;
+
+          }
+
+
+Filters
+=====================================
+AcutionFilterAttribite, IActionFilter,ResultFilter .... try all the filters. and find below and more
+1. what are the items we can able to change?
+2. change input parameters before model binding?
+3. action filter will get called before constructor? i.e for controller level filters
+4. can we able to avoid calling this action filter?
+
+
+Authentication filters
+------------------------------
+If the OnAuthentication sets a value for the Result property of the context object, then the MVC Framework will
+call the OnAuthenticationChallenge method
+
+OnAuthentication method to create a result that reports an authentication error to the user, which can
+then be overridden by the OnAuthenticationChallenge method to challenge the user for credentials instead.
+
+The MVC Framework calls the OnAuthenticationChallenge method one final time after the action method has been
+executed, but before the ActionResult is returned and executed. This provides authentication filters an opportunity
+to respond to the fact that the action has completed or even alter the result
+
+Action Filters
+-------------------------
+The Canceled property will return true if another filter has canceled the request (by setting a value for the Result
+property) since the time that the filter’s OnActionExecuting method was invoked. The OnActionExecuted method will
+still be called, but only so that it can tidy up and release any resources the filter was using.
+
+# verify above  items
+
+
+try [Override filters
+
+
+try partial views with layout

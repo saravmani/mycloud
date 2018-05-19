@@ -1,0 +1,3 @@
+Intel Turbo Boost is a technology implemented by Intel in certain versions of
+ its processors that enables the processor to run above its base operating frequency via 
+ dynamic control of the processor's clock rate.

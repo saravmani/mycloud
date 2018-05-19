@@ -1,0 +1,20 @@
+Bundling
+-------------------
+
+Ensure that the Views/web.config file includes a reference for the System.Web.Optimization namespace
+
+Types of bundle
+--------------------------
+ScriptBundle, StyleBundle
+
+
+
+refering bundle in page 
+    Styles.Render, Scripts.Render
+
+Enable concatenation and minification of bundles
+    Set the debug attribute of the compilation attribute in the Web.config file to false.
+
+
+Install-Package Microsoft.AspNet.Web.Optimization -version 1.1.1
+//in empty project this will not available

@@ -1,0 +1,9 @@
+Typescript vs C#
+----------------------
+Typescript script having below extra features
+---------------------------------------------------
+spread, rest (es6)
+unions(i.e | only Typescript)
+intersections (i.e & only Typescript)
+
+Multiple inheritance possible by mixins

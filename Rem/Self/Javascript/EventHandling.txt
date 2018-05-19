@@ -1,0 +1,30 @@
+Events are a type of design pattern called an observer, which is a technique for creating
+loosely coupled code. The idea is that objects can publish events indicating when an interesting
+moment in the object’s life cycle occurs. Other objects can then observe that object, waiting for
+these interesting moments to occur and responding by running code.
+The observer pattern is made up of two types of objects: a subject and an observer. The subject is
+responsible for publishing events, and the observer simply observes the subject by subscribing to
+these events. A key concept for this pattern is that the subject doesn’t know anything about the
+observer, meaning that it can exist and function appropriately even if the observer isn’t present.
+The observer, on the other hand, knows about the subject and registers callbacks (event handlers)
+for the subject’s events. When you’re dealing with the DOM, a DOM element is the subject and your
+event-handling code is the observer.
+
+
+Events are a very common way to interact with the DOM, but they can also be used in non-DOM
+code through implementing custom events. The idea behind custom events is to create an object
+that manages events, allowing others to listen to those events
+
+
+DOM Events
+----------------
+Dom events will get bubling by default. 
+
+<div (click)="divClickHandler($event)"> 
+	<button  (click)="buttonClickHandler($event)" />
+</div>
+
+if user clicks on button, first event will get raised from button and this get handled there itself. and then it will get bubbled to its parent element also to handle it.
+to stop this event bubbling we can use 
+
+$event.stopPropogation();//this will stop bubbling the event

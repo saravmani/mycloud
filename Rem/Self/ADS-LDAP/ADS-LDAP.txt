@@ -1,0 +1,3 @@
+Below ports should be open from ADS server to clien website
+389, 636, 88, 53, 464, 3268, 3269,135, 445	TCP, UDP
+Found it while doing morocco environment setup

@@ -1,0 +1,11 @@
+Nuget
+Github
+NPM
+
+Bower - to manage client side frame work or libriraies. JS, CSS etc
+	It is given by twitter
+	we can install it using NPM. 
+		npm install bower
+
+Grunt and Gulp -- those are for client side compiling test runs. like MSBUILD
+Ex: for cofee script, type script.. above tools are used compile, bundling and minification

@@ -1,0 +1,17 @@
+Routing system supports a special path, denoted by two asterisks (the ** characters), that allows
+routes to match any URL.
+
+{ path: "**", component: NotFoundComponent }
+
+
+Redirections in Routes
+---------------------------
+Routes can also be used as aliases that redirect the browser to a
+different URL.
+{ path: "does", redirectTo: "/form/create", pathMatch: "prefix" },
+{ path: "table", component: TableComponent },
+{ path: "", redirectTo: "/table", pathMatch: "full" },
+
+prefix  - it matches URLs that start with the specified path,
+ignoring any subsequent segments.
+full  -  it matches only the URL specified by the path property.

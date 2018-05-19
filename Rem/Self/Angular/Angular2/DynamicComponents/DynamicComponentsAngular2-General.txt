@@ -1,0 +1,60 @@
+Component which can be used as dynamice should be added in entrycomponents 
+of modules section
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    ProductManagerComponent,
+   
+ TestingcomponentComponent
+     
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule
+  ],
+  
+providers: [],
+  bootstrap: [AppComponent],
+  
+entryComponents:[TestingcomponentComponent]
+})
+
+
+Sample code for dynamic component creation
+---------------------------------------------
+import { ComponentRef, ViewContainerRef, ComponentFactory,
+ ComponentFactoryResolver, Compiler, ChangeDetectorRef,
+ ViewChild, Input, Component } from '@angular/core';
+
+
+  @ViewChild('target', { read: ViewContainerRef }) target;
+  cmpRef: ComponentRef<TestingcomponentComponent>;
+
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, private compiler: Compiler,
+   private cdRef: ChangeDetectorRef) {
+
+  }
+
+  generateComponent() {
+     if(this.cmpRef) {
+      this.cmpRef.destroy();
+    }
+
+    let factory = this.componentFactoryResolver.resolveComponentFactory(TestingcomponentComponent);
+    this.cmpRef = this.target.createComponent(factory);
+    this.cdRef.detectChanges();
+
+  }
+
+
+to pass the parameters, and subscribe the events from dynamically creted component we can use below code
+ var cmpRef = this.vcRef.createComponent(factory, 0, injector);
+ cmpRef.instance.someInput = value;
+ cmpRef.instance.someOutput.subscribe(data => this.data = data);
+
+If you ever needed to insert new component or template programmatically, 
+you probably used the ViewContainerRef service.
+
+ViewContainerRef is a dom element. where we can place newly created component.

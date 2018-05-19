@@ -1,0 +1,293 @@
+Observable.fromPromise
+Observable.fromEvent
+
+Convert Observable to promises
+-----------------------------------
+Reactive Extensions provides an Observable.fromPromise method that will create an Observable
+using a Promise as the source of events. There is also an Observable.toPromise method if you have
+an Observable and need a Promise for some reason.
+
+Observables perform the same basic role as promises but are more flexible and have more features.
+ex:
+combine multipe observables together
+able to filter the result - ex debounce
+event streaming
+
+
+Using Observables to structure our data is called Reactive Programming.
+Reactive programming is programming with asynchronous data streams.
+	In a way, this isn't anything new. Event buses or your typical click events are really 
+    an asynchronous event stream, on which you can observe and do some 
+side effects. Reactive is that idea on steroids. You are able to create data streams of anything, 
+not just from click and hover events. 
+Streams are cheap and ubiquitous, anything can be a stream: variables, user inputs, properties, caches, data structures, etc.
+ For example, imagine your Twitter feed would be a data stream in the same fashion that click events are.
+  You can listen to that stream and react accordingly.
+
+ In common Reactive libraries, each stream has many functions attached to it, such as map, filter, scan, etc
+lickStream.map(f), it returns a new stream based on the click stream. It does not modify the original click stream in any way. This is a property called immutability,
+
+Understanding Observables
+----------------------------
+Think of button click event. 
+we can subscribe this event with a funciton. it is called subscriber or observer.
+multiple event clicks will trigger stream of events. it is called observable (called subject).
+
+
+Ideas in client side data architecture
+------------------------------------------
+MVW / Two-way data binding: Model-View-Whatever is a term used to describe Angular
+1�s default architecture. The $scope provides a two-way data-binding - the whole application
+shares the same data structures and a change in one area propagates to the rest of the app.
+ Flux: uses a unidirectional data flow. In Flux, Stores hold data, Views render what�s in the
+Store, and Actions change the data in the Store. There is a bit more ceremony to setup Flux,
+but the idea is that because data only flows in one direction, it�s easier to reason about.
+ Observables: Observables give us streams of data. We subscribe to the streams and then
+perform operations to react to changes. RxJs is the most popular reactive streams library for
+
+
+Flux is a pattern, and not an implementation. There are many different implementations
+of Flux (just like there are many implementations of MVC)
+ Immutability is a common variant on all of the above data architectures.
+ Falcor is a powerful framework that helps bind your client-side models to the
+server-side data. Falcor often used with an Observables-type data architecture.
+
+
+
+Observables are not Angular 2 specific feature, but rather a proposed standard for managing async 
+data that will be included in the release of ES7. 
+Observables open up a continuous channel of communication in which multiple values of data can be emitted over time.
+Observables are the main data structure we use to
+implement Reactive Programming.
+On top of that, you are given an amazing toolbox of functions to combine, create and filter any of those streams. 
+A stream can be used as an input to another one. Even multiple streams can be used as inputs to another stream.
+
+
+
+
+
+i.e. We do subscribe
+
+Observable Example
+----------------------
+import {Component} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+
+
+@Component({
+	
+selector: 'app',
+	
+template: `
+	  
+<b>Angular 2 Component Using Observables!</b>
+	 
+	  <h6 style="margin-bottom: 0">VALUES:</h6>
+	 
+ <div *ngFor="let value of values">- {{ value }}</div>
+	  
+	 
+ <h6 style="margin-bottom: 0">ERRORs:</h6>
+	  <div>Errors: {{anyErrors}}</div>
+	  
+
+	  <h6 style="margin-bottom: 0">FINISHED:</h6>
+	  <div>Finished: {{ finished }}</div>
+	  
+
+	  <button style="margin-top: 2rem;" (click)="init()">Init</button>
+	`
+})
+export class MyApp {
+  
+  private data: Observable<Array<number>>;
+  private values: Array<number> = [];
+  private anyErrors: boolean;
+  private finished: boolean;
+
+  constructor() {
+  }
+  
+  init() {
+      this.data = new Observable(observer => {
+          setTimeout(() => {
+              observer.next(42);
+          }, 1000);
+          
+          setTimeout(() => {
+              observer.next(43);
+          }, 2000);
+          
+          setTimeout(() => {
+              observer.complete();
+          }, 3000);
+      });
+
+      let subscription = this.data.subscribe(
+          value => this.values.push(value),
+          error => this.anyErrors = true,() => this.finished = true
+      );
+  
+}
+
+}
+
+
+Difference btween observable and Promises
+-----------------------------------------------
+observables are cancellable, tetry and retry When are possible
+
+
+Observables in forms
+------------------------
+Each field in a form is treated as an Observable that we can subscribe to and listen for any changes made to the value of the input field.
+Ex:
+import {Component} from '@angular/core';
+import {FormControl, FormGroup, FormBuilder} from '@angular/forms';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
+
+@Component({
+    selector: 'app',
+    template: `
+      <form [formGroup]="coolForm">
+            <input formControlName="email">
+        </form>
+      <div>
+            <b>You Typed Reversed:</b> {{data}}
+        </div>
+    `
+})
+
+export class MyApp {
+
+    email: FormControl;
+    coolForm: FormGroup;
+    data: string;
+
+    constructor(private fb: FormBuilder) {
+        this.email = new FormControl();
+
+        this.coolForm = fb.group({
+            email: this.email
+        });
+
+        this.email.valueChanges
+        .filter(n=>n)
+        .map(n=>n.split('').reverse().join(''))
+        .subscribe(value => this.data = value);
+    }
+}
+
+
+Observables offer a flexible set of APIs for composing and transforming asynchronous streams
+
+
+
+Create observable using events, [Tags-> click event, subject, attach observable]
+--------------------------------------------------------------------------------------
+private obs = new Subject();
+public obs$ = this.obs.asObservable();
+
+@HostListener('click', ['$event']) 
+clickHandler(event){
+  this.obs.next(event);
+}
+
+Or
+
+<button (click)="obs.next($event)">
+
+
+
+#subject can send next,complete,error 
+#if complete method called by subject then, streaming will be end. 
+so afterthat if next() called also subscribers will not get any notification
+
+this.objSubject.next("nexttt");
+this.objSubject.complete();// on complete
+
+
+
+Create observable from any event
+--------------------------------------
+let mousepad = document.getElementById('mousepad');
+let mouseMove$ = Observable.fromEvent(mousepad, 'mousemove');
+
+
+
+var objObs = Observable
+.fromEvent(mousepad, 'mousemove')
+.do((m: MouseEvent) => {
+this.log(`(${m.clientX}, ${m.clientY})`);
+});
+objObs.subscribe();
+// Note in above code we are doing empty subscribe()
+
+This observable definition does not start
+watching for events and processing them—unless we subscribe to it with
+mouseMove$.subscribe().
+
+
+cancel()// we can able to cancel the subscription
+
+
+filters in observables
+---------------------------------
+we can able to filter the data streaming.  
+
+ex:
+let mousepad = document.getElementById('mousepad');
+this.mouseOver$ = Observable.fromEvent(mousepad, 'mousemove')
+.filter(value => this.counter++ >20);
+
+//above  code will notice the subscribers only when filter condition got satisfied
+
+
+subscribe - datastream,error and complete events
+------------------------------------------------------
+this.mousepad.mouseEvents$.subscribe(
+(m: MouseEvent) => {
+this.log(`(${m.clientX}, ${m.clientY})`);
+},
+(err) => { this.log("Error!"); },
+() => { this.log("stream Completed."); }
+)
+
+new Subject().complete()
+
+Subject can subscribe another observable
+-----------------------------------------
+new Subject().subscribe(objObservable)
+new Subject().unsubscribe()
+
+
+
+
+forEach,catch and then
+--------------------
+objObservable.forEach(
+(dives: DiveLogEntry[]) => {
+this.dives = dives
+})
+.catch(err => this.errorMessage = err)
+.then(() => this.loading = false);
+
+
+#we can able to retry on http response. this will be useful when we face some 
+temperory error on server side
+
+.retryWhen(source => {
+console.log('Retrying...')
+this._isRetry = true;
+return source.delay(1000)
+})
+//this above code will make retry after 1 second
+
+
+Errors
+----------
+ if the error is unhandled, then 
+ observer chain ends.
+
+ Rx.Observable.catch();

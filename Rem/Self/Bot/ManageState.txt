@@ -1,0 +1,33 @@
+Manage state -- microsoft bot framework node js
+--------------------------------------------------------
+
+userData - Contains data that is saved for the user on the specified channel. This data will persist across multiple conversations.
+privateConversationData - Contains data that is saved for the user within the context of a particular conversation on the specified channel. This data is private to the current user and will persist for the current conversation only. The property is cleared when the conversation ends or when endConversation is called explicitly.
+
+conversationData - Contains data that is saved in the context of a particular conversation on the specified channel. This data is shared with all users participating in the conversation and will persist for the current conversation only. The property is cleared when the conversation ends or when endConversation is called explicitly.
+ If you need to temporarily store data that must be accessible across multiple dialogs, consider using the conversationData property
+
+dialogueData - Contains data that is saved for the current dialog only. Each dialog maintains its own copy of this property. The property is cleared when the dialog is removed from the dialog stack.
+
+
+
+Disabling persistance
+--------------------------
+If you do not want the data to persist in the userData container, set the persistUserData flag to false. If you do not want the data to persist in the conversationData container, set the persistConversationData flag to false.
+
+// Do not persist userData
+bot.set(`persistUserData`, false);
+
+// Do not persist conversationData
+bot.set(`persistConversationData`, false);
+
+
+
+
+ state data is serialized and stored as JSON.
+For a complex JavaScript object, convert it to a string before saving to storage container.
+
+var startDate = builder.EntityRecognizer.resolveTime([results.response]); 
+
+// Date as string: "2017-08-23T05:00:00.000Z" 
+session.userdata.start = startDate.toISOString(); 

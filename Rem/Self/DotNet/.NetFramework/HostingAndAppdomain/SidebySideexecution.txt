@@ -1,0 +1,40 @@
+
+
+Prior to .NET Framework 4.0, the CLR allowed only
+one instance of itself to reside within a Windows process. That is, a process could contain no CLR, v1.0
+of the CLR, v1.1 of the CLR, or v2.0 of the CLR. Allowing only one CLR version per process is a huge
+limitation. For example, Microsoft Office Outlook couldn’t load two add-ins that were built and tested
+against different versions of the .NET Framework.
+
+However, with .NET Framework 4.0, Microsoft now supports the ability to load v2.0 and v4.0 in a single
+Windows process, allowing components written for .NET Framework versions 2.0 and 4.0 to run side by
+side without experiencing any compatibility problems
+
+
+
+Side by side execution
+---------------------------------
+Support for side-by-side storage and execution of different versions of the same assembly 
+is an integral part of strong naming and is built into the infrastructure of the runtime. 
+Because the strong-named assembly's version number is part of its identity, 
+the runtime can store multiple versions of the same assembly in the global assembly cache 
+ and load those assemblies at run time.
+
+ 
+
+#  I guess side by side execution is achieved by dll strong names and GAC
+
+
+ However, with .NET Framework 4.0, Microsoft now supports the ability to load v2.0 and v4.0 in a single
+Windows process, allowing components written for .NET Framework versions 2.0 and 4.0 to run side by
+side without experiencing any compatibility problems. This is a fantastic new feature, as it allows .NET
+Framework components to be used reliably in more scenarios than ever before. 
+
+You can use the
+ClrVer.exe tool to see which CLR version(s) are loaded into any given process.
+
+
+Once a CLR is loaded into a Windows process, it can never be unloaded; calling the AddRef and
+Release methods on the ICLRRuntimeHost interface has no effect. The only way for the CLR to be
+unloaded from a process is for the process to terminate, causing Windows to clean up all resources
+used by the process.

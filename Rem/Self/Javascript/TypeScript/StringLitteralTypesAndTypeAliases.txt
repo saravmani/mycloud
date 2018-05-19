@@ -1,0 +1,27 @@
+string litteral type
+------------------------------
+like other data types we can able to define a variable with strict to particular string value
+
+let someVariable:"EXACTSOMEVALUE";
+in this someVariable we can able to assign only the string value which is mentioned as types
+
+someVariable= "haha other";// throws an error
+someVariable ="EXACTSOMEVALUE"; //fine
+
+we can use this string litteral type to restrict to some range of values 
+ex:
+
+let someVariable:"Male"|"Female";
+someVariable = "Male";/fine
+someVariable="ewrew";//error
+
+like c# enums we can use this string litteral type to restrict with few string values
+
+Type Aliases
+-----------------------
+declaring multiple string litterals is complex to read.
+so we can use Type Aliases
+
+type enumGeneder = "Male"|"Female"|"Other";
+let studentGender:enumGeneder;
+//this is short hand .. and more readable

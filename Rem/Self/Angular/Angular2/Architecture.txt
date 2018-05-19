@@ -1,0 +1,32 @@
+Angular Compiler (AoT & JIT)
+-----------------------------
+here is actually only one Angular compiler. The difference between AoT and JiT is a matter of timing and tooling. 
+With AoT, the compiler runs once at build time using one set of libraries; With JiT it runs every time for every user at runtime using a different set of libraries.
+
+With AoT, the browser downloads a pre-compiled version of the application. The browser loads executable code so it can render the application immediately, without waiting to compile the app first.
+So render will be fast
+
+AoT Compilation
+import { platformBrowser} from '@angular/platform-browser';
+import { MyAppModuleNgFactory } from '../aot/app/app.module.ngfactory';
+platformBrowser().bootstrapModuleFactory(MyAppModuleNgFactory);
+
+JIT Compilation
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { MyAppModule } from './app.module';
+platformBrowserDynamic().bootstrapModule(MyAppModule);
+
+Why does Angular 2 bootstrap itself in this way? Well there is actually a very good reason.
+Since Angular 2 is not a web-only based framework, we can write components that will run
+in NativeScript, or Cordova, or any other environment that can host Angular 2 applications.
+
+The magic is then in our bootstrapping process - we can import which platform we would like
+to use, depending on the environment we're operating under. In our example, since we were
+running our Angular 2 application in the browser, we used the bootstrapping process found
+in @angular/platform-browser-dynamic
+
+
+
+It's also a good idea to leave the bootstrapping process in its own separate index.ts file. This
+makes it easier to test (since the components are isolated from the bootstrap call), easier
+to reuse and gives better organization and structure to our application.

@@ -1,0 +1,32 @@
+
+ErrorHandler - replace the built-in Angular error-handling 
+----------------------------------------------------------
+
+replace the built-in Angular error-handling feature, which responds to any
+unhandled errors in the application and, by default, writes them to the console.
+
+import { ErrorHandler, Injectable } from "@angular/core";
+@Injectable()
+export class MessageErrorHandler implements ErrorHandler {
+  constructor() {
+  }
+  handleError(error) {
+    let msg = error instanceof Error ? error.message : error.toString();
+    console.log(error);
+  }
+}
+
+module.ts
+
+import { NgModule, ErrorHandler } from "@angular/core";
+@NgModule({
+    imports: [BrowserModule],
+    declarations: [MessageComponent],
+    exports: [MessageComponent],
+    providers: [MessageService,{ provide: ErrorHandler, useClass: MessageErrorHandler }]
+})
+export class MessageModule { }
+
+# it tried with one example...wavvv it is success.. miracle.. 
+all the UNHANDLED exceptions are going to 
+MessageErrorHandler.handleError .. so here we can just pass the error message to server

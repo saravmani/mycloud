@@ -1,0 +1,89 @@
+Key Words : ngForm,ngSubmit,ngModel,FormsModule
+
+(ngSubmit)="functionName(LocalVar)" #LocalVar='ngForm'
+
+ex: module.ts
+import { FormsModule} from "@angular/forms";
+@NgModule({
+	imports: [BrowserModule, FormsModule],
+	bootstrap: [ProductComponent]
+})
+export class AppModule { }
+
+
+Adding FormsModule to the list of dependencies enables the form features and makes them available for use
+throughout the application.
+
+Template driven
+--------------------
+<form (ngSubmit)="functionName(LocalVar)" #LocalVar='ngForm'>
+<input type="text" ngModel required pattern="regex(a-2...)">
+</form>
+
+# i think here #LocalVar is called template variables
+
+component.ts file
+---------------------
+functionName(LocalVariable)
+{
+LocalVariable.value .. will have all the form control values
+LocalVariable.controlls .. will have all the controlls, with their properties and state of each controll
+//in tempate driven approch, angular 2 will maintain form seperatly in javascript
+//So for HTML5 validators also angular2 will maintain seperate validators in javascript form
+}
+
+1. note here we are not mention action atribute. bcs if we mention it then browser will
+ submit the page and full reload will happen
+2. here localvariable by default it will not refer ngForm. we have to assign it
+3. note here pattern attribute is html5's validation attribute, to validate using regex
+
+if form is not valid then angular2 will not submit the form
+
+to prepopulate the form and go for two way binding we need to use model binding
+------------------------------------------------------------------------------------
+
+<form (ngSubmit)="functionName()">
+<input type="text" [ngModel]="userObj.subjName" required pattern="regex(a-2...)">
+</form>
+
+
+ngModelGroup
+------------------
+
+<form (ngSubmit)="functionName()">
+	<div ngModel="formGroup1 "><input type="text" [ngModel]="userObj.subjName" required pattern="regex(a-2...)"></div>
+	<div ngModel="formGroup1 "><input type="text" [ngModel]="userObj.subjName" required pattern="regex(a-2...)"></div>
+</form>
+
+if we are using grouping then when we use form object insdie our code, 
+then it have different group of values.
+
+Radio button
+------------------
+<li *ngFor="let eachGender of genderList"> 
+ <input type="radio" name="gender" [(ngModel)]="user.defaultvalue"  [value]="eachGender"/>
+</li>
+
+Access the form controll
+---------------------------
+<input type="texgt" [(ngModel)]="user.Name" #LUserName="ngModel"   />
+<div *ngIf="!LUserName.valid">validation message </div>
+
+[ngModel]  -  only property binding
+You can use the ngModel directive with just square brackets—[ngModel]—and Angular will set the initial value
+of the element but won’t listen for events, which means that changes made by the user won’t be automatically
+reflected in the application model.
+
+but (ngModel) - is not exist
+
+
+
+
+The disadvantage is that large forms become complex and difficult to maintain, with each field
+demanding its own block of content to manage its layout and its validation requirements and to display any
+validation messages.
+
+For small forms template driven is best approch..
+
+# my idea.. Ex: Subject search secreen contains, different group of form controlls. to disable 
+one group and enable another group, and do group validation.. reactive form is very useful

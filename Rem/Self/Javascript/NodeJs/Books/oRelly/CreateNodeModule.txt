@@ -1,0 +1,48 @@
+Create node module or create node package
+----------------------------------------------
+    Node can load the directory contents, as long as you organize the contents
+in one of two ways.
+    
+    1) The FIRST way is to provide a package.json file with information about the
+directory. The structure contains other information, but the two entries relevant
+to packaging the module are name and main:
+{ "name" : "mylibrary",
+"main" : "./mymodule/mylibrary.js"
+}
+The first property, name, is the name of the module. The second, main, indicates
+the entry point for the module.
+
+   2) The SECOND way to load directory contents is to include either an index.js or
+index.node file in the directory to serve as the main module entry point.
+
+
+** To create package Only the name and version fields are required
+** If you want to go online then You’ll need to provide a repository for your module, a URL for reporting
+bugs, home page for the modules, and so on
+
+
+properly export the functionalities which can be accessed by externals
+
+then create the gzipped tarball of the module.
+
+tarball is
+one or more files archived together into one using a tar command
+
+
+
+In addition to the normal package.json fields, we also need to add in a
+directories field with a hash of folders, such as the previously mentioned
+test and doc:
+"directories" : {
+"doc" : ".",
+"test" : "test",
+"example" : "examples"
+}
+
+
+Before publishing, the Guide recommends we test that the module can
+cleanly install. To test for this, type the following in the root directory for the
+module:
+npm install . -g
+
+

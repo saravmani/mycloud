@@ -1,0 +1,42 @@
+Symbol
+=======================================
+It used to generate unique identifier or unique SYMBOL.
+ even developers doesnt know what is the identifier
+
+var evntSymbol = Symbol("some strign");//Symbol is constructor for symbol
+console.log(typeof evntSymbol);// "symbol"
+evntSymbol.toString();// "Symbol(some strign)"
+
+there is no way to access the unique id
+
+const evntSymbol = Symbol("some strign");
+
+let first = Symbol("somestring");
+let second = Symbol("somestring");
+console.log(first===second);//false
+
+Symbol.for
+------------------
+var eee = Symbol.for("somestring");
+ //this will create new symbol
+ var eee1 = Symbol.for("somestring");
+ //this will give existing symbol
+ console.log(eee==eee1);//true
+
+Symbol.keyFor
+------------------------
+ Symbol.keyFor(eee1) ;//this gives out put in human readable formate
+//"somestring"
+
+Example use of symbol
+--------------------------
+let article={
+        title:'WhitefaceMountain',
+        [Symbol.for('article')]:'MyArticle'
+    };
+let value=article[Symbol.for('article')];
+console.log(value);
+//'MyArticle'
+
+Object.getOwnPropertySymbols(article);
+//Symbol(article)

@@ -1,0 +1,6 @@
+
+The best way to see an app that has most of these conventions is by using the official
+Express application generator
+npm install -g express-generator.
+Once it’s installed, you can run express my-new-app and it’ll create a
+folder called my-express-app with a skeleton app set up,

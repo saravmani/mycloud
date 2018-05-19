@@ -1,0 +1,2 @@
+URLRewrite 2.0 -- for rewritting the URL. This rewritting will happen at IIS itself. So Application doesn't know this.
+URLScan -- to remove unwanted headers

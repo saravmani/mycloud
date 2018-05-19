@@ -1,0 +1,36 @@
+The MVC architecture is suited for a web application than Windows. 
+For Window applications, MVP, i.e., �Model View Presenter� is more applicable. 
+If you are using WPF and Silverlight, MVVM is more suitable due to bindings.
+
+
+
+
+The main advantages of ASP.net MVC are:
+Enables the full control over the rendered HTML.
+Provides clean separation of concerns(SoC).
+Enables Test Driven Development (TDD).
+Easy integration with JavaScript frameworks.
+Following the design of stateless nature of the web.
+RESTful urls that enables SEO.
+No ViewState and PostBack events
+
+The main advantage of ASP.net Web Form are:
+It provides RAD development
+Easy development model for developers those coming from winform development.
+Large contoll tool box -  ASP.NET Web Forms offers a much greater and more robust toolbox (web controls) whereas MVC offers a more primitive control set relying more on rich client-side controls via jQuery (Javascript).
+easy to learn and implement
+
+
+
+RedirectAction Vs RedirectPermenant
+-----------------------------------------
+The basic difference between the two is that RedirectPermanent sends the browser 
+an HTTP 301 (Moved Permanently) status code whereas Redirect will
+send an HTTP 302 status code.
+
+Use RedirectPermanent if the resource has been moved permanently 
+and will no longer be accessible in its previous location. 
+Most browsers will cache this response and perform the redirect automatically 
+without requesting the original resource again.
+
+Use Redirect if the resource may be available in the same location (URL) in the future.

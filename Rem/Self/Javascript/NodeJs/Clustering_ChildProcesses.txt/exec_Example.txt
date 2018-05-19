@@ -1,0 +1,8 @@
+const {exec} = require("child_process");
+exec("md ss",(err,stdout,stderr)=>{
+    if(err){
+        console.error("error:${err}");
+        return;
+    }
+    console.log("${stdout}");
+})

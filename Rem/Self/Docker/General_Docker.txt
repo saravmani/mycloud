@@ -1,0 +1,43 @@
+in windows docker can able to run windows container and linux containers.
+so using this we can able to run windows softwares and linux softwares on windows :-)
+
+DOcker installation
+------------------------
+to install docker on windows 10 it needs hyper-v enabled.
+but windows 10 home edition not having hyper-v option. 
+so we need to update windows home edition to windows 10 professional
+
+
+Ddocer is open
+container
+docker
+----------
+
+isolated environment. application will have all the items within this container
+
+
+visual studio tools docker -> this tool we can install on vsts , so that using vsts 2015 we can 
+install our app in docker
+
+
+ Vagrant -- ## dont know what is vagrant
+
+
+ we can create docker image and it will build the environment
+
+ docker image has complete environment to run the application
+
+ ex: if it is a node js application then docker image has
+ application
+ nodejs
+ 
+ if we deboy this image in any machine, that machine no need to 
+ have node js into it. bcs docuker image has this node js
+
+
+Docker can able to share the base libraries. 
+# i got this from utube. but have to validate this.. 
+ex: if we want to run node js application on 3 containers.. then all those containers no need to 
+have node js copy. one container can share this
+
+docker image files are actually very small

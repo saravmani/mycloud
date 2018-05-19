@@ -1,0 +1,19 @@
+IIS express will work only with Visual studio If we run .net core application from command line
+there is seperate webserver will get launched
+Kestrol is a webserver it ships with asp.net core. This kstrol webserver can 
+run in all platforms (linux, apple etc.,)
+
+
+dotnet 
+--version
+--help
+
+dotnet new projname
+
+dotnet run
+dotnet restore //restore dependencies 
+//#it is like npm install i think
+dotnet build
+dotnet msbuild //runs microsoft build engine
+
+dotnet new 

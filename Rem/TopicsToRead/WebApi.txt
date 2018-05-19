@@ -1,0 +1,28 @@
+ODATA
+How to customise the authentication ?
+
+Filters
+----------
+what is filter providers?
+Filters in webapi will differ from MVC filters?
+Difference between IActionFilter and ActionFilterAttribute?
+
+webapi's life cycle will differ from MVC life cycle?
+
+Webapi configurations
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/configuring-aspnet-web-api
+
+How to achieve end to end security in webapi? like which is there in WCF
+How can i implement encrption in webapi?
+
+
+
+
+
+
+================================================================================================================================================
+Got Answer
+=========================================================
+message security in webapi and wcf - There is no such thing in webapi. bcs WCF has implemented WS-* specifications. it is soap based. so it enhansed it to provide aditional security features
+
+ 

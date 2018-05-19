@@ -1,0 +1,6 @@
+table scan is do row by row to fetch the data
+index scan is used index to fetch the data
+
+stored procedures are pre compiled so the performance will be good
+ whar is pre compiled??
+	it means plan is created

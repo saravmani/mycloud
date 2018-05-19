@@ -1,0 +1,26 @@
+ 
+ # this used to group the data. we can able to add multiple 
+ # it is available in System.Linq.Lookup
+
+ List<string> names = new List<string>();
+names.Add("Smith");
+names.Add("Stevenson");
+names.Add("Jones");
+
+ILookup<char, string> namesByInitial = names.ToLookup((n) => n[0]);
+
+// count the names
+Console.WriteLine("J's: {0}", namesByInitial['J'].Count());
+Console.WriteLine("S's: {0}", namesByInitial['S'].Count());
+Console.WriteLine("Z's: {0}", namesByInitial['Z'].Count());
+
+Uses
+----------
+imagine you're creating a data structure to hold the contents of a phone book. 
+You want to key by lastName and then by firstName. 
+Using a dictionary here would be dangerous because many people 
+can have the same name. So a Dictionary will always, at most, map to a single value.
+
+A Lookup will map to potentially several values.
+
+Lookup["Smith"]["John"] will be a collection of size one billion.

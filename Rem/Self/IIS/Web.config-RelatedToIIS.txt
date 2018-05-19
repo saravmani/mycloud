@@ -1,0 +1,48 @@
+IIS7.0 and above
+The system.webServer section in the Web.config file specifies settings for IIS 7.0 that are applied to the Web application. The system.WebServer is a child of the configuration section. 
+
+
+Some settings in the system.webServer section apply only to IIS 7.0 Integrated mode 
+and do not apply to Classic mode
+
+
+Add default file
+--------------------
+<configuration>
+  <system.webServer>
+    <defaultDocument> 
+      <files> 
+        <add value="Products.aspx" /> 
+      </files> 
+    </defaultDocument>
+  </system.webServer>
+</configuration>
+
+
+Register httpmodule
+---------------------
+<configuration>
+  <system.webServer>
+    <modules> 
+      <add name="CustomModule" type="Samples.CustomModule" /> 
+    </modules>
+  </system.webServer>
+</configuration>
+
+
+Add custom response header
+-------------------------------
+<configuration>
+  <system.webServer>
+    <httpProtocol> 
+      <customHeaders> 
+        <add name="CustomHeader" value="CustomHeader" /> 
+      <customHeaders> 
+    </httpProtocol>
+  </system.webServer>
+</configuration>
+
+
+<system.webServer>
+  <modules runAllManagedModulesForAllRequests="true">
+</system.webServer>

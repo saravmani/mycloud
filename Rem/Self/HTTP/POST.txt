@@ -1,0 +1,3 @@
+POST requests have more overhead associated with them than do GET requests.
+In terms of performance, GET requests can be up to two times faster than POST
+requests sending the same amount of data.

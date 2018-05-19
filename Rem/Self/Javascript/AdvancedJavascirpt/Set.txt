@@ -1,0 +1,22 @@
+Set is simllar to array. only difference is it can only holds unique value
+
+var numberSet = new Set();
+numberSet.add(1);
+numberSet.add(2);
+numberSet.add(3);
+numberSet.add('things');
+console.log(numberSet.size); //returns 4
+numberSet.delete('things');
+console.log(numberSet.size); //returns 3
+
+
+var numberSet = new Set();
+numberSet.add(1);
+numberSet.add(2);
+numberSet.add(3);
+numberSet.add(3); //does not get added
+console.log(numberSet.entries()); //returns SetIterator {[1, 1], [2, 2], [3, 3]}
+
+
+.pop --remove the last element of an array,
+.clear();

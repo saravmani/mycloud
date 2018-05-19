@@ -1,0 +1,5 @@
+Packages needed for DB COnnection with EF6
+----------------------------------------------------
+microsoft.entityframeworkcore
+microsoft.entityframeworkcore.sqlserver
+microsoft.entityframeworkcore.tools

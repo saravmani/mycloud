@@ -1,0 +1,5 @@
+Tuples are extensions to an arrays.
+in Tuples we can specify the type of element in each position.
+it can hold multiple datatypes
+
+let tupleExample:[number,string] = [10,"some string"]

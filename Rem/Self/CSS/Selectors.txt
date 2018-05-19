@@ -1,0 +1,23 @@
+http://www.w3schools.com/cssref/css_selectors.asp
+
+div#myDivId {
+    -webkit-transform: rotateZ(90deg); /* Safari */
+    transform: rotateZ(90deg); /* Standard syntax */
+}
+<div id="DivId" />
+
+a[target] {
+    background-color: yellow;
+}
+<a target="_top" />
+
+
+[title~=flower] {
+    border: 5px solid yellow;
+}
+//Selects all elements with a title attribute containing the word "flower"
+
+div, p  //All div and p
+div p   //Selects all <p> elements inside <div> elements
+div > p  //Selects all <p> elements where the parent is a <div> element
+div + p  Selects all <p> elements that are placed immediately after <div> elements

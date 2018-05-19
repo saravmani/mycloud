@@ -1,0 +1,6 @@
+console.time("ss")
+console.timeEnd("ss");// this tells the execution time
+// ss: 1953.448974609375ms
+
+
+console.error("ee");// This logs the error with red collored in chrome browser

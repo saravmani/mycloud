@@ -1,0 +1,8 @@
+Chalk module is used to colored output in console
+
+install chalk module using npm
+then in node js code use like below
+
+var chalk = require('chalk');
+console.log("normal txt"+chalk.green("green coloured text"));
+//there is also many other colours

@@ -1,0 +1,21 @@
+NUnit Test Runners for Visual studio
+-------------------------------------------------------------
+three ways for that 
+one is  - Add below extension Nunit Test adaptor
+another way is -  Nunit Test Adaptor from nuget package manager 
+Another option is -  if we install resharper.. resharper provides test running options
+
+Use Nunit GUI
+----------------------
+this is another way of running unit tests
+1. download nunit.zip file
+2. run gui
+3. browse and select dll
+4. NOW RUN THE TESTS
+
+Run NUnit tests from command line
+--------------------------------------------
+1. download nunit.zip file
+2. NUnit-Console.exe
+3. Command - nunit-console d:\testdll.dll
+4. Now we will see the results on screen

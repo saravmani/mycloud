@@ -1,0 +1,4 @@
+Hyper-Threading is a technology used by some Intel microprocessor s that allows a single microprocessor 
+to act like two separate 
+processors to the operating system and the application program s that use it.
+ It is a feature of Intel's IA-32 processor architecture.

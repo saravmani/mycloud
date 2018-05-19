@@ -1,0 +1,181 @@
+Event looping
+-------------------
+The solution to prevent blocking is the event loop.
+ 
+
+ Problem in multi threaded application
+ --------------------------------------------
+ assign a thread to each time-consuming
+process. The rest of the code could then go on its way, in parallel. The problem
+with this approach is that threads are expensive. They’re expensive in resources,
+and they’re expensive in added application complexity.
+
+
+event-driven architecture
+-----------------------------
+What happens
+is that when a time-consuming process is invoked, the application doesn’t
+wait for it to finish. Instead, the PROCESSES signals when it’s finished by emitting an
+event. This event gets added into a queue, or event loop. Any dependent functionality
+registers an interest in this event with the application
+
+
+Callbacks
+------------
+
+Error -- We can’t rely on throw...catch in an asynchronous world, the error handling must be handled in the Error object in the callback
+//error-first pattern is frequently referred to as an errback.
+Obj.prototype.doSomething = function (arg1_) {
+    var callback_ = arguments[arguments.length - 1];
+    callback = (typeof (callback_) == 'function' ? callback_ : null);
+    var arg1 = typeof arg1_ === 'number' ? arg1_ : null;
+    if (!arg1)
+        return callback(new Error('first arg missing or not a number'));
+    process.nextTick(function () {
+        // block on CPU
+        var data = fib(arg1);
+        callback(null, data);
+    });
+}
+//The reason why is
+that process.nextTick() ensures the event loop is cleared before the function is called. 
+
+• Ensure the last argument is a callback function.
+Create a Node Error and return it as the first argument in the callback
+function if an error occurs.
+• If no error occurs, invoke the callback function, set the error argument to
+null, and pass in any relevant data.
+• The callback function must be called within process.nextTick(), to
+ensure the process doesn’t block.
+
+
+
+
+Where is other threads???????
+-------------------------------------
+Node’s event loop is single-threaded. However, this doesn’t mean there aren’t
+multiple threads busily working away in the background.
+Node invokes functionality, such as the File System (fs), that is implemented in C++
+rather than JavaScript. The fs functionality makes use of worker threads in order to
+accomplish its functionality. In addition, Node makes use of the libuv library, which
+makes use of a pool of worker threads for some functionality. How many threads is
+operating system dependent.
+
+
+
+EventEmitter
+-------------
+many of the Node core objects, and you’ll find EventEmitter.
+keys --- EventEmitter, emit,.on
+var eventEmitter = require('events').EventEmitter;
+var counter = 0;
+var em = new eventEmitter();
+setInterval(function () { em.emit('timed', counter++); }, 3000);
+em.on('timed', function (data) {
+    console.log('timed ' + data);
+});
+
+
+
+Event emitter got inherited in many code modules
+
+inheritance in node js
+-----------------------
+var util = require('util');
+
+util.inherits(someObject,EventEmitter);
+Someobj.prototype.someMethod = function() { this.emit('event'); };
+...
+Someobjinstance.on('event', function() { });
+
+(i.e in traditional way of inheritance in javascript is  function_Two.prototype = Object.create(function_one.prototype))
+
+
+
+tags: on vs addListener, on, addListner
+on method is really a shortcut for the EventEmitter.addListener
+method, which takes the same parameters. So this:
+ic.addListener('echo', function( data) {
+console.log(this.name + ' wrote ' + data);
+});
+
+
+ic.removeListener('echo',callback);// to remove the listeners
+
+in browser event loops maintained by browser. but in node js event loops maintained by c++ library
+
+
+
+var timerObj = setTimeout(function(name) {
+console.log('Hello ' + name);
+}, 30000, 'Shelley');/// note here we are passing the parameter
+##Tags - kill timer, Cancell timer
+timerObj.unref() on a timer, and it’s the only event in the event queue, the
+timer is cancelled and the program is allowed to terminate
+
+
+
+
+When you exceed 10 listeners for an event, you’ll get a warning by default.
+Use setMaxListeners, passing in a number, to change the number of listeners.
+Use a value of zero (0) for an unlimited amount of listeners
+
+
+
+
+setImmediate (specific to node)
+-----------------
+
+The setImmediate() creates an event, but
+the event has precedence over those created by setTimeout() and setInterval().
+However, it doesn’t have precedence over I/O events. And it has no
+timer associated with it. 
+
+It’s more
+efficient than setTimeout(callback, 0), since it takes precedence over other
+timer events.
+
+It’s similar to another like function, process.nextTick(), except the process.
+nextTick() callback function is invoked once the current event loop is
+finished, but before any new I/O events are added
+
+
+
+
+ex: Ascynchronous FS operation
+-------------------------------
+var fs = require('fs');
+fs.readFile('./apples2.txt', 'utf8', function (err, data) {
+    if (err) {
+        console.error(err);
+    } else {
+        var adjData = data.replace(/apple/g, 'orange');
+        fs.writeFile('./oranges.txt', adjData, function (err) {
+            if (err) console.error(err.message);
+        });
+    }
+});
+
+
+
+
+ex of event based error handling
+---------------------------------------
+var fs = require('fs');
+var writeStream = fs.createWriteStream('./log.txt',
+{'flags' : 'a',
+'encoding' : 'utf8',
+'mode' : 0666});
+writeStream.on('open', function() {
+    writeStream.write('some text ' );
+});
+
+//#note here ERROR also one of the event
+
+
+
+writeStream.on('error', function(err) {
+console.error("ERROR:" + err);
+});
+
+

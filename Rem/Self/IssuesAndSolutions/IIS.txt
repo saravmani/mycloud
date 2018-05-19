@@ -1,0 +1,5 @@
+Isse: Default role provider not found.
+SOlution:  Remove role provider moduel if not used
+	<modules>
+		 <remove name="RoleManager"/>
+	</modules>

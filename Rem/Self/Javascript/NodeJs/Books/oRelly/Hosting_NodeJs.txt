@@ -1,0 +1,46 @@
+to host node js in server we need root password. but most of the time we cant get this root pwd.
+
+so another option is VPS (virtual private server).
+But this includes setting up an email
+system, and alternative web server, most likely Apache or Nginx, handle firewalls
+and other security, email, etc
+
+Cloude Hosting
+---------------------
+Nowadays, an application is just as likely to reside in a cloud server rather than
+an individual or group’s own computers. Node applications are well-suited to
+cloud-based implementations
+
+advantage is You can focus specifically
+on the Node application without having to worry about FTP or email
+servers, or general server maintenance.
+
+GIT
+-----
+Almost all transitioning of Node applications,
+including pushing the applications to a cloud server, happens through Git.
+
+Microsoft’s Azure cloud utilizes Git to push
+the application from your local environment to the cloud, while Google’s Cloud
+Platform provides a toolset to perform the same process
+
+
+LINUX
+-----------
+In a Linux or OSX environment, you can also use a tool, the Node Version
+Manager (nvm), to keep Node up to date.
+
+
+The Node package manager (npm) updates more frequently than Node. To
+upgrade just it, run the following command:
+sudo npm install npm -g n
+
+
+
+
+One thing to be aware of is the rather dramatic changes that have occurred
+within Node as it progressed from 0.8 through the new 4.x.
+To counter the problems
+that can occur, you’ll need to install NAN, or Native Abstractions for
+Node.js. This header file helps to smooth out the differences between the versions
+of Node.js.

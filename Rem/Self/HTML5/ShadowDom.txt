@@ -1,0 +1,75 @@
+Shadow dom
+------------
+Create seperate dom tree root and elements in that dom tree.
+All the global CSS will not affect this shadow dom.
+style within shadow dom will not affect outside
+
+#This encapsulates the template and style together
+
+ex:
+
+<div id="displayDiv" />
+<template id="templateToDisplay" >
+	<style>*{color:red;}</style>
+	<div> text</div>
+</template>
+
+
+var objDisplay = document.querySelector("#displayDiv");
+var objShadowDom = objDisplay.createShadowRoot();
+objShadowDom.appendChild(document.querySelector("#templateToDisplay").content);
+
+
+Shadow dom styling
+---------------------
+A component’s host element appears outside of its template, which means that the selectors in its styles
+apply only to elements that the host element contains and not the element itself. This can be addressed by
+using the :host selector
+
+#here host indicates the parent element... in above example it is <div id="displayDiv" />
+
+:host:hover {
+font-size: 25px;
+}
+
+<div id="divHost">
+        another tteextete
+    </div>
+
+    <template id="shadowTemplate">
+        <style>
+            .redclass{
+                background-color:red
+            }
+            :host {
+                background-color:yellow
+            }
+        </style>
+        <div id="ddddd"  class="redclassee">
+            reee
+        </div>
+        some teexttt
+    </template>
+
+
+:host-context(.angularApp)
+------------------------------------
+#used to style host element's parent element, or super element 
+cannot be used to specify anything other than a class selectors
+
+    <div class="angularApp">
+        <div class="angularAppees">
+            <div id="divHost" class="angularAppss">
+                another tteextete
+            </div>
+        </div>
+    </div>
+        <template id="shadowTemplate">
+            <style>
+                :host-context(.angularApp) {
+                    background-color: lightgray;
+                }
+            </style>
+         
+            some teexttt
+        </template> 

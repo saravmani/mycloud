@@ -1,0 +1,28 @@
+Code Refactoring options
+
+Code analysis Features
+=====================================
+ReSharper instantly detects and highlights errors as you code, right in the editor.
+provides warnings for many 
+ ex: declared but never used local variables, un used using statements, unreachable codes
+Suggestions
+ ex: use 'var' keyword when possible, Covert loop to linq expression etc.,
+
+ Solution-wide warnings and suggestions help you detect unused non-private members on the fly
+ Unaccessed non-private fields.
+Unassigned fields.
+Unused parameters in non-private members.
+
+
+
+Code cover tool is part of resarper
+
+Code cleanup
+--------------------
+Two default profiles — Full Cleanup (which applies all code style settings
+
+
+Naming style
+-------------------
+ReSharper lets you define custom naming style settings for different languages and symbols including types, namespaces, interfaces, parameters, method properties and events, static and instance fields etc.
+Fix namin in project, solution,file

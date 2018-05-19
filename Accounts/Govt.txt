@@ -1,0 +1,9 @@
+[
+{[
+
+{'domain':'passport',
+'loginId':'SARAVANAMANIKANDAN.N@GMAIL.COM',
+'pwd':'stdpwd+1#',
+'url':'https://portal2.passportindia.gov.in'}
+]}
+]

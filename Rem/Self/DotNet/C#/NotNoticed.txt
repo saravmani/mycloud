@@ -1,0 +1,7 @@
+* we can write using like below
+namespace parent.child
+{
+    using System;// even we can write within namespace also. it will be scopped within namespace
+}
+
+* Internal is the default if no access modifier is specified

@@ -1,0 +1,27 @@
+Media query is a CSS technique introduced in CSS3.
+Mobile First means designing for mobile before designing for desktop or any other device (This will make the page display faster on smaller devices).
+ex:
+//If the browser window is smaller than 500px, the background color will change to lightblue:
+@media only screen and (max-width:500px)
+{
+	body{
+		background-color:lightblue;
+	}
+}
+
+
+
+//The web page will have a lightblue background if the orientation is in landscape mode:
+@media only screen and (orientation: landscape) {
+    body {
+        background-color: lightblue;
+    }
+}
+
+
+@media (max-width: 600px) {
+  .facet_sidebar {
+    display: none;
+  }
+@media (min-width: 700px) { ... }
+@media (min-width: 700px) and (orientation: landscape) { ... }

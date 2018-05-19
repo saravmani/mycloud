@@ -1,0 +1,22 @@
+The main feature of MVC applications is it supports the Test Data Driven (TDD) approach.
+Since the Controller file is just a kind of class file, it's easy to implement the Test methods 
+in the Test Project.   
+  
+  
+  [TestClass]  
+    public class JsonDemoControllerTest  
+    {  
+        [TestMethod]  
+        public void WelcomeNote()  
+        {  
+            JsonDemoController controller = new JsonDemoController();  
+  
+            JsonResult result = controller.WelcomeNote();  
+            string msg = Convert.ToString(result.Data);  
+            // Assert  
+            Assert.AreEqual("Welcome to the User", msg);  
+        }  
+    } 
+
+
+    

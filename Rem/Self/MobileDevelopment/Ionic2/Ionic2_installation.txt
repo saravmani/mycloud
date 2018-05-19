@@ -1,0 +1,11 @@
+install ionic 2 and cordova
+ 
+start new project
+----------------------
+npm install -g cordova
+npm install -g ionic
+
+ionic start myApp blank --v2
+cd myApp
+cordova platform add android
+ionic serve

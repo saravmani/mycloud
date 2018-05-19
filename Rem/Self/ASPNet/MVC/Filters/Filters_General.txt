@@ -1,0 +1,14 @@
+Filters inject extra logic into MVC Framework request processing.
+They provide a simple and elegant way to implement  cross-cutting concerns.
+
+
+we can implement the filters with the help of IMvcFilter interface.
+But the easiest way to create a filter is to derive your class from FilterAttribute, which implements the required interface
+and provides some useful basic features, such as handling the default order in which filters are processed
+
+
+MVC provides ActionFilterAttribute which includes both IActionFilter, IResultFilter.
+only benefit of ActionFilterAttribute is that you do not need to override and implement the methods that you do
+not intend to use. Otherwise, there is no advantage over implementing the filter interfaces directly.
+
+

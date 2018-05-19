@@ -1,0 +1,2 @@
+what is deferred execution?
+ execution of the query is deferred until after ToList() is called.

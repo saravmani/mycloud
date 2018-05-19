@@ -1,0 +1,33 @@
+angualr 4 changes
+
+Angular Universal is available as part for angular
+
+	in angular 2 there is no else statement. now angular 4 it is possible
+<div *ngIf="condition;else elsePart">some txt</div>
+<ng-template #elsePart>
+<div>some code</div>
+</ng-template>
+
+
+Renderer2 (new renderer)
+-----------------------------
+Renderer2 has released. but still Renderer also will work. 
+import {Component,Renderer2} from'@angular/core'
+Renderer depriciated. it may removed in future.
+
+
+Email validator
+--------------------
+angular 2 to do email validation we have to use regex
+angular 2
+	<input type="email" pattern="[1-9A-Z]" />
+
+now in angular 4 we are having email directive. we can simply use this
+	<input type="email" email />
+
+
+now we can able to use typescript2. but previously typescript 1.8 was supported
+
+New animation module has released. Previously those was there in core module itself.
+but now different module.
+Ex of animation components - animate,state,style,transition,trigger

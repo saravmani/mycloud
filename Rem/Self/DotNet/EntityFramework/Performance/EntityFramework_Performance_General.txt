@@ -1,0 +1,59 @@
+
+OfType
+-----------------------
+To improve the performance of the query when you know the type of the result, use the OfType<T>()
+ex:
+context.Employees.OfType<HourlyEmployee>().Single(e => e.Name == "Steven Fuller");
+
+
+
+.Find()
+----------------------
+var paintingFromDatabase =context.Paintings.FirstOrDefault(x => x.AccessionNumber == "PN001");
+
+//LINQ query always fetches entity from database, even if it already exists in context
+// Find() method fetches entity from context object
+var paintingFromContext = context.Paintings.Find("PN001");
+
+Find() is very efficient, as it will first search the underlying context for
+the target object. If found, Find() returns the entity directly from the context object.
+
+When issuing a LINQ query, a round trip will always be made to the database to retrieve the requested data, even if
+that data has already been loaded into the context object in memory. When the query completes, entity objects that
+do not exist in the context are added and then tracked. By default, if the entity object is already present in the context,
+it is not overwritten with the more recent database values.
+
+Specifically, Find()
+expects a single argument that represents the primary key of the entity object. 
+If necessary, an array of values can be passed into Find() to support a composite key.
+If not found, then it automatically
+queries the underlying data store. If still not found, Find() simply returns NULL to the caller. Additionally, Find()
+will return entities that have been added to the context (think of having a state of “Added”), but not yet saved to the
+underlying database.
+
+
+Efficient Query Building 
+===============================================================
+Try to avoid let keyword 
+---------------------------------------
+let keyword is translated to more complex and often less
+efficient SQL. Instead of using the let keyword, consider explicitly creating two conditions in the where clause,
+
+Using let key word improves readability. But it produces more complex SQl.
+In SQL it will generate more 'case' statements
+
+so try to use where clause conditions
+
+ex:
+var query2 = from reservation in context.Reservations
+let dateMatches = searchDate == null || reservation.ResDate == searchDate
+let nameMatches = searchName == string.Empty || reservation.Name.Contains(searchName)
+where dateMatches && nameMatches
+select reservation;
+//#Above query will generate complex 'case' statements in output.So instead we can use below one. 
+//#But below ones readability is less
+var query1 = from reservation in context.Reservations
+where (searchDate == null || reservation.ResDate == searchDate)
+&&
+(searchName == string.Empty || reservation.Name.Contains(searchName))
+select reservation;

@@ -1,0 +1,23 @@
+Select child elements in angular 2
+---------------------------------------
+var  objElement  = <HTMLElement>this._objElementRef.nativeElement.querySelector("#blockidx");
+//ElementRef object from DI
+this._objRenderer.setElementStyle(objElement, "height", "100%");//Renderer element from DI
+
+
+
+<input #myName>
+@ViewChild("myName");
+
+
+Dynamic component loading
+---------------------------
+For example ViewContainerRef that is required by DynamicComponentLoader
+instead of the default ElementRef
+Ex: 
+@ViewChild("ComponentHolder", { read: ViewContainerRef }) ComponentHolder;
+let factory = this.componentFactoryResolver.resolveComponentFactory(this.componentToBeLoaded);
+    this.cmpRef = this.ComponentHolder.createComponent(factory);
+    this.cmpRef.instance.dataCollection = this.reportDataObject;
+HTML:
+<div #ComponentHolder></div>

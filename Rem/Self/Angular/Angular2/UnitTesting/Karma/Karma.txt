@@ -1,0 +1,13 @@
+Karma is a test runner, which means it monitors the files in a project and runs the tests that have been
+defined using Jasmine when it detects a change. Together, these tools make it easy to define and run unit
+tests in JavaScript projects.
+
+The most difficult part of setting up unit testing is getting the correct configuration,
+ which can require some
+trial and error. The problem is that testing Angular applications requires using the
+ JavaScript module loader
+to handle the dependencies in the application so that the unit test can access Angular functionality, 
+which in
+turn requires the JavaScript packages that Angular relies on. 
+The first step is to create a Karma configuration
+file, which I did by adding a file called karma.conf.js

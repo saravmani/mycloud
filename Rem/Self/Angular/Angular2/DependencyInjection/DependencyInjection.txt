@@ -1,0 +1,130 @@
+
+providers: [ MyService ]
+That is telling Angular that we want to provide a singleton instance of MyService whenever
+MyService is injected
+
+Because this pattern is so common, the class by itself is shorthand notation
+for the following, equivalent configuration:
+1 providers: [
+2 { provide: MyComponent, useClass: MyComponent }
+3 ]
+or
+
+1 { provide: NewComponent, useClass: MyComponent }
+
+//provider name can be anything
+
+//The first provide
+is the token that we use to identify the injection and the second useClass is how 
+and what to inject
+First time DI system will trigger the class constructor method.
+
+Now what happens if a service's constructor requires some parameter? Let's
+If we need to pass in parameters when creating a service, we would need to use a factory instead.
+
+1 {
+2 provide: MyComponent,
+3 useFactory: () => {
+4 if (loggedIn) {
+5 return new MyLoggedComponent();
+6 }
+7 return new MyComponent();
+8 }
+9 }
+
+
+If loggedIn is truthy then the injection will give an instance of
+MyLoggedComponent, otherwise we will receive MyComponent.
+
+
+Factories can also have dependencies:
+
+{
+2 provide: MyComponent,
+3 useFactory: (user) => {
+4 if (user.loggedIn()) {
+5 return new MyLoggedComponent(user);
+6 }
+7 return new MyComponent();
+8 },
+9 deps: [ User ]
+10 }
+
+Using a factory is the most powerful way to create injectables, 
+because we can do whatever we want
+within the factory function.
+
+class DiSampleApp {
+28 constructor(private apiService: ApiService) {
+29 }
+When we declare the injection in our component constructor, Angular will do some 
+reflection to figure out what class to inject
+
+
+Sometimes we need to give Angular more hints about what we're trying to inject. 
+In that case we
+use the second method by using the @Inject annotation
+
+class DiSampleApp {
+2 private apiService: ApiService;
+3 constructor(@Inject(ApiService) apiService) {
+4 this.apiService = apiService;
+5 }
+
+
+
+we can set the value;
+{ provide: 'API_URL', useValue: 'http://my.api.com/v1' }
+
+
+
+
+Ways to configure the injections
+-----------------------------------
+� Inject a (singleton) instance of a class
+� Call any function and inject the return value of that function
+� Inject a value
+� Create an alias
+
+
+
+
+What if we wanted to substitute out the implementation of B for MockB during testing?
+� What if we wanted to share a single instance of the B class across our whole app (e.g. the
+Singleton pattern)
+� What if we wanted to create a new instance of the B class every time it was used? (e.g. the
+Factory pattern)
+DI library that is built-in to Angular.
+
+One way to think about an injector is as a replacement for the new operator
+
+
+major benefit of using dependency injection is that the client component doesn�t have to be
+aware of how to create the dependencies, all the component needs to know is how to interact with
+those dependencies
+
+
+benifits
+------------
+avoid tightly coupling
+
+When we use DI we are moving towards a more loosely coupled architecture where changing bits
+and pieces of a single component affects the other areas of the application less. And, as long as the
+interface between those components don�t change,
+
+
+
+Provider, Injector, Dependency
+------------------------------------
+the Provider (also often referred to as a binding) maps a token (that can be a string or a class)
+to a list of dependencies. It tells Angular how to create an object, given a token.
+
+Injector - it is responsible for resolving the dependencies and injecting them.
+
+
+One of the most common cases is providing a service or value that is the same across our whole
+application. This scenario would be what we would use 99% of the time in our apps.
+
+
+
+ 

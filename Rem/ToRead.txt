@@ -1,0 +1,137 @@
+c# difference btn function level variables and class level variables and properties
+
+Definetly to read ES6.
+
+what is mit licence.
+apachie licence
+read about javascript console object's methods
+
+Basic hacking like CSRF (cross site request forgery), XSS(cross site scripting)
+
+Authentication - oAuth
+Windows credential authentication on webapplication
+Authentication mechanism in MVC
+
+webapplication - spead test
+javascript memory profiler and performance testing using Chrome and other tools
+
+what is the problem when we do bundling on jquery files..
+bcs somewhere i faced problem of $ symbol... and somewhere i have read that
+$ symbol we can change while doing bundling.. please take ans from net
+
+what is cohesive?
+
+Differenct btwn release mode dlls and debug mode dlls.
+what is the pdb file role for release mode dlls
+
+Roselyn compiler
+
+difference btwn dump and mini dump file
+what is Adplus tool? (it is for generating dump file. but know about this more.. is this compatetor for debug diag?)
+
+read about CLR versions and how it behaves
+what is cloud native app?
+how to read regex componnents..
+
+what is open stack developmnt?
+
+How to do code coverage?
+what is the best fot library we can use ?
+Awesine icons
+bootstrap icons
+google icons
+
+Test driven developmentt and what is red green and refactor processes
+
+
+what is Behaviour driven development??
+Behavior Driven Development (BDD)
+what is seperation of concern?
+
+how to do complex testing with mock ?
+MOQ mock testing framework
+what is usecases?
+how to convert requirement to technical design?
+LLD HLD
+learn design pattern??
+Factory , template pattern
+Read about SOA architechture
+ Aspect-Oriented Programming (AOP)
+
+how to a software design??
+	UML (colabration diagram, class diagram, class diagram etc.,)
+	Design patterns
+	aggrigation and composition (tells about life time of a object comparing with another)
+	function points (use to give the estimation)
+	WBS (also use to give the estimation)
+
+
+DB - Optimistic locking and pesimistic locking
+
+
+Static code analysis will find if there are any unreachable code or hanging code,
+what is GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS?
+
+what is MIT licence?
+
+drawbacks in hybrid applications on mobile
+what is angular-resource.min.js?
+
+Hacking
+cross-site scripting (XSS)
+and clickjacking.
+
+Session cookies with security flag.. what is this statement. i got ti from saravanana Murugan. in cinet  security vulnarability testing related
+
+
+Javascript - Prototype, DefineProperty
+
+Angular js.. how to solve caching issue?
+
+
+what is svchost?
+MVC grid view
+what is NET Compact Framework?
+Windows Process Activation Service (WAS)
+what is javascript promises?
+
+GPU Usage
+Do remote debugging - done
+What is the use of temp folder for asp.net -done
+Google developer tools features
+what is ipv6
+OWIN
+
+
+Post Sharp
+Veracode security scanning
+code coverage tools
+instrumentation
+Dapper
+Nunit
+XUnit
+Nsubstitute Mock
+ATTD Process
+Jenkins Build
+AWS Cloud hosting
+
+Queuing technologies - Kafka, RabbitMQ
+
+
+Intelli Trace in vsts 2015
+IIS express?
+Javascript module pattern
+Custome value provider
+
+what is *.vhost.exe
+How edit and go worksin (VSTS2013 debugging mode editing)
+diff btn iis vs iis express?
+Windows shell
+how to cancel http request
+How does a .NET application start?
+Sandboxing in .net
+what is UTF-8?
+what is IPV4?
+
+iis architecture
+http://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture

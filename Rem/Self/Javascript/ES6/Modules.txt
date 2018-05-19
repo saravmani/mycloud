@@ -1,0 +1,21 @@
+Modules needed module loaders
+
+File module1.js:
+-------------------------
+export let projectId=99;
+
+import{ projectId} from'module1.js';
+projectId=8000;
+console.log(projectId);
+//Runtime error: projectIdis read-only
+
+
+File module1.js:
+----------------------
+export let project={projectId:99};
+
+File base.js:
+-------------
+import{project}from'module1.js';p
+roject.projectId=8000;
+console.log(project.projectId);

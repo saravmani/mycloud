@@ -1,0 +1,46 @@
+git init //use to 
+ls -la //this will show all the files 
+//even .git file also will be shown
+
+we can run this command on any of the folder.
+then ti will be a git repository
+the files within this folder will get 
+tracked by git
+
+git different places to save the state of file
+1. staging environment
+  CMD:  git add fileName.js //adding fileName.js file into staging environment
+  CMD:  git status  //get the status of the file
+  CMD:  git add . //used to add all the files into staging
+
+if we are working on multiple files then we can keep adding
+into staging, and finally we can able to commit
+
+CMD: git commit -m "message for the comamnd"
+CMD: git log //display commited info
+
+POC:
+i tried with - i have edited filename.txt in text editor and tried below command
+CMD: git checkout filename.txt 
+this command restores the old content what i have previously commited
+
+
+NOTE: Cloning the repository
+CMD: git clone https://github.com/FabianGosebrink/ASPNET-Core-Angular2-SignalR-Typescript
+
+
+Deleting the file
+------------------
+just delete file manualy
+and try with git checkout filename.txt 
+now u can see the file again created.. this is file v
+got from staging area
+Here git checkout command acts like rollback
+Or
+CMD: git rm filename.txt //used to delete and stage the changes
+
+CMD: git add --all // it will do adding, deleting into staging
+Undo the changes after done staging
+--------------------------------------
+CMD: git reset HEAD . //undo staging changes
+CMD: git checkout .   //undo local changes

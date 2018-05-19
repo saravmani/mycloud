@@ -1,0 +1,33 @@
+Customizing DefaultControllerFactory Controller Instantiation
+=====================================================================
+number of ways to customize how the DefaultControllerFactory class instantiates controller 
+objects.
+By far, the most common reason for customizing the controller factory is to add support for DI.
+
+The DefaultControllerFactory class will use a dependency resolver to create controllers if one 
+is available.
+
+
+You can also introduce DI into controllers by creating a controller activator.
+
+
+Overriding DefaultControllerFactory Methods
+---------------------------------------------------
+CreateController:IController
+    GetControllerInstance :IController
+    GetControllerType : Type    
+    GetControllerSessionBehavior :SessionStateBehavior
+
+    The implementation of the CreateController method from
+the IControllerFactory interface. By default, this method calls
+GetControllerType to determine which type should be instantiated,
+and then gets a controller object by passing the result to the
+GetControllerInstance method.
+
+
+GetControllerType
+---------------------
+Maps requests to controller types. This is where most of the
+conventions used. # This is called by CreateController method, to determine the controller type.
+
+GetControllerInstance - creates instance of specific type

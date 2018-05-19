@@ -1,0 +1,43 @@
+# all functions which are marked as async keyword will automatically returns Promise.
+# If we mark a function with async keyword, while executing that function will not block the 
+main execution, but witin the function, it will be blocked on await key word line
+
+
+Error handling with async await
+------------------------------------
+since async method returns Promise, we can able to catch the error
+ex: titansAsync().catch(reason=>console.log(reason))
+
+async and await example
+----------------------------
+class Subject {
+
+    public  entry()
+    {
+        console.log("11111111111");
+        this.titansAsync();
+        console.log("2222222222");
+    }
+    public async titansAsync() {
+        console.log("bfr tst mthd call");
+        await this.testmethod();
+        console.log("after tst mthd call");        
+    }
+    public testmethod() {
+        console.log("tst mthd");
+    }
+}  
+
+var objSubject = new Subject();
+objSubject.entry();
+
+output:
+11111111111
+
+bfr tst mthd call
+
+tst mthd
+
+2222222222
+
+after tst mthd call

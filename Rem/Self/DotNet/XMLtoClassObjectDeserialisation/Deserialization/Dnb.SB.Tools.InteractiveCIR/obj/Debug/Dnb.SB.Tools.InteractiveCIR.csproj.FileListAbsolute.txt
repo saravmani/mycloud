@@ -1,0 +1,6 @@
+D:\VSTS\SB2.0\SilverBlade_2.0\SourceCode\Utilities\InteractiveCIR-MultiLingual\Dnb.SB.Tools.InteractiveCIR\Dnb.SB.Tools.InteractiveCIR\bin\Debug\Dnb.SB.Tools.InteractiveCIR.exe.config
+D:\VSTS\SB2.0\SilverBlade_2.0\SourceCode\Utilities\InteractiveCIR-MultiLingual\Dnb.SB.Tools.InteractiveCIR\Dnb.SB.Tools.InteractiveCIR\obj\Debug\Dnb.SB.Tools.InteractiveCIR.csprojResolveAssemblyReference.cache
+D:\VSTS\SB2.0\SilverBlade_2.0\SourceCode\Utilities\InteractiveCIR-MultiLingual\Dnb.SB.Tools.InteractiveCIR\Dnb.SB.Tools.InteractiveCIR\bin\Debug\Dnb.SB.Tools.InteractiveCIR.exe
+D:\VSTS\SB2.0\SilverBlade_2.0\SourceCode\Utilities\InteractiveCIR-MultiLingual\Dnb.SB.Tools.InteractiveCIR\Dnb.SB.Tools.InteractiveCIR\bin\Debug\Dnb.SB.Tools.InteractiveCIR.pdb
+D:\VSTS\SB2.0\SilverBlade_2.0\SourceCode\Utilities\InteractiveCIR-MultiLingual\Dnb.SB.Tools.InteractiveCIR\Dnb.SB.Tools.InteractiveCIR\obj\Debug\Dnb.SB.Tools.InteractiveCIR.exe
+D:\VSTS\SB2.0\SilverBlade_2.0\SourceCode\Utilities\InteractiveCIR-MultiLingual\Dnb.SB.Tools.InteractiveCIR\Dnb.SB.Tools.InteractiveCIR\obj\Debug\Dnb.SB.Tools.InteractiveCIR.pdb

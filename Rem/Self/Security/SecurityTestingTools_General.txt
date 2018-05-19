@@ -1,0 +1,5 @@
+Active scanner
+	Sending malicious requests as we navigating the urls
+
+Passive scanner
+	it will not send any extra request. but it will scan the response as we navigate the urls

@@ -1,0 +1,7 @@
+var rslt = from eachrow from tablename
+            orderby eachrow.columnname
+            select new {eachrow.col1,eachrow.col2};
+
+var pagedrslt = rslt.skip(PageNumber*RowsPerPage).take(RowsPerPage).ToList();
+
+Note: EF Requires orderby is requered to pagination work

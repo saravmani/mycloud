@@ -1,0 +1,25 @@
+
+export class TestAsync {
+  async testPromiseMethodWithAsyncAwait() {
+    var objPromise = this.promiseMethod();
+    var data = await objPromise;
+    console.info(data);
+  }
+  testPromiseMethod() {
+    this.promiseMethod().then(data => {
+      console.info(data);//output is yes it is Executing
+    });
+  }
+  promiseMethod(): Promise<string> {
+    return new Promise((resolvess) => {
+      setTimeout(() => {
+        resolvess("yes it is Executing")
+      }, 2000);
+    });
+  }
+}
+
+
+var objTestAsync = new TestAsync();
+objTestAsync.testPromiseMethodWithAsyncAwait();
+objTestAsync.testPromiseMethod();//both are giving same result

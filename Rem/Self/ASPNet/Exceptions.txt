@@ -1,0 +1,5 @@
+System.InvalidOperation
+	An System.InvalidOperationException is thrown when a method of an object 
+	is called when the state of the object cannot support the method call. 
+	The exception is also thrown when a method attempts to manipulate the UI 
+	from a thread that is not the main or UI thread.

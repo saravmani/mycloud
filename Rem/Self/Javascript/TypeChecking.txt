@@ -1,0 +1,20 @@
+instanceof
+--------------------
+var showCategories=function(productId,...categories)
+{
+    console.log(categories instanceof Array);//true
+};
+
+typeof
+-------------
+typeof 2  //number
+typeof "" //string
+
+function testFunction(){
+
+}
+
+typeof objtestFunction //function
+
+var objtestFunction = new testFunction();
+typeof objtestFunction // object

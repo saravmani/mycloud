@@ -1,0 +1,27 @@
+All variables and functions defined within the anonymous function aren�t
+ available to the code outside of it, effectively using closure to seal
+ itself from the outside world.
+
+
+(function(){
+  console.log('Hello World!');
+})();
+Let's look at this carefully. This code is made up of two key parts.
+
+First is the anonymous function:
+(function(){
+  //Normal code goes here
+})
+
+The really interesting part is what happens when we add this right at the end:
+();
+Those two little brackets cause everything contained in the preceding parentheses to be executed immediately. 
+
+
+What�s useful here is that JavaScript has function level scoping. All variables and functions defined within the anonymous function aren�t available to the code outside of it, effectively using closure to seal itself from the outside world.
+
+
+
+(function(){alert('ss')}) // this code will not execute automatically
+but
+(function(){alert('ss')})()// this will be self executable

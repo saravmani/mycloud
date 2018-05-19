@@ -1,0 +1,105 @@
+design principles are  the guidelines for your everyday work
+
+SOLID
+KISS - Keep it simple stupid
+DRY - DON’T REPEAT YOURSELF
+YAGNI - You aren't gonna need it
+
+
+
+YAGNI says- do not add any functionality until it's deemed necessary; 
+in other words,  write the code which you need in the current situation.
+ Don't add anything if you think will need it.
+ Add your code logic for the present, don't think of what may be needed in the future.
+ # because more code more bugs.. more maintanance
+
+
+
+*Program to an interface not an implementation
+ -------------------------------------------------
+ here the word "interface " overridden. It can be super class, abstract class or interface.
+ we can reword it as "program to super class".
+
+ *Identify the aspects of your application that vary and seperate them from what stays the same (encapsulate what varies)
+ ---------------------------------------------------------------------------------------------------
+ this is the term which bassis for almost all design patterns.
+ all patterns provide a way to let some part of a system vary independently of all other parts
+
+ ex: sb2 in subject search module if scoring alone varries from bureau to bureau , or keep on getting changes bcs of ircs.. then seperate from subject search and create
+ SearchResultScoringManager and move the scroing code to this class. which means SubjectSearch class DELEGATES the scroing work to SearchResultScoringManager Class
+
+
+*Favor Composition over inheritance
+------------------------------------------
+Has-A can be bettern than Is-A
+what 
+# instead of inheriting some behaviour, we can try to seperate it (if we Identify that behaviour is varies), and we can compose it with where it required.
+ex:
+class Bird{
+    IFlyBehaviour objFlyBehaviour;
+    setBehaviour(IFlyBehaviour _objFlyBehaviour)
+    {
+        this.objFlyBehaviour=_objFlyBehaviour;   
+    }
+    doFly(){this.objFlyBehaviour.fly()}
+}
+class Duck:Bird{}
+class SuperDuck:Bird{}
+
+interface IFlyBehaviour {}
+class WingFlyBehaviour:IFlyBehaviour}{}
+class SuperFlyBehaviour:IFlyBehaviour}{}
+
+#here family of fly behaviours encapsulated. and Bird class can use it by using HAS-A Relation. 
+Advantange here is at run time we could able to change the behaviour of Bird class.
+
+ex:
+    Bird superBird = new SuperFlyBehaviour();
+    superBird.setBehaviour(new SuperFlyBehaviour());
+    superBird.doFly();
+    superBird.setBehaviour(new WingFlyBehaviour());
+    superBird.doFly();
+
+# in above example we have used STRATEGY DESIGN pattern
+
+    # In above example Bird HAS A relation with FlyBehaviour.  we can able to inheri flybehaviour from bird class by having flybehaviour code in bird class.
+     but if that behaviour
+    keeps changes, or if we want to add any new kind of behaviour (ex: FanFlyBhehaviour), then we have to touch bir and sub classes. so Is-A Relation is better approch
+
+    Note: Composition - when you put two classes together then it is Composition. 
+    Composition gives lots of flexibility.
+    composition helps to change the behaviour of the system at runtime
+    composition is used in many design patterns
+
+
+
+
+*Strive loosely couped design between objects and interact
+---------------------------------------------------------------
+
+* Don’t call us, we’ll call you. it s called - The Hollywood Principle
+---------------------------------------------------------------------------------
+With the Hollywood Principle, we allow low-level components
+to hook themselves into a system, but the high-level
+components determine when they are needed, and how. In
+other words, the high-level components give the low-level
+components a “don’t call us, we’ll call you” treatment.
+
+#Template pattern can be used for this
+
+
+
+
+
+     Design princples are guidlines, rather than a rule you should follow all the time.
+Clearly, every single Java program ever written violates these guidelines!
+But, if you internalize these guidelines and have them in the back of
+your mind when you design, you’ll know when you are violating the
+principle and you’ll have a good reason for doing so. For instance, if you
+have a class that isn’t likely to change, and you know it, then it’s not the
+end of the world if you instantiate a concrete class in your code. Think
+about it; we instantiate String objects all the time without thinking twice.
+Does that violate the principle? Yes. Is that okay? Yes. Why? Because
+String is very unlikely to change.
+If, on the other hand, a class you write is likely to change, you have some
+good techniques like Factory Method to encapsulate that change.

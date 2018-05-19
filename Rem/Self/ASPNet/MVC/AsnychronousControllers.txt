@@ -1,0 +1,4 @@
+The AsyncController class enables you to write asynchronous action methods. 
+You can use asynchronous action methods for long-running, non-CPU bound requests. 
+This avoids blocking the Web server from performing work while the request is being processed.
+ A typical use for the AsyncController class is long-running Web service calls.

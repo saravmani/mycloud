@@ -1,0 +1,11 @@
+how to upgrate nodejs
+
+what npm link module name will do? how this s maintaining the linking
+
+how to install the modules from one application to another (from another folder)
+
+
+How to do sanboxing in browser for eval?
+(in node for some reason, you do need to execute an arbitrary chunk of JavaScript
+in your Node application, you can do so using the VM module to sandbox the
+script.)

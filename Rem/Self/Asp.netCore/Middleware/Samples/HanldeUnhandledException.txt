@@ -1,0 +1,14 @@
+if (env.IsDevelopment()){
+    app.UseDeveloperExceptionPage();
+}
+else{
+    app.UseExceptionHandler(appbuilder=>
+    {
+        appbuilder.Run(async objContext => {
+            objContext.Response.StatusCode = 500;
+            await objContext.Response.WriteAsync("some generic error message");
+            //this needed  using Microsoft.AspNetCore.Http
+        });
+    });
+}
+//if any unhandled exception thrown by the action then this part will get executeds

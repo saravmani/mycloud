@@ -1,0 +1,17 @@
+GIT
+-----------
+#Start 
+Git written in C. so it is faster.
+Though Git mirrors entire repository, the size of the data on the client side is small, bcause git compress the data and store.
+
+GIT is DVCS (distributed version controll). so every client will have its won copy. and changes will update in server.
+
+as moste of the operations are happening in local, operations are very easy
+ developers don’t interact with the server unless they need to push or pull changes. 
+
+git is more secured.
+Git uses a common cryptographic hash function called secure hash function (SHA1),
+
+
+
+Working directory -> Staging Area -> Git repository

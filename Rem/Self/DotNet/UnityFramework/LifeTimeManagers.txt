@@ -1,0 +1,11 @@
+Lifetime Managers
+-----------------------
+TransientLifetimeManager. For this lifetime manager Unity creates and returns a new instance of the requested type for each call to the Resolve or ResolveAll method. This
+
+ContainerControlledLifetimeManager 
+
+HierarchicalLifetimeManager
+PerResolveLifetimeManager
+PerThreadLifetimeManager
+
+ExternallyControlledLifetimeManager

@@ -1,0 +1,5 @@
+Set Brakpoing
+	bpu url
+
+
+Setup reverse proxy(we can use this to find incoming requests to the server)

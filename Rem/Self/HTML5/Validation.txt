@@ -1,0 +1,3 @@
+<input type="text" pattern="regex..." />
+
+ pattern attribute is html5's validation attribute, to validate using regex

@@ -1,0 +1,64 @@
+Tags - css loaders, bundling, bundle non js files, css-loader
+---------------------------------------------------------------------
+
+css-loader - reads css file, resolves import and url(...) statements.
+style-loader - creates <style> tags in the page's <head> element containing css returned by css-loader.
+
+SOme useful loaders
+--------------------------
+css-loader, style-loader , loaders for typescript, coffescript,html-loader,raw-loader, url-loader
+
+ Every file/module we want to be used in the bundle webpack expects to be a 
+ valid JavaScript module. And certainly styles.css is not a valid JavaScript module. 
+ So we need something to turn this CSS module into JS module. 
+ And this is where loaders come in.
+
+ Loaders are transformations that are applied on the source code of a module. webpack supports modules written in a variety of languages and preprocessors, via loaders. Loaders describe to webpack how to process non-javaScript modules and include these dependencies into your bundles.
+
+Loaders are transformations that are applied on the source code of a module.
+ They allow you to pre-process files as you import or “load” them… 
+ Loaders can transform files from a different language (like TypeScript) to JavaScript,
+  or inline images as data URLs.
+
+
+  Webpack already have a suitable loader for CSS and it’s called CSS loader.
+
+  npm install --save-dev css-loader 
+
+  (for angular cli project, this css-loader, webpack.. modules will be installed automatically .. 
+  you check modules folder. but by default entries will be there in packages.json. 
+  but if we do ng eject then those information entries are updated in packages.json)
+
+  module.exports = {
+    entry: ...,
+    output: ...,
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    "style-loader",
+                    "css-loader"
+                ]
+            }
+        ]
+    }
+
+
+
+ou can see we added style-loader before the css-loader in the configuration.
+ Webpack applies all loaders in the reverse order so css-loader will be applied 
+ first followed by the style-loader
+
+ The css-loader will generated a JS module that exports styles and style-loader will use them to add to the <style> tag in the html
+
+
+ We’re adding styles.js into the index.html manually. Is there a way to automate that? 
+    HTML Webpack Plugin
+
+This is especially useful for webpack bundles that include a hash in the filename which changes every compilation.
+
+npm install — save-dev html-webpack-plugin
+
+
+By default this plugin generates its own index.html file. But since we already have our own index.html we can use template option to specify the path to 

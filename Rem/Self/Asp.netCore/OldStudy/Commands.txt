@@ -1,0 +1,8 @@
+dotnet --version
+dotnet --help
+where dotnet  // tels where dotnet has installed
+dotnet new console -o myapp
+dotnet new web -o myapp
+dotnet run 
+dotnet build
+dotnet restore //this will install the packages required

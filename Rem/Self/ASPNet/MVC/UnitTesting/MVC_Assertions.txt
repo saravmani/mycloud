@@ -1,0 +1,56 @@
+check the view name
+-----------------------------
+TestingController t = new TestingController();
+ViewResult r = t.GetView(1) as ViewResult;
+Assert.AreEqual("View1", r.ViewName); //check the view name
+
+Test View Data
+------------------
+//Action Method
+public ActionResult Action2()
+{
+    ViewData["Name"] = "SomeName";
+    return View();
+}
+
+ViewResult r = t.Action2() as ViewResult;
+Assert.AreEqual("Sukesh", r.ViewData["Name"]);
+
+Test Redirection
+-------------------------
+//Action Method
+public ActionResult Details(int Id)
+{
+    if (Id < 0)
+        return RedirectToAction("Index","SomeElse");
+    return View("Details");
+}
+//Test Cases
+[TestMethod]
+public void TestDetailsForRedirect()
+{
+    TestingController controller = new TestingController();
+    var result = controller.Details(-1) as RedirectToRouteResult;
+    Assert.AreEqual("Index", result.RouteValues["action"]);
+    Assert.AreEqual("SomeElse", result.RouteValues["controller"]);
+}
+
+
+Test Temp Data
+----------------------------
+public void TestMVC()
+{
+    studentController obj = new studentController();
+    var result = obj.ReturnStudent(1) as ViewResult;
+    Assert.AreEqual("sourav", result.TempData["name"]);
+}
+
+Test Model
+----------------
+public void TestDetailsViewData()
+{
+    var controller = new ProductController();
+    var result = controller.Details(2) as ViewResult;
+    var product = (Product) result.ViewData.Model;
+    Assert.AreEqual("Laptop", product.Name);
+}

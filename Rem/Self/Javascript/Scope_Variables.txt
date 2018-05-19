@@ -1,0 +1,15 @@
+
+Let keyword
+----------------------
+if (false) {
+var x = "hello";
+}
+console.log(x);
+This code will not fail as we might expect and it will just print undefined in the console
+
+if (false) {
+let x = "hello";
+}
+console.log(x);
+This code will raise a ReferenceError: x is not defined because we are trying to
+print a variable that has been defined inside another block.

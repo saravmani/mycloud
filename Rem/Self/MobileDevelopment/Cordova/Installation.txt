@@ -1,0 +1,66 @@
+Updated VSTS 2015 with cordova extension
+
+First build was not working
+	Bcs in first build vsts will download cordova using npm. but it was stopped by firewall.
+	solution fir this is we could stop firewall or we can allow java in firewall
+Second Build was not working
+	Bcs npm cached files was curropted. so have deleted this npm cache and done build again and it started to working
+
+Cordova Emulator tools was not displaying
+Renamed below folder and re run the vsts2015 again
+	C:\Users\SaravMani\AppData\Local\Microsoft\Phone Tools\CoreCon
+
+
+Unable to build for deivce or unable to create APK file. bcs java version problem
+to solvet his in sdk manager i have installed Android 6.0 API 23.
+ and installed latest JDK 8.0 32 bit
+
+How did i found??
+Ran below command
+cordova requirements //This command will check the requirements properly and tell
+	
+
+
+
+
+
+Debugging.
+	Find DOM explorer in  debug->windows->Dom explorer
+	
+	
+1. install java sdk 1.8
+2. install android studio
+3. open sdk manager in android studio and install andoroid versions
+4. install emulator - (have to install virtual devices using specifc system images)
+5. npm install -g cordova 
+5. npm install -g ionic
+ionic new applicationmae
+
+run application in emulator
+-------------------------------------
+to run application in emulator open android studio and launch emulator manually
+then in cordova application using below command
+
+ionic cordova run android --debug --device //to deploy to connected android device
+ionic cordova emulate android -c --debug -r  // to start emulator and deploy the app in emulator
+// -r for live reload
+// -c log console log into terminal
+
+
+Debug emulator app 
+------------------------
+visual studio code have to install cordova extensions
+
+
+
+Debug emulator app with chrome browser
+---------------------------------------------
+we can able to debug typescript which is running in emulator by chrome browser
+steps
+type below url in chrome browser
+chrome://inspect/#devices
+
+if any emulator running in machine this then chrome will listdown that device. 
+simply we can click and and start debugging on that
+
+

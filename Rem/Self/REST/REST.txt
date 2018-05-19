@@ -1,0 +1,61 @@
+REST 
+-----------
+Representational state transfer. it is simpler then SOAP
+
+rest is just a series of rules in place for ur server, 
+so everyone that uses ur service understands what it does and how works
+
+Rest is not just json response , XML response ,custome types etc.,
+It is a Architectural style. I is not just standard. we use standardS to implement it.
+
+REST is protocol agnostic.
+And REST will not use HTTP only. it can use other protocols.
+
+# as per my understanding REST is architectural style and we implement this with
+different protocols and standards
+
+What is the meaning of Representational state transfer?
+Browser(client) will make http request (page1.aspx) to server and server response with 
+HTML and CSS back to the client. Now Client will change it s state to display new page.
+Which means it transfer's its state to Represent the response from the server
+
+Assume browser having angular 2 client. Now client make http request server and 
+server responds with representation of that resource to angular client.
+Client gets this representation and change stat of it.
+Response can be JSON or other formate. But most of the cases it is JSON
+
+
+
+web services require more design and development effort but produce loosely coupled 
+software systems that are easier to manage and maintain.
+
+As you will learn, decoupling the
+client from a web service requires more of an investment of time and effort, 
+which is then paid back through increased
+flexibility and maintainability,
+
+RESTful web services are useful for decoupling clients and the web services they
+consume. They require more design and development effort, but they make it easier to
+maintain the web service.
+
+when we can choose RESTFUL service?
+when you expect a high rate of change in the API delivered by the web service.
+You should use RESTful web services when clients are being developed by third parties - because we
+expect more requirements from the client
+
+The less prior
+knowledge a client requires to consume a web service, the more RESTful that service is.
+
+
+
+
+In RESTful terminology, the creation of a resource is typically mapped to the POST
+verb.
+
+A complete rest api should implement below mentioned methods
+POST
+GET
+DELETE
+PUT //used for update or file upload
+
+

@@ -1,0 +1,84 @@
+The router in Angular 2 provides both a HashLocationStrategy and a PathLocationStrategry, 
+one of which is used when we bootstrap the app
+
+Loading different components
+angular js having powerfful built in router
+
+import {Routes,RouterModule} from "@angular/router"
+import {componentClass} from "./componentClassTsFIle"
+import {componentClass} from "./componentClassTsFIle1"
+
+const Rout_Configurations:Routes=[
+{path:'somepath',component:componentClass1},
+{path:'',component:componentClass}
+];
+
+//To use this routing configurations we need to export it
+
+export const routingConst=RouterModule.forRoot(Rout_Configurations);
+
+in Main.ts file
+--------------------
+@NgModule({
+imports:[routingConst],
+})
+
+root component
+--------------------
+<a [routerLink]="['/InquiryCom']"   [queryParams]="{analytics: 500}" > Inquiry Commercial </a>
+<a [routerLink]="['']" >Inquiry Normal</a>
+<router-outlet></router-outlet> 
+if mention / in path  then it will go from root component
+
+approuting.ts
+import { RouterModule, Routes } from "@angular/router";
+
+import { InquiryClass }    from './Subject_Proj/Components/inquiry';
+import { InquiryClassCom }    from './Subject_Proj/Components/inquiryCom';
+
+const APP_ROUTES: Routes = [    
+	{ path: 'InquiryCom', component: InquiryClassCom },
+	{ path: '', component: InquiryClass },    
+];
+
+
+export const routing = RouterModule.forRoot(APP_ROUTES);
+
+
+programmatically route (Tags - manually route, Redirect, programmatically route, programatically)
+------------------------------------------------------------------------------------------------------------
+inject router serice into the constructor where you want to do the redirection code,
+then use 
+this.objRouter.navigate('[url]');
+
+
+Ex:
+ constructor(private objRouter Router){}
+navigateMethod(){
+this.objRouter.navigate('[url]');
+}
+
+enable # url option
+----------------------
+to enable # url loading have to import below
+   import {HashLocationStrategy, Location, LocationStrategy} from '@angular/common';
+and add below providers
+providers: [Location, {provide: LocationStrategy, useClass: HashLocationStrategy}]
+
+
+Navigate to particular rout path
+------------------------------------
+this.objRouter.navigate(["PCT/productList"]);
+
+
+redirection
+----------------
+@RouteConfig([
+46 { path: '/', name: 'root', redirectTo: ['/Home'] },
+
+
+router link (for hyper link)
+-----------------
+<li><a [routerLink]="['/Home']">Home</a></li>
+
+

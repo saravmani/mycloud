@@ -1,0 +1,10 @@
+WCF Service not working in production environment(after installed everything properly)
+
+Error in eventvwr - 'Microsoft.VisualStudio.Diagnostics.ServiceModelSink.Behavior' could not be loaded
+Solution
+-----------
+This looks like an issue with your machine.config. Microsoft.VisualStudio.Diagnostics.ServiceModelSink.Behavior is a wcf behavior that enables
+ wcf debugging features inside visual studio, and it loooks like something removed the behavior extension from your machine configuration without removing the references to
+ it in common endpoint and service behaviors.
+If the dll (Microsoft.VisualStudio.Diagnostics.ServiceModelSink) is installed on your computer (should be in the Global Assembly Cache if so, \windows\assembly),
+ then you should be able to add the extension element back into your machine .config:

@@ -1,0 +1,71 @@
+Action Invoker
+====================================
+Once the controller factory has created an instance of a class,
+the framework needs a way of invoking an action on that
+instance. If you derived your controller from the Controller class, 
+then this is the responsibility of an action invoker.
+
+Note: If you create a controller directly from the IController interface, then you are responsible for executing the
+action yourself. Action invokers are part of the functionality included in the
+Controller class.
+#i.e normally we will inherit controller from Controller class
+
+public interface IActionInvoker {
+    bool InvokeAction(ControllerContext controllerContext, string actionName);
+}
+
+The result type is a bool: a value
+of true indicates that the action was found and invoked and false indicates that the controller has no matching action.
+
+
+If the request is for any
+other action, then it returns false, which causes a 404—Not found error to be displayed to the user.
+
+The action invoker associated with a controller is obtained through the Controller.ActionInvoker property.
+This means that different controllers in the same application can use different action invokers.
+
+
+
+Sample Custome Action invoker and it's Use
+-----------------------------------------------------------------------
+public class CustomActionInvoker : IActionInvoker
+{
+    public bool InvokeAction(ControllerContext controllerContext,string actionName)
+    {
+        if (actionName == "Index")
+        {
+            controllerContext.HttpContext.Response.Write("This is output from the Index action");
+            //# So i guess in general Action methods and Views together returning complete response.
+            //write like action here????? :-)
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+
+public class ActionInvokerController : Controller
+{
+    public ActionInvokerController()
+    {
+        this.ActionInvoker = new CustomActionInvoker();
+    }
+}
+
+#But in reality we no need to implement our own ActionInvoker.
+If really required then we can implement.
+
+Action invoker goes to each view engine in turn to see if a view can be found
+
+
+#i think we can customise default action invoker like below
+  public class customeControllerActionInvoker : ControllerActionInvoker
+    {
+        protected override ActionDescriptor FindAction(ControllerContext controllerContext, ControllerDescriptor controllerDescriptor, string actionName)
+        {
+            return base.FindAction(controllerContext, controllerDescriptor, actionName);
+        }
+
+    }

@@ -1,0 +1,74 @@
+Reflect.get(target, propertyKey[, receiver])
+
+class Restaurant{
+    constructor(){
+        this.id=8000;
+        }
+    }
+let r=new Restaurant();
+console.log(Reflect.get(r,'id'));
+
+
+class Restaurant{
+    constructor(){
+        this._id=9000;
+        }
+    get id(){
+        return this._id;
+        }
+    }
+let r=new Restaurant();
+console.log(Reflect.get(r,'id',{_id:88}));
+//ouput 88
+
+Reflect.set(target, propertyKey, value[, receiver])
+--------------------------------------------------------
+class Restaurant{
+    constructor(){
+        this.id=9000;
+        }
+    }
+let r=new Restaurant();
+Reflect.set(r,'id',88);
+
+
+Reflect.has(target,peropertyKey)
+-------------------------------------------
+
+class Location{
+    constructor(){
+        this.city='Goleta';
+    }
+}
+class Restaurant extends Location{
+    constructor(){
+        super();
+        this.id=9000;
+    }
+}
+let r=new Restaurant();
+console.log(Reflect.has(r,'id'));//true
+console.log(Reflect.has(r,'city'));//true
+
+Reflect.ownKeys(target) - it is similar to object.defineProperty
+------------------------------
+Reflect.ownKeys(r);
+["city","id"]
+
+Reflect.defineProperty
+--------------------------
+Reflect.defineProperty(target,'id',{
+    value:200,
+    configurable:true,
+    enumerable:true
+})
+
+Reflect.delete(target,peropertyKey)
+Reflect.getOwnPropertyDescriptor(target,peropertyKey)
+---------------------------------------------------------------
+let rest={id:2000};
+let d=Reflect.getOwnPropertyDescriptor(rest,'id');
+console.log(d);
+//output:
+{configurable: true, enumerable: true, value: 2000, writable: true}
+

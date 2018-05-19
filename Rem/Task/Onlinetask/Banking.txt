@@ -1,0 +1,5 @@
+GET PF account from iSOFT
+Check Current PF account in online
+Uplaod AAddhar scan copy for address proof in citibank
+Redim credit card points
+Activate new debit card

@@ -1,0 +1,27 @@
+what is abstraction?
+    In tamil abstraction means - Saramsam (?????????).
+abstraction is a process of filtering out unwanted pieces of
+information and picking what is essential for your application based on given
+ requirements or context
+
+
+Abstractclass is a half defined class. we carn't create object for this
+
+Interfaces basically defines the contract
+
+what is abstraction and ecapsulaisation?
+	we are implementing abstraciton with use of ecapsulaisation.
+	abstraction is we are abstract the complex functionality.
+
+    Polymorphism
+    ----------
+    method overloading, operator overloading, overriding through inhertiance of abstract classes, interfaces 
+
+
+Covariance and Contravariance
+----------------------------------
+
+In C#, roughly we can say that covariance means we can substitute derived type in place of base type.
+ Contravariance means we can substitute base class in place of derived class.
+In C#, covariance and contravariance are supported only for reference types.
+

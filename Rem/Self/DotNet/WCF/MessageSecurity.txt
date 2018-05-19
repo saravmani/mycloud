@@ -1,0 +1,122 @@
+Message security in WCF
+-----------------------------------
+This enables some scenarios that are not possible when transport security is used.
+
+
+What Is Message Security?
+Message security uses the WS-Security specification to secure messages. The WS-Securityspecification describes enhancements to SOAP messaging to ensure
+ confidentiality, integrity, and authentication at the SOAP message level (instead of the transport level).
+In brief, message security differs from transport security by encapsulating the security credentials and
+ claims with every message along with any message protection (signing or encryption).
+  Applying the security directly to the message by modifying its content allows the secured message to be self-containing
+   with respect to the security aspects.
+
+
+
+
+
+Windows Communication Foundation (WCF) has two major modes for providing security (Transport and Message) and a third mode (TransportWithMessageCredential) that 
+combines the two. This topic discusses message security and the reasons to use it.
+
+
+
+message-level security, all of the security information is encapsulated in the message.
+
+ security context is directly embedded inside the message.
+
+
+Why we need message security?
+---------------------------------
+     End-to-end security. (# it wont bother how many intermediators are there.. it provides true end to end security)
+     Transport security, such as Secure Sockets Layer (SSL) only secures messages when the communication is point-to-point. 
+If the message is routed to one or more SOAP intermediaries (for example a router) before reaching the ultimate receiver, the message itself
+is not protected  once an intermediary reads it from the wire.
+(#Normally we will configure SSL in LoadBalancer. So after LoadBalancer before Webserver.. what is the security?)
+
+     Increased flexibility. Parts of the message, instead of the entire message, can be signed or encrypted.
+ This means that intermediaries can view the parts of the message that are intended for them.
+If the sender needs to make part of the information in the message visible to the intermediaries but wants to ensure that it is not tampered with
+, it can just SIGN it but leave it UN-ENCRYPTED. Since the signature is part of the message, the ultimate receiver can verify that the information in the 
+ message was received intact. One scenario might have a SOAP intermediary service that routes message according the Action header value.
+By default, WCF does not encrypt the Action value but signs it if message security is used. Therefore, this information is available to all intermediaries, 
+but no one can change it. Since the signature is part of the message, the ultimate receiver can verify that the information in the message was received intact.
+
+One scenario might have a SOAP intermediary service that routes message according the Action header value.
+By default, WCF does not encrypt the Action value but signs it if message security is used. Therefore, this information is available to all intermediaries,
+but no one can change it.
+    
+     Support for multiple transports. You can send secured messages over many different transports, such as named pipes and TCP,
+      without having to rely on the protocol for security. 
+
+Support for a wide set of credentials and claims. The message security is based on the WS-Security specification,
+which provides an extensible framework capable of transmitting any type of claim inside the SOAP message. 
+
+
+
+
+
+Pros and Cons of Transport-Level Security
+---------------------------------------------------------------------------------
+Transport security has the following advantages:
+--------------------------------------------------------
+Does not require that the communicating parties understand XML-level security concepts. This can improve the interoperability, for example, when HTTPS is used to secure the communication.
+Generally improved performance.
+Hardware accelerators are available.
+Streaming is possible.
+
+Transport security has the following disadvantages:
+------------------------------------------------------
+Hop-to-hop only.
+Limited and inextensible set of credentials.
+Transport-dependent.
+
+Disadvantages of Message-Level Security
+------------------------------------------
+Performance
+Cannot use message streaming.
+Requires implementation of XML-level security mechanisms and support for WS-Security specification. This might affect the interoperability.
+Message security is available on all of the bindings except for netNamedPipeBinding and MSmqIntegrationBinding.
+
+
+
+
+
+
+
+Configuration 
+-------------------
+<bindings>
+  <wsHttpBinding>
+    <binding name="netTcpEndpointBinding">
+      <security mode="message">
+      </security>
+    </binding>
+  </wsHttpBinding>
+</bindings>
+
+
+When using Windows authentication, message security uses the service’s Windows token to provide message security.
+When using non-Windows authentication such as username, certificate, or issue token authentication,
+you have to configure a service certificate as service credentials.
+Message security uses the service certificate for message protection.
+
+
+By default, message security encrypts and signs the messages. Although it is not recommended, with message security you can lower the protection level or disable it based on your requirements.
+
+
+Protection level
+---------------------
+You can use the [ServiceContract(ProtectionLevel)] attribute to specify message security protection levels on the interface or operation level.
+
+None. Use None to turn off signing and encryption on the operation or interface.
+Sign. Use Sign to sign the interface or operation but not encrypt it.
+EncryptAndSign. Use EncryptAndSign to both encrypt and sign the interface or operation
+
+[ServiceContract(ProtectionLevel=ProtectionLevel.Sign]
+public interface IService
+{
+string GetData(int value);
+}
+
+[OperationContract(ProtectionLevel=ProtectionLevel.Sign]
+string GetData(int value);

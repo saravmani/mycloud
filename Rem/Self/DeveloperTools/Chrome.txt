@@ -1,0 +1,17 @@
+About Chrome Developer Tools and Chrome debugging techniques
+---------------------------------------------------------------
+
+chrome.exe  --disable-web-security --user-data-dir --allow-running-insecure-content
+chrome.exe --disable-web-security --user-data-dir
+
+
+C:\Program Files (x86)\Google\Chrome\Application\chrome.exe --remote-debugging-port=9222
+//To run chorme in remote debugging port, which will be used by visual studio code
+//If not able to attach then kill ALL chrome Processes from task manager then try to attach
+
+clear the google control panel
+-----------------------------------
+type below command to clear the console
+clear() ///this works i tried it :-)
+
+

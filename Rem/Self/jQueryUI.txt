@@ -1,0 +1,2 @@
+jQuery UI isn’t just about effects and eye candy. The plugin also includes widgets such as accordion,
+autocomplete, button, datepicker, dialog, progressbar, slider, and tabs.

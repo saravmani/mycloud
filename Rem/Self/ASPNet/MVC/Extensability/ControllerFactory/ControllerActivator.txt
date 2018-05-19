@@ -1,0 +1,42 @@
+Controller Activator
+======================================
+
+You can also introduce DI into controllers by creating a controller activator. 
+
+namespace System.Web.Mvc
+{
+    using System.Web.Routing;
+    public interface IControllerActivator
+    {
+        IController Create(RequestContext requestContext, Type controllerType);
+    }
+}
+
+Type that specifies which controller class should be instantiated.
+
+
+public class CustomControllerActivator : IControllerActivator
+{
+    public IController Create(RequestContext requestContext,Type controllerType)
+    {
+        if (controllerType == typeof(ProductController))
+        {
+            controllerType = typeof(CustomerController);
+        }
+        return (IController)DependencyResolver.Current.GetService(controllerType);
+    }
+}
+
+Use CustomerControllerActivator by registering it with defaultcontrollerfactory
+------------------------------------------------------------------------------
+protected void Application_Start()
+{
+    AreaRegistration.RegisterAllAreas();
+    RouteConfig.RegisterRoutes(RouteTable.Routes);
+    ControllerBuilder.Current.SetControllerFactory(
+    new DefaultControllerFactory(new CustomControllerActivator()));
+}
+
+#Note DefaultControllerFactory here
+
+DefaultControllerFactory will ask the activator to instantiate of the controller

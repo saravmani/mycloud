@@ -1,0 +1,19 @@
+service host
+-----------------
+A ServiceHost basically provides you everything you need to host a WCF service in a non-IIS or WAS setting.
+
+
+
+
+webservice host and service host
+--------------------------------
+The WebServiceHost class is based on the ServiceHost class.
+It comes with WebHttpBinding and WebHttpBehavior by default. (The nice thing is you don't need a configuration file, for simple use.)
+
+Uri baseAddress = new Uri("http://localhost:8080/test");
+ServiceHost host = new ServiceHost(typeof(TestService), baseAddress);
+host.Open();
+
+Uri baseAddress = new Uri("http://localhost:8080/test");
+WebServiceHost host = new WebServiceHost(typeof(TestService), baseAddress);
+host.Open();

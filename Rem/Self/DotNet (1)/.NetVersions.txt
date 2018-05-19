@@ -1,0 +1,74 @@
+Latest .net Famework 4.7.x
+
+Framework 4.0
+-------------------
+Lots of thread safe collections has released.Pre .net 4.0 most collections in .Net are not thread safe and we have to use locking for thread safty
+
+
+Famework 4.6
+---------------
+	MVC 6, ASP.NET 5, Roslyn Compiler
+
+MVC6 Features
+-------------
+	Self hosting is possible()
+	In ASP.NET vNext uses the Roslyn Compiler. Using the Roslyn Compiler we do not need to compile the application, it automatically compiles the application code. You will edit a code file and can then see the changes by refreshing the browser without stopping or rebuilding the project.
+	MVC6 includes a new environment-based configuration system. Unlike something else it depends on just the Web.Config file in the previous version.
+
+
+
+Framework 4.5 new Features
+----------------------------
+	1. Built in support for zip file. Now in 4.5 framework we can abel to use inbuild system utilities to create zip file.
+		Ex:
+			system.io.compression.ZipFile.CreateFromDirectory(@"D:\data",@"D:\data.zip");
+
+	2. async and await
+	3. Regex timeout (Regex constructor will accept time out now. this will be helpful to avoid DOS attack)
+	Ex:
+	 var regEx = new Regex(@”^(\d+)+$”, RegexOptions.Singleline, TimeSpan.FromSeconds(2));)
+	4. Profile optiomisation(to improve application startup performance)
+		We all know .NET code is in a half compiled format. During runtime, the JIT (Just-in-Time) compiler runs and translates this half compiled IL code to native machine code. One of the big complaints about JIT is that when a .NET applications runs the first time, it runs slow as JIT is busy translating IL code to machine code.
+		 Profile is nothing but a simple file which has a list of methods which the application will need during startup. So when the application starts, a background JIT runs and starts translating IL code for those methods into machine / native code.
+		This background JIT compilation of startup methods happens across multiple processors thus minimizing the start up time further. Also note you need to have a multicore box to implement profile optimization. In case you do not have a multicore box then this setting is ignored.
+		ProfileOptimization.SetProfileRoot(@"D:\ProfileFile");
+
+	5. GC Background cleanup
+		In previous .net versions normally if GC thread doing the cleanup activity, all the application threads are suspended.
+		Because of this application will be less responsive for that moveement.
+		To overcome this "Server GC" has introduced. In server GC there is one more thread created which runs in the background. This thread works in the background and keeps cleaning generation 2 objects.
+		 Due to double GC threads running, the main application threads are less suspended.
+		 To enable server GC, we need to use the gcServer XML tag and enable it to true.
+			<configuration>
+			   <runtime>
+			      <gcServer enabled="true"/>
+			   </runtime>		
+			</configuration>
+
+	6. Setting Default culture to app domain
+		In 4.5 we can set culture at the app domain level and all the threads inside that appdomain will inherit that culture 
+			CultureInfo culture = CultureInfo.CreateSpecificCulture("fr-FR");
+			  qCultureInfo.DefaultThreadCurrentCulture = culture;
+
+	7. Array support more than 2GB size
+	8. Expando object
+		The ExpandoObject is part of the Dynamic Language Runtime (DLR). One can add and remove members from this object at run time.
+	Create a dynamic instance.
+		dynamic Person = new ExpandoObject();
+		Person.ID = 1001;
+		Person.Name = "Princy";
+		Person.LastName = “Gupta”; 
+
+
+
+
+
+.net framework 4.5 - c# 5.0 - VSTS 2012
+
+
+
+VSTS 2013 - MVC5 - webapi2
+.net framework 4.0 - CLR 4.0 - DLR(in frame 4.0 DLR has added as part of CLR)
+
+VSTS 2008
+	LINQ - language integrated query

@@ -1,0 +1,35 @@
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method,
+Inherited = true, AllowMultiple = false)]
+public class CustomOverrideActionFiltersAttribute : FilterAttribute,
+IOverrideFilter
+{
+    public Type FiltersToOverride
+    {
+        get { return typeof(IActionFilter); }
+    }
+}
+
+
+# i guess - attribute class properties are act as named parameters for the attributes
+
+    [AttributeUsage(AttributeTargets.All)]
+    public class myattribute : Attribute
+{
+    public string someNameTxt { get; set; }
+    public myattribute(string SomeName)
+    {
+
+    }
+
+}
+
+
+[myattribute("this is constructor param", someNameTxt = "this is property")]
+protected override void OnActionExecuting(ActionExecutingContext filterContext)
+{
+    base.OnActionExecuting(filterContext);
+}
+    
+
+
+    

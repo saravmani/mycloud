@@ -1,0 +1,5 @@
+To start with a simple deployment, and then do some work later to maximize
+uptime and performance we can go with temporary Git deployment, as well as how you can keep the application up and running
+with Forever.
+Temporary deploys don’t persist beyond reboots, but they have the
+advantage of being quick to set up.

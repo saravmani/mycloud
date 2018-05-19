@@ -1,0 +1,14 @@
+//Sample Simple Middleware
+app.Use(next =>
+    {
+        return async objHttpContext =>
+        {
+            if (true)
+                await objHttpContext.Response.WriteAsync("rerwe");
+            else
+                await next(objHttpContext);
+        };
+    });
+if (env.IsDevelopment())
+    app.UseDeveloperExceptionPage();//Used to send back the error information. 
+    this will handle the response

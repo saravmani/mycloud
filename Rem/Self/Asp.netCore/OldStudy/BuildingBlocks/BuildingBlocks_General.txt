@@ -1,0 +1,23 @@
+pre requests
+--------------------
+need powershell 4.0 . we have to upgrade old powershell
+
+
+coreclr
+  this will be seperate for different platforms (linux, windows etc.,)
+
+corefx
+    it is a library. (i.e it is like .net framework libraries in normal .net. ex: collections)
+    this also seperate for different platforms (linux, windows etc.,)
+
+DNVM - dotnet virtual manager. this used to manage the installations of .net core versions
+using this we can able to install .net core
+
+Actually .net core installation means.. we are not installing.. 
+we just copying the .net core into some folder (:-)
+
+
+DNX
+DNU
+
+

@@ -1,0 +1,24 @@
+Useful Jasmine Functions
+-----------------------------------
+
+describe(description,function) - This method is used to group together a set of related tests.
+beforeEach(function) This method is used to specify a task that is performed before each unit test.
+afterEach(function)  - This method is used to specify a test that is performed aftereach unit test.
+it(description, function)  - This method is used to perform the test action.
+expect(value) - This method is used to identity the result of the test.
+toBe(value) - This method specifies the expected value of the test.
+
+
+Useful jasmine evaluation methods
+-----------------------------------------
+toBe(value) This method asserts that a result is the same as the specified value (but need not be the same object).
+toEqual(object) This method asserts that a result is the same object as the specified value.
+toMatch(regexp) This method asserts that a result matches the specified regular expression.
+toBeDefined() This method asserts that the result has been defined.
+toBeUndefined() This method asserts that the result has not been defined.
+toBeNull() This method asserts that the result is null.
+toBeTruthy() This method asserts that the result is truthy, as described in Chapter 12.
+toBeFalsy() This method asserts that the result is falsy, as described in Chapter 12.
+toContain(substring) This method asserts that the result contains the specified substring.
+toBeLessThan(value) This method asserts that the result is less than the specified value.
+toBeGreaterThan(value) This method asserts that the result is more than the specified value.

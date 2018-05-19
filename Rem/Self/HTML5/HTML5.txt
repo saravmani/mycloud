@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+  </head>
+</html>
+
+
+
+HTML 5 push notifaction used to modify the browser url using javascript, but page will not be refreshed
+
+Drag and drop
+------------------
+In HTML5, drag and drop is part of the standard, and any element can be draggable.
+
+Web Workers
+-----------------
+A web worker is a JavaScript running in the background, without affecting the performance of the page.
+ex:
+function startWorker() {
+    if(typeof(Worker) !== "undefined") {
+        if(typeof(w) == "undefined") {
+            w = new Worker("demo_workers.js");
+        }
+        w.onmessage = function(event) {
+            document.getElementById("result").innerHTML = event.data;
+        };
+    } else {
+        document.getElementById("result").innerHTML = "Sorry! No Web Worker support.";
+    }
+}
+
+function stopWorker() { 
+    w.terminate();
+    w = undefined;
+}
+
+
+Since web workers are in external files, they do not have access to the following JavaScript objects:
+
+The window object
+The document object
+The parent object
+
+
+Application cache
+
+window.localStorage - stores data with no expiration date
+window.sessionStorage - stores data for one session (data is lost when the browser tab is closed)
+
+Local storage
+ 	is domain and protocol specific
+
+Example:
+if(typeof(Storage)!='undefined')
+{
+localStorage.setItem("key","Value");
+alert(localStorage.getItem("Key"));
+}
+
+
+Note: Name/value pairs are always stored as strings. Remember to convert them to another format when needed!
+localStorage.removeItem("lastname");
+
+
+Void Elements
+------------------------------
+The HTML specification includes elements that may not contain content. These are called void or self-closing
+elements, and they are written without a separate end tag, like this:
+...
+<input />
+...
+A void element is defined in a single tag, and you add a / character before the last angle bracket
+(the > character).

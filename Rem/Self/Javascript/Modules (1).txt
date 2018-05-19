@@ -1,0 +1,11 @@
+b4 es6 we used to load multiple js files in specific order and used.
+
+
+	Export
+	Import
+
+
+Two module defenations
+	Common JS
+	AMD  ->asynch., module defenation
+

@@ -1,0 +1,58 @@
+Object Construction
+=================================================================================
+class Restaurant{}
+
+let objRestaurant = Reflect.construct(Restaurant);
+console.log(objRestaurant instanceof Restaurant);
+//true
+
+class with construct and parameters
+
+class Restaurant{
+    constructor(someName,someOtherName){}
+}
+
+let objRestaurant = Reflect.construct(Restaurant,["haha","hihi"]);
+
+class Restaurant{
+    constructor(){
+        console.log(`new.target:${new.target}`);
+        }
+    }
+    function restaurantMaker(){
+        console.log(`inrestaurantMaker`);
+        }
+    let r = Reflect.construct(Restaurant,["Zoey's","Goleta"],restaurantMaker);
+
+    //new.target:function restaurantMaker() {... 
+    //Note the third argument passed as new.target
+
+Method Calling
+=================================================================================
+Reflect.apply(target, thisArgument, argumentsList)
+
+class Restaurant{
+    constructor(){
+    this.id=33;
+    }
+show(){
+    console.log(this.id);
+    }
+    }
+Reflect.apply(Restaurant.prototype.show,{id:99});
+//ans is 99
+//Note the second parameter is thisArgument
+//Note here without creating instance of the class we are calling the function
+
+
+class Restaurant{
+    constructor(){
+    this.id=33;
+    }
+show(someParam){
+    console.log("someParam"+this.id);
+    }
+    }
+Reflect.apply(Restaurant.prototype.show,{id:99},['some message']);
+//some message99
+//third parameter of Reflect.apply is input arguments for the method

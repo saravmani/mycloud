@@ -1,0 +1,64 @@
+
+  public class AdminSuperAdminAttribute : FilterAttribute, IAuthenticationFilter
+    {
+        string superAdminRole = "SuperAdmin"; // can be taken from resource file or config file
+        string adminRole = "Admin"; // can be taken from resource file or config file
+
+        public void OnAuthentication(AuthenticationContext context)
+        {
+            if (context.HttpContext.User.Identity.IsAuthenticated && 
+               (context.HttpContext.User.IsInRole(superAdminRole) 
+                || context.HttpContext.User.IsInRole(adminRole)))
+            {
+                // do nothing
+            }
+            else
+            {
+                context.Result = new HttpUnauthorizedResult(); // mark unauthorized
+            }
+        }
+
+        public void OnAuthenticationChallenge(AuthenticationChallengeContext context)
+        {
+            if (context.Result == null || context.Result is HttpUnauthorizedResult)
+            {
+                context.Result = new RedirectToRouteResult("Default",
+                    new System.Web.Routing.RouteValueDictionary{
+                        {"controller", "Account"},
+                        {"action", "Login"},
+                        {"returnUrl", context.HttpContext.Request.RawUrl}
+                    });
+            }
+        }
+    }
+
+
+
+
+
+Sample
+--------------------
+#set HttpUnAuthorizedResult in OnAuthentication method and overriding the result in OnAuthenticationChallenge method
+
+public class GoogleAuthAttribute : FilterAttribute, IAuthenticationFilter
+{
+    public void OnAuthentication(AuthenticationContext context)
+    {
+        IIdentity ident = context.Principal.Identity;
+        if (!ident.IsAuthenticated || !ident.Name.EndsWith("@google.com"))
+        {
+            context.Result = new HttpUnauthorizedResult();
+        }
+    }
+    public void OnAuthenticationChallenge(AuthenticationChallengeContext context)
+    {
+        if (context.Result == null || context.Result is HttpUnauthorizedResult)
+        {
+            context.Result = new RedirectToRouteResult(new RouteValueDictionary {
+            {"controller", "GoogleAccount"},
+            {"action", "Login"},
+            {"returnUrl", context.HttpContext.Request.RawUrl}
+            });
+        }
+    }
+  

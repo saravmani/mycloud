@@ -1,0 +1,82 @@
+.netdebugging
+------------
+A useful tool that is installed with this package is symchk.exe. It can help to identify missing or incorrect symbols.
+You can also use the DUMPBIN utility that comes with VS.NET to show the symbol paths that are searched, and to see if symbol files are found that match a given DLL or executable file
+windbg and sos
+debugdiag
+CLRProfiler
+
+Chrome
+-------------
+Live reload extension
+
+
+vstools
+-----------------
+webessentials - completly free
+visual studio power tools
+OpenCover UI - for code coverage
+nUnit - for unit testing and TDD
+Moq - for mocking and mock testing and modular unit testng
+
+Bootstrab
+---------------
+bootswatch.com//Help to build style sheet on web
+
+Free responseive Web and mobile templates 
+----------------------------------------------
+given by w3schools
+http://www.w3schools.com/css/css_rwd_templates.asp
+
+
+Grunt
+Yeoman
+
+The fourth section covers two popular open source tools for aggregating
+and loading your various AngularJS components: RequireJS and Browserify.
+
+javascript libraries
+----------------------
+Backbone.js- MVC framework .. used for SPA.
+Lodash.js
+this is javascrpt library like Underscore.
+Helper library
+Lodash makes JavaScript easier by taking the hassle out of working with arrays,
+ numbers, objects, strings, etc. Lodash’s modular methods are great for:
+•Iterating arrays, objects, & strings
+•Manipulating & testing values
+•Creating composite functions
+
+Javascript validators
+----------------------------
+http://www.jslint.com/
+www.jshint.com
+
+javascript documentation
+--------------------------------
+AjaxDoc -> it is for .net developrs. we can do comments like c# and by using this tool we 
+		can able to generate the doc
+
+
+Secure javascript
+-----------------------
+to run third party screepts we can use below libraries.
+Caja
+ADSafe
+JsDoc toolKit
+YUI Doc -> this reuires python runtime
+
+
+Free JSON object reponse APIs
+------------------------------
+http://jsonplaceholder.typicode.com/
+using this website we can get the api URL which will provide the
+json object .and we can using it fro testing our client side codings
+
+Free image urls for our developement testing
+-------------------------------------------------
+http://lorempixel.com/
+
+
+Fire base is a free database tool on server
+https://www.firebase.com

@@ -1,0 +1,43 @@
+this is mvc 5 feature
+
+If you want an action method to just be affected by the 
+filters that have been directly applied to it, then you can
+use a filter override. This tells the MVC Framework to ignore any filters 
+that have been defined at a higher-level, such
+as the controller or globally.
+
+namespace System.Web.Http.Filters {
+    public interface IOverrideFilter : IFilter
+    {
+        Type FiltersToOverride { get; }
+    }
+
+
+The MVC Framework comes with some built-in filter overrides in the System.Web.Mvc.Filters namespace:
+OverrideAuthenticationAttribute, OverrideActionFiltersAttribute, and so on.
+
+
+
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method,
+Inherited = true, AllowMultiple = false)]
+public class CustomOverrideActionFiltersAttribute : FilterAttribute,
+IOverrideFilter
+{
+    public Type FiltersToOverride
+    {
+        get { return typeof(IActionFilter); }
+    }
+}
+}
+
+
+
+apply this filter to my controller to prevent the global and controller level action filters from taking effect,
+
+
+
+[CustomOverrideActionFilters]
+[SimpleMessage(Message = "B")]
+public string OtherAction() {
+return "This is the Other Action in the Customer controller";
+}

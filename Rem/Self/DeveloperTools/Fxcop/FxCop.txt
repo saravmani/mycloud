@@ -1,0 +1,24 @@
+Fxcop
+-----------------
+it is static anlalysis tool.
+
+it looks ASSEMBLY and findout design problems, performance,localisaton 
+this also provides commandline tool. so that we can able to integrate it with build automation process
+
+ by default it is having multiple rules
+ design rules, localisaton rules, security rules etc.,
+
+
+ How to create custome fxcop rule?
+ create seperate dll proj and refer fxcop dlls.
+ within proj create xml and make it as embdded resource. 
+ There we can write rules in specific predefined formate
+
+ example sceneario for custome rules...
+ we can define dll name should be following some standard
+ ex:
+ OrganisationName.CompanyName.ProjectName
+
+ Fxcop latest is come as visual studio pluggin.
+ This extension gives you the same great code analysis as 
+ before with FXCop but now the analysis is live as-you-type and has quick-fixes.

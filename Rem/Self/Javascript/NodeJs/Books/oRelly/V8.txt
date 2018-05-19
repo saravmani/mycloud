@@ -1,0 +1,20 @@
+The V8 JavaScript engine was created to improve the speed of
+JavaScript by incorporating a JIT (Just-In-Time) compiler that compiles Java-
+Script to machine code, rather than interpreting it, which had been the norm
+for JavaScript for years. The V8 engine is written in C++.
+
+
+
+The Node maintainers are also committed
+to supporting upcoming versions of V8, as they’re released. This means that
+Node now incorporates support for many of the new ECMA-262 (ECMAScript
+2015 or ES6) features.
+
+All shipping features, which V8 considers stable, are turned on by default
+on Node.js and do NOT require any kind of runtime flag.
+• Staged features, which are almost-completed features that are not considered
+stable by the V8 team, require a runtime flag: --es_staging (or
+its synonym, --harmony).
+• In progress features can be activated individually by their respective harmony
+flag (e.g. --harmony_destructuring), although this is highly discouraged
+unless for testing purposes.

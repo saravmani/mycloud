@@ -1,0 +1,38 @@
+
+
+Sections
+-------------------
+
+Layout page
+----------------
+@RenderSection("sectionName",true)
+
+controller page
+---------------
+@Section sectionName
+{
+    <div>rewr</div>
+}
+
+
+@Scripts.Render("~/bundles/jquery")
+@Styles.Render("~/Content/css")
+
+@Html.ActionLink("Home", "Index", "Home")
+
+
+Inline helper methods
+----------------------------
+@helper ListArrayItems(string[] items) {
+foreach(string str in items) {
+<b>@str </b>
+}
+}
+
+<div>
+Here are the fruits: @ListArrayItems(ViewBag.Fruits)
+</div>
+<div>
+Here are the cities: @ListArrayItems(ViewBag.Cities)
+</div>
+<div>

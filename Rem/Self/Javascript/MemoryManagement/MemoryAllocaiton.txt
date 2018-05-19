@@ -1,0 +1,11 @@
+function f(a) {
+  return a + 2;
+} // allocates a function (which is a callable object)
+
+var n = 123; // allocates memory for a number
+var s = 'azerty'; // allocates memory for a string 
+
+var o = {
+  a: 1,
+  b: null
+}; // allocates memory for an object and contained values

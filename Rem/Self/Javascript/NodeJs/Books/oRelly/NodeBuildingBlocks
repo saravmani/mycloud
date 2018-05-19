@@ -1,0 +1,114 @@
+Node building blocks
+---------------------------
+Global, Asynchronous Nature, events
+
+fundamental difference
+between its browser-based JavaScript cousin and Node is the buffer for binary data.
+
+ Node does now have access to the ES6 ArrayBuffer and typed arrays. However, most binary data functionality in Node is implemented with
+the Buffer class.
+
+Global objects
+----------------
+buffer, 
+global,
+process -- this is the bridge between nodejs application and its environment
+require,
+exports,
+console,
+module
+
+
+
+
+
+In the browser, when you declare a variable at the top-level, it’s declared globally.
+It doesn’t work that way in Node. When you declare a variable in a module
+or application in Node, the variable isn’t globally available; it’s restricted to just
+the module or application. So you can declare a “global” variable named str
+in a module, and also in the application that uses the module, and there won’t
+be any conflict.
+because node will wrap module into anonymus function. and what ever exposed will be available outside
+
+
+Process objects
+-----------------------------------
+It provides information about the runtime environment and nodejs environment. In addition, standard input/output (I/O) occurs through process.
+#this is the bridge between nodejs application and its environment
+
+processes.versions
+
+this command will listdown versions of all the nodejs components i.e v8,nodejs version, http_parser, openssl etc.,
+
+$ node -p "process.env" //The process.env property provides a great deal of information about what
+Node sees of your development/production environment:
+
+$ node -p "process.release.lts" // this gives lts version name of node jss
+
+//but in stable environment we wont get anything. (read about nodejs LTS and stable and latest releases)
+
+
+Standard streams are pre-established communication channels between an
+application and the environment. They consist of a standard input (stdin),
+standard output (stdout), and standard error (stderr).
+
+# every application needs to get input from environment and it show  communicate output and error to the environment.
+
+
+Node supports the channels with three process functions:
+• process.stdin: a readable stream for stdin
+• process.stdout: a writable stream for stdout
+• process.stderr: a writable stream for stderr
+
+
+You can’t close these streams, or end them within the application.
+
+The process I/O functions inherit from EventEmitter,
+
+
+To process incoming data using process.stdin,
+you first of all need to set the encoding for the stream. If you don’t, you’ll get the results as a buffer rather than a string:
+process.stdin.setEncoding('utf8');
+
+
+readable event
+----------------------
+
+process.stdin.setEncoding('utf8');
+process.stdin.on('readable', function () {
+
+    var input = process.stdin.read();
+    if (input !== null) {
+        // echo the text
+        if (input.trim() == "EEE") {
+            process.exit(); // to exit the nodejs process. it is like ctrl+c
+        }
+        process.stdout.write(input);
+    }
+});
+
+process.stdin.on('data', function(input) {
+console.log(data);
+});
+
+
+stderr
+-----------
+The process.stderr object is just like it sounds: you can write to it when
+an error occurs. Why would you use it instead of process.stdout? For the
+same reason the stderr channel was created: to differentiate between outputs
+that are expected, versus outputs that note a problem has occurred. In
+some systems you can even process stderr outputs differently than stdout
+outputs (such as redirecting a stdoutmessage to a log file, while stderr goes to
+the console).
+
+
+
+in browser now a days it s handling binary data. This is required for websockets, canvas, webGL
+For this ArrayBuffer  used through typed array.
+
+Same in node js Buffer is used.
+
+In Node, the Buffer class is the primary data structure used with most I/O
+
+

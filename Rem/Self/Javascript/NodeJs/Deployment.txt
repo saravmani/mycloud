@@ -1,0 +1,44 @@
+Deploymnet of Node js applications
+
+tips and tricks that increase stability and
+maximize performance,
+
+In application deployment we have to consider below
+1. performance
+2. Availability
+3. Monitoring
+
+
+Deployment Options
+--------------------
+Dedicated servers
+    Dedicated servers are usually more expensive than virtual servers and often
+require more setup time because components may have to be ordered, assembled,
+and configured. Virtual private servers (VPSs), on the other hand, can be set up
+quickly because they’re created inside preexisting physical servers.
+
+Viritual Private servers
+     Virtual servers run inside physical servers and are assigned a share of the
+physical server’s RAM, processing power, and disk space
+VPSs are a good hosting solution for web applications if you don’t anticipate quick
+growth in usage. VPSs are cheap and can easily be allocated additional resources,
+when needed, such as disk space and RAM.
+VPSs, like dedicated servers, can’t usually be created on demand. Nor can they handle
+quick growth in usage, because that requires the ability to quickly add more servers
+without relying on human intervention. To handle such requirements, you’ll need
+to use cloud hosting.
+
+General purpose cloud servers
+    Cloud servers are similar to VPSs in that they’re virtual emulations of dedicated servers.
+But they have an advantage over dedicated servers and VPSs in that their management
+can be fully automated. Cloud servers can be created, stopped, started, and
+destroyed using a remote interface or API.
+Cloud server advantage is creation and destruction of an application’s servers can be automated by programming.
+DISADVANTSGE: The downside to using cloud servers is that they tend to be more expensive than VPSs
+and can require some knowledge specific to the cloud platform
+
+
+
+Upstart (http://upstart.ubuntu.com) is a project that provides an elegant way to
+manage the starting and stopping of any Linux application, including Node applications.
+

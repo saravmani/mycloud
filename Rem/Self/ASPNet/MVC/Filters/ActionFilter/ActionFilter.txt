@@ -1,0 +1,69 @@
+
+An action filter (can also be call as attribute filter) is an attribute which is applicable for a controller action
+Action filters are filters that can be used for any purpose
+
+ActionFilterAttribute class implements both the IActionFilter and IResultFilter interfaces. This class
+is abstract, which forces you to provide an implementation.
+
+
+  
+Few Action filters readily available in MVC
+========================================================
+1. OutputCache
+ [OutputCache(Duration=20)]
+          public string Index()
+          {
+               return "The time is " +  DateTime.Now;
+
+          }
+
+Uses of Action filter
+-------------------------
+change view data
+inspect the request and elect to cancel the request
+ modify the request
+Action Filters used in Aspect Oriented Programming
+
+MVC provides ActionFilterAttribute which includes both IActionFilter, IResultFilter.
+only benefit of ActionFilterAttribute is that you do not need to override and implement the methods that you do
+not intend to use. Otherwise, there is no advantage over implementing the filter interfaces directly.
+
+Custome Authentication filter
+-----------------------------------------
+ four virtual methods OnActionExecuting, OnActionExecuted, OnResultExecuting, and OnResultExecuted that you may override. 
+
+
+ OnActionExecuting is called before the action method is called and OnActionExecuted is called after the action method is called. 
+ The OnResultExecuting method is called when the ActionResult is returned by your action is invoked. 
+ The OnResultExecuted method is called just after the result is executed.
+
+
+
+ public interface IActionFilter {
+    void OnActionExecuting(ActionExecutingContext filterContext);
+    void OnActionExecuted(ActionExecutedContext filterContext);
+}
+
+propertis of ActionExecutingContext
+-------------------------------------------
+ActionDescriptor
+Result - The result for the action method; a filter can cancel the request by setting
+        this property to a non-null value
+
+
+You can use a filter to cancel the request by setting the Result property of the parameter to an action result
+
+
+ActionExecutedContext Properties
+------------------------------------
+ActionDescriptor
+Canceled - Returns true if the action has been canceled by another filter
+Exception - Returns an exception thrown by another filter or by the action method
+ExceptionHandled - Returns true if the exception has been handled
+Result - The result for the action method; a filter can cancel the request by
+         setting this property to a non-null value
+
+
+The Canceled property will return true if another filter has canceled the request (by setting a value for the Result
+property) since the time that the filter’s OnActionExecuting method was invoked. The OnActionExecuted method will
+still be called, but only so that it can tidy up and release any resources the filter was using.

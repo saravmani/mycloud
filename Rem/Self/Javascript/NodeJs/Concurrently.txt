@@ -1,0 +1,5 @@
+
+run scripts parallely
+    "startss": "concurrently --kill-others \"tsc -p tsconfig.json -w \" \"http-server\""
+
+above command will run tsc command and start http server

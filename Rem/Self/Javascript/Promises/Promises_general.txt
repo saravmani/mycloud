@@ -1,0 +1,68 @@
+NOTE: reject is used for throwing error. This will be catched by caller
+
+Promise.all(promise1,promise2);//this like Task.WaitAll(t1,t2)...
+
+promises are specification.
+
+Normally when we do the callbacks (ex: ajax), we will do the nesting.
+Ex:
+step1(functin(param1) {
+    step2(function(param1)) {
+
+    }
+})
+
+But as js promises we have to in following way.
+
+a.fcall(steop1).then(step2).then(step3).catch(function(error){}).done();
+
+The power of chaining instead of nesting allows us to keep code more organized.
+
+Technically speaking, a promise is an object that provides a value or exception in the
+future for an operation that it wraps.
+
+A promise-based asynchronous function hence does not  take callbacks but instead returns a promise object
+This promise object gets resolved
+some time in the future when the data or error from the asynchronous operation
+is received.
+
+
+There are already by default promises implemented in browsers today.
+As of Chrome 32, Opera 19, Firefox 29, Safari 8 & Microsoft Edge, promises are enabled by default.
+
+To bring browsers that lack a complete promises implementation up to spec compliance, or add promises to other browsers and Node.js, check out the polyfill (2k gzipped).
+
+
+A promise can only succeed or fail once. It cannot succeed or fail twice, neither can it switch from success to failure or vice versa.
+
+If a promise has succeeded or failed and you later add a success/failure callback, the correct callback will be called, even though the event took place earlier.
+
+
+
+
+NOTE: reject is used for throwing error. This will be catched by caller
+var objPromise = new Promise((resolve,reject)=>{
+	setTimeout(() => {
+		if (DiveLogApi.counter % 3 == 0) {
+			reject(`Error: Call counter is ${DiveLogApi.counter}`);
+		} else {
+			resolve(DiveLogEntry.StockDives);
+		}
+	}, 1000);
+});
+
+
+type script example for promises
+-------------------------------------
+  private resolve: Function|null = null;
+ reset() {     
+    this.greeting = new Promise<string>((resolve, reject) => { this.resolve = resolve; });
+    this.greeting .then((ss)=>{
+      console.log(ss);
+    });
+  }
+
+  clicked() {   
+      this.resolve('hi there!rerew');
+      this.arrived = true;    
+  }

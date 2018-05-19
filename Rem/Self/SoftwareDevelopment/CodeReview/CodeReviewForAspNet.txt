@@ -1,0 +1,29 @@
+
+for Proper encoding to browser understand mention following line. 
+<meta charset="utf-8">
+
+HTML5 Standard: Unicode UTF-8
+
+If we want latest HTML5 features, or any older featues, then we have to tell browsers that which 
+rendering engine it should use. Below meta tag tells Internet Explorer that use latest edge RENDERING ENGINE.
+<meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1" >
+If not mention this then browser will try to find which rendering engine it should use to render the page
+by seeing tags like <!DOCTYPE html> etc.,
+
+Where ever possible try to use CDN.
+Advantages of CDN is
+1. Jquery, Bootstraps are used by many websites from CDN. so if our website also
+uses CDN, then already cached files (when users already used in other websites), 
+will be loaded from browser itself
+
+# my idea - Check the fiddler how many calls are going to server in each page navigation
+it should be less number
+# my idea - number of css, js references should be less. so have to use 
+bundling
+
+we can use yslow pluggin
+
+Security checks like 
+anitiforgery token,
+Validate the Headers in fiddler 
+    XSS header, CORS header, mime types, Is there any server tags

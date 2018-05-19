@@ -1,0 +1,68 @@
+Middleware in nodejs
+---------------------------
+Middlewares are simplay a function
+ex: middlewaare
+------------------
+//this example writes both text
+var express = require("express");
+var app = express();
+app.use(function (req,res,next) {
+    res.write("hahahihi");
+    next();   
+})
+app.get("/test",(req,res)=>{
+    res.end("insidetest");
+})
+app.listen(3000,()=>{
+console.log("express listening on 3000");
+});
+
+
+
+Eventually, some middleware should respond to the request. It could be
+the first one; it could be the last. If none of them respond, then the server will hang
+and the browser will sit alone, without a response.
+
+
+Third party middlewares
+-----------------------------
+Logging middle ware (Morgan)
+--------------------------------
+used for logging  and tracking user activities
+even we can find the performance.. how long the req takes
+
+
+
+
+why we need path module to resolve path??
+#bcs OS to OS path format will be differ
+
+
+
+passing parameters using url path
+app.get("/hello/:who", function(request, response) {
+response.end("Hello, " + request.params.who + ".");
+// Fun fact: this has some security issues, which we’ll get to!
+});
+//localhost:3000/hello/saravmani
+
+
+example
+---------------
+var express = require("express");
+var http = require("http");
+var app = express();
+app.use(function(request, response, next) {
+console.log("In comes a " + request.method + " to " + request.url);
+next();
+});
+app.use(function(request, response) {
+response.writeHead(200, { "Content-Type": "text/plain" });
+response.end("Hello, world!");
+});
+http.createServer(app).listen(3000);
+
+
+
+
+app.use(express.urlencoded({extended:true}))

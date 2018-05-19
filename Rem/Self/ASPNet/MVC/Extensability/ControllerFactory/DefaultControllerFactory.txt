@@ -1,0 +1,59 @@
+Built-in Controller Factory (DefaultControllerFactory)
+--------------------------------------------------------------
+It receives a request from the routing system, this factory looks at the routing data to 
+find the value of the controller property and tries to find a class in the Web
+application that meets the following criteria:
+    The class must be public.
+    The class must be concrete (not abstract).
+    The class must not take generic parameters.
+    The name of the class must end with Controller.
+    The class must implement the IController interface.
+ 
+The DefaultControllerFactory class maintains a list of such classes in the application so that it does not need
+to perform a search every time a request arrives. If a suitable class is found, 
+then an instance is created using the controller activator
+
+
+convention-over-configuration pattern
+----------------------------------------
+DefaultControllerFactory class follows the convention-over-configuration pattern. You do not
+need to register your controllers in a configuration file, because the factory will find them for you. 
+All you need to do is
+create classes that meet the criteria that the factory is seeking.
+If you want to create custom controller factory behavior, 
+you can configure the settings of the default factory or
+override some of the methods. This way, you are able to build on the useful 
+convention-over-configuration behavior without having to re-create it,
+
+
+Prioritizing Namespaces
+-------------------------
+where controller classes have the same name but reside in different namespaces.
+It is the DefaultControllerFactory that processes the list of namespaces and prioritizes them.
+Global prioritization is overridden by route-specific prioritization. 
+This means you can define a global policy,
+and then tailor individual routes as required
+If you have an application that has a lot of routes, it can be more convenient to specify priority namespaces
+globally, so that they are applied to all of your routes
+
+protected void Application_Start()
+{
+    AreaRegistration.RegisterAllAreas();
+    RouteConfig.RegisterRoutes(RouteTable.Routes);
+    ControllerBuilder.Current.DefaultNamespaces.Add("MyControllerNamespace");
+    ControllerBuilder.Current.DefaultNamespaces.Add("MyProject.*");
+    //to specify that the controller factory should look in the MyProject namespace 
+    //and any child namespaces that MyProject
+//contains. Although this looks like regular expression syntax, it isn’t; 
+//you can end your namespaces with .*, but you
+//cannot use any other regular expression syntax with the Add method.
+}
+
+# this is not related to perioirty. what ever namespaces we are adding here will take equalent perioirty.
+# But advantage is it will take hig perioirty, when compare to the namespaces which are not added here.
+ This means that the controller factory will search the entire
+application if it can’t find a suitable controller class in the namespaces defined by the Add method.
+
+
+
+

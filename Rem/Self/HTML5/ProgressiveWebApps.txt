@@ -1,0 +1,28 @@
+Progressive Web App is a progression or the next step for a Responsive web app. 
+That is, if you have a website (web page/web app) that is mobile responsive then you 
+leverage the new features supported by modern browsers to make it a Progressive Web App. 
+These features include using service workers, web app manifests, push notifications, offline 
+support etc.
+
+With the advent of HTML5, a feature called Application Cache was introduced. 
+This allows websites to store significant amounts of data offline, and as a result function similar 
+to a native application. They can cache the whole website and the content so you don’t 
+need an internet connection to use it. Also with HTML5, came features such as push notification, native video playback, native video and audio capture, amongst other things.  The whatwebcando.today website shows the full list of device integration HTML5 APIs that are supported currently.  This means web apps have feature parity with Native/Hybrid applications and they were generally called Responsive web apps.
+
+Progressive Web Apps refers to websites which take advantage of features already offered by Responsive web apps. They must be responsive (work on any device) and be app-like. 
+
+
+Apart from these Responsive web apps features Progressive Web app takes advantage of the following features.
+---------------------------------------------------------------------------------
+Adding an icon to the home screen
+Appearing on the apps list. This can be done using WebAPKs – Progressive Web Apps can now be packaged into actual installable Android packages!
+Launch in full-screen
+Clipboard access
+Hardware-accelerated 2D/3D graphics via HTML5 Canvas or WebGL
+Accessing the filesystem (Chrome and Opera) and reading user-selected files in any browser
+Slick, smooth UIs with 60fps animations
+
+
+
+A Progressive Web App is a web application which makes use of latest web technologies 
+to make a web application act and feel like an app. This is achieved by making use of Web App Manifest files and Service Workers. Using that technologies a PWA is able to close the gap between a classic web application and a desktop. or native mobile application.

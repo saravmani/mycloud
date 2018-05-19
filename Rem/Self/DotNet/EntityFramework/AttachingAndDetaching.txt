@@ -1,0 +1,11 @@
+
+In the Entity Framework, objects can be attached to or detached from an object context. 
+Objects that are attached to an object context are tracked and managed by that object context.
+Detached objects are not referenced by the object context, and their resources
+ can be reclaimed by the .NET Framework. 
+
+When a query is executed inside an object context in the Entity Framework, 
+the returned objects are automatically attached to the object context. 
+You can also attach objects to an object context that are obtained from a source other than a query. 
+You might attach objects that have been previously detached, objects that have been returned by a
+ NoTracking query, or objects that have been obtained outside the object context.

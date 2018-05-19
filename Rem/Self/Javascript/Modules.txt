@@ -1,0 +1,68 @@
+https://addyosmani.com/writing-modular-js/
+
+
+Modules are used to mimic classes and focus on public and private access to
+variables and functions. Modules help in reducing the global scope pollution.
+Effective use of modules can reduce name collisions across a large code base.
+
+Modules help in mimicking
+the concept of classes. Modules allow us to include both public/private methods and
+variables of an object, but most importantly, modules restrict these parts from the
+global scope. As the variables and functions are contained in the module scope, we
+automatically prevent naming conflict with other scripts using the same names.
+
+Another beautiful aspect of the module pattern is that we expose only a public API.
+Everything else related to the internal implementation is held private within the
+module's closure.
+
+
+two different module systems are avialable
+CommonJS and AMD (asynchronous module defination).
+and many module loader also avilable. 
+ex: Require.js used to load AMD type modules
+curl.js used to load CommonJS type modules
+
+CommonJS modules are usually more suited
+for server-side JavaScript environments such as Node.js.
+Angular 2 also uses this.
+
+A CommonJS module
+contains a require() function that receives the name of the module and returns the
+module's interface.
+
+
+CommonJS
+modules consist of two parts.
+	 Firstly, list of variables and functions the module needs
+to expose;when you assign a variable or function to the module.exports variable,
+it is exposed from the module
+	 Secondly, a require function that modules can use
+to import the exports of other modules:
+
+
+
+
+
+ES6 has a proposed module specification that
+tries to keep the good aspects of both the CommonJS and AMD module patterns.
+
+The syntax of ES6 modules is similar to CommonJS
+
+
+ES6 module example
+------------------------
+//json_processor.js
+function processJSON(url) {
+...
+}
+export function getSiteContent(url) {
+return processJSON(url);
+}
+//main.js
+import { getSiteContent } from "json_processor.js";
+content=getSiteContent("http://google.com/");
+
+
+
+
+

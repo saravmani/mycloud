@@ -1,0 +1,14 @@
+
+https://idphostaddress/connect/authorize?
+client_id=applicationid
+&redirect_uri=https://clientapp/signin-oidc
+&scope=openid profile
+&response_type=code id_token
+&response_mode=form_post
+&nonce=32432432wrewrWREret
+
+response_type - this determines the flow
+-----------------------
+code - Authorization Code
+id_token - implicit
+id_token token - implicit

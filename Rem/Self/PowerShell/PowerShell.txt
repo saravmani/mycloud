@@ -1,0 +1,24 @@
+It is task automation framework
+
+power shell havin both
+command line shell 
+and 
+interactive editor (having intelisense)
+
+in above both editor we  can able to use microsoft powershell
+scripting language.
+
+this scriptin language is based on .net framework.
+so we will have complete access to Entire .NET framework and
+its classess, methods, data types.
+
+we can do a .net programming in commandline.
+access to com and wmi
+
+we can able to execute script on local and remote
+
+
+
+Update-Help // this will fetch latest help files from net
+
+Get-Help <Command Name> //This will give the help information

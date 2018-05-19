@@ -1,0 +1,220 @@
+<div ng-app="" ng-init="name='king';ss='ee'">
+  <p>Name: <input type="text" ng-model="name"></p>
+  <p ng-bind="ss"></p>
+<p>{{ss}}</p> //This and above line both are same
+</div>
+
+
+outside of 'ng-app' ajgular js will not work
+
+//Initialise the model variable by default in bpage loading
+<div ng-app="" ng-init="firstName='John'">
+
+<p>The name is <span ng-bind="firstName">eee</span></p>
+
+</div>
+
+
+
+we can use data-ng-, instead of ng-, if you want to make your page HTML valid.
+
+
+angular js will written exactly what expression written
+ex:  {{ 5 + 5 }}// this  will written 10
+
+<div ng-bind="6+6"/> -- this also will written 12
+
+
+
+Module and controller
+-------------------------
+<div ng-app="myApp" ng-controller="myCtrl">
+
+First Name: <input type="text" ng-model="firstName"><br>
+Last Name: <input type="text" ng-model="lastName"><br>
+//Global functions should be avoided in JavaScript. They can easily be overwritten or destroyed by other scripts.
+//AngularJS modules reduces this problem, by keeping all functions local to the module.
+
+<br>
+Full Name: {{firstName + " " + lastName}}
+
+</div>
+
+<script>
+//The [] parameter in the module definition can be used to define dependent modules.
+//Without the [] parameter, you are not creating a new module, but retrieving an existing one.
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.firstName= "John";
+    $scope.lastName= "Doe";
+});
+</script>
+
+
+Module and directive
+-----------------------
+<div ng-app="myApp" w3-test-directive></div>
+
+<script>
+var app = angular.module("myApp", []);
+app.directive("w3TestDirective", function() {
+    return {
+        template : "I was made in a directive constructor!"
+    };
+});
+</script>
+
+
+
+
+
+Changing the html attributes 
+------------------------------
+<div ng-app="" ng-init="myCol='lightblue'">
+<input style="background-color:{{myCol}}" ng-model="myCol" value="{{myCol}}">
+</div>
+
+Declare intiger is same as javascript variable declaration
+<div ng-app="" ng-init="quantity=1;cost=5">
+for string <div ng-app="" ng-init="firstName='John';lastName='Doe'">
+
+Declare json objects
+----------------------
+<div ng-app="" ng-init="person={firstName:'John',lastName:'Doe'}">
+
+<p>The name is {{ person.lastName }}</p>
+
+</div>
+
+
+Array
+-----
+<div ng-app="" ng-init="points=[1,15,19,2,40]">
+
+<p>The third result is {{ points[2] }}</p>
+
+</div>
+
+
+
+AngularJS Expressions vs. JavaScript Expressions
+---------------------------------------------------------
+Like JavaScript expressions, AngularJS expressions can contain literals, operators, and variables.
+Unlike JavaScript expressions, AngularJS expressions can be written inside HTML.
+AngularJS expressions do not support conditionals, loops, and exceptions, while JavaScript expressions do.
+AngularJS expressions support filters, while JavaScript expressions do not.
+
+
+
+
+
+ng-* attributes are called directives
+{{}} - called interpolation symbols
+
+Interpolation sybols are used in debuggin.. to see the model values
+
+Note **** have to check {{MethodName()}} and how it iworks
+
+Interpolations are flexible and can be placed almost anywhere in HTML:
+• Inside a tag (<div>{{noOfTries}}</div>)
+• As an attribute value (<div class='cls-{{noOfTries}}'>)
+• As an attribute name (<input {{myAttributeName}}="">)
+
+ng-show is shows or hids the elements based on the return value of the 
+model property used
+Ex:
+<div ng-show="CanShow" >Now im visible</div>
+
+we can use epxression in both interpolation and directives
+
+ng-src
+------
+this directive allow us to set image path dynamically. so this is called interplated expressions
+ex:
+ng-src="\path\img\{{imagename}}"
+
+
+//outputs the result of boolean comparison. Ternary operator
+{{property1 >=0?'positive': 'negative'}}
+//call testMethod and outputs the return value
+{{testMethod()}}
+// assign value returned by testMethod to x. Creates "x" on scope
+if not available. Empty output
+{{x=testMethod()}}
+// calls testMethod() and testMethod2() and assign return values
+to x and y. Empty output
+{{x=testMethod();y=testMethod2()}}
+
+
+
+Tip:
+Try to avoid complex expressions. then only html ill be more readable and debuggabel
+
+To keep view and model sync angular framework creates binding between those both.
+
+Angular supports MathML and SVG markup and can perform
+interpolation on them.
+
+
+once html rendered by browser, angular framework will compile the html template
+and make binding with model and template and produces the outupt
+
+
+Tip:
+in controller done write DOM element code. controller only should act on model
+if u want to do dom manupulation then use exisiting directives or create new 
+
+Scope object is not a model. it is reference the actual model. and it acts as bridge btwn view and model
+
+Framework can create multiple scope objects, depends on how view has structured
+
+whenever framework finds ng-app directive, it starts initialisation process. while doing initialisation frame will load module which is related to ng-app
+afterthat it does dependence injection(i.e inject scope obj)
+after that it traverse all directives within in ng-app element and sets binding btwn model and view
+
+ng-controller will create new scope object and it's scope is within this tag
+note: there r other directives which will cause creating scope object
+
+Everything in AngularJS can be categorized into four buckets namely: controllers,
+directives, filters, and services.
+
+Getting an existing module
+angular.module("ModuleName");
+
+create new module
+angular.module("modulename",[]);
+
+the only difference here is second argument. if we wrongly use secnod parameter , then
+frame work will create new modules and may overrides existing one
+
+
+
+ng-repeat
+---------------
+
+<div ng-app="myApp" ng-controller="namesCtrl">
+
+<p>Looping with objects:</p>
+<ul>
+  <li ng-repeat="x in names | orderBy:'country'">
+    {{ x.name + ', ' + x.country }}
+  </li>
+</ul>
+
+</div>
+
+<script>
+angular.module('myApp', []).controller('namesCtrl', function($scope) {
+    $scope.names = [
+        {name:'Jani',country:'Norway'},
+        {name:'Carl',country:'Sweden'},
+        {name:'Margareth',country:'England'},
+        {name:'Hege',country:'Norway'},
+        {name:'Joe',country:'Denmark'},
+        {name:'Gustav',country:'Sweden'},
+        {name:'Birgit',country:'Denmark'},
+        {name:'Mary',country:'England'},
+        {name:'Kai',country:'Norway'}
+        ];
+});
+</script>

@@ -1,0 +1,12 @@
+
+It is light weight , 
+when it is created it will not preallocate any resources
+
+Virtual Machines  will share the hardware, but each VM will have different OS.
+But in Containers - it will share the same OS kernal. So it can able to use 
+all the features of the OS. kernal will taken care the isolation of each containers.
+
+
+It changes the way of 
+Installing, Discovering, starting , stopping .. etc., the software
+Containers made this as simple

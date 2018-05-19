@@ -1,0 +1,36 @@
+var getProduct = function (productid=100,type="sss"){
+    console.log(productid+type)
+}
+
+getProduct();// 100sss
+getProduct(undefined,'some');// 100some
+
+
+ var getProduct = function (productid,price=productid+10){
+    console.log(price)
+}
+getProduct(10);//20
+
+var somvalue = 10;
+ var getProduct = function (productid,price=productid+somvalue0){
+    console.log(price)
+}
+getProduct(10);//20
+
+var getSomvalue ()=>10;
+ var getProduct = function (productid,price=productid+somvalue0){
+    console.log(price)
+}
+getProduct(10);//20
+
+//Note in above examples default params having scope
+
+
+var getSomvalue ()=>10;
+ var getProduct = function (productid,price=productid+somvalue0){
+    console.log(arguments.length)
+}
+getProduct(10);//1
+//using arguments inside a function is not a good practice. 
+//arguments.leng consider only the number of parameters passed to a function
+

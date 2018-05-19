@@ -1,0 +1,11 @@
+
+If you specify the styles as part of the component then
+the styles get prefixed with component specific selector
+and will be inlined into the generated code. This is done intentionally
+to allow you to have style isolation as well as 
+ability to code split your style-sheets along with your code for more optimal lazy-loading.
+
+
+Actually the styles are packaged and delivered to the client by webpack.
+Angular-CLI uses webpack under the hood and only configures it.
+Angular-CLI loads these styles as a separate bundle to the client. 

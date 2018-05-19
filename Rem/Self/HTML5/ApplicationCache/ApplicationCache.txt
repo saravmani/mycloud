@@ -1,0 +1,4 @@
+Have to create manifest file.
+and have to include reference to html file's header
+Ex:
+<html manifest="sv1.zzingg">

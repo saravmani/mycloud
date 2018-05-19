@@ -1,0 +1,27 @@
+From ASP.Net MVC 2.0 Microsoft provided a new feature in MVC applications, Areas. Areas are just a way to divide or “isolate” the modules of large applications in multiple or separated MVC
+
+Right click on solution and add Area
+
+<%= Html.ActionLink("Show Blog", "ShowBlog", "Blog", new { area = "blog" }, null) %>
+
+
+# My Comments -  area is like mini application. it is having complete set of folder structure i.e controllers, model, views
+Also it has web.config file and AreaNameAreaRegistration file
+
+
+URL for area
+-------------------
+localhost/AREANAME/controller/action
+
+
+
+Set Default Area
+=====================
+ Default area argument in the URL then use a DataTokens collection to add a key for the area in “RouteConfig.cs”. 
+
+ ex:
+routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            ).DataTokens["area"] = "areaName";

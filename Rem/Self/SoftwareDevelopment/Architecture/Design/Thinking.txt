@@ -1,0 +1,14 @@
+Think on Obejct oriented way
+
+thik on Design pattern level
+
+
+Secret to create maintanable flexible system is
+-------------------------------------------------------
+thinking about how  they might change int he future, and find principles which 
+address those issues
+
+moste of the patterns and principles are to solve issue in "Change in software"
+
+offen try to encapsulate  the part wich varies
+changes should not unintentionally affect others

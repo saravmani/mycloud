@@ -1,0 +1,34 @@
+we can able to get and set the prototype
+
+Reflect.getPrototypeOf(target)
+
+
+class Location{
+    constructor(){
+        console.log('constructingLocation');
+    }
+      someFunction(){
+
+    }
+    }
+class Restaurant extends Location{
+}
+console.log(Reflect.getPrototypeOf(Restaurant));
+ //Output:  class Location{
+    constructor(){
+        console.log('constructingLocation');
+    }      someFunction(){...
+
+Reflect.setPrototypeOf(target,prototype)
+--------------------------------------------
+class Restaurant{
+
+}
+let setup={
+        getId(){
+          return88;
+        }
+    }
+let r=new Restaurant();
+Reflect.setPrototypeOf(r,setup);
+console.log(r.getId());

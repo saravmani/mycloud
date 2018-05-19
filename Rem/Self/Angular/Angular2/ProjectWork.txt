@@ -1,0 +1,17 @@
+Parent component
+	1. child component 1 ->show list of items
+	2. child component 2 -> on selection list show details
+		One directive should be their
+	3. Form to add list item
+		Form validation
+		Two way binding
+	4. Form to edit list item
+	
+
+1. Use navigation  
+2. 
+Create service and sharethe object among two servies
+Create event in service and emit it from component 1
+and subscribe it component 2
+
+Logging service

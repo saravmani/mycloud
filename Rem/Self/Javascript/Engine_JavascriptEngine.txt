@@ -1,0 +1,25 @@
+
+V8 translates JavaScript code into more efficient machine code.V8 is that it doesn�t produce bytecode or any intermediate code.
+But other js engines like SpiderMonkey will produce IL or ByteCode code .
+
+
+V8 has two compilers!
+---------------------------
+A �Full� Compiler that can generate good code for any JavaScript: good but not great JIT code. 
+The goal of this compiler is to generates code quickly. To achieve its goal, it doesn�t 
+do any type analysis and doesn�t know anything about types. Instead, it uses 
+an Inline Caches or �IC� strategy to refine knowledge about types while the program run. 
+IC is very efficient and bring about 20 times speed improvment.
+
+An Optimizing Compiler that produces great code for most of the JavaScript language. 
+It comes later and re-compiles hot functions. 
+The optimizing compiler takes types from the Inline Cache and make 
+decisions about how to optimize the code better. 
+However, some language features are not supported yet like try/catch block for instance. 
+(The workaround for try/catch blocks is to write the �non stable� code 
+into a function and to call the function in the try block)
+
+
+JavaScript is a protoptye-based language: there are no classes and objects are created by 
+using a cloning process. Also, JavaScript is dynamically typed: 
+types and type informations are not explicit and properties can be added and deleted to objects on the fly. Accessing types and properties effectively makes a first big challenge for V8. Instead of using a dictionnary-like data structure for storing object properties and doing a dynamic lookup to resolve the property location (like most JavaScript engine do), V8 creates hidden classes, at runtime, in order to have an internal representation of the type system and to improve the property access time.

@@ -1,0 +1,9 @@
+PF amount transfer
+
+
+Banking
+-------------
+Set auto payment in citi
+set auto bill payment in citi
+
+Get scan copy of aadhar card with self attestation

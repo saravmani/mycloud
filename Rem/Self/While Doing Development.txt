@@ -1,0 +1,13 @@
+while doing development, my experiance, what to do while doing development
+
+1. pice of Will support threading?
+2. pice of code is expandable?
+3. Pice of code having server side validation?
+4. Date time formate should be configurable
+5. All proc should have option for culture code passing
+6. Proc name should get reflect 'module -> submodule-> Purpose'
+7. Use static analysis tools ex: Fxcop, stylecop - to find issues at earliar stage of development
+8. my piece of code loosly coupled?
+9. Am i applying Seperation of concern
+10. wht design pattern i have to use to solve this problem?
+11. identify variying part and move it away

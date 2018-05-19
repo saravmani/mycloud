@@ -1,0 +1,8 @@
+function test(b) {
+    var functionwithclosure = function (a) {
+        console.log(a, b);
+    }
+    return functionwithclosure;
+}
+
+# it means Half cooked function

@@ -1,0 +1,15 @@
+Handling multiple route handlers for single route
+
+we have multiple hanlders before and after response made. 
+this is like adding middle ware for each route path.
+there can be multiple next
+Note: resp.send should be once.. it cannot be multiple
+
+app.get("/getId",function(req,res,next){
+    res.send("some data");
+    next()
+},
+function(req,res){
+    console.log("another handler called");
+}
+)

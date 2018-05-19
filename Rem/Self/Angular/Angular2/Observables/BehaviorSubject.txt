@@ -1,0 +1,9 @@
+it is a type of Subject which always emits the last emitted value to any new subscriber. 
+
+#Normal Subject only emits the future events. but what about newly subscribed user? 
+he ownt get those old data
+
+But BehaviorSubject needs an initial value. 
+
+Since our data source is a back-end service, there is no synchronous value to initialize with.
+Hence, we live with using an undefined as the initial state.

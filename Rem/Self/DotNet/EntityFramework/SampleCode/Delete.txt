@@ -1,0 +1,15 @@
+ [HttpDelete]
+        public IHttpActionResult Delete(ReqObject objReqObject)
+        {
+            using (var objTaskList = new TaskManagerEntities())
+            {
+                var objTask = new TaskList
+                {
+                    Id = objReqObject.TaskId
+                };
+                objTaskList.Entry<TaskList>(objTask).State = EntityState.Deleted;
+                objTaskList.SaveChanges();
+            }
+
+            return Ok();
+        }

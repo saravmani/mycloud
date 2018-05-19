@@ -1,0 +1,17 @@
+insurance for car
+mom dental check
+call to marriage certificate provider and snd the details to him
+
+
+read on 4 days leave
+1. CLR via c#
+2. Design patterns
+3. node js
+
+1. git hub usage
+2. clr via c#
+3. UML
+4. Design patterns in C#
+5. webapi
+6. MVC interview questions
+7. Nodejs interview questions

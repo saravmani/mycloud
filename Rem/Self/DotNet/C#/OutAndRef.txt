@@ -1,0 +1,21 @@
+out and ref both are used to pass the pram by reference
+
+ref must be initialized before passing
+out must be initialized within the method which is getting as parameter
+
+ex: out parameter
+----------------------
+ public static void Main(string[] args)
+        {
+            //var ss = new Parent.HomeManagement().GetHome("");
+            //Console.Write(ss);
+            int j;
+            kk(out j);
+            Console.ReadKey();
+        }
+
+        public static void kk(out int i)
+        {
+            i = 12;//this line is mandatory.. we have initialize other wise compile error
+            i = i + 10;
+        }

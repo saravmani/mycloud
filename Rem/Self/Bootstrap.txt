@@ -1,0 +1,24 @@
+Bootstrap's global default font-size is 14px.
+Grid classes
+xs,sm,md,lg
+
+Ex of grid
+------------
+<div class="row">
+  <div class="col-sm-1 col-md-4 col-xs-1">.col-sm-4</div>
+  <div class="col-sm-1 col-md-4 col-xs-1">.col-sm-4</div>
+
+</div>
+
+
+hide element on chaging device width (hidden-xs)
+-----------------------------------------
+  <div class="row">
+    <div class="hidden-xs col-lg-6" style="background-color:yellow;">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </div>
+    <div class="col-lg-6 col-sm-12" style="background-color:pink;">
+      Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.    
+    </div>
+  </div>

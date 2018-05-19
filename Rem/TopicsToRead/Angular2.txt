@@ -1,0 +1,43 @@
+
+how Asynch await  workes?
+Http interceptors in angular 2 or 4 not in 5?
+what are the Built in route guards for angular 2?
+
+
+How to use CDN in angular 2 project?
+
+How to retry the http request using observables?
+Upload file using angular 2
+How tree shaking works?
+Angular 5 - httpclient middleware
+router events
+ 
+Caching components
+
+Need to study about router.. and router events
+what is "entry file"  in angular 2
+
+Error log componets - try angular2-logger
+
+How to implement antiforgery in angular 2
+best way to store and use the json token for autherisation?
+ 
+Aynch pipes
+is there any concept of asnch directives?
+difference btn directives and pipes
+
+what is viewchild  and content child?
+As the name suggests, @ContentChild and @ContentChildren queries will return directives existing inside the <ng-content></ng-content> element of your view, whereas @ViewChild and @ViewChildren only look at elements that are on your view template directly.
+
+Use an Observables-based architecture like RxJS
+2. Use a Flux-based architecture
+
+ng-template vs template
+what is projection?
+
+
+------------Solved-----------------
+How to identify internet disconnect? - 
+navigator.onLine //true or false based on n/w connectivity
+window.ononline=function(){console.log("haha")}// //triggers when net connected
+window.onoffline=function(){console.log("disconnected")} //triggers when net disconnected

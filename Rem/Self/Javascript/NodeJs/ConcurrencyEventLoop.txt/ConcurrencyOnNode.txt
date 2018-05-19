@@ -1,0 +1,8 @@
+Node js uses event Model for non blocking 
+Event model in nodejs achieved by libuv
+it is similar to python's "event machine"
+
+
+Event model is organised through Event Loop
+
+Slow i/o operations are handled by events and callbacks

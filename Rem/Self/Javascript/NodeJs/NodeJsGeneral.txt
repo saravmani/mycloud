@@ -1,0 +1,114 @@
+﻿file1.js
+
+var fn1 = function()
+{
+console.log("fn 1")
+}
+
+
+var fn2 = function()
+{
+console.log("fn 2")
+}
+
+//module.exports is empty object. so we can add multiple items to it.
+module.exports.someName1 = fn1;
+module.exports.someName2 = fn2;
+
+
+
+file2.js
+var stuff = require("./file1");
+stuff.someName1();
+stuff.someName2();
+
+nodejs shipped with some inbuild core modules.To include those we no need to specify the
+path. 
+require('CoreModuleName')
+
+
+console.log("some text")
+console.error("error message");//in browser console this will printed in red colour
+console.dir({name:"hihi"});
+
+node js also provides interactive js console.
+ just type node and enter in command window
+ then we can execute js codes
+
+ 
+js programm in browser
+--------------------------------
+can get two type of objects
+1. native objects  
+   string, array,Date,Math etc
+2. Browser Host objects - provided by environment
+    window,
+    document
+    history
+    XMLHttpRequest
+
+Node js is best for 
+-----------------------------
+http, networking, websockets
+i.e nonblocking io
+
+V8 supports JIT compilation. so js runs on node will be faster like .net compiled code
+JS in node is compiled and cached as machined code like .net
+
+V8 engine in node is doing the same thing CLR does in .net
+
+
+require("./somefile.js")
+require("./somefile")
+above both lines will work
+
+we can able to just pass the folder name as a parameter for require function. then node will
+check the index.js file within this folder
+require("./folderName")
+then it will refer ./folderName/index.js file
+node will try to load foldername.js or ./folderName/index.js file
+
+
+require("moduleName");// this is installed external module.. which is under node_Modules folder
+
+
+
+node js Host Objects
+----------------------------
+http,
+https,
+fs, //file stream
+url
+os
+
+
+native objects are common on both browser and node js env.,
+but host objects will differ.
+
+advantages of node js
+-----------------------
+it s non blocking
+it will not consumer more resources (processor and memory)
+
+
+
+
+At Node’s core is a powerful streaming HTTP parser.
+This parser, in combination
+with the low-level TCP API that Node exposes to JavaScript, provides you
+with a very low-level, but very flexible, HTTP server.
+
+nodejs provides low level http server which is build it in with nodejs
+we can use express or connect modules which are giving by
+third party. those are high level, and using thos
+we can able to build applications very easily.
+
+
+
+
+Addons
+----------
+# we can create node addons using c++. for this nodjs providing configuraiton and compilation tools. we can use that to create 
+addons if required
+
+

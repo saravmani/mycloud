@@ -1,0 +1,52 @@
+Key_words: 
+authorisation_code,
+id_token,
+access_token (or authorisation_token),
+refresh_token
+
+i.e oauth defines access_token. OpenID defines identity token.
+identity token can send to app and app can validate who is the user
+
+In OpenID SSL is a requirement. # it is mandatory 
+
+Oauth 2's Access_Token should'nt be used to sign in to client application. bcs it s 
+only autherization token to access the resources of another applicaiton. To solve this 
+OpenID Connect come into the picture
+
+OpenID connect 1.0 is simple identity layer on top of the oauth 2.0 protocol.
+
+A client application can request an identity token (next to an access token).
+this identity token is used to sign into the client application.
+UserInfo endpoint allows a client application to get additional information on the user.
+
+
+
+it allows clients to verify the identiy of the end user based on the authentication performed
+ by authorization server. also obtain client basic profile  info. 
+
+It Defines UserInfo endpoint to get user information like email, picture, website, nicknames etc.,
+
+It built on top of oauth 2. so flows are same.
+
+it can use authorization Code Grant and Implicit grant are applicable. 
+CLient credentials grant not applicable.
+
+In OpenID Connect, we will request access_token and id_token from security token service. 
+Client receives id_token and access_token.
+
+
+Hybrid flow
+--------------------
+combination of authorization code (auth code returned to the client that can be exchanged
+for id_token & access_token) & Implicit (id_token and access_token directly returned to the client).
+in hybrid flow some tokens are returned from the authorization endpoint, 
+others from the token endpoint. this 
+allows client app to use id_token to get access to user's identity, 
+but at the same time receive an authorization code through
+which a refresh token can be obtained.
+
+
+OpenID Connect is the superior protocol. it extends Oauth2.
+
+Even if the client application only requires authorization to access an api, we should use 
+Open id connect instead of plain Oauth2

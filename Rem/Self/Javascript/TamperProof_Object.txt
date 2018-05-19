@@ -1,0 +1,62 @@
+
+Tamper proof objects (tags - Sealed, non extensable)
+---------------------------------------------------------
+Object.preventExtensions,Object.seale,Object.freeze
+
+In javascript Every object  can be modified by any code running in the same context.This can lead to developers accidentally overwriting
+each others code or, worse, overwriting a native object with incompatible changes.
+In ECMA5 we can tamper proof the objects.
+
+Non Extensible objects
+------------------------------
+By default all the javascript object are extensible.
+But in ecma5 we can use preventExtensions method to avoid the extension.
+var person = { name: Nicholas };
+Object.preventExtensions(person);
+person.age = 29;
+alert(person.age); //undefined
+
+In nonstrict mode, an attempt to add a new object member is silently
+ignored, so the result of person.age is undefined. In strict mode, attempting to add an object
+member that doesn't allow extension causes an error to be thrown.
+
+var person = { name: 'Nicholas' };
+alert(Object.isExtensible(person)); //true -- this method is used to find wether object is extensible or not
+Object.preventExtensions(person);
+alert(Object.isExtensible(person)); //false
+
+Sealed Objects (page no -744 )
+------------------------------
+Sealed objects aren't extensible and existing object members have their [[Configurable]]
+attribute set to false.
+ This means properties and methods can't be deleted as data properties cannot be
+changed to accessor properties or vice versa using Object.defineProperty().
+Property values can changed.
+
+
+var person = { name: "Nicholas" };
+Object.seal(person);
+person.age = 29;
+alert(person.age); //undefined
+delete person.name;
+delete(person.name);
+
+alert(person.name); //Nicholas
+
+In this example, the attempt to add an age property is ignored. The attempt to delete the name
+property is also ignored,
+
+alert(Object.isExtensible(person)); //true
+alert(Object.isSealed(person)); //false
+
+Frozen Objects
+--------------------
+Frozen objects aren't extensible and are sealed, and also data properties have their [[Writable]]
+attribute set to false.
+Since frozen objects are both
+sealed and extensible, they also return false for Object.isExtensible() and true for Object.isSealed():
+
+class TestName{
+}
+Object.seal(TestName);
+Object.seal(TestName.prototype);

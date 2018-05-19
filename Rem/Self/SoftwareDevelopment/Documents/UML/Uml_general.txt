@@ -1,0 +1,9 @@
+unified modeling language
+
+Visual representation of software system or any other sytem
+It used to define, document artifcates of software system
+It was initially started to capture the behavior of complex software and non-software system 
+
+UML is a pictorial language used to make software blueprints.
+
+It is also used to model non-software systems as well. For example, the process flow in a manufacturing unit

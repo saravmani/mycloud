@@ -1,0 +1,16 @@
+C# 7
+.net Framework - 7.1
+.net Core - 2
+MVC 5 (with standard framework)
+MVC 6 (std+core)
+Visual studio 2017
+
+
+Angular 4
+NodeJs 6.10.0
+
+
+Chrome 60
+
+
+Git - ?

@@ -1,0 +1,24 @@
+
+Naming Guidelines
+------------------------
+URI should not have verbs or actions. it should have an Nouns
+ex: api/GetAutherList -- it is wrong
+ex: api/Authers -- it is correct. we can use get method to get the list of authers
+
+to get specific resource use /{id}
+ex: api/Authers/{autherId}
+
+So consumers can able to predict and understand the api structure
+
+hierarchy representation
+-----------------------------------
+ex: api/Authers/{autherId}/books/{bookId}
+
+order by
+--------------
+api/Authers?orderby=name
+
+Asp.net core team advising not use convention based routing. and ask us to use
+attribute based routing
+
+

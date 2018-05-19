@@ -1,0 +1,46 @@
+LocalStorage is a lightweight way to store key-value pairs. 
+The API is very simple, but usage is capped at 5MB in many browsers. Plus the API is synchronous.
+
+But indexed db api s asynchronous. and having more storage
+
+
+
+indexeddb is more power than local storage and useful for applications that requires to store large amount of the data. These applications can run more efficiency and load faster.
+
+
+The W3C has announced that the Web SQL database is a deprecated local storage specification
+ so web developer should not use this technology any more. 
+indexeddb is an alternative for web SQL data base and more effective than older technologies.
+
+store data associated with a host/protocol/port, locally on the client’s hard-drive.
+
+
+useful for applications that requires you to store a large amount of data.
+Local storage only store key-value pair
+
+In addition, with its rich queries abilities, these applications can load faster
+
+ 
+An IndexedDB is basically a persistent data store in the browser—a database on the client side. 
+ Like regular relational databases, it maintains indexes over the records it stores, and applications use the IndexedDB JavaScript API 
+ to locate records by key or by looking up an index.  Each database is scoped by “origin,” i.e. the domain of the site that creates the database. 
+
+
+The IndexedDB APIs are asynchronous that return without blocking the calling thread.
+
+
+IE10 storage size for each app is 250MB:
+Firefox: no limit on the IndexedDB database's size. The user interface will ask permission for storing blobs bigger than 50 MB. 
+
+
+How it differs to Modern Relational Databases
+IndexedDB does not have the concept of a relational relationship between objects, 
+
+Each origin (host, protocol, and port) has its own set of databases.
+
+IndexedDB has a same-origin policy, which requires that the database and the application be from the same origin.
+
+An object-store can have multiple indexes (not the same concept as cluster indexes – as only one index can be used at a time when querying an object-store).
+
+
+A transaction provides reliable data access and data modification on a database. All interactions with the data in the database must happen within the scope of a transaction.

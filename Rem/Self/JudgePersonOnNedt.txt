@@ -1,0 +1,19 @@
+https://www.google.com/finance/info?q=DRREDDY
+
+
+https://teleport.org/
+This website providing APIs to find out life quality based on geo location
+HEALTHCARE
+SAFETY
+COST OF LIVING
+ENVIRONMENTAL QUALITY etc.,
+
+
+
+Modify retail user website's login authentication facebook/google, while they do login have to ask access permission for all
+From bureau we can send some offer emails to subjects, for credit score. and use fb/google login
+Send news letters to subjects. when the user clicks the link then we can capture geo location and IP. and we can match with our DB data.. find gio location
+
+Use SIR mobile app to read the SMS contents and parse payment related hsitory
+
+

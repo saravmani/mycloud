@@ -1,0 +1,30 @@
+*
+structural directives support the concise syntax and omit the template element
+
+No changes are required to the directive to support the concise syntax, whose selector and input
+property still specify an attribute called paForOf. Angular takes care of expanding the concise syntax, and the
+directive doesn’t know or care whether a template element has been used.
+
+ex:
+<tr><th></th><th>Name</th><th>Category</th><th>Price</th></tr>
+<tr *paFor="let item of getProducts(); let i = index; let odd = odd;
+let even = even" [class.bg-info]="odd" [class.bg-warning]="even">
+<td>
+
+
+The biggest change
+is in the attribute used to apply the directive. When using the full syntax, the directive was applied to the
+template element using the attribute specified by its selector, like this:
+...
+<template [paForOf]="getProducts()" let-item let-i="index" let-odd="odd"
+let-even="even">
+...
+When using the concise syntax, the Of part of the attribute is omitted, the name is prefixed with an
+asterisk, and the brackets are omitted.
+...
+<tr *paFor="let item of getProducts(); let i = index; let odd = odd;
+let even = even" [class.bg-info]="odd" [class.bg-warning]="even">
+
+The other change is to incorporate all the context values into the directive’s expression, replacing the
+individual let- attributes. The main data value becomes part of the initial expression, with additional
+context values separated by semicolons.

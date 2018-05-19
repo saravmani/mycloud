@@ -1,0 +1,19 @@
+ActivatedRoute
+------------------------
+import { ActivatedRoute } from "@angular/router";
+constructor(private model: Model, activeRoute: ActivatedRoute) {
+    this.editing = activeRoute.snapshot.url[1].path == "edit";
+}
+
+
+The snapshot property returns an instance of the ActivatedRouteSnapshot class,
+
+properties of ActivatedRouteSnapshot
+-------------------------------------------
+url             -This property returns an array of UrlSegment objects, each of which describes a
+                single segment in the URL that matched the current route.
+params          -This property returns a Params object, which describes the URL parameters, indexed
+                by name.
+queryParams     -This property returns a Params object, which describes the URL query parameters,
+                indexed by name.
+fragment        -This property returns a string containing the URL fragment

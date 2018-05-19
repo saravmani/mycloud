@@ -1,0 +1,53 @@
+SortedSet used to store the object in sorted order and store only unique values
+
+class a:IComparable<a>
+    {
+        public string studentname { get; set; }
+        public int studentage { get; set; }
+ 
+        public int CompareTo(a other)
+        {
+             public int CompareTo(a other)
+        {
+            if (other.studentage == this.studentage) return 0;
+                if (other.studentage > this.studentage)
+                return 1;
+            else
+                return -1;
+        }
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.ReadLine();
+             
+            var obja = new a();
+            obja.studentname = "hahahuhi";
+            obja.studentage = 23;
+
+            var objb = new a();
+            objb.studentname = "hahahuhi";
+            objb.studentage = 51;
+            var objc = new a();
+            objc.studentname = "hahahuhi";
+            objc.studentage = 13;
+            var objsrt = new SortedSet<a>();
+            objsrt.Add(obja);
+            objsrt.Add(objb);
+            objsrt.Add(objc);
+            objsrt.Add(objc);
+
+
+If we add the object and if the CompareTo methods says both are same then 
+SortedSet own't add teh values and Add method return false.
+
+
+ One-to-many unique value mapping maps one element to a set of unique values.
+It used for one to many mapping
+
+Dictionary<TKey,HashSet<TValue>>
+ SortedDictionary<TKey,HashSet<TValue>>
+ SortedList<TKey,SortedSet<TValue>>
+ Dictionary<TKey,SortedSet<TValue>>

@@ -1,0 +1,19 @@
+A service is a unit of functionality exposed to the world over standard plumbing.
+ A service-oriented application is simply the aggregation of services , #all together called as single application
+
+
+ Inside services, developers still use concepts such as specific programming languages,technologies etc. 
+ However, between services you have the standard messages and protocols, contracts, and metadata exchange.
+
+ The various services in an application can be all in the same location or be distributed across an intranet or the Internet, and they may come from multiple vendors and be developed across a range of platforms and technologies, versioned independently, and even execute on different timelines.
+
+
+
+ The service-oriented methodology governs what happens in the space between services (see Figure A-1). There is a small set of principles and best practices for building service-oriented applications,
+  referred to as the "tenets of service-oriented architecture"
+
+
+  tenets_of_SOA
+
+
+

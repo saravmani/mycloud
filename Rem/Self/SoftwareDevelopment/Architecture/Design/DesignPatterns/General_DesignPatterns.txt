@@ -1,0 +1,145 @@
+Patterns are templates that
+you can customize for your own needs
+
+1. GOF patterns
+2. P of EAA - patterns of enterprice application Architecture
+
+
+
+
+List of Frequently used design patterns in GOF
+-----------------------------------------------
+Creational
+	Abstract Factory
+	Factory  Method
+	Singleton - medium high
+	Prototype - medium
+
+Structural
+	Facade
+	Proxy - medium high
+	Adapter- medium high
+	Composite- medium high
+
+Behaviourial
+	Observer
+	Iterator
+	Command - medium high
+
+
+
+
+In their book Design Patterns: Elements of Reusable Object Oriented Software , authors Erich Gamma, Richard
+Helm, Ralph Johnson, and John Vlissides have cataloged a set of design patterns. Today their catalog is
+considered one of the most popular sources of information about design patterns. Since the catalog was
+documented by the four authors, the patterns therein are called Gang of Four , or GoF, design patterns.
+A large part of this book discusses GoF patterns in detail.
+The GoF catalog includes 23 design patterns. The authors have placed these 23 patterns into three
+categories, namely creational patterns, structural patterns, and behavioral patterns.
+
+
+
+Structural Design Patterns
+Structural design patterns deal with the composition of classes and objects. These patterns simplify the
+structure of a system by identifying the relationships between objects.
+
+
+Behavioral Design Patterns
+Behavioral design patterns deal with the interaction and communication between various objects. They
+attempt to reduce the complexity that may otherwise result when objects communicate with each other
+
+
+
+
+
+Martin Fowler’s Patterns of Enterprise Application
+Architecture
+In the preceding sections you learned about GoF design patterns. There is another catalog of patterns
+compiled by Martin Fowler. This catalog is called Patterns of Enterprise Application Architecture
+(P of EAA). What is the difference between GoF patterns and P of EAA? After all, patterns from both catalogs
+are used while building software systems. However, as you can probably sense, P of EAA are geared more
+toward enterprise applications. In simple words, an enterprise application is a software system that is quite
+big as compared to many other small systems. Such an application is usually complex, highly scalable,
+and distributed in nature. So, Martin Fowler’s catalog is arranged so as to keep in mind such large-scale
+applications. It is important to remember that there is no yard stick that precisely measures this distinction.
+As a developer your job is to pick the patterns that are appropriate to solve a given problem. A single
+application may use a few patterns from the GoF catalog and a few from the P of EAA catalog.
+
+
+Anti-Patterns
+-------------------
+In a way, anti-patterns are the opposite of design patterns—design patterns promote good design practices and
+anti-patterns promote bad design practices.
+
+
+Tips in applying design patterns
+-----------------------------------
+For very small simple applications dont apply design patterns. it will over complex the system
+
+You will realize that you may or may not use design patterns in an application, but at
+a minimum you will use one or more of the SOLID principles
+
+avoid too many patterns into a single
+application.
+
+Some patterns will
+become your personal favorites. Developing such a habit calls for regular practice,
+and you have to start somewhere. Based on this practice, you will build experience
+over a period of time.
+
+
+Another difficulty beginners face is in recollecting patterns while studying project
+requirements. Again, this requires some practice. What I used to do during my early
+days as a software developer was to create cheat sheets of design practices and
+patterns. You can jot them down with the help of figures, labels, and keywords and
+then have a look at them whenever you get spare time—during a tea break, during
+lunch break, while travelling, and whenever you can squeeze in some time. This
+constant reflection on the patterns helps you to keep them fresh in your mind, and
+your recollection of them will be better.
+
+
+
+SOLID principle in MVC
+---------------------------
+As an ASP.NET developer, chances are you have already created ASP.NET MVC
+applications. You are probably aware that MVC itself is a pattern. Using an MVC
+pattern, you divide the whole functionality of an application into three distinct
+pieces: models, views, and controllers. Each piece is responsible for a specific job. For
+example, models represent application data, views are responsible for user interface,
+and controllers are responsible for the interaction and flow between models and
+views. In the P of EAA catalog MVC is categorized as a Web Presentation Pattern.
+
+
+Decorator Pattern Example
+
+The System.IO namespace defines several stream classes, such as BufferedStream
+and GZipStream . Here, the .NET framework uses the Decorator design pattern
+outlined in the GoF catalog. The classes, such as the ones mentioned previously,
+“decorate” the underlying Stream object. For example, you can pass any Stream
+instance to a GZipStream constructor and then work with that object, which in turn
+manipulates the Stream you passed.
+
+
+
+Factory pattern example 
+The code uses the ToInt32() method of the Convert class. You passed a string
+to the ToInt32() method . It then created a new integer for you and assigned the
+newly created integer to i . This is the Factory pattern in action. Factory basically
+creates something for you—a new integer, in this case. Factory pattern and its
+variants are also outlined in GoF catalog.
+
+
+
+The Entity Framework implements the Repository and Unit of Work patterns.
+The Repository pattern allows you to work with your data as if it were a collection.
+Methods such as Add() and Remove() do that for you. The Unit of Work pattern keeps
+track of your operations (add / modify / delete) during a business transaction. It then
+plays these operations on the database as a single unit. The SaveChanges() method
+executes these operations in a transaction as a unit of work. Both of these patterns
+are cataloged in P of EAA.
+
+you are already using a few patterns in your applications in an indirect way. Also, notice
+that the MVC pattern has been applied to the whole application or project. Thus, in a way, it governs the
+overall architecture of your application. On the other hand, GoF design patterns such as Decorator, Factory,
+and Iterator are closer to a specific piece of code than to the whole application
+

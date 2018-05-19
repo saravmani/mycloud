@@ -1,0 +1,28 @@
+MVC views normaly inherits from frameworks view bas class.
+so that only we can able to get Model
+
+@Model.sompropertyname
+@this.Model
+
+//here this means current object. current view object got inherited from frameworks view base class
+//below is the baseclass for all razor views
+public abstract class RazorPage<TModel> : RazorPage
+{}
+
+In MVC5 below is the base class
+    public abstract class WebViewPage<TModel> : WebViewPage
+
+Directives
+--------------------
+in mvc razor @ smbol with lower case items are called directives
+example @model is a directive
+this directives will be used by razor view engine to construct the code behind the sense
+
+Razor having two modes.
+ c# mode and html mode.
+ when mix of c# and html codes executing in razor page, razor engine will switch between c# mode and 
+ html mode
+ @for(var i=0;i<10;i++)    -->c# Mode
+ {                         -->c# Mode
+    <div>erwre</div>       -->Html Mode
+ }                         -->c# Mode

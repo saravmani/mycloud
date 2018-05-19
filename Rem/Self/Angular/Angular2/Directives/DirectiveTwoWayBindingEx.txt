@@ -1,0 +1,43 @@
+
+<div class="form-group bg-info p-a-1">
+<label>Name:</label>
+<input class="bg-primary" [paModel]="newProduct.name" (paModelChange)="newProduct.name=$event" />
+</div>
+
+
+@Directive({
+selector: "input[paModel]"
+})
+export class PaModel {
+    @Input("paModel") modelProperty: string;
+    @HostBinding("value") fieldValue: string = "";
+    ngOnChanges(changes: { [property: string]: SimpleChange }) {
+        let change = changes["modelProperty"];
+        if (change.currentValue != this.fieldValue) {
+            this.fieldValue = changes["modelProperty"].currentValue || "";
+        }
+}
+
+@Output("paModelChange") update = new EventEmitter<string>();
+
+@HostListener("input", ["$event.target.value"])
+updateValue(newValue: string) {
+    this.fieldValue = newValue;
+    this.update.emit(newValue);
+}
+
+
+simple syntex
+---------------
+
+<div class="form-group bg-info p-a-1">
+<label>Name:</label>
+<input class="bg-primary" [(paModel)]="newProduct.name" />
+</div>
+
+When Angular encounters the [()] brackets, it expands the binding to match the format used in
+Listing 15-16, targeting the paModel input property and setting up the paModelChange event
+
+[(ngModel)] - [()] is caleld banana in the box
+
+

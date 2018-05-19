@@ -1,0 +1,4 @@
+HLD- list of modules and a brie description of each module - brief functionality of each module - interface relationship among modules -dependencies between modules - database tables identified along with key elements - overall architecture diagrams along with technology detailsLLDHLD .
+
+
+ LLDThis document describes each and every module in an elaborate manner, so that the programmer can directly code the program based on this.There will be at least 1 document for each module and there may be more for a module.The LLD will contain: - deailed functional logic of the module, in pseudo code - database tables, with all elements, including their type and size - all interface details with complete API references(both requests and responses) - all dependency issues -error message listings - complete input and outputs for a module(courtesy 'anonimas')

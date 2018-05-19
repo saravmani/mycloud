@@ -1,0 +1,7 @@
+*ngFor
+
+index,
+first,
+last,
+odd,
+even

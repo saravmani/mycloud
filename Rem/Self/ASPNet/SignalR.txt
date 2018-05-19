@@ -1,0 +1,118 @@
+Setup SignalR
+----------------------
+Server Side - >
+	1. install signal r package from nuget package manager
+	2. Write owin startup class and  call   (note there should be only one OWIN startup class in project)
+				app.MapSignalR();
+	3. create seperate class file which inherites Hub class
+			 public class DashboardHub : Hub
+			 {
+				 public void pushDashboardData(string queryParam)
+				{
+					while (true)
+					{
+						if (!IsClientConnected) break;
+						Clients.Client(Context.ConnectionId).flush("{'dashboardId':'rewre',queryParam:'" + queryParam + "'}");
+						System.Threading.Thread.Sleep(5000);
+					}
+
+				}
+			 }
+			 
+			 
+
+			 
+Client Side - >
+			include below js files
+				<script jquery  />...
+				<script type="text/javascript" src="../Scripts/jquery.signalR-2.1.2.min.js"></script>
+				<script src="../signalr/hubs"></script>
+				
+				
+				
+   var notifications = null;
+    $(document).ready(function () {
+        $("#btnLogin").click(function () {
+            TriggerSearch();
+        })
+        var notifications = $.connection.dashboardHub;              
+        //$.connection.hub.start().done(function () {         
+        //});//Promise after hub got started
+
+        notifications.client.flush = function (message) {
+            console.log(message);
+        }
+        $.connection.hub.start();
+
+        function TriggerSearch() {
+            notifications.server.pushDashboardData("some text ");
+        }
+
+       
+    });
+
+
+*** while calling server method (but in server it can be any) we should use pasCal case. other wise it wont work.
+
+
+
+websockets will run on top of TCP ip protocal.
+we can use webcockets to interact with c#,Javascript,Silverlight,Flash clients
+
+we can use signalr with winforms and wpf clients (don know about others like - silverlight flash etc.,)
+
+To choose websocket protocol below configuration should be added in web.config file
+	<add key="aspnet:UseTaskFriendlySynchronizationContext" value="true" />
+
+Pre request
+	.net framework version 4.5 +
+	IIS 8.0 +
+	SignalR version - 2.2
+	jquery.signalR-2.2.0.js
+
+
+
+CORS issues (Cross Origin Resource Sharing)
+---------------------------------------------------
+if we want to access signlar resource from  one domain to another then we have to do following task
+1. singlar server side
+	a) in web.config file add 
+		  <add name="Access-Control-Allow-Credentials" value="true" />
+		  <add name="Access-Control-Allow-Origin" value="http://localhost:4200" />
+	         </customHeaders>
+                </httpProtocol>
+	       </system.webServer>
+2. Client side
+	set signlar r URL
+		Ex:   $.connection.hub.url = 'http://localhost:57916/signalr'
+	Complete code
+	    $(document).ready(function () {
+ var notifications = $.connection.myHub;
+
+		 $.connection.hub.url = 'http://localhost:57916/signalr'
+     
+   $.connection.hub.start().done(function () {
+  
+		          notifications.server.sendNotifications("rewre");
+        
+			});//Promise after hub got started
+        
+notifications.client.receiveNotification = function (message) {
+   
+         console.log(message);
+     
+   }
+      
+  $.connection.hub.start();
+
+  
+  });
+
+    
+
+
+
+Can we force SignalR to use long polling connection method?
+connection.start({ transport: 'longPolling' });
+		
+

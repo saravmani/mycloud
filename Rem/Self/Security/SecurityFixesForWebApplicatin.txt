@@ -1,0 +1,116 @@
+1. Added httppost attaribute at action level
+2. Added below configurations in web.config rile
+ <httpProtocol>
+      <customHeaders>
+        <remove name="X-Powered-By" />
+        <remove name="Etag" />
+        <remove name="Server" />
+        <remove name="X-AspNet-Version" />
+        <remove name="X-AspNetMvc-Version" />
+        <add name="X-Frame-Options" value="SAMEORIGIN" />
+        <add name="X-XSS-Protection" value="1" />
+        <add name="X-Content-Type-Options" value="nosniff" />
+        <add name="Cache-Control" value="no-cache, no-store, must-revalidate" />
+        <add name="Pragma" value="no-cache" />
+	<add name="Strict-Transport-Security" value="max-age=31536000" />
+	<add name="Content-Security-Policy" value="default-src 'self' 'unsafe-inline' 'unsafe-eval';" />
+      </customHeaders>
+    </httpProtocol>
+
+  </system.webServer>
+1. a) If it is MVC application then add below entry in global.aspx 
+	MvcHandler.DisableMvcResponseHeader = true;//To remove mvc verision information(X-AspNetMvc-Version) header in response
+
+2. Added below configurations in web.config to display custome errors
+  <customErrors mode="On"  >
+      <error redirect="~/landing/UnAuthorizedAccess" statusCode="404" />
+      <error redirect="~/landing/ServerError" statusCode="500" />
+      <error redirect="~/landing/ServerError" statusCode="502" />
+      <error redirect="~/landing/ServerError" statusCode="501" />
+    </customErrors>
+
+3. Removed below http options/methods
+<system.web>
+    <httpRuntime>
+	<authorization>
+          <deny verbs="TRACE" users="*" />
+      	  <deny verbs="OPTIONS" users="*" />
+	  <deny verbs="PUT" users="*" />
+	  <deny verbs="DELETE" users="*" />
+	  <deny verbs="SEARCH" users="*" />
+	  <deny verbs="MOVE" users="*" />
+	  <deny verbs="LOCK" users="*" />
+	  <deny verbs="UNLOCK" users="*" />
+	  <deny verbs="HEAD" users="*" />
+	  <deny verbs="CONNECT" users="*" />
+	  <deny verbs="PATCH" users="*" />
+	  <deny verbs="PROPFIND" users="*" />	  
+	 </authorization>
+
+4. Added below config value to secure cookies
+<system.web>
+  <httpRuntime>
+	<httpCookies requireSSL="true" />
+
+IIS Level settings
+------------------------
+5. Installed URLScan utility to remove server information tag from response header
+	After installing URLScan, open the URLScan.ini file typically located in the %WINDIR%\System32\Inetsrv\URLscan folder.
+	 After opening it, search for the key RemoveServerHeader . 
+   By default it is set to 0, but to remove the Server header, change the value to 1.Doing so will 	remove the 	Server header Server: Microsoft-IIS/7.5 from the User mode response.
+
+6. Removed 'X-Powered-By' header in response headers (using InetMGR panel)
+
+
+
+7. add below header to avoid mime sniffing 
+X-Content-Type-Options: nosniff
+
+8. add below header to avoid that if XSS detected by browser , it will not render the script 
+X-XSS-Protection:1 
+
+9. to avoid unwanted cachine
+Cache-Control:no-cache,no-store  (HTTP/1.1 and above)
+Pragma:no-cache   //This is same as cache-control. it used for http protocol versions(i.e earliar than HTTP/1.1)
+
+10. To add cookie attribute samesite=strict in IIS
+	Install URLRewrite 2 and add the below rule in web.config file
+<system.webServer>
+<rewrite>
+  <outboundRules>
+    <rule name="Add SameSite" preCondition="No SameSite">
+      <match serverVariable="RESPONSE_Set_Cookie" pattern=".*" negate="false" />
+      <action type="Rewrite" value="{R:0}; SameSite=strict" />
+      <conditions>
+      </conditions>
+    </rule>
+    <preConditions>
+      <preCondition name="No SameSite">
+        <add input="{RESPONSE_Set_Cookie}" pattern="." />
+        <add input="{RESPONSE_Set_Cookie}" pattern="; SameSite=strict" negate="true" />
+      </preCondition>
+    </preConditions>
+  </outboundRules>
+</rewrite>
+</system.webServer>
+
+
+11. <compilation debug="false" targetFramework="4.5.1"> - On production environment
+
+
+
+12. If we are parsing user inputed XML file, then we should not validate use the schema file URL which is mentioned in inputed XMLs
+    Also the users can able to use the namespaces, in that they can use other domain's URLs. like this user can able to use our system as proxy to attack other     systems
+
+
+
+13. avoid eval function in js
+eval() executes your JavaScript in the same context (# it will access current conexted properties and damage those)
+as the rest of your application. So we should avoid using this. bcs if any unwanted code injected by third person
+it will damage the application.
+so whereever we are using eval that place we have to do proper user input validation
+
+
+
+14. SQL injection - Valide user input on all dynamic queries ex: Grid pages
+15. Validate Aniforgery token implementation

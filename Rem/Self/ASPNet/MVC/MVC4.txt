@@ -1,0 +1,83 @@
+Ajax form submit
+---------------------
+@using (Ajax.BeginForm("action","controller",new AjaxOptions()))
+To work with this have to include belwo library from nuget
+Microsoft.Jquery.UnObtrusive.Ajax
+
+have to include this js file ~/Scripts/jquery.unobtrusive-ajax.js
+
+
+
+
+in razor if  HTML and CSS attributes are conflicts then we can use @ symbol to sovle this
+ex new{@class="classname"}
+
+
+New in mvc4
+	Asynchronous controllers
+
+@model namespace.modelclass
+@
+{
+ViewBag.Titile="title to be displaied4";
+//This will be used as browser title
+}
+
+
+Action Result
+------------------
+public ActionResult get()
+{
+return View();
+or 
+return new ViewResult();
+}
+
+instead of ActionResult we can able to return
+exact result . Ex
+
+public ViewResult Get()
+{}
+This will work. but problem here is based on some condition
+if we want to return some other result type then we cant use this 
+
+
+View()
+PartialView()
+Redirect()
+RedirectToAction()
+Json()
+Content()
+File()
+HttpNotFound()
+
+to return Empty result we will not any specific helper
+so we can use 
+return new EmptyResult() 
+
+RedirectToAction("Action","Controller",new{queryParam1="",queryParam2="ewr"});
+//this params will appear as query string
+
+
+return Veiw(objModel);
+//This model object will be assigned to 
+//ViewData.Model property. 
+//so that inside view page we are able to use Model.PeropertieName
+//This work will be done by View() helper method.
+
+
+ViewData is a dictionary
+
+In razor if we want to render text without markup inside any razor syntax we can 
+use as below
+
+if(true)
+{
+<text>some text</text>
+}
+//here <text> is not a HTML syntax. but razor will understattnd thsi
+
+
+@Html.Partial("ViewName",objModel)
+
+Here objModel is optional parameter

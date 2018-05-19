@@ -1,0 +1,6 @@
+Fusion is the .NET technology used to locate and load .NET assemblies.
+
+
+.NET assemblies are the fundamental unit of deployment. The technology that actually 
+loads the assemblies is called Fusion.
+Each assembly has its own class loader to load types from that assembly.

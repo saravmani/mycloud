@@ -1,0 +1,24 @@
+The normal way of using filters is to apply attributes. But there is an alternative.
+The Controller class implements the IAuthenticationFilter, IAuthorizationFilter,
+IActionFilter, IResultFilter, and IExceptionFilter interfaces
+#This also provides empty virtual methods for all. 
+But we cant put the common code bcs we have to re-use the code.
+
+
+This technique is most useful when you are creating a base class from which multiple 
+controllers in your project
+are derived. The whole point of filtering is to put code that is required 
+across the application in one reusable location
+
+
+
+Using Global Filters
+----------------------------------
+Global filters are applied to all of the action methods in all of the controllers in your application
+
+
+public class FilterConfig {
+public static void RegisterGlobalFilters(GlobalFilterCollection filters) {
+filters.Add(new HandleErrorAttribute());
+}
+}

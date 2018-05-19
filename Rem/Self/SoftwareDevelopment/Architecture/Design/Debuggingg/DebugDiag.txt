@@ -1,0 +1,6 @@
+The Debug Diagnostic Tool (DebugDiag) is designed to assist in troubleshooting issues such as hangs, slow performance, memory leaks or fragmentation,
+ and crashes in any user-mode process.
+The tool includes additional debugging scripts focused on Internet Information Services (IIS) applications, web data access components, COM+ and
+ related Microsoft technologies.
+
+Speciffically it was designed for IIS. But we can use for any processes.

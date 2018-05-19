@@ -1,0 +1,10 @@
+Ideal-timeout action property in application pool's advanced settings
+------------------------------------------------------------------------
+
+In IIS 8.5 and later, the administrator has the option of suspending an idle worker process rather
+ than terminating it. A suspended worker process remains alive but is paged-out to disk, 
+reducing the system resources it consumes. When a user accesses the site again, the worker 
+process wakes up from suspension and is quickly available. When an idle worker process is terminated, 
+the worker process is shut down, and the startup period will be longer when the site is subsequently 
+accessed. Terminating the process is the default behavior, and the same behavior that has been used 
+in previous versions of IIS prior to IIS 8.5

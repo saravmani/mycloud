@@ -1,0 +1,27 @@
+Compiler
+=======================
+
+compilers have a pipeline structure. Source code processing consists of three main phases: 
+
+Syntax analysis,
+Semantic analysis,
+Code Generation
+
+
+Static code analysis
+----------------------------
+Static Code Analysis feature of Visual Studio performs static code analysis
+on code to help developers identify potential design, globalization, interoperability,
+performance, security, and a lot of other categories of potential problems 
+according to Microsoft's rules that mainly targets best 
+practices in writing code, and there is a large set of those rules
+included with Visual Studio grouped into different categorized targeting 
+specific coding issues like security, design, Interoperability, globalizations and others.
+
+
+Dynamic analysis
+--------------------
+There is also Dynamic analysis which performed on executing programs using 
+software testing techniques such as Code Coverage for example.
+
+#my understanding - it can be analyze memory usage, CPU usage - using redgate mem profiler

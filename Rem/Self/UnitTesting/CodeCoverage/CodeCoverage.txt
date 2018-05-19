@@ -1,0 +1,34 @@
+Coverage is important. but we should not aim for 100%.
+But we should cover the important code parts.
+we should decide which part of our code definetly shoul be coverd
+
+Code Coverage is a measurement of how many lines/blocks/arcs of your code are executed while the automated tests are running.
+
+Code coverage is collected by using a specialized tool to instrument the binaries to add tracing calls and run a full set of automated tests against the instrumented product. A good tool will give you not only the percentage of the code that is executed, but also will allow you to drill into the data and see exactly which lines of code were executed during particular test.
+
+Normally Code coverage should be one of the exit criteria
+
+code coverage is one of our exit criteria for each milestone. 
+We have actually three code coverage metrics -
+  coverage from unit tests (from dev team),  
+  scenario tests (from test team) 
+  and combined coverage.
+
+Code coverage means, how well our testing.
+Code coverage means, how well your test set is covering your source code. i.e. to what extent is the source code covered by the set of Test cases.
+
+As mentioned in above answers, there are various coverage criteria, like paths, conditions, functions, statements, etc. But additional criteria to be covered are
+
+Condition coverage: All boolean expression to be evaluated for true and false.
+Decision coverage: Not just boolean expression to be evaluated for true and false once, but to cover all subsequent if-elseif-else body.
+Loop Coverage: means, Has every possible loop been executed one time, more than once and zero time. Also, if we have assumption on max limit, then, if feasible, test maximum limit times and, one more than maximum limit times.
+Entry and Exit Coverage: Test for all possible call and its return value.
+Parameter Value Coverage(PVC). To check if all possible values for a parameter are tested. For example, a string could be any of these commonly: a) null, b) empty, c) whitespace (space, tabs, new line), d) valid string, e) invalid string, f) single-byte string, g) double-byte string. Failure to test each possible parameter value may leave a bug. Testing only one of these could result in 100% code coverage as each line is covered, but as only one of seven options are tested, means, only 14.2% coverage of parameter value.
+Inheritance Coverage: In case of object oriented source, when returning a derived object referred by base class, coverage to evaluate, if sibling object is rethould be tested.
+
+
+
+DotCover is a unit test runner tool.(but costs). it will shows the code coverage details
+
+opencover - it is free code cover tool. it will work with nUnit
+OpenCover is a free and open source code coverage tool for .NET.  It is a command-line utility that performs statement and branch coverage analysis.  It generates XML output, but you can use a report generator tool to create reports from the output.

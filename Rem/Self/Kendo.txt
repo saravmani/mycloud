@@ -1,0 +1,5 @@
+Culture change for kendo calendar
+-------------------------------------
+   $("#calendar").kendoCalendar({
+        culture: "de-DE"
+    });

@@ -1,0 +1,60 @@
+If return type is void then server will response with 204 status code. which means "No Content"
+Just validate above line
+
+what will haappen on below both results? If .net client using this then will it automatically navigate to new action
+Redirect()	Creates a RedirectResult with status code 302.
+RedirectToRoute()	Creates a RedirectToRouteResult with status code 302.
+
+sample client code
+------------------
+public class StudentController : Controller
+{
+    // GET: Student
+    public ActionResult Index()
+    {
+        IEnumerable<StudentViewModel> students = null;
+
+        using (var client = new HttpClient())
+        {
+            client.BaseAddress = new Uri("http://localhost:64189/api/");
+            //HTTP GET
+            var responseTask = client.GetAsync("student");
+            responseTask.Wait();
+
+            var result = responseTask.Result;
+            if (result.IsSuccessStatusCode)
+            {
+                var readTask = result.Content.ReadAsAsync<IList<StudentViewModel>>();
+                readTask.Wait();
+
+                students = readTask.Result;
+            }
+            else //web api sent error response
+            {
+                //log response status here..
+
+                students = Enumerable.Empty<StudentViewModel>();
+				//Note this model state object. This will be used to dsipaly error message at CSHTML
+				//We can use ValidationSummery() method to display the error messages
+				//Ex:  @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+
+            }
+        }
+        return View(students);
+    }
+}
+
+
+
+MessageHandlers
+----------------------------
+check message handlers.. check the pipline..
+message handlers will get called before routing happened??
+
+HttpServer gets the request from the host.
+HttpRoutingDispatcher dispatches the request based on the route.
+HttpControllerDispatcher sends the request to a Web API controller.
+
+
+Dealing with Cancellation - try cancelation token.. try to send cancel request fro browser and check is it getting triggered at server end

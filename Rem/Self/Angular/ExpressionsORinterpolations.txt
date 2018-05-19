@@ -1,0 +1,9 @@
+<img class="img-responsive" ng-src="{{currentExercise.details.image}}" />
+
+
+//Progress bar
+<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" 
+aria-valuemax="{{currentExercise.duration}}" 
+ng-style=
+"{'width':(currentExerciseDuration/currentExercise.duration)* 100 + '%'}">
+</div>

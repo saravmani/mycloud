@@ -1,0 +1,5 @@
+we install it as a visual studio extension
+or 
+install using nuget package manager
+
+if we install using nuget pacakge mngr., then this package will be as part of the project

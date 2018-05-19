@@ -1,0 +1,749 @@
+
+
+On Thu, Feb 15, 2018 at 8:18 AM, sirisha p <psirisha1592@gmail.com> wrote:
+import { Component, AfterViewInit, OnInit, OnDestroy, HostListener, NgZone, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, FormArray, Validators, AbstractControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { Observable, Subscription } from 'rxjs/Rx';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/observable/forkJoin';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/observable/zip';
+
+import { ApiTimeoutService, DateUtils, LoggerService } from '../../lib/kpmgBteCore';
+import { Client, EngagementNumber, Project, ProjectPeriod, Lookup, OpportunityId, ProjectType, Rule5253, RuleType5253 } from '../../lib/kpmgBteEntities';
+import {
+    AllWhitespaceValidator,
+    AppSignalService,
+    ComponentCanDeactivate,
+    containsHtml,
+    LoadingIndicatorService,
+    SafeInputValidator,
+    ToastrService,
+    WindowRef
+} from '../../lib/kpmgBteUiToolkit';
+
+import { IdValidator } from '../shared';
+
+import {
+    AppContextStore,
+    ClientsService,
+    EnvSettingsService,
+    ProjectsService
+} from '../core';
+import { TaxYearDateValidator } from './tax-year-date.validator';
+
+declare var jquery: any;
+declare var $: any;
+
+
+@Component({
+    selector: 'create-project',
+    templateUrl: 'create-project.component.html'
+})
+export class CreateProjectComponent implements OnInit, OnDestroy, ComponentCanDeactivate {
+    @ViewChild('formContent') formContentElement;
+
+    //Subscriptions
+    private _hostMessageSub: Subscription;
+    private _apiTimeoutSub: Subscription;
+    private _clientSub: Subscription;
+    private _projectSub: Subscription;
+    private _day5253Lookup: Array<string>;
+    private _taxYearBeginFieldSub: Subscription;
+    private _taxYearEndFieldSub: Subscription;
+    private _taxYearSub: Subscription;
+
+    // Client context
+    clientId: number;
+    projectId: number;
+    // Display flags
+    formInitError: boolean;
+    isFormReady: boolean;
+    // Logout flag
+    isLogoutActive: boolean;
+    // Lookup data
+    clients: Client[];
+    projects: Project[];
+    taxYears: Lookup[];
+    projectTypes: ProjectType[];
+    periods: ProjectType[];
+    ruleData: Rule5253;
+    rolloverData: Lookup[];
+    ruleTypes: RuleType5253;
+    periodData: ProjectPeriod[];
+    // Data models
+    client: Client;
+    project: Project;
+    emptyProject: Project;
+    initialClient: Client;
+    opportunityIds: OpportunityId[];
+    initialOpportunityIds: OpportunityId[];
+    engagementNbrs: EngagementNumber[];
+    initialEngagementNbrs: EngagementNumber[];
+    // Form state flags
+    projNameChangedManually: boolean;
+    isDuplicateProj: boolean;
+    hasOriginalProjValues: boolean;
+    appContextChangeSrc: boolean = false;
+    // Search field
+    isEditingClientName: boolean;
+    searching;
+    searchFailed;
+    // Form elements
+    projSetupForm: FormGroup;
+    buttonText;
+    // Date field min/max limits
+    maxTaxYearBegin: Date;
+    minTaxYearEnd: Date;
+
+    nextOpportunityId: number;
+    nextEngagementNbr: number;
+
+    constructor(private _projService: ProjectsService,
+        private _clientsService: ClientsService,
+        private _envSettings: EnvSettingsService,
+        private _appContextStore: AppContextStore,
+        private _apiTimeoutService: ApiTimeoutService,
+        private _appSignalService: AppSignalService,
+        private _loadingIndicatorService: LoadingIndicatorService,
+        private _toastrSvc: ToastrService,
+        private _loggerSvc: LoggerService,
+        private _route: ActivatedRoute,
+        private _router: Router,
+        private _windowRef: WindowRef,
+        private _fb: FormBuilder
+    ) {
+        this.formInitError = false;
+        this.isFormReady = false;
+        this.isLogoutActive = false;
+        this.project = null;
+        this.initialClient = null;
+        this.clients = [];
+        this.projects = [];
+        this.taxYears = [];
+        this.periods = [];
+        this.periodData = [];
+        this.projectTypes = [];
+        this.opportunityIds = [];
+        this.engagementNbrs = [];
+        this.initialOpportunityIds = [];
+        this.initialEngagementNbrs = [];
+        this.ruleData = null;
+        this.ruleTypes = null;
+        this.rolloverData = null;
+        this.projNameChangedManually = false;
+        this.isDuplicateProj = false;
+        this.hasOriginalProjValues = true;
+        this.isEditingClientName = false;
+        this.searching = false;
+        this.searchFailed = false;
+        this.nextOpportunityId = -1;
+        this.nextEngagementNbr = -1;
+        this._day5253Lookup = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+        // Create the reactive Form group.
+        this.projSetupForm = this._fb.group({
+            client: ['', [IdValidator.hasValidId, Validators.required, AllWhitespaceValidator.hasAllWhitespace]],
+            projectType: ['', [IdValidator.hasValidId, Validators.required]],
+            period: ['', Validators.required],
+            projectName: ['', [Validators.required, Validators.maxLength(100), AllWhitespaceValidator.hasAllWhitespace, SafeInputValidator.containsNoHtml]],
+            taxYear: ['', [IdValidator.hasValidId, Validators.required]],
+            opportunityId: ['', [Validators.maxLength(50), AllWhitespaceValidator.hasAllWhitespace, SafeInputValidator.containsNoHtml]],
+            engagementNumber: ['', [Validators.maxLength(50), AllWhitespaceValidator.hasAllWhitespace, SafeInputValidator.containsNoHtml]],
+            beginDate: ['', Validators.required],
+            endDate: ['', Validators.required],
+            day5253: '',
+            rule5253: '',
+            is5253: '',
+            isShortYear: ''
+        }, { validator: TaxYearDateValidator.hasValidTaxYearDates('beginDate', 'endDate') });
+        this.projSetupForm.controls['period'].disable();
+
+        // Register for client changes because we are using a typeahead directive to set model value.
+        // We also need to make sure the project doesn't already exist.
+        this.projSetupForm.controls['client'].valueChanges.subscribe(client => {
+            if (!client) {
+                // The user dismissed the search results without a selection
+                this.clientId = null;
+                this.client = null;
+            }
+            else {
+                this.editingClientName(false);
+                //this.checkDuplicateProject();
+            }
+        });
+
+        // Subscribe to changes in the 'taxYearBegin' field so that we can set the minimum date limit on the 'taxYearEnd' field
+        this._taxYearBeginFieldSub = this.projSetupForm.controls['beginDate'].valueChanges.subscribe(data => {
+            if (data) {
+                this.minTaxYearEnd = data;
+                this.hasOriginalProjValues = false;
+            }
+        });
+
+        // Subscribe to changes in the 'taxYearEnd' field so that we can set the 52/53 Day field
+        this._taxYearEndFieldSub = this.projSetupForm.controls['endDate'].valueChanges.subscribe(data => {
+            if (data) {
+                this.projSetupForm.patchValue({ day5253: data.getDay() });
+                this.maxTaxYearBegin = data;
+                this.hasOriginalProjValues = false;
+                this.setProjectName();
+            }
+        });
+
+        this._taxYearSub = this.projSetupForm.controls['taxYear'].valueChanges.subscribe(ty => {
+            if (ty > 0) {
+                let startDt: Date = new Date(ty, 0, 1);
+                let endDt: Date = new Date(ty, 11, 31);
+                this.projSetupForm.patchValue({ beginDate: startDt, endDate: endDt });
+            } else {
+                this.projSetupForm.patchValue({ beginDate: '', endDate: '' });
+            }
+        });
+    }
+
+    ngOnInit(): void {
+        // Subscribe to web api timeouts
+        this._apiTimeoutSub = this._apiTimeoutService.apiTimeout$.subscribe(data => {
+            this.isLogoutActive = true;
+        });
+
+        this._route.queryParams.subscribe(params => {
+            let pid = +params['projectId'] || 0;
+           
+            if (pid > 0) {
+                //Form is in Edit Mode
+                Observable.zip(
+                    this._appContextStore.client$,
+                    this._appContextStore.project$
+                ).subscribe(
+                    responses => {
+                        // This will fire whenever one of the above streams publishes a new value
+                        this.client = responses[0];
+                        this.project = responses[1];
+                        this.initialClient = this.client;
+
+                        // Wait until all lookup data is available
+                        if (this.client && this.project && !this.appContextChangeSrc) {
+                            this.setInitialFormValues();
+                        }
+                    },
+                    error => {
+                        this.showInitializationError(error);
+                    }
+                );
+            } else {
+                //Form is in Create Mode
+                this._clientSub = this._appContextStore.client$.subscribe(client => {
+                    if (client && !this.appContextChangeSrc) {
+                        this.client = client;
+                        this.initialClient = this.client;
+                        this.setInitialFormValues();
+                    }
+                });
+            }
+        });
+
+        this.initialize();       
+    }
+
+    ngOnDestroy(): void {
+        if (this._apiTimeoutSub) {
+            this._apiTimeoutSub.unsubscribe();
+        }
+
+        if (this._clientSub) {
+            this._clientSub.unsubscribe();
+        }
+
+        if (this._projectSub) {
+            this._projectSub.unsubscribe();
+        }
+
+        if (this.projSetupForm) {
+            this.projSetupForm.clearAsyncValidators();
+            this.projSetupForm.clearValidators();
+            this.projSetupForm = null;
+        }
+
+        // Unsubscribe from form events
+        if (this._taxYearBeginFieldSub) {
+            this._taxYearBeginFieldSub.unsubscribe();
+        }
+
+        if (this._taxYearEndFieldSub) {
+            this._taxYearEndFieldSub.unsubscribe();
+        }
+
+        if (this._taxYearSub) {
+            this._taxYearSub.unsubscribe();
+        }
+    }
+
+    initialize(): void {
+        this.setSaveButtonText();
+         //Execute service calls in parallel and join to all observable results
+        // Retrieve lookup data
+        Observable.zip(
+            this._appContextStore.projectTypes$,
+            this._appContextStore.projectPeriods$,
+            this._appContextStore.rule5253Data$
+        ).subscribe(
+            responses => {
+                // This will fire whenever one of the above streams publishes a new value
+                this.projectTypes = responses[0];
+                this.periods = responses[1];
+                this.ruleData = responses[2];
+
+                // Wait until all lookup data is available
+                if (this.projectTypes.length > 0 &&
+                    this.periods.length > 0 &&
+                    this.ruleData) {
+                    this.rolloverData = this.ruleData.rollover5253EndOfYear;
+
+                    //Adding empty value to list so IE will not show the first value as default value in dropdown
+                    let emptyProjectType: ProjectType = { projectTypeId: -1, projectTypeCode: '', projectTypeDesc: '', showInUi: false, projectPeriods: null };
+                    this.projectTypes.unshift(emptyProjectType);
+
+                    // Setup tax years
+                    this.taxYears = [{ id: -1, code: '', description: '' }] as Lookup[];
+                    for (let i: number = 2000; i <= 2040; i++) {
+                        this.taxYears.push({ id: i, code: '', description: i.toString() } as Lookup);
+                    }
+
+                    this.setInitialFormValues();
+                }
+            },
+            error => {
+                this.showInitializationError(error);
+            }
+            );
+    }
+
+    setInitialFormValues(): void {
+        if (this.client && this.project) {
+            let yearEndDay = this.project.rule5253 ? this._day5253Lookup[this.project.rule5253.ruleType5253.rollover5253YearEndDay - 1] : null;
+            let yearEndRule = this.project.rule5253 ? this.project.rule5253.rollover5253EndOfYear.code : null;
+            let periodData = this.periods.filter(et => et.projectTypeId === this.project.projectType.projectTypeId)[0];
+            if (periodData) {
+                this.periodData = periodData.projectPeriods;
+            }
+            this.projNameChangedManually = true;
+            this.projSetupForm.patchValue({
+                projectId: this.project.projectId,
+                projectName: this.project.projectName,
+                projectType: this.project.projectType.projectTypeId,
+                period: this.project.projectType.projectPeriod ? this.project.projectType.projectPeriod.projectPeriodId : null,
+                taxYear: this.project.year,
+                is5253: this.project.is5253Week,
+                isShortYear: this.project.isShortYear,
+                day5253: yearEndDay,
+                rule5253: yearEndRule,
+                client: this.client
+            });
+            this.opportunityIds = this.project.opportunityIds ? this.project.opportunityIds : null;
+            this.engagementNbrs = this.project.engagementNumbers ? this.project.engagementNumbers : null;
+            this.initialOpportunityIds = this.opportunityIds;
+            this.initialEngagementNbrs = this.engagementNbrs;
+            this.projSetupForm.controls['projectType'].disable();
+            this.projSetupForm.controls['period'].disable();
+            this.projSetupForm.controls['taxYear'].disable();
+            //Need to patch these separately as setting TaxYear triggers value change event and these values are overwritten.
+            this.projSetupForm.patchValue({
+                beginDate: new Date((DateUtils.convertDateToLocal(this.project.beginDate)).toString()),
+                endDate: new Date((DateUtils.convertDateToLocal(this.project.endDate)).toString())
+            });
+            this.checkManualProjNameChange();
+            this.setSaveButtonText();
+            this.projSetupForm.markAsPristine();
+        } else if (this.client) {
+            //Update initial form values
+            this.projSetupForm.patchValue({
+                client: this.client
+            })
+        } else {
+             //No clientId specified so clear the form
+            this.resetProjectSelection();
+        }
+    }
+
+    addEngagementNbr(): void {
+        let newEngNbr = this.projSetupForm.get('engagementNumber').value;
+        if (newEngNbr && !this.engagementNbrs.some(nbr => nbr.id === newEngNbr)) {            
+            let engagementNbr: EngagementNumber = { id: newEngNbr, xrefId: this.nextEngagementNbr };
+            this.nextEngagementNbr--;
+            this.engagementNbrs.push(engagementNbr);
+            this.projSetupForm.patchValue({
+                engagementNumber: ''
+            });
+            this.hasOriginalProjValues = false;
+        }
+    }
+
+    //checkEngagementNbr(): boolean {
+    //    let areEngagementNbrsSame = this.engagementNbrs.every(nbr => {
+    //        return this.initialEngagementNbrs.some(iniEngNbr => iniEngNbr.id === nbr.id);
+    //    });
+    //    return !areEngagementNbrsSame;
+    //}
+
+    //checkOpportunityIds(): boolean {
+    //    let areOpportunityIdsSame = this.opportunityIds.every(nbr => {
+    //        return this.initialOpportunityIds.some(iniOppId => iniOppId.id === nbr.id);
+    //    });
+    //    return !areOpportunityIdsSame;
+    //}
+
+    addOppurtunityIds(): void {
+        let newOppId = this.projSetupForm.get('opportunityId').value;
+        if (newOppId && !this.opportunityIds.some(nbr => nbr.id === newOppId)) {
+            let opportunityId: OpportunityId = { id: newOppId, xrefId: this.nextOpportunityId };
+            this.nextOpportunityId--;
+            this.opportunityIds.push(opportunityId);
+            this.projSetupForm.patchValue({
+                opportunityId: ''
+            });            
+            this.hasOriginalProjValues = false;
+        }
+    }
+
+    removeEngagementNbr(xrefId: number): void {
+        let index: number = this.engagementNbrs.map(y => { return y.xrefId; }).indexOf(xrefId);
+        if (index > -1) {
+            this.engagementNbrs.splice(index, 1);
+        }
+        this.hasOriginalProjValues = false;
+        this.projSetupForm.markAsDirty();
+    }
+
+    removeOppurtunityIds(xrefId: number): void {
+        let index: number = this.opportunityIds.map(y => { return y.xrefId; }).indexOf(xrefId);
+        if (index > -1) {
+            this.opportunityIds.splice(index, 1);
+        }
+        this.hasOriginalProjValues = false;
+        this.projSetupForm.markAsDirty();
+    }
+
+    // Clear the list of projects and the active project and resets the project field to a pristine state.
+    resetProjectSelection(): void {
+        this.projects = [];
+        this.project = null;
+        this.projSetupForm.patchValue({
+            projectId: -1,
+            taxYear: this.taxYears[0].id,
+            projectType: '',
+            projectName: '',
+            period:'',
+            beginDate: '',
+            endDate: '',
+            is5253:false,
+            opportunityId: '',
+            engagementNumber: ''
+        });
+        this.projSetupForm.controls['taxYear'].enable();
+        this.projSetupForm.controls['projectType'].enable();
+        this.engagementNbrs = [];
+        this.opportunityIds = [];
+        this.projSetupForm.reset();
+        this.projNameChangedManually = false;
+        this.hasOriginalProjValues = true;
+        this.setSaveButtonText();
+    }
+
+    showInitializationError(error: any): void {
+        // An error was thrown by one of the service calls. Notify the user that the form cannot be used
+        this._loggerSvc.error(error);
+        this.formInitError = true;
+        
+        // Remove the form markup from the page to prevent tampering with its "hidden" attribute
+        this.formContentElement.nativeElement.remove();
+    }
+
+    editingClientName(isEditing: boolean): void {
+        this.isEditingClientName = isEditing;
+        //this._appContextStore.setClient(this.client);
+    }
+    // Called when the user selects a client
+    onClientSelected(event: any): void {
+        this.client = event.item;
+        this.resetProjectSelection();
+    }
+    // Set the text of the save button based on the existence of a selected engagement.
+    setSaveButtonText(): void {
+        this.buttonText = (!this.project || this.project.projectId <= 0) ? 'Create Project' : 'Edit Project';
+    }
+
+    projectTypeChanged(): void {
+        this.setPeriods();
+        this.setProjectName();
+    }
+
+    // Formats the engagement name field if the name is not manually edited.
+    setProjectName(): void {
+        let name = this.generateProjName();
+        if (name !== "") {
+            this.projSetupForm.patchValue({ projectName: name });
+        }
+    }
+
+    generateProjName(): string {
+        let taxYearId: number = +this.projSetupForm.get('taxYear').value;
+        let projTypeId: number = +this.projSetupForm.get('projectType').value;
+        let projPeriodId: number = +this.projSetupForm.get('period').value;
+        let taxYearEnd: Date = this.projSetupForm.get('endDate').value;
+        let projName = "";
+        if (projTypeId > 0 && taxYearId > 0 && this.projectTypes.length > 0) {
+            let projType = this.projectTypes.filter(et => et.projectTypeId === projTypeId)[0].projectTypeDesc;
+            let projPeriods = this.periods.filter(pp => pp.projectTypeId === projTypeId)[0];
+            let projPeriodCode = projPeriodId > 0 ? projPeriods.projectPeriods.filter(p => p.projectPeriodId === projPeriodId)[0].projectPeriodDispName : '';
+            if (!this.projNameChangedManually) {
+                projName = (projType !== '' && taxYearId !== -1)
+                    ? `${taxYearId} ${projType} ${projPeriodCode}`
+                    : '';
+                projName = taxYearEnd ? projName + ` (YE: ${taxYearEnd.toLocaleDateString()})` : projName;
+                this.projSetupForm.patchValue({ projectName: projName });
+            }
+        }
+        return projName;
+    }
+
+    //sets the period data once the projecttype is selected
+    setPeriods(): void{
+        let projTypeId: number = +this.projSetupForm.get('projectType').value;
+        this.projSetupForm.patchValue({ period: null });
+
+        let emptyPeriod: ProjectPeriod = { projectPeriodId: -1, projectPeriodCode: '', projectPeriodDesc: '', projectPeriodDispName: ''};
+        this.periodData = null;
+        //if (this.project) { this.project.projectId = -1 };
+        if (projTypeId) {
+            let periodData = this.periods.filter(et => et.projectTypeId === projTypeId)[0];
+            if (periodData) {
+                this.periodData = periodData.projectPeriods;
+                this.periodData.unshift(emptyPeriod);
+            }
+        }
+        if (this.periodData && this.periodData.length > 0) {
+            this.projSetupForm.controls['period'].setValidators([IdValidator.hasValidId, Validators.required]);
+            this.projSetupForm.controls['period'].enable();
+        } else {
+            this.projSetupForm.controls['period'].clearValidators();
+            this.projSetupForm.controls['period'].disable();
+        }
+        this.projSetupForm.controls['period'].updateValueAndValidity();
+        this.setSaveButtonText();
+    }
+
+    is5253Changed(): void {
+        if (this.projSetupForm.controls['is5253'].value === true) {
+            this.projSetupForm.controls['rule5253'].setValidators([IdValidator.hasValidId, Validators.required]);
+            this.projSetupForm.controls['day5253'].setValidators([Validators.required]);
+        } else {
+            this.projSetupForm.controls['rule5253'].clearValidators();
+            this.projSetupForm.controls['day5253'].clearValidators();
+        }
+        this.projSetupForm.controls['rule5253'].updateValueAndValidity();
+        this.projSetupForm.controls['day5253'].updateValueAndValidity();
+        this.projSetupForm.controls['day5253'].disable();
+    }
+
+    // Checks if the taxform and project type combination already exists for this project
+    checkDuplicateProject(): void {
+        let projTypeId = +this.projSetupForm.get('projectType').value;
+        let taxYear = +this.projSetupForm.get('taxYear').value;
+        let projPeriodId: number = +this.projSetupForm.get('period').value;
+
+        this.hasOriginalProjValues = true;
+
+        let returnTypeId = this.projectTypes.length > 0 ? this.projectTypes.filter(pt => pt.projectTypeCode === 'RETN')[0].projectTypeId : 0;
+        if (this.client && projTypeId > 0 && taxYear > 0 && (projPeriodId > 0 || projTypeId === returnTypeId)) {
+            let originalProjPeriodId = this.project.projectType.projectPeriod ? this.project.projectType.projectPeriod.projectPeriodId : 0;
+            if (this.project && (this.project.year !== taxYear || this.project.projectType.projectTypeId !== projTypeId || (originalProjPeriodId !== projPeriodId && projTypeId === returnTypeId))) {
+                this.hasOriginalProjValues = false;
+            }
+            this._projService.doesProjectExist(this.client.clientId, projTypeId, projPeriodId, taxYear).subscribe(
+                (result: boolean) => {
+                    this.isDuplicateProj = result;
+                    if (this.isDuplicateProj) {
+                        this._toastrSvc.setWarningMessage('A Project already exists for the given Tax Year and Project Type.');
+                    }
+                }, error => {
+                    this.isDuplicateProj = false;
+                }
+            );
+        } else {
+            this.isDuplicateProj = false;
+        }     
+    }
+
+    // Checks if the name was manually edited
+    checkManualProjNameChange(): void {
+        let projectName = this.projSetupForm.get('projectName').value;
+        let name = this.generateProjName();
+        this.projNameChangedManually = (projectName !== name);
+    }
+
+    // Observable stream that searches the list of clients,
+    //  - searchPhrase: The search phrase to use when matching client names.
+    clientSearchStream = (searchPhrase$: Observable<string>) =>
+        searchPhrase$
+            .debounceTime(250)
+            .distinctUntilChanged()
+            .do(term => {
+                this.projSetupForm.controls['client'].markAsDirty();
+                this.searching = (term.length >= 3);
+                this.resetProjectSelection();
+            })
+            .switchMap(term =>
+                (term.length < 3) ? [] : this._clientsService.searchClients(term)
+                    .switchMap(clients => {
+                        this.searchFailed = false;
+                        // Only return the max number of results
+                        if (clients.length > this._envSettings.preferences.maxClientSearchResults) {
+                            let maxClients = clients.slice(0, this._envSettings.preferences.maxClientSearchResults);
+                            return Observable.of(maxClients);
+                        }
+
+                        return Observable.of(clients);
+                    })
+                    .catch(() => {
+                        this.searchFailed = true;
+                        return Observable.of([]);
+                    })
+            )
+            .do(() => this.searching = false)
+
+    // Converts the selected client into it's client name for display in the "Client" field.
+    clientNameFormatter = (result: Client) => result.clientName;
+
+    // Saves a new engagement or edits to an existing engagement.
+    saveProject(): void {
+        if (!this.isFormDisabled()) {
+            const formData = this.projSetupForm.getRawValue();
+
+            //Get Project Types details using select Project Type Id
+            let projTypeId: number = +formData.projectType;
+            let projTypeDetails = this.projectTypes.filter(pt => pt.projectTypeId === projTypeId)[0];
+
+            //Get Project Period details using selected Project Period
+            let projPeriodId: number = +formData.period;
+            let projPeriods: ProjectPeriod = null;
+            if (projPeriodId > 0) {
+                projPeriods = this.periods.filter(pt => pt.projectTypeId === projTypeId)[0].projectPeriods.filter(pp => pp.projectPeriodId === projPeriodId)[0];                
+            }
+
+
+            //Get 5253 details
+            let rollOverEndofYear: Lookup = null;
+            let rollOverYearEndDay: number = 0;
+            let ruleType5253: RuleType5253 = null;
+            if (formData.is5253 === true) {
+                rollOverEndofYear = this.rolloverData.filter(ro => ro.code === formData.rule5253)[0];
+                let endDate: Date = formData.endDate;
+                //Sunday is 1, index start from 0
+                rollOverYearEndDay = +(endDate.getDay() + 1);
+                ruleType5253 = this.ruleData.ruleType5253.filter(rt => rt.rollover5253YearEndDay === rollOverYearEndDay && rt.rollover5253EndOfYearRuleId === rollOverEndofYear.id)[0];
+            }
+
+            let project: Project = null;
+            project = {
+                projectId: (this.project && this.project.projectId > 0) ? this.project.projectId : -1,
+                projectName: formData.projectName,
+                clientId: this.client.clientId,
+                year: +formData.taxYear,
+                projectType: {
+                    projectTypeId: projTypeDetails.projectTypeId,
+                    projectTypeCode: projTypeDetails.projectTypeCode,
+                    projectTypeDesc: projTypeDetails.projectTypeDesc,
+                    projectPeriod: projPeriods,
+                    showInUi: projTypeDetails.showInUi
+                },
+                projectCategory: null,
+                beginDate: DateUtils.convertDateToUtc(formData.beginDate),
+                endDate: DateUtils.convertDateToUtc(formData.endDate),
+                is5253Week: formData.is5253 ? true : false,
+                isShortYear: formData.isShortYear ? true : false,
+                rule5253: formData.is5253 === true ? {
+                    rollover5253EndOfYear: rollOverEndofYear,
+                    ruleType5253: ruleType5253
+                } : null,
+                opportunityIds: this.opportunityIds,
+                engagementNumbers: this.engagementNbrs
+            };
+
+            if (this.project && this.project.projectId > 0) {
+                this._projService.editProject(this.client.clientId, this.project.projectId, project).subscribe(
+                    (data: Project) => {
+                        // Update current project
+                        this._appContextStore.setProject(data);
+                        this.appContextChangeSrc = true;
+                        // Navigate to home page
+                        this._router.navigate(['/project'], { queryParams: { clientId: this.client.clientId, projectId: data.projectId } });
+                    },
+                    error => {
+                        this._toastrSvc.setErrorMessage('An error occurred while attempting to save the Project information. The information was not saved.');
+                    }
+                );
+            } else {
+                this._projService.saveProject(this.client.clientId, project).subscribe(
+                    (data: Project) => {
+                        if (this.client.clientId !== this.initialClient.clientId) {
+                            this._appContextStore.setClient(this.client);
+                        }
+                        // Update current project
+                        this._appContextStore.setProject(data);
+                        this.appContextChangeSrc = true;
+                        // Navigate to home page
+                        this._router.navigate(['/project'], { queryParams: { clientId: this.client.clientId, projectId: data.projectId } });
+                    },
+                    error => {
+                        this._toastrSvc.setErrorMessage('An error occurred while attempting to save the Project information. The information was not saved.');
+                    }
+                );
+            }
+        }
+    }
+
+    isFormDisabled(): boolean {
+        return this.projSetupForm.pristine || !this.projSetupForm.valid || this.hasOriginalProjValues;
+    }
+
+    // ADD ADDITIONAL METHODS HERE. LEAVE THE METHODS BELOW AT THE BOTTOM OF THE FILE SO THAT WE 
+    // HAVE A CONSISTENT PLACE TO LOOK FOR THE "CanDeactive" FUNCTIONALITY.
+
+    hasChanges(): boolean {
+        // Determine if there are form changes
+        return false;
+    }
+
+    // Determines if the user can navigate away from this page without confirming the need to save changes.
+    canDeactivate(): Observable<boolean> | boolean {
+        return !this.hasChanges();
+    }
+
+    // @HostListener allows us to also guard against browser refresh, close, etc.
+    @HostListener('window:beforeunload', ['$event'])
+    unloadNotification($event: any): void {
+        if (!this.isLogoutActive && !this.canDeactivate()) {
+            $event.returnValue = 'WARNING: You have unsaved changes. Press Cancel to go back and save these changes, or OK to lose these changes.';
+        }
+    }
+}
+Thanks and Regards
+
+Sirisha Pogaku
+937-815-8081
+
+
+
+
+-- 
+
+
+By,
+N.SaravanaManikandan

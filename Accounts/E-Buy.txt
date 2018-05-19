@@ -1,0 +1,13 @@
+{[
+
+{'domain':'amazon',
+'loginId':'winnerrs.mani@gmail.com',
+'pwd':'c-stdpwd'},
+
+{'domain':'irctc',
+'loginId':'winmani',
+'pwd':'c-stdpwd-1#'}
+
+
+]}
+ 

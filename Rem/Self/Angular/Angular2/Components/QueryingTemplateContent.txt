@@ -1,0 +1,28 @@
+﻿Querying Template Content
+==============================
+Components can query the content of their templates to locate instances of directives or components, 
+which are known as view children. These are similar to the directive content children queries
+
+  @ViewChildren(PaCellColor)  viewChildren: QueryList<PaCellColor>;
+  ngAfterViewInit() {
+    this.viewChildren.changes.subscribe(() => {
+      //some work
+    });
+  }
+
+I implement the ngAfterViewInit method to ensure that Angular has processed the
+component’s template and set the result of the query. 
+Within the method I perform the initial call to the updateViewChildren method,
+
+
+  There are two property decorators that are used to query for directives or components
+
+  @ViewChild(class) - This decorator tells Angular to query for the first directive or component. 
+  Multiple classes or templates can be separated by commas.
+
+@ViewChildren(class) - this returns QueryList Collection of objects
+
+
+ngAfterViewInit  - The results of the view queries are set before this method is invoked.
+
+# i guess QueryList.changes property, is will called when new child component added

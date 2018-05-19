@@ -1,0 +1,30 @@
+import { Directive, HostBinding } from "@angular/core";
+@Directive({
+  selector: "td"
+})
+export class PaCellColor {
+  @HostBinding("class")
+  bgClass: string = "";
+  setColor(dark: Boolean) {
+    this.bgClass = dark ? "bg-inverse" : "";
+  }
+}
+
+
+import {
+  Directive, Input, Output, EventEmitter,
+  SimpleChange, ContentChild
+} from "@angular/core";
+import { PaCellColor } from "./cellColor.directive";
+@Directive({
+  selector: "table"
+})
+export class PaCellColorSwitcher {
+  @Input("paCellDarkColor")  modelProperty: Boolean;
+  @ContentChild(PaCellColor)  contentChild: PaCellColor;
+  ngOnChanges(changes: { [property: string]: SimpleChange }) {
+    if (this.contentChild != null) {
+      this.contentChild.setColor(changes["modelProperty"].currentValue);
+    }
+  }
+}

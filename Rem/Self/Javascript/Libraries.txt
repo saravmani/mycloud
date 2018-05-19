@@ -1,0 +1,66 @@
+WebGL 
+	WebGL (Web Graphics Library) is a JavaScript API for rendering interactive 3D computer graphics and 2D graphics within any compatible web browser without the use of plug-ins.
+	WebGL uses hardware acceleration (It means the graphical rendering is done on dedicated hardware (your GPU / graphics card) rather than your CPU. Hardware acceleration generally produces more fluid animation)
+
+
+winjs - for cross platform developmen
+
+
+snap.js
+	what is snap.js. I found this in mobile app (patterns)
+
+
+javascript libraries
+----------------------
+Backbone.js- MVC framework .. used for SPA.
+Lodash.js this is javascrpt library like Underscore. Helper library
+Lodash makes JavaScript easier by taking the hassle out of working with arrays,
+ numbers, objects, strings, etc. Lodash’s modular methods are great for:
+•Iterating arrays, objects, & strings
+•Manipulating & testing values
+•Creating composite functions
+
+Javascript validators
+----------------------------
+http://www.jslint.com/
+www.jshint.com
+
+Secure javascript
+-----------------------
+To run third party scripts we can use below libraries.
+Caja
+ADSafe
+
+
+module loaders
+--------------------
+like c# 'use namespaceName', in Web Browsers have no concept of modules or import,
+they just know how to load javascript code.
+for that we need few module loaders
+RequireJS
+SystemJS - System.js is the one that Angular team prefers.
+Webpack
+
+
+WebPack and UglifyJs
+------------------------------
+Webpack is a JavaScript module bundler. It takes modules with their dependencies and
+generates static assets representing those modules. Webpack known only how to bundle
+JavaScript. To bundle other assets likes CSS, HTML, images or just about anything it uses
+additional loaders. Webpack can also be extended via plugins, for example minification and
+mangling can be done using the UglifyJS plugin for webpack.
+
+
+
+
+zone.js
+--------
+One of the complexities of Angular 1 is its digest loop, which helps Angular 1 figure out
+the changes in the model and refresh the view. In Angular 2 we don’t have this concept
+anymore. In Angular 2, all browser events are “monkey-patched”, so even if you an
+event handler outside your Angular app, it will still be notified and can detect changes in
+objects. Angular team have extracted this part from the core Angular script and opensourced
+it as a separate library that can be re-used by others. This library is called
+zone.js
+
+A Zone is an execution context that persists across async tasks. You can think of it as thread-local storage for JavaScript VMs.

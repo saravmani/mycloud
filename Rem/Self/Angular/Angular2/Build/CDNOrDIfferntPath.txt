@@ -1,0 +1,47 @@
+To use a different relative path (like for ASP.NET or Java served index.html):
+ng build --prod --deploy-url=/other/rel/path
+
+
+So in output
+<!-- custom relative path `index.html` -->
+<!-- ng build --prod --deploy-url=/other/rel/path -->
+<link href="/other/rel/path/styles.01c9c7541bd61c4e640f.bundle.css" rel="stylesheet"/>
+...
+<script type="text/javascript" src="/other/rel/path/main.088b42e8ae877c102072.bundle.js"> 
+
+Similarly, to use a different host/server (like a CDN):
+ng build --prod --deploy-url=https://example-cdn.com/my-project
+
+<!-- custom relative path `index.html` -->
+<!-- ng build --prod --deploy-url=https://example-cdn.com/my-project -->
+<link href="https://example-cdn.com/my-project/styles.01c9c7541bd61c4e640f.bundle.css" rel="stylesheet"/>
+...
+<script type="text/javascript" src="https://example-cdn.com/my-project/main.088b42e8ae877c102072.bundle.js">
+
+
+output.publicPath
+--------------------
+Underneath the Angular CLI is actually Webpack. Webpack has seen a lot of use 
+due to how customizable and powerful it is. Angular CLI's build command's --deploy-url 
+is actually setting the Webpack config output.publicPath. If you need more customizability 
+(eg environment-specific config), you should eject Angular CLI to have more fine 
+tuned control over the Webpack config.
+
+
+
+Add CDN pahts for bootstrap and jquery
+-----------------------------------------
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Angular Bootstrap Demo</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+  <app-root>Loading...</app-root>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>

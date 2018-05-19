@@ -1,0 +1,25 @@
+Ambient
+-----------------
+Ambient files will not contain the implementations, it is just type declarations. 
+Ambient declarations are a way of telling the TypeScript compiler that the actual source code exists elsewhere. 
+When you are consuming a third party js libraries like jquery you can’t rewrite it in TypeScript. 
+SO to Ensuring typesafety and intellisense while using these libraries will be challenging for a TypeScript programmer. To avoid this Ambient declarations help to seamlessly work with other js libraries into TypeScript.
+
+
+Ambient declarations are by convention kept in a type declaration file with following extension (d.ts)
+
+ex:
+jquery.d.ts
+Abvoe  file will not be transcompiled to JavaScript. It will be used only for type safety and intellisense. 
+
+
+Ambient code 
+ex:
+declare module TutorialPoint { 
+   export class Calc { 
+      doSum(limit:number) : number; 
+   }
+}
+
+ambient files can be referenced in type script file like below
+/// <reference path = " Sample.d.ts" />

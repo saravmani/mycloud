@@ -1,0 +1,112 @@
+Manually invoke model binding Call the UpdateModel or TryUpdateModel methods. 28–32
+Create a custom value provider Implement the IValueProvider interface. 33–37
+Create a custom model binder Implement the IModelBinder interface.
+
+Action Invoker is responsible for choosing Correct model binder
+-----------------------------------------------------------------------
+multiple model binders in an MVC application, and each binder can be responsible for binding
+one or more model types. When the action invoker needs to call an action method, it looks at the parameters that the
+method defines and finds the responsible model binder for the type of each one.
+
+
+By default, this model binder searches four locations. 
+SEARCH ORDER
+--------------------
+Request.Form             Values provided by the user in HTML form elements
+RouteData.Values         The values obtained using the application routes
+Request.QueryString      Data included in the query string portion of the request URL
+Request.Files            Files that have been uploaded
+
+as soon as binder found the value from one location then it wont search for another
+
+binding complex types
+---------------------------
+@Html.EditorFor(m=> m.HomeAddress.Country)
+outputs
+<input class="text-box single-line" id="HomeAddress_Country" name="HomeAddress.Country" type="text" value="" />
+
+
+Selectively binde
+----------------------
+[Bind(Include="City")]
+public class AddressSummary {
+public string City { get; set; }
+public string Country { get; set; }
+}
+
+public ActionResult Create([Bind(Include = "ID,Name")] Category category)
+
+When the Bind attribute is applied to the model class and to an action method parameter, a property will be
+included in the bind process only if neither application of the attribute excludes it. This means that the policy applied to
+the model class cannot be overridden by applying a less restrictive policy to the action method parameter
+
+
+
+Manually Invoking Model Binding
+--------------------------------
+The model binding process is performed automatically when an action method defines parameters, but I can take
+direct control of the process if I want to. This gives more explicit control over how model objects are instantiated,
+where data values are obtained from, and how data parsing errors are handled.
+
+NOTE: CONTROLLER CONTEXT
+
+ex: to update model only from from values we can use following data
+UpdateModel(addresses, new FormValueProvider(ControllerContext));
+
+Value providers which implements IValueProvider
+
+Custome Value providers
+--------------------
+Request.Form FormValueProvider
+RouteData.Values RouteDataValueProvider
+Request.QueryString QueryStringValueProvider
+Request.Files HttpFileCollectionValueProvider
+
+another way to source restriction is 
+public ActionResult Address(FormCollection formData) {
+IList<AddressSummary> addresses = new List<AddressSummary>();
+UpdateModel(addresses, formData);
+return View(addresses);
+}
+
+
+try {
+UpdateModel(addresses, formData);
+} catch (InvalidOperationException ex) {
+// provide feedback to user
+}
+
+or
+
+if (TryUpdateModel(addresses, formData)) {
+// proceed as normal
+} else {
+// provide feedback to user
+}
+
+
+The only reason to favor TryUpdateModel over UpdateModel is if you don’t like catching and dealing with
+exceptions.
+
+that the custom value provider, which
+has precedence over the built-in providers,
+
+
+Details of the errors can
+be found through the ModelState feature,
+
+
+Custome Model binder
+-----------------------------
+
+
+
+
+
+Model Binder vs Value Provider
+-----------------------------------
+ValueProvider : ValueProvider in mvc is like parsed source of dictionary that help modelbinder to get appropriate value for its model.
+
+ValueProviders are for getting data from different sources in the request
+
+ModelBinders take the data from the ValueProviders to create an object. They don't directly take it from Route Data, or JSON or some specific, it's not their responsibility.

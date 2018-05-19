@@ -1,0 +1,124 @@
+mainly for two purpose of users for node js
+1. utilities (file watcher, real time reload browser on file changes)
+2. a web server
+
+Node.js 4.0 +
+It is single threaded
+
+node js
+--------------
+
+JavaScript plus a bunch of C/C++ under the hood for things like interacting with the filesystem, starting up HTTP or TCP servers and so on.
+
+for node js global object is  globale
+for browser global object is window
+Node js having multiple global objects 
+ex:
+global,
+process,
+require // function
+
+there is no document object. instead of we are having process
+
+in browser if we define any variable by default it will be added to window object.
+but in node.js it will not added to global. instead it will be add to it's module (.js file)
+var jj ="rew";
+console.log(jj);//will work
+console.log(global.jj);//will not work
+console.log("some string ${jj}");//will not work
+
+node filename.js //to execute the file
+
+npm init //this will create package.json
+
+
+npm install underscore --save 
+
+node js coming with built in webserver.
+
+ex:
+var http =require("http");
+var server = http.createsServer(function(request,response){
+response.write("some text");
+response.end();
+})
+server.listen(3000);
+
+
+npm i concurrently --save-dev
+//this package used to execute start commands concorrently
+
+
+
+io.js projected created for maintaing npm packages1
+
+
+
+
+
+console.log("current path name"+__dirname);// to get the application's dir path
+__filename //to get the file name
+
+
+use path module
+-----------------------
+var pathh = require("path");//path is a core module
+console.log(pathh.basename(__filename));
+
+
+
+Process object
+-------------------
+to get info about process,
+env info,read env variables.
+
+when process starts above values will be stored in process
+
+pass parameters to node js process
+------------------------------------
+node app.js input1 "input2 spacevlau" input3
+
+console.log(process.argv);// this ll give all the input
+
+
+
+standard input and output
+--------------------------
+process.stdout.write("hihihaha");//we have to controll the line spacing . we have to use \n to get new line
+
+listenting input assynchronosly
+--------------------------------------
+process.stdin.on('data',function(data){
+ 
+    process.stdout.write("You know one thing? \n ");
+ 
+})
+
+process.exit(); we can use this to exit the process
+
+process.on('exit',function(){ process.stdout.write("You know one thing? \n ");})
+
+
+we can u se timing functions to program asynchronously. (Ex: setTimeout, setInterval)
+
+    process.stdout.clearLine();//Delete existing line  and move the cursor to 0 position
+    process.stdout.cursorTo(0);
+
+
+require function used to load modules. this will be available on global.
+
+Core modules
+--------------------
+path,
+util, // several util function --ex: util.log("rew");//this will add time stamp also while logging
+V8, (get memory usage)
+readline, //wrapper over the standardinput and output object
+var ss = require("v8")
+console.log(ss.getHeapStatistics());
+
+Packages
+---------
+async    -> Used to write assynchronous javascript programming
+node-dev -> Dev http server
+jshint   -> It will verify our js code, to check the bugs. (will give compile time errors :-))
+httpster -> Static file server

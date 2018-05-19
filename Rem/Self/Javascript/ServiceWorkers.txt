@@ -1,0 +1,47 @@
+﻿Service workers
+---------------------
+Service workers essentially act as proxy servers that sit between web applications, and the browser and network (when available)
+
+They are intended to (amongst other things) enable the creation of effective offline experiences, intercepting network requests and taking appropriate action based 
+on whether the network is available and updated assets reside on the server. They will also allow access to push notifications and background sync APIs.
+
+
+It runs in worker context. So it  runs on a different thread. SO main javascript and DOM will not get blocked.
+It is designed to be fully async. So we cant use Synchronous XHR, Localstorage inside.
+
+Service workers only run over HTTPS, for security reasons.
+During development you'll be able to use service worker through localhost, but to deploy it on a site you'll need to have HTTPS setup on your server.
+Using service worker you can hijack connections, fabricate, and filter responses. Powerful stuff. While you would use these powers for good, a man-in-the-middle might not. 
+To avoid this, you can only register service workers on pages served over HTTPS, so we know the service worker the browser receives hasn't been tampered with during 
+its journey through the network.
+
+Note:  Service workers make heavy use of promises, as generally they will wait for responses to come through, 
+after which they will respond with a success or failure action. The promises architecture is ideal for this.
+
+
+ServiceWorkerContainer.register()
+
+Service worker lifecycle
+-------------------------
+Download
+Install
+Activate
+
+The service worker is immediately downloaded when a user first accesses a service worker–controlled site/page
+
+
+After that it is downloaded every 24 hours or so. It may be downloaded more frequently, but it must be downloaded every 24h to prevent bad scripts from being annoying for too long.
+
+You may find it useful to test your service worker in an Incognito window so that you can close and reopen knowing that the previous service worker won't affect the new window. 
+Any registrations and caches created from within an Incognito window will be cleared out once that window is closed.
+
+Update service worker
+--------------------------------
+Update your service worker JavaScript file. When the user navigates to your site, the browser tries to redownload the script file that defined the service worker in the background. 
+If there is even a byte's difference in the service worker file compared to what it currently has, it considers it new.
+
+
+Reference 
+--------------
+https://developers.google.com/web/fundamentals/getting-started/primers/service-workers
+https://developer.mozilla.org/en/docs/Web/API/Service_Worker_API

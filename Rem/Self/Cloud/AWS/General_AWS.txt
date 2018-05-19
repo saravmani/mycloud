@@ -1,0 +1,11 @@
+AMAZON WEB SERVICES
+ AWS consists of a range of different hosting-related services, like
+email delivery, content-delivery networks, and lots more. Amazon’s Elastic Compute
+Cloud (EC2), one of AWS’s central services, allows you to create servers in the cloud
+whenever you need them.
+EC2 virtual servers are called instances, and they can be managed using either the
+command line or a web-based control console, shown in figure 12.2. As command-line
+use of AWS takes some time to get used to, the web-based console is recommended for
+first-time users.
+Luckily, because AWS is ubiquitous, it’s easy to get help online and find related
+tutorials, such as Amazon’s “Getting Started with Amazon EC2 Linux Instances”

@@ -1,0 +1,56 @@
+
+Find and instert
+ LinkedList<string> linked = new LinkedList<string>();
+        //
+        // First add three elements to the linked list.
+        //
+        linked.AddLast("one");
+        linked.AddLast("two");
+        linked.AddLast("three");
+        //
+        // Insert a node before the second node (after the first node)
+        //
+        LinkedListNode<string> node = linked.Find("one");
+        linked.AddAfter(node, "inserted");  
+
+        LinkedList often uses more memory than an array or List.
+
+Advantages
+--------------------
+        In a List or array, to insert an element, you must copy the entire array. 
+In a LinkedList, you can insert or remove an element anywhere in the collection quickly.
+
+# we can use where we need to lots of addition and deletion, insert in middle, remove at specific 
+
+In the Node class there is a Previous and a Next Node. 
+Because of that all Nodes are linked to eachother
+
+
+Linked list is a linear data structure. It's a collection of elements. Element is called as Node.
+Each element has value(data) and reference of next node. 
+The very first node is called as Head and last element has reference to null value.
+
+
+Basically, there are 3 types of linked lists.
+
+Singly Linked List: A singly linked list is a list which has a value(data) and a reference to next node. In this, last node's next reference will be null.
+Doubly Linked List: A doubly linked list is a list which has a data and 2 references, one for next node and another for previous node and last node's next reference will be null.
+Circular Linked List: In circular linked list, last node's next reference will be head or first element. Circular linked list can be singly linked list or doubly linked list.
+
+
+
+Main advantage of linked list is that it is a dynamic data structure. 
+Unlike in array where length of array is predefined, 
+we can add dynamic number of data in linked list without worrying about size of linked list. 
+So linked list can be used where there is an unknown number of data 
+that needs to be stored at run time.
+
+Disadvantage of linked list is that it takes more space than array. 
+Because it stores reference of next/previous nodes.
+
+it offers faster insertion and
+deletion at both ends as opposed to other collections.
+
+If you have to frequently insert random locations in the list, prefer LinkedList<T>
+over List<T> because LinkedList<T> is a constant time operation to insert one
+item in between two elements in a linked list.

@@ -1,0 +1,8 @@
+NCache
+Scaleout
+Redis
+Apprabric
+
+
+commercial frameworks (such as ScaleOut or NCache)
+open-source frameworks (such as Redis or Memcached)

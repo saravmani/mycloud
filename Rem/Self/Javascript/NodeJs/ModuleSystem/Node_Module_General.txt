@@ -1,0 +1,35 @@
+Nodejs using CommonJS formate
+
+three major components to this module system: requiring built-in modules,
+requiring third-party modules, and making your own modules.\
+
+Built in
+-----------
+fs - file system
+built-in URL parser
+
+
+
+How variables are magically scopped to file?
+  In node js each file is a module. And before compiling  a module node wraps the module
+  code in a funciton.
+  we can see this using below code
+  require("module").wrapper
+  this wrapper having 5 arguments exports, require,module, filename, directoryname 
+because of this wrapping, any variables within the file(module), will scopped to that particular
+module.
+
+Why export object can't be replaced directly?
+exports.id=1; //works
+exports={id:1};//not works
+module.exports={id:1};//works
+
+exports is a local reference to module.exports. like var exports = module.exports.
+so if we modify the exports reference, this it will not refer module.exports. 
+so exports = {} will not work
+
+var g =22;// it is local to the file 
+
+wrapp functions return value is exports object.
+
+exports is equal to module.exports

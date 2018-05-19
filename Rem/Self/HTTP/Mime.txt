@@ -1,0 +1,26 @@
+Media type aslo called as MIME type
+
+HTTP protocol use MIME type to define formate of message body
+
+mime type consists two strings.
+Type/SubType
+	text/html
+	image/png
+
+
+mime types are used to tesll the recever that how to parse the data.
+
+
+Client can send the acceptable mime types to the server, when sending the request.
+
+ex:
+Accept: text/html,application/xhtml+xml,application/xml
+
+This header tells the server that the client wants either HTML, XHTML, or XML.
+
+
+
+Typically two Content-Type values are associated with form submission requests:
+  application/x-www-form-urlencoded—The default for HTML forms
+  multipart/form-data—Used when the form contains files, or non-ASCII or
+binary data

@@ -1,0 +1,29 @@
+    routeBuilder.MapRoute("Default","{controller=Home}/{action=actionname}/{id?}");
+    //here id with ? mark is optional parameter
+
+// inabove example if not controller provided then it will take deault  as Home.
+similr apply for action also
+
+
+Attribute routing
+---------------------------
+
+[Route("controllerName")]
+public class MyTestController 
+    {
+        [Route("actionname")]
+        public IActionResult Index()
+        {
+            return View();
+        }
+    }
+Tokent based attribute routing
+ ----------------------------------------
+ [Route("[controller]/[action]")] //naming convention usedsssssss
+public class MyTestController 
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+    }

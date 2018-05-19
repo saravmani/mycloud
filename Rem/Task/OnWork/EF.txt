@@ -1,0 +1,12 @@
+Create application with entity framework
+    Soldire, Weapon, MultipleTrainings, Capton
+
+
+You can also include the related entities of a particular entity. For example, right click on Student entity → select 'Include Related'. Standard and Course entities will also be included,
+
+
+
+If the join tables contain additional columns, such as DateCreated, then the EDM creates entity for middle table as well and you will have to manage CRUD operation for many-to-many entities manually.
+
+
+Try JOIN Queries

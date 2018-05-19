@@ -1,0 +1,23 @@
+The RowVersion
+mechanism utilizes the database feature where a new value of row version will be
+created each time the row is updated.
+
+add RowVersion:rowversion column in Database table
+
+and set
+the Concurrency Mode value for the RowVersion column to Fixed.
+
+like FieldLevelConcurrency 
+Any time a user tries to update a record, which has been updated by someone else,
+he will get the DbUpdateConcurrencyException exception.
+
+# this also filed level. but we are not setting field level for all the columns. only one column 
+
+This mechanism is comparatively more efficient because we are
+not setting the concurrency mode for multiple fields but rather for only one field and
+getting the concurrency control for the complete row. This will generate better SQL
+than setting concurrency for each field separately would have generated.
+
+In older databases, the rowversion data type is not
+present. For such databases, the TIMESTAMP data type
+can be used to achieve the same results.

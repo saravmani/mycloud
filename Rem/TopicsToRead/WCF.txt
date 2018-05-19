@@ -1,0 +1,16 @@
+wcf service discovery on network?
+https://www.codeproject.com/Articles/469549/WCF-Discovery
+
+
+wat is WS*?
+WS-* (# i think it is a set of specifications. But have to read )
+----
+WS-Trust
+WS-Security
+
+
+
+how webservice security implemented in WCF?
+
+how to implement transport security in WCF? Is it SSL based?
+  i got answer.. it is nothing. it is just SSL

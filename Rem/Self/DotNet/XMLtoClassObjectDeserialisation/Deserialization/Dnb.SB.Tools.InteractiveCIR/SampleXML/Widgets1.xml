@@ -1,0 +1,1353 @@
+<?xml version="1.0"?>
+<WidgetCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Widgets>
+    <Widget>
+      <ID>Liability</ID>
+      <Type>Table</Type>
+      <Title>Liability Summary</Title>
+      <ToolTip>Liability Summary</ToolTip>
+      <Title_Lang>fr_Liability Summary</Title_Lang>
+      <ToolTip_Lang>Liability Summary</ToolTip_Lang>
+      <Mode>Simple</Mode>
+      <Panels>
+        <Panel>
+          <ID>Panel1</ID>
+          <Type>TabedTbl</Type>
+          <Tabs>
+            <Tab>
+              <Tables>
+                <Table>
+                  <DataSourceID>LIABILITY</DataSourceID>
+                  <EnableServerPaging>false</EnableServerPaging>
+                  <PageSize>10</PageSize>
+                  <TableType>Grid</TableType>
+                  <Title>Liability Details</Title>
+                  <Title_Lang>fr_Liability Details</Title_Lang>
+                  <Heading>
+                    <Header>
+                      <DisplayText>Product Type</DisplayText>
+                      <DisplayText_Lang>Product Type</DisplayText_Lang>
+                      <DataField>TYPE</DataField>
+                      <Width>100</Width>
+                    </Header>
+                    <Header>
+                      <DisplayText>No. Of Accounts</DisplayText>
+                      <DisplayText_Lang>No. Of Accounts</DisplayText_Lang>
+                      <DataField>NO_OF_ACCOUNTS</DataField>
+                      <Width>100</Width>
+                      
+                    </Header>
+                    <Header>
+                      <DisplayText>Sanctioned Amount/Limit</DisplayText>
+                      <DisplayText_Lang>Sanctioned Amount/Limit</DisplayText_Lang>
+                      <DataField>SANCTIONED_AMOUNT</DataField>
+                      <Width>150</Width>
+                      <Attributes>class=newclass style=text-align:right;</Attributes>
+                    </Header>
+                    <Header>
+                      <DisplayText>Current Balance</DisplayText>
+                      <DisplayText_Lang>Current Balance</DisplayText_Lang>
+                      <DataField>CURRENT_BALANCE</DataField>
+                      <Width>150</Width>
+                      <Attributes>class=newclass style=text-align:right;</Attributes>
+                    </Header>
+                    <Header>
+                      <DisplayText>Overdue Balance</DisplayText>
+                      <DisplayText_Lang>Overdue Balance</DisplayText_Lang>
+                      <DataField>OVERDUE</DataField>
+                      <Width>100</Width>
+                      <Attributes>class=newclass style=text-align:right;</Attributes>
+                    </Header>
+                    
+                  </Heading>
+                  <GroupHeading>
+                  </GroupHeading>
+                  <RowData>
+                    <DataColumn>
+                      <DataField>TYPE</DataField>
+                      <DataSourceID>LIABILITY</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>NO_OF_ACCOUNTS</DataField>
+                      <DataSourceID>LIABILITY</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>SANCTIONED_AMOUNT</DataField>
+                      <DataSourceID>LIABILITY</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>CURRENT_BALANCE</DataField>
+                      <DataSourceID>LIABILITY</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>OVERDUE</DataField>
+                      <DataSourceID>LIABILITY</DataSourceID>
+                    </DataColumn>
+                    
+                  </RowData>
+                </Table>
+              </Tables>
+              
+              <Graphs>
+                <Graph>
+                  <DataSourceID>LIABILITYPIECHART</DataSourceID>
+                  <GraphType>Pie</GraphType>
+                    <Title>Credit Facilities by Type</Title>
+                  <Title_Lang>fr_Credit Facilities by Type</Title_Lang>
+                </Graph>
+              </Graphs>
+              <Title>Liability</Title>
+              <Title_Lang>fr_Liability</Title_Lang>
+            </Tab>
+            
+            <Tab>
+              <Tables>
+                <Table>
+                  <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                  <EnableServerPaging>false</EnableServerPaging>
+                  <PageSize>10</PageSize>
+                  <TableType>Table</TableType>
+                  <Title>Credit Utilization Secured</Title>
+                  <Title_Lang>Credit Utilization Secured</Title_Lang>
+                  <HeadColumn>Secured</HeadColumn>
+                  <Heading>
+                  </Heading>
+                  <GroupHeading>
+                  </GroupHeading>
+
+                  <RowData>
+
+                    <DataColumn>
+                      <DataField>MONTH</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH1</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH2</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH3</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH4</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH5</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH6</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH7</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH8</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH9</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH10</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH11</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH12</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+
+                    <DataColumn>
+                      <DataField>MONTH13</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH14</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH15</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH16</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH17</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH18</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH19</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH20</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH21</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH22</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH23</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH24</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLESECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                  </RowData>
+
+                </Table>
+                
+                <Table>
+                  <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                  <EnableServerPaging>false</EnableServerPaging>
+                  <PageSize>10</PageSize>
+                  <TableType>Table</TableType>
+                  <HeadColumn>UnSecured</HeadColumn>
+                  <Title>Credit Utilization Unsecured</Title>
+                  <Title_Lang>Credit Utilization Unsecured</Title_Lang>
+                  <Heading>
+
+                  </Heading>
+                  <GroupHeading>
+                  </GroupHeading>
+
+                  <RowData>
+
+                    <DataColumn>
+                      <DataField>MONTH</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH1</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH2</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH3</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH4</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH5</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH6</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH7</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH8</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH9</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH10</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH11</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH12</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+
+                    <DataColumn>
+                      <DataField>MONTH13</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH14</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH15</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH16</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH17</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH18</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH19</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH20</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH21</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH22</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH23</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH24</DataField>
+                      <DataSourceID>LIABILITYCREDITTABLEUNSECURED_CUR1</DataSourceID>
+                    </DataColumn>
+                  </RowData>
+
+                </Table>
+
+              </Tables>
+              
+              <Graphs>
+                <Graph>
+                  <DataSourceID>LIABILITYCREDIT_CUR1</DataSourceID>
+                  <GraphType>Area</GraphType>
+                  <Title>Credit Utilization Trend</Title>
+                  <Title_Lang>Credit Utilization Trend</Title_Lang>
+                </Graph>
+              </Graphs>
+              <Title>Credit Utilization Trend</Title>
+              <Title_Lang>Credit Utilization Trend</Title_Lang>
+            </Tab>
+          </Tabs>
+        </Panel>
+      </Panels>
+      
+      <Tables>
+        <Table>
+          <DataSourceID>LIABILITYSUMMARY</DataSourceID>
+          <EnableServerPaging>false</EnableServerPaging>
+          <PageSize>10</PageSize>
+          <TableType>Grid</TableType>
+          <Title>Liablity Summary</Title>
+          <Title_Lang>fr_Liablity Summary</Title_Lang>
+          <Heading>
+            <Header>
+              <DisplayText>Total Number of Credit Facilities</DisplayText>
+              <DisplayText_Lang>Total Number of Credit Facilities</DisplayText_Lang>
+              <DataField>NO_OF_ACCOUNTS</DataField>
+              <Width>100</Width>
+            </Header>
+            <Header>
+              <DisplayText>Total Sanctioned Amount / Limit</DisplayText>
+              <DisplayText_Lang>Total Sanctioned Amount / Limit</DisplayText_Lang>
+              <DataField>SANCTIONED_AMOUNT</DataField>
+              <Width>100</Width>
+              <Attributes>class=newclass style=text-align:right;</Attributes>
+            </Header>
+
+
+            <Header>
+              <DisplayText>Total Current Balance</DisplayText>
+              <DisplayText_Lang>Total Current Balance</DisplayText_Lang>
+              <DataField>CURRENT_BALANCE</DataField>
+              <Attributes>class=newclass style=text-align:right;</Attributes>
+              <Width>100</Width>
+            </Header>
+            <Header>
+              <DisplayText>Total Amount Overdue</DisplayText>
+              <DisplayText_Lang>Total Amount Overdue</DisplayText_Lang>
+              <DataField>OVERDUE</DataField>
+              <Attributes>class=newclass style=text-align:right;</Attributes>
+              <Width>100</Width>
+            </Header>
+            
+            <Header>
+              <DisplayText>Currency</DisplayText>
+              <DisplayText_Lang>Currency</DisplayText_Lang>
+              <DataField>CURRENCY</DataField>
+              <Width>100</Width>
+            </Header>
+            
+          </Heading>
+          <GroupHeading>
+          </GroupHeading>
+          <RowData>
+            <DataColumn>
+              <DataField>NO_OF_ACCOUNTS</DataField>
+              <DataSourceID>LIABILITYSUMMARY</DataSourceID>
+            </DataColumn>
+            <DataColumn>
+              <DataField>SANCTIONED_AMOUNT</DataField>
+              <DataSourceID>LIABILITYSUMMARY</DataSourceID>
+            </DataColumn>
+            <DataColumn>
+              <DataField>CURRENT_BALANCE</DataField>
+              <DataSourceID>LIABILITYSUMMARY</DataSourceID>
+            </DataColumn>
+            <DataColumn>
+              <DataField>OVERDUE</DataField>
+              <DataSourceID>LIABILITYSUMMARY</DataSourceID>
+            </DataColumn>
+            
+          </RowData>
+        </Table>
+
+      </Tables>
+      
+      <Graphs>
+
+      </Graphs>
+      <Position>1</Position>
+    </Widget>
+
+    <Widget>
+      <ID>Security</ID>
+      <Type>Chart</Type>
+      <Title>Security</Title>
+      <ToolTip>Security</ToolTip>
+      <Title_Lang>fr_Security</Title_Lang>
+      <ToolTip_Lang>Security</ToolTip_Lang>
+      <Mode>Simple</Mode>
+      <Panels>
+        <Panel>
+          <ID>Panel1</ID>
+          <Type>TabedTbl</Type>
+          <Tabs>
+            <Tab>
+              <Tables>
+                <Table>
+                  <DataSourceID>SECURITYGRID</DataSourceID>
+                  <EnableServerPaging>false</EnableServerPaging>
+                  <PageSize>10</PageSize>
+                  <TableType>Grid</TableType>
+                  <Title>Security Values</Title>
+                  <Title_Lang>fr_Security Values</Title_Lang>
+                  <Heading>
+                    <Header>
+                      <DisplayText>Security Ref.</DisplayText>
+                      <DisplayText_Lang>Security Ref.</DisplayText_Lang>
+                      <DataField>REFNO</DataField>
+                      <Width>70</Width>
+                    </Header>
+                    <Header>
+                      <DisplayText>Type</DisplayText>
+                      <DisplayText_Lang>Type</DisplayText_Lang>
+                      <DataField>TYPE</DataField>
+                      <Width>80</Width>
+                    </Header>
+                    <Header>
+                      <DisplayText>Currency</DisplayText>
+                      <DisplayText_Lang>Currency</DisplayText_Lang>
+                      <DataField>CURRENCY</DataField>
+                      <Width>80</Width>
+                    </Header>
+                    <Header>
+                      <DisplayText>Date Security Pledged</DisplayText>
+                      <DisplayText_Lang>Date Security Pledged</DisplayText_Lang>
+                      <DataField>DATEPLEDGED</DataField>
+                      <Width>120</Width>
+                    </Header>
+                    <Header>
+                      <DisplayText>Latest Value</DisplayText>
+                      <DisplayText_Lang>Latest Value</DisplayText_Lang>
+                      <DataField>LATESTVALUE</DataField>
+                      <Attributes>class=newclass style=text-align:right;</Attributes>
+                      <Width>60</Width>
+                    </Header>
+                    <Header>
+                      <DisplayText>Date Reported</DisplayText>
+                      <DisplayText_Lang>Date Reported</DisplayText_Lang>
+                      <DataField>DATEREPORTED</DataField>
+                      <Width>80</Width>
+                    </Header>
+                  </Heading>
+                  <GroupHeading>
+                  </GroupHeading>
+                  <RowData>
+
+                    <DataColumn>
+                      <DataField>REFNO</DataField>
+                      <DataSourceID>SECURITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>TYPE</DataField>
+                      <DataSourceID>SECURITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>CURRENCY</DataField>
+                      <DataSourceID>SECURITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>DATEPLEDGED</DataField>
+                      <DataSourceID>SECURITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>LATESTVALUE</DataField>
+                      <DataSourceID>SECURITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>DATEREPORTED</DataField>
+                      <DataSourceID>SECURITYGRID</DataSourceID>
+                    </DataColumn>
+                  </RowData>
+                </Table>
+
+              </Tables>
+              <Graphs>
+                <Graph>
+                  <DataSourceID>SECURITYBARCHART_CUR1</DataSourceID>
+                  <GraphType>BarSingle</GraphType>
+                  <Title>Security Type Vs Amount</Title>
+                  <Title_Lang>Security Type Vs Amount</Title_Lang>
+                </Graph>
+              </Graphs>
+              <Title>Security</Title>
+              <Title_Lang>fr_Security</Title_Lang>
+            </Tab>
+          </Tabs>
+        </Panel>
+      </Panels>
+      <Tables>
+      </Tables>
+      <Graphs>
+        <Graph>
+          <DataSourceID>SECURITYSUMMARYPIECHART</DataSourceID>
+          <GraphType>Pie</GraphType>
+          <Title>.</Title>
+          <Title_Lang></Title_Lang>
+        </Graph>
+      </Graphs>
+      <Position>3</Position>
+    </Widget>
+
+    <Widget>
+      <ID>Profile</ID>
+      <Type>Pivot</Type>
+      <Title>Profile Summary</Title>
+      <ToolTip>Profile Summary</ToolTip>
+      <Title_Lang>fr_Profile Summary</Title_Lang>
+      <ToolTip_Lang>Profile Summary</ToolTip_Lang>
+      <Mode>Simple</Mode>
+      <Panels>
+        <Panel>
+          <ID>Panel1</ID>
+          <Type>TabedTbl</Type>
+          <Tabs>
+            <Tab>
+              <Tables>
+                <Table>
+                  <DataSourceID>PROFILEIDENTITY_TYPE</DataSourceID>
+                  <EnableServerPaging>false</EnableServerPaging>
+                  <PageSize>10</PageSize>
+                  <Title>Identity Details</Title>
+                  <Title_Lang>fr_Identity Details</Title_Lang>
+                  <TableType>Table</TableType>
+                  <Heading>
+                   
+                    <Header>
+                      <DisplayText>Type</DisplayText>
+                      <DisplayText_Lang>Type</DisplayText_Lang>
+                      <DataField>ID</DataField>
+                      <Width>150</Width>
+                    </Header>
+                    <Header>
+                      <DisplayText>Value</DisplayText>
+                      <DisplayText_Lang>Value</DisplayText_Lang>
+                      <DataField>IDENTIFIER_NUMBER</DataField>
+                      <Width>150</Width>
+                    </Header>
+                   
+                  </Heading>
+                  <GroupHeading>
+                  </GroupHeading>
+                  <RowData>
+                    <DataColumn>
+                      <DataField>ID</DataField>
+                      <DataSourceID>PROFILEIDENTITY_TYPE</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>VALUE</DataField>
+                      <DataSourceID>PROFILEIDENTITY_TYPE</DataSourceID>
+                    </DataColumn>
+                
+                  </RowData>
+                </Table>
+              </Tables>
+              <Graphs>
+
+              </Graphs>
+              <Title>Identity</Title>
+              <Title_Lang>fr_Identity</Title_Lang>
+            </Tab>
+            <Tab>
+              <Tables>
+                <Table>
+                  <DataSourceID>PROFILECONTACT</DataSourceID>
+                  <EnableServerPaging>false</EnableServerPaging>
+                  <PageSize>10</PageSize>
+                  <Title>Contact Details</Title>
+                  <Title_Lang>fr_Contact Details</Title_Lang>
+                  <TableType>Table</TableType>
+                  <Heading>
+                    <Header>
+                      <DisplayText>Type</DisplayText>
+                      <DisplayText_Lang>Type</DisplayText_Lang>
+                      <DataField>CONTACT_TYPE</DataField>
+                      <Width>150</Width>
+                    </Header>
+                    <Header>
+                      <DisplayText>Contact</DisplayText>
+                      <DisplayText_Lang>Contact</DisplayText_Lang>
+                      <DataField>DETAILS</DataField>
+                      <Width>150</Width>
+                    </Header>
+
+                  </Heading>
+                  <GroupHeading>
+                  </GroupHeading>
+                  <RowData>
+                    <DataColumn>
+                      <DataField>CONTACT_TYPE</DataField>
+                      <DataSourceID>PROFILECONTACT</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>DETAILS</DataField>
+                      <DataSourceID>PROFILECONTACT</DataSourceID>
+                    </DataColumn>
+                  </RowData>
+                </Table>
+
+              </Tables>
+              <Graphs>
+
+              </Graphs>
+              <Title>Contact</Title>
+              <Title_Lang>fr_Contact</Title_Lang>
+            </Tab>
+            <Tab>
+              <Tables>
+
+                <Table>
+                  <DataSourceID>PROFILEADDRESS</DataSourceID>
+                  <EnableServerPaging>false</EnableServerPaging>
+                  <PageSize>10</PageSize>
+                  <Title>Address Details</Title>
+                  <Title_Lang>fr_Address Details</Title_Lang>
+                  <TableType>Table</TableType>
+                  <Heading>
+                    <Header>
+                      <DisplayText>Address</DisplayText>
+                      <DisplayText_Lang>Address</DisplayText_Lang>
+                      <DataField>ADDRESS</DataField>
+                      <Width>150</Width>
+                    </Header>
+
+
+                  </Heading>
+                  <GroupHeading>
+                  </GroupHeading>
+                  <RowData>
+                    <DataColumn>
+                      <DataField>ADDRESS</DataField>
+                      <DataSourceID>PROFILEADDRESS</DataSourceID>
+                    </DataColumn>
+
+
+                  </RowData>
+                </Table>
+
+
+              </Tables>
+              <Graphs>
+
+              </Graphs>
+              <Title>Address</Title>
+              <Title_Lang>fr_Address</Title_Lang>
+            </Tab>
+          </Tabs>
+        </Panel>
+      </Panels>
+      <Tables>
+        <Table>
+          <DataSourceID>PROFILESUMMARY</DataSourceID>
+          <EnableServerPaging>false</EnableServerPaging>
+          <PageSize>10</PageSize>
+          <Title>Profile Summary</Title>
+          <Title_Lang>fr_Profile Summary</Title_Lang>
+          <TableType>List</TableType>
+          <Heading>
+
+          </Heading>
+          <GroupHeading>
+          </GroupHeading>
+          <RowData>
+          </RowData>
+        </Table>
+      </Tables>
+      <Graphs>
+
+      </Graphs>
+      <Position>4</Position>
+    </Widget>
+
+    <Widget>
+      <ID>Derogatory</ID>
+      <Type>Table</Type>
+      <Title>Derogatory Summary</Title>
+      <ToolTip>Derogatory Summary</ToolTip>
+      <Title_Lang>fr_Derogatory Summary</Title_Lang>
+      <ToolTip_Lang>Derogatory Summary</ToolTip_Lang>
+      <Mode>Simple</Mode>
+      <Panels>
+        <Panel>
+          <ID>Panel1</ID>
+          <Type>TabedTbl</Type>
+          <Tabs>
+            <Tab>
+              <Tables>
+                <Table>
+                  <DataSourceID>DEROGATORY</DataSourceID>
+                  <EnableServerPaging>false</EnableServerPaging>
+                  <PageSize>10</PageSize>
+                  <Title>Derogatory Details</Title>
+                  <Title_Lang>fr_Derogatory Details</Title_Lang>
+                  <TableType>Grid</TableType>
+                  <TableID>1</TableID>
+                  <Heading>
+                    <Header>
+                      <DisplayText>Amount</DisplayText>
+                      <DisplayText_Lang>Amount</DisplayText_Lang>
+                      <DataField>AMOUNT</DataField>
+                      <Attributes>class=newclass style=text-align:right;</Attributes>
+                      <Width>150</Width>
+                    </Header>
+                  </Heading>
+                  <GroupHeading></GroupHeading>
+                  <RowData>
+                    <DataColumn>
+                      <DataField>AMOUNT</DataField>
+                      <DataSourceID>DEROGATORY</DataSourceID>
+                    </DataColumn>
+                  </RowData>
+                </Table>
+              </Tables>
+              <Graphs>
+
+              </Graphs>
+              <Title>Derogatory</Title>
+              <Title_Lang>fr_Derogatory</Title_Lang>
+              <TabID>1</TabID>
+            </Tab>
+
+          </Tabs>
+        </Panel>
+      </Panels>
+      <Tables>
+        <Table>
+          <DataSourceID>DEROGATORY_SUMMARY</DataSourceID>
+          <EnableServerPaging>false</EnableServerPaging>
+          <PageSize>10</PageSize>
+          <Title>Derogatory Summary</Title>
+          <Title_Lang>fr_Derogatory Summary</Title_Lang>
+          <TableType>Grid</TableType>
+          <Heading>
+            <Header>
+              <DisplayText>Type</DisplayText>
+              <DisplayText_Lang>Type</DisplayText_Lang>
+              <DataField>TYPE</DataField>
+              <Width>150</Width>
+            </Header>
+          </Heading>
+          <GroupHeading>
+          </GroupHeading>
+          <RowData>
+            <DataColumn>
+              <DataField>TYPE</DataField>
+              <DataSourceID>DEROGATORY_SUMMARY</DataSourceID>
+            </DataColumn>
+          </RowData>
+        </Table>
+      </Tables>
+      <Graphs>
+
+      </Graphs>
+      <Position>2</Position>
+    </Widget>
+
+    <Widget>
+      <ID>CreditFacility</ID>
+      <Type>ListView</Type>
+      <Title>Credit Facility</Title>
+      <ToolTip>Credit Facility</ToolTip>
+      <Title_Lang>fr_Credit Facility</Title_Lang>
+      <ToolTip_Lang>Credit Facility</ToolTip_Lang>
+      <Mode>Simple</Mode>
+      <Panels>
+        <Panel>
+          <ID>Panel1</ID>
+          <Type>CreditFacility</Type>
+          <Tabs>
+            <Tab>
+              <Tables>
+                <Table>
+                  <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                  <EnableServerPaging>false</EnableServerPaging>
+                  <PageSize>10</PageSize>
+                  <Title>Credit Facility</Title>
+                  <Title_Lang>fr_Credit Facility</Title_Lang>
+                  <TableType>Grid</TableType>
+                  <Heading>
+                  </Heading>
+                  <GroupHeading>
+                  </GroupHeading>
+                  <RowData>
+                    <DataColumn>
+                      <DataField>SIN</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>PRIMARY_ROOT_ID</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>LOAN_TYPE</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>TYPE</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>STATUS</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>ACCOOPENDATE</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>ACCNUMBER</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                       
+                    <DataColumn>
+                      <DataField>SANAMT</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>BALANCE</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>OVRDUEDAYS</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>OVERDUEAMT</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>REPAYFREQ</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+
+                    <DataColumn>
+                      <DataField>MONTH1NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH1VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH2NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH2VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH3NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH3VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH4NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH4VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH5NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH5VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+
+                    <DataColumn>
+                      <DataField>MONTH6NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH6VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH7NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH7VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH8NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH8VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH9NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH9VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH10NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH10VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+
+                    <DataColumn>
+                      <DataField>MONTH11NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH11VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH12NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH12VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH13NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH13VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH14NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH14VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH15NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH15VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH16NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH16VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH17NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH17VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+
+                    <DataColumn>
+                      <DataField>MONTH18NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH18VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH19NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH19VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH20NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH20VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH21NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH21VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH22NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH22VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+
+                    <DataColumn>
+                      <DataField>MONTH23NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH23VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH24NM</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>MONTH12VAL</DataField>
+                      <DataSourceID>CREDITFACILITYGRID</DataSourceID>
+                    </DataColumn>
+                  </RowData>
+                </Table>
+
+              </Tables>
+              <Graphs>
+
+              </Graphs>
+              <Title>Credit Facility</Title>
+              <Title_Lang>fr_Credit Facility</Title_Lang>
+            </Tab>
+
+          </Tabs>
+        </Panel>
+      </Panels>
+      <Tables>
+        <Table>
+          <DataSourceID>CREDITFACILITYSUMMARY</DataSourceID>
+          <EnableServerPaging>false</EnableServerPaging>
+          <PageSize>10</PageSize>
+          <Title>Credit Facility Summary</Title>
+          <Title_Lang>fr_Credit Facility Summary</Title_Lang>
+          <Heading>
+            <Header>
+              <DisplayText>TYPE</DisplayText>
+              <DisplayText_Lang>TYPE</DisplayText_Lang>
+              <DataField>TYPE</DataField>
+              <Width>150</Width>
+            </Header>
+
+            <Header>
+              <DisplayText>Sanction Amount</DisplayText>
+              <DisplayText_Lang>Sanction Amount</DisplayText_Lang>
+              <DataField>SANCTIONED_AMOUNT</DataField>
+             <Attributes>class=newclass style=text-align:right;</Attributes>
+              <Width>150</Width>
+            </Header>
+            <Header>
+              <DisplayText>Overdue Amount</DisplayText>
+              <DisplayText_Lang>Overdue Amount</DisplayText_Lang>
+              <DataField>OVERDUE</DataField>
+              <Attributes>class=newclass style=text-align:right;</Attributes>
+              <Width>150</Width>
+            </Header>
+            <Header>
+              <DisplayText>Current Balance</DisplayText>
+              <DisplayText_Lang>Current Balance</DisplayText_Lang>
+              <DataField>CURRENT_BALANCE</DataField>
+              <Attributes>class=newclass style=text-align:right;</Attributes>
+              <Width>150</Width>
+            </Header>
+            <Header>
+              <DisplayText>Currency</DisplayText>
+              <DisplayText_Lang>Currency</DisplayText_Lang>
+              <DataField>CURRENCY</DataField>
+              <Width>150</Width>
+            </Header>
+            <Header>
+              <DisplayText>Accounts</DisplayText>
+              <DisplayText_Lang>Accounts</DisplayText_Lang>
+              <DataField>NO_OF_ACCOUNTS</DataField>
+              <Width>150</Width>
+            </Header>
+          </Heading>
+          <RowData>
+            <DataColumn>
+              <DataField>TYPE</DataField>
+              <DataSourceID>CREDITFACILITYSUMMARY</DataSourceID>
+            </DataColumn>
+
+            <DataColumn>
+              <DataField>SANCTIONED_AMOUNT</DataField>
+              <DataSourceID>CREDITFACILITYSUMMARY</DataSourceID>
+            </DataColumn>
+            <DataColumn>
+              <DataField>OVERDUE</DataField>
+              <DataSourceID>CREDITFACILITYSUMMARY</DataSourceID>
+            </DataColumn>
+            <DataColumn>
+              <DataField>CURRENT_BALANCE</DataField>
+              <DataSourceID>CREDITFACILITYSUMMARY</DataSourceID>
+            </DataColumn>
+            <DataColumn>
+              <DataField>CURRENCY</DataField>
+              <DataSourceID>CREDITFACILITYSUMMARY</DataSourceID>
+            </DataColumn>
+
+            <DataColumn>
+              <DataField>NO_OF_ACCOUNTS</DataField>
+              <DataSourceID>CREDITFACILITYSUMMARY</DataSourceID>
+            </DataColumn>
+          </RowData>
+        </Table>
+      </Tables>
+      <Graphs>
+
+      </Graphs>
+      <Position>0</Position>
+    </Widget>
+
+    <Widget>
+      <ID>ClosedCreditFacility</ID>
+      <Type>Table</Type>
+      <Title>Closed Credit Facility</Title>
+      <ToolTip>Closed Credit Facility</ToolTip>
+      <Title_Lang>fr_Closed Credit Facility</Title_Lang>
+      <ToolTip_Lang>Closed Credit Facility</ToolTip_Lang>
+      <Mode>Simple</Mode>
+      <Panels>
+        <Panel>
+          <ID>Panel1</ID>
+          <Type>closedcreditfacility</Type>
+          <Tabs>
+            <Tab>
+              <Tables>
+                <Table>
+                  <DataSourceID>CCFGRID</DataSourceID>
+                  <EnableServerPaging>false</EnableServerPaging>
+                  <PageSize>10</PageSize>
+                  <TableType>Grid</TableType>
+                  <Title>Closed Credit Facility</Title>
+                  <Title_Lang>fr_Closed Credit Facility</Title_Lang>
+                  <TableID>1</TableID>
+                  <Heading>
+                    <Header>
+                      <DisplayText></DisplayText>
+                      <DisplayText_Lang></DisplayText_Lang>
+                      <DataField>REASON_CODE</DataField>
+                      <Width>5</Width>
+                    </Header>
+
+                    <Header>
+                      <DisplayText></DisplayText>
+                      <DisplayText_Lang></DisplayText_Lang>
+                      <DataField>LOAN_TYPE</DataField>
+                      <Width>5</Width>
+                    </Header>
+                    <Header>
+                      <DisplayText>CF Type</DisplayText>
+                      <DisplayText_Lang>CF Type</DisplayText_Lang>
+                      <DataField>CFTYPE</DataField>
+                      <Width>150</Width>
+                    </Header>
+
+                    <Header>
+                      <DisplayText>Sanction Amount</DisplayText>
+                      <DisplayText_Lang>Sanction Amount</DisplayText_Lang>
+                      <DataField>SANCTIONAMOUNT</DataField>
+                      <Attributes>class=newclass style=text-align:right;</Attributes>
+                      <Width>100</Width>
+                    </Header>
+                    <Header>
+                      <DisplayText>Reason for Closure</DisplayText>
+                      <DisplayText_Lang>Reason for Closure</DisplayText_Lang>
+                      <DataField>REASONFORCLOSURE</DataField>
+                      <Width>150</Width>
+                    </Header>
+                    <Header>
+                      <DisplayText>Date Closed</DisplayText>
+                      <DisplayText_Lang>Date Closed</DisplayText_Lang>
+                      <DataField>DATECLOSED</DataField>
+                      <Width>100</Width>
+                    </Header>
+
+                    <Header>
+                      <DisplayText>Currency</DisplayText>
+                      <DisplayText_Lang>Currency</DisplayText_Lang>
+                      <DataField>CURRENCY</DataField>
+                      <Width>100</Width>
+                    </Header>
+
+                  </Heading>
+                  <GroupHeading>
+                  </GroupHeading>
+                  <RowData>
+                    <DataColumn>
+                      <DataField>REASON_CODE</DataField>
+                      <DataSourceID>CCFGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>LOAN_TYPE</DataField>
+                      <DataSourceID>CCFGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>CFTYPE</DataField>
+                      <DataSourceID>CCFGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>SANCTIONAMOUNT</DataField>
+                      <DataSourceID>CCFGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>REASONFORCLOSURE</DataField>
+                      <DataSourceID>CCFGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>DATECLOSED</DataField>
+                      <DataSourceID>CCFGRID</DataSourceID>
+                    </DataColumn>
+                    <DataColumn>
+                      <DataField>CURRENCY</DataField>
+                      <DataSourceID>CCFGRID</DataSourceID>
+                    </DataColumn>
+                  </RowData>
+                </Table>
+              </Tables>
+              <Graphs>
+
+              </Graphs>
+              <Title>Closed Credit Facility</Title>
+              <Title_Lang>fr_Closed Credit Facility</Title_Lang>
+              <TabID>1</TabID>
+            </Tab>
+          </Tabs>
+        </Panel>
+      </Panels>
+      <Tables>
+        <Table>
+          <DataSourceID>CCFSUMMARY</DataSourceID>
+          <EnableServerPaging>false</EnableServerPaging>
+          <PageSize>10</PageSize>
+          <Title>Closed Credit Facility Summary</Title>
+          <Title_Lang>fr_Closed Credit Facility Summary</Title_Lang>
+          <TableType></TableType>
+          <Heading>
+            <Header>
+              <DisplayText>Type</DisplayText>
+              <DisplayText_Lang>Type</DisplayText_Lang>
+              <DataField>TYPE</DataField>
+              <Width>150</Width>
+            </Header>
+            <Header>
+              <DisplayText>Accounts/Amount</DisplayText>
+              <DisplayText_Lang>Accounts/Amount</DisplayText_Lang>
+              <DataField>ACCOUNTS/AMOUNT</DataField>
+               <Attributes>class=newclass style=text-align:right;</Attributes>
+              <Width>150</Width>
+            </Header>
+            <Header>
+              <DisplayText>Currency</DisplayText>
+              <DisplayText_Lang>Currency</DisplayText_Lang>
+              <DataField>CURRENCY</DataField>
+              <Width>150</Width>
+            </Header>
+          </Heading>
+          <GroupHeading>
+          </GroupHeading>
+          <RowData>
+            <DataColumn>
+              <DataField>TYPE</DataField>
+              <DataSourceID>CCFSUMMARY</DataSourceID>
+            </DataColumn>
+            <DataColumn>
+              <DataField>ACCOUNTS/AMOUNT</DataField>
+              <DataSourceID>CCFSUMMARY</DataSourceID>
+            </DataColumn>
+          </RowData>
+        </Table>
+      </Tables>
+      <Graphs>
+
+      </Graphs>
+      <Position>5</Position>
+    </Widget>
+
+  </Widgets>
+</WidgetCollection>

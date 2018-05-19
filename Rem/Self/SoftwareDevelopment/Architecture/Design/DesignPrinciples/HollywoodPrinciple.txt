@@ -1,0 +1,39 @@
+Hollywood Principle is a technique for
+building frameworks or components so that
+lower-level components can be hooked
+
+
+* Don’t call us, we’ll call you. it s called - The Hollywood Principle
+---------------------------------------------------------------------------------
+With the Hollywood Principle, we allow low-level components
+to hook themselves into a system, but the high-level
+components determine when they are needed, and how. In
+other words, the high-level components give the low-level
+components a “don’t call us, we’ll call you” treatment.
+
+#Template pattern can be used for this
+
+
+How does the Hollywood Principle
+relate to the Dependency Inversion
+Principle that we learned a few chapters
+back?
+A: The Dependency Inversion
+Principle teaches us to avoid the use of
+concrete classes and instead work as
+much as possible with abstractions. The
+Hollywood Principle is a technique for
+building frameworks or components so that
+lower-level components can be hooked
+into the computation, but without creating
+dependencies between the lower-level
+components and the higher-level layers. So,
+they both have the goal of decoupling, but
+the Dependency Inversion Principle makes a
+much stronger and general statement about
+how to avoid dependencies in design.
+The Hollywood Principle gives us a
+technique for creating designs that allow
+low-level structures to interoperate while
+preventing other classes from becoming too
+dependent on them.

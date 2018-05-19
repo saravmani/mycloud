@@ -1,0 +1,24 @@
+
+ActionName attribute
+----------------------------
+we can change the action method name by
+[ActionName("Enumerate")]
+public ViewResult List()
+{
+    return View("Result", new Result
+    {
+        ControllerName = "Customer",
+        ActionName = "List"
+    });
+}
+Applying the attribute overrides the name of the action.
+
+Advantages of ActionName attribute
+---------------------------------------
+    You can then accept an action name that wouldn’t be legal as a C# method name (for example,
+[ActionName("User-Registration")]).
+     If you want to have two different C# methods that accept the same set of parameters and
+should handle the same action name, but in response to different HTTP request types (for
+example, one with [HttpGet] and the other with [HttpPost]), you can give the methods
+different C# names to satisfy the compiler, but then use [ActionName] to map them both to the
+same action name.

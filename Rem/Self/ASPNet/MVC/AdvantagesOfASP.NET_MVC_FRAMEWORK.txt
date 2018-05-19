@@ -1,0 +1,31 @@
+Advantages of ASP.NET MVC
+---------------------------------
+Beter use of seperation of concern
+
+Extensibility
+The MVC Framework is built as a series of independent components that satisfy a .NET interface or that are built
+on an abstract base class. You can easily replace components, such as the routing system, the view engine, and the
+controller factory, with a different one of your own implementation. In general, the MVC Framework gives you three
+options for each component:
+• Use the default implementation of the component as it stands (which should be enough for
+most applications).
+• Derive a subclass of the default implementation to tweak its behavior.
+• Replace the component entirely with a new implementation of the interface or abstract base class.
+
+
+Easy maintanable and testable
+------------------------------
+Easy Maintainable and testable because you
+naturally separate different application concerns into independent pieces.
+To support unit testing, they took the framework’s component-oriented design and made sure that each
+separate piece is structured to meet the requirements of unit testing and mocking tools.
+
+Testability is not only a matter of unit testing. ASP.NET MVC applications work well with UI automation testing
+tools, too. You can write test scripts that simulate user interactions without needing to guess which HTML element
+structures, CSS classes, or IDs the framework will generate, and you do not have to worry about the structure
+changing unexpectedly.
+
+Powerful Routing System
+-------------------------
+Can generate more meaningful URLs.Heps  search engines, user 
+who saves url as favourites in browsers etc

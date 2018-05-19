@@ -1,0 +1,16 @@
+overriding 
+-------------------
+
+class animal
+{
+    void walk(){}}
+
+class dog:animal
+{
+    void new walk(){}
+}
+
+animal obj = new dog();
+obj.walk();// will calls base class walk method
+
+to avoid this we have to use virtual and override

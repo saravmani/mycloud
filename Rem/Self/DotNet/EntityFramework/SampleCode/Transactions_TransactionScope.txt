@@ -1,0 +1,18 @@
+
+decimal amountToTransfer = 1000;
+int accountId = 1;
+using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+{
+    SampleDatabaseEntities db1 = new SampleDatabaseEntities();
+    SampleDatabaseEntities db2 = new SampleDatabaseEntities();
+    // let us retrieve the accounts involved in transaction
+    SalaryAccount salaryAccount = db1.SalaryAccounts.Find(accountId);
+    SavingAccount savingAccount = db2.SavingAccounts.Find(accountId);
+    // Lets debit from the SalaryAccount
+    salaryAccount.Balance -= amountToTransfer;
+    // Now lets credit the SavingAccount
+    savingAccount.Balance += amountToTransfer;
+    db1.SaveChanges();
+    db2.SaveChanges();
+    ts.Complete();
+}

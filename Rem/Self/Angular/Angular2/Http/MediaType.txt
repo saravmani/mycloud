@@ -1,0 +1,11 @@
+Accept header
+------------------------
+ex:
+accept:application/json
+application/json
+application/gzip
+application/xml
+
+
+content-type
+-----------------

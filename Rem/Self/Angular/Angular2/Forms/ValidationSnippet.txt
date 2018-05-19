@@ -1,0 +1,15 @@
+For template driven forms we can use below generic code
+
+
+
+public onSubmitForm(cardFormObject: NgForm) {
+        if (!cardFormObject.valid)
+            this.markAsDerty(cardFormObject);      
+
+    }
+
+    private markAsDerty(cardFormObject: NgForm) {
+        for (var eachControl in cardFormObject.controls) {
+            (<FormControl>cardFormObject.controls[eachControl]).markAsDirty();
+        }
+    }

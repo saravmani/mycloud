@@ -1,0 +1,45 @@
+Prototype
+When you create new objects of a class, the object instances are usually empty. The properties and data
+members of a class are not initialized yet (apart from their default values or constructor initializations).
+Although this is what you want in most cases, at times you may wish to create a new object by cloning an
+existing one. If this is your need, prototype pattern is the way to implement such functionality. Prototype
+pattern allow you to create objects by cloning existing ones.
+
+#Ex: we can use this in reprot engine.. cloning the template XMls for rendering the report
+    In report engine history process, 
+    for DataSet creation (which contains multiple child tables), we can use this. 
+    we can create empty dataset one time and we can clone fromt when ever it required. 
+    it used in gaining the  performance
+
+
+where we can use this?
+Why do we need to clone objects? A few reasons are as follows:
+  You may want to pass an object to some other module for processing, and you want
+to ensure that the original instance is not accidently tampered with in the process.
+  You may want to perform some “preview” operations on an object. You just want to
+get a feel of how the object will be after the changes, but you don’t want to actually
+change the object.
+  The new object and an existing one might closely match each other. So, you can
+clone the first one, modify just a few properties that are different, and then use the
+new instance the way you want.
+  At times creating a new instance using the new keyword might add overhead to the
+object-creation process
+
+
+
+You might be aware that the .NET framework has an ICloneable interface in the System namespace.
+That’s the .NET framework’s way of implementing the prototype pattern.
+
+
+understand cloning (shallow copy and deep copy)
+-----------------------
+The cloning operation is of two types — shallow copy and deep copy. In the case of shallow copy, simple
+type fields of a class are copied into the cloned instance. For reference type fields, only the reference pointer
+is copied (the values they hold are not copied). This means the original as well as the cloned object points to
+the same reference. The shallow copy can be performed using the MemberwiseClone() method of the Object
+base class (every class in .NET is implicitly inherited from the Object base class).
+In the case of deep copy, simple as well as reference type fields are copied into the cloned object. 
+Thus,
+the original and the cloned object get independent copies of the reference type fields. 
+The deep copy can be
+performed through a custom serialization technique

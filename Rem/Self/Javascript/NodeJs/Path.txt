@@ -1,0 +1,6 @@
+It is built in module.
+
+used to combine the path strings
+
+var path=require('path');
+path.join(__dirname,"parthPart1")

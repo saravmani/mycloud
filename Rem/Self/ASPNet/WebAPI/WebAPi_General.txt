@@ -1,0 +1,7 @@
+The engineering team took advantage of the opportunity and built ASP.NET Web API 
+such that it had no dependencies on any of the core framework types found in System.Web.dll.
+This enabled two things: first, it meant that ASP.NET Web API could evolve in a completely 
+self-contained manner (and it could continue to iterate quickly because it is delivered via NuGet).
+Second, because there were no external dependencies to System.Web.dll, and therefore,
+no dependencies to IIS, ASP.NET Web API included the capability to run in a custom host
+(for example, a console application, Windows service, etc.)

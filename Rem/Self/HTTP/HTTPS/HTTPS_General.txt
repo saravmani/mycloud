@@ -1,0 +1,20 @@
+default port - 443
+for HTTP - 80
+
+SSL - secure socket layer
+TLS - Transport layer security
+uses public key infrastructure for encryption
+and uses Asymmetric cryptography
+
+XY09 certificate
+
+
+TSL n SSL are socket oriented protocol
+
+SSL n tsl can ensure data encryption. but it cant 
+confirm source and destination.
+
+those protocols are independant of application layer.
+
+it can be applied any application layer
+ex: tls/ssl + http = https

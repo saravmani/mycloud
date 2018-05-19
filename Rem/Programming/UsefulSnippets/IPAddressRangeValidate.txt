@@ -1,0 +1,36 @@
+///// Validate IP range. i.e given ip is in particular range of ip addresses
+
+
+
+  static private uint IPAddressToLongBackwards(string IPAddr)
+        {
+            System.Net.IPAddress oIP = System.Net.IPAddress.Parse(IPAddr);
+            byte[] byteIP = oIP.GetAddressBytes();
+
+            uint ip = (uint)byteIP[0] << 24;
+            ip += (uint)byteIP[1] << 16;
+            ip += (uint)byteIP[2] << 8;
+            ip += (uint)byteIP[3];
+
+            return ip;
+        }
+
+
+  static public bool IsGreaterOrEqual(string ToCompare, string CompareAgainst)
+        {
+            // convert to long in case there is any zero padding in the strings
+            return IPAddressToLongBackwards(ToCompare) >= IPAddressToLongBackwards(CompareAgainst);
+        }
+
+
+public static bool CanAllowIP(string ipAddress, string startIp, string endIp)
+        {
+            if ((IPCompare.IsGreaterOrEqual(ipAddress, startIp)) && (IPCompare.IsLessOrEqual(ipAddress, endIp)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }

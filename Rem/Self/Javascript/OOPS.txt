@@ -1,0 +1,567 @@
+﻿
+
+
+Traditional class-based languages often reserve the word this to reference the current
+(runtime) instance of the class. In Javascript this refers to the calling context and therefore
+can change to be something other than the object.
+
+
+
+in javascript it is difficult to detach the function from object.
+ex:
+var log = console.log;
+log("reer");//this will not work bcs here log will expect this context
+
+so we can use bind method.
+
+var log = console.log.bin(console);//this will work
+
+
+
+Properties
+---------------
+There are two types of properties: 
+	data properties and accessor properties.
+
+
+Remember this 
+-----------------------
+preventExtensions->seal->freeze
+
+Data properties
+-------------------
+Data properties contain a single location for a data value. Values are read from and written to this
+location.There are four attributes to define this peroperties.
+configurable,writable,value,enumerable
+
+In most cases, you likely won’t need the powerful
+options provided by Object.defineProperty(), but it’s important to understand the concepts to
+have a good understanding of JavaScript objects.
+
+var person = {
+name: “Nicholas”//Here except Value attribute, other attributes got set true by default.
+};
+
+
+in ECMA5 we can define property by using
+var objectName={};
+Object.defineProperty(objectName,'propertyName',{
+writable:false,//This makes object as read only
+value:'some value'
+})
+here objectName.propertyName is read only. so,
+objectName.propertyName="some modified value"// this will not overrite existing value.
+in restricted mode this throws error.
+
+
+if we set configuratble as false, the we canot delete this property fromt he object.
+aslo once we set this configurable as false the we cant re define property.
+
+if make enumerable false.. then we cant use this in for - in loop
+
+
+Access properties
+----------------------
+Accessor properties do not contain a data value. Instead, they contain a combination of a getter
+function and a setter function (though both are not necessary). When an accessor property is read
+from, the getter function is called, and it’s the function’s responsibility to return a valid value;
+
+this having four attributes.
+get,set,configurable,enumerable
+
+var book = {
+_year: 2004,
+edition: 1
+};
+Object.defineProperty(book, “year”, {
+get: function(){
+return this._year;
+},
+set: function(newValue){
+if (newValue > 2004) {
+this._year = newValue;
+this.edition += newValue - 2004;
+
+book.year = 2005;
+alert(book.edition); //2
+}
+}
+});
+
+underscore on _year is a common notation to indicate that a property is not intended to be accessed
+from outside of the object’s methods
+
+in olden browsers, we can do the same with some special methods...
+Ex;
+book.__defi neGetter__(“year”, function(){
+return this._year;
+});
+book.__defi neSetter__(“year”, function(newValue){
+if (newValue > 2004) {
+this._year = newValue;
+this.edition += newValue - 2004;
+}
+});
+
+
+in ECMAScript 5 provides the Object.defineProperties() to define multiple properties
+
+var book = {};
+Object.defineProperties(book, {
+_year: {
+value: 2004
+},
+edition: {
+value: 1
+},
+year: {
+get: function(){
+return this._year;
+},
+set: function(newValue){
+if (newValue > 2004) {
+this._year = newValue;
+this.edition += newValue - 2004;
+}
+}
+}
+});
+
+
+we can get the property attributes by
+Object.getOwnPropertyDescriptor
+var descriptor = Object.getOwnPropertyDescriptor(book, “_year”);
+alert(descriptor.value); //2004
+alert(descriptor.confi gurable); //false
+alert(typeof descriptor.get); //”undefi ned”
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function fnName()
+{
+this.property1 = "";
+this.anotherFunction=function(){}
+}
+
+In javascript above function we can call it as prototype. We can able to create object for this prototype.
+
+var objName  = new fnName();
+
+function Person(name, age, job){//Scope safe constructor
+if (this instanceof Person){
+this.name = name;
+this.age = age;
+this.job = job;
+} else {
+return new Person(name, age, job);
+}
+}
+
+
+
+If we want to extend functionality of this prototype we can use prototype key word to add the functionality.
+ex:
+
+fnName.prototype.newproperty="rere";
+fnName.prototype.newFunction=function(){}
+
+
+But object will not have prototype.
+objName.prototype.property3 = "value"; this wront. it will throw error
+
+
+
+
+Actually, JavaScript uses a different approach than C# or C++ to create an object-oriented language. ... Just objects. Every object can then be used as a prototype for another object.
+ This concept is extremely flexible and we can use it to simulate some concepts from OOP like inheritance.
+
+
+Inheritance example (taken from - https://www.sitepoint.com/simple-inheritance-javascript/)
+------------------------------
+tags: javascript inheritance, inheritance in javascript
+
+var ClassA = function() {
+    this.name = "class A";
+}
+
+ClassA.prototype.print = function() {
+    console.log(this.name);
+}
+
+var ClassB = function() {
+    this.name = "class B";
+    this.surname = "I'm the child";
+}
+
+var inheritsFrom = function (child, parent) {
+    child.prototype = Object.create(parent.prototype);
+};
+
+inheritsFrom(ClassB, ClassA);
+
+
+second option for inheritance
+------------------------------------------
+
+function Bird(){}
+Bird.prototype.someFunction = function(){}
+
+function Penguin(){}
+Penguin.prototype = Object.create(Bird.prototype);//Note here we are inheriting base class functionalities before adding new prototypes to the derived function 
+Penguin.prototype.anotherFunction= function(){}
+
+
+
+
+We can even override the print function for ClassB:
+
+ClassB.prototype.print = function() {
+    ClassA.prototype.print.call(this);//# call base class function  
+    console.log(this.surname);
+}
+
+
+The trick here is to the call ClassA.prototype to get the base print function. Then thanks to call function we can call the base function on the current object (this).
+
+
+Sample Proper Inheritance Code
+===================================
+var __extends = this.__extends || function (d, b) {
+    function __() { this.constructor = d; }
+    __.prototype = b.prototype;
+    d.prototype = new __();
+}
+var empinfo = (function () {
+    function empinfo(emp_id, fname, lname) {
+        this.emp_id = emp_id;
+        this.fname = fname;
+        this.lname = lname;
+    }
+    empinfo.prototype.sayinfo = function () {
+        var span = document.createElement("span");
+        span.style.color = "green";
+        span.style.fontFamily = "Arial Black";
+        span.innerText = "\n Base Class sayinfo() function\nEmp Id ->" + this.emp_id + "\n Frist    
+        Name ->" + this.fname + "\nLast Name ->" + this.lname;
+        document.body.appendChild(span);
+    };
+    return empinfo;
+})();
+var emp = (function (_super) {
+    __extends(emp, _super);
+    function emp() {
+        _super.apply(this, arguments);
+ 
+    }
+    emp.prototype.sayinfo = function () {
+        var span = document.createElement("span");
+        span.style.color = "Blue";
+        span.innerText = "\n DriveClass sayinfo() function Override BaseClass sayinfo() function\n
+        Frist Name ->" + this.fname + "\nLast Name ->" + this.lname + "\nEmp Id ->" + this.emp_id;
+        document.body.appendChild(span);
+    };
+    return emp;
+})(empinfo);
+window.onload = function () {
+    var first = new emp(201, "Sachin","Bhardwaj");
+    first.sayinfo();
+    var second = new empinfo(101, "Nitin","Bhardwaj");
+    second.sayinfo();
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Strictly speaking, this means that an object is an
+array of values in no particular order
+it helps to think of
+ECMAScript objects as hash tables
+In ECMAScript, reference
+types are structures used to group data and functionality together and are often incorrectly
+called classes
+
+
+Object don�t have much
+functionality, they are ideally suited to storing and transmitting data around an application.
+
+var person = new Object();
+person.name = �Nicholas�;
+person.age = 29;
+
+above and below are same
+(It is called Object literal)
+var person = {
+name : �Nicholas�,
+age : 29
+4:"2232" //Numeric properties are automatically converted to string
+};
+Object literal notation is a shorthand form of object
+
+var person = {}; //same as new Object()
+
+
+
+person[�first name�] = �Nicholas�; //This will work fine. but we can use this with . operator
+
+
+arrays are also
+dynamically sized, automatically growing to accommodate any data that is added to them
+
+= new Array(�red�, �blue�, �green�); //generate array with parameters.
+=new Array();
+=new Array(20);//parameter used to create the space
+colors = Array(3);
+defi nition designed to simplify creating an object with numerous properties
+
+
+
+In javascript object is an  array of values in no particular order.
+
+
+Any function that is called with the new operator acts
+as a constructor,
+
+
+creating objects in javascript
+----------------------------------
+1. Factory pattern
+2. Constructor pattern
+3. Prototype Pattern
+
+
+Factory pattern
+--------------------
+function createPerson(name, age, job){
+var o = new Object();
+o.name = name;
+o.age = age;
+o.job = job;
+o.sayName = function(){
+alert(this.name);
+};
+return o;
+
+var person1 = createPerson(�Nicholas�, 29, �Software Engineer�);
+var person2 = createPerson(�Greg�, 27, �Doctor�);
+
+Problem in pfactory pattern is
+factory pattern didn�t
+address the issue of object identifi cation (what type of object an object is).
+
+Constructor pattern
+-------------------------
+There are native constructors, such as Object and Array, which are available automatically
+in the execution environment at runtime. It is also possible to defi ne custom constructors that defi ne
+properties and methods for your own type of object.
+
+function Person(name, age, job){
+this.name = name;
+this.age = age;
+this.job = job;
+this.sayName = function(){
+alert(this.name);
+};
+}
+var person1 = new Person(�Nicholas�, 29, �Software Engineer�);
+var person2 = new Person(�Greg�, 27, �Doctor�);
+
+By convention, constructor
+functions always begin with an uppercase letter
+
+to verify the objectype we can use constructor property
+alert(objectName.constructor == FunctionName); //true
+
+alert(person1 instanceof Object); //true
+alert(person1 instanceof Person); //true
+
+Defi ning your own constructors ensures that instances can be identifi ed as a particular type later
+on, which is a great advantage over the factory pattern
+
+Constructors defi ned in this manner are defi ned on the Global object (the
+window object in web browsers).
+
+we can able to pass the scope or context like below
+//call in the scope of another object
+var o = new Object();
+Person.call(o, �Kristen�, 25, �Nurse�);
+o.sayName(); //�Kristen�
+
+
+
+The major downside to constructors is that methods are created once for each instance.
+
+So, in the previous example, both
+person1 and person2 have a method called sayName(), but those methods are not the same
+instance of Function.
+
+Think like below code... which is equalent to previous one.
+
+function Person(name, age, job){
+this.name = name;
+this.age = age;
+this.job = job;
+this.sayName = new Function(�alert(this.name)�); //logical equivalent
+}
+
+//alert(person1.sayName == person2.sayName); //false
+
+It doesn�t make sense to have two instances of Function that do the same thing, especially when
+the this object makes it possible to avoid binding functions to particular objects until runtime.
+
+
+to solve this problem we can move funciton defenation outside of the function.
+
+function Person(name, age, job){
+this.name = name;
+this.age = age;
+this.job = job;
+this.sayName = sayName;
+}
+function sayName(){
+alert(this.name);
+}.
+
+But another problem here is, this sayName() function is added to global scope.
+But by introducing a function that can
+realistically be used only in relation to an object. If the object needed multiple methods, that would
+mean multiple global functions, and all of a sudden the custom reference type defi nition is no longer
+nicely grouped in the code.
+
+
+Proto type pattern
+--------------------------
+benefi t of using the
+prototype is that all of its properties and methods are shared among object instances
+
+in this case
+alert(person1.sayName == person2.sayName); //true
+
+Prototype
+-------
+Whenever a function is created, its prototype property is also created a
+all prototypes automatically get a property called constructor that points back to
+the function on which it is a property.
+
+when we define custome constructor, prototype gets constructur property by default.
+ALl other properties and methods inherited from Object.
+
+Eachtime when we create instance, then instance will have intternal pointer to constructor's prototype
+
+important thing to
+understand is that a direct link exists between the instance and the constructor�s prototype but not
+between the instance and the constructor.
+
+
+alert(Person.prototype.isPrototypeOf(person1)); //true
+
+in ECMA 5 below code works
+alert(Object.getPrototypeOf(person1) == Person.prototype); //true
+
+
+when property or method accessed using object, then js engine will search method or property with same name within instance.
+if it not able to find in instance then it goes and search in prototype.
+This is how prototypes are used to share properties and
+methods among multiple object instances.
+
+The constructor property mentioned earlier exists only on the prototype and
+so is accessible from object instances.
+alert(Object.getPrototypeOf(person1).name); //�Nicholas�
+
+
+
+
+Although it�s possible to read values on the prototype from object instances, it is not possible to
+overwrite them
+
+ex:
+
+fnciton a()
+{}
+a.protype.proeprtyName="mani";
+var obj = new a();
+var obj1 = new a();
+obj.propertyName="sarav"//this will not overwrite prototypes property.
+//Here new property got created on instance. when we accesses it , then js engine will lookin in object first.. and it will find here itself
+
+
+Once a property is added to the object instance, it shadows any properties of the same name on
+the prototype, which means that it blocks access to the property on the prototype without altering
+it.
+
+we can delete the instance property to access prototype's prototype's property
+delete person1.name;
+
+The hasOwnProperty() method determines if a property exists on the instance or on the prototype.
+This method, which is inherited from Object, returns true only if a property of the given name
+exists on the object instance,
+alert(person1.hasOwnProperty(�name�)); //false
+
+find the property exists or not
+
+alert("propertyName" in objectName)// returns boolean
+
+
+for-in loop to itrate the properties
+using a for-in loop, all properties that are accessible by the object and can be enumerated
+will be returned, which includes properties both on the instance and on the prototype.
+
+
+
+function Person(name, age, job){
+this.name = name;
+this.age = age;
+this.job = job;
+}
+
+if we directly used this function then this properties will be assigned to window. Problem here is
+it may overwrite existing window properties. (i mean the window object has been augmented with the three properties)
+
+to solve this we can go with scope safe constructors
+
+function Person(name, age, job){
+if (this instanceof Person){
+this.name = name;
+this.age = age;
+this.job = job;
+} else {
+return new Person(name, age, job);
+}
+}
+
+Scope-safe constructors are helpful in environments where multiple developers are writing
+JavaScript code to run on the same page.

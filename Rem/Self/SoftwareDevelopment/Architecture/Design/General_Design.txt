@@ -1,0 +1,45 @@
+GOF - under this 24 patterns are There	
+P of EAA - patterns of enterprise application Architecure
+
+
+while implementing design patterns you often use one or more of the
+SOLID principles (such as SRP or OCP). Thus, SOLID principles and design patterns go hand in hand.
+
+designment will play key role in 
+	developing (for developer community)
+	development of stable,robust application
+
+HLD document
+	should contains high level Architecure diagram with componets
+	and ech componet functionality at highlevel
+	how the components are interacting
+	if we are using any sub system how it is interacting
+	also have to specify design decisions
+		ex: why mvc, why angular 2
+
+
+What is a software problem? A software problem is basically a task that
+you wish to accomplish. For example, creating an object and filling it with data from a database 
+is a software problem. There are countless such problems that you will come across. 
+Many times these problems are recurring, and so are their solutions.
+
+
+Simply put, a design pattern is a time-proven solution for a
+known design problem.
+
+
+why we are splitting Presentation,BC,DAL?
+---------------------------------------------------
+Mainly enterprise applications deals with - data management, business rules, and user interface. 
+That’s why modern applications divide the
+whole application into three conceptual layers:
+• Data-access layer
+• Business-logic layer
+• User-interface or presentation layer
+An
+
+
+those three layers must be noted that this division is said to be conceptual because 
+all three pieces can reside on a
+single server. For larger systems these layers might be deployed onto different physical servers,
+resulting in a distributed system. In the latter case they are called tiers

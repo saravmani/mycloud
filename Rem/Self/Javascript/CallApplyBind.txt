@@ -1,0 +1,14 @@
+Difference between call, apply, bind
+-----------------------------------------
+call - if know the number of paramters properly we can use. 
+we can directly pass the parameters like normal funciton call
+ex:
+function add(a,b){}
+add.call(this,2,3);
+
+apply - if we doesnt know the number of parameters. we have to pass array of arguments
+add.apply(this,[2,3])
+
+bind - it is not like apply and call. apply and call will make funciton call. but bind will return new function object with specific context bounded within it
+addFnWithContext = add.bind(this);
+addFnWithContext(2,3);

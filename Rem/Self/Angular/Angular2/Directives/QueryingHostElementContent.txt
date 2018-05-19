@@ -1,0 +1,52 @@
+Querying the Host Element Content
+--------------------------------------
+Directives can query the contents of their host element to access the directives it contains,
+ known as the
+content children,
+
+
+@ContentChildren(PaCellColor) contentChildren: QueryList<PaCellColor>;
+
+ngOnChanges(changes: { [property: string]: SimpleChange }) {
+    this.updateContentChildren(changes["modelProperty"].currentValue);
+}
+private updateContentChildren(dark: Boolean) {
+    if (this.contentChildren != null && dark != undefined) {
+        this.contentChildren.forEach((child, index) => {
+        child.setColor(index % 2 ? dark : !dark);
+        });
+}
+}
+
+
+Querying multiple Children
+--------------------------------
+export class PaCellColorSwitcher {
+  @Input("paCellDarkColor")  modelProperty: Boolean;
+  @ContentChildren(PaCellColor)  contentChildren: QueryList<PaCellColor>;
+  ngOnChanges(changes: { [property: string]: SimpleChange }) {
+    this.updateContentChildren(changes["modelProperty"].currentValue);
+  }
+  private updateContentChildren(dark: Boolean) {
+    if (this.contentChildren != null && dark != undefined) {
+      this.contentChildren.forEach((child, index) => {
+        child.setColor(index % 2 ? dark : !dark);
+      });
+    }
+  }
+}
+
+Receiving Query Change Notifications
+-------------------------------------------
+ngAfterContentInit() {
+  this.contentChildren.changes.subscribe(() => {
+    setTimeout(() => this.updateContentChildren(this.modelProperty), 0);
+  });
+}
+private updateContentChildren(dark: Boolean) {
+    if (this.contentChildren != null && dark != undefined) {
+        this.contentChildren.forEach((child, index) => {
+            child.setColor(index % 2 ? dark : !dark);
+        });
+    }
+}

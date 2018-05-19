@@ -1,0 +1,39 @@
+The underlying ASP.NET platform maintains a pool of .NET threads that are used to process client requests. This
+pool is called the worker thread pool, and the threads are called worker threads. When a request is received, a worker
+thread is taken from the pool and given the job of processing the request. When the request has been processed, the
+worker thread is returned to the pool, so that it is available to process new requests as they arrive. There are two key
+benefits of using thread pools for ASP.NET applications:
+• By reusing worker threads, you avoid the overhead of creating a new one each time you
+process a request.
+• By having a fixed number of worker threads available, you avoid the situation where you are
+processing more simultaneous requests than your server can handle.
+The worker thread pool works best when requests can be processed in a short period of time
+
+
+Note A synchronous controllers are useful only for actions that are I/O- or network-bound and not CPU-intensive.
+
+
+There are two ways to create an asynchronous controller. One is to implement the System.Web.Mvc.Async.
+IAsyncController interface, which is the asynchronous equivalent of IController.
+
+
+Old way of creating asnychronous actions is 
+method names should end with Async (e.g., IndexAsync) or Completed (e.g., IndexCompleted).
+
+
+New way of creating asynchronous 
+-----------------------------------------
+public class RemoteDataController : Controller
+{
+    public async Task<ActionResult> Data()
+    {
+        string data = await Task<string>.Factory.StartNew(() => {
+            return new RemoteService().GetRemoteData();
+        });
+        return View((object)data);
+    }
+}
+
+
+asynchronous methods increase the overall performance of the application 
+by reducing the performance of individual requests.

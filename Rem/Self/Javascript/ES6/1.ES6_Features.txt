@@ -1,0 +1,15 @@
+Built in Promise - no need of external library for Promise features
+Modules - But most of the browsers not implemented this. so we need to module loaders
+Class, Inheritance
+let, const and block scopting - 
+Arrow functions
+Default parameters
+Rest and Spread (...)
+Object Literals Extensions
+for ... of Loops
+Proxy
+Reflect
+Symbol - it is new type in ES6 (like Date, bool, var..)
+
+Destructing
+Mixins

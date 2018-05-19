@@ -1,0 +1,11 @@
+git clone https://github.com/saravmani/mycloud.git
+
+then 
+
+do changes on files then
+
+git add .
+
+git commit -m "some command"
+
+git remote add rem https://github.com/saravmani/mycloud.git

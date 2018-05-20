@@ -13,5 +13,14 @@
 	'loginId':'saravanamanikandan.n@gmail.com',
 	'pwd':'c-stdpwd+#',
 	'url':'nauk'
-}
+},
+,
+{
+'domain':'linkedin',
+'purpose':'career social network',
+'moreInfo':'',
+'email':'saravanamanikandan.n@gmail.com',
+'loginId':'saravanamanikandan.n@gmail.com',
+ 'pwd':'w-stdpwd1#',
+ }
 ]

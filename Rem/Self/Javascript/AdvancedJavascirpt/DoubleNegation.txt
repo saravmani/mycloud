@@ -1,0 +1,14 @@
+Double Negation !!
+-----------------------------
+
+It casts to boolean.
+
+undefined to false
+null to false
++0 to false
+-0 to false
+'' to false
+NaN to false
+false to false
+
+it is simple Not operator... 

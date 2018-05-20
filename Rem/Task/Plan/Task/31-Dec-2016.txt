@@ -1,4 +1,0 @@
-Pips
-angular cli -> component without folder
-tag for latest in javascript
-Observables and reactive programming in js

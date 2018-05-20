@@ -1,2 +1,0 @@
-import functionality will work automatically in Typescript? just try one example.
-I guess we needed module loaders like webpack.. but check once

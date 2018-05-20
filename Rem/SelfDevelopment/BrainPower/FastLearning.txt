@@ -1,4 +1,0 @@
-Tricks to read Programming book
-----------------------------
-1. Directly go to sample coding and try to understand. what ever you feel doubt got for text
-2. 

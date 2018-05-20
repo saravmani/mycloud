@@ -9,3 +9,6 @@ git add .
 git commit -m "some command"
 
 git remote add rem https://github.com/saravmani/mycloud.git
+
+
+CMD: git push -u rem masterdd

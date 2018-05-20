@@ -1,5 +1,0 @@
-Local SQLEXPRESS
-LAPTOP-PJ7GBDCF\SQLEXPRESS
-
-
-Connect with windows authentication

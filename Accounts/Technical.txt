@@ -59,7 +59,7 @@ git push -u origin master
 },
 {
 'domain':'udemy',
-'purpose':'udemy',
+'purpose':'online technical courses',
 'loginId':'winnerrs.mani@gmail.com',
 'pwd':'c-stdpwd1#',
 'url':''

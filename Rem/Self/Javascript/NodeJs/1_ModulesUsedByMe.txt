@@ -1,0 +1,13 @@
+node js the things i have used are below
+socket.io
+helmet - security
+html-pdf - to generate PDF from HTML
+	we have to donwload the HTML and have to pass it to html-pdf util
+express 4.16
+ejs
+
+hicharts
+winston  - logs --info, exception
+request - for http client
+
+nodemon

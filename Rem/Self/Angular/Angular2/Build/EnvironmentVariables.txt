@@ -1,5 +1,5 @@
 
-For every property that is added to the /src/app/environment.ts, 
+For every property that is added to the /src/app/environment.ts,
 it must be added to the files in /config/environment.{env}.ts, this is a disruptive workflow.
 
 
@@ -11,7 +11,7 @@ adding new type of environment is possible.
     "qa": "environments/environment.qa.ts"
   }
 
-
+ 
 #build
 $ ng build --environment=production
 #shorthand
@@ -26,22 +26,22 @@ $ ng s -prod
 
 add new property in environemnt variables
 --------------------------------------------------
-export const environment = {  
+export const environment = {
   production: false,
   envName: 'dev'
 };
 
 
 
-Usage of environment variable 
+Usage of environment variable
 -----------------------------------
-import { Component } from '@angular/core';  
+import { Component } from '@angular/core';
 import { environment } from './environment';
 @Component({
   moduleId: module.id,
   templateUrl: 'myapp.component.html'
 })
-export class MyappAppComponent {   
+export class MyappAppComponent {
   environmentName = environment.envName;
 }
 
@@ -50,5 +50,5 @@ export class MyappAppComponent {
 and tried with below command it works fine
 $ ng serve --environment=production
 
-but if try like ng serve --haha ... this approch not wokring properly. 
+but if try like ng serve --haha ... this approch not wokring properly.
 it s taking default as dev

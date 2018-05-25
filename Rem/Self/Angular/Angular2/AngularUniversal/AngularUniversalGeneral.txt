@@ -1,0 +1,15 @@
+To make a Universal app, you install the platform-server package
+
+!: The platform-server package has server implementations of the DOM, 
+XMLHttpRequest, and other low-level features that do not rely on a browser.
+
+
+You compile the client application with the platform-server module instead of the platform-browser module. 
+and run the resulting Universal app on a web server.
+
+
+!!
+Because a Universal platform-server app doesn't execute in the browser, 
+you may have to work around some of the browser APIs and capabilities that are missing on the server.
+
+You won't be able reference browser-only native objects such as window, document, navigator or location.

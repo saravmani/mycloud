@@ -1,3 +1,25 @@
+Flux is the Architecture Redux is the implementation
+it is given by facebook
+Flux , redux are given by facebook
+
+Advantages
+------------------
+Application state is predictable way
+Decoubles application from presentation framework (ex: angular)
+Unit testing is easy without using mocks
+Great tooling Tools are available to debug 
+	Debug the application state
+we can implement easily Undo/redo functionalities
+
+When to use redux?
+----------------------
+copies of data in multiple places
+multiple views want same data
+data updated by multiple actors (ex: push notification, user, ajax etc.,)
+
+
+
+
 Redux - Data Architecture pattern
 ----------------------------------------
 

@@ -1,3 +1,4 @@
+Reflect is a built-in object that provides methods for interceptable JavaScript operations. 
 typeof Reflect -- is object. so we no need to create new object for Reflect
 
 Reflect.construct(target,argumentList[,newTarget])

@@ -1,0 +1,15 @@
+
+new cli commands
+---------------------------
+ng add 
+
+ng update  
+    Under the hood the command will work with the project’s package.json file and use the project’s package manager (npm or Yarn) as well as apply code transforms where needed to update the code or configuration files where necessary.
+
+.angular-cli.json to  angular.json
+Angular projects that use the CLI historically had a configuration file called .angular-cli.json. With version 6 of the CLI, this file is now renamed to angular.json and its structure also changes.
+
+Angular 6 now depends on TypeScript 2.7 and RxJS 6.
+
+Ivy renderer
+A rewrite of the renderer, code-named Ivy, has also been getting a lot of attention lately. The new renderer should be significantly smaller, which will allow for a smaller final app’s bundle size. A stable version is not available just yet, but it will be made available as an opt-in replacement when the API is complete and stable.

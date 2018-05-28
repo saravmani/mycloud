@@ -1,0 +1,12 @@
+Ex:
+//Use of async pipe to update the some display text 
+{{(updtedTime | async)|date:'mediumTime'}}
+//this above line when ever updaeTime property got changes it will update the 
+view and formates it using date pipe with argument "mediumTimee"
+
+//update some array lenth info in UI
+{{(lisfofArrayElements | async).length}}
+//this will update the element length in UI
+
+//but why we need pip here?? we can do it like below right?
+{{lisfofArrayElements.length}}??

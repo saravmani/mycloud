@@ -1,0 +1,6 @@
+ollation_name
+Is the name of the collation to be applied to the expression, column definition, or database definition. collation_name can be only a specified Windows_collation_name or a SQL_collation_name. collation_name must be a literal value. collation_name cannot be represented by a variable or expression.
+
+Windows_collation_name is the collation name for a Windows Collation Name.
+
+SQL_collation_name is the collation name for a SQL Server Collation Name.

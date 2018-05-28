@@ -1,0 +1,10 @@
+riggers are used to execute a batch of SQL code when insert or update or delete commands are executed against a table. 
+Triggers are automatically triggered or executed when the data is modified.
+ It can be executed automatically on insert, delete and update operations.
+
+ Types of Triggers
+ ---------------------
+Insert
+Delete
+Update
+Instead of

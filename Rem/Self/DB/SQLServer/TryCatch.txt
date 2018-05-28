@@ -1,0 +1,33 @@
+A TRY…CATCH construct catches all execution errors that have a severity higher than 10 that do not close the database connection.
+
+The TRY…CATCH construct cannot be used in a user-defined function.
+
+
+
+A TRY…CATCH construct cannot span multiple blocks of Transact-SQL statements. 
+For example, a TRY…CATCH construct cannot span two BEGIN…END blocks of Transact-SQL statements 
+and cannot span an IF…ELSE construct.
+
+GOTO statements cannot be used to enter a TRY or CATCH block. GOTO statements can be used to jump to a label inside the same TRY or CATCH block or to leave a TRY or CATCH block.
+
+
+Ex:
+CREATE PROCEDURE usp_GetErrorInfo  
+AS  
+SELECT  
+    ERROR_NUMBER() AS ErrorNumber  
+    ,ERROR_SEVERITY() AS ErrorSeverity  
+    ,ERROR_STATE() AS ErrorState  
+    ,ERROR_PROCEDURE() AS ErrorProcedure  
+    ,ERROR_LINE() AS ErrorLine  
+    ,ERROR_MESSAGE() AS ErrorMessage;  
+GO  
+
+BEGIN TRY  
+    -- Generate divide-by-zero error.  
+    SELECT 1/0;  
+END TRY  
+BEGIN CATCH  
+    -- Execute error retrieval routine.  
+    EXECUTE usp_GetErrorInfo;  
+END CATCH;   

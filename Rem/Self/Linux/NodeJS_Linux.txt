@@ -5,6 +5,3 @@ sudo apt-get install python-software-properties
 2.  install curl using apt
 command :  sudo apt install curl
 3. get the curl link from the node js website to download and install the node js  
-
-
-

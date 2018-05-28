@@ -1,0 +1,22 @@
+
+Used to get the list of triggers
+------------------------------------------------
+Select * from sys.objects where type=’tr’
+
+
+SIGN
+------------
+SIGN function is used to determine whether the number specified is Positive, Negative and Zero. This will return +1,-1 or 0.
+SIGN(-35) returns -1
+
+sp_lock
+-------------
+Can we check locks in database? If so, how can we do this lock check?
+using in-built stored procedure called sp_lock.
+
+Sys.SQL_Modules is a SQL Server table used to store the script of stored procedure. 
+Name of the stored procedure is saved in the table called Sys.Procedure.
+
+What are Magic Tables in SQL Server?
+
+Insert and Delete tables are created when the trigger is fired for any DML command. Those tables are called Magic Tables in SQL Server. These magic tables are used inside the triggers for data transaction.

@@ -17,10 +17,11 @@ Depending on the URL sent UrlRoutingModule searches the route table to create Ro
 
 The �RouteData� object is used to create the �RequestContext� object.
 
-This request object is sent to MvcHandler instance to create the controller class instance.
+This request object is sent to MvcHandler (HttpHandler) instance, which will use DefaultControllerFactory
+ to create the controller class instance.
  Once the controller class object is created it calls the Execute method of the controller class.
 
-
+ 
 
 
 UrlRoutingModule --->

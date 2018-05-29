@@ -16,8 +16,6 @@ Since the Katana team did a great effort to support the OWIN integrated pipeline
 it can also secure apps hosted on IIS, including ASP.NET MVC, Web API, Web Form.
 
 
-
-
 why asp.net Identity
 --------------------------
 Previously Developers often use Forms Authentication combined with Membership

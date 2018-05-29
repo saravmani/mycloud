@@ -1,0 +1,24 @@
+Must Read - https://blog.sessionstack.com/how-javascript-works-the-building-blocks-of-web-workers-5-cases-when-you-should-use-them-a547c0757f6a
+
+Web Workers are not part of JavaScript, they’re a browser feature which can be accessed through JavaScript.
+Most browsers have historically been single-threaded (this has, of course, changed), and most JavaScript
+implementations happen in the browser. 
+Web Workers are not implemented in Node.JS — it has a concept of “cluster” or “child_process” which is a bit different.
+
+three types of Web Workers:
+---------------------------------
+Dedicated Workers
+Shared Workers
+Service workers
+
+Dedicated Workers (available in most of the browsers)
+Dedicated Web Workers are instantiated by the main process and can only communicate with it.
+
+Shared Workers
+Shared workers can be reached by all processes running on the same origin (different browser tabs, iframes or other shared workers).
+
+Service Workers
+A Service Worker is an event-driven worker registered against an origin and a path. 
+It can control the web page/site it is associated with, intercepting and modifying the navigation and resource requests, 
+and caching resources in a very granular fashion to give you great control over how your 
+app behaves in certain situations (e.g. when the network is not available.)

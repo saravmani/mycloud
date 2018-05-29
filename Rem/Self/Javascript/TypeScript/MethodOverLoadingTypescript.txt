@@ -1,0 +1,18 @@
+# I think method overloading can be achieved by 
+1. with unions 
+2. function declartaions
+
+# this my example. but i have verify this. 
+
+export class BaseClass {
+    // methodFrombaseClass(a: number);
+    methodFrombaseClass(a: number);
+    methodFrombaseClass(a: number, b?: number);
+    methodFrombaseClass(a: number, b?: number,c?:string);
+    methodFrombaseClass(a: any, b?: number, c?: string) {
+        alert(a);
+    }
+}
+
+var objBaseClass = new BaseClass();
+objBaseClass.methodFrombaseClass(23,45,"78")

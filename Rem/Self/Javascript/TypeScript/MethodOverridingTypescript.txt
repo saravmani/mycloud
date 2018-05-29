@@ -1,0 +1,17 @@
+ Method overwriding in Typescript
+ ---------------------------------------
+ # i didnt see virual and derived. 
+
+export class BaseClass{
+  methodFrombaseClass(){
+    console.log("writting from base class");
+  }
+}
+export class DerivedClass extends BaseClass{
+  methodFrombaseClass(){
+    console.log("writting from derived class");
+  }
+}
+
+const objtest:BaseClass = new DerivedClass();
+    console.log(objtest.methodFrombaseClass());//this will log  "writting from derived class"

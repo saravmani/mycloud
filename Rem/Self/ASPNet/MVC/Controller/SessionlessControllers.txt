@@ -1,3 +1,16 @@
+//Disabled, Readonly
+[SessionState(SessionStateBehavior.Disabled)]
+public class FastController : Controller
+{
+    public ActionResult Index()
+    {
+        return View("Result", new Result
+        {
+            ControllerName = "Fast ",
+            ActionName = "Index"
+        });
+    }
+
 Sessionless Controllers
 =======================================
 By default, controllers support session state, which can be used to store data values across requests

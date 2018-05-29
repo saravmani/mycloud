@@ -4,3 +4,4 @@ But this is possible?
 when token reaches near to expiry time , server will create new token and set in cookie.. :-)
 
 my doubt still what will happen if objAuthentication.SignOut() call?
+i think it will delete the cookie at client side

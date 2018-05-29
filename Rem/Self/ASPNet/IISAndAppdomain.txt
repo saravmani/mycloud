@@ -1,6 +1,7 @@
-In one w3wp process, multiple web applications can be hosted and each of them is running in its own appdomain. 
-Asp.net runs some code in default domain to manage those appdomains. e.g. create/unload domain, monitor process memory 
+In one w3wp process, multiple web applications can be hosted and each of them is running in its own appdomain.
+Asp.net runs some code in default domain to manage those appdomains. e.g. create/unload domain, monitor process memory
 
 User code cant access Defualt appdomain of ASP.NET
-The ASP.NET runtime does however use the default AppDomain for some things but it creates a specific AppDomain for running user code. 
+The ASP.NET runtime does however use the default AppDomain for some things
+but it creates a specific AppDomain for running user code. 
 That's why IsDefaultAppDomain returns false

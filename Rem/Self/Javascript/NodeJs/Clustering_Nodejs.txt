@@ -5,6 +5,7 @@ use multiple cores for a single application, the cluster API was
 added to Node. This API makes it easy for your application to simultaneously run multiple
 “workers” on different cores that each do the same thing and respond to the
 same TCP/IP port.
+
 var cluster = require('cluster');
 var http = require('http');
 var numCPUs = require('os').cpus().length;

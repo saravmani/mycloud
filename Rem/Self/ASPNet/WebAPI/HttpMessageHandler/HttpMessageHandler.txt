@@ -6,13 +6,13 @@ Message handlers derive from the abstract HttpMessageHandler class.
 
 # I guess i have used this to provide custome encryption from auth service to web client
 
-Typically, a series of message handlers are chained together. 
-The first handler receives an HTTP request, does some processing, 
-and gives the request to the next handler. At some point, 
+Typically, a series of message handlers are chained together.
+The first handler receives an HTTP request, does some processing,
+and gives the request to the next handler. At some point,
 the response is created and goes back up the chain. This pattern is called a delegating handler.
 
 
-# I guess beore routing this is getting called
+# I guess before routing this is getting called
 
 #We can able to add this filter at global level also router path level
 
@@ -29,10 +29,10 @@ HttpControllerDispatcher sends the request to a Web API controller.
 
 
 
-To write a custom message handler, derive from System.Net.Http.DelegatingHandler 
+To write a custom message handler, derive from System.Net.Http.DelegatingHandler
 and override the SendAsync method.
-If a delegating handler creates the response without calling base.SendAsync, 
-the request skips the rest of the pipeline. 
+If a delegating handler creates the response without calling base.SendAsync,
+the request skips the rest of the pipeline.
 This can be useful for a handler that validates the request (creating an error response).
 
 public class MessageHandler1 : DelegatingHandler
@@ -72,10 +72,10 @@ public class MessageHandler2 : DelegatingHandler
 
 
 Adding a Handler to the Pipeline
-To add a message handler on the server side, add the handler to the HttpConfiguration.MessageHandlers collection. 
+To add a message handler on the server side, add the handler to the HttpConfiguration.MessageHandlers collection.
 If you used the "ASP.NET MVC 4 Web Application" template to create the project, you can do this inside the WebApiConfig class:
 
-Message handlers are called in the same order that they appear in MessageHandlers collection. 
+Message handlers are called in the same order that they appear in MessageHandlers collection.
 
 public static class WebApiConfig
 {
@@ -111,7 +111,7 @@ class MyWebAPIMessageHandler : HttpMessageHandler
 
 
 
-Adding Custome header 
+Adding Custome header
 -------------------------------
 // .Net 4.5
 public class CustomHeaderHandler : DelegatingHandler
@@ -146,7 +146,7 @@ public class ApiKeyHandler : DelegatingHandler
         {
             var response = new HttpResponseMessage(HttpStatusCode.Forbidden);
             var tsc = new TaskCompletionSource<HttpResponseMessage>();
-            tsc.SetResult(response);    
+            tsc.SetResult(response);
             return tsc.Task;
         }
         return base.SendAsync(request, cancellationToken);
@@ -192,7 +192,7 @@ public static class WebApiConfig
     }
 }
 
-if the request URI matches "Route2", the request is dispatched to MessageHandler2. 
+if the request URI matches "Route2", the request is dispatched to MessageHandler2.
 It replaces the default HttpControllerDispatcher for particular Route match.
 In this example, MessageHandler2 creates the response, and requests that match "Route2" never go to a controller.
  This lets you replace the entire Web API controller mechanism with your own custom endpoint.
@@ -201,7 +201,7 @@ In this example, MessageHandler2 creates the response, and requests that match "
 
 
 
-Alternatively, a per-route message handler can delegate to HttpControllerDispatcher, 
+Alternatively, a per-route message handler can delegate to HttpControllerDispatcher,
 which then dispatches to a controller.
 ----------------------------------------------------------------------------------------------------------------------------------
 

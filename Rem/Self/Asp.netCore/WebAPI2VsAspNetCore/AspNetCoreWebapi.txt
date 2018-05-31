@@ -1,0 +1,1 @@
+IHttpActionResult is now effectively IActionResult, and to return an Ok with a return object, you'd use return new ObjectResult(...);

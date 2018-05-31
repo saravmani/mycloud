@@ -1,7 +1,4 @@
 
-
-
-
 UNITY Framework sample code for MVC
 ===========================================
 Unity sample code

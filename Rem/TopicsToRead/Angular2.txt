@@ -1,8 +1,9 @@
 
 how Asynch await  workes?
+    It uses promises
 Http interceptors in angular 2 or 4 not in 5?
 what are the Built in route guards for angular 2?
-
+ 
 
 How to use CDN in angular 2 project?
 

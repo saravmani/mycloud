@@ -1,0 +1,25 @@
+
+Preload strategies
+=-============================
+NOTE: Angular2:preloadingStrategy
+
+preload strategy, we can lazy load all modules in the background.
+This style of lazy loading keeps our main initial bundle small on first load and
+lazy loading all our modules in the background. This means that when the user clicks the link,
+the module has been preloaded already into memory. This mechanism allows Angular to immediately start
+rendering instead of waiting for the module to download over the network
+@NgModule({
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })], // Define Preloading Strategies
+  exports: [RouterModule],
+  providers: [AppCustomPreloader]
+})
+export class AppRoutingModule { }
+
+
+
+With the Angular Router, we get the PreloadAllModules strategy for free.
+This works well, but if our app is very large preloading, every module in the background
+may cause unnecessary data to be loaded in the background. Ideally, we would like to preload the
+core features or most common user paths in our app. This will allow core features to render immediately
+when the user navigates to the feature while keeping our core bundle small.
+As well as we continue to lazy load the rest of the less used features on demand when the user clicks the link.

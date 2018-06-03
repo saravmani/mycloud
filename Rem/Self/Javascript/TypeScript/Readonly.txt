@@ -1,0 +1,9 @@
+readonly ss:string;
+  
+  constructor() {
+    this.ss = "";//fine
+    this.ss = "ree";//fine
+   }
+
+  ngOnInit() {
+    this.ss = "";//throws error

@@ -1,7 +1,7 @@
 
 Preload strategies
 =-============================
-NOTE: Angular2:preloadingStrategy
+NOTE: Angular2:preloadingStrategy default PreloadAllModules
 
 preload strategy, we can lazy load all modules in the background.
 This style of lazy loading keeps our main initial bundle small on first load and

@@ -10,7 +10,10 @@ if ($('.foobar').hasClass('active')) {
 
 
 
-Redux is like “a backend’s database on the client-side where you store all the required information that are required in order to generate the view”. 
+Redux is like ï¿½a backendï¿½s database on the client-side where you store all the required
+information that are required in order to generate the viewï¿½.
 
 
-The basic idea is that the entire application state is kept in a single store. The way this state changes is by firing actions from your application and then writing reducers for these actions that modify the state. The entire state transition is kept inside reducers and should not have any side-effects.
+The basic idea is that the entire application state is kept in a single store.
+The way this state changes is by firing actions from your application and then writing reducers for these actions
+that modify the state. The entire state transition is kept inside reducers and should not have any side-effects.

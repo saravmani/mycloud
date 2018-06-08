@@ -1,14 +1,17 @@
+Someone else can pick up the code and figure out its purpose
+								and general approach without a walk-through by the original developer?
 Is it maintainable code?
+Is there proper Logging? error login, debug logs etc.,
 Which section is important? then focus on that
-Simplycity and maintainablity is important. bcs code going to be maintained for longer period than 
+Simplycity and maintainablity is important. bcs code going to be maintained for longer period than
 developed
-Instead of doing own coding, try to use industry standard features. 
-Dont try to buid newly unless it is not available
+Instead of doing own coding, try to use industry standard features.
+Dont try to build newly unless it is not available
 Unit tests should be there
 Unit tests should be there for Server side and CLIENT side also.
-If Class grows try to move some parts to seperate file, to reduce the complexity
+If Class grows try to move some parts to separate file, to reduce the complexity
 # my openion - Avoid complex linq queries
-# try to avoid business logics in database (scalling issues, db agnostic issues)
+# try to avoid business logics in database (scaling issues, db agnostic issues)
 
 Method names should be understandable. i.e self descriptive
 
@@ -26,37 +29,37 @@ Code Level
 Avoid large method bodies
 Hardcoded strings - "it is called magic strings"
 
-OpentFile("txtfile.txt")//instead of hardcoding we can use constants or 
+OpentFile("txtfile.txt")//instead of hardcoding we can use constants or
 readonly variales and use it
 //so it s one place of change in future
 
 var ss = "ss"+"ere1";
 //above code will create multiple mem foot prints in heap. so GC need to clear it
 instead we can use string.concat
-var ss = string.concat("ss","ere1")// this will one object 
+var ss = string.concat("ss","ere1")// this will one object
 
 var ss = "ss"+a+"ere1";
-we can change to 
+we can change to
 var ss = string.format("ss {0} ere1",a);
  //this string formaters will do the formating also
  // example this //{0:d} will convert to decimal
 
 
- Try to avoid constants for outside access (btn dlls). instead use readonly. 
+ Try to avoid constants for outside access (btn dlls). instead use readonly.
  within assembly we can use consts it will not problem.
- but if we try to access consts outside the dll then value will get hardcoded to that dll. 
- so modification 
+ but if we try to access consts outside the dll then value will get hardcoded to that dll.
+ so modification
  of source dll will not reflect on consumer dll
 
  In a class if we are using many un managed codes (ex: db conneciton , streams),
- then that class should have IDispose interface. 
+ then that class should have IDispose interface.
  and have to implement dispose method within it
- 
+
 
 Entity Framework
 ---------------------------
-In EDMX properties, disable lazy loading option. 
-if any of the developer accidently wrting the codd to get count of subtable elements, in looping..
+In EDMX properties, disable lazy loading option.
+if any of the developer accidently wrting the code to get count of subtable elements, in looping..
 then it will make multiple db calls. so disable lazy loading option.
 
 instead we can get all the sub tables data in single db call by using .include method
@@ -64,7 +67,7 @@ instead we can get all the sub tables data in single db call by using .include m
 Pagination should be required for larger datasets
 
 Avoid Larger EDMX. so if your proj having more number of tables then
-split the tables into groups and create seperate EDMX files. 
+split the tables into groups and create seperate EDMX files.
 Still Entity framework providing sub EDMX. but this also will have huge code file. so
 there will be start up delay because of creating links etc.,
 So create multiple EDMX for huge table set is the best option

@@ -1,5 +1,6 @@
 
 //#Note:This option is avaialble in EF6 only. For EF5 we have to use transaction scope only
+//# i think this will be used to execute the queries or procs.
 decimal amountToTransfer = 1000;
 int accountId = 1;
 using (SampleDatabaseEntities db = new SampleDatabaseEntities())

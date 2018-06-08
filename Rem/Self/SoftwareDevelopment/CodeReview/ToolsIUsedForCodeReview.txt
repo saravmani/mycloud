@@ -1,0 +1,14 @@
+VSTS code Metrics in vsts 2017
+-------------------------
+  Maintainability index >80
+  Class coupling - per method should not be greater than 25
+Depth of inheritance - max 3
+cyclomatric complexity -
+
+
+Previously FX cop i have used
+now it is available as part of vsts extension (Microsoft Code Analysis 2017),
+and it will show the error on line itself
+
+
+Fiddler to check the how many calls made from client

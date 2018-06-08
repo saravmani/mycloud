@@ -1,6 +1,4 @@
-
-
-
+NOTE: .NetDebugging: windbg comes with windows sdk. SOS.dll, PSSCOR4.dll
 
 Set up windbg for 2012 r2
 --------------------------
@@ -11,27 +9,25 @@ create dump file from task manager.
 drag and drop the dump file into windbg
 
 
-
-
-
 so we can do with WinDbg. this comes with windows SDK
-but windbg cant directly debug managed code. 
+but windbg cant directly debug managed code.
 for that we need extension called SOS. it is shipped with .Net framework
 
 SOS and PssCor2
 ------------------------------
 By default, WinDbg is a tool designed for unmanaged code debugging, but an extension ships with the .NET Framework called SOS.dll
  that enables managed code debugging.  An additional WinDbg extension called PssCor2 has been created that is a superset of SOS and provides additional
- functionality for managed code developers.  This extension will allow you to inspect managed threads, the managed object heap, and inspect the CLR stack, 
+ functionality for managed code developers.  This extension will allow you to inspect managed threads, the managed object heap, and inspect the CLR stack,
 among other things.
-PSSCOR extension is a debugger extension which is super-set of SOS.DLL. It is used for debugging .NET issues with WinDBG, such as high memory / CPU usage, crashes, etc…
+NOTE: .NetDebugging: PSSCOR extension is a debugger extension which is super-set of SOS.DLL. It is used for debugging .NET issues with WinDBG,
+such as high memory / CPU usage, crashes, etc
 PSSCOR4 for a long time in Microsoft for .NET 4.0 related issues
 
 
 Ways to debugging
 -----------------------------
-1. Attach to running process by pressing  F6. 
-2. Take crash dump of the application task manager, or using debugdiag or using adplus, And load the 
+1. Attach to running process by pressing  F6.
+2. Take crash dump of the application task manager, or using debugdiag or using adplus, And load the
 Crash dump file into windbg by pressing ctrl+D
 3. Then load SOS by .loadby <pathtososfile>/sos.dll
 4. Then we can use below commands
@@ -54,7 +50,7 @@ Command to load sos
 !dumpheap -type Oracle.DataAccess.Client.OracleCommand //To filter and check memory leak of particular type
 
 
-(the good thing is that you can copy the windbg.exe to every client system and start immediately with the debugging)
+NOTE: .NetDebugging: (the good thing is that you can copy the windbg.exe to every client system and start immediately with the debugging)
 
 
 Issues and solution
@@ -63,8 +59,8 @@ Issues and solution
 
 
 
-Other tools used to create dumps include using ADPlus (included in the Debugging Tools for Windows), or even DebugDiag. 
- Using DebugDiag lets you create rules for when dumps are captured, such as when a particular exception is raised. 
+Other tools used to create dumps include using ADPlus (included in the Debugging Tools for Windows), or even DebugDiag.
+ Using DebugDiag lets you create rules for when dumps are captured, such as when a particular exception is raised.
  This can be very helpful for grabbing a snapshot of memory as the error occurs so that you can troubleshoot errors in ULS logs in SharePoint.
 
 

@@ -1,6 +1,14 @@
 What if we wanted to substitute out the implementation of B for MockB during testing?
-• What if we wanted to share a single instance of the B class across our whole app (e.g. the
+ï¿½ What if we wanted to share a single instance of the B class across our whole app (e.g. the
 Singleton pattern)
-• What if we wanted to create a new instance of the B class every time it was used? (e.g. the
+ï¿½ What if we wanted to create a new instance of the B class every time it was used? (e.g. the
 Factory pattern)
 DI library that is built-in to Angular.
+
+NOTE:Architecture: Advantages of Dependency injection containers
+
+Loosely coupling (loosly coupled modules)
+OCP
+Qulity of code will get improved
+easy testable
+Less Dependency for unit testing

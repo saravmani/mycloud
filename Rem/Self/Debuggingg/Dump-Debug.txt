@@ -1,23 +1,25 @@
 A dump file is a snapshot of an app at the point in time the dump is taken.
  It shows what process was executing and what modules were loaded.
 If the dump was saved with heap information, the dump file contains a snapshot of what was in the app's memory at that point in time.
- Opening a dump file with a heap in Visual Studio is like stopping at a breakpoint in a debug session. 
+ Opening a dump file with a heap in Visual Studio is like stopping at a breakpoint in a debug session.
 Although you cannot continue execution, you can examine the stacks, threads, and variable values of the app at the time the dump occurred.
 
 
 
 two types of dump files.
 1. Crash dump - when program crashes this got generated
-2. Hang 
+2. Hang
 
 
 
-However, you can't specify that the dump should be created at some specific event. Tools like adplus and procdump allow you to create a dump for various conditions 
-(exception, work load etc). So essentially task manager only supports give me a snapshot of the process (which is usable for a hanging process). 
+However, you can't specify that the dump should be created at some specific event.
+Tools like adplus and procdump allow you to create a dump for various conditions
+(exception, work load etc). So essentially task manager only supports give me a snapshot of
+the process (which is usable for a hanging process).
 For other situations you need to use adplus or procdump.
 
-Also, you should be aware that 64 bit Windows ships with two versions of the task manager. 
-The 64 bit manager will create 64 bit dumps - even for 32 bit processes (i.e. the dump will contain the Wow64 stuff needed to run the 32 bit process). 
+Also, you should be aware that 64 bit Windows ships with two versions of the task manager.
+The 64 bit manager will create 64 bit dumps - even for 32 bit processes (i.e. the dump will contain the Wow64 stuff needed to run the 32 bit process).
 However, if you use the 32 bit version of task manager (located in \Windows\SysWOW64) you'll get a proper 32 bit dump.
 
 
@@ -26,7 +28,7 @@ useful link about PDB files or symobol files
 https://www.microsoft.com/en-us/download/details.aspx?id=49924
 
 Tools
-Sysinternals procdump - it is free, lessthan 1 MB Size
+Sysinternals procdump - it is free, less than 1 MB Size
 
 dump files are very huge. in real time if you want to copy the file to local
 and debug using vsts.. it is very difficult. so we need to find the way
@@ -37,7 +39,8 @@ to debug it in production machine itself :-)
 
 
 Generating PDB files for release executables does not affect any optimizations, or significantly alter the size of the generated files.
-Typically, the only difference is the path, and the file name of the PDB file is embedded in the executable. For this reason, you should always produce PDB files, 
+Typically, the only difference is the path, and the file name of the PDB file is embedded in the executable.
+For this reason, you should always produce PDB files,
 even if you don't want to ship them with the executable.
 
 
@@ -53,27 +56,28 @@ The most frequently used Windows debuggers for user mode processes are Windbg, C
 
 Full memory dump and Mini Memory dump file
 ----------------------------------------------------
-A memory dump file can collect a variety of information. Typically, a support engineer must have 
-all the contents of virtual memory to troubleshoot a problem. In other cases, 
-you might want to capture less information to focus on a specific problem. 
-The debugger is flexible. This flexibility lets you limit the information that a memory dump 
-file captures by collecting either 
+A memory dump file can collect a variety of information. Typically, a support engineer must have
+all the contents of virtual memory to troubleshoot a problem. In other cases,
+you might want to capture less information to focus on a specific problem.
+The debugger is flexible. This flexibility lets you limit the information that a memory dump
+file captures by collecting either
 full memory dump files or mini memory dump files:
 
 Full memory dump files.
 -----------------------
- These files contain the contents of virtual memory for a process. These files are the most useful when you are troubleshooting unknown issues. 
- A support engineer can use these files to look anywhere in memory to locate any object, pull up the variable that was loaded on any call stack, and 
-disassemble code to help diagnose the problem. The disadvantage of full memory dump files is that they are large. 
+ These files contain the contents of virtual memory for a process. These files are the most useful when you are troubleshooting unknown issues.
+ A support engineer can use these files to look anywhere in memory to locate any object, pull up the variable that was loaded on any call stack, and
+disassemble code to help diagnose the problem. The disadvantage of full memory dump files is that they are large.
  It also may take additional time to collect these files, and the process that is being recorded must be frozen while the dump file is created.
-Mini memory dump files. 
+Mini memory dump files.
 ----------------------
 A mini dump file is more configurable than a full dump file and can range from only several megabytes (MB) up to the size of a full dump file.
- The size differs because of the amount of virtual memory that the debugger is writing to disk. 
- Although you can gather mini memory dump files quickly and they are small, they also have a disadvantage. 
- Mini dump files may contain much less information than full dump files. 
- The information that a mini dump file gathers may be virtually useless to a support engineer if the area of memory that the support engineer has to troubleshoot 
-was not captured. For example, if the heap memory is not written to the memory dump file, a support engineer cannot examine the contents of 
+ The size differs because of the amount of virtual memory that the debugger is writing to disk.
+ Although you can gather mini memory dump files quickly and they are small, they also have a disadvantage.
+ Mini dump files may contain much less information than full dump files.
+ The information that a mini dump file gathers may be virtually useless to a support engineer
+if the area of memory that the support engineer has to troubleshoot
+was not captured. For example, if the heap memory is not written to the memory dump file, a support engineer cannot examine the contents of
 a message that was being processed at the time  that the problem occurred. Useful information, such as the subject line and the recipient list, would be lost.
 
 
@@ -82,7 +86,7 @@ a message that was being processed at the time  that the problem occurred. Usefu
 Dump files with heaps
 ----------------------
 Contain a snapshot of the app's memory. This includes the values of variables at the time the dump was created.
- If you load a dump file that was saved with a heap, Visual Studio can load the symbols even if the application binary is not found. 
+ If you load a dump file that was saved with a heap, Visual Studio can load the symbols even if the application binary is not found.
 Visual Studio also saves the binaries of loaded native modules in the dump file, which can make debugging much easier.
 
 Dump files without heaps
@@ -105,4 +109,3 @@ You can use the ADPlus tool to create a user-mode process dump file. The ADPlus 
 Limitations in dump files
 -----------------------------
 Dump files from 64-bit machines must be debugged on an instance of Visual Studio that is running on a 64-bit computer.
-

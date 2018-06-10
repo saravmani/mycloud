@@ -10,3 +10,8 @@ visibility and correlation across services
 
 
 Containers are enablers and a great fit for microservices But Containers are not mandatory for micro services
+
+In microservices world size is not critical
+
+A microservice handles one set of related functions with little or no cross-domain operations.
+This is where concepts like domain-driven design come into play

@@ -1,0 +1,27 @@
+NOTE:Micro Services: API proxy layer, Domain bound
+
+In a microservices architecture, a service operates on a well-defined domain. Operations aren't defined on data objects or business objects.
+
+ou can and probably should provide very low-level, data-focused services in a microservices architecture.
+
+ You can also build a service to handle a set of related business processes that may spin one or more domains.
+
+ You can also build a service to handle a set of related business processes that may spin one or more domains.
+ # but  have to try to avoid as much as possible
+
+Smaller services build faster, have fewer test scenarios, and deploy and start up much quicker.
+All of these aid in the willingness to experiment and make mistakes because you can fix those mistakes much faster in smaller components of code.
+
+In a monolithic infrastructure, breaking API changes are usually more apparent than in a microservices architecture. So you need to stay focused on this issue from day one
+
+
+
+building out a system of microservices, capable of global distribution from day one, prepares your enterprise for the future. Likewise, the ability to scale is part of this architectural style.
+#it is mostly using REST for communication. so we can host it in anyware in globe
+
+n a microservices architecture, each application is independent of every other application in the system. As such, when an individual service comes under load, it can be individually scaled.
+
+Based on user load we can able to scale particular service. And if we are using  API proxy layer ,
+your system will have zero changes needed outside the increased instance count of your one micro service
+
+This so-called elastic scalability, is very hard, if not impossible, for a monolithic application

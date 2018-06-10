@@ -6,3 +6,15 @@ Development complexity
 increases const of development
 Increases development time
 If microservices system not well built then it is difficult to maintain properly
+Error logging should be proper. Because mutiple systems are going to be involved, so developers cannot got and check the error logs
+  from all the systems
+It is using REST based, so it will not have WSDL. so documentation should be proper
+    There is no standard way of documenting RESTful services like we had with WSDL in the SOAP world, so developing common means of service documentation is critical, especially in large organizations
+
+
+Circular calls and grid lock
+--------------------------------
+Another path to gridlock can arise due to circular calls. In a pure microservices architecture, a
+ny service can call any other service. This call stack can become circular when a calling service is subsequently
+called by some downstream service. When this occurs, latency can become a problem much more quickly,
+as multiple services can depend on a service involved in this circular call stack.

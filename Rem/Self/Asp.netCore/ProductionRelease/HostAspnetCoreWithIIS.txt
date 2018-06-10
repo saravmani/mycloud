@@ -1,0 +1,11 @@
+##Ref: https://stackify.com/how-to-deploy-asp-net-core-to-iis/
+If you are planning to deploy your application to IIS, UseIISIntegration() is required
+
+
+You may have noticed that ASP.NET Core projects create a web.config file.
+This is only used when deploying your application to IIS. It registers the AspNetCoreModule as an HTTP handler.
+
+
+Before you deploy your application, you need to install the .NET Core hosting bundle for IIS. This will install the .NET Core runtime, libraries, and the ASP.NET Core module for IIS.
+
+After installing it, you may need to do a “net stop was /y” and “net start w3svc” to ensure all the changes are picked up for IIS.

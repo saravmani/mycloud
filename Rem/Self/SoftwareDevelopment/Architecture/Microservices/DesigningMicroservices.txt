@@ -1,0 +1,3 @@
+While designing microservices we have to consider below
+1. Network traffic (one service may depend another service. so we have to try to reduce this chained calls as much as possible)
+2. reduce cross domain calls as much as possible 

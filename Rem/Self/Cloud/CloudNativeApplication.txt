@@ -1,0 +1,3 @@
+A native cloud application (NCA) is a program that is designed specifically for a cloud computing architecture.
+ NCAs are designed to take advantage of cloud computing frameworks, 
+which are composed of loosely-coupled cloud services.

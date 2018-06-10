@@ -2,3 +2,19 @@ introduces a new interface IoverrideFilter,
 
 Attribute routing
 Authentication Filter
+
+Optional Parameter
+------------------------
+[Route("Products/Electronics/{id?}")]
+      public ActionResult GetElectronicItems(int? id) {
+          ViewBag.Id = id; return View();
+      }
+
+Route constraint
+-------------------------
+[Route("Products/Electronics/{id:int}")]
+
+
+Route prefix
+---------------
+[RoutePrefix("Products")]

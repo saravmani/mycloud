@@ -1,0 +1,8 @@
+Increases deployment complexity
+increases more network traffic.. bcs there are multiple services communicating each other
+Latency - because of multiple services communcating each other for single request
+We need to have proper automation mechanism
+Development complexity
+increases const of development
+Increases development time
+If microservices system not well built then it is difficult to maintain properly

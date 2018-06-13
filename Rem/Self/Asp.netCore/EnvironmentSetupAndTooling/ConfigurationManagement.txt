@@ -1,0 +1,17 @@
+NOTE: multi-level hierarchy; File, Commandline, environment variables; deserialize to custom poco;
+The Configuration API provides a way to configure an ASP.NET Core web app based on a list of name-value pairs.
+Configuration is read at runtime from multiple sources. Name-value pairs can be grouped into a multi-level hierarchy.
+
+There are configuration providers for:
+--------------------------------------------------
+File formats (INI, JSON, and XML).
+Command-line arguments.
+Environment variables.
+In-memory .NET objects.
+The unencrypted Secret Manager storage.
+An encrypted user store, such as Azure Key Vault.
+Custom providers (installed or created).
+
+
+Each configuration value maps to a string key.
+There's built-in binding support to deserialize settings into a custom POCO object (a simple .NET class with properties).

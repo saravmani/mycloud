@@ -2,17 +2,17 @@ For .net core 2.0 need Visual studio 2017 update 15.5
 It is having .csproj and MsBuild
 
 .csproj is very simple.
-In older versions we have to specify the .cs files in the .csproj file. 
+In older versions we have to specify the .cs files in the .csproj file.
 then only it will take for build
 But now in asp.net core what ever cs files available in folder it will take for build
 
 Microsoft.AspNetCore.All // is  a base package
-//it is META PACKAGE. this brings other packages    
+//it is META PACKAGE. this brings other packages
 
 No global.asax, no web.config
 
 By default Process will be using Kestrol to run the application.
-We can able to Configure IIS which will pass the requests to Kestorl if we want to 
+We can able to Configure IIS which will pass the requests to Kestorl if we want to
 server for Intra net clients
 
 
@@ -21,9 +21,9 @@ default Configurations
 Kestorl
 Default Logging (uses console, or Ouput window of Visual studio Based on tooling)
 
-IConfiguration - object will available throughout the application. 
+IConfiguration - object will available throughout the application.
 using this we can able to access the configuration information
-By default configuration service will read data from appsettings.json file. 
+By default configuration service will read data from appsettings.json file.
 Also From User secrets.
 We can able to do configuration using Environment variables, and through command line
 
@@ -37,15 +37,14 @@ Asp.net core is completely decoupled from webserver which is hosting the applica
 
 In production to deploy our applicaiton on Windows Server
 We can use IIS server as proxy server, for Kestorl. IIs will transfer the calls to Kestrol
-For Linux
-We can try different servers. one is Appachie server. We can use this as Proxy for Kestrol
+For Linux We can try different servers. one is Appachie server. We can use this as Proxy for Kestrol
 
-Advantages of Hosting in IIS 
+Advantages of Hosting in IIS
 ------------------------------------
 Restart the application if it crash
 Manage SSL layer part
 many more...
 
 
-If we modify any settings in launchsettings, 
+If we modify any settings in launchsettings,
 then we have to restart Kestrol, or iisexpress or visual studio

@@ -1,0 +1,13 @@
+Async Await
+------------------
+# compiler will take care splitting the functions into smaller chunks
+
+# on the line of await keyword, compiler going to split the method into multiple pieces
+
+When the await operator is passed an already-completed task, it will extract the result and continue executing the method (synchronously).
+
+When the await operator is passed an incomplete task  then by default await will capture the current context and return an incomplete task from the method.
+
+Later, when the await task completes, the remainder of the method is scheduled to run in that context.
+
+This "context" is SynchronizationContext.Current unless it is null, in which case it is TaskScheduler.Current. If you're running this in a Console app, then the context is usually the thread pool context, so the async method will resume executing on a thread pool thread. However, if you execute the same method on a UI thread, then the context is a UI context and the async method will resume executing on the UI thread.

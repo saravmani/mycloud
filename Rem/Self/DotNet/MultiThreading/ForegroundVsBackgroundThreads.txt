@@ -1,0 +1,23 @@
+Foreground vs Background threads
+---------------------------------------
+Foreground threads have the ability to prevent the current application from terminating.
+The CLR will not shut down an application (which is to say, unload the hosting AppDomain) until all foreground threads have ended.
+Background threads (sometimes called daemon threads) are viewed by the CLR as expendable paths of execution
+that can be ignored at any point in time (even if they are currently laboring over some unit of work).
+Thus, if all foreground threads have terminated, any and all background threads are automatically killed when the application domain unloads.
+
+The notion of a "background thread" means very little in .NET.
+The Thread.IsBackground property is just a simple flag that helps the CLR decide whether or not it should rudely
+abort the thread when the AppDomain gets unloaded or whether it should wait for the thread to exit voluntarily.
+
+  Thread.CurrentThread.IsBackground = false;
+
+
+By default Following threads are foreground
+-----------------------------------------------
+The primary thread (or main application thread).
+All threads created by calling a Thread class constructor.
+
+By default Following threads are Background
+-----------------------------------------------
+Thread pool threads, which are a pool of worker threads maintained by the runtime. You can configure the thread pool and schedule work on thread pool threads by using the ThreadPool class.

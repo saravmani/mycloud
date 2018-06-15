@@ -1,0 +1,29 @@
+
+3. Strict Class Initialization
+4. Fixed Length Tuples
+5. Prettier --pretty output
+
+1. const-named propertie
+    achieve using string litterals,numbers, ES6 symbols
+const Foo = "Foo";
+const Bar = "Bar";
+
+let x = {
+    [Foo]: 100,
+    [Bar]: "hello",
+};
+
+let a = x[Foo]; // has type 'number'
+
+
+2. unique symbol
+    unique symbol is a subtype of symbol, and are produced only from calling Symbol() or Symbol.for(), or from explicit type annotations. The new type is only allowed on const declarations and readonly static properties, and in order to reference a specific unique symbol, you’ll have to use the typeof operato
+    // Works
+declare const Foo: unique symbol;
+
+let Baz: typeof Foo = Foo;
+
+// Also works.
+class C {
+    static readonly StaticSymbol: unique symbol = Symbol();
+}

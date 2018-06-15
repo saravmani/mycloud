@@ -1,11 +1,12 @@
-Understandable — Someone else can pick up the code and figure out its purpose and general approach without a walk-through by the original developer.
-Intuitive — Things in the code just seem to make sense, no matter how complex the operation.
-Adaptable — The code is written in such a way that variances in data don’t require a complete rewrite.
-Extendable — Care has been given in the code architecture to allow extension of the core functionality in the future.
-Debuggable — When something goes wrong, the code gives you enough information to identify the issue as directly as possible.
+Understandable ï¿½ Someone else can pick up the code and figure out its purpose
+								and general approach without a walk-through by the original developer.
+Intuitive ï¿½ Things in the code just seem to make sense, no matter how complex the operation.
+Adaptable ï¿½ The code is written in such a way that variances in data donï¿½t require a complete rewrite.
+Extendable ï¿½ Care has been given in the code architecture to allow extension of the core functionality in the future.
+Debuggable ï¿½ When something goes wrong, the code gives you enough information to identify the issue as directly as possible.
 
 
 After development deveveloper ll spend moste of the time maintan the applicaiton
 
-1. First step to writting maintanable applications is	
+1. First step to writting maintanable applications is
 	CODE CONVENTION. Professional institution will maintain code conventions.

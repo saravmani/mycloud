@@ -3,8 +3,8 @@ Issue:
 unable to attach to process from windbg.
 
 Solution:
-if you running debug diag and is there any active rule, this problem may occure.
+if you running debug diag and is there any active rule, this problem may occur.
 I tried to run the debugger as administrator. I closed all my programs and then I rebooted my machine but nothing helped.
 In the end I learned something new.
-That was that even if you restart the machine when you have an active rule running in Debug Diag this rule will auto activate after the reboot even 
-if you have not restarted the Debug Diag tool.
+That was that even if you restart the machine when you have an active rule running in Debug Diag this rule will auto activate after the reboot
+even if you have not restarted the Debug Diag tool.

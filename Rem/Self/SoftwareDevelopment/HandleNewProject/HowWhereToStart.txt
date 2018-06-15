@@ -1,16 +1,18 @@
+When start developping identify framework, library components, Parallel development option
+
 Requirement gathering
-Technology identification 
+Technology identification
 Base architecture design
-Find out common features required accross all the modules 
+Find out common features required across all the modules
   ex: Db connection, Logging etc.,
 Create common utilities
-Create common functionalities seperatly
+Create common functionalities separately
 Create a framework to do the common functionalities
 Find the modules which are already available in market ex: loggin framework, caching framewokrs,
     and buy or borrow those modules and make use of them. So that we can focus on only
     domain specific coding
 
-Try seperate the modules with LESS dependency to each other. 
+Try seperate the modules with LESS dependency to each other.
      so that teams can work independently
 
 Try to use dependency containers. so that teams can work with interfaces alone.
@@ -21,4 +23,3 @@ Try to use dependency containers. so that teams can work with interfaces alone.
 Component diagrams - Put all the components in component diagram and mention
   what are the functionalities
 Sequence diagrams - to define the flows
-

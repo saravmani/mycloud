@@ -2,7 +2,7 @@ Compare Visual studio Communi vs prefessional vs ultimate
 https://www.visualstudio.com/vs/compare/
 
 
-System.Diagnostics.Debug.WriteLine(this); // can be used to write debug information in 
+System.Diagnostics.Debug.WriteLine(this); // can be used to write debug information in
 //Visual studio's output window
 
 Connect to Github repository
@@ -25,7 +25,7 @@ alt+f12 references
 
 json visulalizer
 
-while viewingg object using visualizer if we press cntrl visualizer will get transperent
+while viewing object using visualizer if we press cntrl visualizer will get transperent
 
 run to cursour, F11, F10 will start the application and startt the debugging
 

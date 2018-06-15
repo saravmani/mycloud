@@ -1,11 +1,11 @@
-Below example.. based on the condition below example can able to skip the action exection or result execution    
-    
+Below example.. based on the condition below example can able to skip the action execution or result execution    
+
     public class ActerionFilterTest : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             //Add some condition  -  start
-            //skips the action exection 
+            //skips the action exection
           if (filterContext.HttpContext.Request.IsLocal) {
               filterContext.Result = new HttpNotFoundResult();
             }
@@ -16,7 +16,7 @@ Below example.. based on the condition below example can able to skip the action
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
             //Add some condition  -  start
-            //skips result exection 
+            //skips result exection
             var objContent = new ContentResult();
             objContent.Content = "some content";
             filterContext.Result = objContent;

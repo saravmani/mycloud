@@ -1,0 +1,14 @@
+Even it says serverless computing, a server is still required. The difference is, we do not need to maintain a physical server by ourselves. A server is maintained in a cloud and we only need to provide the required instructions to the cloud to make sure that the server behaves as we want. Usually, these instructions are sent to cloud using functions.
+
+“AWS Lambda”, introduced by Amazon in 2014, was the first public cloud which provides serverless computing. Initially, it only supported in Node.js. However, at the moment it supports other popular programming languages including Java and Python.
+
+Recently, “Google Firebase” also provide serverless facilities under Cloud functions. Developers can upload their back-end code in functions to the cloud and the cloud automatically executes the corresponding logic based on event triggers and HTTP requests.
+
+If you read this far, you make think that this is another type of cloud computing. Actually, serverless computing is based on FaaS which stands for Functions As A Service. There are many advantages of using this architecture due to the involvement of cloud.
+
+Simplifies deployment process
+No need of complex infrastructure and administration
+Supports microservices architecture
+Dynamic resource allocation
+Cost-effectiveness (charge on usage)
+Scalability

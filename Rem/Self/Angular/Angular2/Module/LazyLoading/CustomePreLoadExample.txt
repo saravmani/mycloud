@@ -1,0 +1,26 @@
+
+
+{
+    path: 'feature-2',
+    loadChildren: './feature-2/feature-2.module#Feature2Module',
+    data: { preload: true }  // Custom property we will use to track what route to be preloaded
+  },
+  {
+    path: 'feature-3',
+    loadChildren: './feature-3/feature-3.module#Feature3Module'
+  }
+IMP: rewr
+
+import { PreloadingStrategy, Route } from '@angular/router';
+import { Observable, of } from 'rxjs';
+
+export class AppCustomPreloader implements PreloadingStrategy {
+  preload(route: Route, load: Function): Observable<any> {
+    return route.data && route.data.preload ? load() : of(null);
+  }
+}
+
+
+app.module
+-------------
+RouterModule.forRoot(routes, { preloadingStrategy: AppCustomPreloader }).

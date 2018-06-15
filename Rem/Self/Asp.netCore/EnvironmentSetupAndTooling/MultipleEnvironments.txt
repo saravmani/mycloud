@@ -1,0 +1,5 @@
+NOTE: launchsettings.json;ASPNETCORE_ENVIRONMENT;Development, Staging, and Production;
+
+
+ASPNETCORE_ENVIRONMENT can be set to any value, but three values are supported by the framework: Development, Staging, and Production.
+If ASPNETCORE_ENVIRONMENT isn't set, it will default to Production.

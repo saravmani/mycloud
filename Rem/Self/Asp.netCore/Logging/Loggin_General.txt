@@ -1,1 +1,10 @@
+NOTE: ASP.NETCore doesn't provide async logger methods 
 Asp.net core having built-in support for logging
+
+ASP.NET Core supports a logging API that works with a variety of logging providers.
+Built-in providers let you send logs to one or more destinations, and you can plug in a third-party logging framework.
+
+
+ASP.NET Core doesn't provide async logger methods because logging should be so fast that it isn't worth the cost of using async.
+If you're in a situation where that's not true, consider changing the way you log.
+If your data store is slow, write the log messages to a fast store first, then move them to a slow store later.

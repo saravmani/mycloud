@@ -1,0 +1,20 @@
+Strict Class Initialization
+-----------------------------------
+TypeScript 2.7 introduces a new flag called --strictPropertyInitialization. 
+This flag performs checks to ensure that each instance property of a class gets initialized 
+in the constructor body, or by a property initializer
+
+class C {
+    foo: number;
+    bar = "hello";
+    baz: boolean;
+//  ~~~
+//  Error! Property 'baz' has no initializer and is not definitely assigned in the
+//         constructor.
+
+    constructor() {
+        this.foo = 42;
+    }
+}
+
+In the above, if we truly meant for baz to potentially be undefined, we should have declared it with the type boolean | undefined.

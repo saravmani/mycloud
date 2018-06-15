@@ -1,11 +1,10 @@
 Transport security in WCF
 ---------------------------------
-
 When using HTTP as the transport, security is provided by a Secure Sockets Layer (SSL) implementation.
 
 
 
-mplementing SSL with WCF
+Implementing SSL with WCF
 ----------------------------------
 HTTP transport security (or SSL) is provided externally to WCF. You can implement SSL in one of two ways; the deciding factor is how your application is hosted:
 

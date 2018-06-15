@@ -1,11 +1,10 @@
 in arrow functions we can avoid "function" and "return" keywords
 
-
 var getPrice = ()=>5.9;
 console.log(typeof getPrice);//function
 console.log(getPrice())//5.9
 
-var getPrice = (input)=>input+5.9; 
+var getPrice = (input)=>input+5.9;
 console.log(getPrice(.1))//6
 
 if we specifu the block then we have use return statement

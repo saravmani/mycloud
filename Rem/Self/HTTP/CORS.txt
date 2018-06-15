@@ -1,4 +1,16 @@
 
+---------------------14-Jun-2018---------------------
+when we made cross domain req, by default first request is made with "options" method.
+and if it responds fine with proper header
+then next request will go with actual request
+
+When you have the debug console open and the Disable Cache option turned on,
+preflight requests will always be sent (i.e. before each and every request).
+if you don't disable the cache, a pre-flight request will be sent only once (per server)
+---------------------14-Jun-2018---------------------
+
+
+
 Cross-Origin Resource Sharing (CORS) --  is a W3C specification for cross domain access.
 Browser should send Origin off current page to the 3rd party server.
 third party can validate and send the response with Access controll header
@@ -51,7 +63,7 @@ function handleResponse(data)
 alert(data.name);
 }
 
-These days (2015), CORS is the recommended approach vs. JSONRequest. JSONP is still useful for older browser support, but given the security implications, 
+These days (2015), CORS is the recommended approach vs. JSONRequest. JSONP is still useful for older browser support, but given the security implications,
 unless you have no choice CORS is the better choice.
 
 Advantage of JSONP over Image Ping is, here we can able to send and receive the data.

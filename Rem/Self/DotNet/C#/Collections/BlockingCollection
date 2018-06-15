@@ -2,13 +2,13 @@ Blocking collections System.Collections.Concurrent.BlockingCollection
 -----------------------------------
 
 
-It implements the producer-consumer pattern. In this pattern, there are two threads 
-one is called producer and other is called consumer. Both threads share a common collection 
+It implements the producer-consumer pattern. In this pattern, there are two threads
+one is called producer and other is called consumer. Both threads share a common collection
 class to exchange data between them. BlockingCollection can be used as the collection class.
 
 Producer thread generates the data and consumer thread is consuming the data.
-We set the maximum limit of collection class. Producer cannot add new objects 
-more than maximum limit 
+We set the maximum limit of collection class. Producer cannot add new objects
+more than maximum limit
 
 BlockingCollection has two features which differentiate it from other concurrent classes.
 
@@ -21,8 +21,8 @@ Bounding means we can set the maximum number of objects that we can store in the
  In the blocked stage, thread goes in the sleep mode. It will unblock when consumer thread remove item from the collection.
 #even single item taken by consumer, then producer thread will add another one item.
 #ex bounding size is 10, and producer added 10 items then it will wait consumer to remove item.
- #If consumer takes one item from collection and went for sleep mode then producer add 1 item. 
- #If consumer takes items continuously from collection  then producer some times try to add item in middle 
+ #If consumer takes one item from collection and went for sleep mode then producer add 1 item.
+ #If consumer takes items continuously from collection  then producer some times try to add item in middle
 
 
 
@@ -62,7 +62,7 @@ This method with takes a TIMEOUT VALUE. If the add operation is not completed wi
 BlockingCollection<int> bCollection = new BlockingCollection<int>(boundedCapacity: 2);
 bCollection.Add(1);
 bCollection.Add(2);
- 
+
 if (bCollection.TryAdd(3, TimeSpan.FromSeconds(1)))
 {
     Console.WriteLine("Item added");
@@ -85,10 +85,10 @@ TryTake method also removes an item and returns item in the out parameter. This 
 BlockingCollection<int> bCollection = new BlockingCollection<int>(boundedCapacity: 2);
 bCollection.Add(1);
 bCollection.Add(2);
- 
+
 int item = bCollection.Take();
 item = bCollection.Take();
- 
+
 if (bCollection.TryTake(out item, TimeSpan.FromSeconds(1)))
 {
     Console.WriteLine(item);
@@ -120,15 +120,15 @@ BlockingCollection<int> bCollection = new BlockingCollection<int>(boundedCapacit
                 Thread.Sleep(TimeSpan.FromSeconds(1));
                 bCollection.Add(i);
             }
- 
+
             bCollection.CompleteAdding();
         });
- 
+
     foreach (int item in bCollection.GetConsumingEnumerable())
     {
         Console.WriteLine(item);
     }
- 
+
     //Output:
     // 0
     // 1
@@ -138,7 +138,7 @@ BlockingCollection<int> bCollection = new BlockingCollection<int>(boundedCapacit
     // 5
     // 6
     // 7
-    // 8 
+    // 8
     // 9
 
 

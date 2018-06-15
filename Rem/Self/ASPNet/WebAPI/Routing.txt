@@ -17,15 +17,12 @@ When you create a route, you can provide default values for some or all of the p
 
 Framework will not try to match with Host Name or Protocol or port number
 
-
 {controller}" provides the name of the controller.
-"{action}" provides the name of the action. 
-
+"{action}" provides the name of the action.
 
 Constraints
 ---------------
 constraints: new { id = @"\d+" }   // Only matches if "id" is one or more digits.
-
 
 #How route table getting filled?
 If the framework finds a match for a URI, it creates a dictionary that contains the value for each placeholder.
@@ -55,7 +52,7 @@ id: "123"
 
 
 
-The defaults can also include a value that does not appear anywhere in the route template. 
+The defaults can also include a value that does not appear anywhere in the route template.
 If the route matches, that value is stored in the dictionary. For example:
 
 routes.MapHttpRoute(

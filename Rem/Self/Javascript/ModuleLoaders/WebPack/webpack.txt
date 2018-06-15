@@ -1,11 +1,11 @@
 
 
 Starting from entry point(s), webpack recursively builds a dependency graph that includes
-every module your application needs, using import and require statements, 
+every module your application needs, using import and require statements,
 then packages all of those modules into bundle(s).
 
-Webpack is a powerful module bundler. A bundle is a JavaScript file that incorporates assets 
-that belong together and should be served to the 
+Webpack is a powerful module bundler. A bundle is a JavaScript file that incorporates assets
+that belong together and should be served to the
 client in a response to a single file request. A bundle can include JavaScript, CSS styles, HTML,
  and almost any other kind of file.
 
@@ -17,9 +17,9 @@ Webpack roams over your application source code, looking for import statements, 
 
 module types
 --------------------
-ES6 modules, 
-AMD, 
-CommonJS and 
+ES6 modules,
+AMD,
+CommonJS and
 global scripts in the browser and NodeJS.
 
 Module loaders
@@ -30,13 +30,13 @@ Webpack
 SystemJs
 
 
-SystemJS and Webpack are different. But with SystemJS, you still have work to do 
-(with Gulp or SystemJS builder for example) 
+SystemJS and Webpack are different. But with SystemJS, you still have work to do
+(with Gulp or SystemJS builder for example)
 to package your Angular2 application for production.
 
-Webpack is a flexible module bundler. This means that it goes further and doesn't 
-only handle modules but also provides a way 
-to package your application (concat files, uglify files, ...). 
+Webpack is a flexible module bundler. This means that it goes further and doesn't
+only handle modules but also provides a way
+to package your application (concat files, uglify files, ...).
 It also provides a dev server with load reload for development
 
 
@@ -62,19 +62,12 @@ module.exports = {
     path: __dirname + "/app",
     filename: "main.min.js"
   },
-  plugins: debug ? [] : [ 
+  plugins: debug ? [] : [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
   ],
 };
-
-
-
-
-
-
-
 
 
 
@@ -84,11 +77,10 @@ To tell Webpack what belongs in the vendor bundle, add a vendor.ts file that onl
 
 Loaders
 ----------
-
-Webpack can bundle any kind of file: JavaScript, TypeScript, CSS, SASS, LESS, images, HTML, fonts, whatever. Webpack itself only understands
- JavaScript files. 
+Webpack can bundle any kind of file: JavaScript, TypeScript, CSS, SASS, LESS, images, HTML, fonts, whatever.
+Webpack itself only understands JavaScript files.
 So, For non javascript files we have to use loaders.
- Configure loaders for TypeScript and CSS as follows.
+Configure loaders for TypeScript and CSS as follows.
 
 webpack use the regex configuration in config file and based on this find the loader and load the file
 
@@ -107,7 +99,7 @@ rules: [
 npm install webpack-dev-server -g
 ----------------------------------------------
 “The dev server uses Webpack’s watch mode.
-It also prevents webpack from emitting the resulting files to disk. 
+It also prevents webpack from emitting the resulting files to disk.
 Instead it keeps and serves the resulting files from memory.” — 
 This means that you will not see the webpack-dev-server build in bundle.js,
 to see and run the build, you must still run the webpack command.

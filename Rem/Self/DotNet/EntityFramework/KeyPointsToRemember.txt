@@ -1,15 +1,13 @@
 objDbContext.Entry(objEntity).State = EntityState.Modified;
 
 objDbContext.SaveChanges();//To update the changes in DB.
- 
+
 db.Categories.Remove(category);
-
 db.Categories.Find(id);
-
 db.Categories.ToList()
 
 lazy loading
- 
+
 public class StoreContext:DbContext
 {
 public DbSet<Product> Products { get; set; }
@@ -30,7 +28,7 @@ Native SQL formate
 using (var ctx = new SchoolDBEntities())
 {
     var studentName = ctx.Students.SqlQuery("Select studentid, studentname, standardId from Student where studentname='Bill'").FirstOrDefault<Student>();
-} 
+}
 
 
 Linq style
@@ -40,6 +38,6 @@ using (var context = new SchoolDBEntities())
     var L2EQuery = from st in context.Students
                     where st.StudentName == "Bill"
                     select st;
-   
+
     var student = L2EQuery.FirstOrDefault<Student>();
     }

@@ -4,7 +4,7 @@ public class ProductsController : ApiController
 {
     private IProductRepository _repository;
 
-    public ProductsController(IProductRepository repository)  
+    public ProductsController(IProductRepository repository)
     {
         _repository = repository;
     }
@@ -12,25 +12,19 @@ public class ProductsController : ApiController
     // Other controller methods not shown.
 }
 
-
-
 Web API creates the controller when it routes the request, and Web API doesn't know anything about IProductRepository. This is where the Web API dependency resolver comes in.
 
-
-IDependencyResolver 
+IDependencyResolver
 ---------------------  ----
 public interface IDependencyResolver : IDependencyScope, IDisposable
 {
     IDependencyScope BeginScope();
 }
-
 public interface IDependencyScope : IDisposable
 {
     object GetService(Type serviceType);
     IEnumerable<object> GetServices(Type serviceType);
 }
-
-
 GetService creates one instance of a type.
 GetServices creates a collection of objects of a specified type.
 

@@ -1,11 +1,11 @@
-he Open Web Interface for .NET (OWIN) defines a standard interface between .NET web servers and web applications. 
-Katana is open-source components for building and hosting OWIN-based web applications. 
-It provides the implementation of the OWIN specification. 
+he Open Web Interface for .NET (OWIN) defines a standard interface between .NET web servers and web applications.
+Katana is open-source components for building and hosting OWIN-based web applications.
+It provides the implementation of the OWIN specification.
 
-Every OWIN application has a startup class in which we specify components for the application pipeline. 
+Every OWIN application has a startup class in which we specify components for the application pipeline.
 
 
-Benifits of token based authentication system
+Benefits of token based authentication system
 
 Scalability of Servers
 the token itself contains all the information of the user that is needed for authentication, so Web Farm extension is an easy task. There is no dependence on shared session stores.
@@ -25,22 +25,25 @@ PM> Install-Package Microsoft.Owin.Host.SystemWeb
 
 
 PM> Install-Package Microsoft.AspNet.Identity.EntityFramework
-ASP.NET Identity also supports the Entity Framework. Here we will use ASP.Net identity with Entity Framework, so we need to install this via Nuget packages.
+ASP.NET Identity also supports the Entity Framework. Here we will use ASP.Net identity with Entity Framework,
+so we need to install this via Nuget packages.
 
 
-he Open Web Interface for .NET (OWIN) defines a standard interface between .NET web servers and web applications. Katana is open-source components for building and hosting OWIN-based web applications. It provides the implementation of the OWIN specification. 
+he Open Web Interface for .NET (OWIN) defines a standard interface between .NET web servers and web applications.
+Katana is open-source components for building and hosting OWIN-based web applications.
+It provides the implementation of the OWIN specification.
 
-using Microsoft.Owin;  
-using Owin;  
-  
-[assembly: OwinStartup(typeof(OwinAuthentication.Startup))]  
-namespace OwinAuthentication  
-{  
-    public class Startup  
-    {  
-        public void Configuration(IAppBuilder app)  
-        {  
-  
-        }  
-    }  
+using Microsoft.Owin;
+using Owin;
+
+[assembly: OwinStartup(typeof(OwinAuthentication.Startup))]
+namespace OwinAuthentication
+{
+    public class Startup
+    {
+        public void Configuration(IAppBuilder app)
+        {
+
+        }
+    }
 }

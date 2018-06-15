@@ -4,8 +4,6 @@ You have a LINQ query that is used repeatedly
 throughout your application, and you want to improve the performance of this query by compiling it just once and
 reusing the compiled version in subsequent executions.
 
-
-
 When executing against a database, Entity Framework must translate your strongly typed LINQ query to a
 corresponding SQL query, based upon your database provider (SQL Server, Oracle, and so on). Beginning with
 version 5 of Entity Framework, each query translation is cached by default. This process is referred to as auto-caching.

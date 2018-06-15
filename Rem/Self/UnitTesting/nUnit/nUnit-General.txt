@@ -1,4 +1,5 @@
-The NUnit Framework caters a range of attributes that are used during unit tests. They are used to define Test -Fixtures, Test methods, ExpectedException 
+The NUnit Framework caters a range of attributes that are used during unit tests.
+They are used to define Test -Fixtures, Test methods, ExpectedException
 
 
 when executing test cases in vsts 2013
@@ -32,7 +33,7 @@ namespace Bank
   public class Account
   {
     private decimal balance;
-	
+
     public void Deposit(decimal amount)
     {
       balance += amount;
@@ -67,12 +68,12 @@ namespace Bank
     {
       Account source = new Account();
       source.Deposit(200m);
-      
+
       Account destination = new Account();
       destination.Deposit(150m);
 
       source.TransferFunds(destination, 100m);
-	  
+
       Assert.AreEqual(250m, destination.Balance);
       Assert.AreEqual(100m, source.Balance);
     }
@@ -84,7 +85,7 @@ namespace Bank
 
 The class has to be public and there are no restrictions on its superclass. The class also has to have a default constructor.
 [Test] attribute associated with it ? this is an indication that it is a test method. Test methods have to return void and take no parameters.
-The Assert class defines a collection of methods used to check the post-conditions 
+The Assert class defines a collection of methods used to check the post-conditions
 
 
 Test exceptions
@@ -97,7 +98,7 @@ public void TransferWithInsufficientFunds()
 
 addition to [Test] attribute has an [ExpectedException] attribute associated with it ?
 this is the way to indicate that the test code is expecting an exception of a certain type;
-if such an exception is not thrown during the execution ? the test will fail. 
+if such an exception is not thrown during the execution ? the test will fail.
 
 
 
@@ -130,7 +131,7 @@ namespace Bank
     {
       source = new Account();
       source.Deposit(200m);
-	  
+
       destination = new Account();
       destination.Deposit(150m);
     }
@@ -139,7 +140,7 @@ namespace Bank
     public void TransferFunds()
     {
       source.TransferFunds(destination, 100m);
-	  
+
       Assert.AreEqual(250m, destination.Balance);
       Assert.AreEqual(100m, source.Balance);
     }
@@ -168,7 +169,7 @@ namespace Bank
     }
   }
 }
-Note that Init method has the common initialization code, it has void return type, no parameters, and it is marked with [SetUp] attribute. 
+Note that Init method has the common initialization code, it has void return type, no parameters, and it is marked with [SetUp] attribute.
 
 
 Testting MVC
@@ -178,19 +179,17 @@ Testting MVC
 [Test]
 public void TestDepartmentCreateRedirect()//To test redirect actioon
 {
-    var obj = new DepartmentController(); 
+    var obj = new DepartmentController();
     RedirectToRouteResult result = obj.CreateActionMethod() as RedirectToRouteResult;
-    Assert.That(result.RouteValues["action"], Is.EqualTo("Index"));    
+    Assert.That(result.RouteValues["action"], Is.EqualTo("Index"));
 }
 
 [Test]
     public void TestDepartmentIndex()
     {
         var obj =new DepartmentController();
- 
+
         var actResult = obj.Index() as ViewResult;
- 
+
         Assert.That(actResult.ViewName, Is.EqualTo("Index"));
     }
-
-

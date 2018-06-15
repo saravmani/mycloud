@@ -1,0 +1,35 @@
+export class SampleHTTPService {
+  httpServiceMoudleList: Map<string, string>;
+  constructor(private objHttpClient: HttpClient) {
+    // TODO this part needs configuration manager
+    this.httpServiceMoudleList = new Map<string, string>();
+    this.httpServiceMoudleList.set('SOMEMODULE', 'http://localhost:3001/');
+    this.httpServiceMoudleList.set('MOD1', 'http://localhost:3002/SOMEURL');
+  }
+  mGet(vModule: string, vSubUrl: string, data?: { [param: string]: string }) {
+    const baseUrl = this.httpServiceMoudleList.get(vModule);
+    const objHttpHeaders = new HttpHeaders();
+    objHttpHeaders.set('culture', 'en-US');
+    return this.objHttpClient.get(baseUrl + vSubUrl, {
+      params: data,
+      headers: objHttpHeaders
+    }
+    );
+  }
+
+  mPost(vModule: string, vSubUrl: string, vData?: any) {
+    const baseUrl = this.httpServiceMoudleList.get(vModule);
+    const objHttpHeaders = new HttpHeaders();
+    objHttpHeaders.set('culture', 'en-US'); //
+    return this.objHttpClient.post(baseUrl + vSubUrl, {
+      params: vData,
+      headers: objHttpHeaders
+    }
+    );
+  }
+  mGetBasePath(vModule: string): string {
+    const _baseUrl = this.httpServiceMoudleList.get(vModule);
+    return _baseUrl;
+  }
+
+}

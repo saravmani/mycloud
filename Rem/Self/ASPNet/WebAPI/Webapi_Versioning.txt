@@ -7,7 +7,7 @@
  URL versioning
  ==============================================================
  considering the most common way of versioning so we can consume a resource by
-  calling http://localhost:57888/api/v1/Employees/FetchEmployeeById/1 (the client wants to use version 1 of the API) or 
+  calling http://localhost:57888/api/v1/Employees/FetchEmployeeById/1 (the client wants to use version 1 of the API) or
   http://localhost:57888/api/v2/employeesv2/FetchEmployeeById/1 (the client wants to use version 2 of the API).
 
   config.Routes.MappHttpRoute(
@@ -28,121 +28,118 @@
 
 
 
-public class CustomControllerSelector : DefaultHttpControllerSelector  
-{  
-  
-    private HttpConfiguration _config;  
-    public CustomControllerSelector(HttpConfiguration config) : base(config)  
-    {  
-        _config = config;  
-    }  
-  
-    public override HttpControllerDescriptor SelectController(HttpRequestMessage request)  
-    {  
-        try  
-        {  
-            var controllers = GetControllerMapping();  
-            var routeData = request.GetRouteData();  
-  
-            var controllerName = routeData.Values["controller"].ToString();  
-  
-            HttpControllerDescriptor controllerDescriptor;  
-  
-            if (controllers.TryGetValue(controllerName, out controllerDescriptor))  
-            {  
-                return controllerDescriptor;  
-            }  
-            return null;  
-        }  
-        catch (Exception ex)  
-        {  
-            throw ex;  
-        }  
-  
-  
-    }  
-}  
+public class CustomControllerSelector : DefaultHttpControllerSelector
+{
+
+    private HttpConfiguration _config;
+    public CustomControllerSelector(HttpConfiguration config) : base(config)
+    {
+        _config = config;
+    }
+
+    public override HttpControllerDescriptor SelectController(HttpRequestMessage request)
+    {
+        try
+        {
+            var controllers = GetControllerMapping();
+            var routeData = request.GetRouteData();
+            var controllerName = routeData.Values["controller"].ToString();
+            HttpControllerDescriptor controllerDescriptor;
+            if (controllers.TryGetValue(controllerName, out controllerDescriptor))
+            {
+                return controllerDescriptor;
+            }
+            return null;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+
+    }
+}
 
 
 Add “CustomControllerSelector” to WebApiConfig.cs to get its benefit as shown below:
-config.Services.Replace(typeof(IHttpControllerSelector), new CustomControllerSelector((config))); 
+config.Services.Replace(typeof(IHttpControllerSelector), new CustomControllerSelector((config)));
 
 
    Web API Versioning using QueryString parameter
    ========================================================================
 
-   public override HttpControllerDescriptor SelectController(HttpRequestMessage request)  
-{  
-    try  
-    {  
-        var controllers = GetControllerMapping();  
-        var routeData = request.GetRouteData();  
-  
-        var controllerName = routeData.Values["controller"].ToString();  
-        HttpControllerDescriptor controllerDescriptor;  
-  
-        string versionNum= GetVersionFromQueryString(request);  
-  
-        if (versionNum == "v1")  
-        {  
-            if (controllers.TryGetValue(controllerName, out controllerDescriptor))  
-            {  
-                return controllerDescriptor;  
-            }  
-        }  
-        else   
-        {  
-            controllerName= string.Concat(controllerName,"V2");  
-            if (controllers.TryGetValue(controllerName, out controllerDescriptor))  
-            {  
-                return controllerDescriptor;  
-            }  
-        }  
-  
-        return null;  
-    }  
-    catch (Exception ex)  
-    {  
-        throw ex;  
-    }  
-}  
-  
-/// <summary>  
-/// Method to Get Query String Values from URL to get the version number  
-/// </summary>  
-/// <param name="request">HttpRequestMessage: Current Request made through Browser or Fiddler</param>  
-/// <returns>Version Number</returns>  
-  
-private string GetVersionFromQueryString(HttpRequestMessage request)  
-{  
-    var versionStr = HttpUtility.ParseQueryString(request.RequestUri.Query);  
-  
-    if (versionStr[0] != null)  
-    {  
-        return versionStr[0];  
-    }  
-    return "V1";  
-} 
+   public override HttpControllerDescriptor SelectController(HttpRequestMessage request)
+{
+    try
+    {
+        var controllers = GetControllerMapping();
+        var routeData = request.GetRouteData();
+
+        var controllerName = routeData.Values["controller"].ToString();
+        HttpControllerDescriptor controllerDescriptor;
+
+        string versionNum= GetVersionFromQueryString(request);
+
+        if (versionNum == "v1")
+        {
+            if (controllers.TryGetValue(controllerName, out controllerDescriptor))
+            {
+                return controllerDescriptor;
+            }
+        }
+        else
+        {
+            controllerName= string.Concat(controllerName,"V2");
+            if (controllers.TryGetValue(controllerName, out controllerDescriptor))
+            {
+                return controllerDescriptor;
+            }
+        }
+
+        return null;
+    }
+    catch (Exception ex)
+    {
+        throw ex;
+    }
+}
+
+/// <summary>
+/// Method to Get Query String Values from URL to get the version number
+/// </summary>
+/// <param name="request">HttpRequestMessage: Current Request made through Browser or Fiddler</param>
+/// <returns>Version Number</returns>
+
+private string GetVersionFromQueryString(HttpRequestMessage request)
+{
+    var versionStr = HttpUtility.ParseQueryString(request.RequestUri.Query);
+
+    if (versionStr[0] != null)
+    {
+        return versionStr[0];
+    }
+    return "V1";
+}
 
 
-Versioning using Accept header 
+Versioning using Accept header
 =================================================================================================================
-private string GetVersionFromAcceptHeader(HttpRequestMessage request)  
-{  
-    var acceptHeader = request.Headers.Accept;  
-  
-    foreach (var mime in acceptHeader)  
-    {  
-        if (mime.MediaType == "application/json")  
-        {                      
-            return "V2";  
-        }  
-        else if (mime.MediaType == "application/xml")  
-        {  
-            return "V1";  
-        }  
-        else { return "V1"; }  
-  
-    }  
-    return "V1";  
-} 
+private string GetVersionFromAcceptHeader(HttpRequestMessage request)
+{
+    var acceptHeader = request.Headers.Accept;
+
+    foreach (var mime in acceptHeader)
+    {
+        if (mime.MediaType == "application/json")
+        {
+            return "V2";
+        }
+        else if (mime.MediaType == "application/xml")
+        {
+            return "V1";
+        }
+        else { return "V1"; }
+
+    }
+    return "V1";
+}

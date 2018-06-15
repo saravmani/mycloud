@@ -1,1 +1,7 @@
-A named pipe itself is just an object in the windows kernel. It provides access for different clients to a shared resource. A pipe is identified by its name and can be used for one-way or duplex communication scenarios. While there may be only one pipe server, there may be more than one client applications using a pipe. With the NetNamedPipeBinding, WCF offers an abstraction to pipe objects, making it really easy to use them for inter-process communication.
+A named pipe itself is just an object in the windows kernel.
+It provides access for different clients to a shared resource. A pipe is identified by its name and can be
+used for one-way or duplex communication scenarios. While there may be only one pipe server,
+ there may be more than one client applications using a pipe. With the NetNamedPipeBinding,
+ WCF offers an abstraction to pipe objects, making it really easy to use them for inter-process communication.
+
+ Message security is available on all of the bindings except for netNamedPipeBinding and MSmqIntegrationBinding.

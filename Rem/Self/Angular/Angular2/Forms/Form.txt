@@ -9,8 +9,8 @@ value:{controlname:'',..}
 }
 
 
- 
-Template drivven  - 
+
+Template drivven  -
 	Form is setup and configured in HTML
 	ng2 will infers fromgroup from HTML code
 	submit using ngSubmit()
@@ -72,7 +72,7 @@ angular2 will track the state of the each control
 valid,touched,untouched
 
 
-Controll class 
+Controll class
 ------------------
 controll class represents single input field in the from. and this having below properties
 touched or untouched
@@ -101,12 +101,12 @@ templte driven example
  <form #f="ngForm" (ngSubmit)="onSubmitTemplateBased()">
         <p>
             <label>First Name:</label>
-            <input type="text"  
+            <input type="text"
                 [(ngModel)]="user.firstName" required>
         </p>
         <p>
             <label>Password:</label>
-            <input type="password"  
+            <input type="password"
                 [(ngModel)]="user.password" required>
         </p>
         <p>
@@ -133,11 +133,8 @@ export class TemplateDrivenForm {
 
 disadvantages of template driven
 -------------------------------------
-As we add more and more validator tags to a field or when we start adding complex cross-field validations the readability of the form decreases, to the point where it will be harder to hand it off to a web designer.
-
-
-
-
+As we add more and more validator tags to a field or when we start adding complex cross-field validations
+the readability of the form decreases, to the point where it will be harder to hand it off to a web designer.
 
 Model driven or reactive forms
 ------------------------------------
@@ -160,7 +157,7 @@ html
 
 Component.ts
 ----------------
-import { FormGroup, FormControl, Validators, FormBuilder } 
+import { FormGroup, FormControl, Validators, FormBuilder }
     from '@angular/forms';
 
 @Component({
@@ -169,9 +166,9 @@ import { FormGroup, FormControl, Validators, FormBuilder }
 })
 export class ModelDrivenForm {
     form: FormGroup;
-    
+
     firstName = new FormControl("", Validators.required);
-    
+
     constructor(fb: FormBuilder) {
         this.form = fb.group({
             "firstName": this.firstName,
@@ -188,7 +185,7 @@ export class ModelDrivenForm {
 Note that ngModel can still be used with model driven forms. Its just that the form value would be available in two different places: the view model and the FormGroup, which could potentially lead to some confusion.
 
 
-The FormGroup and 
+The FormGroup and
 FormControl classes provide an API that allows us to build UIs using a completely different programming style known as Functional Reactive Programming.
 
 
@@ -235,7 +232,7 @@ Form validation
 <form #f="ngForm" (ngSubmit)="subjectSearch()">
    <select (change)="onSearchTypeChange()"  #SearchType="ngModel"  class="form-control mandatory" id="dropDownConsumerSearchType" name="dropDownConsumerSearchType">
                                 <option selected="selected" value="">Select</option>
-                                <option value="ACCSRCH">Account Number Search</option> 
+                                <option value="ACCSRCH">Account Number Search</option>
                               </select>
                              <span *ngIf="SearchType.errors && (SearchType.dirty || SearchType.touched)">
                                 <label [hidden]="!SearchType.errors.required" class="help-block">Name is required</label>
@@ -274,8 +271,8 @@ constructor(public objFormBuilder: FormBuilder, private objRouter: Router,
             }),
 
 //Template code
-	     <div id="cunsumerform" formGroupName="consumerForm" 
-			<input formControlName="RadioButtonCIRType" 
+	     <div id="cunsumerform" formGroupName="consumerForm"
+			<input formControlName="RadioButtonCIRType"
 
 
 

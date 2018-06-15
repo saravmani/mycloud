@@ -1,8 +1,8 @@
 this is mvc 5 feature
 
-If you want an action method to just be affected by the 
+If you want an action method to just be affected by the
 filters that have been directly applied to it, then you can
-use a filter override. This tells the MVC Framework to ignore any filters 
+use a filter override. This tells the MVC Framework to ignore any filters
 that have been defined at a higher-level, such
 as the controller or globally.
 
@@ -20,8 +20,7 @@ OverrideAuthenticationAttribute, OverrideActionFiltersAttribute, and so on.
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method,
 Inherited = true, AllowMultiple = false)]
-public class CustomOverrideActionFiltersAttribute : FilterAttribute,
-IOverrideFilter
+public class CustomOverrideActionFiltersAttribute : FilterAttribute,IOverrideFilter
 {
     public Type FiltersToOverride
     {

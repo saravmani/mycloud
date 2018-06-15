@@ -1,0 +1,16 @@
+
+“Microsoft .Net Core Windows Server Hosting”
+we are going to download .Net Core Windows Server Hosting bundle from following link and install it with our system.
+https://aka.ms/dotnetcore-2-windowshosting
+
+As you can see in the following image, Microsoft .Net Core Runtime is being installed.
+
+
+I have hosted asp.net core application with full framework (i done this POC with asp.net core FULL FRAMEWORK (4.7.1))
+1. I downloaded and installed "Microsoft .Net Core Windows Server Hosting"
+2. Then published the asp.net core application from vsts to a Folder
+3. Then configured that folder in IIS with new Applicaiton pool (.Net version Non Managed Code)
+
+And IT is working :-)
+
+Also able to debug by attaching to applicationdll.exe process

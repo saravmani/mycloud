@@ -17,7 +17,7 @@ static void Main(string[] args)
                                 "api/{controller}/{id}",
                                 new { controller = "Home", id = RouteParameter.Optional });
 
-    var server = new HttpSelfHostServer(config);//Server      
+    var server = new HttpSelfHostServer(config);//Server
     var task = server.OpenAsync();
     task.Wait();
 
@@ -55,9 +55,7 @@ class Program
 {
     static void Main(string[] args)
     {
-
         var config = new HttpSelfHostConfiguration("http://localhost:1234");
-
         var server = new HttpSelfHostServer(config, new MyWebAPIMessageHandler());
         var task = server.OpenAsync();
         task.Wait();

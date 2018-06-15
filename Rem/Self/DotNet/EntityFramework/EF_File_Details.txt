@@ -3,50 +3,50 @@ one DbContext
     DBSet objects which related to tables
     Functions related to DB Stored procs
 
-    School.Context.tt: This T4 template file generates a context class whenever you change 
+    School.Context.tt: This T4 template file generates a context class whenever you change
     Entity Data Model (.edmx file).
 
     Entity classes are POCO (Plain Old CLR Object) classes.
 
 
-EDM Designer: EDM designer represents your conceptual model. 
-It consists of Entities, and associations & multiplicity between the entities. 
-Initially, it will look exactly like your database table structure but you can add, 
-merge or remove columns, which are not required by your application from this designer. 
-You can even add a new object in this model, which can have columns from different 
-database tables from context menu, as shown in the figure above. 
-Remember, whatever changes done here should be mapped with the storage model. 
+EDM Designer: EDM designer represents your conceptual model.
+It consists of Entities, and associations & multiplicity between the entities.
+Initially, it will look exactly like your database table structure but you can add,
+merge or remove columns, which are not required by your application from this designer.
+You can even add a new object in this model, which can have columns from different
+database tables from context menu, as shown in the figure above.
+Remember, whatever changes done here should be mapped with the storage model.
 So you have to be careful, while making any changes in the designer.
 
-open this EDM designer in XML view where you can see all the three parts of the 
-EDM - Conceptual schema (CSDL), Storage schema (SSDL) and mapping schema (MSL), 
+open this EDM designer in XML view where you can see all the three parts of the
+EDM - Conceptual schema (CSDL), Storage schema (SSDL) and mapping schema (MSL),
 together in XML view
 
 
 Model Browser
 ------------------------
-Model Browser gives you all the information about all the objects and functions EDM has created. 
-Open Model Browser by right clicking on the EDM Designer 
+Model Browser gives you all the information about all the objects and functions EDM has created.
+Open Model Browser by right clicking on the EDM Designer
 and select Model Browser from the context menu.
 
 
 Multiple DB Diagrams
 ----------------------
-Visual Studio 2012 provides a facility to split the design time visual 
-representation of the Entity Data Model. This means that you can have multiple diagrams 
+Visual Studio 2012 provides a facility to split the design time visual
+representation of the Entity Data Model. This means that you can have multiple diagrams
 for one Entity Data Model.
 If application is big then we can have multiple db diagrams
 
-You can also include the related entities of a particular entity. 
-For example, right click on Student entity → select 'Include Related'. 
+You can also include the related entities of a particular entity.
+For example, right click on Student entity → select 'Include Related'.
 Standard and Course entities will also be included,
 
 
-You can remove the entity from the diagram by right clicking on entity 
+You can remove the entity from the diagram by right clicking on entity
 and selecting 'Remove from diagram'.
 Remove from Diagram will only remove the entity from the diagram whereas
 'Delete from Model' will delete the entity from the EDM.
 
 
-From EF5 we could able to change the colour of the entity in designer.  
+From EF5 we could able to change the color of the entity in designer.
 so that it would be easy to see related groups of entities

@@ -1,6 +1,7 @@
-The HTTP specification (RFC 2616) defines content negotiation as “the process of selecting the best representation for a given response when there are multiple representations available.” The primary mechanism for content negotiation in HTTP are these request headers: 
+The HTTP specification (RFC 2616) defines content negotiation as “the process of selecting the best representation for a given response when there are multiple representations available.” The primary mechanism for content negotiation in HTTP are these request headers:
 
-Accept: Which media types are acceptable for the response, such as “application/json,” “application/xml,” or a custom media type such as "application/vnd.example+xml" 
+Accept: Which media types are acceptable for the response, such as “application/json,” “application/xml,”
+  or a custom media type such as "application/vnd.example+xml" 
 Accept-Charset: Which character sets are acceptable, such as UTF-8 or ISO 8859-1.
 Accept-Encoding: Which content encodings are acceptable, such as gzip.
 Accept-Language: The preferred natural language, such as “en-us”.

@@ -1,9 +1,9 @@
 Session state
 ---------------------
-Session would be available after through the HttpApplication.PostAcquireRequestState event 
-essionStateModule is ASP.NET's default session-state handler. 
-It writes session data to and retrieves it from the session-state store and raises 
-the Session_OnStart and Session_OnEnd events. 
+Session would be available after through the HttpApplication.PostAcquireRequestState event
+essionStateModule is ASP.NET's default session-state handler.
+It writes session data to and retrieves it from the session-state store and raises
+the Session_OnStart and Session_OnEnd events.
 
 
 
@@ -12,9 +12,7 @@ makes multiple overlapping requests, they will be queued up and processed sequen
 that you do not need to worry about multiple requests modifying the same data. The downside is that you do not get
 the request throughput you might like.
 
-
-
-Sessionless Controllers
+Session less Controllers
 =======================================
 By default, controllers support session state, which can be used to store data values across requests
 
@@ -30,7 +28,7 @@ that you do not need to worry about multiple requests modifying the same data. T
 the request throughput you might like.
 
 Not all controllers need the session state features. In such cases, you can improve the performance of your
-application by avoiding work involved in maintaining session state. You do this by using sessionless controllers. These
+application by avoiding work involved in maintaining session state. You do this by using session less controllers. These
 are just like regular controllers, with two exceptions: the MVC Framework will not load or store session state when
 they are used to process a request, and overlapping requests can be processed simultaneously.
 

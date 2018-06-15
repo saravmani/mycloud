@@ -1,20 +1,39 @@
 
+//Updated on 06-Jun-2018
+https://www.c-sharpcorner.com/blogs/ienumerable-vs-iqueryable-in-c-sharp1
+in EF code if we have Second filter  then IQueriable will combine both first and second fileters and generate sql query
+ex:
+var ObjTaskManager = new TaskManager();
+IQueriable<TaskList> objTaskList =  ObjTaskManager.TaskList.where(task_id>10);
+objTaskList.where(task_name=='ewrew')
+//Note here there is two conditions. this code will generate query with two where conditions
+// select * from TaskList where task_id>10 and task_name='ewrew';
+//But instead of iqueryable if we use ienumerable then first condition only available in the ouputed query  select * from TaskList where task_id>10
+//so all the data will get into server memory and then second filter will applied
+
+The IEnumerable<T> type LINQ queries are compiled to delegates and IQueryable or IQueryable<T> queries are compiled to expression trees.
+In short, LINQ queries that execute in process are compiled into delegates while the queries that executes
+out of process are compiled into expression trees.
+
+
+
+//Older date
 public interface IQueryable : IEnumerable
     {
 IQueryable inherited from I IEnumerable. so that we can use it in foreach.
 
-IEnumerable doesn't move between items, it is forward only collection. 
+IEnumerable doesn't move between items, it is forward only collection.
 IQueryable IQueryable best suits for remote data source, like a database or web service.
 
 we can use it for paging and composition based queries
 
-Enumerable IEnumerable is best suitable for working with in-memory collection. 
+Enumerable IEnumerable is best suitable for working with in-memory collection.
 IEnumerable doesn’t move between items, it is forward only collection.
 
-IQueryable IQueryable best suits for remote data source, like a database or web service. 
-IQueryable is a very powerful feature that enables a variety of interesting 
+IQueryable IQueryable best suits for remote data source, like a database or web service.
+IQueryable is a very powerful feature that enables a variety of interesting
 deferred execution scenarios (like paging and composition based queries).
 
-So when you have to simply iterate through the in-memory collection, use IEnumerable, 
-if you need to do any manipulation with the collection like Dataset and other data sources, 
+So when you have to simply iterate through the in-memory collection, use IEnumerable,
+if you need to do any manipulation with the collection like Dataset and other data sources,
 use IQueryable

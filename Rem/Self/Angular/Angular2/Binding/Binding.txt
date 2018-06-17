@@ -12,10 +12,10 @@ class binding
 
 two way binding
 ------------------
-<input type=�text� [(ngModel)]="firstName" />
+<input type='text' [(ngModel)]="firstName" />
 
 
-The asterisk is "syntactic sugar". It simplifies ngIf and ngFor for both the writer and the reader. 
+The asterisk is "syntactic sugar". It simplifies ngIf and ngFor for both the writer and the reader.
 Under the hood, Angular replaces the asterisk version with a more verbose <template> form.
 
 <!-- Examples (A) and (B) are the same -->
@@ -42,14 +42,14 @@ Under the hood, Angular replaces the asterisk version with a more verbose <templ
 ---------
 ngIf will remove the element instead of hiding. Angular removes the element from DOM,
 
-When we hide an element, the component's behavior continues. 
-It remains attached to its DOM element. It continues to listen to events. 
+When we hide an element, the component's behavior continues.
+It remains attached to its DOM element. It continues to listen to events.
 Angular keeps checking for changes that could affect data bindings.
 Whatever the component was doing it keeps doing.
-Although invisible, the component � and all of its descendent components � tie 
-up resources that might be more useful elsewhere. 
+Although invisible, the component � and all of its descendent components � tie
+up resources that might be more useful elsewhere.
 The performance and memory burden can be substantial and the user may not benefit at all.
-On the positive side, showing the element again is very quick. 
+On the positive side, showing the element again is very quick.
 The component's previous state is preserved and ready to displ
 
 
@@ -92,21 +92,21 @@ ngFor, ngIf directives are availbale inside browser module and in commonModule a
 Event binding and adding attribute
 ---------------------------------------
 GenerateClick(elementObject: Element){
-	var objElementRef = new ElementRef(elementObject);   
-	this.objRenderer.setElementAttribute(objElementRef.nativeElement.target, "disabled", "disabled");    
-	this.onGenerate.emit(this.subjectInfo);  
+	var objElementRef = new ElementRef(elementObject);
+	this.objRenderer.setElementAttribute(objElementRef.nativeElement.target, "disabled", "disabled");
+	this.onGenerate.emit(this.subjectInfo);
 }
 
 
 Binding custome attributes in template
 -----------------------------------------
-have to add custome attribute like below. this will be converted by angular 2 
+have to add custome attribute like below. this will be converted by angular 2
 attr.customeattributename="valueee"
 Ex:
 <option *ngFor="let eachProductDetail of consumerFormControlValues?.consumerProductList"
  attr.productBaseId="{{eachProductDetail.BaseProductId}}" value="{{eachProductDetail.Code}}">{{eachProductDetail.DisplayText}}</option>
 
-<div *ngFor="let eachChunk of objopenAccountChunk;let i = index" id='blockidx{{i}}' class="scrollSpyCls" 
+<div *ngFor="let eachChunk of objopenAccountChunk;let i = index" id='blockidx{{i}}' class="scrollSpyCls"
 [attr.block-Index]="i">
 
 
@@ -117,9 +117,9 @@ View Encapsulation
 @Component({
   selector: 'rpt-cons-comprehensiv-index',
   templateUrl: './rpt-cons-comprehensiv-index.component.html',
- 
+
  styles:[".HideOnSummeryView {display:none;}"],
-  
+
 encapsulation: ViewEncapsulation.None
  // None, Emulated, Native
 })
@@ -148,12 +148,12 @@ bind template repeatedly
 
 ng-template
 -----------
-<ng-template> is Angular's own implementation of the <template> tag, 
+<ng-template> is Angular's own implementation of the <template> tag,
 
 
 combo box or drop down
 ----------------------------
-  <select class="form-control" name="pageSize" 
+  <select class="form-control" name="pageSize"
                          [(ngModel)]="table.pageSize">
                          <option [ngValue]="5">5</option>
                          <option [ngValue]="10">10</option>
@@ -181,7 +181,7 @@ parent-component.ts
 
 ng-container vs template
 ------------------------
-Both of them are at the moment (2.x, 4.x) used to group elements together without 
+Both of them are at the moment (2.x, 4.x) used to group elements together without
 having to introduce another element which will be rendered on the page (such as div or span).
 
 template, however, requires nasty syntax. For example,

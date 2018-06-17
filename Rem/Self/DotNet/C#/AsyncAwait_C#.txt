@@ -10,4 +10,5 @@ When the await operator is passed an incomplete task  then by default await will
 
 Later, when the await task completes, the remainder of the method is scheduled to run in that context.
 
-This "context" is SynchronizationContext.Current unless it is null, in which case it is TaskScheduler.Current. If you're running this in a Console app, then the context is usually the thread pool context, so the async method will resume executing on a thread pool thread. However, if you execute the same method on a UI thread, then the context is a UI context and the async method will resume executing on the UI thread.
+This "context" is SynchronizationContext.Current unless it is null, in which case it is TaskScheduler.Current.
+ If you're running this in a Console app, then the context is usually the thread pool context, so the async method will resume executing on a thread pool thread. However, if you execute the same method on a UI thread, then the context is a UI context and the async method will resume executing on the UI thread.

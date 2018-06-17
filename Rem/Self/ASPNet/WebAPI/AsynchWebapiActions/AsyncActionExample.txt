@@ -1,0 +1,27 @@
+public class ValuesController : ApiController
+
+    {
+
+         public async Task<string> Get(int id)
+
+        {
+
+            return await ReadFileAsync();
+
+        }
+
+        private async Task<string> ReadFileAsync()
+
+        {
+
+            using (StreamReader reader = File.OpenText(@"D:\Introduction.txt"))
+
+            {
+
+                await Task.Delay(500);
+
+                return await reader.ReadToEndAsync();
+
+            }
+
+        }

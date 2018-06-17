@@ -1,0 +1,7 @@
+ While deactivating route using CanDeactivate guard, we need to open a Confirmation Dialog Box to take user confirmation if user wants to stay on the page or leave the page.
+
+
+CanDeactivate guard can be used in the scenario, for example, suppose a user is changing form data and before saving, user tries to navigate away. In this scenario we can use CanDeactivate guard which will deactivate the route and open a Dialog Box to take user confirmation.
+
+
+# i think we have to create a utility method with confirm dialogue box.. and use with guards

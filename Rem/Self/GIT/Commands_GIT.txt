@@ -14,3 +14,7 @@ check-in changed file
 # Adds the file to your local repository and stages it for commit. To unstage a file, use 'git reset HEAD YOUR-FILE'.
 2. git commit -m "Add existing file"
 3. git push
+
+
+below command to used to switch the work place between the multiple branches
+git checkout <branchname to checkout>

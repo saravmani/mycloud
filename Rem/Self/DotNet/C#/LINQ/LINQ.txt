@@ -1,4 +1,4 @@
-LINQ 
+LINQ
 ==========
 Key Words
 -------------------
@@ -6,7 +6,13 @@ Key Words
     orderby
     join
 
-    into 
+    into
     from
     select
     where
+
+
+    In LINQ, domain-specific queries (like LINQ to SQL, LINQ to Entity) are result into IQueryable<T> type.
+The C# and Visual Basic compilers compile these queries into code that builds an expression trees at runtime.
+Then query provider traverse the expression tree and translate it
+into a query language (like T-SQL) which is appropriate for that data source.

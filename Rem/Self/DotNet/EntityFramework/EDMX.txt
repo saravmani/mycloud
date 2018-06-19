@@ -1,0 +1,10 @@
+Sections of edmx File
+---------------------------
+ CSDL, SSDL and MSL
+
+ Conceptual Model(CSDL : Conceptual Schema Definition Language)
+The conceptual model contains the model classes and their relationships. This will be independent from the database table design.
+Storage Model(SSDL : Storage Schema Definition Language)
+The storage model is the database design model which includes tables, views, stored procedures, relationships and keys.
+Mapping (MSL : Mapping Schema Language)
+The mapping contains the information about how the conceptual model is mapped to storage model.

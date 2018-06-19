@@ -1,4 +1,4 @@
-if you define a CancellationToken parameter on an action method, 
+if you define a CancellationToken parameter on an action method,
 Web API will provide one for you that is
 triggered when the request is terminated.
 
@@ -9,7 +9,7 @@ public interface ICustomController {
 public class PageSizeController : ApiController, ICustomController
 {
     private static string TargetUrl = "http://apress.com";
-   public async Task<long> GetPageSize(CancellationToken cToken)
+public async Task<long> GetPageSize(CancellationToken cToken)
 {
     WebClient wc = new WebClient();
     Stopwatch sw = Stopwatch.StartNew();
@@ -38,7 +38,7 @@ in above example Web API asynchronous interface pattern
 Dealing with Cancellation
 The CancellationToken parameter is used to signal when the request has been cancelled
 
-zero as the result from the method, although I could have returned any value 
+zero as the result from the method, although I could have returned any value
 from the method because it will be
 discarded.
 

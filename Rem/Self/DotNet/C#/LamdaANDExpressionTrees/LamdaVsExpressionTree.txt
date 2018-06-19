@@ -1,0 +1,9 @@
+Created:17-Jun-2018;Sunday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+A common misunderstanding is that expression trees are identical to lambda expressions.
+But this is not true since you can also create and modify expression trees by using API methods
+i.e. without using lambda expression syntax at all
+
+Also, every lambda expression cannot be implicitly converted into an expression tree.
+Only expression lambda is implicitly converted an expression tree and statement lambda 
+i.e. multi-line lambda cannot be implicitly converted into expression tree.

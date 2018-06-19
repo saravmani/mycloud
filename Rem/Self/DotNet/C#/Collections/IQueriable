@@ -1,5 +1,20 @@
+Updated:17-Jun-2018;Sunday;From home-Chennai-Keelkattalai
+ *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+public interface IQueryable : IEnumerable
+{
+ Type ElementType { get; }
+ Expression Expression { get; }
+ //holds the expression tree and represents data structure equivalent to the executable code found in a query expression.
+ IQueryProvider Provider { get; }
+ //The IQueryProvider type property hold the LINQ provider (like LINQ to SQL, LINQ to Entity etc.)
+ //and based on LINQ provider query is translated into an appropriate query (like T-SQL query).
+}
 
-//Updated on 06-Jun-2018
+
+
+Updated:06-Jun-2018;;-Chennai-
+
+//Updated on
 https://www.c-sharpcorner.com/blogs/ienumerable-vs-iqueryable-in-c-sharp1
 in EF code if we have Second filter  then IQueriable will combine both first and second fileters and generate sql query
 ex:
@@ -20,8 +35,8 @@ out of process are compiled into expression trees.
 //Older date
 public interface IQueryable : IEnumerable
     {
-IQueryable inherited from I IEnumerable. so that we can use it in foreach.
 
+IQueryable inherited from I IEnumerable. so that we can use it in foreach.
 IEnumerable doesn't move between items, it is forward only collection.
 IQueryable IQueryable best suits for remote data source, like a database or web service.
 

@@ -1,0 +1,19 @@
+
+Created:17-Jun-2018;Sunday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+Format to add the history
+Created:17-Jun-2018;Sunday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Created|Updated
+
+
+Color Coding
+-------------------
+
+
+Special literals to work with Atom editor
+---------------------------------------------
+NOTE:<topic>:<hint or important text> //Used while reading at very high level. to remember key points. if you want to read the complete page in
+5 sec then use it
+NOTE: Angular2:preloadingStrategy default PreloadAllModules

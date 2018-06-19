@@ -1,0 +1,16 @@
+Created:17-Jun-2018;Sunday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Expression Tree Structure
+The simple structure of an Expression<TDelegate> has four properties as given below:
+
+Body
+The body of the expression.
+
+Parameters
+The parameters of the lambda expression.
+
+NodeType
+The type of node in the tree
+
+Type
+The type of the expression.

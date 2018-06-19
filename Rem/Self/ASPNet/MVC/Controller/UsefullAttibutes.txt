@@ -1,0 +1,4 @@
+Add the following attribute the action (post) in the controller that you want to allow HTML for:
+
+Allow html input
+[ValidateInput(false)]

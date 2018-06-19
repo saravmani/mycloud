@@ -1,0 +1,28 @@
+Created:17-Jun-2018;Sunday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+Expression class is used to create expression trees by using the API.
+In .NET Framework 4, the expression trees API also supports assignments and control
+flow expressions such as loops, conditional blocks, and try-catch blocks.
+By using the API, you can create expression trees that are more complex than those that can be created from lambda expressions.
+
+
+ex:
+//Create the expression parameters
+ParameterExpression num1 = Expression.Parameter(typeof(int), "num1");
+ParameterExpression num2 = Expression.Parameter(typeof(int), "num2");
+
+//Create the expression parameters
+ParameterExpression[] parameters = new ParameterExpression[] { num1, num2 };
+
+//Create the expression body
+BinaryExpression body = Expression.Add(num1, num2);
+
+//Create the expression
+Expression<Func<int, int, int>> expression = Expression.Lambda<Func<int, int, int>>(body, parameters);
+
+// Compile the expression
+Func<int, int, int> compiledExpression = expression.Compile();
+
+// Execute the expression.
+int result = compiledExpression(3, 4); //return 7

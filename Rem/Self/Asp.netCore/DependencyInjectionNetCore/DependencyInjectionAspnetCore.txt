@@ -1,0 +1,14 @@
+Created:17-Jun-2018;Sunday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+Asp.net core contains built in dependency injection support.
+Like other DI frameworks, built in Asp.net DI framework WONT support
+: Auto-Discovery, Auto-Registrations, Decorators or Injectors, or convention based registrations.
+There are also no plans to add this to the built-in container yet as far as I know.
+
+If we need to property injection, Auto-Registrations, Decorators or Injectors then we have to go for
+third party injectors.
+
+# My commands
+But Property injection is bad idea, bcs there is no guarantee that property will get injected
+Also unit test cases also will get affected, if the property injection not happend properly

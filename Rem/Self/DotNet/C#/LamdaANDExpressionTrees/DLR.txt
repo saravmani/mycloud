@@ -1,0 +1,11 @@
+DATE: 17-Jun-2018;Sunday;From home - Chennai - Keelkattalai
+ *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+# my comments - What is dynamic here? which means, until runtime, applicaion doesnt know -about -  type, parameters
+
+
+he dynamic language runtime (DLR) is a runtime environment that adds a set of services for dynamic
+languages to the common language runtime (CLR). The DLR makes it easier to develop dynamic languages
+to run on the .NET Framework and to add dynamic features to statically typed languages.
+
+Like the CLR, the DLR is a part of the .NET Framework and is provided with the .NET Framework and Visual Studio installation packages.
+The open-source version of the DLR is also available for download on the IronLanguages/dlr repo on GitHub

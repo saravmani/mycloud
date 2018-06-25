@@ -1,0 +1,24 @@
+Created:23-Jun-2018;Saturday;From Airport-Tiruvendram-
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+We cannot call procedures within the function
+
+
+##This is applicable in SQL server. But dont know in Oracle
+Functions are computed values and cannot perform permanent environmental
+changes to the SQL Server.
+
+
+Two types of functions
+Scalar  fucntions
+table value functions
+
+Scalar functions
+-------------------
+A scalar function is a function that is defined in the database and returns a scalar
+value. For example, if we need to find the EmployerId for an Employee by passing
+the ID of the Employee,
+
+Table Valued Functions
+---------------------------
+Table valued functions (TVF) are simply the user-defined functions that return
+tabular data.

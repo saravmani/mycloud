@@ -1,0 +1,10 @@
+Created:23-Jun-2018;Saturday;From Airport-Tiruvendram-
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+#in my understanding
+indexing means we can take example of indexing page on Books. there will lots of grouping by
+alphabets
+
+ways of indexing
+B-Tree index - Normally we will use it. It is binary tree algorithm
+Bitmap index - can be used when more repeated values in the given column

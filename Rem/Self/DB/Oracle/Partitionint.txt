@@ -1,0 +1,7 @@
+If number of records increased more then 1M (not sure), then
+partition is important to gain the performance
+
+
+we can able to do indexing   on partition or on Table.
+
+indexing on  partition is better performance

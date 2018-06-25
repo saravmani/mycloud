@@ -1,0 +1,14 @@
+class subject{
+public subject()
+{
+AccountInfoList = new HashSet<AccpintInfo>();//Note this line
+}
+public string SubjectName{get;set;}
+
+public short Age { get;set;}
+public virtual ICollection <AccpintInfo> AccountInfoList{get;set;}
+}
+
+class AccpintInfo{
+
+}

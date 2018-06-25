@@ -1,0 +1,31 @@
+Created:19-Jun-2018;Tuesday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+View() Vs PartialView()
+----------------------------------------
+return View() the view content goes in the @RenderBody() of the /Shared/_Layout.cshtml
+return PartialView() it returns only the view content
+
+
+RednerPartial
+-------------
+ This method result will be directly written to the
+ HTTP response stream means it used the same TextWriter object as used in the current webpage/template.
+
+The main difference is that "RenderPartial" returns void and output will be written directly to the output
+sream, where as the "Partial" returns MvcHtmlString which can be assigned to a
+variable and manipulate it if required. So, when there is no need to assign the output
+to a variable for manipulating it, then use Partial, else use RenderPartial.
+Renderpartial does exactly the same thing and is better for performance over partial().
+
+The RenderPartial helper is similar to Partial, but RenderPartial writes directly to the response
+output stream instead of returning a string. For this reason, you must place RenderPartial inside
+a code block instead of a code expression. To illustrate, the following two lines of code render the
+same output to the output stream:
+@{Html.RenderPartial("AlbumDisplay "); }
+@Html.Partial("AlbumDisplay ")
+So, which should you use, Partial or RenderPartial? In general, you should prefer Partial to
+RenderPartial because Partial is more convenient (you don�t have to wrap the call in a code
+block with curly braces). However, RenderPartial may result in better performance because it
+writes directly to the response stream, although it would require a lot of use (either high site traffic
+or repeated calls in a loop) before the difference would be noticeable.

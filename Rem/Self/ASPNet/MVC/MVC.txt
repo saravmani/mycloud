@@ -28,12 +28,12 @@ public ActionResult Details(int RUID)
 
 
 [RoutePrefix("ControllerName")]
-[Route("{action=DefaultAction}")] 
+[Route("{action=DefaultAction}")]
     public class SubjectController : Controller
     {
 
 
-[Route("Detailskk/{RUID:min(10):max(50):int}")] 
+[Route("Detailskk/{RUID:min(10):max(50):int}")]
         public ActionResult Details(int RUID)
         {
             return View();
@@ -44,7 +44,7 @@ When you combine attribute routing with convention-based routing, actions which 
 
 
 
-REference for Razor helper, functions 
+REference for Razor helper, functions
 http://www.mikesdotnetting.com/article/173/the-difference-between-helpers-and-functions-in-webmatrix
 
 Model binding
@@ -62,9 +62,9 @@ Developers can write their own value provider factories and value providers,
 and insert them into the factory list contained inside ValueProviderFactories.Factories.
 Other value providers
 Cookie value provider
-‰ Server variable value provider
-‰ Session value provider
-‰ TempData value provider
+ï¿½ Server variable value provider
+ï¿½ Session value provider
+ï¿½ TempData value provider
 
 
 Filters
@@ -74,7 +74,7 @@ Filters
 
 
 
-Test Driven Development is the process where the developer creates the test case first and then fixes the actual implementation of the method. 
+Test Driven Development is the process where the developer creates the test case first and then fixes the actual implementation of the method.
 It happens this way, first create a test case, fail it, do the implementation, ensure the test case success, re-factor the code and then continue with the cycle again.
 
 
@@ -122,10 +122,10 @@ Ex: routes.MapRoute("simple", "{controller}/{action}/{id}");
 
 
 
-ASP.NET Web API is hostable outside of ASP.NET, which means it can’t use
+ASP.NET Web API is hostable outside of ASP.NET, which means it canï¿½t use
 ASP.NET Routing directly. Instead, it introduces a clone of the Routing code.
 But when ASP.NET Web API is hosted on ASP.NET, it mirrors all the Web API
-routes into the core ASP.NET Routing’s set of routes.
+routes into the core ASP.NET Routingï¿½s set of routes.
 
 
 
@@ -162,7 +162,7 @@ src="@~/Content/Images/ajax-loader.gif"
 style="display:none"/>
 }
 
- 
+
 
 to use ajax helpers we have to include jquery.unobtrusive-ajax file .
 <div id="dailydeal">
@@ -179,15 +179,15 @@ HttpMethod="GET"
 
 
 
-The fi les with “unobtrusive” in the name are fi les written by Microsoft. The unobtrusive scripts
-integrate with jQuery and the MVC framework to provide the unobtrusive JavaScript features.You’ll need to use these fi les if you want to use Ajax features of the ASP.NET MVC
+The fi les with ï¿½unobtrusiveï¿½ in the name are fi les written by Microsoft. The unobtrusive scripts
+integrate with jQuery and the MVC framework to provide the unobtrusive JavaScript features.Youï¿½ll need to use these fi les if you want to use Ajax features of the ASP.NET MVC
 framework.
 
 
 In VSTS 2012 we no need to refer .js file in all pages to get intelisense.
 we have just refer the file in _references.js file. vsts automatically detect and generate intelisance in all the pages
 
-You’ll also fi nd fi les containing vsdoc in the name. These fi les are specially annotated to help Visual
+Youï¿½ll also fi nd fi les containing vsdoc in the name. These fi les are specially annotated to help Visual
 Studio provide better IntelliSense.
 
 The UIHint attribute gives the ASP.NET MVC run time the name of a template to use when rendering
@@ -211,7 +211,7 @@ however, the model binder might still try to move a value into the Username
 property if it sees a matching value in the request.
 
 When the model binder is fi nished updating the order, it runs any validation rules associated
-with the object, so you’ll know if the object is in a good state or not. 
+with the object, so youï¿½ll know if the object is in a good state or not.
 
 Check particular field is valid .. after model binding happen
 	ModelState.IsValidField("LastName")
@@ -221,9 +221,9 @@ Model state contains
 	Values which entered by user
 
 <script src="~/Scripts/jquery-1.6.2.js"></script>
-Note that ASP.NET MVC’s Razor view engine will resolve the ~ operator to the root of the current
+Note that ASP.NET MVCï¿½s Razor view engine will resolve the ~ operator to the root of the current
 web site, even when the ~ appears in an src attribute. Also note that specifying the type as text/
-javascript isn’t needed in HTML 5.
+javascript isnï¿½t needed in HTML 5.
 
 
 Remember
@@ -281,22 +281,6 @@ MVC framework executes validation logic during model binding.model binder runs i
 
 
 
-
-
-The RenderPartial helper is similar to Partial, but RenderPartial writes directly to the response
-output stream instead of returning a string. For this reason, you must place RenderPartial inside
-a code block instead of a code expression. To illustrate, the following two lines of code render the
-same output to the output stream:
-@{Html.RenderPartial("AlbumDisplay "); }
-@Html.Partial("AlbumDisplay ")
-So, which should you use, Partial or RenderPartial? In general, you should prefer Partial to
-RenderPartial because Partial is more convenient (you don’t have to wrap the call in a code
-block with curly braces). However, RenderPartial may result in better performance because it
-writes directly to the response stream, although it would require a lot of use (either high site traffi c
-or repeated calls in a loop) before the difference would be noticeable.
-
-
-
 In ASP.NET MVC 4, which uses Razor version 2, the tilde character is resolved automatically when
 it appears in the src attribute for script, style, and img elements.
 
@@ -351,7 +335,7 @@ the PartialViewResult renders
 only the markup in the view itself and does not render any layout or master page
 that the view may specify.Since partial pages do not execute the layout, you may have to include
 some dependencies, such as CSS or JavaScript, directly in the partial
-view rather than including them in the page’s layout.
+view rather than including them in the pageï¿½s layout.
 
 MVC 4 features
 -----------------
@@ -370,7 +354,7 @@ X-Requested-With: XMLHttpRequest
 
 
 
-'Model binders' provide an easy way to extract data from various parts of an HTTP request and convert those message parts into .NET objects 
+'Model binders' provide an easy way to extract data from various parts of an HTTP request and convert those message parts into .NET objects
 
 web api will support self hosting
 Self-host: Web APIs can be hosted in your own process in addition to IIS while still using the full power of routes and other features of Web API.
@@ -379,7 +363,7 @@ Self-host: Web APIs can be hosted in your own process in addition to IIS while s
 
 
 
-in mvc3 webapis not thr. but we can install it usig nuget package - WebAPI pieces 
+in mvc3 webapis not thr. but we can install it usig nuget package - WebAPI pieces
 
 Reg: HTML Helpers
 http://www.dotnet-tricks.com/Tutorial/mvc/N50P050314-Understanding-HTML-Helpers-in-ASP.NET-MVC.html
@@ -539,12 +523,12 @@ only the markup in the view itself and does not render any layout or master page
 that the view may specify.
 Since partial pages do not execute the layout, you may have to include
 some dependencies, such as CSS or JavaScript, directly in the partial
-view rather than including them in the page’s layout.
+view rather than including them in the pageï¿½s layout.
 	calling partial vw from jqury
 		function showAuction(auctionId) {
 $('#main').load('/Auctions/PartialAuction/' + auctionId);
 }
 
 
-defulat content type of asp.net mvc is 
+defulat content type of asp.net mvc is
 Content-Type: text/html; charset=utf-8

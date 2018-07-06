@@ -18,3 +18,9 @@ check-in changed file
 
 below command to used to switch the work place between the multiple branches
 git checkout <branchname to checkout>
+
+
+Push to server
+------------------
+git remote add origin https://10935@repo.dnbtechnology.com:8443/scm/sbx/sbx_webclient.git
+git push -u origin master

@@ -1,10 +1,11 @@
 Problems and Solution
 -------------------------
 1. While running the project got below error
-	{"Schema specified is not valid. Errors: \r\nCreditBureauModel.ssdl(2,88) : error 0175: The specified store provider cannot be found in the configuration, or is not valid."}
+	{"Schema specified is not valid. Errors: \r\nCreditBureauModel.ssdl(2,88) :
+	error 0175: The specified store provider cannot be found in the configuration, or is not valid."}
 Solution
-	In edmx file changed Provider="Oracle.ManagedDataAccess.Client" to Provider="Oracle.DataAccess.Client" 
+	In edmx file changed Provider="Oracle.ManagedDataAccess.Client" to Provider="Oracle.DataAccess.Client"
 
-2. 
+2.
 Table Model not getting created with oracle db
 	Sol: I checked tale. table not having primary key. after creating primary key then i am able to generate the modal

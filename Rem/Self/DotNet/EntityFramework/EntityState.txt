@@ -1,6 +1,6 @@
 Entity Lifecycle:
 ==========================
-During an entity's lifetime, each entity has an entity state based on the operation performed 
+During an entity's lifetime, each entity has an entity state based on the operation performed
 on it via the context (DbContext).
 
 Added
@@ -10,13 +10,18 @@ Unchanged
 Detached
 
 
-entity states and maintains modifications made to the properties of the entity. this feature called Change Tracking
+entity states and maintains modifications made to the properties of the entity.
+this feature called Change Tracking
 
-change in entity state from the Unchanged to the Modified state is the only state that's automatically handled by the context. All other changes must be made explicitly using proper methods of DbContext and DbSet.
+change in entity state from the Unchanged to the Modified state is the only state that's
+automatically handled by the context. All other changes must be made explicitly using proper
+methods of DbContext and DbSet.
 
 
-when you retrieve an existing entity using L2E queries, it will have Unchanged state, this is because you have just retrieved 
+when you retrieve an existing entity using L2E queries, it will have Unchanged state,
+this is because you have just retrieved
 
 L2E queries - linque to Entity queries
 
-When you modify values of existing entity, it changes its state to Modified, which in turn will execute update command on SaveChanges
+When you modify values of existing entity, it changes its state to Modified,
+which in turn will execute update command on SaveChanges

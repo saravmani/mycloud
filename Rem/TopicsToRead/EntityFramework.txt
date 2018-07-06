@@ -1,3 +1,10 @@
+-------------------------------------------------------
+below lines i read from "Rahul Rajat Singh-Mastering Entity Framework-Packt Publishing (2015)_withComments"
+book. so have to explore about this in the same book
+performing model validations, and taking control of the database
+connection parameters using Entity Framework.
+-------------------------------------------------------
+
 What is migrations in entity framework?
 How to make right outerjoin and left outer join?
 wat is the use of AsQueriable() method? and where IQueriable is gettin used?

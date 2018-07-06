@@ -1,0 +1,39 @@
+Created:23-Jun-2018;Saturday;From Airport-Bangalore-
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+LINQ to Entities is the mechanism that facilitates the use of LINQ to write
+queries against our conceptual model such as the Entity Data Model.
+
+LINQ to Entities provider will take care of accessing the database and
+fetching the required data for us.
+
+
+Archtecture
+-----------------------
+Linque --->EntityClient -->Entity Data Model (Entity Framework) -->  ADO.NET
+
+LINQ to Entities will transform our LINQ queries to the EntityClient
+commands.
+
+
+The EntityClient object resides in the System.Data.
+EntityClient namespace. We don't have to create this object
+explicitly. We just need to use this namespace and LINQ to Entities
+will take care of the rest.
+
+
+If we want to use LINQ to Entities with multiple types of database, we just need to
+use the proper ADO.NET provider for the database, and EntityClient will be able
+to use this making our LINQ queries work seamlessly against any database.
+
+
+We can write the linq queries in two type of syntexes
+
+The query syntax
+The method syntax
+
+Performance
+wise both are the same. The query syntax is comparatively easy to understand
+but offers less flexibility. The method syntax, on the contrary, is a little difficult to
+understand but offers great flexibility. It is possible to chain multiple queries using the
+method syntax and thus achieve maximum results in a single statement.

@@ -1,6 +1,7 @@
 The EmptyResult is a class in MVC which does not return anything at client site, its just like Void method .
 
-EmptyResult is used when you want to execute logic return inside the controller action method but does not want any result back to the view then EmptyResult return type is very important .
+EmptyResult is used when you want to execute logic return inside the controller action
+method but does not want any result back to the view then EmptyResult return type is very important .
 
  Key points
 It does not return any output to the browser.
@@ -12,4 +13,5 @@ Null Vs EmptyResult
 You can return null. MVC will detect that and return a EmptyResult. there is no real difference.
 
 
-In my personal opinion return new EmptyResult() is better because it communicates more clearly that your action returns nothing.
+In my personal opinion return new EmptyResult() is better because it communicates
+more clearly that your action returns nothing.

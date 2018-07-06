@@ -1,0 +1,2 @@
+When using Code First, if a property has the name Id or <table name>Id, Entity Framework assumes that it is the
+primary key for the table. Otherwise, you must explicitly specify the key, as we have done here.

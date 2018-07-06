@@ -1,0 +1,56 @@
+Created:23-Jun-2018;Saturday;From Airport-Bangalore-
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+Scalar functions
+-------------------
+A scalar function is a function that is defined in the database and returns a scalar
+value. For example, if we need to find the EmployerId for an Employee by passing
+the ID of the Employee,
+
+
+Entity Framework does not support using a scalar function directly.
+If we want to use a scalar function in our application, we have to wrap it inside a
+stored procedure as follows:
+
+Create PROCEDURE dbo.sp_GetEmployerIdByEmployee
+@id int
+AS
+select dbo.GetEmployerIdForEmployee(@id);
+RETURN
+
+
+Now this stored procedure is added to the Entity Data model in the same way as
+shown in the previous section. The only thing that we need to keep in mind is that
+this stored procedure's return type should be mapped to a scalar type from the
+Function Import properties.
+
+using (SampleDbEntities db = new SampleDbEntities())
+{
+int id = 1;
+ObjectResult<int?> employerIdResult = db.sp_
+GetEmployerIdByEmployee(id);
+}
+
+
+Table Valued Functions
+---------------------------
+Table valued functions (TVF) are simply the user-defined functions that return
+tabular data.
+
+From Entity Framework's perspective, using a table valued function is exactly the
+same as using a stored procedure.
+
+When we importing the function we cannot be mapped to any existing
+entity.
+
+already mapped to this auto-created complex type
+
+Using a table valued function from the code is also very similar to the way we use
+stored procedures. This table valued function will also be available as a function on
+the DbContext object and can be used as follows:
+using (SampleDbEntities db = new SampleDbEntities())
+{
+int id = 1;
+IQueryable<GetEmployeeFromEmployerID_Result> employerIdResult = db
+.GetEmployeeFromEmployerID(id);
+}

@@ -1,0 +1,29 @@
+Created:26-Jun-2018;Tuesday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+projections
+
+In the previous section, we discussed how to filter the data and return the complete
+entities. LINQ projections essentially mean that instead of returning a complete
+entity we want to return either a subset of properties from that entity in the form
+of an object or perhaps, we want to return an object that contains properties from
+multiple entities.
+Projections are particularly useful when we are dealing with ViewModel in our
+application. We can return a ViewModel type object directly from the LINQ query.
+Let's take a scenario where we want to retrieve a list of all the employers where the
+result should contain the EmployerName value and a list of all the employees that
+are associated with this employer. Let's see how we can do this using projections
+in LINQ to Entities:
+using (SampleDatabaseEntities db = new SampleDatabaseEntities())
+{
+var employers = from employer in db.Employers
+select new
+{
+EmployerName = employer.EmployerName,
+EmployeeList = employer.Employees
+};
+}
+
+
+Using projections with LINQ to Entities is very useful
+because it enables us to return complex types that contain data from multiple entities

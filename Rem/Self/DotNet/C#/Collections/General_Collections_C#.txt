@@ -2,9 +2,11 @@ List<T> is a very commonly seen container, because it is so very versatile (with
 but has no extension points if you want to override any of the behaviour
 
 
-Collection<T> is a wrapper around any IList<T> (defaulting to List<T>) - it has the extension points (virtual methods), but not as many support methods like Find. Because of the indirection, it is slightly slower than List<T>, but not by much.
+Collection<T> is a wrapper around any IList<T> (defaulting to List<T>) - it
+has the extension points (virtual methods), but not as many support methods like Find.
+Because of the indirection, it is slightly slower than List<T>, but not by much.
 
- 
+
 # From my point
 	List we cant extend ()
 	Collections we can extend. because it is having more virtual methods

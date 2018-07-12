@@ -1,0 +1,18 @@
+ng-bind directive is similar to {{}} syntax
+
+ex:
+
+<div ng-bind="propertyName"></div>
+
+<div id="someId"></div>
+
+
+//controller
+
+document.getElementById("someId").innerHTML =  $scope.propertyName;
+
+
+now if propertyName changed then "someId"  display value also got changed
+
+
+this is a similar implementation of how {{}} expression works

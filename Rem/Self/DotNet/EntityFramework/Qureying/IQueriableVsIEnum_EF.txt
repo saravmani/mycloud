@@ -1,0 +1,16 @@
+Created:26-Jun-2018;Tuesday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+While using LINQ to Entities, it is important to understand when
+to use IEnumerable and IQueryable. If we use IEnumerable,
+the query will be executed immediately. If we use IQueryable, the
+query execution will be deferred until the application requests the
+enumeration.
+Now let's see what should be considered while deciding whether to
+use IQueryable or IEnumerable. Using IQueryable gives you
+a chance to create a complex LINQ query using multiple statements
+without executing the query at the database level. The query gets
+executed only when the final LINQ query gets enumerated.
+
+Handling results in IQueryable<T> also improves the performance,
+as the generated SQL will not be executed until the items from the
+result are enumerated.

@@ -1,0 +1,18 @@
+ Watchers should be destroyed when they are no longer needed.
+ The watchers are costly. They make the digest look slower, which makes the whole app slower.
+
+ Notice, that when we use the $watch function,
+ we use it on a certain scope. So whenever the scope is destroyed, all the watchers on that scope are also destroyed.
+
+
+NOTE:  if you write code that removes some element from the dump directly using native JavaScript or jQuery, the scope will not be destroyed.
+
+Manually destroy the watch
+-----------------------------------
+var watchdestroyer = $scope.watch("propertyname",function(){
+//check some condition
+//and call destroyer
+watchdestroyer();
+});
+
+$scope.watch method will return watch destroyer

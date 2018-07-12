@@ -26,7 +26,8 @@ objTaskList.where(task_name=='ewrew')
 //But instead of iqueryable if we use ienumerable then first condition only available in the ouputed query  select * from TaskList where task_id>10
 //so all the data will get into server memory and then second filter will applied
 
-The IEnumerable<T> type LINQ queries are compiled to delegates and IQueryable or IQueryable<T> queries are compiled to expression trees.
+The IEnumerable<T> type LINQ queries are compiled to delegates and IQueryable or IQueryable<T> queries
+are compiled to expression trees.
 In short, LINQ queries that execute in process are compiled into delegates while the queries that executes
 out of process are compiled into expression trees.
 

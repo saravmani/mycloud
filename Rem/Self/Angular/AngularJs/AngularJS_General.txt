@@ -1,0 +1,8 @@
+ng-app is the directive used by the angularjs to find which part of the html is
+angular application.
+
+we can use it anywhere. if we want to use it for whole html page then we need to adde it in root element of the html document
+<html ng-app>
+
+we have to put angular js script tage inside of the header tag.
+so that when loading time anuglar will look for angular tags

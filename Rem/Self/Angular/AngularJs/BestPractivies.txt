@@ -1,0 +1,6 @@
+
+Try to add all the directives at end of the html tags. This practice we can follow for angular 2+ also
+
+
+ex:
+<div class="someclass" style="some styles" .. other attributes   ng-sb-directivename >some text</div>

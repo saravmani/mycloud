@@ -1,0 +1,26 @@
+Created:27-Jun-2018;Tuesday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+var employees = from employee in db.Employees
+orderby employee.ID
+select employee;
+
+
+
+Method syntax
+-------------------
+using (SampleDatabaseEntities db = new SampleDatabaseEntities())
+{
+var employees = db.Employees
+.OrderBy(employee => employee.ID);
+}
+
+
+Descending order
+----------------------
+var employees = from employee in db.Employees
+orderby employee.ID descending
+select employee;
+
+var employees = db.Employees
+.OrderByDescending(employee => employee.ID);

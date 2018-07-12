@@ -1,0 +1,6 @@
+angular 1 vs Angular 2
+filters       pipes
+ng-repeat     *ngFor
+ng-if         *ngIf
+ng-show       -
+ng-hide       -

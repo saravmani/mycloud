@@ -1,0 +1,10 @@
+
+Packages needed
+-----------------------------------
+@angular-redux/store
+redux
+
+@angular-redux/store relies on the redux package itself, so we need to install both packages
+
+npm install redux @angular-redux/store —save
+ 

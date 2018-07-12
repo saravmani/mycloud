@@ -1,0 +1,25 @@
+
+$scope is a object, we can able to add the properties to that
+
+There are also some built-in methods and variables on $scope that Angular provides.
+
+
+Some variables start with one dollar sign like $scope.$parent and some start with two dollar signs, like $scope.$$watchers.
+
+The difference between the two is that the one dollar sign variables are public and can be used and relied on in your Angular app.
+
+The two dollar sign variables are private, this mean that they are not part of the API, but part of the internal implementation of Angular, and you should not use them in your production code since they might change in newer versions of Angular.
+ However, it is okay to learn and understand what they mean, to use them for debugging purposes,
+  and to deeper understand how Angular works.
+
+$scope.$parent
+$scope.$root
+$scope.$apply // this will initiate digestive loop to exeucte 
+$scope.$on
+$scope.$watch
+
+
+$scope.$$watchers
+$scope.$$postDigest
+$scope.$$phase
+$scope.$destroyed

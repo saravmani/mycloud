@@ -1,0 +1,11 @@
+
+The module is a container for different parts of your applications, and inside a module, we can have different controllers.
+
+Controllers are pieces of code that can handle some specific functionality within a module.
+
+ A controller can also be defined with different dependencies, and dependencies is just a name for something that a controller needs in order to work.
+
+
+$scope
+
+Now, think of scope as a global object that we can use to communicate between our JavaScript and our HTML.

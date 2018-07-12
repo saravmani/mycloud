@@ -12,8 +12,9 @@ Archtecture
 -----------------------
 Linque --->EntityClient -->Entity Data Model (Entity Framework) -->  ADO.NET
 
-LINQ to Entities will transform our LINQ queries to the EntityClient
-commands.
+LINQ to Entities will transform our LINQ queries to the EntityClient commands.
+EntityClient command will then use Entity Framework and the Entity
+Data Model to translate these commands into the SQL query
 
 
 The EntityClient object resides in the System.Data.
@@ -27,8 +28,8 @@ use the proper ADO.NET provider for the database, and EntityClient will be able
 to use this making our LINQ queries work seamlessly against any database.
 
 
-We can write the linq queries in two type of syntexes
-
+We can write the linq queries in two type of syntaxes
+------------------------------------------------------------
 The query syntax
 The method syntax
 

@@ -15,15 +15,15 @@ file storage
 
 app services
 -------------------
-we can hoste asp.net webapplicaiton or others (ex nodejs) using this 
+we can hoste asp.net webapplicaiton or others (ex nodejs) using this
 we can able to publish we application from vsts to azure directly
 aslo we can able to enable remote debugging and can debug it from vsts
 
 functions
 ----------
 it is serverless autonomus nano services.
-it is simple autonomus funciton we can hoste it on azure, it will be
-triggerd by timer, or can execute by calling from externally
+it is simple autonomus funciton we can host it on azure, it will be
+triggered by timer, or can execute by calling from externally
 we can able to create functions from vsts and can able to publish
 can able to create wehbooks
 timer functions -- are jobs

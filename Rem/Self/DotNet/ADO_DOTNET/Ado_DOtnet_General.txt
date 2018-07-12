@@ -1,0 +1,8 @@
+Created:26-Jun-2018;Tuesday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+ADO.NET is a data access technology that provides communication between
+relational and non-relational systems through a common set of components.
+
+# There multiple ADO.net PROVIDERS for different databases
+ORacle, SQL server, Mongo , MY SQL etc.,

@@ -80,7 +80,9 @@ Take method removes an item from the collection. Take method is blocked when the
 
 TryTake
 ------------
-TryTake method also removes an item and returns item in the out parameter. This method also takes a timeout parameter. If the collection is empty then this method will wait for time specify in timeout parameter. If new item is not added within the timeout value, then it returns false.
+TryTake method also removes an item and returns item in the out parameter. This method also takes a timeout parameter.
+If the collection is empty then this method will wait for time specify in timeout parameter.
+If new item is not added within the timeout value, then it returns false.
 
 BlockingCollection<int> bCollection = new BlockingCollection<int>(boundedCapacity: 2);
 bCollection.Add(1);

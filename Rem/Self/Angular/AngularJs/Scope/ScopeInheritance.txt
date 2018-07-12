@@ -1,0 +1,33 @@
+
+When we use ng controller to create a new controller, we created a new scope from within the current scope.
+This was done behind the scenes by using the door scope (mumbles) new method. We can also reach the parent scope by using the door scope,
+door parent attribute to access the parent scope
+
+Scope inheritance is achieved by prototype inheritance.
+
+if we access a property in $scope object, first it will check the value in current $scope, and if it not found then
+it will goes to parent $scope object
+
+if we try to set the same variable name which is there in parent scope , then new variable created in current scope.
+
+to avoid this normally we wont directly create the variables in $scope object instead check below code
+
+angular.module('module1').controller('controllername',function($scope,$http){
+var ctobject = this;
+$scope.moduleObject = ctobject;
+ctobject.propertyOne = "some namess";
+});
+
+<div ng-controller="controllername as moduleObject">
+{{moduleObject.propertyOne}}
+</div>
+
+Note here we are using "controller as syntax"
+
+
+Another use of "Controller as syntax"
+-----------------------------------------------
+Directives also some times creates new Scope. So the same scenario occurs if we use directives
+ex:
+ng-if
+ng-repeat

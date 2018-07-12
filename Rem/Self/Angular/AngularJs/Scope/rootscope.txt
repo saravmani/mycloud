@@ -1,0 +1,11 @@
+ every Scope has a parent scope
+
+When we create a new ng-app, a root scope is generated with it.
+Every Scope is a descendant of root scope.
+
+Many old angular applications use root scope to communicate between different parts of the application.
+Since all controllers can inject a root scope and use it, and since all Scopes inherit from root scope eventually,
+it is very easy to share data between Scopes by putting variables on the root scope.
+
+using $rootScope to communicate between different parts of the application should be avoided as much as you can.
+This is a very bad practice that can cause your code to become more complex and harder to maintain.

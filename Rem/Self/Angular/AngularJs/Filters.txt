@@ -1,0 +1,23 @@
+Filters are like Pipes in  Angular 2
+
+same like angular 2 here also syntax is same
+some Text | fileterName:input
+
+Angular 2 example - {{item.price | pipe1 | pipe2:"USD":true }}
+
+built in filters (simple)
+---------------------------------
+lowerCase, upperCase, currency, number, date
+
+
+Array Filters
+---------------------------
+limitTo:qty:start  //used for pagination
+ex:
+<div ng-repeat="eachItem in itemList | limitTo:10:30">
+//starts from 20 and shows 10 records.
+//we can use negative number at start param. if so it will show from the bottom
+
+filter:keyword
+orderby:key:reverse
+<div ng-repeat="eachItem in itemList | orderby:'name':'reverse'">

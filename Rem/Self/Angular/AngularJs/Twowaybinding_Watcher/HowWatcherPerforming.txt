@@ -1,0 +1,30 @@
+
+$scope.$apply()
+will execute the all the watchers.
+If watcher found that there is dirty in any one of the watcher then it will run all the watchers again,
+because the dirty value may affect others also
+
+
+if any model values changed then watcher will get called and UI (Bindings)  will get updated accordingly
+
+The bindings in Angular are implemented the same way watchers are implemented.
+
+NOTE: Actually, every time you use a binding in (mumbles) you are actually using a new watch statement behind the scenes.
+
+NOTE: Watcher algorithm
+-------------------------
+Go over all watchers and run them. If one of them is dirty, run it's listener and do another round of dirty checking.
+Since this dirty watch might have changed some values that made other watchers dirty as well.
+Since watchers may run several times the digest process is called the digest loop.
+It's a loop that runs until nothing is dirty anymore.
+
+It shouldn't have side-effects. It shouldn't change variables in your code.
+In our example, we updated the times variable we did it only to explain the digest mechanism.
+This type of coding production is a big no-no. It shouldn't be slow. You should write pretty simple watcher functions.
+Even one slow watcher function will slow down the whole digest loop, which means the whole application will be slowed down.
+It is best if the watcher function doesn't access the DOM
+
+
+Angular calls the digest loop internally almost on anything that happens
+
+What triggers digest loop

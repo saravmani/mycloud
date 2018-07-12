@@ -1,0 +1,5 @@
+Directives also some times creates new Scope
+
+ex:
+ng-if
+ng-repeat

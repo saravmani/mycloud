@@ -1,0 +1,56 @@
+
+The $watch method can be used when you want to check if a certain value has changed and ran some code when it changes
+
+
+angular.module("somename").controller('somecontrollername',function($scope){
+  var vm = this;
+  vm.somePropertyName = "";
+  $scope.$watch('vm.somePropertyName',function(newValue, oldValue){
+      console.log(`somePropertyName changed ${somePropertyName  }`);
+  })
+})
+
+
+we can able to watch the funciton which returns a value.
+When we use a function that returns a value the return value will be the value that is watched.
+
+
+angular.module("somename").controller('somecontrollername',function($scope){
+  var vm = this;
+  vm.somePropertyName = 23;
+  $scope.$watch(function(){ return vm.somePropertyName%2 === 0 },function(newValue, oldValue){
+      console.log(`changed ${newValue  }`);
+  })
+})
+
+here the function returns true or false. if value changed from one to another then value will get printed.
+if same value happens again and agian then it wont print again
+
+
+
+Deep watch
+-------------------
+watch complex objects.
+if we want to watch complex object then we have to say that deep watch is required to anuglar. so we have to set true as third parameter
+
+angular.module("somename").controller('somecontrollername',function($scope){
+  var vm = this;
+  vm.userObject.somePropertyName = 23;
+  $scope.$watch("vm.userObject",function(newValue, oldValue){
+      console.log(`changed ${newValue  }`, true);//NOTICE THIRD PARAMTER
+  })
+})
+
+
+Angular actually creates a deep copy of the object and check if something has changed.
+It does a deep equal that goes over all the fields recursively. Notice that this feature should be used carefully.
+It might be easier for a developer to use deep watches in certain places. But it has a high performance cost.
+If you decide to use a deep watch in your code, make sure that the objects
+you are using are not huge so it won't be such a high performance cost to go over them and try to deep equal them.
+
+
+
+A watcher and a listener. The watcher function gets called from time to time and whenever
+it is called its return value is being compared with a return value from the last time the watcher function was run.
+If the two values are not equal, the listener function is called, 
+the missing part of the puzzle is who performs this algorithm and when? The answer is the digest loop.

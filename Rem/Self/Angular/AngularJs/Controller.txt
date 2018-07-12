@@ -1,0 +1,2 @@
+
+two things that happen when we create a new controller using the entry controller directive. The first thing that happens is we create a new scope around this element. The second thing that happens, is that we create an instance of the controller, and we inject it with the new scope we just created

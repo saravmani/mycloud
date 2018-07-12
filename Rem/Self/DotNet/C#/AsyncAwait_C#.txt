@@ -5,9 +5,11 @@ asynchronous method to insert a suspension point in the execution of the method 
 
 # compiler will take care splitting the functions into smaller chunks
 # on the line of await keyword, compiler going to split the method into multiple pieces
-When the await operator is passed an already-completed task, it will extract the result and continue executing the method (synchronously).
+When the await operator is passed an already-completed task, it will extract the result and
+continue executing the method (synchronously).
 
-When the await operator is passed an incomplete task  then by default await will capture the current context and return an incomplete task from the method.
+When the await operator is passed an incomplete task  then by default await will
+capture the current context and return an incomplete task from the method.
 
 Later, when the await task completes, the remainder of the method is scheduled to run in that context.
 

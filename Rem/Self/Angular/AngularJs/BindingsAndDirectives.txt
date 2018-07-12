@@ -1,0 +1,7 @@
+Angular application will start with
+ng-app directive
+
+directives are a like commands. it tells what needs to be done by angularj
+
+
+ng-mode 

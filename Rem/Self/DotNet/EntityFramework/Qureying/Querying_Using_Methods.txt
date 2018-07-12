@@ -1,0 +1,21 @@
+Created:26-Jun-2018;Tuesday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+
+using(SampleDbEntities db = new SampleDbEntities())
+{
+var employees = db.Employees
+.Where(employee => employee.LastName == "Singh");
+}
+
+//by default output is IQueriable<Employee>
+
+It's also possible to specify the precise output type of our query by
+specifying the type of the return variable such as IQueryable<Employee> or
+IEnumerable<Employee>.
+
+using(SampleDbEntities db = new SampleDbEntities())
+{
+IEnumerable<Employee> employees = db.Employees
+.Where(employee => employee.LastName == "Singh");
+}

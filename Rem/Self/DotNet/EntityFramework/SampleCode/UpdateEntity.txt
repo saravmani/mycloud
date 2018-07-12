@@ -1,5 +1,24 @@
+Modified:20-Jun-2018;Wednesday;From DNB-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Update entity for only particular Column or Field
+---------------------------------------------------------
+var _reportRenderDetailsObj = new SBX_RPT_ENG_RENDER_DETAILS
+ {
+     REPORT_REQUEST_ID = vReportRequest.ReportRequestId,
+     REPORTRENDER_STATUS = "Rendered"
+ };
+ using (var _ReportEngineDB = new ReportEngineConnectionString())
+ {
+     _ReportEngineDB.SBX_RPT_ENG_RENDER_DETAILS.Attach(_reportRenderDetailsObj);
+     var _EntryObject = _ReportEngineDB.Entry<SBX_RPT_ENG_RENDER_DETAILS>(_reportRenderDetailsObj)
+                         .Property(columns => columns.REPORTRENDER_STATUS).IsModified = true;
+     _ReportEngineDB.SaveChanges();
+ }
+
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
  //objTaskList.SaveChanges();//this will return int. so based on the return
- //we can able to identify commit is success 
+ //we can able to identify commit is success
 if .SaveChanges() >= 0 then success
 
 //Updating the row in table without selecting the value again
@@ -11,7 +30,7 @@ Sample 1
         {
             using (var objTaskList = new TaskManagerEntities())
             {
-                 
+
                var objTask = new TaskList
                 {
 

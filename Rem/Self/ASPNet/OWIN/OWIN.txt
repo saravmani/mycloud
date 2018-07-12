@@ -1,21 +1,21 @@
 ﻿Ref: https://coding.abel.nu/2014/05/whats-this-owin-stuff-about/
- break up the tight coupling between ASP.NET and IIS.
-  With IIS supporting Owin it is possible to run other Owin-enabled frameworks such as Nancy on IIS.
-   With Microsoft’s web frameworks depending on Owin and not IIS it is possible to run those in other environments, 
-   such as self hosting within a process or on a web server on linux running Mono. SignalR and Web API already uses Owin which means that they can be self hosted 
-   and other cool stuff. ASP.NET MVC6 which is part of ASP.NET vNext will be completely based on Owin.
+break up the tight coupling between ASP.NET and IIS.
+With IIS supporting Owin it is possible to run other Owin-enabled frameworks such as Nancy on IIS.
+With Microsoft’s web frameworks depending on Owin and not IIS it is possible to run those in other environments,
+such as self hosting within a process or on a web server on linux running Mono. SignalR and Web API already uses Owin which means that they can be self hosted
+and other cool stuff. ASP.NET MVC6 which is part of ASP.NET vNext will be completely based on Owin.
 
 Owin
 ----------------
  (OWIN) defines an abstraction between .NET web servers and web applications. By decoupling the web server from the application,
   OWIN makes it easier to create middleware for .NET web development. Also, OWIN makes it easier to port web applications to other hosts
- Owin.dll  - are community owned and community run open source 
+ Owin.dll  - are community owned and community run open source
 
    Katana
    -------------
- Microsoft’s framework (Microsoft.Owin.* namespace) is called Katana and 
+ Microsoft’s framework (Microsoft.Owin.* namespace) is called Katana and
  is open sourced on codeplex.
-  Katana contains a set of standard middleware for things like 
+  Katana contains a set of standard middleware for things like
   authentication, static file serving, logging .
   The Katana project is a set of open-source OWIN components developed by Microsoft.
 
@@ -30,8 +30,8 @@ Microsoft.Owin.Host.SystemWeb - Owin server  which used to run Owin based applic
 Problem in system.web.dll
 ------------------------------
 Firstly, the framework was monolithic, with logically disparate units of functionality being tightly coupled in the same System.Web.dll assembly
- (for example, the core HTTP objects with the Web forms framework). Secondly, ASP.NET was included as a part of the larger .NET Framework, 
- which meant that the time between releases was on the order of years. This made it difficult for ASP.NET to keep pace with all of the changes happening in rapidly evolving Web development. 
+ (for example, the core HTTP objects with the Web forms framework). Secondly, ASP.NET was included as a part of the larger .NET Framework,
+ which meant that the time between releases was on the order of years. This made it difficult for ASP.NET to keep pace with all of the changes happening in rapidly evolving Web development.
  Finally, System.Web.dll itself was coupled in a few different ways to a specific Web hosting option: Internet Information Services (IIS).
 
  The need of pluggable web components rather then full featured single framework
@@ -50,14 +50,14 @@ The Katana component architecture divides an application into four logical layer
 
   Node Js and Katana
   --------------------------
-  When it was first introduced, one aspect of the Node.js 
-  framework that immediately drew people's attention was the simplicity 
-  with which one could author and run a Web server. 
-  If Katana goals were framed in light of Node.js, one might summarize 
-  them by saying that Katana brings many of the benefits of Node.js 
-  (and frameworks like it) without forcing the developer to throw out 
-  everything she knows about developing ASP.NET Web applications. 
-  For this statement to hold true, getting started with the Katana project 
+  When it was first introduced, one aspect of the Node.js
+  framework that immediately drew people's attention was the simplicity
+  with which one could author and run a Web server.
+  If Katana goals were framed in light of Node.js, one might summarize
+  them by saying that Katana brings many of the benefits of Node.js
+  (and frameworks like it) without forcing the developer to throw out
+  everything she knows about developing ASP.NET Web applications.
+  For this statement to hold true, getting started with the Katana project
   should be equally simple in nature to Node.js.
 
 HTTPModules and Middler ware concept
@@ -68,4 +68,4 @@ OWIN applications inside another .NET application if you so desire.
 
 
 
-  AppBuilderExtensions has the method "CreatePerOwinContext<T>" that registers a callback that will be invoked to create an instance of type T and it will be stored in the OwinContext. Later on we can retrieve it using the context.Get method. 
+  AppBuilderExtensions has the method "CreatePerOwinContext<T>" that registers a callback that will be invoked to create an instance of type T and it will be stored in the OwinContext. Later on we can retrieve it using the context.Get method.

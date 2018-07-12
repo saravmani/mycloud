@@ -1,4 +1,5 @@
-
+// # in below example we can add custome property "data: { preload: true }"
+//and use it in to check wether particular needs preloading or not
 
 {
     path: 'feature-2',

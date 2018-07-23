@@ -1,3 +1,9 @@
+Disadvantages of Singleton
+-----------------------------------
+Viloates SRP - It does object creation + business logic
+Cannot create sub class
+
+
 The Singleton Pattern ensures a class has only one
 instance, and provides a global point of access to it.
 
@@ -18,7 +24,7 @@ public class SingleTonClass
         }
         }
 return objInstance;
-    } 
+    }
 }
 
 

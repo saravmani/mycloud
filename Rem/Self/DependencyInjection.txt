@@ -1,3 +1,25 @@
+Use of dependency injection frameworks
+------------------------------------------
+Code to Interfaces instead of concrete implementations.
+All dependencies of a class should be passed (injected) into the class instead of being instantiated directly. In other words avoid new-ing up of interdependent layers.
+increases testablility, maintanance, reusability
+# reusability means - same object we can able to use everywhere. even same object we can use where ever we need in whole application
+
+‘Composition Root’
+-----------------------------
+Class instantiation and object lifecycle management should be done at a central location referred to as the ‘Composition Root’.
+
+
+
+
 MEF
 ----
-we can tell sone specific FOLER path to look for export methods. 
+we can tell sone specific FOLER path to look for export methods.
+
+What if we wanted to substitute out the implementation of B for MockB during testing?
+• What if we wanted to share a single instance of the B class across our whole app (e.g. the
+Singleton pattern)
+• What if we wanted to create a new instance of the B class every time it was used? (e.g. the
+Factory pattern)
+
+Dependency Injection can solve these problems.

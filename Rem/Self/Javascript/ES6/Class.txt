@@ -4,7 +4,7 @@ Class is not a new type. it is actually a function
 
 class Task{
 }
-console.log(typeofTask);//function
+console.log(typeof Task);//function
 let task=newTask();
 console.log(typeoftask);//object
 console.log(task instanceof Task);//true
@@ -37,4 +37,3 @@ console.log(window.Project===Project);//true
 
 class Task{}
 console.log(window.Task===Task);//false
-

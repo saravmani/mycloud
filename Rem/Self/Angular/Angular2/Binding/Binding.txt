@@ -151,6 +151,7 @@ ng-template
 <ng-template> is Angular's own implementation of the <template> tag,
 
 
+
 combo box or drop down
 ----------------------------
   <select class="form-control" name="pageSize"

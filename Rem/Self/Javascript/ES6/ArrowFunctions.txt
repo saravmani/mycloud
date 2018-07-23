@@ -7,19 +7,19 @@ console.log(getPrice())//5.9
 var getPrice = (input)=>input+5.9;
 console.log(getPrice(.1))//6
 
-if we specifu the block then we have use return statement
+if we specify the block then we have use return statement
 var fnname = ()=>{
     var a = "";
-    var b=a+"";
-    return b;//Note here "return" statement is needed
+    var b = a + "";
+    return b; //Note here "return" statement is needed
 }
 
-Real advantage of arrow functions is to handle this keyword.
+NOTE: Real advantage of arrow functions is to handle this keyword.
 
 
 Arrow function used to get the context of where the code is running
 
-ex: with arrow function
+ex: With arrow function
 var invoice = {
     invocienumber:123,
     process:()=> console.log(this)
@@ -45,7 +45,7 @@ var invoice = {
 invoice.process()();//out put is 123
 //here execution context is set to arrow function
 
-Important example
+NOTE: Important example
 ------------------------------
 //We cannot change the context by using bind
 var invoice = {

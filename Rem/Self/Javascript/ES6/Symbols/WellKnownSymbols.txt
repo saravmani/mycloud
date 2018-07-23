@@ -1,8 +1,8 @@
 # asper my understanding wellknown symbols are already defined in javascript engine,
-and we can use it to access the functionality it is refering
+and we can use it to access the functionality it is referring
 
 wellknown symbols used in meta programming.
-meta programming means working deeply with jjavascritp objects. even javascript engine objects
+meta programming means working deeply with javascript objects. even javascript engine objects
 
 Meta programming means look in deeply into javascript engine operates,objects, functions etc.,
 
@@ -12,9 +12,9 @@ Few wellknown symbols are - Symbol.tostringTag
 
 Symbol.toStringTag
 -----------------------------------------------------
-let Blog=function(){    
+let Blog=function(){
 };
-Blog.prototype[Symbol.toStringTag]='BlogClass'; 
+Blog.prototype[Symbol.toStringTag]='BlogClass';
 //Here we are telling javascript engine how to display the name of the Blog Class
 //it alters the way of javascript engine calls the toString
 let blog=new Blog();
@@ -28,8 +28,6 @@ let values=[8,12,16];
 values[Symbol.isConcatSpreadable]=false;
 console.log([].concat(values));
 //[ [8, 12, 16] ]
-
-
 
 
 let values=[8,12,16];

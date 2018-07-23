@@ -1,0 +1,18 @@
+typeof - #used to find the type of the object
+	# i think for all non primitive data types it returns only Object
+
+instanceof - to check the type of the object 
+ex:
+	objVariable instanceof ReferenceError
+
+
+function C() {}
+C.prototype instanceof Object // true
+
+
+
+function D() {}
+D.prototype = new C(); // add C to [[Prototype]] linkage of D
+var o3 = new D();
+o3 instanceof D; // true
+o3 instanceof C; // true since C.prototype is now in o3's prototype chain

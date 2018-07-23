@@ -1,0 +1,22 @@
+
+
+Synchronoised method
+----------------------------
+Attribute
+If an entire method is a critical section, applying a MethodImplAttribute with the MethodImplOptions value of Synchronized wraps the entire method in a lock.
+
+
+lock is syntactical sugar simplifying the use of .Net’s Monitor exclusive lock.
+
+[MethodImpl(MethodImplOptions.Synchronized)]
+public void DoSomething()
+{
+    // Code
+}
+Watch out! If the method is an instance method, the current object instance is used as the locking object; 
+if the method is static, the class type object is used. 
+If the lock object used is publicly accessible, code elsewhere could also lock using the same object The potential result? 
+Unnecessary and unexpected deadlocking your code. 
+A best practice (see also) is to only lock on a private object or a private static object variable.
+ This attribute-based approach, if used at all, must be used carefully to prevent inadvertent violation of this best practice.
+

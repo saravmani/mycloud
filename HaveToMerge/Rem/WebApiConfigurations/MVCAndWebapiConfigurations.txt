@@ -1,0 +1,32 @@
+Important configuraitons in webapi
+# Ref - https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/configuring-aspnet-web-api
+	IRouteConstraint
+	IAssemblyResolver
+
+	IHttpControllerTypeResolver - webapi framework will load all the types which are satisfies the conditions in one time
+	IHttpControllerSelector - select the specific controller on user request (default one - DefaultHttpControllerSelector)
+	IHttpControllerActivator
+	
+	IHttpActionSelector
+	IActionValueBinder
+	IHttpActionInvoker
+
+	IContentNegotiator
+
+	HttpMessageHandler
+	DependencyResolver
+
+	IApiExplorer - Gets descriptions of the APIs exposed by the application. See 
+
+
+	IFilterProvider	Returns a list of filters for a controller action.
+
+MVC
+	IControllerFactory
+		IControllerActivator
+	IActionInvoker (i.e inside Controller )
+	IActionMethodSelector
+	
+	Name space periferance
+	
+	

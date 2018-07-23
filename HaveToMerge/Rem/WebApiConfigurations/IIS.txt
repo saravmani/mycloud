@@ -1,0 +1,100 @@
+IIS process are Inetinfo.exe, Dllhost.exe, and W3wp.exe. 
+
+IIS architecture
+http://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture
+
+thread starvation
+------------------------
+In most scenarios, the process being executed is short-lived enough that ASP.NET can
+handle a few blocked threads. However, if the application needs to handle a large
+number of incoming requests or there are too many long-running requests, the thread
+pool might become depleted, and a condition known as thread starvation will occur.
+When this happens, the web server will start queuing new incoming requests. At some
+point, the queue will fill up and any new requests will be rejected, returning an HTTP
+503 (server too busy) status code.
+
+
+
+IIS 8.5 Features
+-----------------
+
+1. Idle worker process Page-Out in IIS 8.5. In 8.5 we can set the ideal time out action for 
+application pool - Suspend or ternminate
+
+
+URLScan utility
+------------------
+UrlScan 3.1 is a security tool that restricts the types of HTTP requests that IIS will process. By blocking specific HTTP requests, the UrlScan 3.1 security tool helps to prevent potentially harmful requests from reaching applications on the server. UrlScan 3.1 is an update to UrlScan 2.5 supports IIS 5.1, IIS 6.0 and IIS 7.0 on Windows Vista and Windows Server 2008.
+for more check this
+	http://www.iis.net/downloads/microsoft/urlscan
+
+
+
+IIS Architecture
+------------------------
+IIS 7 and later continue to rely on HTTP.sys for HTTP requests.
+
+Windows ships with a kernel-mode device driver called HTTP.sys, which listens for HTTP connections and hands them over to an appropriate application.
+It allows multiple applications to effectively share the same IP/port combinations by performing some HTTP parsing in the kernel before dispatching to the application. For example:
+
+1 http://server:80/app1   # hosted by IIS
+2 http://server:80/app2   # hosted by a different process
+IIS builds on top of HTTP.sys - the request is initially received by HTTP.sys (which also performs some security filtering, like Windows Authentication or client certificates), which in turn hands it to IIS. It then sends the response from IIS back to the client.
+
+Each application running on IIS belongs to an application pool, and a worker process is created to serve requests to that application pool. This is the W3WP process you’ll sometimes see in task manager. If the process runs for significant time, or experiences severe memory leaks and runs out of memory, or hangs, IIS can terminate it and create a new worker process.
+
+The CLR was loaded into the worker process1
+
+
+The HTTP listener is part of the networking subsystem of Windows operating systems, and it is implemented as a kernel-mode device driver called the HTTP protocol stack (HTTP.sys). HTTP.sys listens for HTTP requests from the network, passes the requests onto IIS for processing, and then returns processed responses to client browsers.
+
+In IIS 6.0, HTTP.sys replaced Windows Sockets API (Winsock), which was a user-mode component used by previous versions of IIS to receive HTTP requests and send HTTP responses. IIS 7 and above continue to rely on HTTP.sys for HTTP requests.
+
+HTTP.sys was introduced in IIS 6.0 as an HTTP-specific protocol listener for HTTP requests. HTTP.sys remains the HTTP listener in IIS 7 and later, but includes support for Secure Sockets Layer (SSL).
+
+HTTP.sys provides the following benefits:
+
+Kernel-mode caching. Requests for cached responses are served without switching to user mode.
+Kernel-mode request queuing. Requests cause less overhead in context switching because the kernel forwards requests directly to the correct worker process. If no worker process is available to accept a request, the kernel-mode request queue holds the request until a worker process picks it up.
+Request pre-processing and security filtering.
+
+
+IIS Express
+-----------------
+Give URL access for remote machines
+netsh http add urlacl url=http://vaidesg:8080/ user=everyone
+
+
+Register asp.net with IIS
+------------------------------
+Type cd C:\Windows\Microsoft.NET\Framework\v4.0.30319\ and press ENTER.
+Type aspnet_regiis.exe -ir and press ENTER again.
+
+
+
+ (IIS) 7 and later provide a request-processing architecture which includes:
+The Windows Process Activation Service (WAS), which enables sites to use protocols other than HTTP and HTTPS.
+A Web server engine that can be customized by adding or removing modules.
+Integrated request-processing pipelines from IIS and ASP.NET.
+
+
+Protocol Listeners
+-------------------------------
+ These components include protocol listeners, such as HTTP.sys, and services, 
+Services
+-------------
+such as World Wide Web Publishing Service (WWW service) and Windows Process Activation Service (WAS).
+
+
+
+HTTP.sys provides the following benefits:
+Kernel-mode caching. Requests for cached responses are served without switching to user mode.
+Kernel-mode request queuing. Requests cause less overhead in context switching because the kernel forwards requests directly to the correct worker process. If no worker process is available to accept a request, the kernel-mode request queue holds the request until a worker process picks it up.
+Request pre-processing and security filtering.
+
+
+IIS 7 and later
+ (WWW Service) alone is now split between two services: WWW Service and a new service, Windows Process Activation Service (WAS). These two services run as LocalSystem in the same Svchost.exe process, and share the same binaries.
+
+
+https://docs.microsoft.com/en-us/iis/get-started/introduction-to-iis/introduction-to-iis-architecture

@@ -1,0 +1,4 @@
+Component Change Detection
+By default, on every browser event, Angular change detection goes through every component to see if it changed – inputs and templates (and maybe other stuff?) are checked.
+
+If we know that a component only depends on its input properties (and template events), and that the input properties are immutable, we can use the much more efficient onPush change detection strategy. With this strategy, instead of checking on every browser event, a component is checked only when the inputs change and when template events trigger.

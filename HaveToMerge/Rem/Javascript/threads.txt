@@ -1,0 +1,30 @@
+Note:
+Hangfire Is a fantastic framework for background jobs in ASP.NET
+
+AppDomain
+----------------
+The .NET Framework further subdivides an operating system process into lightweight managed subprocesses, called application domains
+
+#
+OS
+	Process - seperates each application. each application one processes
+		Appdomain - which subprocess proveded by .net framework (light weight managed subprocesses)
+			Managed Threads (managed threads can be able to move freely across multiple Appdomains)
+
+
+
+Thread Pool
+------------
+ThreadPool class is the easiest way to handle multiple threads for relatively short tasks 
+
+
+But if we create our own thread, having following advantages. # but creating own threads end with more code complex
+
+1. we can set thread priority
+2. set identity for threads
+
+
+
+
+
+What is cross thread marshelling?

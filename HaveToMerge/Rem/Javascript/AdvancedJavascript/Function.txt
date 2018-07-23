@@ -1,0 +1,4 @@
+Tags - Javascript Function, Reflection, Dynamic function creation, reflection
+
+var adder = new Function('a', 'b', 'return a + b');
+adder(2, 6);

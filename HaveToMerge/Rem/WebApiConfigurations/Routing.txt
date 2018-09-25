@@ -1,0 +1,85 @@
+Routing has three main phases:
+	Matching the URI to a route template.
+	Selecting a controller.
+	Selecting an action.
+You can replace some parts of the process with your own custom behaviors.
+
+MessageHandlers
+Route constraint
+
+
+Route Template
+--------------------
+"api/{controller}/public/{category}/{id}"
+
+defaults: new { category = "all" }
+When you create a route, you can provide default values for some or all of the placeholders:+
+
+Framework will not try to match with Host Name or Protocol or port number
+
+
+{controller}" provides the name of the controller.
+"{action}" provides the name of the action. 
+
+
+Constraints
+---------------
+constraints: new { id = @"\d+" }   // Only matches if "id" is one or more digits.
+
+
+#How route table getting filled?
+If the framework finds a match for a URI, it creates a dictionary that contains the value for each placeholder. The keys are the placeholder names, not including the curly braces. The values are taken from the URI path or from the defaults.
+Optional placeholders will not be added into dictionary value section
+
+The dictionary is stored in the IHttpRouteData object.
+
+routes.MapHttpRoute(
+    name: "DefaultApi",
+    routeTemplate: "api/{controller}/{category}/{id}",
+    defaults: new { category = "all", id = RouteParameter.Optional }
+);
+
+For the URI path "api/products", the route dictionary will contain:
+
+controller: "products"
+category: "all"
+For "api/products/toys/123", however, the route dictionary will contain:
+
+controller: "products"
+category: "toys"
+id: "123"
+
+
+
+
+
+
+The defaults can also include a value that does not appear anywhere in the route template. 
+If the route matches, that value is stored in the dictionary. For example:
+
+routes.MapHttpRoute(
+    name: "Root",
+    routeTemplate: "api/root/{id}",
+    defaults: new { controller = "customers", id = RouteParameter.Optional }
+);
+
+
+If the URI path is "api/root/8", the dictionary will contain two values:+
+
+controller: "customers"
+id: "8"
+
+
+
+
+Selecting a Controller
+---------------------------------
+Controller selection is handled by the IHttpControllerSelector.SelectController method. This method takes an HttpRequestMessage instance and returns an HttpControllerDescriptor. The default implementation is provided by the DefaultHttpControllerSelector class. This class uses a straightforward algorithm:
+
+Look in the route dictionary for the key "controller".
+Take the value for this key and append the string "Controller" to get the controller type name.
+Look for a Web API controller with this type name.
+1
+For example, if the route dictionary contains the key-value pair "controller" = "products", then the controller type is "ProductsController". If there is no matching type, or multiple matches, the framework returns an error to the client.
+
+For step 3, DefaultHttpControllerSelector uses the IHttpControllerTypeResolver interface to get the list of Web API controller types. The default implementation of IHttpControllerTypeResolver returns all public classes that (a) implement IHttpController, (b) are not abstract, and (c) have a name that ends in "Controller".

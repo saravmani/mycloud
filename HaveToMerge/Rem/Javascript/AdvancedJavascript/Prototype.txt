@@ -1,0 +1,24 @@
+When a function is created in JavaScript, JavaScript engine adds
+ a prototype property to the function.
+ This prototype property is an object
+
+attach properties and methods on this prototype property when you want to implement inheritance
+
+ Firefox and most versions of Safari and Chrome have a __proto__ 'pseudo' property (an alternative syntax) that allows you to access an object’s prototype property. You will likely never use this __proto__ pseudo property
+
+The prototype property is used primarily for inheritance;
+you add methods and properties on a function’s prototype property to make those methods and properties available to instances of that function.
+
+
+function PrintStuff (myDocuments) {
+?this.documents = myDocuments;
+}
+?
+?// We add the print () method to PrintStuff prototype property 
+so that other instances (objects) can INHERIT it:?
+PrintStuff.prototype.print = function () {
+console.log(this.documents);
+}
+
+
+ use the new keyword to call the constructor.

@@ -1,0 +1,82 @@
+A bit deeper in the pipeline lies IHttpControllerTypeResolver which is responsible of taking in assemblies resolved by IAssembliesResolver and discover the types matching the predefined controller definition.
+
+Due to such design, you can actually bypass implementing IAssembliesResolver altogether, and bunch up both assembly discovery and type discovery in a single place. This is useful if you wish to modify the rules which Web API uses to discover controller types.
+
+The default rule set for a type to be discovered as valid API controller is as follows:
+
+– implements IHttpController (or inherits from ApiController)
+– is a public class
+– is a non-abstract class
+– has a “Controller” suffix
+These rules are represented by the following method, found on DefaultHttpControllerTypeResolver.
+
+C#
+
+internal static bool IsControllerType(Type t)
+{
+   Contract.Assert(t != null);
+   return
+   t != null &&
+   t.IsClass &&
+   t.IsVisible &&
+   !t.IsAbstract &&
+   typeof(IHttpController).IsAssignableFrom(t) &&
+   HasValidControllerName(t);
+}
+ 
+internal static bool IsControllerType(Type t)
+{
+   Contract.Assert(t != null);
+   return
+   t != null &&
+   t.IsClass &&
+   t.IsVisible &&
+   !t.IsAbstract &&
+   typeof(IHttpController).IsAssignableFrom(t) &&
+   HasValidControllerName(t);
+}
+You could implement your own rules on top of that. An example implementation could extend the default DefaultHttpControllerTypeResolver as follows:
+
+C#
+
+public class CustomHttpControllerTypeResolver : DefaultHttpControllerTypeResolver
+{
+    public CustomHttpControllerTypeResolver()
+            : base(IsHttpEndpoint)
+    {}
+
+    internal static bool IsHttpEndpoint(Type t)
+    {
+       if (t == null) throw new ArgumentNullException("t");
+
+       return 
+        t.IsClass && 
+        t.IsVisible && 
+        !t.IsAbstract && 
+       typeof(MyBaseApiController).IsAssignableFrom(t);
+    }
+}
+ 
+ 
+public class CustomHttpControllerTypeResolver : DefaultHttpControllerTypeResolver
+{
+    public CustomHttpControllerTypeResolver()
+            : base(IsHttpEndpoint)
+    {}
+ 
+    internal static bool IsHttpEndpoint(Type t)
+    {
+       if (t == null) throw new ArgumentNullException("t");
+ 
+       return 
+        t.IsClass && 
+        t.IsVisible && 
+        !t.IsAbstract && 
+       typeof(MyBaseApiController).IsAssignableFrom(t);
+    }
+}
+Notice that DefaultHttpControllerTypeResolver takes in a predicate defining rules to be used to discover controllers. In our example, we drop the HasValidControllerName(t) check – and require all controllers to derive from an imaginary MyBaseApiController. This is a neat way to force all the developers in our team to inherit from it when they develop their HTTP endpoints.
+
+Another interesting thing worth mentioning here, is that later on, in an internal class responsible for caching controllers, Web API will perform another crucial check – whether the assembly from which controllers are being is discovered is dynamic or not – and if it is, it will not be processed.
+
+This is very important if you wish to emit assemblies dynamically that would contain controller types. If you do that, this is not an extensibility point for you and you have to dig a step deeper.

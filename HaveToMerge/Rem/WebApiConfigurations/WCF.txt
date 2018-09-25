@@ -1,0 +1,3 @@
+ServiceBehaviour(ConcurrencyMode = concurrencymode.multiple,instancecontextmode = instancecontextmode.percall)
+instancecontextmode = percall,persession,single
+concurrencymode - multiple,reentrant,Single

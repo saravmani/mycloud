@@ -1,0 +1,8 @@
+Command and Query Responsibility Segregation (CQRS) pattern
+
+Segregate operations that read data from operations that update data by using separate interfaces. 
+This can maximize performance, scalability, and security. 
+
+
+In traditional data management systems, both commands (updates to the data) and queries (requests for data) 
+are executed against the same set of entities in a single data repository.

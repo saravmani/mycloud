@@ -1,0 +1,33 @@
+async and await example
+----------------------------
+class Subject {
+
+    public  entry()
+    {
+        console.log("11111111111");
+        this.titans();
+        console.log("2222222222");
+    }
+    public async titans() {
+        console.log("bfr tst mthd call");
+        await this.testmethod();
+        console.log("after tst mthd call");        
+    }
+    public testmethod() {
+        console.log("tst mthd");
+    }
+}  
+
+var objSubject = new Subject();
+objSubject.entry();
+
+output:
+11111111111
+
+bfr tst mthd call
+
+tst mthd
+
+2222222222
+
+after tst mthd call

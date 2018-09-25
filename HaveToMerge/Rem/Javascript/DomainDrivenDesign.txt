@@ -1,0 +1,42 @@
+Terms
+--------------
+Domain Model
+Context and Bounded Context
+
+
+
+Disadvantages
+--------------------
+Domain-driven Design can come at a relatively high cost.
+Microsoft recommends that it be applied only to complex domains where the model and the linguistic processes provide clear benefits in the communication of complex information,
+
+
+
+Domain Driven Design is predicated around the idea of solving the problems organisations face through code. 
+
+The domain is the ideas, knowledge and data of the problem you are trying to solve.
+
+
+Domain Model
+-------------------------
+The Model is also often a simplification of the bigger picture and so the important aspects of the solution are concentrated
+ on whilst everything else is ignored.
+
+This means your Model should be focused knowledge around a specific problem that is simplified and structured to provide a solution.
+
+
+Ubiquitous Language
+The concept is simple, that developers and the business should share a common language that both understand to mean the same things, and more importantly, that is set in business terminology, not technical terminology.
+
+Domian Model language should not be more technical. it should express the domain
+
+language can make all the involved parties think and understand in the same way.
+
+
+
+Contexts and Bounded Contexts
+-------------------------------------
+A Bounded Context can be considered as a miniature application, containing itss own Domain, own code and persistence mechanisms. Within a Bounded Context, there should be logical consistency; each Bounded Context should be independent of any other Bounded Context.
+More Example of Bounded Context:
+Think of an e-Commerce system. Initially you can tell it is an application of shopping context. But if you look more closely, you will see there are other contexts too. Like: Inventory, Delivery, Accounts etc.
+Dividing a large application among different bounded contexts properly will allow you to make your application more modular, will help you to separate different concerns and will make the application easy to manage and enhance. Each of these Bounded Contexts has a specific responsibility, and can operate in a semiautonomous fashion. By splitting these apart it becomes more obvious to find where logic should sit, and you can avoid that BBOM (Big ball of mud) J

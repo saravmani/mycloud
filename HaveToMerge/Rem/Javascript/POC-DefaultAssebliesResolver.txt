@@ -1,0 +1,51 @@
+POC
+----------
+MVC Webapi
+purpose:
+	Try to keep controllers in seperate assembly and access it from
+main project. Enhance controller discover to other dlls
+
+result: success
+
+Note: without providing custome assembly resolver, frameworks looksinto 
+the dll which i placed in bin folder...:-)
+the reason is , the DefaultAssembliesResolver will get the list of dlls which are available
+ in current domain
+check the source code of DefaultAssembliesResolver class.
+ public class DefaultAssembliesResolver : IAssembliesResolver
+    {
+        public virtual ICollection<Assembly> GetAssemblies()
+        {
+            return AppDomain.CurrentDomain.GetAssemblies().ToList();
+        }
+    }
+
+AppDomain.CurrentDomain.GetAssemblies().ToList() this gives all the dlls from bin + other dlls
+
+
+
+
+
+So i see only advantage of assembly resolver is if we want to avoid current
+assembly, and if we want load assebly from different location..
+
+
+
+Sample code
+--------------------
+
+  public class ControllerAssemblyLoader : DefaultAssembliesResolver
+    {
+        public override ICollection<System.Reflection.Assembly> GetAssemblies()
+        {
+            ICollection<Assembly> baseAssemblies = base.GetAssemblies();
+            //List<Assembly> assemblies = new List<Assembly>(baseAssemblies);//if i uncommend this code then it takes current assembly also
+            List<Assembly> assemblies = new List<Assembly>();
+            var controllersAssembly = Assembly.LoadFrom(AppDomain.CurrentDomain.BaseDirectory + "bin\\Dnb.SB.PMRReports.ServiceProvider.dll");
+            assemblies.Add(controllersAssembly);
+            //baseAssemblies.Add(Assembly.GetExecutingAssembly());
+            return assemblies;
+
+        }
+    }
+

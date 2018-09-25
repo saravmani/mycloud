@@ -1,6 +1,6 @@
 The core features of the CLR (such as memory management,
 assembly loading, security, exception handling, and thread synchronization)
-any language which is poing to CLR will get above mentioined features.
+any language which is poing to CLR will get above mentioned features.
 
 at runtime, the CLR has no idea which programming language the developer used
 
@@ -14,7 +14,7 @@ Parts of Managed Module
 ---------------------------
 PE Header (standard windows PE file header) - has file type (GUI,CUI or DLL), Time stamp (build time)
 	Note: For modules that contain 	native CPU code, this header contains information about the native CPU code
-CLR Header -CLR version required, Entry point, Loacation information of metadata, resources, strong names etc.,,,,
+CLR Header -CLR version required, Entry point, Location information of metadata, resources, strong names etc.,,,,
 Meta Data - two main types of tables:
 		tables that describe the types and members defined in your source code and tables that
 		describe the types and members referenced by your source code.

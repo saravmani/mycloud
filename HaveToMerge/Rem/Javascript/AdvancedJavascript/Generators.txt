@@ -1,0 +1,54 @@
+Generators are functions which can be exited and later re-entered. 
+Their context (variable bindings) will be saved across re-entrances.
+
+How Generator Works
+-----------------------
+Calling a generator function does not execute its body immediately; an iterator object for the function is returned instead. When the iterator's next() method is called, the generator function's body is executed until the first yield expression, which specifies the value to be returned from the iterator
+
+The next() method returns an object with a value property containing the yielded value and a done property which indicates whether the generator has yielded its last value as a boolean.
+
+
+A return statement in a generator, when executed, will make the generator done
+A generator which has returned will not yield any more values.
+
+Ex: Iterating array of objects
+------------------------------------
+function* gen(ip)
+{
+i=0;
+while(true)
+yield ip[i++]
+}
+
+Passing arguments into Generators
+------------------------------------------
+function* logGenerator() {
+  console.log(0);
+  console.log(1, yield);
+  console.log(2, yield);
+  console.log(3, yield);
+}
+
+var gen = logGenerator();
+
+// the first call of next executes from the start of the function
+// until the first yield statement
+gen.next();             // 0
+gen.next('pretzel');    // 1 pretzel
+gen.next('california'); // 2 california
+gen.next('mayonnaise'); // 3 mayonnaise
+
+
+
+function* yieldAndReturn() {
+  yield "Y";
+  return "R";
+  yield "unreachable";
+}
+
+Return statement in a generator
+---------------------------------------------
+var gen = yieldAndReturn()
+console.log(gen.next()); // { value: "Y", done: false }
+console.log(gen.next()); // { value: "R", done: true }
+console.log(gen.next()); // { value: undefined, done: true }

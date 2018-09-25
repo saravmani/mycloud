@@ -1,0 +1,19 @@
+#I think there is no limitiation for controller naming
+
+I have used below naming "WITHOUT controller suffix", and it works
+URL:  http://localhost:49995/api/TSubjectSearch - works
+[Route("api/[controller]")]
+  public class TSubjectSearch : Controller
+  {
+
+
+
+
+
+  I have used below naming "WITH controller suffix", and it works.
+  URL:  http://localhost:49995/api/TSubjectSearch - works
+  url: http://localhost:49995/api/TSubjectSearchController - NOT WOKRING
+
+  [Route("api/[controller]")]
+    public class TSubjectSearchController : Controller
+    {

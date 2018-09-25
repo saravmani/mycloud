@@ -1,0 +1,3 @@
+same instance of the action filter can be reused for different actions 
+From ASP.NET MVC 3,  filters are cached more aggressively.
+In previous versions of ASP.NET MVC, action filters are create per request except in a few cases

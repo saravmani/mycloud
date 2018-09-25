@@ -1,0 +1,55 @@
+﻿
+ReaderWriterLock
+===============================================
+ ReaderWriterLock gives higher priority to reader threads then writers. This makes sense if you have many readers and only a few writers. 
+So a lot of readers are able to read the resource while the writer has to wait longer to get the lock.
+ReaderWriterLock intelligently handles recursive lock requests from the same thread. That is, if the thread calls AcquireReaderLock recursively (i.e., it already holds a reader lock), the lock is granted immediately and the lock count is increased. The thread must still call ReleaseReaderLock as many times as it called AcquireReaderLock. Or, it can call ReleaseLock to reduce the lock count to zero immediately. Be careful with ReleaseLock, though. If you subsequently call ReleaseWriterLock or ReleaseReaderLock, the runtime will throw an exception.
+
+A thread can hold a reader lock or a writer lock, but not both at the same time. Instead of releasing a reader lock in order to acquire the writer lock, you can use UpgradeToWriterLock and DowngradeFromWriterLock.
+
+ In situation, call UpgradeToWriterLock, but understand that you don't get the writer lock immediately. Your code will have to wait for any other readers in the queue to release their locks, and will also have to wait behind any other writers that are already in the write queue.
+
+A thread should not call AcquireWriterLock while it holds a reader lock. Doing so will cause the thread to block while it holds the reader lock, and will lead to a deadlock if you use an infinite timeout. You can call the IsReaderLockHeld method to determine if your thread currently holds a reader lock before you attempt to acquire a writer lock.
+
+Note that the opposite — calling AcquireReaderLock whild holding a writer lock — is just fine. Since the thread has an exclusive lock on the resource, granting the lock is okay. However, if you need to know whether your thread is currently holding a writer lock, you can call IsWriterLockHeld.
+
+
+
+The ReaderWriterLock class supports recursion; due to this it causes performance loss. in this case the class needs to maintain a record of the number of times each thread acquires the lock and increment and decrement the counter. When multiple reader threads acquire the same lock (remember ReaderWriterLock class allows simultaneous reads), a counter is maintained for each thread. This overhead is what causes the ReaderWriterLock to pale in comparison to the Monitor class. It is approximately 6 times slower.
+
+
+
+#where this ReaderWriterLock will be useful?
+where multiple reades are required. if we use AcuireReadLock in many places it wont block the 
+threads if only reading alone happens. because there no exclusive lock here.
+If any ONE theread makes AcquireWriteLock then all the read and write thread will be blocked until
+it get released.
+So if only reading it wont blocked.
+
+check below sample code... there is no blocking. bcs all are read lock. but if we change it to writelock
+then read lock also has to wait
+        public void settime()
+        {
+            var task1 = Task.Factory.StartNew(thread1Call);
+            var task2 = Task.Factory.StartNew(thread2Call);
+            Task.WaitAll(task1, task2);
+
+        }
+
+        public void thread1Call()
+        {
+            lockObj.AcquireReaderLock(Timeout.Infinite);
+            System.Threading.Thread.Sleep(10000);
+            lockObj.ReleaseReaderLock();
+        }//11
+        public void thread2Call()
+        {
+            lockObj.AcquireReaderLock(Timeout.Infinite);
+            System.Threading.Thread.Sleep(10000);
+            lockObj.ReleaseReaderLock();
+        }
+
+
+
+
+

@@ -1,0 +1,7 @@
+These are list we know on AI and ML
+---------------------------------------------
+TensorFlow
+Deeplearning4j
+NLTK 
+Stanford NLP
+Azure Machine Learning 

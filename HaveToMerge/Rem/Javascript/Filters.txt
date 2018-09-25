@@ -1,0 +1,22 @@
+Filters experiment
+------------------------
+
+public class SecurityResultFilter : ActionFilterAttribute,IResultFilter
+    {
+        public void OnResultExecuted(ResultExecutedContext filterContext)
+        {
+
+//Header is getting added
+filterContext.HttpContext.Response.Headers.Add("ss", "uu");
+//this not affecting view bag data. becuase i guess view got generated at this stage
+            ((ViewResult)filterContext.Result).ViewBag.ding = "haha";
+        }
+
+        public void OnResultExecuting(ResultExecutingContext filterContext)
+        {
+
+            //This modifies view bag data
+
+            ((ViewResult)filterContext.Result).ViewBag.ding = "huhu";
+        }
+    }

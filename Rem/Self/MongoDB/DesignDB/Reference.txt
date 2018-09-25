@@ -1,0 +1,7 @@
+Created:15-Jul-2018;Sunday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+Break out the related data and refer to it separately instead of including it in the document itself.
+How would you do that? There are a couple of different approaches here.
+The strictest method is to simply include the ID for the item,
+and create the code to gather the information you want to find.

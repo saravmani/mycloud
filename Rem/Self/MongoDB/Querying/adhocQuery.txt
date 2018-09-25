@@ -1,0 +1,14 @@
+Created:15-Jul-2018;Sunday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+ 
+
+ad hoc queries
+----------------
+ You can ask the database any question, without taking the time to set up a query structure ahead of time.
+ This distinguishes it from other document databases like CouchDB, and can greatly speed development and prototyping.
+
+ When using ad hoc queries, performance can really suffer as the document list grows,
+ because the database checks every document against the query structure, even when the data is really simple.
+ For instance, if you have a database full of people's names. Without an index, in order to return a single item,
+ the database needs to examine all items in the collection, and this takes a significant amount of time.
+ Mongo supports all of the standard indexing functionality you've likely seen in relational databases.

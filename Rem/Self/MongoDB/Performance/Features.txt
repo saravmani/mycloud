@@ -1,0 +1,49 @@
+Created:15-Jul-2018;Sunday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Indexing, sharding, and replicating can make Mongo the right choice for your application
+Indexing, sharding, and replicating == performance,scalability, and reliability.
+
+
+
+
+Indexing
+--------------
+Mongo supports all of the standard indexing functionality you've likely seen in relational databases.
+Note that indexes will increase the time needed for inserts, and in general, it's sufficient to have
+just a few indexes per collection based on your expected use cases.
+
+NOTE:But Mongo does support up to 64 indexes per collection.
+
+Single index
+-----------------------
+ The easiest index to set up and use is an index on a single field.
+This creates a lookup table for that specific
+field and greatly reduces the time it takes to find information about that specific field.
+
+
+Compound index
+-----------------
+A compound index is a single index which uses multiple fields to create the lookup table.
+You choose the order in which to index, and the resulting index makes it easier to do a much wider range of queries.
+
+Mongo also allows you to impose uniqueness rules via indexing
+ So, for instance, you might want to restrict user names so there are no duplicates. For this type of index, you'd want to create it before inserting documents, as that's the point in which the check is made.
+
+
+ Sharding
+ -----------
+Sharding is a powerful scaling feature of MongoDB. Sometimes referred to as partitioning,
+sharding splits the database across multiple machines, storing a subset of data on each of the systems.
+Using sharding means that you can scale
+your application across several smaller systems rather than investing in a larger,
+more expensive solution. While manual sharding is possible with almost any database system,
+Mongo can handle the sharding operation so that your code can work with the database as a single system.
+Sharding is complex to set up and maintain, but it can make it possible to manage databases at large scale without
+a huge capitol investment. While sharding is aimed at scalability,
+it's arguably even more important to ensure the uptime of your system, and for this,
+Mongo provides replication.
+
+
+Replications
+--------------------
+With Mongo, you set up a replica set for your database with a primary server and some number of secondary servers, which keep copies of the primary servers data. If your primary server fails, one of the secondary servers will be promoted to the primary slot, and the database will continue to act as usual. When the original primary comes back online, it will be added back to the system as a new secondary server in the system.

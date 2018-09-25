@@ -1,4 +1,6 @@
 
+NOTE: Angular expressions in HTMl will create a watcher internally
+
 $scope.$apply()
 will execute the all the watchers.
 If watcher found that there is dirty in any one of the watcher then it will run all the watchers again,

@@ -1,11 +1,9 @@
-Deep LInking
+Deep Linking
 -------------------------
-
- To create more complex applications, we can split up our code into different sections through something called deep linking.
- Now, this is the process of making different URLs load up different content.
- And this content can be managed by different code in your application. Deep linking is handled through something called ngRoute.
+To create more complex applications, we can split up our code into different sections through something called deep linking.
+Now, this is the process of making different URLs load up different content.
+And this content can be managed by different code in your application. Deep linking is handled through something called ngRoute.
 This is a different module that we'll have to load into our application using a different JavaScript file.
- Once we load that up, we can configure our application through something called the route provider.
+Once we load that up, we can configure our application through something called the route provider.
 
-
-Now this module works with a special directive called ng-view. 
+Now this module works with a special directive called ng-view.

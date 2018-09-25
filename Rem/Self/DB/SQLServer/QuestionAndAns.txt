@@ -1,15 +1,15 @@
 recursive stored procedure
-SQL Server supports recursive stored procedure which calls by itself. 
-Recursive stored procedure can be defined as a method of problem solving wherein the solution is arrived repetitively. 
+SQL Server supports recursive stored procedure which calls by itself.
+Recursive stored procedure can be defined as a method of problem solving wherein the solution is arrived repetitively.
 It can nest up to 32 levels.
 
 local and global temp tables
 -------------------------------------
 Local temporary tables are visible only to their creators during the same connection to an instance of SQL Server as
- when the tables were first created or referenced. 
- Local temporary tables are deleted after the user disconnects from the instance of SQL Server. 
- 
- Global temporary tables are visible to any user and any connection after they are created, and are deleted when all users 
+ when the tables were first created or referenced.
+ Local temporary tables are deleted after the user disconnects from the instance of SQL Server.
+
+ Global temporary tables are visible to any user and any connection after they are created, and are deleted when all users
  that are referencing the table disconnect from the instance of SQL Server.
 
  Global temporary tables are represented with ## before the table name. Scope will be the outside the session whereas local temporary tables are inside the session. Session ID can be found using @@SPID.
@@ -30,7 +30,7 @@ i.e: in oracle we will use dblink and materialized view
 
  What is SQL server agent? (tags -sql server - scheduler jobs, sql jobs, sql scheduler)
 The SQL Server agent plays  a vital role in day to day tasks of SQL server administrator(DBA).
- Server agent’s purpose is to implement the tasks easily with the scheduler engine which allows 
+ Server agent’s purpose is to implement the tasks easily with the scheduler engine which allows
  our jobs to run at scheduled date and time.
  Scheduled tasks or jobs are used to automate processes that can be run on a scheduled time at a regular interval
 
@@ -48,11 +48,12 @@ There are three types of sub query –
  --------------------------------------------------------
 Single row sub query which returns only one row
 Multiple row sub query which returns multiple rows
-Multiple column sub query which returns multiple columns to the main query. With that sub query result, Main query will be executed.
+Multiple column sub query which returns multiple columns to the main query.
+  With that sub query result, Main query will be executed.
 
 
 What is COALESCE in SQL Server?
-COALESCE is used to return first non-null expression within the arguments. 
+COALESCE is used to return first non-null expression within the arguments.
 This function is used to return a non-null from more than one column in the arguments.
 ex:
 SELECT coalesce(null,"ding dong",customername,null) FROM Customers WHERE customerid=4;
@@ -65,10 +66,9 @@ this will return "ding dong", bcs that string is the first non null value
 
 
 
-Bulkcopy is a tool used to copy large amount of data from Tables. This tool is used to load large amount of data in SQL Server.
+Bulkcopy is a tool used to copy large amount of data from Tables.
+This tool is used to load large amount of data in SQL Server.
 
-
- 
 
 
 UPDATE_STATISTICS command is used to update the indexes on the tables when there is a large amount of deletions or modifications or bulk copy occurred in indexes.

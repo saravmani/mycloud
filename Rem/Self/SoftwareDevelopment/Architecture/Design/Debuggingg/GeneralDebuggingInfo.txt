@@ -1,16 +1,14 @@
 we can able to seup symbol server for our own. if we do so we can able do debug our code any where,
 
-
-
 Tools
 ---
 debugdiag
-procdump 
+procdump
 adplus
 
 
 Generating PDB files for release executables does not affect any optimizations, or significantly alter the size of the generated files.
- Typically, the only difference is the path, and the file name of the PDB file is embedded in the executable. For this reason, you should always 
+ Typically, the only difference is the path, and the file name of the PDB file is embedded in the executable. For this reason, you should always
 produce PDB files, even if you don't want to ship them with the executable.
 
 By default, PDB files contain the following information:
@@ -29,13 +27,13 @@ Public symbols (typically only non-static functions and global variables)
 A list of object files that are responsible for sections of code in the executable
 Frame pointer optimization information (FPO)
 
- you can provide the stripped version to users who may need limited debugging abilities, but keep the full PDBs confidential. 
+ you can provide the stripped version to users who may need limited debugging abilities, but keep the full PDBs confidential.
 
 
 we can also able to genrate a single pdb file :-)
 
 
-When you are debugging an application that has crashed, the debugger attempts to show you the functions on the stack that led up to the crash. 
+When you are debugging an application that has crashed, the debugger attempts to show you the functions on the stack that led up to the crash.
 Without a PDB file, the debugger can not resolve the function names, their parameters, or any local variables that are stored on the stack. If you debug 32-bit
  executables, there are situations where you cannot even get reliable stack traces without symbols.
 

@@ -1,0 +1,13 @@
+Created:15-Jul-2018;Sunday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+Mongo and other NoSql systems were designed to be accessible to programmers.
+Relational databases were created with the idea of having dedicated database administrators
+
+RDBMS
+------------
+Changes to the schema require a change to the entire database system, and a
+potentially expensive update operation, and getting a fairly simple representation of an object in the database,
+such as the user above, requires a relatively complex database operation.
+
+#maintanance is costly in RDBMS

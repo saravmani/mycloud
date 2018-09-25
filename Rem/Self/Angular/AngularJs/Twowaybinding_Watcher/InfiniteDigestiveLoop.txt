@@ -1,0 +1,10 @@
+Created:21-Jul-2018;Saturday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+Lucky for us Angular has a cache for the digest loop.
+So the browser will never get stuck if you have an infinite digest loop.
+ Angular knows when you reach a 10 level depth of a digest cycle.
+
+Angular allows you to change this limit from 10 to another number,
+but there is really no reason for your application to reach a 10 level depth of digest cycle. 
+It wasn't really necessary to create two watches in order to create an infinite digest cycle.

@@ -1,0 +1,32 @@
+Created:15-Jul-2018;Sunday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+Mongo shell is special in that it uses a JavaScript interpreter. You can interact with the
+database using JavaScript Expressions, making it easy to perform various tasks. 
+
+Mongo stores data in databases which are separated into collections of documents.
+To create a new collection, we simply need to insert a document and the collection will be created as a side effect.
+
+When making your requests for documents in Mongo, you include a document in the
+request describing the characteristics of the objects you want to get back.
+  The documents themselves already contain all of the appropriate fields, so no specific join operation needs to happen.
+
+Data is stored in BSON formate (binary json)
+Storing the data this way makes it much easier to access related information.
+Searching on specific attributes of an object or
+sorting items based on a field works naturally and quickly.
+
+Unique identifier (Unique accross SPECIFIC COLLECTION)
+-------------------
+You may have noticed that the object returned by Mongo had an additional field, the _id field.
+Every item in a Mongo database has this field. If it's not specified at the time the object is created,
+one will be assigned by Mongo. This field must be unique across a specific collection,
+but otherwise can be any identifying string you wish to use if you don't want to work directly with the Mongo IDs.
+
+db.users.find({firstName:'SaravMani'})
+
+to find the document we are passing a document. the output is all the matching documents will be returned
+(i.e all the documents whose first name is SaravMani)
+
+
+NOTE: Mongo supports nested levels upto 100

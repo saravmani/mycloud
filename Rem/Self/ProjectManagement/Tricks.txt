@@ -1,0 +1,11 @@
+
+
+TO know that Budjet is roughly estimated or and time limit also real or not
+
+Just ask owner that
+  What if i provide some extra nice feature, but it may take some extra time?
+  If client or owner says yes.. then we can assume that they are having little more money
+
+
+If butdget is 20K means cost may roughly estimated
+But if Bueget is 21k means it may be properly estimated

@@ -4,7 +4,7 @@ Message handlers
 A message handler is a class that receives an HTTP request and returns an HTTP response.
 Message handlers derive from the abstract HttpMessageHandler class.
 
-# I guess i have used this to provide custome encryption from auth service to web client
+# I guess i have used this to provide custom encryption from auth service to web client
 
 Typically, a series of message handlers are chained together.
 The first handler receives an HTTP request, does some processing,

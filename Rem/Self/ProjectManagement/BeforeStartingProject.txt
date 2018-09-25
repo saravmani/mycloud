@@ -1,0 +1,17 @@
+
+3 factors are important about the project
+1. Time
+2. Cost
+3. Quality
+
+Some projects are needed all
+Some are not
+
+Example Olymbic games
+Needs to be complete ONTIME. but little less quality and money
+
+Power Plan project
+Quality is important. But cost and time can take more
+
+
+Find out what are the must have features. So we can create release plans it accordingly.

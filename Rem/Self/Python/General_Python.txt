@@ -1,3 +1,8 @@
+Pip is the package manager for python.
+In Python 3 - it will automatically got installed on windows
+For previous versions we need to install it manually
+
+
 Python
 ---------
 dynamic language.
@@ -23,7 +28,7 @@ To get list of reserved keywords
 >>>import keyword
 >>>keyword.kwlist
 
-//this will print list key words reserved for python 
+//this will print list key words reserved for python
 
 clear the screen
 ----------------------------
@@ -147,4 +152,3 @@ print(objdictionsry[23])
 print(objdictionsry["gg"])
 del objdictionsry["gg"]
 # it like javascript's object litterals :-)
-

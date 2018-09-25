@@ -1,0 +1,28 @@
+Created:15-Jul-2018;Sunday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+When determining the schema for your database you will come across places where you need
+to choose how much data to include within each of your documents.
+
+Mongo DB supports, as I mentioned, a hundred levels of depth for your documents.
+Obviously, this could become quite unwieldy and very deep data structures can in fact slow your indexing, access, and storage.
+
+Embedded data
+-----------------
+ Embedded documents are a simpler interface to work with. Inserting documents into a single collection minimizes the number of operations.
+ Embedded documents are easier to query and index.
+For a simple document structure like this, it makes sense to embed the related data into the document itself
+
+
+Separate collections
+--------------------------------
+ Separate collections, on the other hand, require more work.
+ Inserting data must be done in each appropriate collection.
+Reference ID's need to be used to access appropriate items.
+And aggregating related data can require multiple operations.
+
+When to go for seperate collections (reference)
+When deciding on a strategy, it's important to figure out what the use cases are you're trying to support.
+Anytime you'll be reusing an object in multiple places,
+it's worth considering whether you should break that information out into a separate collection. 
+While it's true that you need to perform extra steps to get the information you want,
+it also protects you from the problem of maintaining identical information in multiple places.

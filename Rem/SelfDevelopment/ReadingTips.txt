@@ -1,9 +1,0 @@
-Read any topic completely TWICE
-    This will give you better understanding when u read the sampe topic at second time
-
-Keep Proper color coding to mark 
-    RED - Important when go for interview have to read it
-    Blue - To understand the core concept need to see this
-    Green - Example coding
-    Yellow - My Assemption
-    

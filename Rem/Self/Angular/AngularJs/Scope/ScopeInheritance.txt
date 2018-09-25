@@ -1,6 +1,7 @@
 
 When we use ng controller to create a new controller, we created a new scope from within the current scope.
-This was done behind the scenes by using the door scope (mumbles) new method. We can also reach the parent scope by using the door scope,
+This was done behind the scenes by using the door scope (mumbles) new method.
+ We can also reach the parent scope by using the door scope,
 door parent attribute to access the parent scope
 
 Scope inheritance is achieved by prototype inheritance.

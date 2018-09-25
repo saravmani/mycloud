@@ -1,0 +1,8 @@
+
+RenderPage()//
+
+Layout pages can also contain content that can be filled by other pages on disk. This is achieved by using the RenderPage method. This method takes either one or two parameters. The first is the physical location of the file, the second is an optional array of objects that can be passed into the page. Add a new cshtml file to the Shared folder and call it _Header.cshtml. I've prefixed this file with an underscore because I don't want this file to be called outside of RenderPage. By default, NOTE: ASP.NET will not serve pages beginning with an underscore.
+Here's the code I'm adding to the _Header.cshtml page.
+
+Layout page will have only one RenderBody() method.
+RenderPage also exists in Layout page and multiple RenderPage() can be there in Layout page.

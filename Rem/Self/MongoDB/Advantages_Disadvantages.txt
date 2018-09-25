@@ -1,0 +1,37 @@
+Created:15-Jul-2018;Sunday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+Large data storage
+------------------------
+We can store a large data by distributing it to several servers connected to the application.
+If a server cannot handle such a
+big data then there will be no failure condition. The term we can use here is “auto-sharding”.
+
+
+High speed -
+MongoDB is a document-oriented database. It is easy to access documents by indexing. Hence, it provides fast query response.
+The speed of MongoDB is 100 times faster than the relational database.
+
+ Mongo's very friendly when it comes to adding data since it doesn't require a schema, no setup work is needed in order to start working with data.
+ (i.e in rdbms we need to create tables - columns - data tyeps.. etc., b4 working)
+
+
+Disadvantages
+=========================
+Joins not Supported
+MongoDB doesn’t support joins like a relational database. Yet one can use joins functionality by adding by coding it manually. But it may slow execution and affect performance.
+
+b. High Memory Usage
+MongoDB stores key names for each value pairs. Also, due to no functionality of joins, there is data redundancy. This results in increasing unnecessary usage of memory.
+
+c. Limited Data Size
+You can have document size, not more than 16MB.
+
+d. Limited Nesting
+You cannot perform nesting of documents for more than 100 levels.
+
+This was all about Advantages Of MongoDB Tutorial. Hope you like our explanation of Pros and Cons of MongoDB.
+
+No transactions except at the record level. If you want a transaction you have to fit the whole transaction into a single record.
+
+Hard to secure properly without going with an Enterprise license.

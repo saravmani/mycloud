@@ -3,8 +3,7 @@ Created:26-Jun-2018;Tuesday;From home-Chennai-Keelkattalai
 
 projections
 
-In the previous section, we discussed how to filter the data and return the complete
-entities. LINQ projections essentially mean that instead of returning a complete
+LINQ projections essentially mean that instead of returning a complete
 entity we want to return either a subset of properties from that entity in the form
 of an object or perhaps, we want to return an object that contains properties from
 multiple entities.

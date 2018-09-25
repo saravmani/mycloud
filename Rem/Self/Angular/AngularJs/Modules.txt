@@ -3,7 +3,8 @@ The module is a container for different parts of your applications, and inside a
 
 Controllers are pieces of code that can handle some specific functionality within a module.
 
- A controller can also be defined with different dependencies, and dependencies is just a name for something that a controller needs in order to work.
+ A controller can also be defined with different dependencies, and dependencies is just a name for
+ something that a controller needs in order to work.
 
 
 $scope

@@ -1,0 +1,24 @@
+Created:15-Jul-2018;Sunday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Nested Document
+----------------------
+Ex1:
+{
+firstName:"saravMani",
+contact:
+  {
+      Phone:'432-543543',
+      Fax:'456-675'
+  }
+}
+db.users.find({'contact.Phone':'432-543543'})
+NOTE: accessing multi level with . notation
+
+
+Ex2:
+{
+firstName:"saravMani",
+phone:
+  ['1234','1344']
+}
+db.users.find({phone:'1234'})

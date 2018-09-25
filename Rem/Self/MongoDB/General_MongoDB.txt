@@ -1,4 +1,6 @@
-install mango db 
+Default mongo db port on windows - 27017
+
+install mango db
 navigate to installed path and create blow folders
 log
 data

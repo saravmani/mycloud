@@ -3,7 +3,7 @@ Created:07-Jul-2018;Saturday;From home-Chennai-Keelkattalai
 
 It is inspired by paper and ink
 
-imagin if have two papers one on another, those relation btn the papers will be communicated by the shadow
+imagine if have two papers one on another, those relation btn the papers will be communicated by the shadow
 
  Material uses light and shadow to communicate the position of elements in a 3D space.
 

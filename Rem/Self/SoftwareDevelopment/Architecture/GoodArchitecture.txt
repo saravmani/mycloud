@@ -1,0 +1,9 @@
+
+Software is a tool which is used in particular process
+
+Ex: Email Software used to in communication process
+
+A good architecture is used to build a good tool and it should work without breaking,
+and parts of it should be replaceable
+
+Good software is understandable, extensible and maintainable. 

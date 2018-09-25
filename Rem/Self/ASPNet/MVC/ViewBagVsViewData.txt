@@ -1,0 +1,4 @@
+
+Viewbag is a wrapper over View data
+View bag is not need of casting of objects. But ViewData needed casting
+Viewbag is slower than view data

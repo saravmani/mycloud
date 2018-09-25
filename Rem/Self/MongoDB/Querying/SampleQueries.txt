@@ -1,0 +1,83 @@
+Created:15-Jul-2018;Sunday;From home-Chennai-Keelkattalai
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+Search
+-------
+db.users.find({firstName:"SaravMani"})
+
+Remove
+-------------
+db.users.remove({firstName:"SaravMani"})
+
+
+Update
+=====================================================================================
+db.users.update({firstName:"SaravMani"}, {firstName:"SaravMani",age:"22"});
+//updates all the matching documents which are having firstName as SaravMani
+Note - Note, the update is a complete overwrite.
+If you had left out the address and phone, John would only have first and last names.
+
+Update with $set operator (it will update document without affecting other fields)
+---------------------------------
+The original update could have been done with the $set operator,
+and this operation leaves all of the remaining fields in place.
+It's likely that you'll use set much more often than a bare update,
+db.users.update({firstName:"SaravMani"}, {$set:{firstName:"SaravMani"}});
+
+$addtoSet - While updating if we want to add new fields then we have to use $addToSet
+
+db.users.update({firstName:"SaravMani"}, {$addToSet:{age:32});
+
+
+
+Creating unique index
+---------------------------
+db.users.createIndex({"name":1},{unique:true});
+NOTE: brefore createing unique index we have to drop all the documents in the collection
+
+If you want to create unique index, you can create the documents with _id field
+or declare one of the fields to be a unique index before adding documents to the collection.
+
+with _id
+{
+  _id:234,
+  name:"SaravMani"
+}
+
+
+
+Projections
+-------------------
+db.users.find({})
+//this will resutls with all the filds.
+when we want to get only specific fields we can use projections
+
+db.users.find({},{name:1});// this will results only name field and _id field
+
+db.users.find({},{name:1,_id:0});// this will results only name field
+
+
+pretty
+----------
+this is a function and it is used to formatting the output
+db.users.find({},{name:1,_id:0}).pretty()
+
+sorting
+--------------------
+db.users.find({},{name:1,_id:0}).pretty().sort({name:-1}) // -1 for descending
+
+limit function
+------------------
+db.users.find({},{name:1,_id:0}).pretty().sort({name:-1}).limit(1) // returns 1 record
+
+skip (used in paging)
+--------------------------
+db.users.find({},{name:1,_id:0}).pretty().sort({name:-1}).limit(1).skip(20) // returns 1 record
+
+Import data
+-----------------
+mongoimport --collection tours --db dbnamecreated --file tours.json --jsonArray
+
+range operators
+----------------------
+db.users.find({age:{$lte:35,$gte:31}}) //finds less than 35 age and greator than or equl to 31

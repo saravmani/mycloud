@@ -1,0 +1,4 @@
+
+Below queries used get the stats of the database
+db.stats()
+db.collection.stats()

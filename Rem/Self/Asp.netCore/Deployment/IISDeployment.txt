@@ -1,6 +1,6 @@
 
 “Microsoft .Net Core Windows Server Hosting”
-we are going to download .Net Core Windows Server Hosting bundle from following link and install it with our system.
+download .Net Core Windows Server Hosting bundle from following link and install it with our system.
 https://aka.ms/dotnetcore-2-windowshosting
 
 As you can see in the following image, Microsoft .Net Core Runtime is being installed.

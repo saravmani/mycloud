@@ -1,11 +1,11 @@
-Difference btn addin module sections under
+Difference btn adding module sections under
 system.web vs system.weserver
 ------------------------------------------------
 The system.web section is for configuring IIS 6.0, while the system.webserver
 version is used to configure IIS 7.0. IIS 7.0 includes a new ASP.NET pipeline and
  some configuration differences, hence the extra config sections.
 If you're running IIS 7.0 in integrated mode only, you shouldn't need to add the handlers to both sections.
-Adding it to system.web as well is a fallback for
+Adding it to system.web as well is a fall-back for
 IIS 7.0 operating in classic mode
 
 The system.webServer section in the Web.config file specifies settings for IIS 7.0 that are applied to the Web application.

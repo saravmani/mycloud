@@ -1,5 +1,8 @@
-from the profiler we can able to get the tracefile to find out which is causing the slowness.
+From the profiler we can able to get the trace file to find out which is causing the slowness.
 it is like AWR report in oracle .. i guess so :-)
 
 clustered and non clustered indexes
 	1. we  can have many non clustered indexes and one clustered index
+A clustered index determines the order in which records are physically stored  (which is why you can only have one per table).
+
+So while it would be the fastest for THAT query, it may slow down other queries and could KILL updates and inserts if one of those columns was changing, which could mean that the record would need to be physically re-located.

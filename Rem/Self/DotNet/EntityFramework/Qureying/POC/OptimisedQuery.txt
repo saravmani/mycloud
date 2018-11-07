@@ -1,0 +1,37 @@
+
+var taskTypeList = from eachTaskType in db.TaskTypes
+                   select eachTaskType;
+
+//select new {eachTaskType.TaskTypeName,eachTaskType.TaskTypeId };
+var anotherresult = taskTypeList.Where(eachtype =>  eachtype.TaskTypeId == 1);
+var anotherresult2 = taskTypeList.Where(eachtype => eachtype.TaskTypeId == 2);
+var haha = from a in anotherresult
+from b in anotherresult2
+where a.TaskTypeId==b.TaskTypeId
+select a;
+var lstrslt = haha.ToList();
+
+//above code is generating single sql query
+SELECT
+    [Extent1].[TaskTypeId] AS [TaskTypeId],
+    [Extent1].[TaskTypeName] AS [TaskTypeName],
+    [Extent1].[IsRepetedTask] AS [IsRepetedTask]
+    FROM [dbo].[TaskType] AS [Extent1]
+    WHERE (1 = [Extent1].[TaskTypeId]) AND (2 = [Extent1].[TaskTypeId])
+
+------------------------------------------------------------------------------------------------------------
+
+var taskTypeList = from eachTaskType in db.TaskTypes
+                   select eachTaskType;
+
+//select new {eachTaskType.TaskTypeName,eachTaskType.TaskTypeId };
+var anotherresult = taskTypeList.Where(eachtype =>  eachtype.TaskTypeId == 1);
+var haha = anotherresult.FirstOrDefault();
+
+//above code is generating single sql query
+SELECT TOP (1)
+    [Extent1].[TaskTypeId] AS [TaskTypeId],
+    [Extent1].[TaskTypeName] AS [TaskTypeName],
+    [Extent1].[IsRepetedTask] AS [IsRepetedTask]
+    FROM [dbo].[TaskType] AS [Extent1]
+    WHERE 1 = [Extent1].[TaskTypeId]

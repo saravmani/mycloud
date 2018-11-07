@@ -2,7 +2,7 @@ Patterns are templates that
 you can customize for your own needs
 
 1. GOF patterns
-2. P of EAA - patterns of enterprice application Architecture
+2. P of EAA - patterns of enterprise application Architecture
 
 
 
@@ -25,6 +25,7 @@ Behaviourial
 	Observer
 	Iterator
 	Command - medium high
+	State Pattern
 
 
 
@@ -121,7 +122,7 @@ manipulates the Stream you passed.
 
 
 
-Factory pattern example 
+Factory pattern example
 The code uses the ToInt32() method of the Convert class. You passed a string
 to the ToInt32() method . It then created a new integer for you and assigned the
 newly created integer to i . This is the Factory pattern in action. Factory basically
@@ -142,4 +143,3 @@ you are already using a few patterns in your applications in an indirect way. Al
 that the MVC pattern has been applied to the whole application or project. Thus, in a way, it governs the
 overall architecture of your application. On the other hand, GoF design patterns such as Decorator, Factory,
 and Iterator are closer to a specific piece of code than to the whole application
-

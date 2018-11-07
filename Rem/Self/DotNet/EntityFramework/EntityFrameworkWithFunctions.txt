@@ -26,9 +26,8 @@ Function Import properties.
 
 using (SampleDbEntities db = new SampleDbEntities())
 {
-int id = 1;
-ObjectResult<int?> employerIdResult = db.sp_
-GetEmployerIdByEmployee(id);
+var id = 1;
+ObjectResult<int?> employerIdResult = db.sp_GetEmployerIdByEmployee(id);
 }
 
 

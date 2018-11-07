@@ -1,13 +1,16 @@
-
-
 MIT is used for open source projects
+  You have permission to use the code, to modify it, publish it, sell it, make something with it and sell it, etc.
 
+  Restrictions
+  ------------------
+  You have very few restrictions -- basically you cannot remove the license and copyright text from the code when you share it.
+  This is easy when you share this in source code -- just don't delete the text.
 
 understand versioning
    ex: what is semantic versioning
         major.minor.patch
         --MAJOR version when you make incompatible API changes, MINOR version when you add functionality in a backwards-compatible manner, and.
-         PATCH version when you make backwards-compatible bug fixes. 
+         PATCH version when you make backwards-compatible bug fixes.
 
 
 versioning (semantic,symantic)

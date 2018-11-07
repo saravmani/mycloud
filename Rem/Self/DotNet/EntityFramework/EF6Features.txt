@@ -1,0 +1,7 @@
+linq query .ToString() will returns the sql query
+
+ex:
+IEnumerable<TaskType> taskTypeList = from eachTaskType in db.TaskTypes
+                               select eachTaskType;
+            var ss = taskTypeList.ToString();
+//"SELECT \r\n    [Extent1].[TaskTypeId] AS [TaskTypeId], \r\n    [Extent1].[TaskTypeName] AS [TaskTypeName], \r\n    [Extent1].[IsRepetedTask] AS [IsRepetedTask]\r\n    FROM [dbo].[TaskType] AS [Extent1]"

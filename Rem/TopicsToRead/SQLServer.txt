@@ -1,0 +1,2 @@
+what is in SSMS full-text specification?
+it is there in table properties -> select any column 

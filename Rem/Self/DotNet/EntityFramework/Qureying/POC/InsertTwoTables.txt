@@ -1,0 +1,22 @@
+ var firstObject = new TaskType { TaskTypeName = "dingdong", IsRepetedTask = 1, TaskTypeId = 577 };
+firstObject.TaskLists.Add(new TaskList {
+     TaskName="dddtask",
+      TaskDescription="hhhh",
+      UserId=1
+});
+
+ db.TaskTypes.Add(firstObject);
+db.SaveChanges();
+
+This will generate two queries to insert into two seperate tables
+
+exec sp_executesql N'INSERT [dbo].[TaskType]([TaskTypeId], [TaskTypeName], [IsRepetedTask])
+VALUES (@0, @1, @2)
+',N'@0 int,@1 nvarchar(10),@2 int',@0=577,@1=N'dingdong',@2=1
+go
+exec sp_executesql N'INSERT [dbo].[TaskList]([TaskName], [TaskDescription], [TaskTypeId], [UserId])
+VALUES (@0, @1, @2, @3)
+SELECT [Id]
+FROM [dbo].[TaskList]
+WHERE @@ROWCOUNT > 0 AND [Id] = scope_identity()',N'@0 varchar(50),@1 nvarchar(50),@2 int,@3 int',@0='dddtask',@1=N'hhhh',@2=577,@3=1
+go

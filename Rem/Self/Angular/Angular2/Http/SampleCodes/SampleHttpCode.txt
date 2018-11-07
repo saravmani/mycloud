@@ -7,7 +7,7 @@ export class CometService {
     objHeaders: Headers;
     objRequestOptions: RequestOptions;
     constructor(private objHttp: Http) {
-         
+
         var objHeaders = new Headers({ 'Content-Type': 'application/json', 'Accept': 'q=0.8;application/json;q=0.9' });
         this.objRequestOptions = new RequestOptions({ headers: objHeaders});
 

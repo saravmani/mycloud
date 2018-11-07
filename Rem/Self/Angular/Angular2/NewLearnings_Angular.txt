@@ -1,0 +1,21 @@
+More details - TemplateVariables.txt
+
+<input #product class="form-control" (keyup.enter)="selectedProduct=product.value" />
+
+#after clicks enter key only it will work
+
+
+<tr *ngFor="let item of getProducts(); let i = index"
+(mouseover)="product.value=item.name" [class.bg-info]="product.value==item.name">
+..
+<input #product class="form-control" (input)="false" />
+
+
+<input #product class="form-control" (input)="false" />
+{{product.value}}
+
+why (input)="false"?
+Angular won’t update the data bindings in the template when the user edits the contents of the input
+element unless there is an event binding on that element. Setting the binding to false gives Angular
+something to evaluate just so the update process will begin and distribute the current
+ contents of the input element throughout the template.

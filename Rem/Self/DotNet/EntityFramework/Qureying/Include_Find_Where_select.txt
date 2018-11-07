@@ -1,0 +1,12 @@
+.find(primaryKey)
+--This will first check in the cache and if it is not find in cache then go to the db
+
+dbContext.tableName.include((c)=>c.col1name).FirstOrDefault(c=>c.id=>2);
+
+
+ctx.Students.Find(1);// it takes array of params.
+matchs with primary key
+or
+ctx.Students.Find(1,2);// complex key
+
+.Find will return Student Type directly

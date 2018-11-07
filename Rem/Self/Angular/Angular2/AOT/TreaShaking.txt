@@ -1,14 +1,13 @@
-What is Tree Shaking? Tree shaking is the ability to remove any code that 
+What is Tree Shaking? Tree shaking is the ability to remove any code that
 we are not actually using in our application from the final bundle.
 
 UglifyJs plugin used in the Webpack build is not able to remove unused Typescript classes
-because those, when transpiled, are implemented using IIFE. 
-
+because those, when transpiled, are implemented using IIFE.
 
 An immediately-invoked function expression (or IIFE, pronounced "iffy")
 
-Webpack 2 is able to understand the IMPORT syntax without the use of loaders and that's 
-why it is capable of performing tree shaking. But that's pretty much the only thing from ES2015 
+Webpack 2 is able to understand the IMPORT syntax without the use of loaders and that's
+why it is capable of performing tree shaking. But that's pretty much the only thing from ES2015
 Webpack 2 is able to understand, for any other new syntax we do need the help of a transpiler,
  in this case Typescript.
 

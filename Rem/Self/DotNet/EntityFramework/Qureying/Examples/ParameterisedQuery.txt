@@ -1,0 +1,17 @@
+
+Below code will generate parameterised query
+----------------------------------------------------
+var tasknametosearch = "voltas";
+IEnumerable<object> lst = from eachTask in db.TaskLists
+                    where eachTask.TaskName == tasknametosearch
+                    select eachTask;
+
+this will generate s below sql query
+exec sp_executesql N'SELECT
+    [Extent1].[Id] AS [Id],
+    [Extent1].[TaskName] AS [TaskName],
+    [Extent1].[TaskDescription] AS [TaskDescription],
+    [Extent1].[TaskTypeId] AS [TaskTypeId],
+    [Extent1].[UserId] AS [UserId]
+    FROM [dbo].[TaskList] AS [Extent1]
+    WHERE ([Extent1].[TaskName] = @p__linq__0) OR (([Extent1].[TaskName] IS NULL) AND (@p__linq__0 IS NULL))',N'@p__linq__0 varchar(8000)',@p__linq__0='voltas'

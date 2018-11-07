@@ -1,0 +1,19 @@
+Add, AddRange
+---------------------
+
+var lstoftypes = new List<TaskType>();
+            lstoftypes.Add(new TaskType { TaskTypeName = "dingdong", IsRepetedTask = 1,TaskTypeId=5 });
+            lstoftypes.Add(new TaskType { TaskTypeName = "dingdong1", IsRepetedTask = 2,TaskTypeId=9 });
+            db.TaskTypes.AddRange(lstoftypes);
+            db.SaveChanges();
+
+//ABove code will generate two sql insert queries
+
+exec sp_executesql N'INSERT [dbo].[TaskType]([TaskTypeId], [TaskTypeName], [IsRepetedTask])
+VALUES (@0, @1, @2)
+',N'@0 int,@1 nvarchar(10),@2 int',@0=5,@1=N'dingdong',@2=1
+go
+exec sp_executesql N'INSERT [dbo].[TaskType]([TaskTypeId], [TaskTypeName], [IsRepetedTask])
+VALUES (@0, @1, @2)
+',N'@0 int,@1 nvarchar(10),@2 int',@0=9,@1=N'dingdong1',@2=2
+go

@@ -1,0 +1,6 @@
+D3.select - selects first element
+D3.selectAll - selects All elements
+
+D3.select('.classname').text("modify the inner text")
+D3.select('.classname').html("<h1>modify the inner text<h1>")
+.append

@@ -1,0 +1,7 @@
+inc = db.TaskTypes.Include("TaskLists").ToList();//Used for eagr loading
+or
+var inc = db.TaskTypes.Include((eachCol)=> eachCol.TaskLists).ToList();
+//both are same
+
+SELECT \r\n    [Project1].[TaskTypeId] AS [TaskTypeId], \r\n    [Project1].[TaskTypeName] AS [TaskTypeName], \r\n    [Project1].[IsRepetedTask] AS [IsRepetedTask], \r\n    [Project1].[C1] AS [C1], \r\n    [Project1].[Id] AS [Id], \r\n    [Project1].[TaskName] AS [TaskName], \r\n    [Project1].[TaskDescription] AS [TaskDescription], \r\n    [Project1].[TaskTypeId1] AS [TaskTypeId1], \r\n    [Project1].[UserId] AS [UserId]\r\n    FROM ( SELECT \r\n        [Extent1].[TaskTypeId] AS [TaskTypeId], \r\n        [Extent1].[TaskTypeName] AS [TaskTypeName], \r\n        [Extent1].[IsRepetedTask] AS [IsRepetedTask], \r\n        [Extent2].[Id] AS [Id], \r\n        [Extent2].[TaskName] AS [TaskName], \r\n        [Extent2].[TaskDescription] AS [TaskDescription], \r\n        [Extent2].[TaskTypeId] AS [TaskTypeId1], \r\n        [Extent2].[UserId] AS [UserId], \r\n        CASE WHEN ([Extent2].[UserId] IS NULL) THEN CAST(NULL AS int) ELSE 1 END AS [C1]\r\n        FROM  [dbo].[TaskType] AS [Extent1]\r\n        LEFT OUTER JOIN [d
+bo].[TaskList] AS [Extent2] ON [Extent1].[TaskTypeId] = [Extent2].[TaskTypeId]\r\n    )  AS [Project1]\r\n    ORDER BY [Project1].[TaskTypeId] ASC, [Project1].[C1] ASC"

@@ -1,15 +1,28 @@
- [HttpDelete]
-        public IHttpActionResult Delete(ReqObject objReqObject)
+Way 1
+-------------
+[HttpDelete]
+public IHttpActionResult Delete(ReqObject objReqObject)
+{
+    using (var objTaskList = new TaskManagerEntities())
+    {
+        var objTask = new TaskList
         {
-            using (var objTaskList = new TaskManagerEntities())
-            {
-                var objTask = new TaskList
-                {
-                    Id = objReqObject.TaskId
-                };
-                objTaskList.Entry<TaskList>(objTask).State = EntityState.Deleted;
-                objTaskList.SaveChanges();
-            }
+            Id = objReqObject.TaskId
+        };
+        objTaskList.Entry<TaskList>(objTask).State = EntityState.Deleted;
+        objTaskList.SaveChanges();
+    }
 
-            return Ok();
-        }
+    return Ok();
+}
+
+Way 2
+-------------
+TaskType taskType = db.TaskTypes.Find(id);
+if (taskType == null)
+{
+    return NotFound();
+}
+
+db.TaskTypes.Remove(taskType);
+db.SaveChanges();

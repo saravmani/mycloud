@@ -1,5 +1,10 @@
 http://www.w3schools.com/cssref/css_selectors.asp
 
+select nth element or odd event elements
+----------------------------------------------------
+tr:nth-child(1) .classname1 .classname2 - selects first element (note: here 1 is first element. 0 will not )
+tr:nth-child(even) .classname1 .classname2 - selects even elements
+
 div#myDivId {
     -webkit-transform: rotateZ(90deg); /* Safari */
     transform: rotateZ(90deg); /* Standard syntax */

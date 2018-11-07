@@ -1,5 +1,5 @@
 Abstract factory
 ------------------------
-It encapsulate group of similar factories without specifing its concrete class
-It is most widly used pattern
+It encapsulate group of similar factories without specifying its concrete class
+It is most widely used pattern
 It is a super factory to create other factories 

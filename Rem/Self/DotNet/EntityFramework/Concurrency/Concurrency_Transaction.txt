@@ -1,7 +1,7 @@
-Entity Framework Concurrency and TransactionManagement
+Entity Framework Concurrency and Transaction Management
 ------------------------------------------------------------
 
-Optimistic concurrency: 
+Optimistic concurrency:
 --------------------------------
     In this approach, whenever data is requested from
 the database, the data is read and kept in the application memory. No explicit
@@ -18,13 +18,13 @@ due to conflicts. Optimistic concurrency essentially means allowing the conflict
 happen and then dealing with it in an appropriate manner.
 
 
-Pessimistic concurrency: 
+Pessimistic concurrency:
 ------------------------------
     In this approach, whenever data is requested
 from the database, the data is read, and an explicit lock will be acquired
 on this data so that no other user can request this data. This will decrease
 the chances of having concurrency-related problems.
-Entity Framework supports optimistic concurrency control as we are working at the entity layer. 
+Entity Framework supports optimistic concurrency control as we are working at the entity layer.
 Thus,all the data will be present in memory once it is read. We can configure
 Entity Framework to use pessimistic concurrency too but pessimistic
 concurrency is not directly supported by Entity Framework.

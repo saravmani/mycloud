@@ -1,0 +1,7 @@
+
+db.TaskTypes;// this is equalent to select * from tasktypes;
+
+db.TaskTypes.Count();// will generate count() query alone. it wont fetch other records
+
+db.TasTypes.ToList().Count();//this will fetch all the records to memory and do calculation
+//#so it is bade code

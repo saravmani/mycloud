@@ -1,0 +1,8 @@
+<svg>
+we can add style attribute
+
+main primitives to create graphics
+------------------------------------------
+line, rect, circle, polyline, text
+
+g  - tag used to group mutliple elements and give id for it and can re use it

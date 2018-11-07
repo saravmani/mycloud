@@ -10,7 +10,7 @@ form of template variable that can be used to refer to elements within the templ
 
 # above code will print the user input on each key stroke
 
-When Angular encounters a reference variable in a template, it assignes dom object of the element 
+When Angular encounters a reference variable in a template, it assignes dom object of the element
 to template variable. For this example, the product reference variable is assigned
  the object that represents the
 input element in the DOM, the HTMLInputElement object.
@@ -29,7 +29,6 @@ Angular won’t update the data bindings in the template when the user edits the
 element unless there is an event binding on that element. Setting the binding to false gives Angular
 something to evaluate just so the update process will begin and distribute the current
  contents of the input element throughout the template.
-
 
 <input #product class="form-control" (keyup.enter)="selectedProduct=product.value" />
 

@@ -1,0 +1,35 @@
+var taskTypeList = from eachTaskType in db.TaskTypes
+                              select eachTaskType;
+
+           //select new {eachTaskType.TaskTypeName,eachTaskType.TaskTypeId };
+           var anotherresult = taskTypeList.Where(eachtype =>  eachtype.TaskTypeId == 1);
+           var haha = anotherresult.Where(a => a.TaskLists.Where(tsk => tsk.Id == 3).FirstOrDefault().Id==1);
+           var lstrslt = haha.ToList();
+
+           //above code generates below sql query
+
+
+SELECT
+    [Project2].[TaskTypeId] AS [TaskTypeId],
+    [Project2].[TaskTypeName] AS [TaskTypeName],
+    [Project2].[IsRepetedTask] AS [IsRepetedTask]
+    FROM (
+
+    SELECT
+        [Extent1].[TaskTypeId] AS [TaskTypeId],
+        [Extent1].[TaskTypeName] AS [TaskTypeName],
+        [Extent1].[IsRepetedTask] AS [IsRepetedTask],
+        (
+
+        SELECT TOP (1)
+            [Extent2].[Id] AS [Id]
+            FROM [dbo].[TaskList] AS [Extent2]
+            WHERE ([Extent1].[TaskTypeId] = [Extent2].[TaskTypeId]) AND (3 = [Extent2].[Id])
+
+            ) AS [C1]
+        FROM [dbo].[TaskType] AS [Extent1]
+        WHERE 1 = [Extent1].[TaskTypeId]
+
+
+    )  AS [Project2]
+    WHERE 1 = [Project2].[C1]

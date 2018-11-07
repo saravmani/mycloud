@@ -1,6 +1,6 @@
 IIS 8.5 and Windows Server 2012 R2
 ---------------------------------------------
-Suspend option introduced in applicaiton pool
+Suspend option introduced in application pool
 The basic concept is that all sites are in an inactive mode. When a site is requested, it is loaded into memory, the mode becomes active, and the site responds to page requests. When a site becomes idle (depending on the timeout setting), the site is put in a suspended state and the CPU resources and the memory it was using is made available for requests to other sites. As soon as a request for the site is made, it can be resumed very quickly and respond to traffic again.
 
 This new feature makes effective utilization of your hardware resources and increases the start-up time. To use this feature, you don't have to learn any new API. This feature is a simple configuration of Application Pool.  

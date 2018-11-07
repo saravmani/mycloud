@@ -1,0 +1,14 @@
+var taskTypeList = from eachTaskType in db.TaskTypes
+                               from b in db.TaskLists
+                               where b.TaskTypeId==eachTaskType.TaskTypeId && b.Id==3
+                               select eachTaskType;
+
+            var rr = taskTypeList.ToList();
+
+SELECT
+    [Extent1].[TaskTypeId] AS [TaskTypeId],
+    [Extent1].[TaskTypeName] AS [TaskTypeName],
+    [Extent1].[IsRepetedTask] AS [IsRepetedTask]
+    FROM  [dbo].[TaskType] AS [Extent1]
+    INNER JOIN [dbo].[TaskList] AS [Extent2] ON [Extent2].[TaskTypeId] = [Extent1].[TaskTypeId]
+    WHERE 3 = [Extent2].[Id]

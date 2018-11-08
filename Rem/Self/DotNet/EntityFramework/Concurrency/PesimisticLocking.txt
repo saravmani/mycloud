@@ -3,3 +3,4 @@ used by a user. Whenever a user reads a row from the database, a read-only lock 
 acquired on this record. Other users can also request a read-only lock during this
 period. If a user requests an update, an update lock is acquired on the row and until
 this lock is released, no other users are allowed to read or update the data of this row.
+ss

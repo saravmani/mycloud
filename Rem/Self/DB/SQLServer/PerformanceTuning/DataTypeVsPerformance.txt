@@ -1,0 +1,8 @@
+Datatype influence space, table size, index,log use
+
+Text data types
+Char,NChar
+Varchar, NVarchar
+
+NChar, NVarchar  - for unicode. if we want to support multilingual then we have to choose this data types
+Char - Use for fixed length text (ex: zip code)

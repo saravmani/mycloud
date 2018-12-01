@@ -14,6 +14,10 @@ When Angular encounters a reference variable in a template, it assignes dom obje
 to template variable. For this example, the product reference variable is assigned
  the object that represents the
 input element in the DOM, the HTMLInputElement object.
+## i tried this.. without event binding this not works.
+## if we mention input element as form element then it works with out event binding
+## if we use click event then click event Only will display the text. if we mentioned (input) event then
+all the key press will update the text
 
 
 Template variables can also be

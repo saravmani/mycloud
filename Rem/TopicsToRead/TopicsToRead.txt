@@ -1,4 +1,3 @@
-Docker usage with node js
-Node js authentication framework
-Asp.net core
-Angular js - redux
+For Interiew
+---------------------
+Unity of work design pattern

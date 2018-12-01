@@ -1,9 +1,9 @@
 
- Webpack creates bundles based on the entry points. 
+ Webpack creates bundles based on the entry points.
 
- bundling css using webpack
+ bundling css using webpack (why loaders needed for Webpack?)
  -----------------------------
- Every file/module we want to be used in the bundle webpack expects to be a 
- valid JavaScript module. And certainly styles.css is not a valid JavaScript module. 
- So we need something to turn this CSS module into JS module. 
+ Every file/module we want to be used in the bundle webpack expects to be a
+ valid JavaScript module. And certainly styles.css is not a valid JavaScript module.
+ So we need something to turn this CSS module into JS module.
  And this is where loaders come in.

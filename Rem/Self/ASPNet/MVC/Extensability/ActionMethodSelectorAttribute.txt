@@ -19,7 +19,7 @@ namespace System.Web.Mvc
 MethodInfo object, which you can use to get information about the method to which your selector has been applied.
 
 
-Custome Action method selector Attribute
+Custom Action method selector Attribute
 ----------------------------------------------
 namespace ControllerExtensibility.Infrastructure
 {

@@ -1,4 +1,4 @@
-Projection is a very important concept in Angular. It enables developers to build reusable 
+Projection is a very important concept in Angular. It enables developers to build reusable
 components and make applications more scalable and flexible. To illustrate that,
  suppose we have a ChildComponent like:
 @Component({
@@ -13,7 +13,11 @@ components and make applications more scalable and flexible. To illustrate that,
 export class ChildComponent {
   childContent = "Default content";
 }
-What should we do if we want to replace {{ childContent }} to any HTML that provided to ChildComponent? One tempting idea is to define an @Input containing the text, but what if you wanted to provide styled HTML, or other components? Trying to handle this with an @Input can get messy quickly, and this is where content projection comes in. Components by default support projection, and you can use the ngContent directive to place the projected content in your template.
+What should we do if we want to replace {{ childContent }} to any HTML that provided to ChildComponent?
+One tempting idea is to define an @Input containing the text, but what if you wanted to provide styled HTML,
+or other components? Trying to handle this with an @Input can get messy quickly,
+and this is where content projection comes in. Components by default support projection,
+and you can use the ngContent directive to place the projected content in your template.
 So, change ChildComponent to use projection:
 app/child/child.component.ts
 import { Component } from '@angular/core';
@@ -36,12 +40,14 @@ app/app.component.html
     <p>My <i>projected</i> content.</p>
   </rio-child>
 ...
-This is telling Angular, that for any markup that appears between the opening 
+This is telling Angular, that for any markup that appears between the opening
 and closing tag of <rio-child>, to place inside of <ng-content></ng-content>.
-When doing this, we can have other components, markup, etc projected here and the ChildComponent 
+When doing this, we can have other components, markup, etc projected here and the ChildComponent
 does not need to know about or care what is being provided.
 View Example
-But what if we have multiple <ng-content></ng-content> and want to specify the position of the projected content to certain ng-content? For example, for the previous ChildComponent, if we want to format the projected content into an extra header and footer section:
+But what if we have multiple <ng-content></ng-content> and want to specify the position of the projected
+content to certain ng-content? For example, for the previous ChildComponent, 
+if we want to format the projected content into an extra header and footer section:
 app/child-select.component.html
 <div style="...">
   <h4>Child Component with Select</h4>

@@ -1,0 +1,26 @@
+
+cursor does is iterates through each record one at a time,
+Cursors will do  row-based processing (not set based operation)
+
+If we are joining two tables then Set-Based operation is happening. so performance will be good
+
+Row-Based processing will not scale
+But Set-Based processing will scale
+## my understanding is , set based processing will use the multi threading, to scale up. But not Sure
+
+
+While loops are faster than cursors?
+No. both are row-based processing. so it is not true. Only advantage of while loop is syntax wise simple
+
+Instead of while loop we can prefer cursors.. why?
+If you absolutely need to do something in a row by row fashion, you're better off using a cursor,
+mainly because with a cursor you have a couple of options. You have the way you can read cursors and memory. 
+You can control a little bit better so you can better organize for your situation.
+
+
+What can we do instead of cursors?
+try doing whatever operations you can in a set-based operation. It's always better to join two tables or
+even if you have to create a temp table and write a lot of records.
+Sequel server and databases in general in this comprise well beyond sequel server are very effective at
+joining tables and writing large volumes of data from a table so they're really good
+at doing this large sorts of operations especially when you have proper indexing on the columns you need.

@@ -1,0 +1,33 @@
+Two types of temp tables
+-------------------------
+Local table, Global temp table
+local table #tableName
+Global Table ##tablename
+
+create table #temptblll (name varchar(30));
+insert into #temptablll values("rewrew")
+
+we can able to create multiple temp table on DIFFERENT SESSIONS with the SAME NAME
+
+In SQL server temp tables are stored in TempDB.
+This TempDB will be recreated on restarting of the sql server
+
+it is for session. after session ends this will get cleared
+
+SQL server internally uses this temp tables for many purpose
+ex:
+1. SQL Server uses tempdb as worktables for storing data
+2. If you're using READ_COMMITTED_SNAPSHOT isolation level, which is an isolation level that allows users to read
+   data while other users are writing data, tempdb is going to hold the version history of that data.
+
+
+Mostly tempptable lives in memory
+
+
+We can able to index on temp table
+Also Compress the temp table. (if we have more CUP then we can choose compression option to save the desk or memory)
+
+
+Common problem when tempdb runs out of space, then queries will started getting failing
+Solution for This- only restart
+  How do I shrink tempdb to get it back down to size? Well, once it's blown out to that size, it's very difficult to shrink it, so you typically would have to restart the instance to get it back down to size.

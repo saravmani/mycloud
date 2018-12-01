@@ -48,7 +48,6 @@ public static class WebApiConfig
             defaults: new { id = RouteParameter.Optional }
         );
 
-        config.Services.Replace(typeof(IHttpActionSelector),
-                                    new MyActionSelector());
+        config.Services.Replace(typeof(IHttpActionSelector),new MyActionSelector());
     }
 }

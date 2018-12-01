@@ -2,17 +2,17 @@ View Encapsulation - ViewEncapsulation
 -----------------------------------------------
 #Refs - https://blog.thoughtram.io/angular/2015/06/29/shadow-dom-strategies-in-angular2.html
 ViewEncapsulation.None
-ViewEncapsulation.Native
+ViewEncapsulation.Native -- shadow dom
 ViewEncapsulation.Emulate - default one. which emulates shadow dome behaviour
 //this will be useful in the browsers which are not support shadow dom
 
 ViewEncapsulation.Emulated
 -------------------------------------------
-This view encapsulation is used by default. ViewEncapsulation.Emulated emulates style encapsulation, 
+This view encapsulation is used by default. ViewEncapsulation.Emulated emulates style encapsulation,
 even if no Shadow DOM is available. This is a very powerful feature in case you want to
-use a third-party component that comes with styles that might affect your application. 
-What happens to our components, and especially to the styles, when this view encapsulation is used? 
-Well, let’s first check if the styles are still written to the document head. Here’s what the head 
+use a third-party component that comes with styles that might affect your application.
+What happens to our components, and especially to the styles, when this view encapsulation is used?
+Well, let’s first check if the styles are still written to the document head. Here’s what the head
 looks like with the exact same component but different strategy:
 
 import {ViewEncapsulation} from '@angular/core';
@@ -36,7 +36,7 @@ class ZippyComponent {
 
 <div class="zippy">
   <div (click)="toggle()" class="zippy__title">
-     
+
   </div>
   <div [hidden]="!visible" class="zippy__content">
     <ng-content></ng-content>
@@ -53,9 +53,9 @@ class ZippyComponent {
 </head>
 
 
-Looks like styles are still written to the document head. 
-But wait, what’s that? Instead of the simple .zippy selector that we used, 
-Angular creates a .zippy[_ngcontent-1] selector. So it seems like Angular rewrote our component’s styles. 
+Looks like styles are still written to the document head.
+But  Instead of the simple .zippy selector that we used,
+Angular creates a .zippy[_ngcontent-1] selector. So it seems like Angular rewrote our component’s styles.
 Let’s see what the component’s template looks like
 <my-zippy title="Details" _ngcontent-0 _nghost-1>
   <div class="zippy" _ngcontent-1>

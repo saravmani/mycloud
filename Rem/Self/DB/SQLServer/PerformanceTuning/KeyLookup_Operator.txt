@@ -1,0 +1,2 @@
+KeyLookup operator is seen in execution plan.
+this indicates more costly

@@ -2,7 +2,8 @@
 JavaScriptResult
 ------------------------
 # I guess it is usded to call the client side javascript Method
-# sb2 example... we can set the configurations like IsAdminUser,HavingReportAccessRights etc.,. based on roles we can abel to set the global variables. 
+# sb2 example... we can set the configurations like IsAdminUser,HavingReportAccessRights etc.,. based on roles
+        we can abel to set the global variables. 
 # we can use this when we want to generate javascript code dynamically based on server action.
 # But what will happen if we use json result in below example?
 
@@ -42,7 +43,7 @@ example 2.. Client code
                      HttpMethod = "GET" // <-- HTTP method
 
                  })
- 
+
 
 @Ajax.ActionLink("Customer from Mexico", // <-- Text to display
 

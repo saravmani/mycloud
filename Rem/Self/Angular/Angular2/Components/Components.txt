@@ -30,10 +30,8 @@ this will work like id of the component
 every component technically gives directive.
 difference is component has a template but directive doesn't
 
-
-
 The core concept of any Angular 2 application is the component. In effect, the whole
-application can be modeled as a tree of these components.
+application can be modelled as a tree of these components.
 visual elements
 
 Actually From Anguler 1.5 we could able to create module.
@@ -95,7 +93,7 @@ Unlike Angular 1.x, this is one-way binding.
 
 Events
 -------------
-round brackets used for eventt binding
+round brackets used for event binding
 
 import {Component} from '@angular/core';
 @Component({
@@ -211,11 +209,11 @@ property & event binding
 
 
 
-<input [value]="propname" //Property binding. if we use [] then angular knows that it this 
+<input [value]="propname" //Property binding. if we use [] then angular knows that it this
 will refer actual dom property
- 
 
-in porperty binding we can use normal javascript code 
+
+in porperty binding we can use normal javascript code
 <input [value] = 'a+b'
 
 But we cant use new keyword and we cant use multi line code -  within property bibnding
@@ -385,7 +383,7 @@ export class UserComponent {
 Dynamic component loading
 ---------------------------
 For example ViewContainerRef that is required by DynamicComponentLoader instead of the default ElementRef
-Ex: 
+Ex:
 @ViewChild("ComponentHolder", { read: ViewContainerRef }) ComponentHolder;
 let factory = this.componentFactoryResolver.resolveComponentFactory(this.componentToBeLoaded);
     this.cmpRef = this.ComponentHolder.createComponent(factory);

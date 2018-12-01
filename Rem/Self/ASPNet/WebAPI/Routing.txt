@@ -2,7 +2,7 @@ Routing has three main phases:
 	Matching the URI to a route template.
 	Selecting a controller.
 	Selecting an action.
-You can replace some parts of the process with your own custom behaviors.
+You can replace some parts of the process with your own custom behaviours.
 
 MessageHandlers
 Route constraint

@@ -1,4 +1,6 @@
-Decorators are used for Declartive programming
+#Tags - Decorators, (or attributes)
+
+Decorators are used for Declarative programming
 
 to enable decorators in tsconfig.json file enable experimentalDecorators as true
 "experimentalDecorators":true

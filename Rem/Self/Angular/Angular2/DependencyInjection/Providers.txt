@@ -1,6 +1,6 @@
 Providers (Tages -> Service Providers, Angular Providers, Dependency Injection, Dependency providers)
 
-Key words : useValue, useClass, useFactory, deps,useExisting, OpqueToken,Injectable, Inject
+Key words : useValue, useClass, useFactory, deps, useExisting, OpqueToken, Injectable, Inject
 viewProviders
 
 Types of providers
@@ -31,7 +31,7 @@ export class ClientClass
   constructor( @Inject("logger") private objLogger:LoggerClass)
   {
     //Angular will automatically
-//match providers whose token is a class. For other token types it needs some additional help 
+//match providers whose token is a class. For other token types it needs some additional help
   }
 
 }
@@ -39,7 +39,7 @@ export class ClientClass
 
 Understanding the Token
 -------------------------------
-All providers rely on a token, which the dependency injection system uses to 
+All providers rely on a token, which the dependency injection system uses to
 identity the dependency that
 the provider can resolve. The simplest approach is to use a class as the token,
 
@@ -58,7 +58,7 @@ Using Opaque Tokens
 ----------------------------------
 When using simple types as provider tokens, there is a chance that two different
  parts of the application will
-try to use the same token to identify different services, 
+try to use the same token to identify different services,
 which means that the wrong type of object may be
 used to resolve dependencies and cause errors.
 To help work around this, Angular provides the OpaqueToken class, which provides an object wrapper
@@ -78,7 +78,7 @@ constructor( @Inject(LOG_SERVICE) private logger: LogService) { }
 
 useClass
 ---------------------
-The class provider’s useClass property specifies the class that will be instantiated to 
+The class provider’s useClass property specifies the class that will be instantiated to
 resolve dependencies.
 The provider can be configured with any class, which means that you can change the implementation
 of a service by changing the provider configuration.
@@ -117,11 +117,11 @@ object that has been created and configured outside of the module class.
 providers: [LoggServiceService,
 {
       provide: 'CanAlwaysActivateGuard',
-      
+
         useValue: () => {
         return false;
       }
-    
+
 }
 
 
@@ -164,11 +164,11 @@ been declared and resolving them using the available providers.
 Local Providers
 -----------------------
 Each component and
-directive can have its own injector, and each injector can be configured with its own set of providers, 
+directive can have its own injector, and each injector can be configured with its own set of providers,
 known
 as local providers.
 #My Understanding - Injecter will maintain the list of injectables. so above lines are telling
-there is posibility of multiple injectors.
+there is possibility of multiple injectors.
 
 When there is a dependency to resolve, Angular uses the injector for the nearest component or directive.
 The injector first tries to resolve the dependency using its own set of local providers. If no local providers have

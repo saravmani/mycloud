@@ -1,0 +1,54 @@
+We can use construction injection or property setter to inject the dependency
+
+public class ProductsController : ApiController
+{
+    private IProductRepository _repository;
+
+    public ProductsController(IProductRepository repository)
+    {
+        _repository = repository;
+    }
+
+    // Other controller methods not shown.
+}
+
+Web API creates the controller when it routes the request, and Web API doesn't know anything about IProductRepository.
+This is where the Web API dependency resolver comes in.
+
+IDependencyResolver
+---------------------  ----
+public interface IDependencyResolver : IDependencyScope, IDisposable
+{
+    IDependencyScope BeginScope();
+}
+public interface IDependencyScope : IDisposable
+{
+    object GetService(Type serviceType);
+    IEnumerable<object> GetServices(Type serviceType);
+}
+GetService creates one instance of a type.
+GetServices creates a collection of objects of a specified type.
+
+
+When Web API creates a controller instance, it first calls IDependencyResolver.GetService,
+passing in the controller type. You can use this extensibility hook to create the controller, resolving any dependencies.
+If GetService returns null, Web API looks for a parameterless constructor on the controller class.
+
+
+
+IDependencyResolver is  designed to act as bridge between Web API and existing IoC containers.
+
+we can use any frameworks or we can do from the scratch.
+
+
+An IoC container is a software component that is responsible for managing dependencies.
+You register types with the container, and then use the container to create objects.
+The container automatically figures out the dependency relations.
+Many IoC containers also allow you to control things like object lifetime and scope.
+
+"IoC" stands for "inversion of control", which is a general pattern where a framework calls into application code.
+An IoC container constructs your objects for you, which "inverts" the usual flow of control.
+
+Note: If the GetService method cannot resolve a type, it should return null.
+If the GetServices method cannot resolve a type, it should return an empty collection object.
+Don't throw exceptions for unknown types.

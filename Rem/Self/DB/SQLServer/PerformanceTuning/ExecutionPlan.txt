@@ -1,0 +1,32 @@
+#Tags - estimated plans and actual plans
+when passing the query to sql server 2 things will happen
+1. parsing the query - is query syntax is valid and all the objects used in that query is valid
+2. Check query plan cache (which are already generated).  if it is exists then it will try to re-use it . or else i will generate one
+(Generating query execution plan is a expensive process)
+
+
+From 2016 sql server this query plans stored in XML format
+
+estimated plans and actual plans
+------------------------------------
+there are two types of execution plans that exist in SQL Server and that you can see through Management Studio
+and other related tools.
+And these are estimated plans and actual plans.
+
+Estimated Plan
+---------------------
+estimated plan is that you can generate an estimated plan without running the query.
+
+Actual Plan
+-------------
+Actual plan has more data included with it in terms of statistics about actual versus estimated
+
+
+How to read execution plan
+------------------------------------
+Plans are always read from right to left and top to bottom.
+Size of the arrows which are conencting the objects are representative  of the amount of data flowing to next operator
+
+
+Execution plans are stored in XML fromate
+SSMS gives graphical view for this

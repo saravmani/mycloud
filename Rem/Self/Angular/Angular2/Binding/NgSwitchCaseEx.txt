@@ -1,0 +1,19 @@
+Created:24-Nov-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+  
+
+<ul *ngFor="let person of people"
+    [ngSwitch]="person.country">
+
+  <li *ngSwitchCase="'UK'"
+      class="text-success">{{ person.name }} ({{ person.country }})
+  </li>
+  <li *ngSwitchCase="'USA'"
+      class="text-primary">{{ person.name }} ({{ person.country }})
+  </li>
+
+  <li *ngSwitchDefault
+      class="text-warning">{{ person.name }} ({{ person.country }})
+  </li>
+</ul>`

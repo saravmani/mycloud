@@ -1,0 +1,4 @@
+
+2. If you're using READ_COMMITTED_SNAPSHOT isolation level,
+which is an isolation level that allows users to read data while other users are writing data,
+tempdb is going to hold the version history of that data.

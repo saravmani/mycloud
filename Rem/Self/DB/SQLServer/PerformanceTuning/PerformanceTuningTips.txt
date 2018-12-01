@@ -1,0 +1,1 @@
+Scans are more expensive than seeks

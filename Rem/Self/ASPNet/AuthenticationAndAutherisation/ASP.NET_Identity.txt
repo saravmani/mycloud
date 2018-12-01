@@ -1,33 +1,33 @@
 Asp.net Identity
 =============================
-ASP.NET Identity is a new authentication system that is intended to replace the existing 
-membership system of ASP.NET. 
-ASP.NET Identity is an OWIN (Open Web Interface for .NET) based library. 
-Visual Studio 2013 project templates allow you to use ASP.NET Identity 
-for securing the web application being created. 
+ASP.NET Identity is a new authentication system that is intended to replace the existing
+membership system of ASP.NET.
+ASP.NET Identity is an OWIN (Open Web Interface for .NET) based library.
+Visual Studio 2013 project templates allow you to use ASP.NET Identity
+for securing the web application being created.
 On March 20, 2014, the ASP.NET team released the RTM version 2.0 of the new Identity framework.
 
 
- 
+
 New security feature design for MVC 5 is based on OWIN authentication middleware.
-The benefit for it is that security feature can be shared 
-by other components that can be hosted on OWIN. 
-Since the Katana team did a great effort to support the OWIN integrated pipeline in ASP.NET, 
+The benefit for it is that security feature can be shared
+by other components that can be hosted on OWIN.
+Since the Katana team did a great effort to support the OWIN integrated pipeline in ASP.NET,
 it can also secure apps hosted on IIS, including ASP.NET MVC, Web API, Web Form.
 
 
 why asp.net Identity
 --------------------------
 Previously Developers often use Forms Authentication combined with Membership
- ( MVC4 we had Simple Membership), 
-Roles and Profile features to secure their web applications. 
+ ( MVC4 we had Simple Membership),
+Roles and Profile features to secure their web applications.
 Over the years these features have become inadequate to deal with changing trends
  of web application security.
 For example, many modern web sites use Facebook or OAuth based external user credentials.
-ASP.NET membership has no inbuilt way to deal with these situations. 
-There are many other limitations of the membership system such as rigid database structure 
+ASP.NET membership has no inbuilt way to deal with these situations.
+There are many other limitations of the membership system such as rigid database structure
 and complex object model.
-#So Microsoft released Asp.net Identity 
+#So Microsoft released Asp.net Identity
 
 
 
@@ -56,83 +56,97 @@ AuthenticationManager
 
 User
 ---------
-A User object represents a user of the system. The basic authentication details 
-such as user ID and password as well as profile information of a user make a User object. 
+A User object represents a user of the system. The basic authentication details
+such as user ID and password as well as profile information of a user make a User object.
 ASP.NET Identity comes with the IdentityUser class that captures basic authentication information.
-If you also need to capture profile information, you can create a custom class that inherits 
+If you also need to capture profile information, you can create a custom class that inherits
 from the IdentityUser base class.
 
 
 Role
 ---------
-A Role object represents a user role. At a minimum a role has a name with which it is identified in the system. The IdentityRole class of ASP.NET Identity provides this basic role. If you wish to add some more pieces to the role (say description of a role) then you can create a custom class that inherits from the IdentityRole base class
+A Role object represents a user role. At a minimum a role has a name with which it is identified in the system.
+The IdentityRole class of ASP.NET Identity provides this basic role. If you wish to add some more pieces
+to the role (say description of a role) then you can create a custom class that inherits from the IdentityRole base class
 
-A User Manager is a class that allows you to manager users. Creating user accounts, removing user accounts, changing passwords, adding / removing users to a role and such tasks can be performed using a user manager. ASP.NET Identity comes with the UserManager class that can be used for this purpose. This class is analogous to the Membership intrinsic object of the ASP.NET membership system.
+A User Manager is a class that allows you to manager users. Creating user accounts,
+removing user accounts, changing passwords, adding / removing users to a role and such tasks
+can be performed using a user manager. ASP.NET Identity comes with the
+UserManager class that can be used for this purpose. This class is analogous
+to the Membership intrinsic object of the ASP.NET membership system.
 
-A Role Manager is a class that allows you to manage roles. Creating a role, removing a role, checking whether a role exists in the system and such tasks can be performed using a role manager. ASP.NET Identity provides the RoleManager class that can be used for this purpose. This class is analogous to the Roles intrinsic object of the ASP.NET membership system.
+A Role Manager is a class that allows you to manage roles. Creating a role,
+removing a role, checking whether a role exists in the system and such tasks
+can be performed using a role manager. ASP.NET Identity provides the RoleManager
+class that can be used for this purpose. This class is analogous to the Roles
+intrinsic object of the ASP.NET membership system.
 
-All the classes mentioned above deal with users and roles respectively. These classes by themselves don't perform any authentication. Authenticating a user - signing in and signing out a user - is the responsibility of Authentication Manager. The local user accounts can use cookie based authentication similar to Forms Authentication. ASP.NET Identity provides the IAuthenticationManager interface that represents an authentication manager
-
+All the classes mentioned above deal with users and roles respectively.
+These classes by themselves don't perform any authentication.
+Authenticating a user - signing in and signing out a user - is the responsibility of Authentication Manager.
+The local user accounts can use cookie based authentication similar to Forms Authentication.
+ASP.NET Identity provides the IAuthenticationManager interface that represents an authentication manager
 
 
 
 Claims
 =============================================================
- claim is an attribute that tells you something about the user (the name, age, ethnicity, etc) you work against a security token service to validate those claims and 
- also used them for authorization apart from authentication.
- #Claims are stored in cookies. So if we add more claim values then cookie length will be bigger. and it may have performance hit bcs each request client needs to sned the lengthy cookie
+claim is an attribute that tells you something about the user (the name, age, ethnicity, etc)
+you work against a security token service to validate those claims and
+also used them for authorization apart from authentication.
+#Claims are stored in cookies. So if we add more claim values then cookie length will be bigger.
+and it may have performance hit bcs each request client needs to sned the lengthy cookie
 
- Claims-based authentication provides an industry standard security protocol to authenticate a user on a host computer. 
- Claims-based authentication is a set of WS-* standards describing the use of a Security Assertion Markup Language (SAML) t
+Claims-based authentication provides an industry standard security protocol to authenticate a user on a host computer.
+Claims-based authentication is a set of WS-* standards describing the
+use of a Security Assertion Markup Language (SAML) t
 
- The claim based identity is nothing but attaching the concept of claim to the identity. The claims are not what the subject can and cannot do
- When an identity is created for authenticated user, it may be assigned one or more claims which are issued by trusted party. The claim is a name-value pair that represents what the subject is or is not, instead of what the subject can and cannot do. The claim based authorization checks the value of the claim and allows access to the resource, based on that value.
+The claim based identity is nothing but attaching the concept of claim to the identity.
+The claims are not what the subject can and cannot do
+When an identity is created for authenticated user, it may be assigned one or more claims which are issued by trusted party. The claim is a name-value pair that represents what the subject is or is not, instead of what the subject can and cannot do. The claim based authorization checks the value of the claim and allows access to the resource, based on that value.
 
-For example, a person is an Indian civilian and may have a voter id card issued by Election Commission of India. The voter id has his or her age on it. In this case, the claim name would be Age and this claim value would be an age of a person. For example, if the age is 18 on it, that means the person has authority to cast his/her vote.
+For example, a person is an Indian civilian and may have a voter id card issued by Election Commission of India.
+The voter id has his or her age on it. In this case, the claim name would be Age and this claim
+value would be an age of a person. For example, if the age is 18 on it,
+that means the person has authority to cast his/her vote.
 A claim can contain multiple values and an identity can contain multiple claims of the same type.
 
 
 
-Overriding default autherisation filter
+Overriding default authorisation filter
 ----------------------------------------------
- overriding  OnAuthorization() is a bad idea because it does some special stuff to avoid caches from serving up pages
+Overriding  OnAuthorization() is a bad idea because it does some special stuff to avoid caches from serving up pages
 
- The main difference being that AuthorizeCore() takes an HttpContextBase, while OnAuthorization() takes an AuthorizationContext. An instance of AuthorizationContext provides you with more information, such as the Controller, the RequestContext and the RouteData.
+The main difference being that AuthorizeCore() takes an HttpContextBase, while OnAuthorization()
+takes an AuthorizationContext. An instance of AuthorizationContext provides you with more information,
+such as the Controller, the RequestContext and the RouteData.
 
-
- public class CustomAuthorizeAttribute : AuthorizeAttribute
+public class CustomAuthorizeAttribute : AuthorizeAttribute
 {
-    public override void OnAuthorization(AuthorizationContext filterContext)
-    {
-        base.OnAuthorization(filterContext);
+  public override void OnAuthorization(AuthorizationContext filterContext)
+  {
+      base.OnAuthorization(filterContext);
 
-        /// your behavior here
-    }
+      /// your behavior here
+  }
 }
-
-
 
 
 Overriding User manager class
 ========================================================================
-
-we can customise user manager to handle authentication 
- public class DnbUserManager<T> : UserManager<ApplicationUser>
+we can customise user manager to handle authentication
+public class DnbUserManager<T> : UserManager<ApplicationUser>
+{
+    public DnbUserManager(IUserStore<ApplicationUser> store) : base(store)
     {
-        public DnbUserManager(IUserStore<ApplicationUser> store) : base(store)
-        {
 
-        }
-        public override Task<ApplicationUser> FindAsync(string userName, string password)
-        {
-
-            return base.FindAsync(userName, password);
-        }
     }
+    public override Task<ApplicationUser> FindAsync(string userName, string password)
+    {
 
-
-
-
+        return base.FindAsync(userName, password);
+    }
+}
 
 
 
@@ -141,60 +155,52 @@ when authentication cookie will get expired?
 If IsPersistent property of AuthenticationProperties is set to false,
 then the cookie expiration time is set to Session.
 
-If checkbox "remember me" is checked then 
-AuthenticationManager.SignIn(new AuthenticationProperties{ IsPersistent = true }, userIdentity); 
+If checkbox "remember me" is checked then
+AuthenticationManager.SignIn(new AuthenticationProperties{ IsPersistent = true }, userIdentity);
 will create a cookie with expiration time equal to ExpireTimeSpan
 you set up in Startup.cs (defaults to 14days).
 
-If checkbox "remember me" is NOT checked then you have to use 
+If checkbox "remember me" is NOT checked then you have to use
 AuthenticationManager.SignIn(new AuthenticationProperties{ IsPersistent = true, ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30)}, userIdentity);.
-Again IsPersistent is set to true but now we give a value to ExpiresUtc 
-so it does not use from CookieAuthenticationOptions from 
+Again IsPersistent is set to true but now we give a value to ExpiresUtc
+so it does not use from CookieAuthenticationOptions from
 
 
 
 
 How Auth Cookie token getting generated?
 ------------------------------------------------
-After the user provides credentials, your application code will validate the user name and 
+After the user provides credentials, your application code will validate the user name and
 password and build user claims including user�s name, roles, etc.
 After passing claims to the Forms authentication middleware, it will convert it to an application
-ticket and serialize, encrypt and encode it into a ticket token. Then, send it out as a cookie. 
-When the next time user sends request with the cookie, the middleware will validate 
+ticket and serialize, encrypt and encode it into a ticket token. Then, send it out as a cookie.
+When the next time user sends request with the cookie, the middleware will validate
 it and convert the ticket token back to claims principal and save it in HttpContext.User,
 which will shared across ASP.NET pipeline.
 
-
-
-
-In Asp.net Identity - Claims will convert in to an application ticket and serialize, 
+In Asp.net Identity - Claims will convert in to an application ticket and serialize,
 encrypt and encode it into a ticket token. And shared to browser as Authentication Cookie.
-
-
-
-
-
 
 Session Token Vs Authentication Token
 =========================================
-In Session-based Authentication the Server does all the heavy lifting server-side. 
-Broadly speaking a client authenticates with its credentials and receives a session_id 
-(which can be stored in a cookie) and attaches this to every subsequent outgoing request. 
-So this could be considered a "token" as it is the equivalent of a set of credentials. 
-There is however nothing fancy about this session_id-String. It is just an identifier 
-and the server does everything else. It is stateful. It associates the 
-identifier with a user account (e.g. in memory or in a database). 
-It can restrict or limit this session to certain operations or a certain time period 
-and can invalidate it if there are security concern and more importantly it can do 
-and change all of this on the fly. Furthermore it can log the users every move on the website(s). 
-Possible disadvantages are bad scale-ability 
+In Session-based Authentication the Server does all the heavy lifting server-side.
+Broadly speaking a client authenticates with its credentials and receives a session_id
+(which can be stored in a cookie) and attaches this to every subsequent outgoing request.
+So this could be considered a "token" as it is the equivalent of a set of credentials.
+There is however nothing fancy about this session_id-String. It is just an identifier
+and the server does everything else. It is stateful. It associates the
+identifier with a user account (e.g. in memory or in a database).
+It can restrict or limit this session to certain operations or a certain time period
+and can invalidate it if there are security concern and more importantly it can do
+and change all of this on the fly. Furthermore it can log the users every move on the website(s).
+Possible disadvantages are bad scale-ability
 (especially over more than one server farm) and extensive memory usage.
 
-In Token-based Authentication no session is persisted server-side (stateless). 
-The initial steps are the same. Credentials are exchanged against a token which 
-is then attached to every subsequent request (It can also be stored in a cookie). 
-However for the purpose of decreasing memory usage, easy scale-ability and total flexibility 
-(tokens can be exchanged with another client) a string with all the necessary 
-information is issued (the token) which is checked after each request 
-made by the client to the server. 
+In Token-based Authentication no session is persisted server-side (stateless).
+The initial steps are the same. Credentials are exchanged against a token which
+is then attached to every subsequent request (It can also be stored in a cookie).
+However for the purpose of decreasing memory usage, easy scale-ability and total flexibility
+(tokens can be exchanged with another client) a string with all the necessary
+information is issued (the token) which is checked after each request
+made by the client to the server.
 There are a number of ways to use/ create tokens:

@@ -1,0 +1,7 @@
+ Automatic Tuning.
+ --------------------
+ SQL Server introduces a differed join selection within plans where the optimizer
+ will take a new count of the rows coming across the plan and decide at that point after
+ it's already created the plan which type of join it should do whether that's nested loop or hash.
+ The differed join selection will change from nested loops to hash tables and vice versa based on statistics that
+ are available from within the query and this is part of a new set of features in SQL Server 2017 called Automatic Tuning.

@@ -1,7 +1,7 @@
 
 IHttpActionInvoker (ApiControllerActionInvoker)
 ----------------------------------------------------------------
-Below examples shows loggin errors on action invoking
+Below examples shows logging errors on action invoking
 
 public class Custom_ControllerActionInvoker: ApiControllerActionInvoker
 {
@@ -18,6 +18,6 @@ public class Custom_ControllerActionInvoker: ApiControllerActionInvoker
             Debug.WriteLine("Exception thrwon by controller {0} :", actionContext.ControllerContext.Controller);
             returnTask.Run < HttpResponseMessage > (() => newHttpResponseMessage(objResult.Result.StatusCode));
         }
-        return objResult;   
+        return objResult;
     }
 }

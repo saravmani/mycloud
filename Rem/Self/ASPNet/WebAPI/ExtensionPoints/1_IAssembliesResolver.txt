@@ -1,23 +1,23 @@
 Webapi configurations -->IAssembliesResolver
 
-One of the useful configuration features of ASP.NET Web API is that it allows you to be 
+One of the useful configuration features of ASP.NET Web API is that it allows you to be
 explicit about the assemblies into which it will look in order to discover controller types.
 
-This is especially useful if you have assemblies residing outside of the bin folder, 
-or if you are doing self hosting, and the controllers assemblies are not automatically 
+This is especially useful if you have assemblies residing outside of the bin folder,
+or if you are doing self hosting, and the controllers assemblies are not automatically
 loaded into the current AppDomain.
 
-There are several hooks in the pipeline that you can plug into to achieve this goal. 
-Let’s explore them, discussing the pros and cons of using any of these.
+There are several hooks in the pipeline that you can plug into to achieve this goal.
+
 
 The broadest reaching option, and first hook in the pipeline is IAssembliesResolver
 
-Since all assemblies copied into the bin folder (when hosting on IIS) 
+Since all assemblies copied into the bin folder (when hosting on IIS)
 are loaded into the AppDomain, normally it’s enough to just copy your external assembly there.
 
-However, in case you want to load DLL(s) from a different path 
-(perhaps a shared network drive or a different pre-approved location) 
-or you are self-hosting, and you don’t have the help of magical bin folder, 
+However, in case you want to load DLL(s) from a different path
+(perhaps a shared network drive or a different pre-approved location)
+or you are self-hosting, and you don’t have the help of magical bin folder,
 you can easily add your assembly to the collection:
 
 
@@ -36,16 +36,10 @@ public class MyAssembliesResolver : DefaultAssembliesResolver
 config.Services.Replace(typeof(IAssembliesResolver), new MyAssemblyResolver());
 
 
-In this particular case we didn’t even implement the interface directly, 
-but rather extended its default implementation. 
-Since we add our source to the assembly source provided by default, 
-this resolver looks both in to the AppDomain.Current and into our DLL path.
+In this particular case we didn’t even implement the interface directly,
+but rather extended its default implementation.
+ 
 
-Once this solution is in place, Web API, whenever it will try 
-to obtain list of assemblies to resolve controllers (at any point in the pipeline), 
+Once this solution is in place, Web API, whenever it will try
+to obtain list of assemblies to resolve controllers (at any point in the pipeline),
 will resort to this custom implementation.
-
-
-
-
-

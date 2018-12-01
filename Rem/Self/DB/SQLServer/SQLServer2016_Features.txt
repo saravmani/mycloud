@@ -1,1 +1,6 @@
 in memory temp tables are new in 2016
+
+Query Store
+------------------------
+This is a feature that works across all editions of SQL Server, so whether you're using Express, Developer,
+Standard, or Enterprise,

@@ -10,15 +10,15 @@ index.cshtml
 }
 
 Another way is usign action methods conditionally we can able to return layouts
-public List < Student > GetStudentList() {  
-    return View("StudentList", "~/Views/Shared/AdminLayout.cshtml");  
-}  
-If Logged in as Teacher: public List < Student > GetStudentList() {  
-    return View("StudentList", "~/Views/Shared/TeacherLayout.cshtml");  
-}  
+public List < Student > GetStudentList() {
+    return View("StudentList", "~/Views/Shared/AdminLayout.cshtml");
+}
+If Logged in as Teacher: public List < Student > GetStudentList() {
+    return View("StudentList", "~/Views/Shared/TeacherLayout.cshtml");
+}
 
 2) Child view (ex:Index.cshtml) will get executed first before executing layout page (ex:layout.cshtml)
-so we can able to set viewbag in child view and can able to access it in laout page.
+so we can able to set viewbag in child view and can able to access it in layout page.
 
 @viewBag.Title="some page specific Title"
 
@@ -28,7 +28,7 @@ in layoute page.cshtml
 
 3) _ViewStart (it is introduced in mvc3)
 _Viewstart.cshtml is used to place common UI logic across the Views.
-_Viewstart.cshtml will get called for every view page execution, event error page also 
+_Viewstart.cshtml will get called for every view page execution, event error page also
 We can able to have _Viewstart for all views by placing /views/ folder,
 and we can able to specific controller by placing /views/controllername
 

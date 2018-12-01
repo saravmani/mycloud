@@ -15,5 +15,6 @@ Enables building Web APIs that support wide variety of media types including XML
 Uses basic protocol and formats such as HTTP, WebSockets, SSL, JSON, and XML. There is no support for higher level protocols such
 as Reliable Messaging or Transactions.
 HTTP is request/response but additional patterns can be supported through SignalR and WebSockets integration.
-There is a variety of ways to describe a Web API ranging from auto-generated HTML help page describing snippets to structured metadata for OData integrated APIs.
+There is a variety of ways to describe a Web API ranging from auto-generated HTML help page describing
+  snippets to structured metadata for OData integrated APIs.
 Ships with .NET framework but is open-source and is also available out-of-band as independent download

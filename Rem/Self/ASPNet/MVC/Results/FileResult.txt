@@ -5,6 +5,11 @@ FileStreamResult - you have a stream open, you want to return it's content as a 
 
 
 
-When you return a FileContentResult, Based on the browser setting, it will either ask the user whether he wishes to download or open the file(which will also download the files to temp location and will be opened) or simply download/open the file. So the file will be downloaded to your local computer and will be opened from there.
+When you return a FileContentResult, Based on the browser setting,
+it will either ask the user whether he wishes to download or open the file
+(which will also download the files to temp location and will be opened) or
+simply download/open the file. So the file will be downloaded to your local computer and will be opened from there.
 
-When you use FileSteamResult, you are streaming the result to user's browser. So user will not get any Download or Open prompt. He will see the content in browser. So If you prefer to show the file content directly in the browser, use FileStreamResult.
+When you use FileSteamResult, you are streaming the result to user's browser.
+So user will not get any Download or Open prompt. He will see the content in browser.
+So If you prefer to show the file content directly in the browser, use FileStreamResult.

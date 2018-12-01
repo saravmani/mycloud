@@ -1,0 +1,21 @@
+#Tags - physical joins, internal joins
+
+Nested Loop Join, Merge Join, Hash Joins
+
+This joins will be automatically choosan by 'query optimiser'.
+This decision based on number of rows, number of columns and other factors
+
+Hash Joins
+-------------
+Hash joins are very efficient on a large set of data
+hash joins are is a table that gets created in memory
+They're less efficient on a very small set of data because the process of creating the hash table in memory is rather expensive relative to a very small number of rows.
+to match values together and bring them together for your join operation
+
+Nested Loop joins
+-----------------
+##Good for smaller set of data. it will loop through all the rows
+
+Some times may need to give a hint to choose specific type of join
+if the optimizer is consistently making a wrong decision on your pattern and it happens,
+the database optimizer has a lot of intelligence built into it but sometimes it gets it wrong and you need to influence it.

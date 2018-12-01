@@ -1,9 +1,9 @@
 
 
-Inline HTML Helpers: These are created by the @helper tag of Razor Syntax. 
-These Helpers can be reused only on the same view. 
+Inline HTML Helpers: These are created by the @helper tag of Razor Syntax.
+These Helpers can be reused only on the same view.
 
-Built-In HTML Helpers: These HTML Helpers are extension methods on the HtmlHelper class. 
+Built-In HTML Helpers: These HTML Helpers are extension methods on the HtmlHelper class.
 These are categorized in to three parts:
 
 Standard HTML Helpers: These helpers are used to create the most common types of HTML elements.
@@ -28,8 +28,6 @@ Inline helpers
 
 @helperMethodName("name 1 ")
 @helperMethodName("name 2 ")
-
-
 
 Custome helpers
 ---------------------

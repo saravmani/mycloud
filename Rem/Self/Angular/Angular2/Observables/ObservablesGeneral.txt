@@ -1,9 +1,9 @@
-changes propagate through the application so that filling in a form field or 
+changes propagate through the application so that filling in a form field or
 clicking a button causes immediate updates to the
 application state. But there are limitations to the changes that Angular can detect.
 
 Reactive Extensions library provides an asynchronous event
-distribution mechanism that is used 
+distribution mechanism that is used
 extensively INSIDE Angular for change detection and event propagation.
 
 Is ther alternative to RxJS?
@@ -11,7 +11,7 @@ Is ther alternative to RxJS?
 and view children queries and making asynchronous HTTP requests.
 
 Why we need to use RxJS? Bcs Angular already doing change detection processes.
-And that presents a problem, because Angular manages the bindings for the HTML elements 
+And that presents a problem, because Angular manages the bindings for the HTML elements
 automatically,
 but it doesn’t provide any support for responding to service changes within the component itself.
 
@@ -23,6 +23,6 @@ the application increases, the number of change events and the number of calls t
 will increase, which can drag down the performance of the application.
 
 # my understanding is, we can disable change detection process for all the child components.
-and let the child componetns to subscribe the observerable collection. whenever changes related to one 
-component happens then we can inform to another component through observerable and 
-let that component do the detech changes for one time.
+and let the child componetns to subscribe the observerable collection. whenever changes related to one
+component happens then we can inform to another component through observerable and
+let that component do the detects changes for one time.

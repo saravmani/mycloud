@@ -27,7 +27,7 @@ export class TstpipePipe implements PipeTransform {
 pipes can chained together.. in which order we are mentioning .. same ortder it will execute
 ex:
 {{item.price | pipe1 | pipe2:"USD":true }}
- 
+
 
 
 Pipes are classes to which the @Pipe decorator has been applied and that implement a method called
@@ -38,14 +38,14 @@ pure and impure pipes
 ------------------------------------
 Pure: Called only when input data got changes
       The pure decorator property is used to tell Angular when to call the pipe’s transform method.
-When true, this pipe is reevaluated only when its input value or its arguments are changed.
+When true, this pipe is re-evaluated only when its input value or its arguments are changed.
 Default value is true;
-it has no independent internal state and all its dependencies can be managed using the 
+it has no independent internal state and all its dependencies can be managed using the
 Angular change detection process.
- 
+
 
  Impure pipes : called on every change detection process. even if input not changed also it will called
-          Setting the pure decorator property to false creates an impure pipe 
+          Setting the pure decorator property to false creates an impure pipe
 and tells Angular that the pipe has
 its own state data or that it depends on data that may not be picked up in the change detection
  process when there is a new value.
@@ -63,7 +63,7 @@ deleted because it just sees the same array object being used as the input data 
   name: 'myPipe',
   pure:false
 })
-** Here pure property is by default ture. 
+** Here pure property is by default true.
 if it is true then if assigned value gets modified then it wont reflect.
  (pipe will not rerun on change)
 (but for premitive data types it will change).
@@ -86,8 +86,3 @@ setTimeout(()=>resolve('some data'),2000)
 
 //inside template
 <div>{{asyncValue|async}}</div>
-
-
-
-
- 

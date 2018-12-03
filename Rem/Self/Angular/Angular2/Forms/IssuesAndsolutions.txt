@@ -1,0 +1,6 @@
+
+
+Issues and solution
+--------------------------
+Isse: angular 2 Can't bind to 'formGroup' since it isn't a known property of 'form'.
+Ans: Need to  import { ReactiveFormsModule} from '@angular/forms' in module file

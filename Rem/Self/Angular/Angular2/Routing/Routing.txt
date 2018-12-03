@@ -1,8 +1,5 @@
-The router in Angular 2 provides both a HashLocationStrategy and a PathLocationStrategry, 
+The router in Angular 2 provides both a HashLocationStrategy and a PathLocationStrategry,
 one of which is used when we bootstrap the app
-
-Loading different components
-angular js having powerfful built in router
 
 import {Routes,RouterModule} from "@angular/router"
 import {componentClass} from "./componentClassTsFIle"
@@ -27,7 +24,7 @@ root component
 --------------------
 <a [routerLink]="['/InquiryCom']"   [queryParams]="{analytics: 500}" > Inquiry Commercial </a>
 <a [routerLink]="['']" >Inquiry Normal</a>
-<router-outlet></router-outlet> 
+<router-outlet></router-outlet>
 if mention / in path  then it will go from root component
 
 approuting.ts
@@ -36,31 +33,31 @@ import { RouterModule, Routes } from "@angular/router";
 import { InquiryClass }    from './Subject_Proj/Components/inquiry';
 import { InquiryClassCom }    from './Subject_Proj/Components/inquiryCom';
 
-const APP_ROUTES: Routes = [    
+const APP_ROUTES: Routes = [
 	{ path: 'InquiryCom', component: InquiryClassCom },
-	{ path: '', component: InquiryClass },    
+	{ path: '', component: InquiryClass },
 ];
 
 
 export const routing = RouterModule.forRoot(APP_ROUTES);
 
 
-programmatically route (Tags - manually route, Redirect, programmatically route, programatically)
+programmatically route (Tags - manually route, Redirect, programmatically route, programmatically)
 ------------------------------------------------------------------------------------------------------------
-inject router serice into the constructor where you want to do the redirection code,
-then use 
+inject router service into the constructor where you want to do the redirection code,
+then use
 this.objRouter.navigate('[url]');
 
 
 Ex:
- constructor(private objRouter Router){}
+constructor(private objRouter Router){}
 navigateMethod(){
-this.objRouter.navigate('[url]');
+	this.objRouter.navigate('[url]');
 }
 
 enable # url option
 ----------------------
-to enable # url loading have to import below
+To enable # url loading have to import below
    import {HashLocationStrategy, Location, LocationStrategy} from '@angular/common';
 and add below providers
 providers: [Location, {provide: LocationStrategy, useClass: HashLocationStrategy}]
@@ -80,5 +77,3 @@ redirection
 router link (for hyper link)
 -----------------
 <li><a [routerLink]="['/Home']">Home</a></li>
-
-

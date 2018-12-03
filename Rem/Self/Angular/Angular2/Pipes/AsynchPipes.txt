@@ -1,17 +1,13 @@
 
-
-
-
-
 Normally to render the result of a promise or an observable we have to:
   Wait for a callback.
   Store the result of the callback is a variable.
   Bind to that variable in the template.
-But With AsyncPipe we can use promises and observables directly in our template, 
+But With AsyncPipe we can use promises and observables directly in our template,
 without having to store the result on an intermediate property or variable.
 
-AsyncPipe accepts as argument an observable or a promise, 
-calls subcribe or attaches a then handler, then waits for the 
+AsyncPipe accepts as argument an observable or a promise,
+calls subcribe or attaches a then handler, then waits for the
 asynchronous result before passing it through to the caller.
 
 #async pipes we can use for promises and observables
@@ -57,7 +53,7 @@ example with promises
 @Component({
   selector: 'async-promise-pipe',
   template: `<div>
-    <code>promise|async</code>: 
+    <code>promise|async</code>:
     <button (click)="clicked()">{{ arrived ? 'Reset' : 'Resolve' }}</button>
     <span>Wait for it... {{ greeting | async }}</span>
   </div>`

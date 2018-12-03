@@ -1,9 +1,10 @@
 import { TestBed, ComponentFixture } from "@angular/core/testing";
 import { FirstComponent } from "../app/ondemand/first.component";
-import { Product } from "../app/model/product.model";
-import { Model } from "../app/model/repository.model";
 import { DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
+import { Product } from "../app/model/product.model";
+import { Model } from "../app/model/repository.model";
+
 describe("FirstComponent", () => {
   let fixture: ComponentFixture<FirstComponent>;
   let component: FirstComponent;

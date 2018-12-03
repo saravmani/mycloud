@@ -1,16 +1,14 @@
 NOTE: Source 1
 --------------------
 
-# i think we will use this when we are working with lazy modules 
+# i think we will use this when we are working with lazy modules
 
-
-
- we are sharing a service to keep up with a counter value. Each time any component increments 
+ we are sharing a service to keep up with a counter value. Each time any component increments
  the value stored in the counter service, I want to share this with all components.
 
-The issue is when you try to introduce lazy loaded modules. 
-Notice how the Lazy loaded component does not share the same counter value. 
-When using eager loaded components only, the below example will work if you use a shared service, but 
+The issue is when you try to introduce lazy loaded modules.
+Notice how the Lazy loaded component does not share the same counter value.
+When using eager loaded components only, the below example will work if you use a shared service, but
 notice how the lazy loaded component behaves. The lazy component gets its own instance of the service.
 
 
@@ -45,10 +43,11 @@ class SharedModule {
 }
 Generally forRoot is used to add application/singleton services.
 
-The reasoning is that if you add the AuthService to the providers in the @NgModule, 
+The reasoning is that if you add the AuthService to the providers in the @NgModule,
 it's possible for more than one to be created if you import the SharedModule into other modules.
 
-we add a (by convention) forRoot method to signify that the method should only be called for the root (app) module, while for other module it should just be imported normally
+we add a (by convention) forRoot method to signify that the method should only be called for the root (app) module,
+while for other module it should just be imported normally
 
 @NgModule({
   imports: [SharedModule]

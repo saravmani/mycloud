@@ -182,18 +182,21 @@ export class ModelDrivenForm {
 }
 
 
-Note that ngModel can still be used with model driven forms. Its just that the form value would be available in two different places: the view model and the FormGroup, which could potentially lead to some confusion.
+Note that ngModel can still be used with model driven forms. Its just that the form value would be
+available in two different places: the view model and the FormGroup, which could potentially lead to some confusion.
 
 
 The FormGroup and
-FormControl classes provide an API that allows us to build UIs using a completely different programming style known as Functional Reactive Programming.
+FormControl classes provide an API that allows us to build UIs using a completely different
+programming style known as Functional Reactive Programming.
 
 
 
 Functional Reactive Programming in Angular 2
 ----------------------------------------------
 form controls and the form itself now provide an Observable-based API
-This mean that both the controls and the whole form itself can be viewed as a continuous stream of values, that can be subscribed to and processed using commonly used functional primitives.
+This mean that both the controls and the whole form itself can be viewed as a continuous stream of values,
+that can be subscribed to and processed using commonly used functional primitives.
 
 ex:
 this.form.valueChanges
@@ -208,7 +211,8 @@ this.form.valueChanges
 
 Advantages of building UIs using Functional Reactive Programming (FRP)
 ----------------------
-pre-save the form in the background at each valid state, or even invalid (for example storing the invalid value in a cookie for later use)
+pre-save the form in the background at each valid state,
+or even invalid (for example storing the invalid value in a cookie for later use)
 typical desktop features like undo/redo
 
 
@@ -217,12 +221,16 @@ fullUpdate() {
 }
 
 
-we have patchValue() which partially updates the form. This method does not need to receive values for all fields of the form, which allows for partial updates
-there is also setValue(), to which we are passing all the values of the form. In the case of this method, values for all form fields need to be provided, otherwise we will get an error message saying that certain field values are missing
+we have patchValue() which partially updates the form.
+This method does not need to receive values for all fields of the form, which allows for partial updates
+there is also setValue(), to which we are passing all the values of the form.
+In the case of this method, values for all form fields need to be provided,
+otherwise we will get an error message saying that certain field values are missing
 
 
 We might think that we could use these same APIs to reset the form by passing blank values to all fields.
-That would not worked as intended, because the pristine and untouched statuses of the form and its fields would not get resetted accordingly.
+That would not worked as intended, because the pristine and untouched statuses of
+the form and its fields would not get re-setted accordingly.
 
 so  this.form.reset(); used to reset the form
 
@@ -230,19 +238,14 @@ so  this.form.reset(); used to reset the form
 Form validation
 -----------------------
 <form #f="ngForm" (ngSubmit)="subjectSearch()">
-   <select (change)="onSearchTypeChange()"  #SearchType="ngModel"  class="form-control mandatory" id="dropDownConsumerSearchType" name="dropDownConsumerSearchType">
-                                <option selected="selected" value="">Select</option>
-                                <option value="ACCSRCH">Account Number Search</option>
-                              </select>
-                             <span *ngIf="SearchType.errors && (SearchType.dirty || SearchType.touched)">
-                                <label [hidden]="!SearchType.errors.required" class="help-block">Name is required</label>
-                             </span>
-							 </from>
-
-
-
-
-
+<select (change)="onSearchTypeChange()"  #SearchType="ngModel"  class="form-control mandatory" id="dropDownConsumerSearchType" name="dropDownConsumerSearchType">
+          <option selected="selected" value="">Select</option>
+          <option value="ACCSRCH">Account Number Search</option>
+        </select>
+       <span *ngIf="SearchType.errors && (SearchType.dirty || SearchType.touched)">
+          <label [hidden]="!SearchType.errors.required" class="help-block">Name is required</label>
+       </span>
+</from>
 
 
 
@@ -253,22 +256,22 @@ constructor(public objFormBuilder: FormBuilder, private objRouter: Router,
 
 
 
-  this.subjSrchForm = this.objFormBuilder.group({
-            RadioButtonCIRType: [defaultSubjectType],
-            consumerForm: this.objFormBuilder.group({
-                dropDownConsumerSearchType: [this._defaultSearchType, Validators.required],
+this.subjSrchForm = this.objFormBuilder.group({
+    RadioButtonCIRType: [defaultSubjectType],
+    consumerForm: this.objFormBuilder.group({
+        dropDownConsumerSearchType: [this._defaultSearchType, Validators.required],
 
-                consumerNameSearchForm: this.objFormBuilder.group({
-                    textboxConsumerName: ["", Validators.required],
-                    dropDownConsumerIDType: ["", Validators.required],
-                    textBoxConsumerID: ["", Validators.required],
-                }),
-                textBoxConsumerMobile: [{ value: "", disabled: true }, this.validateMobileNumberRequired.bind(this)],
-                dropdownConsumerProductType: ["", Validators.required],
-                dropDownConsumerLoanType: [""]
+        consumerNameSearchForm: this.objFormBuilder.group({
+            textboxConsumerName: ["", Validators.required],
+            dropDownConsumerIDType: ["", Validators.required],
+            textBoxConsumerID: ["", Validators.required],
+        }),
+        textBoxConsumerMobile: [{ value: "", disabled: true }, this.validateMobileNumberRequired.bind(this)],
+        dropdownConsumerProductType: ["", Validators.required],
+        dropDownConsumerLoanType: [""]
 
 
-            }),
+    }),
 
 //Template code
 	     <div id="cunsumerform" formGroupName="consumerForm"
@@ -286,11 +289,3 @@ this.subjSrchForm.get("RadioButtonCIRType").valueChanges.subscribe(data => {});
 
 //display error messages
 <div label-ref="SearchTypeRequired" class="help-block" *ngIf="subjSrchForm.get(['consumerForm','dropDownConsumerSearchType']).touched && subjSrchForm.get(['consumerForm','dropDownConsumerSearchType']).hasError('required')">
-
-
-
-
-Issues and solution
---------------------------
-Isse: angular 2 Can't bind to 'formGroup' since it isn't a known property of 'form'.
-Ans: Need to  import { ReactiveFormsModule} from '@angular/forms' in module file

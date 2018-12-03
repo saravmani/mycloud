@@ -9,17 +9,17 @@ an Observable and need a Promise for some reason.
 
 Observables perform the same basic role as promises but are more flexible and have more features.
 ex:
-combine multipe observables together
+combine multiple observables together
 able to filter the result - ex debounce
 event streaming
 
 
 Using Observables to structure our data is called Reactive Programming.
 Reactive programming is programming with asynchronous data streams.
-	In a way, this isn't anything new. Event buses or your typical click events are really 
-    an asynchronous event stream, on which you can observe and do some 
-side effects. Reactive is that idea on steroids. You are able to create data streams of anything, 
-not just from click and hover events. 
+	In a way, this isn't anything new. Event buses or your typical click events are really
+    an asynchronous event stream, on which you can observe and do some
+side effects. Reactive is that idea on steroids. You are able to create data streams of anything,
+not just from click and hover events.
 Streams are cheap and ubiquitous, anything can be a stream: variables, user inputs, properties, caches, data structures, etc.
  For example, imagine your Twitter feed would be a data stream in the same fashion that click events are.
   You can listen to that stream and react accordingly.
@@ -29,7 +29,7 @@ lickStream.map(f), it returns a new stream based on the click stream. It does no
 
 Understanding Observables
 ----------------------------
-Think of button click event. 
+Think of button click event.
 we can subscribe this event with a funciton. it is called subscriber or observer.
 multiple event clicks will trigger stream of events. it is called observable (called subject).
 
@@ -54,12 +54,12 @@ server-side data. Falcor often used with an Observables-type data architecture.
 
 
 
-Observables are not Angular 2 specific feature, but rather a proposed standard for managing async 
-data that will be included in the release of ES7. 
+Observables are not Angular 2 specific feature, but rather a proposed standard for managing async
+data that will be included in the release of ES7.
 Observables open up a continuous channel of communication in which multiple values of data can be emitted over time.
 Observables are the main data structure we use to
 implement Reactive Programming.
-On top of that, you are given an amazing toolbox of functions to combine, create and filter any of those streams. 
+On top of that, you are given an amazing toolbox of functions to combine, create and filter any of those streams.
 A stream can be used as an input to another one. Even multiple streams can be used as inputs to another stream.
 
 
@@ -75,31 +75,31 @@ import {Observable} from 'rxjs/Observable';
 
 
 @Component({
-	
+
 selector: 'app',
-	
+
 template: `
-	  
+
 <b>Angular 2 Component Using Observables!</b>
-	 
+
 	  <h6 style="margin-bottom: 0">VALUES:</h6>
-	 
+
  <div *ngFor="let value of values">- {{ value }}</div>
-	  
-	 
+
+
  <h6 style="margin-bottom: 0">ERRORs:</h6>
 	  <div>Errors: {{anyErrors}}</div>
-	  
+
 
 	  <h6 style="margin-bottom: 0">FINISHED:</h6>
 	  <div>Finished: {{ finished }}</div>
-	  
+
 
 	  <button style="margin-top: 2rem;" (click)="init()">Init</button>
 	`
 })
 export class MyApp {
-  
+
   private data: Observable<Array<number>>;
   private values: Array<number> = [];
   private anyErrors: boolean;
@@ -107,17 +107,17 @@ export class MyApp {
 
   constructor() {
   }
-  
+
   init() {
       this.data = new Observable(observer => {
           setTimeout(() => {
               observer.next(42);
           }, 1000);
-          
+
           setTimeout(() => {
               observer.next(43);
           }, 2000);
-          
+
           setTimeout(() => {
               observer.complete();
           }, 3000);
@@ -127,7 +127,7 @@ export class MyApp {
           value => this.values.push(value),
           error => this.anyErrors = true,() => this.finished = true
       );
-  
+
 }
 
 }
@@ -140,7 +140,8 @@ observables are cancellable, tetry and retry When are possible
 
 Observables in forms
 ------------------------
-Each field in a form is treated as an Observable that we can subscribe to and listen for any changes made to the value of the input field.
+Each field in a form is treated as an Observable that we can subscribe to and listen for any changes
+made to the value of the input field.
 Ex:
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, FormBuilder} from '@angular/forms';
@@ -189,7 +190,7 @@ Create observable using events, [Tags-> click event, subject, attach observable]
 private obs = new Subject();
 public obs$ = this.obs.asObservable();
 
-@HostListener('click', ['$event']) 
+@HostListener('click', ['$event'])
 clickHandler(event){
   this.obs.next(event);
 }
@@ -200,8 +201,8 @@ Or
 
 
 
-#subject can send next,complete,error 
-#if complete method called by subject then, streaming will be end. 
+#subject can send next,complete,error
+#if complete method called by subject then, streaming will be end.
 so afterthat if next() called also subscribers will not get any notification
 
 this.objSubject.next("nexttt");
@@ -234,7 +235,7 @@ cancel()// we can able to cancel the subscription
 
 filters in observables
 ---------------------------------
-we can able to filter the data streaming.  
+we can able to filter the data streaming.
 
 ex:
 let mousepad = document.getElementById('mousepad');
@@ -274,7 +275,7 @@ this.dives = dives
 .then(() => this.loading = false);
 
 
-#we can able to retry on http response. this will be useful when we face some 
+#we can able to retry on http response. this will be useful when we face some
 temperory error on server side
 
 .retryWhen(source => {
@@ -287,7 +288,7 @@ return source.delay(1000)
 
 Errors
 ----------
- if the error is unhandled, then 
+ if the error is unhandled, then
  observer chain ends.
 
  Rx.Observable.catch();

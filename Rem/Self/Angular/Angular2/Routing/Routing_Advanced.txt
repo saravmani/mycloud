@@ -3,7 +3,6 @@ routes to match any URL.
 
 { path: "**", component: NotFoundComponent }
 
-
 Redirections in Routes
 ---------------------------
 Routes can also be used as aliases that redirect the browser to a

@@ -7,10 +7,7 @@ application to be defined separately from the components and directives, meaning
 the structure can be made in the routing configuration and do not have to be applied to the individual
 components.
 
-Routing uses the browser’s URL to manage the content displayed
-to the user.
-
-
+Routing uses the browser’s URL to manage the content displayed to the user.
 
 #ALternative for routing is dynamic components, switch cases. but those are complex if application grows
 #so routing is better
@@ -18,7 +15,7 @@ to the user.
 html5-history-api package
 -----------------------------
 The Angular routing features depend on the JavaScript History API, which is not supported by older
-browsers, so I have added the html5-history-api package to the application to provide a 
+browsers, so I have added the html5-history-api package to the application to provide a
 polyfill for the missing API.
 
 
@@ -47,7 +44,7 @@ even if the URL contains additional segments that are not part of the path value
 This property is required when using the redirectTo property,
 
 
-If you find that your routing configuration doesn’t result in the behavior you expect, then the order in
+If you find that your routing configuration doesn’t result in the behaviour you expect, then the order in
 which the routes have been defined is the first thing to check
 
 The order in which routes are defined is significant. Angular compares the URL to which the browser
@@ -56,16 +53,16 @@ most specific routes should be defined first
 
 routeLink attribute
 -------------------------
-This directive can be applied to any element, although it is 
+This directive can be applied to any element, although it is
 typically applied to button and anchor elements
 ex: <button routeLink="/product/newproduct" (click)="somefunctionCall()"></button>
 
-The routing system takes into account the base element in the index.html file 
-when it matches the URL to a route. 
+The routing system takes into account the base element in the index.html file
+when it matches the URL to a route.
 
 The routerLink directive sets the URL using a JavaScript API that tells the browser that this is a
-change relative to the current document and 
-not a change that requires an HTTP request to the server    
+change relative to the current document and
+not a change that requires an HTTP request to the server
 
 If you enter a URL that matches the routing system into the browser window,
 Rather than handling the change within the Angular application, the browser sends an HTTP request to

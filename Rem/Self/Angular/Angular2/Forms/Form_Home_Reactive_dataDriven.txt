@@ -8,7 +8,7 @@ This approach scales up better, but it requires some  up-front effort
 Advantages
 -----------------
 Template will be simple
-We will have more controll .. ex: if we want to conditionally set the default values, if we want to 
+We will have more controll .. ex: if we want to conditionally set the default values, if we want to
 diable group of form controlls, if we want to validate group of validation controls... etc.,
 IF WE WANT TO HAVE DIFFERENT GROUPING AND CHILD GROUPING
 
@@ -28,7 +28,8 @@ constructor(){
 	this.myForm=new FromGroup({
 	userName:new FormControl('defaultValue',Validators.required),//This what created by
 	// automatically in template driven
-	'control with space':new FromControl('defaultvalue',[Validators.required,Validators.pattern('regex pattern')])//secornd argumet is for validators. this can be array of validator pointers or single validatro  pointer
+	'control with space':new FromControl('defaultvalue',[Validators.required,Validators.pattern('regex pattern')])
+	//secornd argumet is for validators. this can be array of validator pointers or single validatro  pointer
 	});
   }
 }
@@ -115,7 +116,7 @@ exampleValidator(objFormControl:FormControl):{[s:string]:boolean}
 {
 if(objFormControl.value==="somevalue")
 return {'invalid':true}//validation fails
-return null;//return null will be considered as validation is success. but dont return true. this will not workout 
+return null;//return null will be considered as validation is success. but dont return true. this will not workout
 }
 
 
@@ -139,7 +140,7 @@ resolve(null);
 return objPromise;
 }
 
-Form Observable.. this may useful to save form values intermediatly, or give undo option etc.,
+Form Observable.. this may useful to save form values intermediately, or give undo option etc.,
 ----------------------
 this.myForm.ValueChanges.subscribe(
 (data)=>{console.log(data);}//each value changes data will be logged

@@ -1,0 +1,41 @@
+Isolating the Scope of a Directive
+----------------------------------------
+##in this  controller's scope will not affect directive's scope.
+bcs directive is having its own scope
+
+As the name suggests, the isolate scope of the directive isolates everything 
+
+angular.module('docsIsolateScopeDirective', [])
+.controller('Controller', ['$scope', function($scope) {
+  $scope.naomi = { name: 'Naomi', address: '1600 Amphitheatre' };
+  $scope.igor = { name: 'Igor', address: '123 Somewhere' };
+}])
+.directive('myCustomer', function() {
+  return {
+    restrict: 'E',
+    scope: {
+      customerInfo: '=info'
+    },
+    templateUrl: 'my-customer-iso.html'
+  };
+});
+
+
+
+<div ng-controller="Controller">
+  <my-customer info="naomi"></my-customer>
+  <hr>
+  <my-customer info="igor"></my-customer>
+</div>
+
+Note: These =attr attributes in the scope option of directives are normalized just like directive names.
+To bind to the attribute in <div bind-to-this="thing">, you'd specify a binding of =bindToThis.
+
+For cases where the attribute name is the same as the value you want to bind to inside the directive's scope, you can use this shorthand syntax:
+
+...
+scope: {
+  // same as '=customer'
+  customer: '='
+},
+...

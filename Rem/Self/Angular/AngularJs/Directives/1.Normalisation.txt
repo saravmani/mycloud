@@ -1,0 +1,26 @@
+
+Normalization
+AngularJS normalizes an element's tag and attribute name to determine which elements match which directives.
+ex:
+ngModel  - in js
+is equal to
+ng-model - in html
+
+
+The normalization process is as follows:
+
+Strip x- and data- from the front of the element/attributes.
+Convert the :, -, or _-delimited name to camelCase.
+
+ex Below all are same
+<div ng-controller="Controller">
+  Hello <input ng-model='name'> <hr/>
+  <span ng-bind="name"></span> <br/>
+  <span ng:bind="name"></span> <br/>
+  <span ng_bind="name"></span> <br/>
+  <span data-ng-bind="name"></span> <br/>
+  <span x-ng-bind="name"></span> <br/>
+</div>
+
+
+Best Practice: Prefer using the dash-delimited format (e.g. ng-bind for ngBind). If you want to use an HTML validating tool, you can instead use the data-prefixed version (e.g. data-ng-bind for ngBind). The other forms shown above are accepted for legacy reasons but we advise you to avoid them.

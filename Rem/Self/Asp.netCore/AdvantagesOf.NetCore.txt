@@ -1,3 +1,4 @@
+
 Granular  nuget packages. But in asp.net 4 there is huge dlls ex: system.web.
 Advantages of this Granular approch is
 1. Better security
@@ -10,3 +11,13 @@ Built-in support for dependency injection
 Built on .NET Core, which supports true side-by-side app versioning
 Cloud-ready environment-based configuration
 Build and run cross-platform ASP.NET apps on Windows, Mac, and Linux
+
+
+Modified:06-Dec-2018;Thursday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+##No more system.web.dll dependency. So release cycles from microsoft will be faster
+
+Asp.net core features
+------------------------------
+moiddle ware concept
+built-in dependency injection

@@ -1,0 +1,3 @@
+Angular version 1.4, make sure that you are using jQuery 2.1 and
+above. Any version below this will not be compatible with Angular 1.4. This will mean
+that the animation will not be detected, or it may work in a manner which is not expected

@@ -1,0 +1,34 @@
+Created:03-Dec-2018;;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+
+angular.module('docsSimpleDirective', [])
+.controller('Controller', ['$scope', function($scope) {
+  $scope.customer = {
+    name: 'Naomi',
+    address: '1600 Amphitheatre'
+  };
+}])
+.directive('myCustomer', function() {
+  return {
+    template: 'Name: {{customer.name}} Address: {{customer.address}}'
+  };
+});
+
+
+<div ng-controller="Controller">
+  <div my-customer></div>
+</div>
+
+##Note: see this example. i thing the parent scope object is available in directive also
+# yes. it is using parent's scope. in this example direcive doesnot have seperate scope.
+
+Note:templateUrl can also be a function which returns the URL of an HTML template to be loaded and used for the directive.
+Note: You do not currently have the ability to access scope variables from the templateUrl function, since the template is requested before the scope is initialized.
+ex:
+.directive('myCustomer', function() {
+  return {
+    templateUrl: function(elem, attr) {
+      return 'customer-' + attr.type + '.html';
+    }
+  };

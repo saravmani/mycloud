@@ -1,0 +1,40 @@
+
+$compile can match directives based on element names (E), attributes (A), class names (C), and comments (M).
+Different ways of matching
+---------------------------
+<my-dir></my-dir>
+<span my-dir="exp"></span>
+<!-- directive: my-dir exp -->   ##note this aslo directive with commands selector :-)
+<span class="my-dir: exp;"></span>
+
+Note: When you create a directive, it is restricted to attribute and elements only by default. In order to create directives that are triggered by class name, you need to use the restrict option.
+restrict:'AEC'  //Aattches either attribute or element or class name
+
+When should I use an attribute versus an element? Use an element when you are creating a component that is in control of the template.
+##attribute - when adding functionality to existing elements
+
+Best Practice: Prefer using directives via tag name and attributes over comment and class names. Doing so generally makes it easier to determine what directives a given element matches.
+
+Best Practice: Comment directives were commonly used in places where the DOM API limits the ability to create directives that spanned multiple elements (e.g. inside <table> elements). AngularJS 1.2 introduces ng-repeat-start and ng-repeat-end as a better solution to this problem. Developers are encouraged to use this over custom comment directives when possible.
+
+
+like controllers, directives also registered with modules
+module.directive takes the normalized directive name
+
+
+Best Practice: In order to avoid collisions with some future standard,
+it's best to prefix your own directive names. For instance, if you created a <carousel> directive,
+it would be problematic if HTML7 introduced the same element. A two or three letter prefix (e.g. btfCarousel) works well. Similarly, do not prefix your own directives with ng or they might conflict with directives included in a future version of AngularJS.
+
+The factory function is invoked only once when the compiler matches the directive for the first time. You can perform any initialization work here. The function is invoked using $injector.invoke which makes it injectable just like a controller.
+
+
+Note:templateUrl can also be a function which returns the URL of an HTML template to be loaded and used for the directive.
+Note: You do not currently have the ability to access scope variables from the templateUrl function, since the template is requested before the scope is initialized.
+ex:
+.directive('myCustomer', function() {
+  return {
+    templateUrl: function(elem, attr) {
+      return 'customer-' + attr.type + '.html';
+    }
+  };

@@ -1,0 +1,3 @@
+ngInclude
+$compile
+$injector - The function is invoked using $injector.invoke which makes it injectable just like a controller.

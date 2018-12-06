@@ -1,0 +1,6 @@
+Created:06-Dec-2018;Thursday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Isolating the Scope
+-----------------------
+Normally, a scope prototypically inherits from its parent. An isolated scope does not.
+As the name suggests, the isolate scope of the directive isolates everything

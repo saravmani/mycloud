@@ -1,3 +1,9 @@
+Modified:15-Dec-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+CLR provides - garbage collection, exception handling, security, versioning, debugging, and profiling
+
+
+---------------------------------------
 The core features of the CLR (such as memory management,
 assembly loading, security, exception handling, and thread synchronization)
 any language which is poing to CLR will get above mentioned features.

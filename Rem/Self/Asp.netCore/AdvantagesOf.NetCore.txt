@@ -12,6 +12,7 @@ Built on .NET Core, which supports true side-by-side app versioning
 Cloud-ready environment-based configuration
 Build and run cross-platform ASP.NET apps on Windows, Mac, and Linux
 
+we can have multiple frameworks side by side. this will be helpful to run micro services
 
 Modified:06-Dec-2018;Thursday;From Home-Bangalore
 *   *   *   *   *   *   *   *   *   *   *   *   *   *   *

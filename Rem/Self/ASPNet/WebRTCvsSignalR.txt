@@ -1,0 +1,9 @@
+##Tags - WebRTC, SignalR, UDP on Web, streaming video or audio
+
+webrtc is used for streaming video or audio
+it uses pear to pear communication but singnalR(websocket) needed the server to deliver messages
+webrtc uses UDP protocol. signalR uses TCP so it is more reliable
+
+WebRTC - Web Real Time Communication
+WebRTC (Web Real Time Communication) is a new web standard that allows
+peer-to-peer communication between browsers for high-quality RTC apps.

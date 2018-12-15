@@ -3,5 +3,7 @@
  Filters are added globally by adding it to the MvcOptions.Filters collection in ConfigureServices:
 
 NOTE:
-Exception filters are good for trapping exceptions that occur within MVC actions, but they're not as flexible as error handling middleware.
-Prefer middleware for the general case, and use filters only where you need to do error handling differently based on which MVC action was chosen.
+Exception filters are good for trapping exceptions that occur within MVC actions,
+but they're not as flexible as error handling middleware.
+Prefer middleware for the general case, and use filters only where you need to do error handling
+differently based on which MVC action was chosen.

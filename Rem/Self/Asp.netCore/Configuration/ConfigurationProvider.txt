@@ -1,0 +1,39 @@
+Created:24-Dec-2018;Monday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+A configuration can be loaded from many different sources containing many different
+formats.
+
+By default asp.net core have below default configuration providers
+JSON,XML, INI
+Commandline
+EnvironmentVariables
+InmemoryCollection
+AddAzureKeyVault
+AddUserSecrets
+
+
+public static void Main(string[] args)
+{
+      var someSettings = new Dictionary<string, string>()
+      {
+          { "poco:key1","value 1" },
+          { "poco:key2","value 2" }
+      };
+      var builder = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("awesomeConfig.json")
+            .AddXmlFile("awesomeConfig.xml")
+            .AddIniFile("awesomeConfig.ini")
+            .AddCommandLine(args)
+            .AddEnvironmentVariables()
+            .AddInMemoryCollection(someSettings)
+            .AddUserSecrets("awesomeSecrets")
+            .AddAzureKeyVault("https://awesomevault.vault.azure.net/",
+            "<clientId>", "<secret>");
+            Configuration = builder.Build();
+
+}
+
+//Pass configurations through cli
+$ dotnet run --cli:key1="Value 1" --cli:key2="Value 2"

@@ -1,0 +1,55 @@
+Created:22-Dec-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+A hosted service provides a mechanism for running background tasks within the lifetime
+scope of the application. It is quite handy in scenarios where long-running tasks need to
+run in the background of an application continuously.
+ASP.NET Core provides the IHostedService interface for creating hosted services.
+Let’s take a look at its signature.
+public interface IHostedService
+{
+Task StartAsync(CancellationToken cancellationToken);
+Task StopAsync(CancellationToken cancellationToken);
+}
+
+The StartAsync method will fire when the host starts up the hosted service, and
+StopAsync will be executed once the host is shutting down.
+
+Example
+-------------
+
+public class AwesomeHostedService : IHostedService
+{
+   private readonly IHostingEnvironment env;
+   public AwesomeHostedService(IHostingEnvironment env)
+   {
+       this.env = env;
+   }
+   public async Task StartAsync(CancellationToken cancellationToken)
+   {
+       var client = new HttpClient();
+       var file = $@"{env.ContentRootPath}\wwwroot\comments.json";
+       while (true)
+       {
+           var response = await client.GetAsync("https://api.external.com/
+           comments");
+       using (var output = File.OpenWrite(file))
+           using (var content = await response.Content.
+           ReadAsStreamAsync())
+           {
+               content.CopyTo(output);
+           }
+           Thread.Sleep(60000);
+       }
+   }
+   public Task StopAsync(CancellationToken cancellationToken)
+   {
+       return Task.FromResult(0);
+   }
+}
+
+register hosted services
+public void ConfigureServices(IServiceCollection services)
+{
+  services.AddSingleton<IHostedService, MyAwesomeHostedService>();
+}

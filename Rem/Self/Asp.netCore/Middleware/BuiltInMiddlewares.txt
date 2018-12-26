@@ -1,0 +1,6 @@
+Created:22-Dec-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+ASP.NET Core comes with many standard middleware options built in for
+authentication, CORS configuration, response caching and compression, routing, managing
+sessions, static files, and managing URL rewriting.

@@ -10,5 +10,16 @@ app.Use(next =>
         };
     });
 if (env.IsDevelopment())
-    app.UseDeveloperExceptionPage();//Used to send back the error information. 
+    app.UseDeveloperExceptionPage();//Used to send back the error information.
     this will handle the response
+
+
+Ex: 2
+-------------
+    app.Run(async (context) =>
+               {
+                   await context.Response
+                       .WriteAsync("Courtesy of <b>Programming ASP.NET Core</b>!" +
+                       "<hr>" +
+                       "ENVIRONMENT=" + env.EnvironmentName);
+               });

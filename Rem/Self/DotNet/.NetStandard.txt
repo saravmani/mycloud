@@ -1,0 +1,17 @@
+Created:19-12-2018;Wednesday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Libraries that target .NET Standard will run on any .NET Standard compliant runtime, such as .NET Core,
+.NET Framework, Mono/Xamarin.
+On the other hand, libraries that target .NET Core can only run on the .NET Core runtime
+
+
+
+.NET Standard 2.0 is implemented by the latest versions of .NET Framework, .NET Core,
+and Xamarin. .NET Standard 2.0 makes it much easier for developers to share code between
+any flavor of .NET.
+
+For .NET Core 2.0, this adds many of the missing APIs that developers need to port old
+code written for .NET Framework to the cross-platform .NET Core. However, some APIs
+are implemented, but throw an exception to indicate to a developer that they should not
+actually be used! This is usually due to differences in the operating system on which you
+run .NET Core.

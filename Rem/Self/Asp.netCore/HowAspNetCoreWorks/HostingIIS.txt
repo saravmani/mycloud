@@ -1,0 +1,23 @@
+Created:15-12-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+asp.ent core is seperate console applicaiton
+
+IIS will communciate with asp.netcore console app through some port
+For this IIS needs some HttpModules
+
+
+before year 2003 ASP.NET 1.x and IIS was worked in this same model.
+Asp.At that time, ASP.NET had its own worker process communicating with IIS through named pipes.
+Later, the tasks of the ASP.NET worker process have been absorbed by the built-in IIS worker
+process (w3wp.exe), creating the concept of application pools.
+
+
+ASP.NET Core IIS Module (ANCM),
+------------------------------------
+ANCM must be installed in IIS on the server (or IIS Express on your
+development machine) for the IIS integration to work. Visual Studio automatically
+installs ANCM for us on IIS Express. ANCM for servers can be downloaded from
+
+## note here IISExpress also needs this module. so in development environment, when we run applicaiton
+in IISExpress, then it is doing reverse proxy and passing the request to kestrol :-)

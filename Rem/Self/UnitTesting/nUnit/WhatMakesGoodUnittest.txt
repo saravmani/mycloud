@@ -1,6 +1,6 @@
 Tests (test cases) should be isolated. there should not be any dependencies
-It should not depends order of the exection
+It should not depends order of the execution
 
 Readable
 Clear intend
-Testing code should be good quality 
+Testing code should be good quality

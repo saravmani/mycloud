@@ -1,0 +1,33 @@
+Created:24-Dec-2018;Monday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+At times it is necessary to capture more details of a given transaction or process. We can
+group a set of logical operations with the same log information by using scopes,
+
+
+app.Run(async (context) =>
+          {
+              using (logger.BeginScope("This is an awesome group"))//Note this BeginScope
+              {
+                  logger.LogInformation("Log entry 1");
+                  logger.LogWarning("Log entry 2");
+                  logger.LogError("Log entry 3");
+              }
+              await context.Response.WriteAsync("Hello World!");
+          });
+
+
+ Scoped logs need to be explicitly enabled on the provider.
+
+public static void Main(string[] args)
+          {
+              new WebHostBuilder()
+              .UseKestrel()
+              .UseStartup<Startup>()
+              .ConfigureLogging(logging =>
+              {
+                  logging.AddConsole(options => options.IncludeScopes = true);
+              })
+              .Build()
+              .Run();
+          }

@@ -1,11 +1,14 @@
 
 Granular  nuget packages. But in asp.net 4 there is huge dlls ex: system.web.
-Advantages of this Granular approch is
+Advantages of this Granular approach is
 1. Better security
 2. Performance improvement
 
 
-
+NET Core Framework can be deployed side by side with the application, whereas the full .NET Framework
+    can only be installed on the target machine and shared by all applications.
+Open source
+Modular and compact (## based on need we can add the services. ex: static file serving)
 Ability to host on IIS or self-host in your own process
 Built-in support for dependency injection
 Built on .NET Core, which supports true side-by-side app versioning

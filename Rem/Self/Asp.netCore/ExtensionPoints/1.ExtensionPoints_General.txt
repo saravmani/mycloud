@@ -1,0 +1,17 @@
+ Created:24-Dec-2018;Monday;From Home-Bangalore
+ *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Custom model binder - IModelBinder, IModelBinderProvider
+Custom Validators - ValidationAttribute, IValidatableObject
+Change Convention - IApplicationModelConvention
+Output Formatter - OutputFormatter
+                  services.AddMvc(options =>
+                  {
+                  options.OutputFormatters.Add(new CsvOutputFormatter());
+                  });
+
+
+Application Parts - services.AddMvc().AddApplicationPart(assembly); //Used to load controllers from external assemblies
+Custom Configuration Provider - ConfigurationProvider, IConfigurationSource
+
+
+Filters

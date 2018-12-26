@@ -1,3 +1,9 @@
+#in MVC model binding is moved away from core logic
+ process of binding HTTP requests to method
+parameters is called model binding. Model binding logic abstracts away the mapping logic to prevent
+rewriting the same map over and over.
+
+
  context independence.
- Components should not have context.(ex: environment,application), 
+ Components should not have context.(ex: environment,application),
  then only we can able to reuse the components in other applications

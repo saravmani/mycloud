@@ -1,0 +1,18 @@
+Created:22-Dec-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+ASP.NET Core MVC will ignore the Accept header by default and respond with the standard configured
+format. This behavior is to keep things a bit more consistent across the board but can
+be overridden by explicitly setting the RespectBrowserAcceptHeader to true in the MvcOptions.
+
+# but i remember, in Webapi 2.0 (clasic asp.net), asp.net will repond based on Accept Header
+# i tried this with post man
+
+Content negotiation makes it possible to serve responses from the same action
+method in different formats.
+services.AddMvc(options =>
+{
+  options.OutputFormatters.Add(new XmlSerializerOutputFormatter());
+});
+
+default supported formaters are JSON, XML

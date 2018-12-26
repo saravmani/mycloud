@@ -1,0 +1,18 @@
+Created:22-Dec-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+POST /api/people
+Content-Type: application/json
+Access-Token: 1234abcd
+ClientId: MyClient1
+{
+"name":"Fanie",
+"surname":"Reynders"
+}
+
+
+
+for above mentioned request we need to bind to specific entries in the request header  and body
+
+public IActionResult Post([FromBody]PersonDto person,
+[FromHeader(Name="Access-Token")]string accessToken, [FromHeader]string clientId)

@@ -1,0 +1,101 @@
+Created:15-12-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+WebHostBuilder
+--------------------
+An ASP.NET Core application requires a host in which to execute.
+The host is responsible for the application startup and lifetime management.
+WebHostBuilder is the class responsible for building a fully configured instance of a valid ASP.NET Core host.
+
+
+//Asp.net core 1.1 way
+public static void Main(string[] args)
+{
+//WebHostBuilder
+var host = new WebHostBuilder()
+  .UseKestrel()//Instructs the host about the embedded web server to use.
+  //Kestrel is the name of the default cross-platform ASP.NET embedded web server.
+  ##Actually this Kestrel also add as a service into services collection
+  ## Actually internally the code will be like
+//public static IWebHostBuilder UseKestrel(this IWebHostBuilder hostBuilder)
+//{
+//return hostBuilder.ConfigureServices(services => {
+// ...
+//services.AddSingleton<IServer, KestrelServer>();
+
+   .UseContentRoot(Directory.GetCurrentDirectory())
+   .UseIISIntegration()//Instructs the host about using IIS as the reverse proxy that will grab requests from the public Internet and pass them on to the embedded server.
+
+   .UseStartup<Startup>()
+
+   .Build();
+
+host.Run();
+
+}
+
+Asp.net core 2.0 always
+----------------------------
+//Default builder will do all the work
+public class Program
+   {
+       public static void Main(string[] args)
+       {
+           BuildWebHost(args).Run();
+       }
+
+       public static IWebHost BuildWebHost(string[] args) =>
+           WebHost.CreateDefaultBuilder(args)
+               .UseStartup<Startup>()
+               .Build();
+   }
+
+Instead of CreateDefaultBuilder we can configure in custom way
+---------------------------------------------------------------------
+public static IWebHost BuildWebHost(string[] args) =>
+new WebHostBuilder()
+.UseKestrel()
+.UseContentRoot(Directory.GetCurrentDirectory())
+.ConfigureAppConfiguration(config =>
+config.AddJsonFile("appSettings.json", true)
+)
+.ConfigureLogging(logging=>
+logging
+.AddConsole()
+.AddDebug()
+)
+.UseIISIntegration()
+.UseStartup<Startup>()
+.Build();
+
+Without having startup class
+----------------------------
+WebHost.CreateDefaultBuilder()
+.ConfigureServices(services =>
+services.AddSingleton<IComponent, ComponentB>()
+)
+.Configure(app =>
+{
+var component = app.ApplicationServices.GetRequiredService<ICompone
+nt>();
+app.Run(async (context) =>
+await context.Response.WriteAsync($"Name is {component.Name}")
+);
+})
+.Build();
+//One of the drawbacks of defining the bootstrapping configuration inline is that we can
+only pass in one parameter as IApplicationBuilder to the Configure extension method.
+This forces us to resolve any dependencies by calling GetRequiredServices manually.
+
+
+
+Creating a Custom Server
+To create our custom server, we simply need to implement IServer, which has the
+following signature:
+public interface IServer : IDisposable
+{
+    IFeatureCollection Features { get; }
+    Task StartAsync<TContext>(IHttpApplication<TContext> application,
+    CancellationToken cancellationToken);
+    Task StopAsync(CancellationToken cancellationToken);
+}

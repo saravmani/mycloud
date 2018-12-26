@@ -1,0 +1,69 @@
+Created:15-12-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+
+Startup.cs file used to do the conrigurations
+configure middlewares
+configure services
+configure dependency container
+
+configure the request pipeline that handles all requests made to the application.
+
+Note that the startup class is not expected to implement any interface or inherit from any base class.
+Both Configure and ConfigureServices, in fact, are discovered and invoked via reflection.
+
+
+we can have multiple startup class based one environment
+
+StartupDevelopment
+StartupProduciton
+
+
+
+To use startup class based on environment we have to configure assemblyname name instead of type
+.UseStartup("assemblyname")
+# i have done the POC and it works. if we use assembly name then it works. but if use class name it wont works
+# UseStartup method have overload methods to take assembly name, type of class
+#POC is - .UseStartup("Alltest")//here Alltest.dll is the dll name
+# if we use like this then it is automaticaly calling startupxxx class based on the environment
+
+
+
+ host attempts to find a loadable class that matches the following pattern: StartupXXX where XXX is the name of the
+ current hosting environment. By default, the hosting environment is set to Production but can be changed to any string you like.
+ example, it could be Staging or Development or whatever else that makes sense for you. If the hosting environment is not set,
+ then the system will simply try to locate a plain Startup class and throws an error if it fails.
+
+ the development environment name taken from
+ ASPNETCORE_ENVIRONMENT variable under launchsettings.json
+ ## i think this can be set as environment variable, launchsettings.json file, command line arguments
+
+ we can abel to edit this by visual studio properties->debug
+
+
+ The configuration of the hosting environment is exposed programmatically
+  through the members of the IHostingEnvironment interface
+
+  An object that implements the IHostingEnvironment interface is
+  created by the host and made publicly available to the start up class, through DI
+
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+
+}
+
+
+  The constructor of the startup class can optionally receive the reference to a couple of system
+  services: IHostingEnvironment and ILoggerFactory.
+
+
+
+  the ConfigureServices method is invoked before Configure to
+  give developers a chance to wire up system and application services to the request pipeline.
+
+  Configuration of wired services might take place directly in ConfigureServices,
+  or it can be postponed until Configure is called.
+
+
+In a startup class, the names of Configure and ConfigureServices methods can also be made environment-specific.
+The pattern is ConfigureXxx and ConfigureXxxServices; Xxx refers to an environment name.

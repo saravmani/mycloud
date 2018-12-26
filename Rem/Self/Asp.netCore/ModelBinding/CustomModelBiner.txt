@@ -1,0 +1,73 @@
+Created:22-Dec-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+To create custom model binder have to create class which implements below Interface.
+And use the newly created model binder class as decorator for model(poco classes)
+
+public interface IModelBinder
+{
+Task BindModelAsync(ModelBindingContext bindingContext);
+}
+
+
+example, let’s say we have an API endpoint that receives a Base64 string of
+a photo and performs emotion recognition on it.
+
+
+public class AwesomeModelBinder : IModelBinder
+{
+    public async Task BindModelAsync(ModelBindingContext bindingContext)
+    {
+        const string propertyName = "Photo";
+        var valueProviderResult = bindingContext.ValueProvider.GetValue(propertyName);
+        var base64Value = valueProviderResult.FirstValue;
+
+    if (!string.IsNullOrEmpty(base64Value))
+        {
+            var bytes = Convert.FromBase64String(base64Value);
+            var emotionResult = await GetEmotionResultAsync(bytes);//inside this method, we can call Microsoft cognitive sertices
+            var score = emotionResult.First().Scores;
+            var result = new EmotionalPhotoDto
+            {
+                Contents = bytes,
+                Scores = score
+            };
+            bindingContext.Result = ModelBindingResult.Success(result);
+        }
+        await Task.FromResult(Task.CompletedTask);
+    }
+    // ...
+}
+
+#decorate it with model
+[ModelBinder(typeof(AwesomeModelBinder))]
+public class EmotionalPhotoDto
+{
+  public byte[] Contents { get; set; }
+  public EmotionScoresDto Scores { get; set; }
+}
+
+# another way of registering this newly created model binder is ,
+create model provider and register it in configuration method of startup.cs file
+
+
+public class AwesomeModelBinderProvider : IModelBinderProvider
+{
+    public IModelBinder GetBinder(ModelBinderProviderContext context)
+    {
+        if (context.Metadata.ModelType == typeof(EmotionalPhotoDto))
+        {
+            return new BinderTypeModelBinder(typeof(AwesomeModelBinder));
+        }
+        return null;
+    }
+}
+
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc(options =>
+    {
+        options.ModelBinderProviders.Insert(0,
+        new AwesomeModelBinderProvider());
+    });
+}

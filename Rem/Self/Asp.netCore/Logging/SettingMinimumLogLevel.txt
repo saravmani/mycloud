@@ -1,0 +1,24 @@
+Created:24-Dec-2018;Monday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+It is possible to specify a minimum log-level severity for everything or to enforce
+a specific filter for a certain provider and category. All logs sent that are below the
+provided minimum log level aren’t sent to the particular logging provider, which means
+they won’t get processed, stored, or displayed.
+
+public static void Main(string[] args)
+{
+    new WebHostBuilder()
+    .UseKestrel()
+    .UseStartup<Startup>()
+    .ConfigureLogging(logging =>
+    {
+        logging.AddConsole();
+        logging.SetMinimumLevel(LogLevel.Information);
+    })
+    .Build()
+    .Run();
+}
+
+
+Tip T o suppress all logs, set the minimum level to LogLevel.None.

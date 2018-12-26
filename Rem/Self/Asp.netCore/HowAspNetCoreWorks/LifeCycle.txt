@@ -1,0 +1,2 @@
+
+first tasks the host takes on is resolving the startup type.

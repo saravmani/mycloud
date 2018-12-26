@@ -1,3 +1,17 @@
+Modified:25-Dec-2018;Tuesday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+
+.net core example
+------------------------------
+var personRepositoryMock = new Mock<IPersonRepository>();
+personRepositoryMock.Setup(p => p.GetNames())
+.Returns(new string[] { "Fanie", "Gerald", "Mike" });
+PersonService personService = new PersonService(personRepositoryMock.
+Object);
+
+-----------------
+
 var mockRepository = new Mock<ICustomerRepository>();
 mockRepository.Setup(x=>x.Save(It.IsAny<Customer>()));
 var customerService = new CustomerService(mockRepository.Object);

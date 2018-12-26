@@ -1,0 +1,32 @@
+Created:24-Dec-2018;Monday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+logging
+.SetMinimumLevel(LogLevel.None); //No logs
+.AddFilter("Default", LogLevel.Error) //Log only Errors and Critical for default category
+.AddFilter<ConsoleLoggerProvider>("Program.Startup", LogLevel.Critical);
+//Logs only Critical errors that too applies for ConsoleLoggerProvider, that too only for "Program.Startup" Category
+
+Category is nothing but just a name which used to identify the logs .. this will be printed in logger output
+
+ex: var constructorLogger = loggerFactory.CreateLogger("Startup.ctor");
+constructorLogger.LogInformation("Logging from constructor!");
+
+
+public void Configure(IApplicationBuilder app, ILogger<Startup> logger)//Here Startup is the category
+{
+    app.Run(async (context) =>
+    {
+        logger.LogInformation("This is awesome!");
+        await context.Response.WriteAsync("Hello World!");
+    });
+}
+
+
+Filters can work both ways, in that we can specify minimum levels and special
+conditions in order to only show certain severity levels. The following code limits the
+logging by only showing Warning entries globally and Information entries specific to the
+Console logger:
+logging
+.AddFilter(s => s == LogLevel.Warning)
+.AddFilter<ConsoleLoggerProvider>(s => s == LogLevel.Information);

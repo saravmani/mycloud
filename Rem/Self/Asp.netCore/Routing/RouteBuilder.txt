@@ -1,0 +1,21 @@
+Created:22-Dec-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+IRouteBuilder
+----------------------------
+
+MapRoute -- for default routing
+builder.MapRoute(string.Empty, context =>
+{
+    return context.Response.WriteAsync($"Welcome to the default route!"));
+}
+builder.MapGet("foo/{name}/{surname?}", (request, response, routeData) =>
+{
+  return response.WriteAsync($"Welcome to Foo, {routeData.
+  Values["name"]} {routeData.Values["surname"]}"));
+}
+builder.MapPost("bar/{number:int}", (request, response, routeData) =>
+{
+  return response.WriteAsync($"Welcome to Bar, number is {routeData.
+  Values["number"]}"));
+}

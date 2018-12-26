@@ -1,0 +1,29 @@
+Created:15-12-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+dotnet  is the cli tooling.
+
+Commands for tooling
+------------------------
+
+dotnet
+  --version //.NET CLI version number
+  --help
+  --info //Displays information about the runtime environment and the .NET CLI
+
+## my understanding is - there are two main parts in .net core
+one is CLI (only for tooling), another one is CLR (Runtime)
+
+dotnet <command> --help //used to get the details help about commands
+dotnet new projname
+
+dotnet run
+dotnet restore //restore dependencies
+//#it is like npm install i think
+dotnet build
+dotnet msbuild //runs microsoft build engine
+
+dotnet test - Runs unit tests in the project using the configured test runner. Unit tests are class libraries with a dependency on a particular unit test framework and its runner application.
+
+dotnet publish
+dotnet pack - creates nuget package

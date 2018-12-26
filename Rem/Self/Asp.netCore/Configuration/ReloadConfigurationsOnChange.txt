@@ -1,0 +1,24 @@
+Created:24-Dec-2018;Monday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+var builder = new ConfigurationBuilder()
+.SetBasePath(env.ContentRootPath)
+.AddJsonFile(config =>
+{
+config.Path = "awesomeConfig.json";
+config.ReloadOnChange = true;//Have to set this property as true
+});
+
+
+IOptions<T> will   contain the original values.
+To have the configuration data automatically  we need to use IOptionsSnapshot<T>
+
+
+public class AwesomeController
+private readonly AwesomeOptions awesomeOptions;
+public AwesomeController(IOptionsSnapshot<AwesomeOptions> awesomeOptions)
+{
+this.awesomeOptions = awesomeOptions.Value;
+}
+//...
+}

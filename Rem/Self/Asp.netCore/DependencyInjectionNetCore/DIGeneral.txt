@@ -1,0 +1,17 @@
+Created:16-Dec-2018;Sunday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+The ASP.NET Core DI system is already aware of some types,
+such as IHostingEnvironment and ILoggerFactory,
+
+
+ DI system is centered around a root object known as the container
+ that traverses the tree of dependencies and resolves abstract types.
+
+## i guess.. but i need to try with some example
+So if one object depends on another, DI container will identify that and resolves
+it(if dependent type also registered in container)
+
+
+If we call
+AddSingleton<TInterface, TService>() multiple times with the

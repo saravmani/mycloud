@@ -8,3 +8,7 @@ Built-in providers let you send logs to one or more destinations, and you can pl
 ASP.NET Core doesn't provide async logger methods because logging should be so fast that it isn't worth the cost of using async.
 If you're in a situation where that's not true, consider changing the way you log.
 If your data store is slow, write the log messages to a fast store first, then move them to a slow store later.
+
+
+we can inject ILogger to any controller and can use logging service.
+This logging service needs to be properly configured in Startp.cs file

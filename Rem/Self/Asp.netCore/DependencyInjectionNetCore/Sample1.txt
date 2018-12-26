@@ -1,0 +1,25 @@
+Created:16-Dec-2018;Sunday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+
+get the object based on logged in user 
+
+public void ConfigureServices(IServiceCollection services)
+
+{
+
+    services.AddTransient<IFlagRepository>(provider =>
+
+    {
+
+        // Create the instance of the actual type to return
+
+        // based on the identity of the currently logged user.
+
+        var context = provider.GetRequiredService<IHttpContextAccessor>();
+
+        return new FlagRepositoryForUser(context.HttpContext.User);
+
+    });
+
+}

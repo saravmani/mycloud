@@ -1,0 +1,53 @@
+Created:24-Dec-2018;Monday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+new custom file awesomeConfig.json; it contains some arbitrary configuration data:
+{
+  "foo": "value of foo",
+  "bar": "value of bar",
+  "baz": {
+        "foo": "Hello world" //Note here we are hierarchy
+  }
+}
+
+
+public class Startup
+{
+    public Startup()
+    {
+        var builder = new ConfigurationBuilder()
+        .SetBasePath(env.ContentRootPath)
+        .AddJsonFile("awesomeConfig.json");
+        Configuration = builder.Build();
+    }
+    public IConfigurationRoot Configuration { get; set; }
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddMvc();
+    }
+    public void Configure(IApplicationBuilder app)
+    {
+        app.UseMvc();
+    }
+}
+
+
+
+Console.WriteLine($"Bar: {Configuration["bar"]}");
+Console.WriteLine($"Baz:Foo: {Configuration["baz:foo"]}");// Note here hierarchy
+
+# we can use configuration section to get hierarchy
+var bazSection = Configuration.GetSection("baz");
+Console.WriteLine($"Baz:Foo: {bazSection ["foo"]}");
+
+When working with multiple configuration files at the same time, configuration
+data is loaded in the same order in which it’s specified, so the latest values override any
+previous ones with the same key.
+
+var builder = new ConfigurationBuilder()
+.SetBasePath(Directory.GetCurrentDirectory())
+.AddJsonFile("awesomeConfig.json")
+.AddJsonFile("awesomeConfig2.json");
+
+# second file takes presidance. now configuration list will have mix of the values from file 1 and 2. but same keys will be overridden
+by the second file.

@@ -1,0 +1,15 @@
+Created:22-Dec-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+default behavior of model binding by explicitly tagging
+parameters with their origin using the built-in [FromBody], [FromForm], [FromHeader],
+[FromRoute], and [FromServices]
+
+
+ex:
+Posting raw JSON data is needed [FromBody] attribute
+
+
+we need to bind to specific entries in the request header  and body
+
+public IActionResult Post([FromBody]PersonDto person,
+[FromHeader(Name="Access-Token")]string accessToken, [FromHeader]string clientId)

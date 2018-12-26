@@ -1,0 +1,27 @@
+Created:22-Dec-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+Authorization filters - IAsyncAuthorizationFilter or IAuthorizationFilter
+Resource Filter - Runs after authorisation filters, and before model binding
+                  IAsyncResourceFilter or IResourceFilter interface.
+Action Filter - Before and after an action method is executed (IAsyncActionFilter or
+                IActionFilter i)
+Exception Filter - before any output is written to the response; these filters
+                  implement either the IAsyncExceptionFilter or IExceptionFilter
+Result filters - run immediately before results are executed
+                 This will executed if there is no error in action execution
+
+
+Note: framework first checks for the
+implementation of the asynchronous version, then for the synchronous version. The asynchronous filters always take precedence over the synchronous filter
+implementations.
+
+
+//# globally add the Filters
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc(options =>
+    {
+        options.Filters.Add(typeof(TimestampFilter));
+    });
+}

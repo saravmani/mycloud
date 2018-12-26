@@ -4,11 +4,12 @@ Authorization Filter
 There is a somewhat involved relationship between the authentication and authorization filters
 
 public interface IAuthorizationFilter {
-void OnAuthorization(AuthorizationContext filterContext);
+  void OnAuthorization(AuthorizationContext filterContext);
 }
 
 
-MVC Framework has provided a full-featured authorization filter, which can be derived to implement custom authorization policies.
+MVC Framework has provided a full-featured authorization filter,
+which can be derived to implement custom authorization policies.
 I try to use this whenever I can, and I recommend that you do the same. At the least, you can pass some of the
 blame to Microsoft when your secret application data is spread far and wide on the Internet.
 

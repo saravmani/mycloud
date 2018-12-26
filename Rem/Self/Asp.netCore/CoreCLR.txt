@@ -1,0 +1,11 @@
+The .NET Core Framework comes with a new runtime for application execution called CoreCLR
+
+
+The CoreCLR follows the same layout and architecture of the current .NET CLR and
+does things like loading the IL code, compiling to machine-level code, and collecting garbage.
+
+Difference between CLR to CoreCLR
+-------------------------------------
+The CoreCLR doesn’t support some features of the current CLR,
+such as application domains and code access security, that proved unnecessary
+or too specific for the Windows platform

@@ -1,0 +1,76 @@
+Created:24-Dec-2018;Monday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+The authentication process can be abstracted away from the application and
+used by other services as well, but the authorization process is typically specific to an
+application, where specific roles have different permissions.
+
+A standard authentication workflow starts with an anonymous request of a protected
+resource on the server. The HTTP server handles the request and denies access to the
+protected resource due to insufficient credentials, then sends a WWW-Authenticate
+header back indicating the types of authentication schemes that are required. The client
+sends a request containing an Authorization header, with the value conforming to
+the particular authentication scheme required. When the server receives the request, it
+validates the credentials in the Authorization header and lets the request through the
+pipeline.
+
+Authentication Schemes
+------------------------
+1 . Anonymus, -- No authentication, it is Anonymus access
+
+2. BasicAuthentication -
+flow. This scheme requires a string that
+  consists out of a username and password concatenated with a
+  colon (:), and then encoded as a Base64 string
+  For example, a typical
+Authorization header containing a Basic authentication scheme
+with username awesomeuser and password as awesomepassword
+may look like this:
+Authorization: Basic YXdlc29tZXVzZXI6YXdlc29tZXBhc3N3b3Jk
+
+3. Digest -
+The server sends a random string to the
+client as a challenge. This random string is called a nonce. The client
+authenticates them by sending a hash that contains a username,
+password, and nonce, as well as potentially other information.
+
+4. Bearer authentication  -
+is among the most popular and more secure
+authentication schemes around. It works by making use of bearer
+tokens for accessing OAuth 2.0–protected resources. Anyone in
+possession of a bearer token can gain access to associated resources.
+Bearer tokens are usually short-lived and expire after a specific point
+Here’s an example of an Authorization header containing a
+Bearer token:
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.
+e30.3u5
+UwreDwHRgVR4roifZDnacpsa3hkX5_hqhp6tLnV0
+
+5.NTLM
+it is more secure than digest scheme. This scheme uses Windows credentials to transform the
+challenge data, instead of using the encoded credentials.
+
+6. Negotiate scheme:
+The Negotiate scheme automatically selects between the NTLM
+authentication scheme and the Kerberos protocol, which is faster
+than NTLM.
+
+The NTLM and Negotiate authentication schemes are specific to the
+Windows operating system.
+
+
+ASP.NET Core Identity is most commonly used with web applications
+consisting of user interfaces, and not with web APIs.
+
+When hosting applications in the cloud, we can leverage the power of Azure Active
+Directory (AAD) to act as a gatekeeper for protecting secure resources. ASP.NET
+Core has native integration with AAD by making use of Bearer authentication. Azure
+also offers Azure Active Directory B2C (Azure AD B2C), which is a cloud identity-management
+solution for web applications that have a minimal configuration for
+authenticating against social, enterprise, and local accounts.
+
+
+There are also great third-party OSS authentication providers available from the
+community, like AspNet.Security.OpenIdConnect.Server (ASOS), IdentityServer4, and
+OpenIddict, which are OpenID Connect server frameworks for ASP.NET Core, as well as
+PwdLess, which is a simple and stateless mechanism for authentication in ASP.NET Core
+without using passwords.

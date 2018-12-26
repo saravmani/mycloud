@@ -1,0 +1,6 @@
+IHttpActionResult is now effectively IActionResult,
+and to return an Ok with a return object, you'd use return new ObjectResult(...);
+
+
+we can directly edit the project file from within Visual Studio, that too with out unloading th project!!!  
+## but in older versions we have to use notepad to edit the proj file

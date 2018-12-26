@@ -1,0 +1,21 @@
+Created:24-Dec-2018;Monday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+# used to create seperate projects (dlls) with controllers, and we can able to use those controllers in the main applciation
+using applicatin part
+
+By using application parts, we make it possible
+to discover external components to be used in our application that can even be located
+in a separate assembly.
+
+public void ConfigureServices(IServiceCollection services)
+{
+    var assembly = Assembly.LoadFile(@"C:\folder\mylib.dll");
+    services.AddMvc()
+    .AddApplicationPart(assembly);
+}
+
+Let’s assume we have a compiled class library that contains a specific controller
+called PeopleController, which returns a list of people names and is situated within a
+particular folder on the server. We can make use of the AddApplicationPart extension
+method to add application parts from a given assembly during runtime.

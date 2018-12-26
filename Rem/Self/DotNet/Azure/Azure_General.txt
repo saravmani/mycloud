@@ -27,3 +27,20 @@ triggered by timer, or can execute by calling from externally
 we can able to create functions from vsts and can able to publish
 can able to create wehbooks
 timer functions -- are jobs
+
+
+Azure vault
+-----------------
+## i got this info whiel reading  asp.net core configuration.
+## i think it is used to store the key value pair of values and used to store the configuration settings
+## i can compare this with password vault in sb
+.AddAzureKeyVault("https://awesomevault.vault.azure.net/",
+
+Azure Active Directory (AAD)
+-----------------------------
+When hosting applications in the cloud, we can leverage the power of Azure Active
+Directory (AAD) to act as a gatekeeper for protecting secure resources. ASP.NET
+Core has native integration with AAD by making use of Bearer authentication. Azure
+also offers Azure Active Directory B2C (Azure AD B2C), which is a cloud identity-management
+solution for web applications that have a minimal configuration for
+authenticating against social, enterprise, and local accounts.

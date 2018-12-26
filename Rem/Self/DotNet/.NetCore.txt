@@ -1,4 +1,4 @@
-.NET Core is a set of runtime, library and compiler components that allow you to create apps 
+.NET Core is a set of runtime, library and compiler components that allow you to create apps
 that run on Windows, Mac OS X and Linux. It can be installed locally with your app with only
  the packages you need. It provides a light weight development model and the flexibility to
  work with your favorite development tools on your favorite development platform.
@@ -9,16 +9,16 @@ that run on Windows, Mac OS X and Linux. It can be installed locally with your a
 
 NET Core command-line (CLI) tools, used for building .NET Core apps and libraries through your development flow (compiling, NuGet package management, running, testing, .
 
-The CoreCLR has nothing in the Global Assembly Cache and multiple versions can be installed side by side on the same machine.  
-CoreCLR is a cut-down version and is optimized for high throughput with low memory – otherwise known as ‘Cloud Optimized’.
-The Core CLR is fully open source and available on GitHub, and runs on Linux/Unix/OSx via Mono. 
+The CoreCLR has nothing in the Global Assembly Cache and multiple versions can be installed side by side on the same machine.
+CoreCLR is a cut-down version and is optimized for high throughput with low memory ï¿½ otherwise known as ï¿½Cloud Optimizedï¿½.
+The Core CLR is fully open source and available on GitHub, and runs on Linux/Unix/OSx via Mono.
 
 
-ASP.NET vNext uses the ‘Roslyn’ compiler, which is a managed compiler written in it’s own language (the C# compiler is written in C#).  Roslyn compiler technology is fast and enables true ‘edit and run’ capabilities.  There is no need to compile an ASP.NET application and deploy the binaries, as you can just deploy the code files and let it compile in place.  Roslyn is open source and hosted on Github.
+ASP.NET vNext uses the ï¿½Roslynï¿½ compiler, which is a managed compiler written in itï¿½s own language (the C# compiler is written in C#).  Roslyn compiler technology is fast and enables true ï¿½edit and runï¿½ capabilities.  There is no need to compile an ASP.NET application and deploy the binaries, as you can just deploy the code files and let it compile in place.  Roslyn is open source and hosted on Github.
 
 In the previous .NET versions (1.0 through 4.6) all of the libraries were installed all the time (for the desktop/server versions, anyway).  A lot of ASP.NET functionality was encapsulated in the fearsome System.Web namespace, which had everything you could possibly need to build an ASP.NET application.   As the world moves to virtual servers in cloud environments, there is a real cost to stuffing all those unused libraries in memory.  The ability to slim down an application to only the bits needed is the right direction.
 
-DNX as an SDK containing everything needed to build and run an ASP.NET 5 application.  
+DNX as an SDK containing everything needed to build and run an ASP.NET 5 application.
 DNX - .Net Execution Environment
 
 
@@ -39,23 +39,23 @@ ET Core is portable. If you target .NET Core, the entire runtime can be bundled 
 NET Core can be packaged and deployed as part of your application; no global installation required.
 
 
-Class libraries and some utility tools, however, will likely targetting both runtimes. So what’s needed is some way to figure out what runtime to invoke when running an application. That’s where DNX comes in.
+Class libraries and some utility tools, however, will likely targetting both runtimes. So whatï¿½s needed is some way to figure out what runtime to invoke when running an application. Thatï¿½s where DNX comes in.
 
 
-Whether your application targets the full .NET Framework or just .NET Core, it can be executed with DNX. Think of DNX as a host for your .NET applications, 
+Whether your application targets the full .NET Framework or just .NET Core, it can be executed with DNX. Think of DNX as a host for your .NET applications,
 
 Under DNX, this all changes. Firstly, I get to choose my runtime. Will this console application target the .NET Framework, .NET Core, or both?
 #Note: Actually here we have to choose the runtime
 
-Secondly, in development, there is no compilation step - code is compiled on the fly with Roslyn, so you’ll never see a .dll or .exe in the first place when you hit F5 locally. 
+Secondly, in development, there is no compilation step - code is compiled on the fly with Roslyn, so youï¿½ll never see a .dll or .exe in the first place when you hit F5 locally.
 
 
-Kestrel is a cross-platform, open source HTTP server for ASP.NET 5.0. It’s built by the same team at Microsoft that built ASP.NET 5.0, and it allows ASP.NET 5.0 applications to run consistently across Windows, Linux, and OSX.
+Kestrel is a cross-platform, open source HTTP server for ASP.NET 5.0. Itï¿½s built by the same team at Microsoft that built ASP.NET 5.0, and it allows ASP.NET 5.0 applications to run consistently across Windows, Linux, and OSX.
 
 Kestrel supports http,https
 
 
-I also pass the --no-source flag when publishing. This ensures that dnu publish compiles the code and only publishes the compiled output, not the source code. Without this argument, DNX will dynamically compile the application on the fly as it runs with Roslyn. The Roslyn dynamic compilation features of ASP.NET 5 were designed to make for a better development experience; there’s really no benefit to using them in production.
+I also pass the --no-source flag when publishing. This ensures that dnu publish compiles the code and only publishes the compiled output, not the source code. Without this argument, DNX will dynamically compile the application on the fly as it runs with Roslyn. The Roslyn dynamic compilation features of ASP.NET 5 were designed to make for a better development experience; thereï¿½s really no benefit to using them in production.
 
 
 
@@ -74,7 +74,7 @@ DNX - Dot net execution runtime
 
 in vsts 2015 if we can modify javasccript or html code in browser (using developer tool) and can push it to vsts
 
-Every application will have its own version of frame work. what we are having in our developer machine, will be the same on 
+Every application will have its own version of frame work. what we are having in our developer machine, will be the same on
 production. this will solve the the most of the compatibility issues
 Actually framework ships as part of the application
 benifit is if we run our application in .netframe work 7 it will not affect other applications which is running on .net framework 4.6
@@ -87,19 +87,19 @@ in project file if add new reference, it will automaticaly install it from nuget
 also  now project file get intelisense from nugetpackage (from net)
 
 
-DNX, a Dot Net eXecution environment, contains all of the code that is required to bootstrap and run an application. It includes the compilation system, 
+DNX, a Dot Net eXecution environment, contains all of the code that is required to bootstrap and run an application. It includes the compilation system,
 SDK tools and the native CLR host, with NuGet packages being used to access assemblies that are referenced by the application. This system gives us the ability,
- for the first time ever, to deploy applications merely by copying them. Each application can reside in its own directory which will contain the NuGet packages 
+ for the first time ever, to deploy applications merely by copying them. Each application can reside in its own directory which will contain the NuGet packages
 for all of its dependencies
 
-When you install VS 2015, you get a version of DNX installed onto your machine. If you start a command prompt and run DNVM, the DNX version manager, 
+When you install VS 2015, you get a version of DNX installed onto your machine. If you start a command prompt and run DNVM, the DNX version manager,
 you can see the variants of the CLR that are initially installed.
 
 
 NET Core is the small optimized runtime that is the basis of ASP.NET Core 5
 
 
-When we designed .NET Native it was clear that we can’t use the .NET Framework as the foundation for the framework class libraries. That’s because .NET Native essentially merges the framework with the application, and then removes the pieces that aren’t needed by the application before it generates the native code
+When we designed .NET Native it was clear that we canï¿½t use the .NET Framework as the foundation for the framework class libraries. Thatï¿½s because .NET Native essentially merges the framework with the application, and then removes the pieces that arenï¿½t needed by the application before it generates the native code
 
 .net native the frame work will be attched to application while doing deployment. so it no need to any other dependencies to be installed to the run the application
 
@@ -111,8 +111,8 @@ Project lock file will tell referenced package
 NET Core is compatible with .NET Framework, Xamarin and Mono, via the .NET Standard Library.
 
 
-NET Core – Includes the .NET Core runtime and framework. The current version is “.NET Core 1.0”
-.NET Core SDK – Includes .NET Core and the .NET Core Tools. The current version is “.NET Core SDK 1.0 Preview 2”.
+NET Core ï¿½ Includes the .NET Core runtime and framework. The current version is ï¿½.NET Core 1.0ï¿½
+.NET Core SDK ï¿½ Includes .NET Core and the .NET Core Tools. The current version is ï¿½.NET Core SDK 1.0 Preview 2ï¿½.
 
 
 application models have been built on top of .NET Core to extend its functionality, such as:
@@ -138,7 +138,7 @@ in .net core
 but reflection is supported
 
 
- to choose from currently include dnx451, dnx452, and dnx46 for a full CLR, or dnxcore50 for a core CLR. 
+ to choose from currently include dnx451, dnx452, and dnx46 for a full CLR, or dnxcore50 for a core CLR.
 
 
 asp.net core apps are really console app in .net core world. so this will have Main method in startup.cs file

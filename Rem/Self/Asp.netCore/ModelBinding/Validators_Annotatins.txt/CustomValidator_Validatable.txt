@@ -1,0 +1,33 @@
+Created:22-Dec-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+Doing the same validation logic (which we can do with ValidationAttribute), but without the use of attributes, requires us
+to have the model implement the IValidatableObject interface
+
+
+public class ValidateMe : IValidatableObject
+{
+    [Required]
+    public bool Enable { get; set; }
+
+    [Range(1, 5)]
+    public int Prop1 { get; set; }
+
+    [Range(1, 5)]
+    public int Prop2 { get; set; }
+
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+        var results = new List<ValidationResult>();
+        if (this.Enable)
+        {
+
+            // some other random test
+            if (this.Prop1 > this.Prop2)
+            {
+                results.Add(new ValidationResult("Prop1 must be larger than Prop2"));
+            }
+        }
+        return results;
+    }
+}

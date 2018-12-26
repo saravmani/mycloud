@@ -1,0 +1,9 @@
+Created:24-Dec-2018;Monday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Critical - may be used to indicate application wide errors, or very hight Critical
+Error
+Warning
+Information
+debug
+Trace - As trace log entries may contain sensitive data,
+this type is disabled by default for the production environment.

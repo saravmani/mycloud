@@ -1,0 +1,19 @@
+Created:16-Dec-2018;Sunday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+This get called by reflection. it gets IservicesCollection as parameter
+
+public void ConfigureServices(IServiceCollection services)
+
+{
+
+  var connString = "...connections string...";
+
+  services.AddDbContext<YourDbContext>(options => options.UseSqlServer(connString));
+  //Configuring DB context and connection string
+
+}
+
+
+Adding a service to the IServicesCollection container makes the service further available
+to the rest of the application via the ASP.NET Core built-in dependency injection system.

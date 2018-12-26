@@ -1,3 +1,6 @@
+
+
+
 Created:17-Jun-2018;Sunday;From home-Chennai-Keelkattalai
 *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
 
@@ -11,4 +14,9 @@ third party injectors.
 
 # My commands
 But Property injection is bad idea, bcs there is no guarantee that property will get injected
-Also unit test cases also will get affected, if the property injection not happend properly
+Also unit test cases also will get affected, if the property injection not happened properly
+
+ASP.NET Core implementation doesn’t support is the ability to map the same abstract type to
+multiple concrete types—each with a different and unique key.
+By passing the key (usually, an arbitrary string) to the service provider, 
+you can have the abstract type resolved in a particular way.

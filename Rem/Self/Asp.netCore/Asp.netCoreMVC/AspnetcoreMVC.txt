@@ -1,0 +1,15 @@
+Created:22-Dec-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+Think of MVC in ASP.NET Core as a sub-application middleware containing an
+inner middleware infrastructure.
+
+
+MVC introduces
+--------------------
+View Components
+Tag Helpers
+Razor pages
+
+Asp.net MVC is a middle ware
+Refer image - MVCMiddleware.jpg

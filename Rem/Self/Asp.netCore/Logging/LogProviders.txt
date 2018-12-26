@@ -1,0 +1,18 @@
+Created:24-Dec-2018;Monday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Asp.net Core Supports 6 different log providers
+1. ConsoleLoggerProvider
+2. DebugLogprovider - display debug
+3. EventSource -  AddEventSourceLogger --windows only (full .NET 4.6 framework needed)
+4. TraceLisener - AddTraceSource --windows only (full .NET 4.6 framework needed)
+The Trace Listener provider allows us to log to a variety of trace listeners, such as
+the TextWriterTraceListener; we can add it by calling the AddTraceSource method on
+ILoggingBuilder. The EventLog and Trace Listener providers are Windows-only and require
+your application to target the full .NET 4.6 framework. If the application targets
+operating systems other than Windows, one should make use of #if definitions.
+5. Azure App Service
+  If an application is deployed to Azure as an app service, it automatically gets
+configured with the Azure App Service logging provider. All that we need to do is turn
+it on inside the Azure portal. This provider does not affect when we run the application
+locally and will only work within the Azure environment.
+6. Other third party providers - NLog,JSNLog,Elmah.IO

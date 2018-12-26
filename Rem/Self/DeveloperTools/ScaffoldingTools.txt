@@ -1,0 +1,9 @@
+Created:15-12-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+Yeoman - WEB'S SCAFFOLDING TOOL FOR MODERN WEBAPPS. It can generate projects in any language (Web, Java, Python, C#, etc.)
+It works with Nodejs
+
+Yeoman is Language-agnostic project generator that, when properly configured,
+can generate all the files that make up the skeleton of a web application,
+including ASP.NET Core applications.

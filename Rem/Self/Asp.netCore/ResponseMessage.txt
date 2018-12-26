@@ -1,0 +1,25 @@
+Created:24-Dec-2018;Monday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+By default, ASP.NET Core applications do not provide any other details on status
+codes, but we can enable these details by using the StatusCodePagesMiddleware. We
+must call the UseStatusPages extension method available on IApplicationBuilder:
+public void Configure(IApplicationBuilder app)
+{
+app.UseStatusCodePages();
+}
+When running the application and invoking an endpoint that does not exist, we will
+get the following response formatted as plain text:
+Status code page, status code: 404
+We can also customize the response to our liking. For example, the following code
+uses an overload of the UseStatusCodePages function, thus allowing us to write directly
+to the Response stream:
+app.UseStatusCodePages(async context =>
+{
+context.HttpContext.Response.ContentType = "text/plain";
+await context.HttpContext.Response.WriteAsync(
+$"Awesome Status Page, status code: {context.HttpContext.Response.
+StatusCode}");
+});
+Now, when the application hits a Not Found error, the following will be in the
+response body:
+Awesome Status Page, status code: 4

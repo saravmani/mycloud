@@ -1,0 +1,15 @@
+Created:22-Dec-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+#Create custome validator by inheriting ValidationAttribute
+public class StartsWithCapitalLetterAttribute : ValidationAttribute
+{
+    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    {
+        if (value?.ToString()[0] != value?.ToString().ToUpper()[0])
+        {
+            return new ValidationResult("Value must start with capital letter");
+        }
+        return ValidationResult.Success;//Returning Success
+    }
+}

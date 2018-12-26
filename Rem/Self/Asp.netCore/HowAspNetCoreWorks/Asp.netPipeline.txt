@@ -1,0 +1,4 @@
+Created:16-Dec-2018;Sunday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+ The pipeline is made of middleware components registered in Configure and invoked in the registered order for each request.

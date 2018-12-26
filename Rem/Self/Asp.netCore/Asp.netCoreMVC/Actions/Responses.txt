@@ -1,0 +1,36 @@
+Created:22-Dec-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+For empty responses, it provides helper methods like Ok, NotFound, and BadRequest to respond
+with the proper HTTP status codes of 200, 404, and 400, respectively.
+redirection - Redirect, LocalRedirect, or RedirectToRoute methods
+
+formatted response helper methods
+Ok, Json, File, or Content for APIs and View for rendering HTML
+
+#if we inherit controller from the Controller class then above mentioned helper methods will be availables
+
+ex:
+public IActionResult Get(int id)
+    {
+        if (_peopleService.DoesExists(id))
+        {
+            var person = _peopleService.GetOnePerson(id);
+            return Ok(person);
+        }
+        return NotFound();
+    }
+    public IActionResult Post(Person person)
+    {
+        if (_peopleService.Validated(person))
+        {
+            _peopleService.Create(person);
+            return CreatedAtAction(nameof(this.Get), person.Id);
+        }
+        return BadRequest();
+    }
+
+# if we are not inheritting from controller then we have to create response objects
+
+return new OkObjectResult(people);
+return new NotFoundResult();

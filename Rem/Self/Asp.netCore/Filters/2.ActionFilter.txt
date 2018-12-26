@@ -1,0 +1,29 @@
+Created:22-Dec-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+
+# note inheritting from Attribute is needed only if we want to add the filters as attributes to specific action methods
+# If we are going to use it globally (register in services), then inherit from Attribute is not required 
+public class TimestampFilter : Attribute, IActionFilter, IAsyncActionFilter
+{
+    public void OnActionExecuting(ActionExecutingContext context)
+    {
+        context.ActionDescriptor.RouteValues["timestamp"] = DateTime.Now.ToString();
+        //Add some data into routevalues, this will be passed to action method. Action can access  this data by model binding
+    }
+    public void OnActionExecuted(ActionExecutedContext context)
+    {
+        var ts = DateTime.Parse(context.ActionDescriptor.
+        RouteValues["timestamp"])
+        .AddHours(1)
+        .ToString();
+        context.HttpContext.Response.Headers["X-EXPIRY-TIMESTAMP"] = ts;//Modify the header on response
+    }
+    public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
+    {
+    ///This is the method for IAsyncActionFilter. Other two for IActionFilter
+        this.OnActionExecuting(context);
+        var resultContext = await next();
+        this.OnActionExecuted(resultContext);
+    }
+}

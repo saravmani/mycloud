@@ -1,0 +1,35 @@
+Created:21-Dec-2018;Friday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+app.Use may call next middleware component in the pipeline.
+app.Run will never call subsequent middleware
+MapWhen branches the request pipeline based on the result of the given predicate. Any predicate of type Func<HttpContext, bool> can be used to map requests to a new branch of the pipeline.
+
+
+When Map is used, the matched path segment(s) a
+MapWhen branches the request pipeline based on the result of the given predicate. Any predicate of type Func<HttpContext, bool> can be used to map requests to a new branch of the pipeline.
+
+
+app.Use(async (context, next) =>
+   {
+       await context.Response.WriteAsync("<html><body>");
+       await context.Response.WriteAsync("<div>Inside middleware defined using app.Use</div>");
+       await next();
+       await context.Response.WriteAsync("</body></html>");
+   });
+
+   app.Run(async context => {
+      await context.Response.WriteAsync("<div>Inside middleware defined using app.Run</div>");
+   });
+
+   app.Map("/map1", HandleMapTest1);
+
+   app.MapWhen(
+context =>
+context.Request.Method == "POST" &&
+context.Request.Path == "/bar",
+config =>
+config.Use(async (context, next) =>
+await context.Response.WriteAsync("Welcome to POST /bar")
+)
+);

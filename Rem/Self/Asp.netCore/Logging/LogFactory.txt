@@ -1,0 +1,16 @@
+Created:24-Dec-2018;Monday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+used to create ad-hoc logger on the fly
+while creating logger, we can specify the category (this will be printed
+
+public class Startup
+{
+  private readonly ILoggerFactory loggerFactory;
+  public Startup(ILoggerFactory loggerFactory)
+  {
+    this.loggerFactory = loggerFactory;
+    var constructorLogger = loggerFactory.CreateLogger("Startup.ctor");
+    constructorLogger.LogInformation("Logging from constructor!");
+}
+
+Ideally, we need to stick to one category per class to keep things simple.

@@ -1,0 +1,12 @@
+Created:19-12-2018;Wednesday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+Another .NET initiative is .NET Native. This compiles C# code to native CPU instructions
+ahead-of-time (AoT), rather than using the CLR to compile intermediate language (IL)
+code just-in-time (JIT) to native code later.
+.NET Native improves execution speed and reduces the memory footprint for applications.
+It supports the following:
+UWP apps for Windows 10, Windows 10 Mobile, Xbox One, HoloLens, and
+Internet of Things (IoT) devices such as Raspberry Pi
+Server-side web development with ASP.NET Core
+Console applications for use on the command line

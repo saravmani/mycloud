@@ -1,0 +1,25 @@
+Created:22-Dec-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+public class PersonDto
+{
+    [Required]
+    public int Id { get; set; }
+    [Required, MaxLength(20)] //Note here Multiple attributes :-)
+    public string FirstName { get; set; }
+    [MinLength(5)]
+    public string LastName { get; set; }
+    [EmailAddress]
+    public string Email { get; set; }
+    [Url]
+    public string BlogUrl { get; set; }
+    [Range(1, 5)]
+    public int Level { get; set; }
+}
+
+
+ModelState.IsValid provided by ConrollerBase Class
+
+When using POCO controller classes, the ModelState property is not available
+directly, but can be explicitly acquired by injecting an IActionContextAccessor
+constructor parameter and reading the ModelState property from the
+ActionContext provided.

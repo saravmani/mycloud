@@ -1,0 +1,35 @@
+public void ConfigureServices(IServiceCollection services)
+        {
+        }
+
+in startup.cs file above code block used to configure the dependencies
+
+services.AddScoped // Per http Request only one object will b there.
+        where ever it get asked, same object will be given in that REQUEST
+services.AddSingleton
+services.AddTransient //For each resolve new object
+
+
+
+
+public class FlagController
+{
+
+   private FlagService _service;
+   public FlagController(IServiceProvider provider)
+   {
+      _service = provider.GetService<FlagService>();
+
+   }
+
+var flagService = provider.GetService<FlagService>();// used to get the instance
+To get an instance of the IServiceProvider container, you just define
+IServiceProvider as a parameter of the constructor wherever needed,
+and the DI will kindly inject the expected instance.
+
+Injecting IServiceProvider or injecting the actual dependency has the same effect on your code.
+
+Every abstract type can be mapped to multiple concrete types.
+When this happens, the system uses the last registered concrete type to resolve the dependency.
+If no concrete type can be found, then null is returned. 
+If a concrete type is found, but it cannot be instantiated, then an exception is thrown.

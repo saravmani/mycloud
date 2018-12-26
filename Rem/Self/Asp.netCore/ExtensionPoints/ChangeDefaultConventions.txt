@@ -1,0 +1,62 @@
+Created:22-Dec-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Asp.net core by default fallows some conventions
+ex:
+if a class name ends with "XXXXController" suffix, then it will be considered as a controller
+
+To change this behaviour, example if we want to add specific suffix ("XXXXApi"), then we have to
+i use IApplicaitonModelConvention
+
+public interface IApplicationModelConvention
+{
+void Apply(ApplicationModel application);
+}
+
+The Apply function receives an ApplicationModel, which is a representation of our
+MVC application. An ApplicationModel contains a collection of ControllerModel objects,
+which contains a collection of ActionModel objects.
+
+ex:
+
+public class AwesomeApiControllerConvention : IApplicationModelConvention
+{
+    public void Apply(ApplicationModel application)
+    {
+        var controllers = Assembly
+        .GetExecutingAssembly()
+        .GetExportedTypes()
+        .Where(t => t.Name.EndsWith("Api"));
+        foreach (var controller in controllers)
+        {
+            var controllerName = controller.Name.Replace("Api", "");
+            var model = new ControllerModel(controller.GetTypeInfo(),
+            controller.GetCustomAttributes().ToArray());
+            model.ControllerName = controllerName;
+            model.Selectors.Add(new SelectorModel
+            {
+
+                AttributeRouteModel = new AttributeRouteModel()
+                {
+                    Template = $"{controller.Namespace.Replace(".", "/")}/{ controllerName }"
+                }
+            });
+            foreach (var action in controller.GetMethods().Where(p =>
+            p.ReturnType == typeof(IActionResult)))
+            {
+                var actionModel = new ActionModel(action, new object[] {new HttpGetAttribute() })
+                {
+                    ActionName = action.Name
+                };
+                actionModel.Selectors.Add(new SelectorModel());
+                model.Actions.Add(actionModel);
+            }
+            application.Controllers.Add(model);
+        }
+    }
+}
+
+/// Add this convention in to servicess
+.AddMvc((o) =>
+{
+o.Conventions.Add(new AwesomeApiControllerConvention());
+});

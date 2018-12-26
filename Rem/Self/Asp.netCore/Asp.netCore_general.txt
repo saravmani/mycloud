@@ -1,3 +1,16 @@
-In Asp.net core
-there is no seperate items for webapi and mvc. 
+
+The .NET Core Framework comes with a new runtime for application execution called CoreCLR
+
+## my understanding is - there are two main parts in .net core
+one is CLI (only for tooling), another one is CLR (Runtime)
+
+
+no separate items for webapi and mvc.
 Both are combined into one as "Asp.net Core MVC"
+
+ASP.NET Core consists of an embedded web server (Kestrel) and a runtime environment that runs the application code.
+Kestrel can be exposed directly outside
+## i think Kestrel is reside inside aps.net core related dlls
+
+Across ASP.NET Core we will notice that dependencies and configurations conform
+to a certain Add/Use style by first defining what is required and then how it is used.

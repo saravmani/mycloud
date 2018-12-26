@@ -1,3 +1,12 @@
+Modified:25-Dec-2018;Tuesday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+[X=base64(header)].[Y=base64(payload)].[sign([X].[Y])]
+The resulting JWT token is a string consisting of the three parts separated by a dot (.).
+The first two parts are Base64-encoded strings of the header and payload sections in the
+JSON object, and the last part is a combination of the first two Base64 strings, separated
+by a dot (.) and signed.
+
+---------------------------------
 What Is a Token-Based Authentication System?
 The token-based authentication systems allow users to enter their username and password in order to obtain a
 token which allows them to fetch a specific resource - without entering their username and password at each request.

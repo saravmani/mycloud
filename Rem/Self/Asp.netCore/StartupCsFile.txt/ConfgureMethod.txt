@@ -1,0 +1,38 @@
+Created:16-Dec-2018;Sunday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+The Configure method is used to configure the HTTP request pipeline and to specify the
+modules that will have a chance to process incoming HTTP requests.
+Modules and loose code that can be added to the HTTP request pipeline are collectively referred to as middleware.
+
+
+public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime lifeTime)
+
+{
+
+//IApplicationLifetime is hvaing cancelation tokens for startup, stop, stopping 
+
+//This method will get the parameter objects through DI
+
+if (env.IsDevelopment())
+{
+    app.UseBrowserLink();
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseExceptionHandler("/Home/Error");//It is like Application_Error Event in global.asax
+}
+app.UseStaticFiles();
+}
+
+
+A very common action you would take in the Configure method is enabling the ability to
+serve static files and a centralized error handler.
+
+To check the custome environment we cand use env.IsEnvironment("CustomeEnvName");
+For standard enveronments  env.IsProduction(),env.IsDevelopment(), IsStaging()
+
+Note that environment names are not case-sensitive in Windows and Mac, but they are case-sensitive in Linux.
+
+order in which services are configured is important. For this reason, the first thing you want to do in Configure is set up error handling right after the static files.

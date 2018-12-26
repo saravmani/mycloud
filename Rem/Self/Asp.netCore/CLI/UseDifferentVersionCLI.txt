@@ -1,0 +1,25 @@
+Created:15-12-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+
+When multiple versions of the CLI are installed, and you don’t want to run the latest,
+then you create a global.json
+file in the same folder of the application and ensure it contains at least the following:
+
+{
+
+  "sdk": {
+
+    "version": "2.0.0"
+
+  }
+
+}
+
+
+Note This version of the CLI tooling is not the same as the version of
+the .NET Core runtime the application will use. The runtime
+version is specified in the project file,
+
+csproj XML file and changing the value of the TargetFramework element.
+The value refers to the moniker that identifies the version (such as netcoreapp2.0).

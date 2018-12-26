@@ -1,0 +1,66 @@
+Created:24-Dec-2018;Monday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+public static void Main(string[] args)
+{
+  var builder = new ConfigurationBuilder()
+  .SetBasePath(Directory.GetCurrentDirectory())
+  .AddJsonFile("awesomeConfig.json");
+
+  var awesomeOptions = new AwesomeOptions();//this class should have the properties which is in the name of keys
+  builder.Build().Bind(awesomeOptions);//This line used to bind to strongly typed object
+
+
+  Console.WriteLine($"Foo: {awesomeOptions.Foo}");
+  Console.WriteLine($"Bar: {awesomeOptions.Bar}");
+  Console.WriteLine($"Baz.Foo: {awesomeOptions.Baz.Foo}");
+  Console.ReadKey();
+}
+
+
+example
+
+for below JSON
+{
+"foo": "value of foo",
+"bar": "value of bar",
+"baz": {
+"foo": "Hello world"
+}
+}
+
+strongly typed class is
+
+
+public class AwesomeOptions
+{
+    public string Foo { get; set; }
+    public string Bar { get; set; }
+    public BazOptions Baz { get; set; }
+    public class BazOptions
+    {
+        public string Foo { get; set; }
+    }
+}
+
+
+
+More practical way is
+----------------------
+
+public void ConfigureServices(IServiceCollection services)
+{
+services.AddMvc();
+services.Configure<AwesomeOptions>(Configuration);
+}
+
+This will allow the injection of IOptions<AwesomeOptions> from anywhere in the
+application. Here’s an example of AwesomeController using AwesomeOptions options:
+public class AwesomeController
+{
+private readonly AwesomeOptions awesomeOptions;
+public AwesomeController(IOptions<AwesomeOptions> awesomeOptions)
+{
+this.awesomeOptions = awesomeOptions.Value;
+}
+//...
+}

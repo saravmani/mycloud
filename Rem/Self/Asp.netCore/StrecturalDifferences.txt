@@ -1,0 +1,14 @@
+
+web.config file—is still there, but its content differs
+
+new
+------------
+wwwroot folder
+startup.cs -- Having startup.cs available might not be a complete surprise
+              if you’ve practiced a bit with OWIN-based frameworks such as Web API or ASP.NET SignalR. 
+program.cs
+launchsettings.json
+
+Missing
+------------
+global.asax

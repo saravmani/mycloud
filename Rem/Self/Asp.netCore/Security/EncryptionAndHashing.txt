@@ -1,0 +1,12 @@
+Created:05-Jan-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+ Asp.net core 2.0 uses
+ AES256 for encryption
+ and
+ SHA256 (Hashing) for validation
+
+
+asp.net core will store the key in encrypted way.
+based on the environment it will store it in different places
+in windows it will store the key in DPAPI. The user can change this option

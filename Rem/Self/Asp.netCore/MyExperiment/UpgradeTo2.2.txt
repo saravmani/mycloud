@@ -1,0 +1,13 @@
+ Created:29-Dec-2018;Saturday;From Home-Bangalore
+ *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+ To upgrade asp.net core 1.2 to asp.net core 2.2 ,
+ download .net core 2.2 sdk from microsoft website
+
+ then in project file change below settings
+  <TargetFramework>netcoreapp2.2</TargetFramework>
+
+
+then upgrade nuget package
+
+then restart the visual studio

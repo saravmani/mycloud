@@ -30,4 +30,5 @@ Also Compress the temp table. (if we have more CUP then we can choose compressio
 
 Common problem when tempdb runs out of space, then queries will started getting failing
 Solution for This- only restart
-  How do I shrink tempdb to get it back down to size? Well, once it's blown out to that size, it's very difficult to shrink it, so you typically would have to restart the instance to get it back down to size.
+  How do I shrink tempdb to get it back down to size? Well, once it's blown out to that size,
+  it's very difficult to shrink it, so you typically would have to restart the instance to get it back down to size.

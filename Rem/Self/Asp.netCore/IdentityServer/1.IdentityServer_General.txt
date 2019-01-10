@@ -1,0 +1,11 @@
+Created:05-Jan-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+steps for identityserver in asp.net core
+
+install nuget package identityserver4
+
+config services
+	services.addinentityserver
+
+some quick start is available in github
+https://github.com/IdentityServer/IdentityServer4.Quickstart.UI

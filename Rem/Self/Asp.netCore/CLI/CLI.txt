@@ -7,6 +7,6 @@ When multiple versions are installed, then by default the most recent runs.
 
 
 IIS express will work only with Visual studio If we run .net core application from command line
-there is seperate webserver will get launched
+there is separate webserver will get launched
 Kestrol is a webserver it ships with asp.net core. This kstrol webserver can
 run in all platforms (linux, apple etc.,)

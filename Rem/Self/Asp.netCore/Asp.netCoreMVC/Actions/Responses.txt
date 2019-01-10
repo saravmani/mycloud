@@ -6,7 +6,7 @@ with the proper HTTP status codes of 200, 404, and 400, respectively.
 redirection - Redirect, LocalRedirect, or RedirectToRoute methods
 
 formatted response helper methods
-Ok, Json, File, or Content for APIs and View for rendering HTML
+Ok, JsonResponse, File, or ContentResponse for APIs and View for rendering HTML
 
 #if we inherit controller from the Controller class then above mentioned helper methods will be availables
 

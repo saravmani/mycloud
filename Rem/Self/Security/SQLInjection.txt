@@ -1,0 +1,13 @@
+Created:05-Jan-2019;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Administrator level
+---------------------
+Use least privileged account for applications. this accounts should not have drop/create options, also should not have option to change
+access rights. by this way we can minimise the impact
+as much as possible we have to give permissions which is really needed for the application to run
+
+Use stored proc
+Use ORM (like entity framework)
+Try to avoid dynamic queries
+Try to parameterise the query
+we can validate all the inputs before sending to the query(like removing single quotes )

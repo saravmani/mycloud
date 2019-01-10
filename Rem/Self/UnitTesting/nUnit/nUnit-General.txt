@@ -1,3 +1,5 @@
+Key Points - TestFixture, Test, SetUp
+
 The NUnit Framework caters a range of attributes that are used during unit tests.
 They are used to define Test -Fixtures, Test methods, ExpectedException
 
@@ -22,9 +24,11 @@ http://www.smaclellan.com/posts/parameterized-tests-made-simple/
 
 The AAA Syntax (Arrange, Act, Assert)
 
-A very common approach to structuring your unit tests is using the AAA syntax. The AAA syntax is only a way of structuring your unit tests, and is supported by any framework.
+A very common approach to structuring your unit tests is using the AAA syntax.
+The AAA syntax is only a way of structuring your unit tests, and is supported by any framework.
 
-The basic idea is that you create all the dependencies required by your method under test (Arrange), run your method under test (Act) and verify that the requirements of your test were met (Assert).
+The basic idea is that you create all the dependencies required by your method under test (Arrange),
+run your method under test (Act) and verify that the requirements of your test were met (Assert).
 
 
 
@@ -81,10 +85,12 @@ namespace Bank
 }
 
 
-[TestFixture] attribute associated with it ? this is the way to indicate that the class contains test code (this attribute can be inherited).
+[TestFixture] attribute associated with it ? this is the way to indicate that the class contains test code
+(this attribute can be inherited).
 
 The class has to be public and there are no restrictions on its superclass. The class also has to have a default constructor.
-[Test] attribute associated with it ? this is an indication that it is a test method. Test methods have to return void and take no parameters.
+[Test] attribute associated with it ? this is an indication that it is a test method. Test methods have to
+return void and take no parameters.
 The Assert class defines a collection of methods used to check the post-conditions
 
 
@@ -109,12 +115,15 @@ public void TransferWithInsufficientFundsAtomicity()
   // code is the same
 }
 
-Compile and run ? yellow bar. Click on ?Tests Not Run? tab and you will see bank.AccountTest.TransferWithInsufficientFundsAtomicity() in the list along with the Reason this test is ignored.
+Compile and run ? yellow bar. Click on ?Tests Not Run? tab and you will see
+bank.AccountTest.TransferWithInsufficientFundsAtomicity() in the list along with the Reason this test is ignored.
 
 
 
 
-Looking at our test code we can see that some refactoring is in order. All test methods share a common set of test objects. Let?s extract this initialization code into a setup method and reuse it in all of our tests. The refactored version of our test class looks like this:
+Looking at our test code we can see that some refactoring is in order. All test methods share a
+common set of test objects. Let?s extract this initialization code into a setup method and reuse it in all of our tests.
+The refactored version of our test class looks like this:
 
 namespace Bank
 {
@@ -169,7 +178,8 @@ namespace Bank
     }
   }
 }
-Note that Init method has the common initialization code, it has void return type, no parameters, and it is marked with [SetUp] attribute.
+Note that Init method has the common initialization code,
+it has void return type, no parameters, and it is marked with [SetUp] attribute.
 
 
 Testting MVC

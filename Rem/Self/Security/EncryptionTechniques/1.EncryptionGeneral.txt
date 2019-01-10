@@ -1,0 +1,26 @@
+Created:05-Jan-2018;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Two types encryptions
+1. Symmetric
+  Same encryption key is used to encrypt and decrypt the data
+  faster than Asymmetric
+  used for larger volume of data
+  AES algorithm is widely accepted
+2. Asymmetric
+  Public private key concept
+  slower than Symmetric
+  Public key is shared btn two parties, they used this to encrypt the data and private key is used to decrypt
+
+Hashing technique
+-------------------------
+Another mechanism to protect the data is Hashing technique
+hashing technique is used to generate the Hash for the large set of data
+it is difficult to convert back the hash data
+we can use this technique to save the passwords
+even small change in data will generate the new hash
+MD5,SHA256
+
+ Asp.net core 2.0 uses
+ AES256 for encryption
+ and
+ SHA256 (Hashing) for validation

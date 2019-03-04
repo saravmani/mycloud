@@ -11,11 +11,11 @@ Routing with query string
 [routerLink]="['/form', 'edit', item.id,{name: item.name, category: item.category, price: item.price}]">
 
 http://localhost:3000/form/edit/5;name=Stadium;category=Soccer;price=79500
-Note: In normal url query string will be & seperated but here ; seperated
+Note: In normal url query string will be & separated but here ; separated
 
 RouteLink attribute
 -------------------------
-This directive can be applied to any element, although it is 
+This directive can be applied to any element, although it is
 typically applied to button and anchor elements
 ex: <button routeLink="/product/newproduct" (click)="somefunctionCall()"></button>
 

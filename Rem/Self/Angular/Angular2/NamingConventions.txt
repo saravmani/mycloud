@@ -1,5 +1,5 @@
-two way binding - *Chagne
---------------------
+Two way binding - *Chagne
+--------------------------
 event property should be same as input property + Change word
 <input class="bg-primary" [paModel]="newProduct.name"
 (paModelChange)="newProduct.name=$event" />
@@ -11,7 +11,7 @@ structural directive - let-*
 <template [paForOf]="getProducts()" let-item>
 ...
 In this example, I have used let-item to tell Angular that I want the implicit value to be assigned to a
-variable called item, which is then used within a string interpolation 
+variable called item, which is then used within a string interpolation
 binding to display the name property of
 the current data item.
 

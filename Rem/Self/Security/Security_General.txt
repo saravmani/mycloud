@@ -1,14 +1,22 @@
 Clickjacking
 ------------------
-Clickjacking, also known as a "UI redress attack", is when an attacker uses multiple transparent or opaque layers to trick a user into clicking on a button or link on another page when they were intending to click on the the top level page. Thus, the attacker is "hijacking" clicks meant for their page and routing them to another page, most likely owned by another application, domain, or both.
+Clickjacking, also known as a "UI redress attack", is when an attacker uses multiple transparent or opaque layers
+to trick a user into clicking on a button or link on another page when they were intending to click on the the top level page.
+Thus, the attacker is "hijacking" clicks meant for their page and routing them to another page,
+most likely owned by another application, domain, or both.
 
-Using a similar technique, keystrokes can also be hijacked. With a carefully crafted combination of stylesheets, iframes, and text boxes, a user can be led to believe they are typing in the password to their email or bank account, but are instead typing into an invisible frame controlled by the attacker.
+Using a similar technique, keystrokes can also be hijacked. With a carefully crafted combination of stylesheets, iframes, and text boxes,
+a user can be led to believe they are typing in the password to their email or bank account,
+but are instead typing into an invisible frame controlled by the attacker.
 
 CSP (one of the solution for XSS)
 ----------------------------------
-CSP defines the Content-Security-Policy HTTP header that allows you to create a whitelist of sources of trusted content, and instructs the browser to only execute or render resources from those sources. Even if an attacker can find a hole through which to inject script, the script won't match the whitelist, and therefore won't be executed.
+CSP defines the Content-Security-Policy HTTP header that allows you to create a whitelist of sources of trusted content,
+and instructs the browser to only execute or render resources from those sources.
+Even if an attacker can find a hole through which to inject script, the script won't match the whitelist, and therefore won't be executed.
 
-Since we trust apis.google.com to deliver valid code, and we trust ourselves to do the same, let's define a policy that only allows script to execute when it comes from one of those two sources:
+Since we trust apis.google.com to deliver valid code, and we trust ourselves to do the same,
+let's define a policy that only allows script to execute when it comes from one of those two sources:
 
 Content-Security-Policy: script-src 'self' https://apis.google.com
 
@@ -27,12 +35,12 @@ SameSite flag for cookies
 Set-Cookie: <cookie-name>=<cookie-value>; SameSite=Strict
 Set-Cookie: <cookie-name>=<cookie-value>; SameSite=Lax
 
-SameSite prevents the browser from sending this cookie along with cross-site requests. The main goal is mitigate the risk of cross-origin information leakage, and provides some protection against cross-site request forgery attacks. Possible values for the flag are lax or strict.
+SameSite prevents the browser from sending this cookie along with cross-site requests.
+The main goal is mitigate the risk of cross-origin information leakage,
+and provides some protection against cross-site request forgery attacks. Possible values for the flag are lax or strict.
 
 The strict value will prevent the cookie from being sent by the browser to the target site in all cross-site browsing context, even when following a regular link. For example, for a GitHub-like website this would mean that if a logged-in user follows a link to a private GitHub project posted on a corporate discussion forum or email, GitHub will not receive the session cookie and the user will not be able to access the project.
 
 A bank website however most likely doesn't want to allow any transactional pages to be linked from external sites so the strict flag would be most appropriate here.
 
 The default lax value provides a reasonable balance between security and usability for websites that want to maintain user's logged-in session after the user arrives from an external link. In the above GitHub scenario, the session cookie would be allowed when following a regular link from an external website while blocking it in CSRF-prone request methods (e.g. POST).
-
-

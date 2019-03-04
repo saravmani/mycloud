@@ -1,9 +1,13 @@
 Forced browsing
 ---------------------
-Forced browsing is an attack where the aim is to enumerate and access resources that are not referenced by the application, but are still accessible.
-An attacker can use Brute Force techniques to search for unlinked contents in the domain directory, such as temporary directories and files, and old backup and configuration files. These resources may store sensitive information about web applications and operational systems, such as source code, credentials, internal network addressing, and so on, thus being considered a valuable resource for intruders.
+Forced browsing is an attack where the aim is to enumerate and access resources that are not referenced by the application,
+but are still accessible.
+An attacker can use Brute Force techniques to search for unlinked contents in the domain directory,
+such as temporary directories and files, and old backup and configuration files.
+These resources may store sensitive information about web applications and operational systems, such as source code,
+credentials, internal network addressing, and so on, thus being considered a valuable resource for intruders.
 
 
 
-Ref: 
+Ref:
 https://www.owasp.org/index.php/Forced_browsing

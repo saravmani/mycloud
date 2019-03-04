@@ -55,6 +55,7 @@ After Register with Resource server (ex: Goole), client will get client id and a
 Autherisation Grand types (# it is flow types (i.e # work flow))
 =============================================================================
 Oauth2 defines 4 types of authorisation grand types. those are used in different flows
+
 1. authorisation Code Grant - this flow suitable for confidential clients. Used to obtain access tokens and refresh tokens (IT is optimized for Confidential clients)
 In this client will redirect user-agent to authentication endpoint, and authontication endpoint once authenticate the user
 it i will redirect back to client page with authorisation_code. And client will call the token endpoint with authorisation_code and get the

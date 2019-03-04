@@ -1,0 +1,17 @@
+Created:03-Mar-2019;Sunday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Tags - MSMQ, NetMSMQ, Message queueing , reliable messaging
+
+NetMSMQ
+--------------
+The <netMsmqBinding> is the queued binding WCF provides for two WCF endpoints to communicate using MSMQ.
+The binding, therefore, exposes properties that are specific to MSMQ. However, not all MSMQ features
+and properties are exposed in the NetMsmqBinding.
+The compact NetMsmqBinding is designed with an optimal set of features that most customers should find sufficient.
+
+MSMQ
+----------------
+MSMQ ships as an optional component with Windows and runs as an NT service.
+It captures messages for transmission in a transmission queue and for delivery in a target queue.
+The MSMQ queue managers implement a reliable message-transfer protocol so that messages are not lost in transmission.
+The protocol can be either native or SOAP-based, such as the SOAP Reliable Message Protocol (SRMP).

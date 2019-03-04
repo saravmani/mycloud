@@ -1,31 +1,31 @@
-if we create new module and then inside module if we declare other components, 
-then we have export those components from modules so that other modules can use it . 
+
+if we have services in the root module of our application, then sub modules also will share the same instance :-)
+and if we provide the service inside of any submodule, and this will not be available for its parent
+[Tags-> same instance, same object, across modules]
+
+##but my idea is each module should be self contained. then only we can re-use it. so each modules should have its own injection
+
+But Imports will not be available to sub modules. Imports only will be available within the modules
+
+
+if we create new module and then inside module if we declare other components,
+then we have export those components from modules so that other modules can use it .
 
 Ex:
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DnbComponent } from './dnb.component';
-@NgModule({  
+@NgModule({
 	imports: [
 CommonModule
   ],
-  
+
 	exports:[DnbComponent],
   	declarations: [DnbComponent]
 
 })
 
 export class DnbModule { }
-
-
-if we have services in hte root module of our application, 
-then sub modules also will share the same instance :-)
-and if we provide the service inside of any submodule, and this will not be available for its parent
-[Tags-> same instance, same object, accross modules]
-
-But Imports will not be availabe to sub modules.
-imports only will be available within the modules
-
 
 BrowserModule should be used only once.
 So other submoduels use CommonModule
@@ -34,12 +34,7 @@ ngFor, ngIf directives are availbale inside browser module
 and in commonModule also it is available.
 
 
-Rounter module will not be availabe in child modules, as bcs this module has imported in parent module and imports are only
-available for that particular module only.
-So we can go for child router for child modules.
-
-
-Rounter module will not be availabe in child modules, as bcs this module has imported in parent module and imports are only
+Rounter module will not be available in child modules, as bcs this module has imported in parent module and imports are only
 available for that particular module only.
 So we can go for child router for child modules.
 

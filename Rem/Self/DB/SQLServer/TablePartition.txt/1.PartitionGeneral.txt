@@ -1,0 +1,15 @@
+Created:03-Mar-2019;Sunday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Tags - Partition
+
+SQL server enterprise edition having this partition feature
+
+Data in a partitioned table is partitioned based on a single column, the partition column, often called the partition key.
+ Only one column can be used as the partition column, but it is possible to use a computed column.
+
+n alternative to partitioned tables (for those who don’t have Enterprise Edition) is to create separate tables for each group of rows, union the tables in a view and then query the view instead of the tables.
+This is called a partitioned view.
+
+It is important to select a partition column that is almost always used as a filter in queries.
+When the partition column is used as a filter in queries, SQL Server can access only the relevant partitions. 
+This is called partition elimination and can greatly improve performance when querying large tables.

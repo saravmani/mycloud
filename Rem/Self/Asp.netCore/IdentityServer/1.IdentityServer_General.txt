@@ -9,3 +9,4 @@ config services
 
 some quick start is available in github
 https://github.com/IdentityServer/IdentityServer4.Quickstart.UI
+https://github.com/IdentityServer/IdentityServer4.Quickstart.UI/tree/master

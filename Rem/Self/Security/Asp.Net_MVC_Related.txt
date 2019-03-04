@@ -1,13 +1,17 @@
 <compilation debug="false" targetFramework="4.5.1"> - On production environment
 
-ASP.NET allows remote debugging of web applications, if configured to do so. By default, debugging is subject to access control and requires platform-level authentication.
-If an attacker can successfully start a remote debugging session, this is likely to disclose sensitive information about the web application and supporting infrastructure that may be valuable in formulating targeted attacks against the sys
+ASP.NET allows remote debugging of web applications, if configured to do so. By default, debugging is subject to
+access control and requires platform-level authentication.
+If an attacker can successfully start a remote debugging session, this is likely to disclose sensitive information about
+the web application and supporting infrastructure that may be valuable in formulating targeted attacks against the sys
 
-disable debugging, open the Web.config file for the application, and find the <compilation> element within the <system.web> section. Set the debug attribute to "false".
+disable debugging, open the Web.config file for the application, and find the <compilation> element within the <system.web> section.
+Set the debug attribute to "false".
 
 
 
-Add the RequireHttps attribute to the Home controller to require all requests must use HTTPS. A more secure approach is to add the RequireHttps filter to the applicatio
+Add the RequireHttps attribute to the Home controller to require all requests must use HTTPS.
+A more secure approach is to add the RequireHttps filter to the applicatio
 
 [RequireHttps]
 public class HomeController : Controller
@@ -20,15 +24,19 @@ public class HomeController : Controller
 
 
 Over posting attack
-------------------------- 
+-------------------------
 what is over posting attack?
-    Over Posting. Model-binding is a useful and powerful feature of MVC. It automatically handles the mapping of form input to model properties. ...
-     However, it opens up the vulnerability which allows the attacker to submit extra data with the form to populate model properties which were not intended to be changed.
+    Over Posting. Model-binding is a useful and powerful feature of MVC.
+    It automatically handles the mapping of form input to model properties. ...
+     However, it opens up the vulnerability which allows the attacker to submit extra data with the form to populate
+     model properties which were not intended to be changed.
 
 If you use view models then overposting wouldn't be any issue for you and not something that you should be concerned about.
  The reason for that is that you will include only the properties that are supposed to be coming from the user input in your view model.
-  Then you will fetch the actual entity from your database and merge both. This way all sensible properties of the entity will remain untouched.
-   So as a rule of thumb: always use view models in an ASP.NET MVC application - all your POST controller actions that are supposed to modify some state on the server should take a view model,
+  Then you will fetch the actual entity from your database and merge both.
+  This way all sensible properties of the entity will remain untouched.
+   So as a rule of thumb: always use view models in an ASP.NET MVC application -
+   all your POST controller actions that are supposed to modify some state on the server should take a view model,
     not an entity model.
 
 The Bind attribute is one way to protect against over-posting in create scenarios.

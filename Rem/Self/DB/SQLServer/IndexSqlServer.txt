@@ -1,0 +1,8 @@
+Created:04-May-2019;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Tags -
+
+Indexs will be stored in separate partition
+when we do index rebuilding , it will create another partition and build the index on that and then finally will do the
+partition switching.
+So if index taking 8G size then if we do the index rebuilding it require aditional 8GB at rebuilding time

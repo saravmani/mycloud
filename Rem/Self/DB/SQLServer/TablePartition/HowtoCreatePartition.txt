@@ -1,0 +1,12 @@
+Created:06-May-2019;Monday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Tags - Create partition, create table partition
+
+
+Partition Function - Specifies boundary (what is the boundary points)
+Partition Scheme -   in which filegroup data goes to save (Which file data is saved?)
+Table on partition Scheme
+
+
+Boundary point means - if we are partioning based on year then year is a boundary point
+Range -

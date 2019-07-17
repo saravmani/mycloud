@@ -1,0 +1,40 @@
+Created:03-Mar-2019;Sunday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Tags - Partition, range right, range left
+
+SQL server enterprise edition having this partition feature
+
+Data in a partitioned table is partitioned based on a single column, the partition column, often called the partition key.
+ Only one column can be used as the partition column, but it is possible to use a computed column.
+ There is no sub partition option in SQL server
+
+n alternative to partitioned tables (for those who don’t have Enterprise Edition) is to create separate tables for each group of rows, union the tables in a view and then query the view instead of the tables.
+This is called a partitioned view.
+
+It is important to select a partition column that is almost always used as a filter in queries.
+When the partition column is used as a filter in queries, SQL Server can access only the relevant partitions.
+This is called partition elimination and can greatly improve performance when querying large tables.
+
+
+we can use different file groups for the partitions. and for older data (if use Lastupdatedtime column for partitioning  ) file group as
+readonly filegroup
+
+
+Advantages
+------------------
+Backup we can do partion filegroup wise
+Index rebuilding we can do for only lates file group (if business needs then we have to do for all partitions)
+Query performance will improves
+
+If it s a large table, we can do partion by year wise.
+
+
+
+Range right, range left tells that on which side data needs to be stored
+
+Right partition
+ex: if we are having boundary points of 2012,2013 (....part1(<2012)...|....part2(>2012 and <2013)...|....part3(>2013)...)
+and if the partition column has value of 2013 then it will get stored in part3(>2013) partion
+if left partition means then data will goes to left side part2(>2012 and <2013)
+
+when do Merge or split then this right and left will behaves differently

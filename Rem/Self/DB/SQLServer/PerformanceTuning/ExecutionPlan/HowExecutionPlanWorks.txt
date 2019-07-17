@@ -1,0 +1,8 @@
+Created:04-May-2019;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Tags - Optimiser, Execution Plan
+
+
+Optimiser will use statistics (+ other details) to generate the execution plan
+
+Optimiser will generate multiple execution plans and use the best one

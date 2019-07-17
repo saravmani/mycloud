@@ -1,0 +1,4 @@
+Created:09-Mar-2019;Thursday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Tags - Partition function, Boundaries,
+partition function is a specific type of funciton. it accepts one parameter

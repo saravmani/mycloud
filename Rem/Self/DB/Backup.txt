@@ -1,0 +1,8 @@
+Created:04-May-2019;Saturday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Tags - Backup plans, tips for backup
+
+1. Take backups from DR server. not from production environment
+2. Every week fullbackup
+3. every day differential backup
+4. we can apply partition on large table (use file groups), and take backup for required data

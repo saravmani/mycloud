@@ -25,8 +25,8 @@ Actual plan has more data included with it in terms of statistics about actual v
 How to read execution plan
 ------------------------------------
 Plans are always read from right to left and top to bottom.
-Size of the arrows which are conencting the objects are representative  of the amount of data flowing to next operator
+Size of the arrows which are connecting the objects are representative  of the amount of data flowing to next operator
 
 
-Execution plans are stored in XML fromate
+Execution plans are stored in XML format
 SSMS gives graphical view for this

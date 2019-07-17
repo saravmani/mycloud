@@ -1,2 +1,12 @@
+Partitions
+How locking works - table level , partition level locking how those are works
+Dirty read?
 Isolation Levels
 How indexing works
+
+what is index Scans, Index Seeks, Table Scan, Table Seeks
+
+
+Backup plans
+------------------
+Full backup , differential backup -- what is this differential backup?

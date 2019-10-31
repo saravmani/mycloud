@@ -1,0 +1,4 @@
+Web App
+API App (included support for swagar documentation. developer friendly ui to interact with api. and +)
+Mobile App (includes push notification and +)
+Web app for containers

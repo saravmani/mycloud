@@ -1,9 +1,26 @@
+It can run 4 types of commands
+  1. Native commands
+  2. Scripts - ex: if else statements
+3. Aliases -
+    ex: cd command will work normally but it is a alias of set-location command
+    ls command also alias of get-childitem
+  4. Cmdlets - Verb-noun
+
+  to update the powershell Help
+  update-help -force  - this will update the help file
+  we can do this once a day. normall this help files are not part of the OS
+
+  get-help // to get help on commands
+
+
 It is task automation framework
 
-power shell havin both
-command line shell 
-and 
-interactive editor (having intelisense)
+
+
+power shell having both
+command line shell
+and
+interactive editor (having intelligence)
 
 in above both editor we  can able to use microsoft powershell
 scripting language.

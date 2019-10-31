@@ -1,0 +1,31 @@
+Created:17-Jul-2019;Tuesday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Tags - Angular html events handling
+
+The default handled events should be mapped from the original HTML DOM component's events:
+onclick ---> (click)
+onkeypress ---> (keypress)
+
+(focus)="myMethod()"
+(blur)="myMethod()"
+(submit)="myMethod()"
+(scroll)="myMethod()"
+
+(cut)="myMethod()"
+(copy)="myMethod()"
+(paste)="myMethod()"
+
+(keydown)="myMethod()"
+(keypress)="myMethod()"
+(keyup)="myMethod()"
+
+(mouseenter)="myMethod()"
+(mousedown)="myMethod()"
+(mouseup)="myMethod()"
+
+(click)="myMethod()"
+(dblclick)="myMethod()"
+
+(drag)="myMethod()"
+(dragover)="myMethod()"
+(drop)="myMethod()"

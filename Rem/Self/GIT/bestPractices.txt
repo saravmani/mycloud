@@ -1,0 +1,11 @@
+1. While committing give short comments (lessthan 50 is preferable).
+If more comments needed then add multi line comments as each line lessthan 70
+bcs git can be used by mobile or other tools. to view the full comments shorter length comment needed
+
+2. comments should be in present tens
+ex: it should be - "Fixes for button disable error <reference number>"
+    it should not be = "Fixed the bug button disable error"
+
+
+3. when adding the command we can includes files got affected + issue number
+  Ex: [cs,js]<jeranumber><comments>

@@ -24,3 +24,18 @@ Push to server
 ------------------
 git remote add origin https://10935@repo.dnbtechnology.com:8443/scm/sbx/sbx_webclient.git
 git push -u origin master
+
+git log --grep = "commit text" //All the commits which contains specific workd
+
+----------------------------------------------------------------------------------------------------------------
+
+
+
+Git log //lists all the commits made to repo
+giit log -n 5 //shows only last 5 commits
+git log --since=2019-01-22 //shows the commits since specified date
+git log --until=2019-01-22 //shows the commits till specified date
+git log --author="username" //shows the commits by author
+
+
+git log --grep = "commit text" //All the commits which contains specific workd

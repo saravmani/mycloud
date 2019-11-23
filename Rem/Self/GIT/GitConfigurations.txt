@@ -1,0 +1,21 @@
+
+3 levels of settings
+------------------------
+Global settings which is common for asll users
+  Programm FIles\Git\etc\gitconfig
+
+User settings
+  userdirectory\.gitconfig
+
+Project level
+  myproj\.git\config
+
+commands for each levels
+------------------------------------
+  git config --system         //System level
+  git config --global         //User Level
+  git config                  //Project level
+
+Ex:
+  git config --system user.name  //to get the user name at user level
+  

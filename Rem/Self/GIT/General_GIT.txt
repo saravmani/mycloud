@@ -12,6 +12,9 @@ as most of the operations are happening in local, operations are very easy
 git is more secured.
 Git uses a common cryptographic hash function called secure hash function (SHA1),
 
-
-
 Working directory -> Staging Area -> Git repository
+
+
+
+in project we ill have .git folder. this will have config, tracking files. ALl the changes is getting maintained in this directory.
+if we delete this then git cannot track the changes

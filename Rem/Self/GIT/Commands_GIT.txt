@@ -1,6 +1,10 @@
 git add * -- to add all files
+git add filename1.txt filename2.txt -- to add specific files
+git add filePartname*
+
 git commit -m "commit message"
 
+git commit --amend  -m "some update"//git allowed to edit the last comitted file
 git push
 
 
@@ -17,7 +21,7 @@ check-in changed file
 
 
 below command to used to switch the work place between the multiple branches
-git checkout <branchname to checkout>
+git checkout <branch Name to checkout>
 
 
 Push to server
@@ -29,6 +33,10 @@ git log --grep = "commit text" //All the commits which contains specific workd
 
 ----------------------------------------------------------------------------------------------------------------
 
+
+git diff //will gives difference between stagged file and working file
+git diff --staged // diffe in stagged files
+git diff --cached // same as --staged. here staged is the alias naame for cached
 
 
 Git log //lists all the commits made to repo

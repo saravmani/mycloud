@@ -1,0 +1,10 @@
+git checkout -- fileName.txt //if wrongly modified something in file and didint commit, get the old file from staging to working directory
+
+
+to unstage the staged files
+  git reset HEAD filename.txt
+
+git checkout -- . //to undo all the changes
+
+
+git checkout erwr32432543  -- filename.txt //to get the previously checked in file

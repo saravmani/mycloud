@@ -18,3 +18,6 @@ Working directory -> Staging Area -> Git repository
 
 in project we ill have .git folder. this will have config, tracking files. ALl the changes is getting maintained in this directory.
 if we delete this then git cannot track the changes
+
+
+staged or cached both commands are same

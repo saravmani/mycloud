@@ -23,7 +23,8 @@ automate database related activities
 
 
   Entity framework is useful in three scenarios.
-   First, if you already have existing database or you want to design your database ahead of other parts of the application.
+   First, if you already have existing database or you want to design your database ahead of
+   other parts of the application.
    Second, you want to focus on your domain classes and then create the database from your domain classes.
    (used in domain-driven design)
 
@@ -40,12 +41,14 @@ EF is cross platform and EF core is not mature like EF6
 How to Start?
 	For oracle we have to install oracle developer tools.
 
-in EF5, EF core functionality will be available in .net frame work dlls and EF5 specific features will availabe in EntityFramework.dll.
+in EF5, EF core functionality will be available in .net frame work dlls and EF5 specific features
+will availabe in EntityFramework.dll.
 In EF6 all functionality availabe in EntityFramework.dll
 
 
 
-Model First - You will "draw" your model and let workflow generate your database script and T4 template generate your POCO entities.
+Model First - You will "draw" your model and let workflow generate your database script and T4 template
+generate your POCO entities.
 #Code and DB will automatically get generated. this suites for small projects
 code First
 database first
@@ -61,7 +64,8 @@ using (var context = new SchoolDBEntities())
     var L2EQuery = context.Students.where(s => s.StudentName == "Bill");
 
     var student = L2EQuery.FirstOrDefault<Student>();
-//The difference between First and FirstOrDefault is that First() will throw an exception if there is no result data for the supplied criteria
+//The difference between First and FirstOrDefault is that First() will throw an exception
+//if there is no result data for the supplied criteria
 whereas FirstOrDefault() returns default value (null)
  if there is no result data.
 
@@ -96,7 +100,8 @@ Native SQL formate
 ----------------------
 using (var ctx = new SchoolDBEntities())
 {
-    var studentName = ctx.Students.SqlQuery("Select studentid, studentname, standardId from Student where studentname='Bill'").FirstOrDefault<Student>();
+    var studentName = ctx.Students.SqlQuery("Select studentid, studentname, standardId
+          from Student where studentname='Bill'").FirstOrDefault<Student>();
 }
 
 

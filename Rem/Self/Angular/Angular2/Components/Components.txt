@@ -1,3 +1,20 @@
+Modified:27-Apr-2020;Monday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+entryComponents -- this means angular knows that object can be created for this components programatically
+
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+
+export class MyComp implements AfterViewInit {
+  @ViewChild('myInput') input: ElementRef;
+
+  constructor(private renderer: Renderer) {}
+
+  ngAfterViewInit() {
+    this.renderer.invokeElementMethod(this.input.nativeElement,'focus');
+  }
+}
+
 @NgModule({
   imports:      [ BrowserModule ],
   declarations: [ ClsSubComponent, AddressClass],//This tells the directives and pipes which are going to use

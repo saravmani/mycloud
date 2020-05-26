@@ -13,7 +13,7 @@ specialization of Template
 Method.
 
 
-#My Defination: Template method provides skeleton of algorithm and one or more more steps can be provided by sub classes
+#My Defination: Template method provides skeleton of algorithm and one or more steps can be provided by sub classes
 
 
 # Creating generic template method  which contains alogorithm
@@ -75,7 +75,7 @@ public void addCondiments()
 
 
 
-The prepareRecipe()  method controls the algorithm,NO ONE CAN CHANGE THIS, and it
+The prepareRecipe()  method controls the algorithm, NO ONE CAN CHANGE THIS, and it
 counts on subclasses to provide some or all of the implementation.
 
 
@@ -90,14 +90,14 @@ a framework that other caffeine  beverages can be plugged into. New caffeine bev
 implement a couple of methods.
 
 The template method makes use of the
-primitiveOperations to implement an algorithm. 
+primitiveOperations to implement an algorithm.
 It is DECOUPLES from the actual  implementation of these operations.
 
 
 Use cases
 ---------------
 1. # I guess in asp.net web forms , page lifecycle having this ???
-2. # frame work design. in big project, when multiple teams are working, when i develop a framework then i will use this pattern. 
+2. # frame work design. in big project, when multiple teams are working, when i develop a framework then i will use this pattern.
 remember hollywood principle
 3. This pattern shows up so often because it’s a great design tool
 for creating frameworks, where the framework controls how
@@ -324,13 +324,13 @@ textbook design of the pattern.
 which we are going to add in SortedList need to be implemented with IComparable interface.
 # we can say this is strategy pattern. but strategy all the logic including storing logic should be implemented by concrete subclass
 
-We know that we should favor composition over inheritance, right? # so i guess SortedList using composition technique to implement template pattern here... i guess :-) 
+We know that we should favor composition over inheritance, right? # so i guess SortedList using composition technique to implement template pattern here... i guess :-)
 
 
 
 
 
-Look at main method here.. .. main method's class inherted from other.. wwwwwaaavvvvvvvvvvv.... 
+Look at main method here.. .. main method's class inherted from other.. wwwwwaaavvvvvvvvvvv....
 i didn see like this before.Bcs it is entry point...:-)
 
 public class MyFrame extends JFrame
@@ -361,11 +361,11 @@ public static void main(String[] args)
 
 
 Template method and strategy pattern having lots of commonalities
------------------------------------------------------------------------------ 
+-----------------------------------------------------------------------------
 Template method is to define the outline of an algorithm, but
 let   subclasses do some of the work. That
 way, It can have different implementations of an algorithm’s individual steps, but keep control
-over the algorithm’s structure. 
+over the algorithm’s structure.
 All  duplicated code gets put into the superclass, so all the subclasses can share it.
 Template method It perfect for creating frameworks.
 
@@ -390,6 +390,3 @@ Template Method Pattern in
 real world code, but don’t
 expect it all (like any pattern) to
 be designed “by the book.”
-
-
-

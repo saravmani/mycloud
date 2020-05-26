@@ -51,23 +51,28 @@ AppDomains that could be running in a single Windows process
 
 Advantages of Appdomain
 =========================
-In addition to the protection guarantees built in by the process, an application domain further 
+In addition to the protection guarantees built in by the process, an application domain further
 introduces the following guarantees:
 
-Faulty code within an application domain cannot adversely affect code running in a 
+Faulty code within an application domain cannot adversely affect code running in a
  different application domain within the same process.
-Code running within an application domain cannot directly access resources in a 
+Code running within an application domain cannot directly access resources in a
 different application domain.
 Code-specific configurations can be configured on a per application domain basis.
  For example, you can configure security-specific settings on a per application domain basis.
 
 
-Good use case scenario for AppDomains : "NUnit was written by .NET Framework experts. 
-If you look at the NUnit source, you see that they knew how to dynamically create AppDomains 
-and load assemblies into these domains. Why is a dynamic AppDomain important? 
-What the dynamic AppDomain lets NUnit do is to leave NUnit open, 
-while permitting you to compile, test, modify, recompile, and retest code without ever shutting down. 
-You can do this because NUnit shadow copies your assemblies, loads them into a dynamic domain, 
-and uses a file watcher to see if you change them. If you do change your assemblies, 
-then NUnit dumps the dynamic AppDomain, recopies the files, creates a new AppDomain, 
+Good use case scenario for AppDomains : "NUnit was written by .NET Framework experts.
+If you look at the NUnit source, you see that they knew how to dynamically create AppDomains
+and load assemblies into these domains. Why is a dynamic AppDomain important?
+What the dynamic AppDomain lets NUnit do is to leave NUnit open,
+while permitting you to compile, test, modify, recompile, and retest code without ever shutting down.
+You can do this because NUnit shadow copies your assemblies, loads them into a dynamic domain,
+and uses a file watcher to see if you change them. If you do change your assemblies,
+then NUnit dumps the dynamic AppDomain, recopies the files, creates a new AppDomain,
 and is ready to go again."
+
+
+
+
+ 

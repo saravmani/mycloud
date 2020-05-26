@@ -1,0 +1,6 @@
+
+
+Book marks
+  Purpose - Learn about install tenserflow, keras , deep learning environment setup
+  URL - https://www.udemy.com/course/machinelearning/learn/lecture/6118392#bookmarks
+  Book mark txt - What is tenserflow, Keras, Theano

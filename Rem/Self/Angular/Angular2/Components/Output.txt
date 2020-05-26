@@ -1,0 +1,43 @@
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+@Component({
+  selector: 'app-voter',
+  template: `
+    <h4>{{name}}</h4>
+    <button (click)="vote(true)"  [disabled]="didVote">Agree</button>
+    <button (click)="vote(false)" [disabled]="didVote">Disagree</button>
+  `
+})
+export class VoterComponent {
+  @Input()  name: string;
+  @Output() voted = new EventEmitter<boolean>();
+  didVote = false;
+
+  vote(agreed: boolean) {
+    this.voted.emit(agreed);
+    this.didVote = true;
+  }
+}
+
+
+///////////Use of the output in parent component
+import { Component }      from '@angular/core';
+
+@Component({
+  selector: 'app-vote-taker',
+  template: `
+
+    <app-voter *ngFor="let voter of voters"
+      [name]="voter"  (voted)="onVoted($event)"> <!--NOTE here we are using $event as input-->
+    </app-voter>
+  `
+})
+export class VoteTakerComponent {
+  agreed = 0;
+  disagreed = 0;
+  voters = ['Narco', 'Celeritas', 'Bombasto'];
+
+  onVoted(agreed: boolean) {
+    agreed ? this.agreed++ : this.disagreed++;
+  }
+}

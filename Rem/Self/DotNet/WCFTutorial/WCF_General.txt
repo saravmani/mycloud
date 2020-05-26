@@ -6,4 +6,5 @@ all the communication technologies under one umbrella
 	namedpipelines
 
 
-	webHttpBinding is the REST-style binding, where you basically just hit a URL and get back a truckload of XML or JSON from the web service
+	webHttpBinding is the REST-style binding, where you basically just hit a URL and get back
+	a truckload of XML or JSON from the web service

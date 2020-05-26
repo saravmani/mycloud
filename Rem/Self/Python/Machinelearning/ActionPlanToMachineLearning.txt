@@ -1,0 +1,11 @@
+Learn python
+Explore some libraries how to use it
+  Ex: web scrapping, file reading etc.,
+Learn libraries which are important for python (Numpy and pandas are more important libraries)
+  1. NumPy, 2. Pandas, 3. MatPlotLib , 4.SeaBorns
+
+
+
+learn together - Python + data science tools+ Machine learning concepts 
+Jupyter Note book
+Anaconda

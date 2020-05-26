@@ -1,6 +1,6 @@
-The common language runtime (CLR) can either run garbage collection concurrently on a 
+The common language runtime (CLR) can either run garbage collection concurrently on a
 separate thread or on the same thread as the application.
- Use the <gcConcurrent> element to specify how the runtime should run garbage collection. 
+ Use the <gcConcurrent> element to specify how the runtime should run garbage collection.
  The following shows to disable concurrent garbage collection.
 
 <configuration>
@@ -9,10 +9,10 @@ separate thread or on the same thread as the application.
    </runtime>
 </configuration>
 
-By default, the runtime runs garbage collection concurrently, which reduces performance. 
-If your application is single-threaded and involves heavy user interaction, 
-leave concurrent garbage collection enabled so the application does not pause to perform garbage collection. 
-If your application is an ASP.NET server application, 
+By default, the runtime runs garbage collection concurrently, which reduces performance.
+If your application is single-threaded and involves heavy user interaction,
+leave concurrent garbage collection enabled so the application does not pause to perform garbage collection.
+If your application is an ASP.NET server application,
 you do not need to alter the default value of the <gcConcurrent> element.
 
 
@@ -28,16 +28,16 @@ What will happen to unmanaged resources when .net processes crashed
 ------------------------------------------------------------------
 If it is a FileStream, then the operating system will guarantee that the underlying
 unmanaged handle will be freed when the process is shutdown. But this doesn't mean that
-the Dispose method will be called. It's just that the operating system knows how to reclaim 
-file handles upon process exit. 
+the Dispose method will be called. It's just that the operating system knows how to reclaim
+file handles upon process exit.
 you should never rely on finalizers and disposable objects.
-But all opened handles to kernel objects will be closed automatically, 
+But all opened handles to kernel objects will be closed automatically,
 so you should not worry about them.
 
 Process shutdowns will not call Dispose and finalizers are not guaranteed to run
 
 
-When a process (application started) is initialized, the CLR allocates a region of address 
+When a process (application started) is initialized, the CLR allocates a region of address
 space for the managed heap.
 
 
@@ -56,7 +56,7 @@ process you can allocate close to 8 terabytes.
 
 GC occurs when generation 0 is full.
 
-CLR uses a referencing tracking algorithm to clear the memory
+CLR uses a referencing tracking algorithm to clear the memory.
 The reference tracking algorithm cares only about reference
 type variables, because only these variables can refer to an object on the heap; value type variables
 contain the value type instance directly.
@@ -67,17 +67,17 @@ When initialized, the managed heap contains no objects. Objects added to the hea
 in generation 0. Stated simply, objects in generation 0 are newly constructed objects that the garbage
 collector has never examined.
 
-Objects in generation 1 have been examined by the garbage collector once.
+Objects in generation 1 have been examined by the garbage collector once (i.e In Generation 0).
 
-The objects which are not reachable from application's roots, are considered as garbage since these are not 
+The objects which are not reachable from application's roots, are considered as garbage since these are not
 accessible by the application
 
- 
+
 
  Explicitly call GC
  ------------------------
  GC.Collect()//# will collect all generations
  GC.Collect(0)// # i thinkg ll cllect specific generation. 0,1,2
- 
- 
+
+
  GC.SuppressFinalize()

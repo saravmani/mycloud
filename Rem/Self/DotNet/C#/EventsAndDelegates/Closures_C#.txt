@@ -1,0 +1,26 @@
+
+var i = 0;
+Action a = ()=>{
+  i++;
+};
+
+Action B = ()=>{
+  i++;
+};
+
+compile time above code will generated as below
+
+
+calss display{
+int i=0;
+  void somefuncitonname()
+  {
+    i++;
+  }
+}
+
+if we call multiple times a();.. it will use the same object so i++ will increase 1,2 like this
+a();
+a();
+
+if we call b() .. it will create new object for the generated class .. so new i will be available for the object

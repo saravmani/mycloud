@@ -1,0 +1,28 @@
+
+var obj = new childclass();
+obj.fn1();
+
+function fs(){this.name="haha"}
+fs.prototype.getname = function(){console.log(this.name)}
+var obbb = new fs();
+obbb.getname();//this works
+Object.preventExtensions(fs);
+fs.prototype.anotherFunciton = function(){console.log(this.name)}
+
+Object.freeze(fs)
+fs.prototype.anotherFuncitonAfterSeel = function(){console.log(this.name)}
+
+new fs().anotherFuncitonAfterSeel()//this works even after sell the FUNCITON also
+obbb.anotherFuncitonAfterSeel();//this also works.. i.e previously created object
+
+Object.freeze(obbb)
+obbb.bigFunction = function (){console.log("rewrew")}
+obbb.bigFunction()// error: obbb.bigFunction is not a function// freeze works fine
+
+Note: obbb.hasOwnProperty();//  false
+
+
+var notSealedObj = new fs();
+notSealedObj.myFunciton=function(){console.log("testingg")}
+ƒ (){console.log("testingg")}
+notSealedObj.myFunciton()//this works

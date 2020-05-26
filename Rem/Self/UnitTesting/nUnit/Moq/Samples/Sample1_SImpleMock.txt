@@ -6,9 +6,8 @@ Modified:25-Dec-2018;Tuesday;From Home-Bangalore
 ------------------------------
 var personRepositoryMock = new Mock<IPersonRepository>();
 personRepositoryMock.Setup(p => p.GetNames())
-.Returns(new string[] { "Fanie", "Gerald", "Mike" });
-PersonService personService = new PersonService(personRepositoryMock.
-Object);
+    .Returns(new string[] { "Fanie", "Gerald", "Mike" });
+PersonService personService = new PersonService(personRepositoryMock.Object);
 
 -----------------
 

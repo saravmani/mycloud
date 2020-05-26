@@ -1,7 +1,7 @@
 #We can call Oauth is a frame work instead of Protocol
 
 OAuth stands for Open Authorization
-It is an open standard for token-based authentication and authorization. 
+It is an open standard for token-based authentication and authorization.
 
 Terms related to OAuth - Profile Data, Membership API
 
@@ -17,13 +17,13 @@ click credentials
 
 Oauth logout
 --------------------
-OAuth uses server-side and client-side storage. If you want to do real logout 
+OAuth uses server-side and client-side storage. If you want to do real logout
 you must go with OAuth2.
-Authentication with JWT token can not logout actually. 
-Because you don't have an Authentication Server that keeps track of tokens. 
+Authentication with JWT token can not logout actually.
+Because you don't have an Authentication Server that keeps track of tokens.
 If you want to provide an API to 3rd party clients, you must use OAuth2 also.
-OAuth2 is very flexible. JWT implementation is very easy and does not take long to implement. 
-If your application needs this sort of flexibility, you should go with OAuth2. 
+OAuth2 is very flexible. JWT implementation is very easy and does not take long to implement.
+If your application needs this sort of flexibility, you should go with OAuth2.
 But if you don't need this use-case scenario, implementing OAuth2 is a waste of time.
 
 
@@ -33,6 +33,6 @@ OAuth 2.0 can be used either to create an application that can read user data fr
 application (e.g. the game in the diagram above), or an application that enables other
 applications to access its user data (e.g. Facebook in the example above).
 
-OAuth 2.0 is a replacement for OAuth 1.0, which was more complicated. 
-OAuth 1.0 involved certificates etc. OAuth 2.0 is more simple. 
+OAuth 2.0 is a replacement for OAuth 1.0, which was more complicated.
+OAuth 1.0 involved certificates etc. OAuth 2.0 is more simple.
 It requires no certificates at all, just SSL / TLS.

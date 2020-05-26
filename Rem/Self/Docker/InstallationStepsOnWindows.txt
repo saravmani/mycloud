@@ -1,3 +1,6 @@
+To use docker support from visuall studio we need to install "docker desktop" . To install this
+OS shoudl be windows 10 professional
+
 # my experience  in docker installation
 
 Download docker for windows from net
@@ -9,8 +12,8 @@ in command prompt with windows administrator privillage just type
 docker ps
 now if container is not running then it will try to start
 if hyper-v and containers features are not enabled on windows then it will prompt to enable it
-just click ok 
-now system will get restarted 
+just click ok
+now system will get restarted
 after some time  (it is taking nearly 4 mins after sys restart), docker will prompt to start
 click yes,
 then docker will get started

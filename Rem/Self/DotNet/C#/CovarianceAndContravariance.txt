@@ -1,0 +1,24 @@
+
+Covariance and Contravariance
+----------------------------------
+covariance and contravariance enable implicit reference conversion for array types, delegate types, and generic type arguments
+
+In C#, roughly we can say that covariance means we can substitute derived type in place of base type.
+ Contravariance means we can substitute base class in place of derived class.
+In C#, covariance and contravariance are supported only for reference types.
+
+
+Contravariance
+------------------
+static void Main(string[] args)
+{
+    Action<string> actObject = SetObject; //NOTE: assigning base type to derived type
+}
+static void SetObject(object o)
+{}
+
+
+Covariance for arrays enables implicit conversion of an array of a more derived type to an array of a less derived type
+object[] array = new String[10];
+// The following statement produces a run-time exception.
+// array[0] = 10;

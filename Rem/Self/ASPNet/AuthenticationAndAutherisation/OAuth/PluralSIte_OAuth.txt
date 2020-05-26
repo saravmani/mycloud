@@ -1,4 +1,4 @@
-Key wods
+Key words
 --------------------------
 authorisation_code - Is a short lived single use credentials.
 access_token (or authorisation_token),
@@ -19,15 +19,13 @@ Oauth defines 4 different roles
 Clients are two types
 ==============================================
     1. Confidential Clients
-    client capable of maintaining the confidentiality of their credentials
-    ex: MVC based server application. Because here server to server communication happens
+      client capable of maintaining the confidentiality of their credentials
+      ex: MVC based server application. Because here server to server communication happens
     2. public clients
-    clients incapable of maintaining the confidentiality of their credentials
-    ex: Angular client, javascript based, windows phone. - here every thing will stored on client itself. so security issues
-
+      clients incapable of maintaining the confidentiality of their credentials
+      ex: Angular client, javascript based, windows phone. - here every thing will stored on client itself. so security issues
 
     # so based on client type we have to implement the flow
-
 
 Different protocol end points
 ==============================================
@@ -48,7 +46,7 @@ on flow in Autherization.
     -----------------
     3. Redirection endpoint - used by the authorization server to return responses containing authorization
     credentials (i.e authorisation_code)
-    to the client via the resource owner user agent
+    to the client via the resource owner's user agent (Browser)
 
 After Register with Resource server (ex: Goole), client will get client id and app_key
 
@@ -56,10 +54,11 @@ Autherisation Grand types (# it is flow types (i.e # work flow))
 =============================================================================
 Oauth2 defines 4 types of authorisation grand types. those are used in different flows
 
-1. authorisation Code Grant - this flow suitable for confidential clients. Used to obtain access tokens and refresh tokens (IT is optimized for Confidential clients)
+1. authorisation Code Grant - this flow suitable for confidential clients. Used to obtain access tokens and
+    refresh tokens (IT is optimized for Confidential clients)
 In this client will redirect user-agent to authentication endpoint, and authontication endpoint once authenticate the user
-it i will redirect back to client page with authorisation_code. And client will call the token endpoint with authorisation_code and get the
-access_token.
+it will redirect back to client page with authorisation_code.
+And client will call the token endpoint with authorisation_code and get the access_token.
 
     Client must have capable of interact with the resource owner's user-agent(browser) and receive
     incoming requests (via redirection) from the authorization server (authorization endpoint)
@@ -84,5 +83,6 @@ Here access_token will get directly from authorisation server (authorization end
     ex: in sb2 webapplication can access the ircs , we can introduce this kind of  client credentials grant.
 
 4. Resource owner password credentials grant.
-    this only used for trusted clients. but it not recomended approch. in this resource owner will provoide username/pwd to client . and client will
+    this only used for trusted clients. but it not recomended approch. in this resource owner will provoide
+    username/pwd to client . and client will
     use that to authenticate with authorization server to get access token

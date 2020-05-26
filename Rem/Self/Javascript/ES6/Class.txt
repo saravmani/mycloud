@@ -1,12 +1,23 @@
+My Experiment on class on inheritance on Pure javascript (Not type script)
+class baseClass
+{
+		 fn1()//Note here we are not using funciton keyword in core JavaScript :-O
+		{
+			console.log('base class fn');
+		}
+}
+class childclass extends baseClass
+{
+}
+var obj = new childclass();
+obj.fn1();
 
 Class is not a new type. it is actually a function
 
-
-class Task{
-}
+class Task{ }
 console.log(typeof Task);//function
-let task=newTask();
-console.log(typeoftask);//object
+let task=new Task();
+console.log(typeof task);//object
 console.log(task instanceof Task);//true
 
 Class is a keyword which is another way to work with prototypes
@@ -31,7 +42,7 @@ new newClass();//constructingTask
 Difference between classes and functions
 --------------------------------------------------
 Class will not be added into window or any other global objects like functions
---------------------------------------------------------------------------------------------------
+
 function Project(){};
 console.log(window.Project===Project);//true
 

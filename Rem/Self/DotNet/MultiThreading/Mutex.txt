@@ -1,9 +1,9 @@
 
 Mutex
 =========================
-this works in OS level. to synchronoise the area which are there in DIFFERENT PROCESSES 
+this works in OS level. to synchronoise the area which are there in DIFFERENT PROCESSES
 but on SAME MACHINE
-I.E lock will work within appdomain
+I.E lock will work within appdomain ONLY
 
 
 Mutex Sample code

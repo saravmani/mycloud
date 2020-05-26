@@ -5,7 +5,8 @@ They are used to define Test -Fixtures, Test methods, ExpectedException
 
 
 when executing test cases in vsts 2013
-vstest.executionengine.x86.exe process will get executed and vsts will be attached to this. it is 32 bit processor by default
+vstest.executionengine.x86.exe process will get executed and vsts will be attached to this.
+it is 32 bit processor by default
 
 
 

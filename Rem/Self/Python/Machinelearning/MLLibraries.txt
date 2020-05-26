@@ -1,0 +1,3 @@
+numpy
+matplotlib
+Pandas - used to work with data sets (ex: import data set, select arrays etc.,)

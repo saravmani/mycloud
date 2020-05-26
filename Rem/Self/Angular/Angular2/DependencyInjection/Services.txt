@@ -1,0 +1,31 @@
+Modified:23-Apr-2020;Thursday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+@injectable({providedIn:'root'}) //if we specify like this we no need to mintion in module file for provid property
+
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+
+The sole purpose of the service is to share data between child’s components and to provide a couple of helper’s methods.
+
+If we provide services at module level then it will be singleton for whole applicaiton.
+and memory wont get released thorugh the application life
+
+if dont inject all the services at global module. Inject where ever it is reauried
+
+
+
+Inject service at component level
+  The benefit is that when Angular destroyed the component, Angular will also destroy the service and release the memory
+
+
+Service also can implement onDestroy Hook
+
+export class AdminService implements OnDestroy {
+  ngOnDestroy() {
+    // Clean subscriptions, intervals, etc
+  }
+}
+
+
+Also if we call NgModuleRef.destroy() or PlatformRef.destroy()
+ then ngOnDestroy method of singleton providers will be also executed

@@ -1,3 +1,25 @@
+Reading Atributes
+----------------------
+@Attribute - Access host element attribute values
+Ex:
+
+import { Directive, ElementRef, Attribute } from "@angular/core";
+@Directive({
+selector: "[pa-attr]",
+})
+export class PaAttrDirective {
+constructor(element: ElementRef, @Attribute("pa-attr") bgClass: string) {
+element.nativeElement.classList.add(bgClass || "bg-success");
+}
+}
+
+<td pa-attr="bg-warning">{{item.category}}</td>
+--------------------------------------------------------------------------------
+
+
+
+
+
 @Directive({
 	selector: "[paDisplayValue]"
 })

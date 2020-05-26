@@ -2,15 +2,16 @@
 IDisposable
 ------------
 If the program quits unexpectedly (for example you kill the process)
-there are absolutely no guarantees that the IDisposable. Dispose method will be called. 
+there are absolutely no guarantees that the IDisposable. Dispose method will be called.
 
 
 class a:IDisposable
 {
     public void Dispose()
     {
-        GC.SuppressFinalize(this);//#Instructing the GC to suppress the finalize call
-        //for "this" object.#to ensure that destroctor will not called if Dispose() method called
+        GC.SuppressFinalize(this);
+        //#Instructing the GC to suppress the finalize call for "this" object.
+        //#to ensure that destroctor will not called if Dispose() method called
     }
 
     ~a()

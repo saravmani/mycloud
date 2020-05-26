@@ -1,4 +1,4 @@
-Abstract class in Type sctip
+Abstract class in Type script
 ==========================================
 abstract class Animal {
     abstract makeSound(): void;

@@ -1,0 +1,38 @@
+References -
+  To form the simple linear regression formula from the given data
+      https://www.youtube.com/watch?v=Qa2APhWjQPc&list=PLIeGtxpvyG-LoKUpV0fSY8BGKIMIdmfCi&index=3
+  Coefficient determination
+      https://www.youtube.com/watch?v=kHZBy1uVNnM&list=PLIeGtxpvyG-LoKUpV0fSY8BGKIMIdmfCi&index=4
+  Steps to find the Standard deviation (Sigma)
+    https://www.mathsisfun.com/data/standard-deviation-formulas.html
+    # it is simple. i done that in good sheet. it works fine
+
+
+
+IT is a  special area of STASTICS called BIVARIATE
+  BIVARIATE-means 2 variables
+
+
+The main idea is draw a straight line through a data points to reduce the sum of squares of the residuals
+
+# Dependent variable - is a output required using multiple or single Independent variables
+
+y = mx+ b
+b = y interceptor (the place where x meets y. at this point x value is 0)
+m = raising slope vlaue
+x = indipendent variables which is given
+y = Dependant variable
+
+Example simple linear regression formula
+E(Y) = B0 + B1X
+
+E(Y) = Expected value of Y
+B0 = y intercept
+B1 = slope
+More examples - BasicTypesOfRegressionEx.png
+
+
+Y-Hat - Y-Hat.png
+
+Actually Y is not actual y. it is a best possible value. it is a  mean of y values at given x value
+Refer - Y_Mean.png

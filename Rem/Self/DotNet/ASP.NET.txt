@@ -1,8 +1,8 @@
 Owin
 --------
-Open Web Interface for .NET (OWIN) defines an abstraction between .NET web servers and web applications. By decoupling the web server from the application, OWIN makes it easier to create middleware for .NET web development. Also, OWIN makes it easier to port web applications to other hosts—for example, self-hosting in a Windows service or other process.
+Open Web Interface for .NET (OWIN) defines an abstraction between .NET web servers and web applications. By decoupling the web server from the application, OWIN makes it easier to create middleware for .NET web development. Also, OWIN makes it easier to port web applications to other hostsï¿½for example, self-hosting in a Windows service or other process.
 
-The Microsoft.Owin.Diagnostics package contains middleware that catches unhandled exceptions and displays an HTML page with error details. This page functions much like the ASP.NET error page that is sometimes called the “yellow screen of death” (YSOD). Like the YSOD, the Katana error page is useful during development, but it’s a good practice to disable it in production mode.
+The Microsoft.Owin.Diagnostics package contains middleware that catches unhandled exceptions and displays an HTML page with error details. This page functions much like the ASP.NET error page that is sometimes called the ï¿½yellow screen of deathï¿½ (YSOD). Like the YSOD, the Katana error page is useful during development, but itï¿½s a good practice to disable it in production mode.
 
 
 
@@ -11,7 +11,7 @@ The Microsoft.Owin.Diagnostics package contains middleware that catches unhandle
 You'll also need to be aware that App_Code is compiled into a different assembly than your code-behind code, so you can't access internal code across the different assemblies.
 
 
-If we set below Securtiy flag then secure flag for cookies will be setted by framework. this coolkis can be transmitted over 
+If we set below Securtiy flag then secure flag for cookies will be setted by framework. this coolkis can be transmitted over
 Secured transmission layer only
 <httpCookies requireSSL="true" />
 
@@ -23,21 +23,25 @@ Impersonation (Use specific user account to access all the resources)
 <identity impersonate="true" userName="AccountNAME" password="Password" />
 Impersonation is a technique to access application resources using the identity of some other user..
 By default, Impersonation is off.
- By default, all ASP.NET code is executed using a fixed machine-specific account. 
- Using impersonation in the web.config allows you to override whatever identity was configured for the Application Pool the app is running under - it's just a more fine grained method to control identity ( on the app level vs. the ApplicationPool level), so you could have two apps run on the same AppPool, but one of them uses impersonation to use another identity.
+ By default, all ASP.NET code is executed using a fixed machine-specific account.
+ Using impersonation in the web.config allows you to override whatever identity was configured
+ for the Application Pool the app is running under - it's just a more fine grained method to control identity
+  ( on the app level vs. the ApplicationPool level), so you could have two apps run on the same AppPool,
+  but one of them uses impersonation to use another identity.
 
 
 web Farm or Load Balancer
 --------------------------
- when you are hosting your single web site on multiple web servers over load balancer is called “Web Farm”
+ when you are hosting your single web site on multiple web servers over load balancer is called Web Farm
 
 
 Web Garden or enabling Multiple worker process
 -------------------------------------------------
-each and every Application pool contains a single worker process. Application which contains the multiple worker process is called “Web Garden”
+each and every Application pool contains a single worker process.
+Application which contains the multiple worker process is called ï¿½Web Gardenï¿½
 
 
-Allow only Numbers i.e. Digits 0 – 9
+Allow only Numbers i.e. Digits 0 ï¿½ 9
 Ajax toolkit
 
 <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
@@ -60,9 +64,11 @@ Register ASP.net 4.5 framework with IIS
 aspnet_regiis -i
 
 
-Output caching 
+Output caching
 ----------------
-The output cache mechanism is implemented via a predefined HTTP module that kicks in for each request that hits the application. 
-The module fires after request authorization thus ensuring that you still go through authentication/authorization even for cached requests.
- Frankly, output caching may not be a decisive factor to speed up your site, but I don’t see reasons for not using it on any site where 
+The output cache mechanism is implemented via a predefined HTTP module that kicks in for each request that hits the application.
+The module fires after request authorization thus ensuring that you still go through authentication/authorization
+even for cached requests.
+ Frankly, output caching may not be a decisive factor to speed up your site, but
+ I donï¿½t see reasons for not using it on any site where
 clogging could be causing real problems.

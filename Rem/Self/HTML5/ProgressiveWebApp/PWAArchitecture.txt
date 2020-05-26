@@ -1,0 +1,16 @@
+HTML
+Angualar - or similar technologies
+AMP - Accelerated Mobile Page
+App Shell caching
+  Service workers
+  Load web page in offline mode
+
+Installation Support
+  Web app manifest
+  User install as apps
+  Creates icon on home screen
+  Full screen support
+
+Push notification
+Use hardware, sensors, VR headsets, Camera
+Integrate with other natives - watsapp, uber, maps (apple, android)

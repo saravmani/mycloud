@@ -15,6 +15,7 @@ in js file add reference to below file
 
 watch mode build
 ----------------------
-in tsconfig.json if we enable watch mode as true under "compiler options", then when ever we do changes then automatically .js files will get generated
+in tsconfig.json if we enable watch mode as true under "compiler options",
+then when ever we do changes then automatically .js files will get generated
 
 "watch": true

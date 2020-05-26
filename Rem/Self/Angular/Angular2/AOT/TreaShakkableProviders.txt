@@ -1,0 +1,23 @@
+Ref -   https://coryrylan.com/blog/tree-shakeable-providers-and-services-in-angular
+
+Angular version 6 introduced a new feature, Tree Shakeable Providers.
+
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'//this is new.
+})
+export class SharedService {
+  constructor() {}
+}
+
+
+
+providedIn - With this property we are telling Angular that - which module to register our service to instead of having to import the
+ module and register it to the providers of a NgModule.
+ # We no need to mention in NgModule with provider statement.  for normal server we have to do This
+
+ By default, this syntax registers it to the root injector which will make our service an application wide singleton.
+
+
+IF this service  not used anywhere then it will not be there in output

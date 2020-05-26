@@ -27,5 +27,6 @@ Ex:
 Thread Vs Process
 -------------------------
 Threads are used for small tasks, whereas processes are used for more 'heavyweight' tasks
-basically the execution of applications. Another difference between a thread and a process is
+basically the execution of applications.
+Another difference between a thread and a process is
 that threads within the same process share the same address space, whereas different processes do not.

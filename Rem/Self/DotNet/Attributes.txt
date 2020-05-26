@@ -1,15 +1,17 @@
 Attributes can be applied to almost every aspect of your code.
- For example, attributes can be associated at the Assembly level, like the AssemblyVersion and AssemblyFileVersion attributes, which govern the version numbers associated with the assembly.
- 
- 
+ For example, attributes can be associated at the Assembly level, like the AssemblyVersion and AssemblyFileVersion
+ attributes, which govern the version numbers associated with the assembly.
+
+
  Still other attributes can be applied to Assembly,Class,methods, properties, fields, enums, return values etc.
- 
- 
- 
- Then the Serializable attribute for example can be applied to a type declaration to flag the type as supporting serialization. In fact this attribute has special meaning within the CLR and is actually stored as a special directive directly on the type in the IL, this is optimized to be stored as a bit flag which can be processed much more efficiently
- 
- 
- 
+
+
+
+ Then the Serializable attribute for example can be applied to a type declaration to flag the type as supporting serialization.
+ In fact this attribute has special meaning within the CLR and is actually stored as a special directive directly on the type in the IL, this is optimized to be stored as a bit flag which can be processed much more efficiently
+
+
+
  How Attribute works
  -------------------------
 Then at runtime your code could reflect on the values contained in the custom attributes and take appropriate actions.
@@ -19,7 +21,7 @@ Think of attributes are post-its that are attached to the classes or method defi
 You can then have a processor/runner/inspector module that accepts these types by reflecting, looks for these post-its and handles them differently. This is called declarative programming. You declare some behavior instead of writing code for them in the type.
 
 Ex:
-	The NUnit runner looks at the [TestFixture] attributes all classes defined in the target assembly to identify test classes. It then looks for methods marked with [Test] 
+	The NUnit runner looks at the [TestFixture] attributes all classes defined in the target assembly to identify test classes. It then looks for methods marked with [Test]
 attribute to identify the tests, which it then runs and displays the results.
 
 
@@ -40,7 +42,7 @@ public void function()
    {
        // This class is serializable, let's do something with it!
 
-   }     
+   }
 }
 
 

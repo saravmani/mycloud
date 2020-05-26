@@ -50,10 +50,12 @@ No Cookies Required, So It's Very Mobile Friendly
 
 Good Performance: It reduces the network round trip time.
 
-Decoupled/Decentralized: The token can be generated anywhere. Authentication can happen on the resource server, or easily separated into its own server.
+Decoupled/Decentralized: The token can be generated anywhere. Authentication can happen on the resource server,
+or easily separated into its own server.
 
 
-he user agent should send the JWT, typically in the Authorization header using the Bearer schema. The content of the header should look like the following:
+he user agent should send the JWT, typically in the Authorization header using the Bearer schema.
+The content of the header should look like the following:
 Authorization: Bearer <token>
 
 ex:
@@ -61,8 +63,12 @@ Authorization:
 Bearer gefa--_CKtY7WAnMJn7HVgBMTtFPktclOinUMPSiuRBscZm0ZznKo9Cr3KT0Dx-t9WA6maCIkCiKLk8G9ogTk_HMgard2sowq8fahuWpfKeqlR4DLXM9t4J8VpI1bgOINGMfzQW0NjxiRgCYwx_aG_I6k-VCSk7x0mnNQNUXTiWEyTxDRifnI03ahMKUkgNhu5PN7GXeJrzEjbd8hRKCb6R5Mm-RUScEDFckt--iYXGh_9REdnJ7iqGXPkkX1s9i74GrYe5jS3BU2L5U1RrAcorhrU8sdkxERWaheXYVvMg-6EBgj0z3NfM5dIlnKN5SisqW0qB7Xr5Xdc7GZMbQk8f341sL924jBzwgji62D79sp4WQbIc59tJec6gMeO6tcF9X1ML4nBw8Dv--IWF3g70bRutWujZVBJc_PMWQg-Gx22br_1wqBrvKoY7X39EN8ZIUaIE6pZ_-dQG1lrXJcpLa6G6LAn62qqDd_fAN7hxzU2xuNb1Tc7PSLZ7me0AH
 
 
- I would strongly recommend on passing your access token within the Authorization header instead of going with custom headers. If they are really bearer tokens follow the rules of RFC 6750, if not, you can always create a custom authentication scheme and still use that header.
-Authorization headers are recognized and specially treated by HTTP proxies and servers. Thus, the usage of such headers for sending access tokens to resource servers reduces the likelihood of leakage or unintended storage of authenticated requests in general, and especially Authorization headers.
+ I would strongly recommend on passing your access token within the Authorization header instead of going with custom headers.
+ If they are really bearer tokens follow the rules of RFC 6750, if not, you can always create a custom authentication scheme
+ and still use that header.
+Authorization headers are recognized and specially treated by HTTP proxies and servers.
+Thus, the usage of such headers for sending access tokens to resource servers reduces the likelihood
+of leakage or unintended storage of authenticated requests in general, and especially Authorization headers.
 
 
 Difference between Oauth and JWT
@@ -70,3 +76,7 @@ Difference between Oauth and JWT
 # Oauth can uses JWT.
 real difference is that JWT is just a token format, OAuth 2.0 is a protocol
  OAuth 2.0 defines a protocol, i.e. specifies how tokens are transferred, JWT defines a token format.
+
+
+
+ 

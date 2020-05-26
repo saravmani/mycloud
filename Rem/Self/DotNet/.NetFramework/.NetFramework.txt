@@ -1,8 +1,13 @@
 CLRHosting
 -------------
-Basically, the CLR acts as a library that can be loaded and "hosted" by a process. You can develop an app that loads and hosts the CLR if you wish; that would allow your app to contain a whole CLR virtual machine, load assemblies and run .NET managed code all within it.
-SQL Server 2008, for example, can do this. You can write .NET code that is stored in a SQL Server database and run from within the SQL Server database engine. SQL Server is hosting the CLR to achieve that.
+Basically, the CLR acts as a library that can be loaded and "hosted" by a process.
+You can develop an app that loads and hosts the CLR if you wish; that would allow your app to contain a
+whole CLR virtual machine, load assemblies and run .NET managed code all within it.
+SQL Server 2008, for example, can do this. You can write .NET code that is stored in a SQL Server database
+and run from within the SQL Server database engine. SQL Server is hosting the CLR to achieve that.
 
 
-How does Windows know that a binary is a .NET application? Actually the answer varies depending on which version of Windows you run.
-Normally .exe files are executed by Windows by looking at the PE-Header. This PE-Header says how it should be loaded into memory, what dependencies it has, and where the entry point is.
+How does Windows know that a binary is a .NET application? Actually the answer varies depending on which
+version of Windows you run.
+Normally .exe files are executed by Windows by looking at the PE-Header.
+This PE-Header says how it should be loaded into memory, what dependencies it has, and where the entry point is.

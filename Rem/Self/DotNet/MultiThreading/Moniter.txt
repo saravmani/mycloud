@@ -3,8 +3,10 @@
 Monitor
 ======================================================
 
+lock is syntactical sugar simplifying the use of .Net's Monitor exclusive lock.
+
 Monitor.Wait Monitor.Pulse  example
-# If one theread calls .wait(lockObj), then it will wait until another 
+# If one theread calls .wait(lockObj), then it will wait until another
 theread calls .pulse(lockObj) && .wait(lockobj)
 or .pulse(lockObj) && lock ends
 
@@ -15,7 +17,7 @@ or .pulse(lockObj) && lock ends
 
 
             Task.WaitAll(task1, task2);
-             
+
         }
 
         public void thread1Call()
@@ -40,8 +42,3 @@ or .pulse(lockObj) && lock ends
                 System.Threading.Thread.Sleep(1000);//12
             }
         }
-
-
-
-
-

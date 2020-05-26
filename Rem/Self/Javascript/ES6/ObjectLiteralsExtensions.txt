@@ -2,8 +2,7 @@ var price=5.99,quantity=30;
 var productView={price,quantity};
 console.log(productView);
 
-output: {price: 5.99,
-quantity: 30}
+output: {price: 5.99, quantity: 30}
 
 //so we no need to specify price:price.. instead this new type of literal will b taken automatically
 

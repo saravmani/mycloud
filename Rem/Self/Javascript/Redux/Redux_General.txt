@@ -1,5 +1,6 @@
 It is a STATE CONTAINER for JavaScript apps
-It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test.
+It helps you write applications that behave consistently, run in different environments
+(client, server, and native), and are easy to test.
 
 
 Undo and Redo with not much work.

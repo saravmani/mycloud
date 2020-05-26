@@ -2,7 +2,13 @@
 Steps for remote debugging
 --------------------------------------
 Install remote debugger tool on remote system and start it as administrator mode
-Added firewall exception in firewall settings
-In "Local security policy wizard - >User Rights Assignment->"  Added my user id (r  add logged in user id)  (Try if remote debugging not works)
-Run Remote configuration wizard and add the user id (Try if remote debugging not works)
+  (Download the most recent remote tools for your version of Visual Studio. The latest remote tools version is compatible with earlier Visual Studio versions)
+  (You can run the remote debugger by copying msvsmon.exe to the remote computer, rather than installing the remote tools.)
 
+Added firewall exception in firewall settings
+
+In "Local security policy wizard - >User Rights Assignment->"  Added my user id (r  add logged in user id)
+(Try if remote debugging not works)
+
+
+Run Remote configuration wizard and add the user id (Try if remote debugging not works)

@@ -1,5 +1,5 @@
 
-Tamper proof objects (tags - Sealed, non extensable)
+Tamper proof objects (tags - Sealed, non extensable, Object security)
 ---------------------------------------------------------
 Object.preventExtensions,Object.seale,Object.freeze
 
@@ -51,6 +51,7 @@ alert(Object.isSealed(person)); //false
 
 Frozen Objects
 --------------------
+It prevents modifying any existing properties
 Frozen objects aren't extensible and are sealed, and also data properties have their [[Writable]]
 attribute set to false.
 Since frozen objects are both

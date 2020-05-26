@@ -1,5 +1,18 @@
+Modified:23-Apr-2020;Thursday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+first put hardcoded routings then put dynamic routings (i.e routing with parameters)
+because if we go back also it should work properly with child virtual routings.
+I got i from udemy ionic course - book mark - "Routing Tips"
+
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+
+
+
 The router in Angular 2 provides both a HashLocationStrategy and a PathLocationStrategry,
 one of which is used when we bootstrap the app
+
+
 
 Loading different components
 angular js having powerfful built in router

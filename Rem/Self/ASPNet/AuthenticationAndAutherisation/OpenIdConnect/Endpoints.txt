@@ -1,11 +1,12 @@
 OpenID Connect Endpoints
 ---------------------------------------
+UserInfo endpoint - to get the user details from the resource server to client
 Authorization Endpoint (IDP - identity provider)
-    Used by client via redirection. 
+    Used by client via redirection.
 Token Endpoint (IDP - identity provider)
 Discovery Endpoint(IDP - identity provider)
     IdentySever  provides this Discovery end point automatically. this will be used by others
-    Ex: google's Discovery Endpoint is 
+    Ex: google's Discovery Endpoint is
     https://accounts.google.com/.well-known/openid-configuration
     {
         "issuer": "https://accounts.google.com",

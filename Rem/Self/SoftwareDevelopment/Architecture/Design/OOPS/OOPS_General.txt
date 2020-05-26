@@ -15,13 +15,4 @@ what is abstraction and ecapsulaisation?
 
     Polymorphism
     ----------
-    method overloading, operator overloading, overriding through inhertiance of abstract classes, interfaces 
-
-
-Covariance and Contravariance
-----------------------------------
-
-In C#, roughly we can say that covariance means we can substitute derived type in place of base type.
- Contravariance means we can substitute base class in place of derived class.
-In C#, covariance and contravariance are supported only for reference types.
-
+    method overloading, operator overloading, overriding through inhertiance of abstract classes, interfaces

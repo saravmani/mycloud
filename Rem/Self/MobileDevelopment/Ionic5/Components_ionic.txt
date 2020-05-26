@@ -1,0 +1,17 @@
+Created:23-Apr-2020;Thursday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Tags -
+
+
+
+Install ionic essentials extension manager for vs code.
+it will give u intellisence on html page with components list
+
+
+ion-route-outlet
+this is wrapper around angular route-outlet component.
+it adds styling and smooth navigation features
+
+
+ionic-avathar - this will display image in rounded shape
+ionic-thumbnail - same like avathar but displaies in square format

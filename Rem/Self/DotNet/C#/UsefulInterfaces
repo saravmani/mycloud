@@ -2,7 +2,8 @@ IComparable
 IComparer
 
 IComparable<T> reads out I'm comparable. IComparable<T> when defined for T lets you compare the current instance with another instance of same type.
- IComparer<T> reads out I'm a comparer, I compare. IComparer<T> is used to compare any two instances of T, typically outside the scope of the instances of T.
+ IComparer<T> reads out I'm a comparer, I compare. IComparer<T> is used to compare any two instances of T,
+ typically outside the scope of the instances of T.
 
  # experiment 1
  i tried SortedSet to store some type of objects. but if we want to use SortedSet then the type which used should implmented with IComparable interface. otherwise it throws run time error
@@ -12,7 +13,7 @@ SortedSet used to store the object in sorted order and store only unique values
     {
         public string studentname { get; set; }
         public int studentage { get; set; }
- 
+
 
         public int CompareTo(a other)
         {
@@ -27,7 +28,7 @@ SortedSet used to store the object in sorted order and store only unique values
         static void Main(string[] args)
         {
             Console.ReadLine();
-             
+
             var obja = new a();
             obja.studentname = "hahahuhi";
             obja.studentage = 23;
@@ -43,5 +44,3 @@ SortedSet used to store the object in sorted order and store only unique values
             objsrt.Add(objb);
             objsrt.Add(objc);
             objsrt.Add(objc);
-
-

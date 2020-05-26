@@ -2,23 +2,21 @@ MVC Filters
 ---------------------
     //System.Web.Mvc.IMvcFilter  //# i guess this is the base for all mvc filters
 
-    //System.Web.Mvc.Filters.IAuthenticationFilter    
+    //System.Web.Mvc.Filters.IAuthenticationFilter
     //System.Web.Mvc.IAuthorizationFilter
     //System.Web.Mvc.IActionFilter
     //System.Web.Mvc.IResultFilter
     //System.Web.Mvc.IExceptionFilter
     //System.Web.Mvc.Filters.IOverrideFilter
 
-            
+
 Web Api Filters
 -----------------------
     //System.Web.Http.Filters.IFilter   //# i guess this is the Base for all web api filters
-
     //System.Web.Http.Filters.IAuthenticationFilter
     //System.Web.Http.Filters.IAuthorizationFilter
     //System.Web.Http.Filters.IExceptionFilter
     //System.Web.Http.Filters.ActionFilterAttribute
     //System.Web.Http.Filters.IOverrideFilter
-
 
     #i see  - IResultFilter not available in web api

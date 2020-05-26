@@ -1,7 +1,7 @@
 Key_words:
 authorisation_code,
-id_token (Identity Token),--when user authenticates 
 access_token (or authorisation_token),
+id_token (Identity Token),--when user authenticates
 refresh_token
 
 i.e oauth defines access_token. OpenID defines identity token.
@@ -29,7 +29,7 @@ It Defines UserInfo endpoint to get user information like email, picture, websit
 It built on top of oauth 2. so flows are same.
 
 it can use authorization Code Grant and Implicit grant are applicable.
-CLient credentials grant not applicable.
+Client credentials grant not applicable.
 
 In OpenID Connect, we will request access_token and id_token from security token service.
 Client receives id_token and access_token.

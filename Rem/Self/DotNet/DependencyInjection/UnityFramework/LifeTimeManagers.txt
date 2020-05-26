@@ -10,3 +10,11 @@ PerResolveLifetimeManager
 PerThreadLifetimeManager
 
 ExternallyControlledLifetimeManager
+
+
+
+The TransientLifetimeManager is the default lifetime manager.
+It creates a new object of the requested type every time you call the Resolve() or ResolveAll() method.
+
+var container = new UnityContainer()
+                   .RegisterType<ICar, BMW>(new TransientLifetimeManager());

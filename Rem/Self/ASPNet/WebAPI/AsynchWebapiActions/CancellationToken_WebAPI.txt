@@ -1,0 +1,12 @@
+# I tried below example and found that cToken suplied automatically by webapi framework.
+ i found this in object explorer in debug mode
+
+public class PageSizeController : ApiController, ICustomController
+{
+  private static string TargetUrl = "http://apress.com";
+  public async Task<long> GetPageSize(CancellationToken cToken)
+  {
+
+
+
+# there is no where i found that CancellationToken is used in webapi .. may be i have to restart the iis and check this

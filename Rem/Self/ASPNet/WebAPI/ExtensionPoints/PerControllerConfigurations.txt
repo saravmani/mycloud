@@ -1,6 +1,6 @@
 Per-Controller Configuration
 ----------------------------------
-# configuratio settings for controller level
+# Configuration settings for controller level
 
 we can able to configure
 -------------------------------
@@ -10,7 +10,7 @@ media type formaters
 
 Note: Any settings that you don't change default to the global HttpConfiguration object.
 
-sample code 
+sample code
 using System;
 using System.Web.Http;
 using System.Web.Http.Controllers;

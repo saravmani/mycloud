@@ -1,5 +1,5 @@
 ConcurrentDictionary<T,T>
 ------------------------------
-TryAdd -- this method will try to insert the key value pair. 
-if same key already exists in the system then returns false. 
-But in normal dictionary it will throws exception
+TryAdd -- this method will try to insert the key value pair.
+if same key already exists in the system then returns false.
+But in this case if we use 'Add' will throws exception

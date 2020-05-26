@@ -110,7 +110,7 @@ GenerateClick(elementObject: Element){
 }
 
 
-Binding custome attributes in template
+Binding custom attributes in template
 -----------------------------------------
 have to add custome attribute like below. this will be converted by angular 2
 attr.customeattributename="{{valueee}}"

@@ -5,8 +5,8 @@ throughout your application, and you want to improve the performance of this que
 reusing the compiled version in subsequent executions.
 
 When executing against a database, Entity Framework must translate your strongly typed LINQ query to a
-corresponding SQL query, based upon your database provider (SQL Server, Oracle, and so on). Beginning with
-version 5 of Entity Framework, each query translation is cached by default. This process is referred to as auto-caching.
+corresponding SQL query, based upon your database provider (SQL Server, Oracle, and so on).
+From  EntityFramework 5, each query translation is cached by default. This process is referred to as auto-caching.
 With each subsequent execution of a given LINQ query, the corresponding SQL query is retrieved directly from
 query plan cache, bypassing the translation step. For queries containing parameters, changing parameter values will
 still retrieve the same query. Interestingly, this query plan cache is shared among all instances of a context object

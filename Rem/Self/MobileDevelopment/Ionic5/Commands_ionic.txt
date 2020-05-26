@@ -1,0 +1,15 @@
+ionic serve //internally it calls ng serve because in
+ionic.conifg.json we are specifying type="angular"
+
+ionic generate //this will list all possible options
+ionic generate page //this is like ng g c. but it creates module
+also. Also adds updates app-routing.modules with lazy loading option.
+so by default the created module is lazy loading modules
+
+
+
+<ion-input type="number" autocomplete autocorrection> </ion-input>
+//this autocomplete and autocorrection will work with mobile devices
+
+
+//we can use ng commands also. it will work

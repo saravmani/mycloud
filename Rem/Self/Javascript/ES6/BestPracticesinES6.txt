@@ -1,5 +1,9 @@
 we should try to away from global properties.
 Ex:
 Number.parseFloat and parseFloat are equal.
-But parseFloat available in global. but we should avoid use of this. instead we have to 
+But parseFloat available in global. but we should avoid use of this. instead we have to
 use Number.parseFloat
+
+
+# my thoughts
+  1. readability will be improved

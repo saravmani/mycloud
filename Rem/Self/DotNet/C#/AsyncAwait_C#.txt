@@ -1,5 +1,16 @@
 Async Await
 ------------------
+Note: we cannot use await keyword within lock, unsafe  blocks
+
+C# 8.0, you can use the await foreach statement to consume an asynchronous stream of data.
+
+
+The await operator suspends evaluation of the enclosing async method until the asynchronous operation
+represented by its operand completes. When the asynchronous operation completes, the await operator
+returns the result of the operation, if any. When the await operator is applied to the operand that
+represents already completed operation, it returns the result of the operation immediately without
+suspension of the enclosing method. The await operator doesn't block the thread that evaluates the async method.
+
 The await operator is applied to a task in an
 asynchronous method to insert a suspension point in the execution of the method until the awaited task completes
 

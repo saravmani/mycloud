@@ -73,7 +73,7 @@ This means that no time need be spent detecting changes using the snapshot-based
 
 For the Entity Framework to create the change-tracking proxies for your POCO classes,
 the following conditions must be met.
-The class must be public, nonabstract, and nonsealed.
+The class must be public, non abstract, and non sealed.
 • The class must implement virtual getters and setters for all properties that are persisted.
 • You must declare collection-based relationships navigation properties as ICollection<T>.
 They cannot be a concrete implementation or another interface that derives from ICollection<T>.
@@ -110,6 +110,7 @@ public class YourContext : DbContext
     public YourContext()
     {
         this.Configuration.AutoDetectChangesEnabled = false;
+        
     }
 }
 

@@ -9,4 +9,4 @@ the returned objects are automatically attached to the object context.
 You can also attach objects to an object context that are obtained from a source other than a query.
 (ex: get form data from UI)
 You might attach objects that have been previously detached, objects that have been returned by a
-NoTracking query, or objects that have been obtained outside the object context.
+NoTracking (AsNoTracking()) query, or objects that have been obtained outside the object context.

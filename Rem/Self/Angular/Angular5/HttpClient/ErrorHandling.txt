@@ -1,12 +1,12 @@
 Two types of errors can occur
 ---------------------------------------
-1. The server backend might reject the request, returning an HTTP response with a 
+1. The server backend might reject the request, returning an HTTP response with a
 status code such as 404 or 500. These are error responses.
-2. something could go wrong on the client-side such as a 
-network error that prevents the request from completing successfully or 
-an exception thrown in an RxJS operator.These errors produce JavaScript ErrorEvent objects.
+2. something could go wrong on the client-side such as a
+network error that prevents the request from completing successfully or
+an exception thrown in an RxJS operator. These errors produce JavaScript ErrorEvent objects.
 
-The HttpClient captures both kinds of errors in its HttpErrorResponse 
+The HttpClient captures both kinds of errors in its HttpErrorResponse
 and you can inspect that response to figure out what really happened.
 
 Note: Error inspection, interpretation, and resolution is something you want to do in the service,

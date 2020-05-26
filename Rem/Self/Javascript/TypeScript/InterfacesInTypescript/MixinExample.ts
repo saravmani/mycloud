@@ -1,16 +1,6 @@
-#As per my understanding mixins are used for multiple inheritance. js will not support multiple inheritance
-so, we are adding other classes properties into child class by using prototype binding
 
-by using mixins we can able to combine lots of functionalities of small classes into
-bigger ONE class
-
-Along with traditional OO hierarchies, another popular way of building up classes
-from reusable components is to build them by combining simpler partial classes.
-You may be familiar with the idea of mixins or traits for languages like Scala, and
-the pattern has also reached some popularity in the JavaScript community.
-
-Mixin implementation in Typescript
------------------------------------------
+//Mixin implementation in Typescript
+//-----------------------------------------
 // Disposable Mixin
 class Disposable {
     isDisposed: boolean;

@@ -1,9 +1,10 @@
 Power of encaptualisation
 ---------------------------
-All about making re use the piece of code. 
+All about making re use the piece of code.
 re use already return piece
 
-1. wrapping the data (variables) and code acting on the data (methods) together as a single unit. --  bundling of data with the methods 
+1. wrapping the data (variables) and code acting on the data (methods) together as a single unit.
+    --  bundling of data with the methods
 2. mechanism for restricting direct access to some of the object's components
-This mechanism is not unique to object-oriented programming.
-in javascript . modules also encaptualisation
+    This mechanism is not unique to object-oriented programming.
+    in javascript . modules also encaptualisation

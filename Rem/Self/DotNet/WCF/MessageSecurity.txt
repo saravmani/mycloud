@@ -2,9 +2,9 @@ Message security in WCF
 -----------------------------------
 This enables some scenarios that are not possible when transport security is used.
 
-
 What Is Message Security?
-  Message security uses the WS-Security specification to secure messages. The WS-Securityspecification describes enhancements to SOAP messaging to ensure
+  Message security uses the WS-Security specification to secure messages.
+The WS-Security specification describes enhancements to SOAP messaging to ensure
 confidentiality, integrity, and authentication at the SOAP message level (instead of the transport level).
 In brief, message security differs from transport security by encapsulating the security credentials and
 claims with every message along with any message protection (signing or encryption).
@@ -25,16 +25,21 @@ Why we need message security?
 ---------------------------------
      End-to-end security. (# it wont bother how many intermediators are there.. it provides true end to end security)
      Transport security, such as Secure Sockets Layer (SSL) only secures messages when the communication is point-to-point.
-If the message is routed to one or more SOAP intermediaries (for example a router) before reaching the ultimate receiver, the message itself
+If the message is routed to one or more SOAP intermediaries (for example a router) before reaching the ultimate receiver,
+the message itself
 is not protected  once an intermediary reads it from the wire.
 (#Normally we will configure SSL in LoadBalancer. So after LoadBalancer before Webserver.. what is the security?)
 
      Increased flexibility. Parts of the message, instead of the entire message, can be signed or encrypted.
  This means that intermediaries can view the parts of the message that are intended for them.
-If the sender needs to make part of the information in the message visible to the intermediaries but wants to ensure that it is not tampered with
-, it can just SIGN it but leave it UN-ENCRYPTED. Since the signature is part of the message, the ultimate receiver can verify that the information in the
- message was received intact. One scenario might have a SOAP intermediary service that routes message according the Action header value.
-By default, WCF does not encrypt the Action value but signs it if message security is used. Therefore, this information is available to all intermediaries,
+If the sender needs to make part of the information in the message visible to the intermediaries
+but wants to ensure that it is not tampered with
+, it can just SIGN it but leave it UN-ENCRYPTED. Since the signature is part of the message,
+the ultimate receiver can verify that the information in the
+ message was received intact. One scenario might have a SOAP intermediary service that routes message
+ according the Action header value.
+By default, WCF does not encrypt the Action value but signs it if message security is used.
+Therefore, this information is available to all intermediaries,
 but no one can change it. Since the signature is part of the message, the ultimate receiver can verify that the information in the message was received intact.
 
 One scenario might have a SOAP intermediary service that routes message according the Action header value.

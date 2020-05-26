@@ -25,7 +25,8 @@ Streams are cheap and ubiquitous, anything can be a stream: variables, user inpu
   You can listen to that stream and react accordingly.
 
  In common Reactive libraries, each stream has many functions attached to it, such as map, filter, scan, etc
-lickStream.map(f), it returns a new stream based on the click stream. It does not modify the original click stream in any way. This is a property called immutability,
+lickStream.map(f), it returns a new stream based on the click stream. It does not modify the original click stream in any way.
+This is a property called immutability,
 
 Understanding Observables
 ----------------------------

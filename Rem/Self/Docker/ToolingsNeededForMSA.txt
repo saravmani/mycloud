@@ -1,13 +1,7 @@
 For Successful microservices following aspects are needed
-
-The following are important aspects to enable success in going into production with a microservices-based system:
-
+ 
 Monitoring and health checks of the services and infrastructure.
-
 Scalable infrastructure for the services (that is, cloud and orchestrators).
-
 Security design and implementation at multiple levels: authentication, authorization, secrets management, secure communication, etc.
-
 Rapid application delivery, usually with different teams focusing on different microservices.
-
 DevOps and CI/CD practices and infrastructure.

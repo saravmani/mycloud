@@ -1,0 +1,11 @@
+Created:20-Apr-2020;Monday;7:00;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Tags -
+
+think ionic app is stack of pages . top most page will get shown in ui.
+
+ionic internally manages this page stack by StackCOntroller
+
+
+# in angular web if we do navigation framework will destroy the component. but in in Ionic
+framework will maintain the pages in cash. so we when we do navigate it will just pop the page to show

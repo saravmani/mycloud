@@ -1,0 +1,6 @@
+When working with Angular 8, please note that you need to change @ViewChild(...)
+to @ViewChild(..., { static: false }).
+
+This should be a temporary change which will not be required anymore once Angular 9
+is released (and it's also not required if you're using Angular 7 or
+older - check your package.json file to find out which version you're using).

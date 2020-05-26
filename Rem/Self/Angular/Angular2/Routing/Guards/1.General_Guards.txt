@@ -1,0 +1,17 @@
+Created:27-Apr-2020;Monday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Tags -
+
+
+Guards also a service
+
+this can be added at route level. depends on requirement different methods are there
+ex: canActivate, canLoad
+
+canLoad will get execute before lazyload code gets downloaded
+this will be useful on mobile apps to avoid unwanted downlades
+
+
+we can able to redirect within Guard. ex: if there no authendication then we can redirect to log screen
+BookMark UDEMY: redirect within auth service
+https://www.udemy.com/course/ionic-2-the-practical-guide-to-building-ios-android-apps/learn/lecture/13727870?start=199#bookmarks

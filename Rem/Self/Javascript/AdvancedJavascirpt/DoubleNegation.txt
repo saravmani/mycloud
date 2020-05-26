@@ -1,5 +1,12 @@
 Double Negation !!
 -----------------------------
+# it is a operator to convert boolean
+
+!!1            // true
+!!0            // false
+!!undefined    // false
+!!{}           // true
+!![]           // true
 
 It casts to boolean.
 
@@ -11,4 +18,4 @@ null to false
 NaN to false
 false to false
 
-it is simple Not operator... 
+it is simple Not operator...

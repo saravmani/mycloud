@@ -1,0 +1,34 @@
+
+why HttpResponseMessage needed??
+  From Action method we can able to return complex or premetive data types directly as below
+public StudendDetails GetStudentDetails()
+{
+    return new StudendDetails();
+}
+But how we will return if no stuendes avaialble? or how we will return error response in a HTTP way?
+
+if we use HttpResponseMessage then we can achieve this
+
+public HttpResponseMessage GetEmployee(int id)
+{
+   try
+   {
+      Employee emp = EmployeeContext.Employees.Where(e => e.Id == id).FirstOrDefault();
+
+      if (emp != null)
+      {
+         return Request.CreateResponse<Employee>(HttpStatusCode.OK, emp);
+      }
+      else
+      {
+         return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Employee Not Found");
+      }
+   }
+   catch (Exception ex)
+   {
+      // Log exception code goes here
+      return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Error occured while executing GetEmployee”);
+   }
+}
+
+2. # Also we can able to add custome http headers, cookies 

@@ -17,3 +17,6 @@ List<T> is intended for internal use within the application code. We should not 
 Collection<T> serves a base class for custom collections (although it can be used directly).
 
 Consider using Collection<T> in your code unless there are specific features of List<T> that you need.
+
+
+https://stackoverflow.com/questions/271710/collectiont-versus-listt-what-should-you-use-on-your-interfaces

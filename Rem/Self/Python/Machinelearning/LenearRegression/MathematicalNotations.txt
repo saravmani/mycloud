@@ -1,0 +1,33 @@
+
+https://brownmath.com/swt/symbol.htm
+x̅ - mean
+y
+
+
+Dependant variable, Independent variable
+
+Standard deviation - Vertical Distance btn Actual data point and Regression line
+  G:\rem\Rem\Self\Python\ImageRef\StandardDeviation.png
+  also this called - Residuals (Error)
+
+Best regression model should give (model should draw best fitting line)
+  sum of square of this residuals should be as less as possible
+SSE - Summ of squares of residuals
+
+
+Why Square root of Residuals required?
+    1. It will convert all the negative values into positive
+    2. sum of square of this residuals should be as less as possible to say the model will draw best fitting line
+
+
+Multi co llinearity (Multicollinearity) -
+  # some times Independent variables not only related to Dependant variable. Those Independent variables relates among them
+
+OverFItting
+  # using more indipendent variables which are not relavent. so the predictions will not be more perfect
+
+Vector vs Matrix
+  Vector - single column row  - ex: a = [13,52,63,74]
+  matrix is a normal matrix.
+  In machine learning we should not use vector as Dependant. if so we have to convert that to matrix first
+    Refer - Udemy:Machine learning A-Z, Book Mark : "Why no vector should be used?"

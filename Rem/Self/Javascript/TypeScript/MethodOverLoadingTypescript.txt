@@ -1,18 +1,33 @@
-# I think method overloading can be achieved by 
-1. with unions 
+# I think method overloading can be achieved by
+1. with unions
 2. function declartaions
 
-# this my example. but i have verify this. 
+# this my example. this works
+
 
 export class BaseClass {
     // methodFrombaseClass(a: number);
-    methodFrombaseClass(a: number);
-    methodFrombaseClass(a: number, b?: number);
-    methodFrombaseClass(a: number, b?: number,c?:string);
-    methodFrombaseClass(a: any, b?: number, c?: string) {
+    methodFrombaseClass(a: number):any;
+    methodFrombaseClass(a: string, b?: number):any;
+    methodFrombaseClass(a: Date, b?: number,c?:string):any;
+    methodFrombaseClass(a: any, b?: number, c?: string):any {
         alert(a);
     }
 }
 
 var objBaseClass = new BaseClass();
 objBaseClass.methodFrombaseClass(23,45,"78")
+
+this produce output as below
+export class BaseClass {
+    methodFrombaseClass(a, b, c) {
+        alert(a);
+    }
+}
+
+# my understanding is method overloading is not like c# . In Ts we cannot give same method name with different body
+implementations. only one implementation should be there. and also it should be parent for all..
+see in above example 2nd and 3rd params are nullable , and first parameter is 'any'.
+we should handle everthing in implementation.. check is it number, string or null.. etc.,
+Ex: before doing number specific coding have to check
+      if(typeof a=='number'){console.log('haha')}

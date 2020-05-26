@@ -9,3 +9,4 @@ Solution
 2.
 Table Model not getting created with oracle db
 	Sol: I checked tale. table not having primary key. after creating primary key then i am able to generate the modal
+	 

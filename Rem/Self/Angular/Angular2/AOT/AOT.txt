@@ -1,4 +1,4 @@
-An --prod build defaults to --aot=true now;
+An --prod build defaults to --aot=true now; (angular 4 and above)
 by default --prod will do aot compilation
 
 An Angular application consist largely of components and their HTML templates.

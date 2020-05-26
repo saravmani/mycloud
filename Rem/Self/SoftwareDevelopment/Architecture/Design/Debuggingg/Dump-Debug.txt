@@ -1,12 +1,18 @@
 two types of dump files.
 1. Crash dump - when program crashes this got generated
-2. Hang 
+2. Hang
 
 
 
-However, you can't specify that the dump should be created at some specific event. Tools like adplus and procdump allow you to create a dump for various conditions (exception, work load etc). So essentially task manager only supports give me a snapshot of the process (which is usable for a hanging process). For other situations you need to use adplus or procdump.
+However, you can't specify that the dump should be created at some specific event. Tools like adplus and procdump
+allow you to create a dump for various conditions (exception, work load etc). So essentially task manager only
+supports give me a snapshot of the process (which is usable for a hanging process).
+For other situations you need to use adplus or procdump.
 
-Also, you should be aware that 64 bit Windows ships with two versions of the task manager. The 64 bit manager will create 64 bit dumps - even for 32 bit processes (i.e. the dump will contain the Wow64 stuff needed to run the 32 bit process). However, if you use the 32 bit version of task manager (located in \Windows\SysWOW64) you'll get a proper 32 bit dump.
+Also, you should be aware that 64 bit Windows ships with two versions of the task manager.
+The 64 bit manager will create 64 bit dumps - even for 32 bit processes
+ (i.e. the dump will contain the Wow64 stuff needed to run the 32 bit process).
+ However, if you use the 32 bit version of task manager (located in \Windows\SysWOW64) you'll get a proper 32 bit dump.
 
 
 
@@ -21,7 +27,7 @@ and debug using vsts.. it is very difficult. so we need to find the way
 to debug it in production machine itself :-)
 
 so we can do with WinDbg. this comes with windows SDK
-but windbg cant directly debug managed code. 
+but windbg cant directly debug managed code.
 for that we need extension called SOS. it is shipped with .Net framework
 
 Command to load sos
@@ -37,7 +43,3 @@ Command to load sos
 
 
 Generating PDB files for release executables does not affect any optimizations, or significantly alter the size of the generated files. Typically, the only difference is the path, and the file name of the PDB file is embedded in the executable. For this reason, you should always produce PDB files, even if you don't want to ship them with the executable.
-
-
-
-

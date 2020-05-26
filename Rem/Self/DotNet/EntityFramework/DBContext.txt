@@ -1,32 +1,34 @@
 Always try to have One DB context per applicaton. Within One DB Context have multiple db entities.
 
-It can be beneficial to have several of them for parts of the database that logically belong together 
+It can be beneficial to have several of them for parts of the database that logically belong together
 and are relatively isolated from other parts
-(like authorization tables, CRM tables, product tables, reporting, ...). 
+(like authorization tables, CRM tables, product tables, reporting, ...).
 In this case you may decide to use bounded contexts.
 
 DBContext is the bridge btn Entity Classes and Data base objects
 
 Responsibilities of DBContext
 ----------------------------------
-EntitySet: DbContext contains entity set (DbSet<TEntity>) for all the entities 
+EntitySet: DbContext contains entity set (DbSet<TEntity>) for all the entities
            which is mapped to DB tables.
            ALso it contains Functions which are mapped to DB Stored procs
 Querying: DbContext converts LINQ-to-Entities queries to SQL query and send it to the database.
 Change Tracking: It keeps track of changes that occurred in the entities after it has been querying from the database.
-Persisting Data: It also performs the Insert, Update and Delete operations to the database, based on what the entity states.
-Caching: DbContext does first level caching by default. It stores the entities which have been retrieved during the life time of a context class.
+Persisting Data: It also performs the Insert, Update and Delete operations to the database,
+                based on what the entity states.
+Caching: DbContext does first level caching by default. It stores the entities which have been retrieved during
+          the life time of a context class.
 Manage Relationship: DbContext also manages relationship using CSDL, MSL and SSDL in DB-First or Model-First approach or
                         using fluent API in Code-First approach.
 
 
-DbModelBuilder is called Fluent API, which can be used to configure entities 
+DbModelBuilder is called Fluent API, which can be used to configure entities
 in the Code-First approach.
 
 
-Entity states and maintains modifications made to the properties of the entity. 
+Entity states and maintains modifications made to the properties of the entity.
 This feature called Change Tracking
 
 
-Entity framework supports three types of queries: 
+Entity framework supports three types of queries:
 1) LINQ to Entities, 2) Entity SQL, and 3) Native SQL

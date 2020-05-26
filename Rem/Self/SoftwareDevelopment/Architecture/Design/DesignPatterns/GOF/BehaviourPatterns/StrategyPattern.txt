@@ -1,6 +1,6 @@
 Strategy pattern
 =========================
-Define a family of algorithms, encapsulate each one, and make them interchangeable. 
+Define a family of algorithms, encapsulate each one, and make them interchangeable.
 Strategy lets the algorithm vary independently from clients that use it.
 
 
@@ -8,7 +8,7 @@ Ex:
 class Bird{
     IFlyBehaviour objFlyBehaviour;
     setBehaviour(IFlyBehaviour _objFlyBehaviour){
-        this.objFlyBehaviour=_objFlyBehaviour;   
+        this.objFlyBehaviour=_objFlyBehaviour;
     }
     doFly(){this.objFlyBehaviour.fly()}
 }
@@ -30,10 +30,12 @@ ex:
 
 
 
-# In above example Bird HAS A relation with FlyBehaviour.  we can able to inheri flybehaviour from bird class by having flybehaviour code in bird class. but if that behaviour
-keeps changes, or if we want to add any new kind of behaviour (ex: FanFlyBhehaviour), then we have to touch bir and sub classes. so Is-A Relation is better approch
+# In above example Bird "HAS A" relation with FlyBehaviour.  we can able to inherit flybehaviour from bird class by
+having flybehaviour code in bird class. but if that behaviour
+keeps changes, or if we want to add any new kind of behaviour (ex: FanFlyBhehaviour),
+then we have to touch bird and sub classes. so Is-A Relation is better approch
 
-Note: Composition - when you put two classes together then it is Composition. 
+Note: Composition - when you put two classes together then it is Composition.
 Composition gives lots of flexibility.
 composition helps to change the behaviour of the system at runtime
 composition is used in many design patterns
@@ -44,11 +46,11 @@ template method and strategy pattern having lots of commonalities
 
 
 Template method and strategy pattern having lots of commonalities
------------------------------------------------------------------------------ 
+-----------------------------------------------------------------------------
 Template method is to define the outline of an algorithm, but
 let   subclasses do some of the work. That
 way, It can have different implementations of an algorithm’s individual steps, but keep control
-over the algorithm’s structure. 
+over the algorithm’s structure.
 All  duplicated code gets put into the superclass, so all the subclasses can share it.
 Template method It perfect for creating frameworks.
 
@@ -68,7 +70,5 @@ by inheritance and one by
 composition.
 
 
-The Factory Method is a specialization of Template 
+The Factory Method is a specialization of Template
 Method.
-
-

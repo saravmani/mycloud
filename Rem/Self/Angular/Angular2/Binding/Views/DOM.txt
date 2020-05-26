@@ -7,14 +7,14 @@ this._objRenderer.setElementStyle(objElement, "height", "100%");//Renderer eleme
 
 
 <input #myName>
-@ViewChild("myName");
+@ViewChild("myName") objMyName;
 
 
 Dynamic component loading
 ---------------------------
 For example ViewContainerRef that is required by DynamicComponentLoader
 instead of the default ElementRef
-Ex: 
+Ex:
 @ViewChild("ComponentHolder", { read: ViewContainerRef }) ComponentHolder;
 let factory = this.componentFactoryResolver.resolveComponentFactory(this.componentToBeLoaded);
     this.cmpRef = this.ComponentHolder.createComponent(factory);

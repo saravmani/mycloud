@@ -1,0 +1,7 @@
+Ionic components = HTML+JS+CSS
+plus automatically loads polyfills
+also it uses Shadow DOM (i know what is the use of this)
+
+
+@Inoic/angular
+this provides the angular wrapper for all ionic components

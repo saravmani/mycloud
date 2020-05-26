@@ -48,9 +48,9 @@ record, and the request will have to wait until the existing update lock is rele
 From the preceding description of pessimistic concurrency, it might appear as if
 using pessimistic concurrency will solve all the concurrency-related issues, as we
 won't have to deal with these issues in our application. However, this is actually
-not true. There are a few problems and overheads with using pessimistic
-concurrency that we need to keep in mind before we decide to choose it for
-concurrency management. The following are a few of the problems that we face
+not true.
+
+The following are a few of the problems that we face
 while using pessimistic concurrency:
 • Our application will have to manage all the locks that every operation
 is acquiring

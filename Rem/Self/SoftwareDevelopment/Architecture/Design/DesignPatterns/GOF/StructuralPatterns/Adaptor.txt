@@ -1,0 +1,24 @@
+ # third party class may have different formate (methods, properties) etc.
+ But for our project structure all the components using different interface.
+ so we have to create adaptor class which implements the interface and use the third party class within the adaptor class
+
+ Ex:
+ our application knows
+ ILoggerrrrr
+      DoLog
+
+third party
+  Logg4Nett
+      HahaLog
+
+
+AdaptorClassForLogg4Nett:ILoggerrrrr
+  DoLog()
+  {
+    Logg4Nett.HahaLog
+  }
+
+Advantages
+  tomorrow if we want to use different thirpary we can simply use different Adaptor
+
+It looks like strategy pattern. But strategy pattern used for defining different algorithms

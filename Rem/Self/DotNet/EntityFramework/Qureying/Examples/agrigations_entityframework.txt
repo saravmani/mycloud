@@ -26,10 +26,7 @@ In the preceding code, we first retrieved a list of Employees whose Employer_ID 
 We executed the Count function on the query that will effectively return the number
 of Employees with Employer_ID as 4
 
-SELECT
-[GroupBy1].[A1] AS [C1]
-FROM ( SELECT
-COUNT(1) AS [A1]
-FROM [dbo].[Employees] AS [Extent1]
-WHERE 4 = [Extent1].[Employer_ID]
+SELECT [GroupBy1].[A1] AS [C1]
+    FROM (
+          SELECT COUNT(1) AS [A1] FROM [dbo].[Employees] AS [Extent1] WHERE 4 = [Extent1].[Employer_ID]
 ) AS [GroupBy1]

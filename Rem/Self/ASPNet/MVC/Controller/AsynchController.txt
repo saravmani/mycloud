@@ -10,18 +10,18 @@ processing more simultaneous requests than your server can handle.
 The worker thread pool works best when requests can be processed in a short period of time
 
 
-Note A synchronous controllers are useful only for actions that are I/O- or network-bound and not CPU-intensive.
+Note Asynchronous controllers are useful only for actions that are I/O- or network-bound and not CPU-intensive.
 
 
 There are two ways to create an asynchronous controller. One is to implement the System.Web.Mvc.Async.
 IAsyncController interface, which is the asynchronous equivalent of IController.
 
 
-Old way of creating asnychronous actions is 
+Old way of creating asnychronous actions is
 method names should end with Async (e.g., IndexAsync) or Completed (e.g., IndexCompleted).
 
 
-New way of creating asynchronous 
+New way of creating asynchronous
 -----------------------------------------
 public class RemoteDataController : Controller
 {
@@ -35,5 +35,5 @@ public class RemoteDataController : Controller
 }
 
 
-asynchronous methods increase the overall performance of the application 
+asynchronous methods increase the overall performance of the application
 by reducing the performance of individual requests.

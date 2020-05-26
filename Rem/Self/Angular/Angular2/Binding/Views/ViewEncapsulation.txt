@@ -56,7 +56,7 @@ class ZippyComponent {
 Looks like styles are still written to the document head.
 But  Instead of the simple .zippy selector that we used,
 Angular creates a .zippy[_ngcontent-1] selector. So it seems like Angular rewrote our component’s styles.
-Let’s see what the component’s template looks like
+ 
 <my-zippy title="Details" _ngcontent-0 _nghost-1>
   <div class="zippy" _ngcontent-1>
     <div (click)="toggle()" class="zippy__title" _ngcontent-1>

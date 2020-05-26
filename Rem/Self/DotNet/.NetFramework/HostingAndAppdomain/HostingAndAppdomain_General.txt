@@ -11,7 +11,8 @@ assembly files must use the Windows portable executable (PE) file format and be 
 executable (EXE) file or a DLL.
 
 # This is my understanding (I am not sure about this)
-      CLR  is a com component (COM server). when install .net framework, this COM component which is part of the framework will get registered in windows registory.
+      CLR  is a com component (COM server). when install .net framework, this COM component which is part of the framework will
+      get registered in windows registory.
 
 
 
@@ -21,7 +22,7 @@ your unmanaged host should call the
 CLRCreateInstance function declared in MetaHost.h. The CLRCreateInstance function is
 implemented in the MSCorEE.dll file, which is usually found in the C:\Windows\System32 directory. This
 DLL is affectionately referred to as the shim, and its job is to determine which version of the CLR to
-create; 
+create;
 
 # My Understanding
     we can able to host CLR by calling CLRCreateInstance method whcih is there in MSCorEE.dll. it is actually SHIM. This will decide version of CLR.
@@ -37,7 +38,7 @@ MSCorEE.dll knows how to find any previous versions of the CLR that may be insta
 However, with .NET Framework 4.0, Microsoft now supports the ability to load v2.0 and v4.0 in a single
 Windows process, allowing components written for .NET Framework versions 2.0 and 4.0 to run side by
 side without experiencing any compatibility problems. This is a fantastic new feature, as it allows .NET
-Framework components to be used reliably in more scenarios than ever before. 
+Framework components to be used reliably in more scenarios than ever before.
 
 You can use the
 ClrVer.exe tool to see which CLR version(s) are loaded into any given process.
@@ -51,4 +52,6 @@ used by the process.
 
 
 
-Before any managed code can be executed, the host must load and initialize the common language runtime. All hosts start with an unmanaged stub because the runtime is not yet running in the process. The .NET Framework provides a set of unmanaged APIs called the hosting APIs that the host can use to start the runtime
+Before any managed code can be executed, the host must load and initialize the common language runtime.
+All hosts start with an unmanaged stub because the runtime is not yet running in the process.
+The .NET Framework provides a set of unmanaged APIs called the hosting APIs that the host can use to start the runtime

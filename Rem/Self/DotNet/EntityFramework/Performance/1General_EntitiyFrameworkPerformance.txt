@@ -1,0 +1,13 @@
+1. Use AsNoTraking if we are going to read only the data
+2. Concurrency - use ROWVERSION or TIMESTAMP. dont use concurr mode for all the columns
+3.
+  To improve the performance of the query when you know the type of the result, use the OfType<T>()
+  ex:
+  context.Employees.OfType<HourlyEmployee>().Single(e => e.Name == "Steven Fuller");
+
+4. To search records use // Find() method
+  It fetches entity from context object (if alredy data in cache it will retrive from there. if not not found in chace then goes to db)
+
+5. Try to avoid let key word instead use where condition. (More refer - EntityFramework_Performance_General.txt)
+
+2. EF5 and above is automatically caching the parameterised query plan

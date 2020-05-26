@@ -6,6 +6,7 @@ and proxy.
 
 Frequently used patterns
 Structural
+	Decorator
 	Facade
 	Proxy - medium high
 	Adapter- medium high

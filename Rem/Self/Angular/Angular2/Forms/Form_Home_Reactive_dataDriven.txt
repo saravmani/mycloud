@@ -7,8 +7,8 @@ This approach scales up better, but it requires some  up-front effort
 
 Advantages
 -----------------
-Template will be simple
-We will have more controll .. ex: if we want to conditionally set the default values, if we want to
+UI(template) will be simple
+We will have more control .. ex: if we want to conditionally set the default values, if we want to
 diable group of form controlls, if we want to validate group of validation controls... etc.,
 IF WE WANT TO HAVE DIFFERENT GROUPING AND CHILD GROUPING
 

@@ -1,0 +1,43 @@
+//
+       // Summary:
+       //     Volatile data can be read but not modified, and no new data can be added during
+       //     the transaction.
+       Serializable = 0,
+       //
+       // Summary:
+       //     Volatile data can be read but not modified during the transaction. New data can
+       //     be added during the transaction.
+       RepeatableRead = 1,
+       //
+       // Summary:
+       //     Volatile data cannot be read during the transaction, but can be modified.
+       ReadCommitted = 2,
+       //
+       // Summary:
+       //     Volatile data can be read and modified during the transaction.
+       ReadUncommitted = 3,
+       //
+       // Summary:
+       //     Volatile data can be read. Before a transaction modifies data, it verifies if
+       //     another transaction has changed the data after it was initially read. If the
+       //     data has been updated, an error is raised. This allows a transaction to get to
+       //     the previously committed value of the data. When you try to promote a transaction
+       //     that was created with the Snapshot isolation level, an System.InvalidOperationException
+       //     is thrown with the error message "Transactions with IsolationLevel Snapshot cannot
+       //     be promoted".
+       Snapshot = 4,
+
+
+
+       IsolationLevel (it is about locking)
+       -----------------------------------------------
+       Serializable, Read Committed, Read Un Committed, Repeatable Read,
+       Serializable - It locks (Range Lock) data exclusively at the time of read/write operations.
+                       For that reason, many times it may create a deadlock, and as a result you
+                       may get a timeout exception. You can use this isolation level for a
+                       highly secured transactional application like a financial application.
+       Read Committed - Most of the applications you can use it. SQL Server default isolation level is this.
+       Read Un-Committed - Applications with these have no need to support concurrent transactions.
+       Repeatable Read -#  within a transaciton scope we can read multiple times from the source.
+                       For all the reads data will be same. Because till transaciton
+                       completes source will NOT allow for other commits

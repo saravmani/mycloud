@@ -1,14 +1,13 @@
 
 Property decorators will get PropertyDescriptor object as a paramter.
-PropertyDescriptor contains properties of property. 
+PropertyDescriptor contains properties of property.
 ex:
 writtable,configurable,value,get(),Set() etc.,
 propertyDecorator(target:Object, propertyKey:string,objDescriptor:PropertyDescriptor){
 objDescriptor.writtable = false;
 }
 
-we can apply property decorators for methods. 
+we can apply property decorators for methods.
 if we apply on method we will get method's property PropertyDescriptor as parameter.
-in above example we are making writtable option as false. 
-So we cannont change the function dynamically
-
+in above example we are making writable option as false.
+So we cannot change the function dynamically

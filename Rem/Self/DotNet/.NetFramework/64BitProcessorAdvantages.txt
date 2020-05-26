@@ -1,0 +1,4 @@
+if we run our applicaiton in 64 bit processor  then CLR will allocation more virtual memory space for a process
+  your application’s memory is limited by the process’s
+  virtual address space. In a 32-bit process, you can allocate close to 1.5 gigabytes and in a 64-bit
+  process you can allocate close to 8 terabytes.

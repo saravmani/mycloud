@@ -1,0 +1,28 @@
+
+ng-container vs template
+------------------------
+Both of them are at the moment (2.x, 4.x) used to group elements together without
+having to introduce another element which will be rendered on the page (such as div or span).
+
+template, however, requires nasty syntax. For example,
+
+<li *ngFor="let item of items; let i = index; trackBy: trackByFn">...</li>
+would become
+
+<template ngFor let-item [ngForOf]="items" let-i="index" [ngForTrackBy]="trackByFn">
+  <li>...</li>
+</template>
+You can use ng-container instead since it follow the nice * syntax
+ which you expect and are probably already familiar with.
+
+<ng-container *ngFor="let item of items; let i = index; trackBy: trackByFn">
+  <li>...</li>
+</ng-container>
+
+
+ng-content
+----------
+used for container. it will not generate any aditional tag
+<ng-container></ng-content> this used to get the data from parent contontrol like below
+parent-component.ts
+<child-component>some content needs to go inside of ng-content tag </child-component>

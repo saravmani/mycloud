@@ -45,7 +45,11 @@ Object.getOwnPropertySymbols(article);
 
 Symbols can be used as a unique value. (# like enumerator in c# we can use it)
 ----------------------------------------
-Let’s assume you have a logging library, which includes multiple log levels such as logger.levels.DEBUG, logger.levels.INFO, logger.levels.WARN and so on. In ES5 code you’d like make these strings (so logger.levels.DEBUG === 'debug'), or numbers (logger.levels.DEBUG === 10). Both of these aren’t ideal as those values aren’t unique values, but Symbols are! So logger.levels simply becomes:
+Let’s assume you have a logging library, which includes multiple log levels such as logger.levels.DEBUG,
+logger.levels.INFO, logger.levels.WARN and so on. In ES5 code you’d like make these strings
+(so logger.levels.DEBUG === 'debug'), or numbers (logger.levels.DEBUG === 10).
+Both of these aren’t ideal as those values aren’t unique values,
+but Symbols are! So logger.levels simply becomes:
 
 log.levels = {
   DEBUG: Symbol('debug'),
@@ -54,3 +58,14 @@ log.levels = {
 };
 log(log.levels.DEBUG, 'debug message');
 log(log.levels.INFO, 'info message');
+
+
+A method definition can also have a computed key:
+
+const FOO = Symbol();
+const obj = {
+    [FOO]() {
+        return 'bar';
+    }
+};
+console.log(obj[FOO]()); // bar

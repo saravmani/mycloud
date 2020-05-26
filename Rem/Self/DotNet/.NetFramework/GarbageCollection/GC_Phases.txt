@@ -4,14 +4,14 @@ Garbage Collector Working Phase
 
 Marking Phase
 -------------------------------
-In this phase garbage collector finds and creates a list of all live objects.
+  In this phase garbage collector finds and creates a list of all live objects.
 
 Relocating Phase
 --------------------------
-In this phase garbage collector updates the references to the objects that will be compacted.
+  In this phase garbage collector updates the references to the objects that will be compacted.
 
 Compacting Phase
 -----------------------
-In this phase garbage collector reclaims the memory occupied by the dead objects 
-and compacts the surviving objects. The compacting phase moves the surviving objects 
+  In this phase garbage collector reclaims the memory occupied by the dead objects 
+and compacts the surviving objects. The compacting phase moves the surviving objects
 toward the older end of the memory segment.

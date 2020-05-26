@@ -1,4 +1,4 @@
-this is mvc 5 feature
+This is mvc 5 feature
 
 If you want an action method to just be affected by the
 filters that have been directly applied to it, then you can

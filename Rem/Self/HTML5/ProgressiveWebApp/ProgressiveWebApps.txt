@@ -1,9 +1,12 @@
 PWA - no specific definition
-Must use HTTPS
+Must use HTTPS (if we are running with local host then http fine)
 ##Shows the PWA in task manager
 
+We can add web app like other apps.
+we can add icon in mobile device. and launch it like a app in full screen mode
 
-It is to provide app like experiance by taking advantage fo new APIs and abilities available in modern browser
+
+It is to provide app like experience by taking advantage fo new APIs and abilities available in modern browser
 
 Progressive Web App is a progression or the next step for a Responsive web app.
 That is, if you have a website (web page/web app) that is mobile responsive then you

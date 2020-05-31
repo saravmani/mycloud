@@ -1,0 +1,10 @@
+
+1. W3C Geolocation plain-latest browsers has this. provides users location with permission
+   this can use WIFI or GPS
+   navigator.geolocation.getCurrentPosition(position=>{
+    callback(position.coords);
+   },
+   error=>{
+   
+   }
+   )

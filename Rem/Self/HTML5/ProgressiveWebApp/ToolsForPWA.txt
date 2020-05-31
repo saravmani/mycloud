@@ -1,0 +1,3 @@
+Chrome developers tools -> Audit -> select Progressive Web App check box and
+click run audit
+now chrome will run the audit and show the score

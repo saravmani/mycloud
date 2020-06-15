@@ -1,0 +1,33 @@
+angular-cli.json
+  "serviceWorker":true //enable it
+  "assets":[]
+
+
+Angular will not enable serviceWorker on development mode.. to avoid cacing
+
+but in prod mode it will be enabled
+
+based on version of angular we may require to install service worker package
+npm i --save-dev @angular/service-worker
+
+
+when we have service worker installed with angualar,
+we can notice few extra files generated while we build applicaiton in prod mode
+
+angular will automatically generate manifest
+
+
+ngsw-manifest.json - in dist folder u can find this
+this is automatically generated. if u want to override then create the file in same
+name on root and modify the rules in this file
+ex: we can add routing rules.. if user type something then what should happen
+
+ngsw-manifest.json file -- add all the js, assets and html in manifest to chache
+icon, etc.,
+if you want to remove any static asstes or any other file then we can
+create "static.ignore" rule in override manifest file (ngsw-manifest.json - which we have to create mannually on root)
+
+
+also it creates service work js file in output. this will get installed.
+
+also in ngsw-manifest.json file it will maintain all the files hash to watch the changess

@@ -1,0 +1,25 @@
+Refer - https://blog.krawaller.se/posts/dissecting-bindings-in-angularjs/
+
+Events
+-------------
+
+// within component
+bindings: {
+onDelete: '&',
+onUpdate: '&'
+}
+
+
+// Usage in parent
+<editable-field on-update="$ctrl.update('location', value)"></editable-field>
+
+
+bindings: {
+  hero: '<',// One way binding .. parent to child
+  comment: '@' // one time binding .. parent to child. if input is static then we can use this
+}
+
+
+@ - is for initial config of the component.
+= - two way
+> - one way

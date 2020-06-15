@@ -1,0 +1,4 @@
+enable "update on reload" from developer tools->APplicaiton-> Service workers
+
+while refreshing the page sw will get updated.
+useful when we do the development

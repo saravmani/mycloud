@@ -1,0 +1,23 @@
+debt equity ratio < 0.5
+Current Ration >2  (A current ratio of 2 is considered ideal. Companies that have current ratio less than 1 should be avoided.)
+Interest Coverage ratio > 2.5
+PE - less than 23
+
+Pledged share - should not be there
+REturn on equity should be high
+FCF - Free cash flow should be grown
+Return on Equity should be good
+No Debt
+
+
+PE ratio - should be 20 to 25. IT should be less thant that
+EPS (Earning per share ) - profit/share. Actual earning we will get based on company performance
+
+PBV ratio (price to book value ration) - as per my understanding it should be less (less than 6 times)
+Book value - actual cost
+
+Investello
+-------------
+Net profit vs EPS graph - EPS should be increasing. if number of shares increasing and EPS also should increase
+Dividend vs dps graph - both lines should increase .. meaning they are respecting share holders
+Equity DIlution graph - number of shares increased means not good. so this graph should reduce

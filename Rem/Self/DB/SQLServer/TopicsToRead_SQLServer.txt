@@ -1,6 +1,8 @@
+Full Text search index
+Create view with schema
 Partitions
 How locking works - table level , partition level locking how those are works
-Dirty read?
+
 Isolation Levels
 How indexing works
 
@@ -10,3 +12,7 @@ what is index Scans, Index Seeks, Table Scan, Table Seeks
 Backup plans
 ------------------
 Full backup , differential backup -- what is this differential backup?
+
+
+Dirty read? - if we use no lock in query then if the user tries to update some
+        value in the table and before they commits we can able to read the data

@@ -10,3 +10,7 @@ to run on the .NET Framework and to add dynamic features to statically typed lan
 Like the CLR, the DLR is a part of the .NET Framework and is provided with the .NET
 Framework and Visual Studio installation packages.
 The open-source version of the DLR is also available for download on the IronLanguages/dlr repo on GitHub
+
+Most dynamic languages provide the following advantages for developers:
+  Easier refactoring and code modifications, because you do not have to change static type declarations throughout the code.
+  Supports REPL, or read-evaluate-print loop)

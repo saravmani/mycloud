@@ -1,0 +1,5 @@
+Install Node js
+
+then
+  npm install -g ionic
+  npm ionic start // this will ask for proj name and proj template selector

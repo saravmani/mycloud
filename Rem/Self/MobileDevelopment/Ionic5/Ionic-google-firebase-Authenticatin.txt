@@ -1,0 +1,52 @@
+
+<https://www.youtube.com/watch?v=Rs1imvTbeN0&t=419s>
+
+
+
+
+
+ionic start  <projname> --type=angular --capacitor //create new project with capacitor and angular
+npm i @codetrix-studio/capacitor-google-auth
+ionic build
+npx cap add android
+
+
+###Keystore
+  1. Create new Keystore file // refer Keystore.txt
+  2. Get the SHA1 key from Keystore
+  3. my local machine - Android debug sh1 key
+      E8:5A:2F:51:21:21:A2:F6:4D:84:95:95:73:C1:BE:8E:84:45:79:DB
+
+###Firebase and Google cloud
+  1. Create new project
+  2. Add android proj under new project (use SHA1 which we got from keystore)
+  3. download the google-services.json file and copy to
+      <projectfolder>\android\app\
+  4. From left menu go to authentication -> Sign-in method-> enable google
+  3. Open google cloud console. Go to credentials.
+  4. From top menu you can find newly created proj (i.e which we created from firebase)
+  5. you can see OAuth 2.0 Client Ids. Copy client id from "Web Client"
+  6. In Credentials screen top right corner if it shows "configure consent screen"
+      then click it to resolve (i hope it will automatically configure consent )
+  7. Click Web client under Oauth 2.0 ClientIds -> under URIs add one new URI
+      which used to debug the applicaiton
+      Ex: http://localhost:8100 (used in local browser)
+
+Configurations
+  1. past the client id into strings.xml file (android\app\src\main\res\values\)
+     <string name="server_client_id">733655136014-9kba25e1ftjlotks9n6vbp75ih4c4dh4.apps.googleusercontent.com</string>
+  2. also index.html as meta tag
+      <meta name="google-signin-client_id" content="733655136014-9kba25e1ftjlotks9n6vbp75ih4c4dh4.apps.googleusercontent.com" />
+  3. capacitor.configure.json have to add the client id again
+    "plugins": {
+      "GoogleAuth": {
+      "scopes": ["profile", "email"],
+      "serverClientId": "xxxxxx-xxxxxxxxxxxxxxxxxx.apps.googleusercontent.com",
+      "forceCodeForRefreshToken" : true
+
+
+Java code changes
+1. import below in MainActivity.java file
+    import com.codetrixstudio.capacitor.GoogleAuth.GoogleAuth;
+2. Add below line in init method of the same file
+    add(GoogleAuth.class);

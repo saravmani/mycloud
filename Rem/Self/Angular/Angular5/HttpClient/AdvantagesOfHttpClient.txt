@@ -1,7 +1,8 @@
 Advantages of Http client
 --------------------------------------
-1. # no need to convert json explicitly. it will automatically by default converts data into json
-2. # we can tell HttpClient about type of object it is going to get 
+1. # no need to convert json explicitly. it will automatically by default converts data
+  into json
+2. # we can tell HttpClient about type of object it is going to get
 Ex:
 export interface Config {
   heroesUrl: string;
@@ -13,5 +14,5 @@ getConfig() {
 }
 
 
-An HttpClient method does not begin its HTTP request until you call subscribe() 
-on the observable returned by that method. 
+An HttpClient method does not begin its HTTP request until you call subscribe()
+on the observable returned by that method.

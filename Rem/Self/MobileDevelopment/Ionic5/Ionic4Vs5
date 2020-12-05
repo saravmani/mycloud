@@ -1,0 +1,16 @@
+One important note: If you're using Ionic 5+ (i.e. NOT Ionic version 4), you need to use CSS
+classes instead of the utility attributes I use in the videos.
+
+For example:
+
+<h1 text-center>...</h1>
+  becomes
+
+<h1 class="ion-text-center>...</h1>
+That's all!
+
+You can check your package.json file to find out which version you're working with.
+
+Affected are all styling utility attributes like text-center, text-left, no-padding, padding, margin etc.
+
+They would need to be changed to class="ion-text-center", class="ion-text-left", class="ion-no-padding" etc.

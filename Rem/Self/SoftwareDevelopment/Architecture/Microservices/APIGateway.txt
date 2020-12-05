@@ -1,0 +1,33 @@
+#Ref - https://www.nginx.com/blog/building-microservices-using-an-api-gateway/#:~:text=An%20API%20Gateway%20is%20a,entry%20point%20into%20the%20system.&text=The%20API%20Gateway%20will%20often,protocols%20that%20are%20used%20internally.
+#IMGRef - APIGateway_Microservices.PNG
+
+
+An API Gateway is a server that is the single entry point into the system.
+It is similar to the Facade pattern from object‑oriented design.
+The API Gateway encapsulates the internal system architecture and provides an
+API that is tailored to each client.
+
+
+
+ It might have other responsibilities such as authentication, monitoring,
+  load balancing, caching, request shaping and management, and static response handling.
+
+All requests from clients first go through the API Gateway.
+It then routes requests to the appropriate microservice.
+The API Gateway will often handle a request by invoking multiple microservices and aggregating
+the results. It can translate between web protocols
+such as HTTP and WebSocket and web‑unfriendly protocols that are used internally.
+
+
+Benefits
+------------
+It will act as aggrigator some time to reduce response time. (otherwise client has to call multiple services and combine those at the end)
+major benefit of using an API Gateway is that it encapsulates the internal structure of the application.
+ Rather than having to invoke specific services, clients simply talk to the gateway.
+ The API Gateway provides each kind of client with a specific API.
+ This reduces the number of round trips between the client and application.
+It also simplifies the client code.
+
+Drawbacks
+----------
+One more component/service to be developed and managed. so it adds little more complexity at initial

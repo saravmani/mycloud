@@ -1,0 +1,37 @@
+Require Android studio
+Android studio -> tools -> SDK Manager
+  API Level >23 should be installed
+
+
+Once everything installed from Android studio
+
+run below command in ur proj
+ionic capacitor add android
+  // before doing this you should build the application once
+
+ionic capacitor copy android // this command shoudl be executed after done build
+// this command will copy the www folder to andorid folder to bundle it
+
+ionic capacitor run android
+// this will do below steps automatically
+  //1. build, 2. copy www folder ,
+    3. open the proj in android studio
+
+once proj opened in android studio then
+android studio will automatically download if any required items
+and do build automatically
+so first time it will take some time
+
+now run emulator
+  Tools -> AVD Manager
+Once emulator started go to
+Android studio and run the application
+now automatically this app will get installed on emulator and lanch the app
+
+
+ionic capacitor run android -l // this will automatically updates the app in device (mobile or emulator). we will
+get same feel like browser
+
+don'ts
+--------------
+dont use - in AppId (we enter app id in capacitor.config.json)

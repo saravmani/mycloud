@@ -1,7 +1,7 @@
 NOTE: Source 1
 --------------------
 
-# i think we will use this when we are working with lazy modules
+# i think we will use this when we are working with lazy modules. To avoid multiple instances getting created on lazy loading application
 
  we are sharing a service to keep up with a counter value. Each time any component increments
  the value stored in the counter service, I want to share this with all components.

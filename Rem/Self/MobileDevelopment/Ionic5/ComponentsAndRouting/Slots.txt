@@ -1,0 +1,9 @@
+Slots are web component features. it is not specific to angular or ionic
+
+slot="primar",slot="start"
+
+used to find the place for the specific control
+
+if not slot set then it element will take default slot . default slot is center
+
+IONIC hevily uses slots

@@ -1,4 +1,4 @@
-// # in below example we can add custome property "data: { preload: true }"
+// # in below example we can add custom property "data: { preload: true }"
 //and use it in to check wether particular needs preloading or not
 
 {

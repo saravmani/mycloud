@@ -1,0 +1,5 @@
+
+ActivatedRoute is a service used to read the parameters from url
+
+in html we can use routerLink=""  to navigate to another page.
+inoic will automatically add the trasistion animation with this routerLink

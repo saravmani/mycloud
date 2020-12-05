@@ -1,0 +1,22 @@
+#MyChangesToDefaultConfiguration  //if i update any default configuration/value/settings of auto generated file
+
+
+
+
+[//]: # (Comments: some text here)
+[//]: # (PersonalRef: https://something.com)
+[//]: # (Tags- tag1, tag2)
+
+
+[//]: # (ReadyState:Publish) -- ready for publish
+
+
+
+
+
+#### PageTitle
+
+
+
+[//]: # (Tags-)
+[//]: # (ReadyState:)

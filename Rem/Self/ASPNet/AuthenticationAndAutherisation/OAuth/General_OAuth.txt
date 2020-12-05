@@ -30,7 +30,7 @@ But if you don't need this use-case scenario, implementing OAuth2 is a waste of 
 OAuth 2.0 Use Cases
 ---------------------------------
 OAuth 2.0 can be used either to create an application that can read user data from another
-application (e.g. the game in the diagram above), or an application that enables other
+application or an application that enables other
 applications to access its user data (e.g. Facebook in the example above).
 
 OAuth 2.0 is a replacement for OAuth 1.0, which was more complicated.

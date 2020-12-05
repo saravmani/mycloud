@@ -32,7 +32,8 @@ timer functions -- are jobs
 Azure vault
 -----------------
 ## i got this info whiel reading  asp.net core configuration.
-## i think it is used to store the key value pair of values and used to store the configuration settings
+## i think it is used to store the key value pair of values and used
+    to store the configuration settings
 ## i can compare this with password vault in sb
 .AddAzureKeyVault("https://awesomevault.vault.azure.net/",
 

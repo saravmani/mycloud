@@ -4,9 +4,10 @@ Controllers can be created in 3 ways
 
 1. inherit from Microsoft.AspNetCore.Mvc.Controller
 2. no inherit from any class, but usffix with Controller XXXXController
-3. decorate the class with [Controller] attribute (in general Classes that inherit from Controller,
+3. decorate the class with [Controller] attribute
+(in general Classes that inherit from Controller,
 which inherits from ControllerBase, will automatically get the [Controller] attribute
 because they reside in the ControllerBase class. )
 
-Note: to avoid normall classes with "Controller as suffix" to be marked as controller
+Note: to avoid normal classes with "Controller as suffix" to be marked as controller
 we can use the attribute [NoController]

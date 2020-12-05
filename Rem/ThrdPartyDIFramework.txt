@@ -1,8 +1,0 @@
-Created:18-Dec-2018;Tuesday;From Home-Bangalore
-*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
-To use third party DI then , we have to change
-return type of the method in the startup class from void to IServiceProvider.
-
-
-Some of DI framew works that supports .net core is
-Autofac , StructuredMap

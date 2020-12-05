@@ -1,0 +1,15 @@
+
+
+even-though if constraint on testing we have to
+limit the development. so that testing task items
+will get cleared which planned for the given sprint
+
+
+Kanban Board
+
+Backlog| Analyse | development | Testing
+
+
+
+Kanban can have daily standup. But not mandatory
+Kanban and Scrum are totally different frameworks

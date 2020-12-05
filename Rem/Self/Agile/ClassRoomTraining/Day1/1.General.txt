@@ -1,0 +1,33 @@
+Created:21-Sep-2020;Monday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+
+
+Tags - Agile training
+  Lean,
+  Extreme
+  Programming
+  Kanban
+  Scrum Agile
+
+Water fall is copied from automobile industry
+  More Repeatable work will be predictable on estimated time
+    Ex once designed a car multiple cars will be created with same design and same process
+
+Earlyer share holder decision on creating a product.
+But now a days it is customer decision making
+Also market is getting changed frequently. so responding to market should
+be fast.
+ex: Life expectancy of the fortune 500 companies are reduced crossplot
+check this - https://www.imd.org/research-knowledge/articles/why-you-will-probably-live-longer-than-most-big-companies/#:~:text=A%20recent%20study%20by%20McKinsey,S%26P%20500%20will%20have%20disappeared.
+
+
+Agile - 4 values and 12 Principles
+http://agilemanifesto.org/
+
+
+But in software industry we wont do any Repeatable work :-) we wont write same code again and again
+So predicting time is difficult.
+
+
+Give responsibility to the team -
+(orchestration with other teams, Designing, panning, estimation)

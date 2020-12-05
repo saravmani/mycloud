@@ -1,0 +1,8 @@
+
+Below will give floating effect. good for mobile app
+<ion-item>
+  <ion-lable position="floating">E-Mail  <ion-input>
+<ion-item>
+----------------------
+
+s

@@ -1,0 +1,12 @@
+
+TreaShakkableProviders (From Angular 6)
+-----------------------------
+Refer : TreaShakkableProviders.txt
+@Injectable({
+  providedIn: 'root'//this is new.
+})
+ By default, this syntax registers it to the root injector which will make our service an
+ application wide singleton.
+
+If this service  not used anywhere then it will not be there in output
+====================================

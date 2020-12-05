@@ -9,3 +9,4 @@ ionic internally manages this page stack by StackCOntroller
 
 # in angular web if we do navigation framework will destroy the component. but in in Ionic
 framework will maintain the pages in cash. so we when we do navigate it will just pop the page to show
+ 

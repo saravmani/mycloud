@@ -58,11 +58,11 @@ Under the hood, Angular replaces the asterisk version with a more verbose <templ
 ---------
 ngIf will remove the element instead of hiding. Angular removes the element from DOM,
 
-When we hide an element, the component's behavior continues.
+When we hide an element, the component's behaviour continues.
 It remains attached to its DOM element. It continues to listen to events.
 Angular keeps checking for changes that could affect data bindings.
 Whatever the component was doing it keeps doing.
-Although invisible, the component � and all of its descendent components � tie
+Although invisible, the component and all of its descendent components  tie
 up resources that might be more useful elsewhere.
 The performance and memory burden can be substantial and the user may not benefit at all.
 On the positive side, showing the element again is very quick.
@@ -112,7 +112,7 @@ GenerateClick(elementObject: Element){
 
 Binding custom attributes in template
 -----------------------------------------
-have to add custome attribute like below. this will be converted by angular 2
+have to add customer attribute like below. this will be converted by angular 2
 attr.customeattributename="{{valueee}}"
 or
 [attr.customeattributename] = "valueee"

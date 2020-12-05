@@ -13,11 +13,13 @@ export class SharedService {
 
 
 
-providedIn - With this property we are telling Angular that - which module to register our service to instead of having to import the
+providedIn - With this property we are telling Angular that - which module to register our service
+to instead of having to import the
  module and register it to the providers of a NgModule.
- # We no need to mention in NgModule with provider statement.  for normal server we have to do This
+ # We no need to mention in NgModule with provider statement.  for normal service we have to do This
 
- By default, this syntax registers it to the root injector which will make our service an application wide singleton.
+ By default, this syntax registers it to the root injector which will make our service an
+ application wide singleton.
 
 
-IF this service  not used anywhere then it will not be there in output
+If this service  not used anywhere then it will not be there in output

@@ -1,5 +1,5 @@
 Tree Shakeable Provider -  Angular version 6 introduced a new feature, Tree Shakeable Providers.
-refer file - TreaShakkableProviders.txt
+Refer file - TreaShakkableProviders.txt
 
 new cli commands
 ---------------------------

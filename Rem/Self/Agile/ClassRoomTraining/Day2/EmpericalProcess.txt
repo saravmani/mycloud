@@ -1,0 +1,20 @@
+Created:22-Sep-2020;Tuesday;From Home-Bangalore;Office Training
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Tags -
+
+
+Empirical process - It tells that welcome changes
+
+
+Five levels of planning
+  Vision (product strategy) - Very high plan for next one year
+  Road map -  i need to implement AI, ML in my product within 6 months
+  Release planning - Ex. monthly release plan
+  Iteration planning - sprint plan
+  Daily stand-up
+
+  Different agile approches (Different frameworks)
+    Lean software development
+    Kanban
+    eXtreme Programming
+    Scrum

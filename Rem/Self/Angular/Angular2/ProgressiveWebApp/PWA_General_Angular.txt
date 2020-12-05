@@ -3,7 +3,7 @@ angular-cli.json
   "assets":[]
 
 
-Angular will not enable serviceWorker on development mode.. to avoid cacing
+Angular will not enable serviceWorker on development mode.. to avoid caching
 
 but in prod mode it will be enabled
 
@@ -30,4 +30,4 @@ create "static.ignore" rule in override manifest file (ngsw-manifest.json - whic
 
 also it creates service work js file in output. this will get installed.
 
-also in ngsw-manifest.json file it will maintain all the files hash to watch the changess
+also in ngsw-manifest.json file it will maintain all the files hash to watch the changes

@@ -1,0 +1,5 @@
+Created:05-Oct-2020;Thursday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Tags - css flexbox
+
+Bootstrap4 uses css flexbox for the grid system

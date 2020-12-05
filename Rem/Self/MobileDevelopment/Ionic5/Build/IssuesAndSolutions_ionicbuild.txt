@@ -1,0 +1,8 @@
+when do live reload it is adding dev server config url in capacitor.config.json file.
+but if then we do ionic capacitor run android     Without live reload then it is not remove the configuration.
+so build not working
+
+
+
+issue while using Cordova-plugin-googleplus with capacitor
+https://github.com/ionic-team/capacitor/issues/1142

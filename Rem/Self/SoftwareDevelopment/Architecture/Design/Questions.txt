@@ -1,0 +1,12 @@
+
+Azure
+Microservices
+Cloud services
+How to design chat application
+How to provide a Video or Audio Call facility
+How to make Video live streaming
+  HLS (HTTP live streaming) protocol is widely used
+
+Magnetic link
+Mobile app share data to another mobile app within device
+Bot framework

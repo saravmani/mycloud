@@ -1,0 +1,16 @@
+
+
+INVEST Principle in user story
+
+Good User should  not have dependency
+
+“I” ndependent (of all others)
+“N” egotiable (not a specific contract for features)
+“V” aluable (or vertical)
+“E” stimable (to a good approximation)
+“S” mall (so as to fit within an iteration)
+“T” estable (in principle, even if there isn’t a test for it yet)
+
+
+
+if user story is big then have cut it VERTICALLY as much as possible. 

@@ -14,8 +14,6 @@ Oauth defines 4 different roles
 4. Autherization server
 
 
-
-
 Clients are two types
 ==============================================
     1. Confidential Clients
@@ -54,7 +52,8 @@ Autherisation Grand types (# it is flow types (i.e # work flow))
 =============================================================================
 Oauth2 defines 4 types of authorisation grand types. those are used in different flows
 
-1. authorisation Code Grant - this flow suitable for confidential clients. Used to obtain access tokens and
+1. authorisation Code Grant - this flow suitable for confidential clients.
+Used to obtain access tokens and
     refresh tokens (IT is optimized for Confidential clients)
 In this client will redirect user-agent to authentication endpoint, and authontication endpoint once authenticate the user
 it will redirect back to client page with authorisation_code.
@@ -63,11 +62,12 @@ And client will call the token endpoint with authorisation_code and get the acce
     Client must have capable of interact with the resource owner's user-agent(browser) and receive
     incoming requests (via redirection) from the authorization server (authorization endpoint)
     # in this case client id need to be stored on client side (ex: mobile). but app_key not need to be stored
-    # i guess on redirection, client will not share client secret code (app_key). it will send's client id only.
+    # i guess on redirection, client will not share client secret code (app_key).
+    it will send's client id only.
      but after it got authorization code, then client (it's server application) will send the
     client's secret code (app_key) to the server along with authorisation_code to get authorisation token.
 
-2. Implicit Grant - Used to obtain access tokens , but no refresh tokens.
+2. Implicit Grant - Used to obtain access tokens , but no refresh tokens. (Only client involved. no serverside required)
 Here access_token will get directly from authorisation server (authorization endpoint)
     It is optimized for PUBLIC clients (ex: angular js,   native mobile app)
     Client must have capable of interact with the resource owner's user-agent(browser) and receive

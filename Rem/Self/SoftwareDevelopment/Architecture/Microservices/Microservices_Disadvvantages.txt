@@ -1,13 +1,13 @@
-Increases deployment complexity
+Increases complexity
 increases more network traffic.. bcs there are multiple services communicating each other
-Latency - because of multiple services communcating each other for single request
+Latency - because of multiple services communicating each other for single request
 We need to have proper automation mechanism
 Development complexity
-increases const of development
+increases cost of development
 Increases development time
 If microservices system not well built then it is difficult to maintain properly
-Error logging should be proper. Because mutiple systems are going to be involved, so developers cannot got and check the error logs
-  from all the systems
+Error logging should be proper. Because multiple systems are going to be involved,
+    so developers cannot got and check the error logs from all the systems
 It is using REST based, so it will not have WSDL. so documentation should be proper
     There is no standard way of documenting RESTful services like we had with WSDL in the SOAP world, so developing common means of service documentation is critical, especially in large organizations
 

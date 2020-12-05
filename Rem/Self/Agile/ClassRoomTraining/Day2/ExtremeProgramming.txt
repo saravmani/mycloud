@@ -1,0 +1,12 @@
+
+Whole teams
+  Business persons
+  process persons
+  and .. other team
+
+  all person should have access to all moduels in TFS
+  any one can modify the any module
+    so Good coding standard should be maintained
+  CI should be there
+
+having itrations

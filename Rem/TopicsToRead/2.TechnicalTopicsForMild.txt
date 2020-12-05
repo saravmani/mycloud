@@ -1,0 +1,2 @@
+Quantam computing
+Thrift API (it is like rest but it uses binary transmission accross diff client)

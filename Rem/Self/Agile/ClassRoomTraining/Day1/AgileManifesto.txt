@@ -1,0 +1,12 @@
+Created:21-Sep-2020;Monday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+We value
+  1) Individual and interactions Over Process n tools
+        Ex: A tester instead of logging defect at EOD and developer will take
+        It next day and they reject it.
+        It is waste of time.
+        Instead a tester sit next dev and explain and dev can fix immediately if he as time
+  2) Working software over Comprehensive documentation
+        Agile says keep minimal doc. if we create a doc it should add REAL value
+  3) Customer Collaboration Over Contract negotiation
+  4) Responding to change over following plan

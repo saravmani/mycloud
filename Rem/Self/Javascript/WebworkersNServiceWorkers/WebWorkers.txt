@@ -1,14 +1,14 @@
 Browsers may choose to implement Web Workers in any number
 of ways, including threads, background processes, and processes run on other processor cores.
 
-to avoid frozen screen we can go for web for long runnging logics.
+to avoid frozen screen we can go for web for long running logics.
 
 Ex:
 var worker = new Worker('stufftodo.js');
 
 now browser will  download stufftodo.js .
 
-pass the message to the worker 
+pass the message to the worker
 ----------------------------------
 worker.postMessage('start!');
 worker.postMessage({
@@ -16,7 +16,7 @@ worker.postMessage({
     message: 'start!'
 });
 
-worker to parent callee
+worker to parent Calle
 -------------------------
 simply use postMessage()
 ex:
@@ -38,14 +38,14 @@ workers run in another global context that is different from the current window
 
 Thus, using the window shortcut to get the current global scope (instead of self)
 within a Worker will return an error.
-you can't directly manipulate the DOM from inside a worker, or use some default 
-methods and properties of the window object. 
+you can't directly manipulate the DOM from inside a worker, or use some default
+methods and properties of the window object.
 
 import third party libraries within web workers
 -----------------------------------------------------
 self.importScripts('../relative/path/lib.min.js', '../../other/lib.js');
 
-Jquery or any other library which expects to be able to access the DOM or Window Object 
+Jquery or any other library which expects to be able to access the DOM or Window Object
 is never going to work in there.
 
 in webworker we can able to access only following objects and methods (tags: allowable objects inside webworkers)

@@ -3,17 +3,21 @@ Created:07-Jul-2018;Saturday;From home-Chennai-Keelkattalai
 
 It is inspired by paper and ink
 
-imagine if have two papers one on another, those relation btn the papers will be communicated by the shadow
+imagine if have two papers one on another, those relation btn the papers will
+be communicated by the shadow
 
  Material uses light and shadow to communicate the position of elements in a 3D space.
 
 
-We can able to see the Material design code in git hub. it will shows the list of available components also tells
+We can able to see the Material design code in git hub. it will shows the list
+of available components also tells
 inprogress components
 
 
-Some Material components depend on the Angular animations module in order to be able to do more advanced transitions.
+Some Material components depend on the Angular animations module in order to be able
+to do more advanced transitions.
  If you want these animations to work in your app, you have to install the @angular/animations
 
-Whichever approach you use, be sure to import the Angular Material modules after Angular's BrowserModule,
+Whichever approach you use, be sure to import the Angular Material modules after
+Angular's BrowserModule,
 as the import order matters for NgModules.

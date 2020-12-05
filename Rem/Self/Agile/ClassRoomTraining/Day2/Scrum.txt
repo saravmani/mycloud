@@ -1,0 +1,27 @@
+
+Stackholders - has vision
+Product owner (mostly sales marketing person , BA ppl)
+  Backlog - Break vision into set of actionable task items
+  Maintains the backlog
+  Do Prioritise the backlog items
+
+Scrum master
+  Organise, Help scrum team
+
+Development team size is 3-9
+
+
+Traditional pm responsibility
+  1. Delivery
+  2. Business
+  3. Process
+
+Develoment - Delivery responsibility
+
+sprint lenght should MAX 4 week
+More software companies are having 2 week sprint
+If higher uncertainity then reduce sprint lenght ex: 1 week
+
+11 Essentials of scrum
+1. Artefacts - Product backlog, Sprint backlog and increment (based on demo we update backlog)
+2. but

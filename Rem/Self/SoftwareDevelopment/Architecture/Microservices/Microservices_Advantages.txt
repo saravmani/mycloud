@@ -1,0 +1,5 @@
+Easy support for Agile model
+  ie. separate team can handle single autonomous service
+In longer time we can easily adopt for new technologies
+  because all the services are independent. so adopting to different
+  technologies will not affect another

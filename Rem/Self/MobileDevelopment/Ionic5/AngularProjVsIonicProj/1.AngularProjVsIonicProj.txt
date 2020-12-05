@@ -1,0 +1,21 @@
+You can find theme (which not available in regular angular obj) folder which contains style variables for ionic
+
+
+ionic.config.json
+{
+"name": "FutureLocker",
+"integrations": {
+"capacitor": {}
+},
+"type": "angular"  // this tells whcih framework we are using with ionic
+}
+
+
+App.module.ts
+Ionicmodule is used here
+also notice for routing it is using IonicRouteStrategy
+(i.e i already heard abt other strategies for angular)
+
+
+@ionic/angular package is a wrapper package
+it having declarations for the all the components

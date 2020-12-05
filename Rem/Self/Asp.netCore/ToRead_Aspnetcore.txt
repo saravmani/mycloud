@@ -1,0 +1,6 @@
+
+Hosting in IIS
+https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/?view=aspnetcore-3.1
+
+CLR is part of the build?
+How to do side by side installation?

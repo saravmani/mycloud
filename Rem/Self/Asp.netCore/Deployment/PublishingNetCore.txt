@@ -1,0 +1,11 @@
+Ref - https://docs.microsoft.com/en-us/dotnet/core/deploying/#publish-self-contained
+ Two types of publishing
+ 1. Self-COntained - application + .net Core Run Time + libraries
+ 2. Framework-Dependent - application + its dependencies
+
+
+ How to create crossplotform build ?
+ if we publish Framework-Dependent and "without executable " then it s cross platform
+
+
+When an executable is produced, you can specify the target platform with a runtime identifier

@@ -1,0 +1,41 @@
+Created:23-Apr-2020;Thursday;From Home-Bangalore
+*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
+Tags -
+
+Install ionic essentials extension manager for vs code.
+it will give u intellisence on html page with components list
+
+
+ion-route-outlet
+this is wrapper around angular route-outlet component.
+it adds styling and smooth navigation features
+
+
+ionic-avatar - this will display image in rounded shape.
+        this will load the image when within view port. otherwise it will not load.
+        We can use text also inside of avatar
+ionic-thumbnail - same like avatar but displays in square format
+
+
+ion-grid - uses css Flexbox under the hood
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+
+<ion-grid fixed> //then grid will be fixed with. not flexible
+
+
+
+<ion-Item> is mandatory inside of <ion-List> but. we can use ion-item outside of ion-List also
+
+<ion-virtual-scroll> used for virtual scrolling
+#in Udemy i have created bookmark for this
+# bookmark text - How to add Virtual  scrolling
+
+<ion-image> try to use ion-image as much as possible. bcs it will take care of lazy loading. when required that time
+only images will get rendered. also this will work with ion-virtual-scroll automatically
+
+
+ActionSheet - this control will give more actionable items from bottom up
+it is good to provide more options for the users (it is alternative to popup)
+(it is like slider panel)

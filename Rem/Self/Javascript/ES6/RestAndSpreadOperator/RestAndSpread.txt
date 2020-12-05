@@ -1,6 +1,10 @@
 Rest used to gather all the parameters into array
 Spread used to spread all the elements
 
+Spread operator
+var a = [1,2,3];
+var b = [...a];// this will give the copy of a as an another array.  so it is a easy way to clone :-)
+
 Rest - ... is a rest parameter
 
 var showCategories=function(productId,...categories)
@@ -28,7 +32,7 @@ console.log(showCategories('search','advertising'));
 //outputs array of input strings
 
 
-Spread operator 
+Spread operator
 -----------------------
 it is opposit of rest
 

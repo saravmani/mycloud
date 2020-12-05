@@ -1,0 +1,17 @@
+Relative estimation.. when compare 2 one user story other one is big
+T-Shirt sizing
+Planning poker steps
+
+
+Dont think only happy path
+
+
+ Consider below items while giving estimation
+  Amount of work
+  Complexity of work
+
+
+
+Velocity - total no of story points a development team completes in a sprint
+
+Velocity is for predictablity not with productivity

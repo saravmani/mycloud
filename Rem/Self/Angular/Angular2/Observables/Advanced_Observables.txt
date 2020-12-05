@@ -1,8 +1,8 @@
 filter
 ----------------
-var ss:Observer<string>;    
+var ss:Observer<string>;
     new Observable((obsrv) => {
-      obsrv.next("rewr");
+        obsrv.next("rewr");
     }).filter((s)=>{return true}).subscribe((data)=>{
 
     });

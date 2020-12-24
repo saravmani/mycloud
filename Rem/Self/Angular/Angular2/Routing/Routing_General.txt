@@ -9,8 +9,8 @@ components.
 
 Routing uses the browser’s URL to manage the content displayed to the user.
 
-#ALternative for routing is dynamic components, switch cases. but those are complex if application grows
-#so routing is better
+> Alternative for routing is dynamic components, switch cases. but those are complex if application grows
+. so routing is better
 
 html5-history-api package
 -----------------------------

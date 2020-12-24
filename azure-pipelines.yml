@@ -10,11 +10,6 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
-
 - task: FtpUpload@2
   inputs:
     credentialsOption: 'inputs'
@@ -22,7 +17,7 @@ steps:
     username: 'saravmani'
     password: 'Catwarcv123#'
     rootDirectory: $(Build.SourcesDirectory)/
-    filePatterns: '**.md'
+    filePatterns: '*.md'
     remoteDirectory: '/httpdocs/wwwroot/Docs/'
     clean: false
     cleanContents: false

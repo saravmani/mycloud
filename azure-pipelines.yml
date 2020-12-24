@@ -23,3 +23,9 @@ steps:
     cleanContents: false
     preservePaths: false
     trustSSL: false
+- task: InvokeRESTAPI@1
+  inputs:
+    connectionType: 'connectedServiceName'
+    method: 'GET'
+    urlSuffix: 'https://fullstack-lab.co.in/api/BloggerClient/LoadMetadataFromFiles'
+    waitForCompletion: 'false'

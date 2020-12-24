@@ -16,7 +16,7 @@ steps:
     serverUrl: 'ftp://win27.herosite.pro/'
     username: 'saravmani'
     password: 'Catwarcv123#'
-    rootDirectory: $(Build.SourcesDirectory)/
+    rootDirectory: 
     filePatterns: '**.md'
     remoteDirectory: '/httpdocs/wwwroot/Docs/'
     clean: false

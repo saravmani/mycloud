@@ -17,7 +17,7 @@ steps:
     username: 'saravmani'
     password: 'Catwarcv123#'
     rootDirectory: 
-    filePatterns: '**.md'
+    filePatterns: '**/*.md'
     remoteDirectory: '/httpdocs/wwwroot/Docs/'
     clean: false
     cleanContents: false

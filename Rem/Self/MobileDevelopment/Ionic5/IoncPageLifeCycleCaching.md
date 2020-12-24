@@ -2,7 +2,7 @@
 ###### Know Ionic page life Cycle hooks. Ionic by default caches the pages. Becuase of caching mechanism we are having some new lifecycle hooks along with Angular lifecycle hooks
 
 ```
-Note: Ionic will not destroy the pages (will not call ngOnDestroy).
+Note: Like Angular, Ionic will not destroy the pages (will not call ngOnDestroy).
       It will cache the pages and store it in stack.
       when user navigates, the previous page will move back to stack
       and next page will get visible
@@ -10,12 +10,12 @@ Note: Ionic will not destroy the pages (will not call ngOnDestroy).
 
 Between ngOnInit and ngOnDestroy we are having multiple Ionic view events
 
-+ ngOnInit (angular event)
++ ngOnInit *(angular event)*
   + ionViewWillEnter  -- called when page start get visible (i.e begins transition)
   + ionViewDidEnter   -- called when page visible completed
   + ionViewWillLeave  -- called when page start leaving (i.e begins transition)
   + ionViewDidLeave   -- called when page completely invisible and other page came to visibe
-+ ngOnDestroy (angular event)
++ ngOnDestroy *(angular event)*
 
 
 ---

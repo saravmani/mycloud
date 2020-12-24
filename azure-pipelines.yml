@@ -19,7 +19,7 @@ steps:
     rootDirectory: 
     filePatterns: '**/*.md'
     remoteDirectory: '/httpdocs/wwwroot/Docs/'
-    clean: false
+    clean: true
     cleanContents: false
     preservePaths: false
     trustSSL: false

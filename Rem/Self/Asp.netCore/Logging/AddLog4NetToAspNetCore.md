@@ -81,4 +81,4 @@ public class MyController : Controller
 [//]: # (Type: Asp.Net Core - Logging)
 [//]: # (Rating: 1)
 [//]: # (Languages:C#,XML,powershell)
-[//]: # (ReadyState:Inprogress)
+[//]: # (ReadyState:Publish)

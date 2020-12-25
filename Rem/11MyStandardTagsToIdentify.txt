@@ -1,22 +1,22 @@
 #MyChangesToDefaultConfiguration  //if i update any default configuration/value/settings of auto generated file
 
+====================================
+
+#### Angular - Observables - Quick start
+###### In Angular Observable collection playing important role. This article will provide simple steps to start with Observables in Angular 2 +
+
+---
+
+###### Full Sample Code
+
+```javascript
+
+```
 
 
+[//]: # (Tags: Angular, Observable, Simple Observable example)
+[//]: # (Type: Angular - Observables)
+[//]: # (Rating: 1)
+[//]: # (ReadyState:Publish)
 
-[//]: # (Comments: some text here)
-[//]: # (PersonalRef: https://something.com)
-[//]: # (Tags- tag1, tag2)
-
-
-[//]: # (ReadyState:Publish) -- ready for publish
-
-
-
-
-
-#### PageTitle
-
-
-
-[//]: # (Tags-)
-[//]: # (ReadyState:)
+====================================

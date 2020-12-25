@@ -40,4 +40,5 @@ public class MyDbContext : DbContext
 [//]: # (Tags: EFCore, EFcore Logging, EntityFrameworkCore Logging)
 [//]: # (Type: Asp.net Core - EntityFrameworkCore)
 [//]: # (Rating: 1)
+[//]: # (Languages:C#,powershell)
 [//]: # (ReadyState:Publish)

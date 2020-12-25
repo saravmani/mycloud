@@ -28,4 +28,5 @@
 [//]: # (Tags: SQLite, EF Core, Shadow Foreign Key)
 [//]: # (Type: Asp.net Core - EntityFrameworkCore)
 [//]: # (Rating: 2)
+[//]: # (Languages:C#,powershell)
 [//]: # (ReadyState:Publish)

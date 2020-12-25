@@ -14,4 +14,5 @@
 [//]: # (Tags: EFCore, Migration Commands, EntityFrameworkCore Migration Commands)
 [//]: # (Type: Asp.net Core - EntityFrameworkCore)
 [//]: # (Rating: 3)
+[//]: # (Languages:C#,powershell)
 [//]: # (ReadyState:Publish)

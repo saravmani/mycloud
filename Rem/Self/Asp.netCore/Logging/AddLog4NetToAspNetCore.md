@@ -1,3 +1,4 @@
+
 #### Asp.Net Core - Log4Net logging
 ###### Quick steps to add Log4Net logging mechanism into Asp.net Core application with Sample code
 >
@@ -13,6 +14,7 @@ Install-Package Microsoft.Extensions.Logging.Log4Net.AspNetCore
 ```
 
 3. Configure Log4Net in *Startp.cs* file's Configure Method
+
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
 {
@@ -59,6 +61,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerF
 >> Now your Asp.net Core application is ready to use log4net logging
 
 Sample Code for logging
+
 ```csharp
 public class MyController : Controller
 {

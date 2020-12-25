@@ -1,7 +1,7 @@
 #### Docker Commands
 ###### Frequently used docker commands
 >
-```powershell
+```csharp
 docker -version //to Get installed docker version
 
 docker pull <image name>
@@ -21,7 +21,7 @@ docker compose up // to run multiple containers
 
 > To listdown
 
-```powershell
+```csharp
 docker images   //to get list of images
 
 docker container list // lists the containers with running status
@@ -36,7 +36,7 @@ docker ps -a //shows running list of running and exited containers
 
 > To Start and Stop containers
 
-```powershell
+```csharp
 docker stop $(docker ps -aq) //to stop all containers
 
 docker start <container id>
@@ -49,7 +49,7 @@ docker stop <container id>
 
 > Command to run bash in docker
 
-```powershell
+```csharp
 docker run -it ngnix:1.13.8 /bin/bash
 ```
 Two switches are there for this command

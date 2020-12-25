@@ -1,4 +1,3 @@
-
 #### Asp.Net Core - Log4Net logging
 ###### Quick steps to add Log4Net logging mechanism into Asp.net Core application with Sample code
 >

@@ -1,7 +1,8 @@
 #### Asp.Net Core - Log4Net logging
 ###### Quick steps to add Log4Net logging mechanism into Asp.net Core application with Sample code
 >
-> Note: This sample code i tried with Asp.net Core 3.1
+> Note: Below steps i've tried with Asp.net Core 3.1 and it works fine
+
 
 1. Create new .net Core project
 

@@ -1,6 +1,6 @@
 #### Docker Commands
 ###### Frequently used docker commands
-
+>
 ```powershell
 docker -version //to Get installed docker version
 
@@ -44,7 +44,7 @@ docker start <container id>
 docker stop <container id>
 ```
 
-###### Container with interactive mode
+###### To Run Container with interactive mode
 > Note: With interactive mode we can able to execute the commands in our system's terminal and the command actually executes in container
 
 > Command to run bash in docker

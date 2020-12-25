@@ -1,5 +1,5 @@
-#### Simple example to create Observables in Angular to publish data to subscribers
-###### In Angular Observable collection playing important role. This article will provide simple steps to start with Observable collecitons
+#### Angular - Observables - Quick start
+###### In Angular Observable collection playing important role. This article will provide simple steps to start with Observables in Angular 2 +
 
 1. Import Observable, Subject from rxjs
 ```javascript

@@ -1,5 +1,5 @@
-#### Quick steps to add logging functionality to EntityFrameworkCore Project
-###### Easy steps to add logging mechanism to Entity framework core
+#### Add Logging functionality to Entity Framework Core Project
+###### Easy steps to add logging mechanism to Entity framework core project
 
 1. Install nuget package  - Microsoft.Extensions.Logging
 

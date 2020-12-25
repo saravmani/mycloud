@@ -1,4 +1,4 @@
-#### Steps to use SQLite with .net core
+#### Steps to use SQLite with .Net Core
 ###### Simple steps to install and use SQLite & Entity framework Core along with .net core applicaiton
 
 

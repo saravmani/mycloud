@@ -1,4 +1,4 @@
-#### EntityFrameworkCore Migration Commands Cheet Sheet
+#### EntityFrameworkCore Migration Commands
 ###### Frequently used Entity Framework Core migration related commands
 
 

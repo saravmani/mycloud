@@ -6,10 +6,11 @@ Monitor
 lock is syntactical sugar simplifying the use of .Net's Monitor exclusive lock.
 
 Monitor.Wait Monitor.Pulse  example
-# If one theread calls .wait(lockObj), then it will wait until another
-theread calls .pulse(lockObj) && .wait(lockobj)
+# If one thread calls .wait(lockObj), then it will wait until another
+thread calls .pulse(lockObj) && .wait(lockobj)
 or .pulse(lockObj) && lock ends
 
+```csharp
  public void settime()
         {
             var task1 = Task.Factory.StartNew(thread1Call);
@@ -42,3 +43,4 @@ or .pulse(lockObj) && lock ends
                 System.Threading.Thread.Sleep(1000);//12
             }
         }
+```

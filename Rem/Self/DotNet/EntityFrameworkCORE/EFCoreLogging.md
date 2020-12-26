@@ -26,7 +26,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 ```csharp
 public class MyDbContext : DbContext
   {
-      public DbSet<UserDetail> UserDetails { get; set; }
+      public DbSet<UserDetail> UserDetails { get; set; } // DB Model
       public static readonly ILoggerFactory objLoggerFactory = LoggerFactory.Create(builder => { builder.AddConsole(); });
       protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
       {
@@ -37,7 +37,7 @@ public class MyDbContext : DbContext
   }
 ```
 
-[//]: # (Tags: EFCore, EFcore Logging, EntityFrameworkCore Logging)
+[//]: # (Tags: Add Logging functionality to Entity Framework Core Project, EFcore Logging, Entity Framework Core Logging)
 [//]: # (Type: Asp.net Core - EntityFrameworkCore)
 [//]: # (Rating: 1)
 [//]: # (Languages:C#,powershell)

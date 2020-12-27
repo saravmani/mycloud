@@ -1,5 +1,6 @@
-#### Steps to use SQLite with Entity Framework Core
+#### Steps to use SQLite with Entity Framework Core - A quick start guide
 ###### Simple steps to install and use SQLite & Entity framework Core along with .Net core applicaiton
+
 >
 
 1. Create new .net Core project
@@ -59,7 +60,7 @@ using (var objDBContext = new StudentManagerContext())
 ```
 
 
-[//]: # (Tags: SQLite with Entity Framework Core,SQLite with .Net Core, EF Core Migration)
+[//]: # (Tags: SQLite with Entity Framework Core, SQLite with .Net Core, EF Core Migration)
 [//]: # (Type: Asp.net Core - EntityFrameworkCore)
 [//]: # (Rating: 1)
 [//]: # (Languages:C#,powershell)

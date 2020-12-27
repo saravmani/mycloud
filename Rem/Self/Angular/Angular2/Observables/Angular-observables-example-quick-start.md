@@ -70,7 +70,7 @@ export class Consumer {
 
 ```
 
-[//]: # (Tags: Angular, Observable, Simple Observable example)
+[//]: # (Tags: Angular, Observables, Simple Observable example)
 [//]: # (Type: Angular - Observables)
 [//]: # (Rating: 1)
 [//]: # (ReadyState:Publish)

@@ -1,4 +1,4 @@
-#### Angular HttpInterceptor to Handle HTTP Error
+#### Angular HttpInterceptor to Handle HTTP Error (Middleware)
 ###### In Angular HttpInterceptor act as middleware between client side angular application and browser
 
 *I call Interceptors as clientside middleware*

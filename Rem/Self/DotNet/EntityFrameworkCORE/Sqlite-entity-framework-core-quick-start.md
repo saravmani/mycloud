@@ -19,7 +19,7 @@ PM> Install-Package Microsoft.EntityFrameworkCore.Tools
 
 ```csharp
 //Sample Model Class
- Public class StudentDetails
+ public class StudentDetails
  {
     [Key]
     public int RecordId { get; set; }

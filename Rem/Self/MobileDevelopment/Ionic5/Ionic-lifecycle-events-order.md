@@ -1,5 +1,5 @@
-#### Ionic with Angular - Page Lifecycle
-###### Know Ionic page life Cycle hooks. Ionic by default caches the pages. Becuase of caching mechanism we are having some new lifecycle hooks along with Angular lifecycle hooks
+#### Ionic lifecycle events
+###### Know Ionic page life Cycle hooks. Ionic by default cache the pages. Becuase of caching mechanism we are having some new lifecycle hooks along with Angular lifecycle hooks
 
 ```
 Note: Like Angular, Ionic will not destroy the pages (will not call ngOnDestroy).

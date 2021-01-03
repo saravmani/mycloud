@@ -1,3 +1,0 @@
-
-To update the angular packages
-ng update @angular/core

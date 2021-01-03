@@ -1,5 +1,5 @@
-#### Add Logging functionality to Entity Framework Core Project
-###### Steps to add logging mechanism to EF Core project to log SQL queries to console/ file/ debug window 
+#### Log SQL Queries in EntityFramework Core
+###### Steps to add logging mechanism to EF Core project to log SQL queries to console/ file/ debug window
 
 1. Install nuget package  - Microsoft.Extensions.Logging
 
@@ -37,7 +37,7 @@ public class MyDbContext : DbContext
   }
 ```
 
-[//]: # (Tags: Add Logging functionality to Entity Framework Core Project, EFcore Logging, Entity Framework Core Logging)
+[//]: # (Tags: Add Logging in Entity Framework Core, EFcore Logging, Entity Framework Core Logging)
 [//]: # (Type: Asp.net Core - EntityFrameworkCore)
 [//]: # (Rating: 1)
 [//]: # (Languages:C#,powershell)

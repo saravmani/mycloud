@@ -1,8 +1,6 @@
 Created:24-Dec-2018;Monday;From Home-Bangalore
 *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
 
-
-
 public class AwesomeConfigurationProvider : ConfigurationProvider, IConfigurationSource
 {
     private readonly string fileName;

@@ -1,9 +1,0 @@
-
-Created:15-Jul-2018;Sunday;From home-Chennai-Keelkattalai
-*   *   *   *   *   *   *   *   *   *   *   *   *   *   *
-
-db  -- show current working db
-use db_name -- switch the context. Event db doesnot exist it will switch the context...and when we create the first document
-                that time actual db will get created
-show dbs   -- list of available dbs
-show collections

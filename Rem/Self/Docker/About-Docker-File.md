@@ -32,6 +32,9 @@ services:
         depends_on:
            - bloggerdb
            // whcih means the second container WILL NOT wait till first container started completely. it just say the order
+       volumes:
+          - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
+          - ${HOME}/.aspnet/https:/root/.aspnet/https/
         ports:
           - "80"
   ```

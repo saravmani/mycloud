@@ -5,12 +5,12 @@
 1.  Stop Docker from your machine
 2.  Open *daemon.json* file from the below mentioned path
 
-```powershell
+```csharp
     %programdata%\docker\config
 ```
 3. Find the josn key *data-root* and update the value with the path . If the key not exsits then add the key
 
-```json
+```js
 Example
       {
           "registry-mirrors": [],

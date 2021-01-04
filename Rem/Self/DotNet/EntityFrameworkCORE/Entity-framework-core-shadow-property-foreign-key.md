@@ -1,4 +1,4 @@
-#### What is Shadow Property Foreign Key - Entity Framework Core
+#### What is Shadow Property Foreign Key in Entity Framework Core
 ###### Entity framework Core uses shadow foreign key property, When there is no actual foreign key property defined ..
 
   > In entity framework if foreign key property is NOT defined, a shadow foreign key property will be introduced by default.

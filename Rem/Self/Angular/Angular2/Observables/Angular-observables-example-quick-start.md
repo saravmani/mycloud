@@ -74,3 +74,4 @@ export class Consumer {
 [//]: # (Type: Angular - Observables)
 [//]: # (Rating: 1)
 [//]: # (ReadyState:Publish)
+[//]: # (Modifide from dillinger)

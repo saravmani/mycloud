@@ -1,14 +1,15 @@
-#### Docker Commands
+
+
+#### React JS Introduciton
 ###### Frequently used docker commands
 >
-```powershell
-docker -version #to Get installed docker version
-docker pull <image name>
-```
+React is a client side Javascript library.
+React alone cannont make a complete solution.  we can combine with other libraries then produce the solution
+
 
 
 [//]: # (Tags: Frequently Used Docker Commands, Docker with interactive Mode, Docker)
 [//]: # (Type: Docker - Commands)
 [//]: # (Rating: 2)
 [//]: # (Languages:powershell)
-[//]: # (ReadyState:Test)
+[//]: # (ReadyState:InProgress)

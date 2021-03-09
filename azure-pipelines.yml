@@ -28,3 +28,7 @@ steps:
     targetType: 'inline'
     script: 'Invoke-RestMethod -Uri ''https://fullstack-lab.co.in/api/BloggerClient/LoadMetadataFromFiles'' -Method Get;'
     errorActionPreference: 'continue'
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: 'Invoke-RestMethod -Uri ''http://www.google.com/ping?sitemap=https://fullstack-lab.co.in/sitemap.xml'' -Method Get;'

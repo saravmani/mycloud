@@ -1,0 +1,16 @@
+REDIS
+--------
+Redis is a data store well suited to handling simple data that doesn’t need to be
+stored for long-term access, such as instant messages and game-related data. Redis
+stores data in RAM, logging changes to it to disk. The downside to this is that storage
+space is limited, but the advantage is that Redis can perform data manipulation
+quickly. If a Redis server crashes and the contents of RAM are lost, the disk log can be
+used to restore the data
+
+
+Supported data structures
+--------------------------------
+Most of the data structures supported
+by Redis will be familiar to developers, as they’re analogous to those frequently
+used in programming: hash tables, lists, Json,  and key/value pairs (which are used like simple
+variables). Hash table and key/value pair

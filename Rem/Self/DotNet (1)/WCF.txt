@@ -1,6 +1,0 @@
-we can use this technology for SOA
-all the communication technologies under one umbrella
-	msmq
-	tcpip
-	basic http binding (webservices)
-	namedpipelines

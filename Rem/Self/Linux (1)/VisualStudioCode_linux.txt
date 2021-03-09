@@ -1,9 +1,0 @@
-Visual studio code --installation and running in linux
----------------------------------------------------------
-
-download .deb file of vscode from online then 
-
-install using below commands
-
-sudo dpkg -i <file>.deb
-sudo apt-get install -f # Install dependencies

@@ -1,3 +1,0 @@
-C/C++, you have pretty
-low-level control of the system. You can manage memory exactly the way you want to, create threads
-easily if you need to,

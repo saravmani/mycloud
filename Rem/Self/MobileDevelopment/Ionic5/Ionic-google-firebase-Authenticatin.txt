@@ -1,10 +1,6 @@
 
 <https://www.youtube.com/watch?v=Rs1imvTbeN0&t=419s>
 
-
-
-
-
 ionic start  <projname> --type=angular --capacitor //create new project with capacitor and angular
 npm i @codetrix-studio/capacitor-google-auth
 ionic build

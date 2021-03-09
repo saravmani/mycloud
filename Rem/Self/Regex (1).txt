@@ -1,6 +1,0 @@
-g — Indicates global mode, meaning the pattern will be applied to all of the string instead
-of stopping after the fi rst match is found.
-i — Indicates case-insensitive mode, meaning the case of the pattern and the string are
-ignored when determining matches.
-m — Indicates multiline mode, meaning the pattern will continue looking for matches after
-reaching the end of one line of text.

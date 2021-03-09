@@ -1,6 +1,0 @@
-web api - Security (https://www.asp.net/web-api/overview/security/authentication-and-authorization-in-aspnet-web-api)
------------------------
- For self-hosting, however, HttpContext.Current is nul
-HTTP modules are specific to IIS. if we go with self hosting, those modules will not be executed4
-
-When the host authenticates the user, it creates a principal, which is an IPrincipal object that represents the security context under which code is running. The host attaches the principal to the current thread by setting Thread.CurrentPrincipal. The principal contains an associated Identity object that contains information about the user. If the user is authenticated, the Identity.IsAuthenticated property returns true. 

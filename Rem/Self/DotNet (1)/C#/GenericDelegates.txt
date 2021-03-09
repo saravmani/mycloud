@@ -1,4 +1,0 @@
-Action  - 0 input and 0 or void output
-Action<T1,T2,..T16> - 1 to 16 inputs and 0 or void output
-Func<T1,T2,.......T16, OUPUT T> - 1 to 16 inputs and Generic output
-Pridicate<T1>  - 1 input and BOOL output

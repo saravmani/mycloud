@@ -1,0 +1,6 @@
+
+Steps to start a new proj
+1. Create the new repository in Git Hub
+    (In git hub enable git ignore. while enabling it will ask for templete. If it is .net then take visual studio template)
+2. Clone it to local
+3. Create a new project within that (the project can be .net , angular etc.,)

@@ -1,32 +1,31 @@
 #### Mongo DB Run With Docker
 ###### Download docker image of MongoDB
 
+>Refer- [Frequently used Docker commands](../Docker/Containers/Docker-Frequently-Used-Comments.md)
+>Refer- [Frequently used MongoDB commands](MongoShellCommands/Mongo-DB-Commands-Frequently-Used.md)
+
 ```
 docker pull mongo
 ```
 
-> Standard port for MongoDB - 27017
+> Note: Standard port for MongoDB - 27017
 
-```csharp
+```powershell
 docker run -d -p 27017:27017 --name microserices-test mongo
 
-/*  This command will star tht container with name of "microserices-test"
-    opening 27017 port in my machine
-    and forwading the same
-    MongoDB's Default port fromt he container
-*/
-
+# This command will star tht container with name of "microserices-test"
+# Opening 27017 port and forwad the same
 ```
 
-###### Run Mongo DB commands agains docker container
-```csharp
+###### Run Mongo DB commands against docker container
+```powershell
 docker exec -it microserices-test /bin/bash
-// -it switch for interactive
+# -it switch for interactive
 ```
-> Whith this command we can able to access docker containers terminal and execute the commands interactively
+> With this command we can able to access docker containers terminal and execute the commands interactively. Now type *mongo* in command prompt to interact with mongo db
 
-```csharp
-mongo // to interact with Mongo DB. Now mongo CLI started
+```powershell
+> mongo # To interact with Mongo DB. Now mongo CLI started
 
 ```
 

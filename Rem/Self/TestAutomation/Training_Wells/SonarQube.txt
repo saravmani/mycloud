@@ -1,0 +1,9 @@
+Open source
+
+
+
+
+Is it free to run
+Can we integrate with git
+
+Is it possible to integrate sonar qube with IDE

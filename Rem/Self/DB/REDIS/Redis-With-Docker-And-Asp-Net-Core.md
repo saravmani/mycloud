@@ -1,11 +1,14 @@
 #### Redis With Docker
 ###### Redis With Docker
 >
-Note: Default port for REDIS is  - 6379
+>Refer- [Frequently used Docker commands](../../Docker/Containers/Docker-Frequently-Used-Comments.md)
+
+
 * To run redis in docker container run below containers
 ```powershell
-    docker pull redis
+    docker pull redis # pulls the docker image
     docker run -d -p 6379:6379 --name my-redis redis
+    # Creates container from image and run the container
 ```
  * Now redis is running in docker environment
 
@@ -13,10 +16,14 @@ Note: Default port for REDIS is  - 6379
  ```powershell
       docker logs -f my-redis
  ```
+>*Note: Default port for REDIS is  - 6379*
 
 ###### To Run redis commands we have to connect with container's terminal
 ```powershell
-    docker exec -it my-redis redis /bin/bash
+    docker exec -it <container_name> /bin/bash
+    # For Linux Container
+    docker exec -it <container_name> cmd.exe
+    # For Windows Container
 ```
 Once entered into terminal, type below command to interact with Redis
 ```powershell

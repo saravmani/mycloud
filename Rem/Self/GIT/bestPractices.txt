@@ -1,4 +1,4 @@
-1. While committing give short comments (lessthan 50 is preferable).
+1. While committing give short comments (less than 50 is preferable).
 If more comments needed then add multi line comments as each line lessthan 70
 bcs git can be used by mobile or other tools. to view the full comments shorter length comment needed
 

@@ -1,4 +1,10 @@
 
+Recently i have learned as part of url we can include version aslo
+Ex:
+[Route("api/v1/[controller]")]
+or
+www.example.com/api/v1/students
+
 Naming Guidelines
 ------------------------
 URI should not have verbs or actions. it should have an Nouns
@@ -20,5 +26,3 @@ api/Authers?orderby=name
 
 Asp.net core team advising not use convention based routing. and ask us to use
 attribute based routing
-
-

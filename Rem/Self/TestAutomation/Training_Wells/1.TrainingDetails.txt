@@ -1,0 +1,31 @@
+Training date - 19-Mar-2021 (Monday)
+IT is a zoom meeing
+Trainers from Accenture
+
+
+ Unit testing
+ -------------
+Lot of test cases written for a particular UNIT (logical unit of code)
+Measuring scale for UTC - Pass/fail, Coverage
+
+when we need Mock testing
+----------------------------
+Object is slow,
+Real object not available,
+Object is behaves randomly
+Their party dependency (DB, file system)
+
+
+Cost of bug fixing or delaying the fix it is costing more. So we have
+to find the bug at early stage.
+
+
+Multiple tools for agile development for Multiple phases
+#Refer-![](RefImages/ToolsForMultiplePhases.PNG)
+
+
+Blockbox testing
+----------------
+We wont see how the system is implemented (Ex: Technology, OS etc.,).
+Simply we will validate the output for a given input. I think it is like how the testing happened in isoft and dnb.
+Testers dont know how the system has implemented

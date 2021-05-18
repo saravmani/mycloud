@@ -7,7 +7,8 @@ docker pull <image name>
 docker run -it -d <image name> #Creates container from image
 docker log <container id>
 docker compose up # to run multiple containers
-docker logs -t {container name} #to get the logs
+docker logs -t <container name> #to get the logs
+docker logs -f <container name> #to get the logs
 ```
 
 > To Remove
@@ -17,6 +18,7 @@ docker rm $(docker ps -a -q) # to remove all stopped CONTAINERS
 docker rmi $(docker images -q) #to remove all IMAGES
 docker rmi <image id> # to remove image by image id
 docker rm <container id> #to remove stopped container
+docker system purne # will remove stopped containers, not used networks, Cache  etc.,
 ```
 
 > To listdown
@@ -47,15 +49,27 @@ docker stop <container id>
 
 ```powershell
 docker exec -it bloggerDocDB /bin/bash
+# Interact with Linux containers
+docker exec -it microblogger_bloggerservice_1 cmd.exe
+# Interact with Windows containers
 ```
 Two switches are there for this command
 * i - to run container interactively mode
 * t - commands typed in our terminal, will get executed within container's terminal and produces output in outside
 
+###### Debugging/ View logs in docker
+```ini
+docker logs -f <Contianer_Name>
+# To view the Image Running Status, Logs  and Live Logs 
+```
+
 ###### Docker Compose
 
 ```powershell
 docker-compose -f docker-compose.yml  -f docker-compose.override.yml up -d
+# up -  To up the Containers
+# down -  To stop the Containers
+
 ```
 
 [//]: # (Tags: Frequently Used Docker Commands, Docker with interactive Mode, Docker)

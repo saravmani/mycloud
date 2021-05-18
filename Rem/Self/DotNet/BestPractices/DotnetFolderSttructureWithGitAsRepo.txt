@@ -1,0 +1,6 @@
+
+ProjectName
+  +-- .gitignore and other repository related files
+  +-- src // inside of this Solution and .csproj and code
+
+I think we can maintain all the project related docs separately

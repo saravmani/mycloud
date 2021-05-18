@@ -1,0 +1,21 @@
+Gherking Languages
+Feature file -  written gherking language.
+You add n number of scenario
+
+
+Sample feature file
+```
+Feature:Serve Cofee
+ Scenario: Buy Latest Cofee
+  Given there are 1 coffees left in the mymachine
+  And I have deposited 1$
+  When I Press the cofee button
+  Then i should be served a cofee
+
+  Scenario: Buy Latest Cofee
+   Given there are 1 coffees left in the mymachine
+   And I have deposited 1$
+```
+
+
+Cucumber can read the feature file and map it to code

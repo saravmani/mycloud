@@ -1,10 +1,10 @@
 
 
 #### React JS Introduciton
-###### Frequently used docker commands
+###### React JS Introduciton
 >
 React is a client side Javascript library.
-React alone cannont make a complete solution.  we can combine with other libraries then produce the solution
+React alone cannot make a complete solution.  we can combine with other libraries then produce the solution
 
 
 

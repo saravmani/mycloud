@@ -1,5 +1,5 @@
-#### Discussion on Docker File and Docker Compose File`
-###### Discussion on Docker File and Docker Compose File`
+#### Discussion on Docker File and Docker Compose File
+###### Discussion on Docker File and Docker Compose File
 
 
 ###### Docker File
@@ -69,5 +69,13 @@ services:
 
 ```ini
 docker-compose -f docker-compose.yml  -f docker-compose.override.yml up -d
-# -d to run in bacgground
+# -d to run in background
+# Here based on env we can pass the override filename
 ```
+
+
+[//]: # (Tags: About dockerfile, docker-compose file, containerize )
+[//]: # (Type: Docker - containerize)
+[//]: # (Rating: 2)
+[//]: # (Languages:ini)
+[//]: # (ReadyState:Publish)

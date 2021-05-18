@@ -65,4 +65,4 @@ bool isDeleted = objDatabase.KeyDelete("SomeKeyName");
 [//]: # (Type: DB - Redis)
 [//]: # (Rating: 2)
 [//]: # (Languages:powershell)
-[//]: # (ReadyState:InProgress)
+[//]: # (ReadyState:Publish)

@@ -21,3 +21,10 @@ Application + nodejs. If we deploy this image in any machine, that machine no ne
 To install docker on windows 10 it needs hyper-v enabled.
 but windows 10 home edition not having hyper-v option.
 so we need to update windows home edition to windows 10 professional
+
+
+[//]: # (Tags: About docker, docker Architecture)
+[//]: # (Type: Docker - Architecture)
+[//]: # (Rating: 2)
+[//]: # (Languages:ini)
+[//]: # (ReadyState:Publish)

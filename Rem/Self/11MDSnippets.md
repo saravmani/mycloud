@@ -26,5 +26,5 @@ docker pull <image name>
 [//]: # (Tags: Frequently Used Docker Commands, Docker with interactive Mode, Docker)
 [//]: # (Type: Docker - Commands)
 [//]: # (Rating: 2)
-[//]: # (Languages:powershell)
-[//]: # (ReadyState:Test)
+[//]: # (Languages:powershell|ini)
+[//]: # (ReadyState:Inprogress|Publish)

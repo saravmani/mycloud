@@ -55,5 +55,5 @@ graph LR
 [//]: # (Tags: Frequently Used Docker Commands, Docker with interactive Mode, Docker)
 [//]: # (Type: Docker - Commands)
 [//]: # (Rating: 2)
-[//]: # (Languages:powershell|ini)
+[//]: # (Languages:powershell,powershell,ini)
 [//]: # (ReadyState:Inprogress|Publish)

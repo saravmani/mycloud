@@ -32,8 +32,8 @@ As we know EntitiyFramework is full ORM and it has a lot more functionalities th
 From my point of view, Dapper will fit for the projects where performance is the key. For example, if we are working with a huge volume of data then we can choose Dapper over EntitiyFramework
 
 
-[//]: # (Tags: Dapper)
+[//]: # (Tags: Dapper, Advantages of Dapper, Use cases for Dapper, where to use Dapper)
 [//]: # (Type: Dapper)
 [//]: # (Rating: 2)
-[//]: # (Languages:powershell)
+[//]: # (Languages:csharp,powershell)
 [//]: # (ReadyState:Publish)

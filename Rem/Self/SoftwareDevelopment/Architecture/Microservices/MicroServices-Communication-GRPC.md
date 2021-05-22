@@ -1,7 +1,7 @@
-#### Microservices - GRPC Communication
-###### GRPC is a high-performance, open source, universal RPC framework from Google
+#### Microservices - gRPC Communication
+###### gRPC is a high-performance, open source, universal RPC framework from Google
 >
-GRPC is a modern open source high performance Remote Procedure Call (RPC) framework that can run in any environment
+gRPC is a modern open source high performance Remote Procedure Call (RPC) framework that can run in any environment
 
 > *Note: An alternate for GRPC can be REST*
 > *REST is Text based and it not having standard API contract. So every client have to write their client libraries*
@@ -19,7 +19,7 @@ When we build multiple microservices with different technologies and programming
 * Can push the data
 * Real time communicaiton
 * Different programming languages can communicate
-  * > *Note Official support avaliable for  .Net Core, Net 4.5+*
+  * > *Note: Official support avaliable for  .Net Core, Net 4.5+*
 
 
 [Refer official documentation for GRPC](https://grpc.io/docs/what-is-grpc/introduction/)
@@ -44,9 +44,13 @@ C --> A
 C --> B
 ```
 
+##### Protobuf Language
+gRPC uses Protobuf Language for Communication. Protobuf is a mechanism for serializing structured structured data in a standard way. When compare to other format (JSON, XML), this Protobuf is smaller, faster
+
+[Refer official documentation for Protobuf syntax](https://developers.google.com/protocol-buffers/docs/proto3)
 
 
-[//]: # (Tags: GRPC, Microservices, Remote Procedure Call Framework)
+[//]: # (Tags: gRPC, Protobuf, Microservices, Remote Procedure Call Framework, MicroServices Communication)
 [//]: # (Type: Microservices - GRPC)
 [//]: # (Rating: 2)
 [//]: # (Languages:powershell)

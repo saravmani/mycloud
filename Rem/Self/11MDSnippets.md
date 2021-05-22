@@ -22,6 +22,35 @@ docker pull <image name>
 - Image link
 [![Optional Text](http://www.google.com.au/images/nav_logo7.png)](http://google.com.au/)
 
+###### Mermaid
+* Flowchart
+```mermaid
+flowchart LR
+  A(Microservice1 - With GRPC Server)
+  B(Microservice12 - With GRPC Server)
+  C(Aggregator - With GRPC Client)
+  D(Api Gateway)
+  E[End User]
+
+subgraph MicroServices
+  A
+  B
+end
+E-->D
+D --> C
+
+C --> A
+C --> B
+```
+* Graph
+```mermaid
+graph LR
+  A --- B
+  B-->C[fa:fa-ban forbidden]
+  B-->D(fa:fa-spinner);
+```
+
+
 
 [//]: # (Tags: Frequently Used Docker Commands, Docker with interactive Mode, Docker)
 [//]: # (Type: Docker - Commands)

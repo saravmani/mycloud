@@ -1,10 +1,11 @@
 #### Redis With Docker
-###### Redis With Docker
+###### How to host Redis With Docker
 >
 >Refer- [Frequently used Docker commands](../../Docker/Containers/Docker-Frequently-Used-Comments.md)
 
 
 * To run redis in docker container run below containers
+
 ```powershell
     docker pull redis # pulls the docker image
     docker run -d -p 6379:6379 --name my-redis redis
@@ -16,6 +17,13 @@
  ```powershell
       docker logs -f my-redis
  ```
+
+> -Alpine Linux is much smaller than most distribution base images (~5MB), and thus leads to much slimmer images in general.  So try to use Alpine based images. For Redis also we are having alpine version
+* To Pull the Alpine verison of redis use below command
+```powershell
+  docker pull redis:alpine
+```
+
 >*Note: Default port for REDIS is  - 6379*
 
 ###### To Run redis commands we have to connect with container's terminal

@@ -1,5 +1,5 @@
 #### Dapper Vs EntitiyFramework
-###### What is the advantages of Dapper, Which scenario we can go for Dapper
+##### Discussion on advantages of Dapper and practical scenario where we can use Dapper
 >
 
 ###### About Dapper
@@ -27,7 +27,7 @@ using (var objConnection = new SqlConnection("Connection String"))
 PM> Install-Package Dapper -Version 2.0.90
 ```
 
-###### Where to use dapper over EntitiyFramework
+###### Where to use dapper?
 As we know EntitiyFramework is full ORM and it has a lot more functionalities than Dapper. As Dapper is lightweight it gives better performance over ORM.
 From my point of view, Dapper will fit for the projects where performance is the key. For example, if we are working with a huge volume of data then we can choose Dapper over EntitiyFramework
 

@@ -1,10 +1,18 @@
 #### RabbitMQ
-###### RabbitMQ fundamentals
+###### RabbitMQ - Lightweight, Open source message broker.
 >
 
-It is a Open source message broker.
-Basically it is a message queue system (We know Queue system will use FIFO algorithm (i.e first in first out)).
-It uses Advanced Message Queuing Protocol (AMQP)
+Basically it is a message queue system and it uses FIFO algorithm (i.e first in first out).
+It is Lightweight, Open source message broker and It can be deployed in distributed and federated configurations to meet high-scale.
+We know Queue system will use FIFO algorithm (i.e first in first out)).
+
+###### Protocols used in RabbitMQ
+RabbitMQ supports multiple messaging Protocols directly or through pluggins
+* AMQP - Advanced Message Queuing Protocol
+* STOMP - Text based Lightweight Protocol
+* MQTT - Lightweight binary Protocol
+
+RabbitMQ supports **HTTP and WebSockets** also through some pluggins. But those are really not messaging Protocol
 
 ```
 Other few message queue systems similar to RabbitMQ
@@ -13,6 +21,7 @@ Other few message queue systems similar to RabbitMQ
 - MSMQ
 ```
 
+###### Diagram to understand about RabbitMQ
 ```mermaid
 graph LR
 A(Publisher) --> B(Exchange)  --> C(Message Queue) --> D(Subscriber)
@@ -24,9 +33,11 @@ subgraph RabbitMQ
 Queue    -  This stores the messages and pass it to Subscriber using FIFO algorithm
 Exchange -  Based on routing cases it decides to which Queue it needs to send/broadcast the messages
 
+---
 
 
-###### To Run RabbitMQ in Docker
+###### Run RabbitMQ with Docker
+To Run RabbitMQ with Docker follow below simple stelps.
 1. Download official RabbitMQ Image from Docker hub and run using below Command
 ```csharp
 docker run -d --hostname first-rabbit --name test-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
@@ -38,8 +49,8 @@ docker run -d --hostname first-rabbit --name test-rabbit -p 15672:15672 -p 5672:
    - default credentials - guest/guest
 
 ---
-#### Connect Asp.Net Core with RabbitMQ
-###### Basic Steps to use RabbitMQ
+###### Connect Asp.Net Core with RabbitMQ
+To Connect/ Use Rabbit MQ in Asp.net Core applicaiton follow below mentioned steps
 1. Install RabbitMQ.Client using nuget package manager
 ```powershell
 PM> Install-Package RabbitMQ.Client
@@ -54,8 +65,8 @@ PM> Install-Package RabbitMQ.Client
 // Which creates new channel and New Queue on RabbitMQ;
 // To create a new queue you have create a model
 
-[//]: # (Tags: Connect Asp.net core with RabbitMQ)
-[//]: # (Type: Docker - Commands)
+[//]: # (Tags: Connect Asp.net core with RabbitMQ, What is RabbitMQ, Run RabbitMQ with docker)
+[//]: # (Type: RabbitMQ - Asp.net)
 [//]: # (Rating: 2)
 [//]: # (Languages:powershell)
 [//]: # (ReadyState:Publish)

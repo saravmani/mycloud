@@ -1,5 +1,5 @@
 #### Redis With Docker
-###### How to host Redis With Docker
+###### Simple steps to host Redis With Docker and Connect with Asp.net Core application
 >
 >Refer- [Frequently used Docker commands](../../Docker/Containers/Docker-Frequently-Used-Comments.md)
 
@@ -18,7 +18,7 @@
       docker logs -f my-redis
  ```
 
-> -Alpine Linux is much smaller than most distribution base images (~5MB), and thus leads to much slimmer images in general.  So try to use Alpine based images. For Redis also we are having alpine version
+> Alpine Linux is much smaller than most distribution base images (~5MB), and thus leads to much slimmer images in general.  So try to use Alpine based images. For Redis also we are having alpine version
 * To Pull the Alpine verison of redis use below command
 ```powershell
   docker pull redis:alpine
@@ -69,7 +69,7 @@ bool isDeleted = objDatabase.KeyDelete("SomeKeyName");
 ```
 
 
-[//]: # (Tags: Redis With Docker, Docker)
+[//]: # (Tags: Redis With Docker, Docker, Redis With Asp.net Core, Connect Asp.net core application with docker)
 [//]: # (Type: DB - Redis)
 [//]: # (Rating: 2)
 [//]: # (Languages:powershell)

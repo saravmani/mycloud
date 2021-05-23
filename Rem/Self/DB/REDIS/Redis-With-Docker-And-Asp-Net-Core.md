@@ -1,4 +1,4 @@
-#### Redis With Docker
+#### Redis With Docker And Asp.net Core
 ###### Simple steps to host Redis With Docker and Connect with Asp.net Core application
 >
 >Refer- [Frequently used Docker commands](../../Docker/Containers/Docker-Frequently-Used-Comments.md)
@@ -27,23 +27,27 @@
 
 >*Note: Default port for Redis is  - 6379*
 
-###### Some of the useful and frequently used Redis commands
-```powershell
-    > ping  # To test Redis running status. If this comand returns PONG then Redis working fine
-    > set SomeKeyName SomeSampleValue # To save some value in Key Value format
-    > get SomeKeyName
-```
+---
 
-###### To Run redis commands we have to connect with the container's terminal
+###### How to run Redis Commands
+* Run below mentioned commands in powershell to access container's terminal
 ```powershell
     docker exec -it <container_name> /bin/bash
     # For Linux Container
     docker exec -it <container_name> cmd.exe
     # For Windows Container
 ```
-Once entered into the terminal, type the below command to interact with Redis
+* Once entered into the terminal, run the below command to interact with Redis
 ```powershell
     redis-cli # this command will start interactive terminal with redis cache
+```
+
+
+###### Some of the useful and frequently used Redis commands
+```powershell
+    > ping  # To test Redis running status. If this comand returns PONG then Redis working fine
+    > set SomeKeyName SomeSampleValue # To save some value in Key Value format
+    > get SomeKeyName
 ```
 
 ---

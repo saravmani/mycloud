@@ -1,5 +1,5 @@
 #### Resharper Useful Tips
-###### Resharper Useful Tips
+###### Discussion on Resharper and Some of it's tips and tricks
 >
 
 Code Editing
@@ -11,17 +11,17 @@ Code Editing
 
 ##### Settings hierarchy
 * 3 Levels are there - User Level, Team Level and Computer level
-* User level settings saved into *sln.DotSettings.User* file.This has highest precedent. *(Dont checkin to source control)*.
-* Team Level settings saved into *sln.DotSettings file* . This must be checked in
+* User-level settings are saved into *sln.DotSettings.User* file. This has the highest precedence. *(Don't check-in to source control)*.
+* Team Level settings are saved into *sln.DotSettings file*. This must be checked in
 * User Level settings have
-* You can find this settings under *ReSharper->Manage* Options settings
+* You can find these settings under *ReSharper->Manage* Options settings
 
 ##### ReSharper pluggins
-* ReSharper supports other pluggins on top of ReSharper. Also we can develop our own pluggin for ReSharper
-* *ReSharper-> pluggin Manager* is the market place to install the pluggins
+* ReSharper supports other plugins  on top of ReSharper. Also, we can develop our own plugin for ReSharper
+* *ReSharper-> plugin Manager* is the marketplace to install the plugins
 
 #### ReSharper Useful shortcuts
-* ctrl+T -> Advanced any search option. Using this we can search anything Ex: Filename, Class, Methods etc.,
+* ctrl+T -> Advanced any search option. Using this we can search anything Ex: Filename, Class, Methods, etc.,
 
 
 [//]: # (Tags: Resharper Settings, Frequently Resharper Settings)

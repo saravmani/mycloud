@@ -53,7 +53,7 @@ graph LR
 
 
 [//]: # (Tags: Frequently Used Docker Commands, Docker with interactive Mode, Docker)
-[//]: # (Type: Docker - Commands)
+[//]: # (Type: Docker - Commands) --Here - is important otherwise my code gives error :-) 
 [//]: # (Rating: 2)
 [//]: # (Languages:powershell,powershell,ini)
 [//]: # (ReadyState:Inprogress|Publish)

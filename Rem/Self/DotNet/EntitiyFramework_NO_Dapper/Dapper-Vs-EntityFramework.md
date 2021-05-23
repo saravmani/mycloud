@@ -33,7 +33,7 @@ From my point of view, Dapper will fit for the projects where performance is the
 
 
 [//]: # (Tags: Dapper, Advantages of Dapper, Use cases for Dapper, where to use Dapper)
-[//]: # (Type: Dapper)
+[//]: # (Type: Dapper - Discussion)
 [//]: # (Rating: 2)
 [//]: # (Languages:csharp)
 [//]: # (ReadyState:Publish)

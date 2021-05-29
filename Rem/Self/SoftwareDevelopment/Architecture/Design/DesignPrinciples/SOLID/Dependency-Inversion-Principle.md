@@ -11,4 +11,4 @@ In Below example HighLevelClass class depends on Interface-A. LowLevelConcreteCl
 [//]: # (Type: SOLID - Dependency Inverison Principle)
 [//]: # (Rating: 2)
 [//]: # (Languages:powershell)
-[//]: # (ReadyState:Publish)
+[//]: # (ReadyState:Inprogress)

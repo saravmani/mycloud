@@ -15,6 +15,7 @@ docker pull <image name>
 - Display Image from local
 ![](Versions/RefImages/.net5_openAPISwagar.PNG)
 
+
 - Display Image Reference
 ![](http://www.google.com.au/images/nav_logo7.png)
 
@@ -36,7 +37,7 @@ subgraph MicroServices
   A
   B
 end
-E-->D
+E--->D
 D --> C
 
 C --> A
@@ -46,14 +47,14 @@ C --> B
 ```mermaid
 graph LR
   A --- B
-  B-->C[fa:fa-ban forbidden]
+  B--->C[fa:fa-ban forbidden]
   B-->D(fa:fa-spinner);
 ```
 
 
 
 [//]: # (Tags: Frequently Used Docker Commands, Docker with interactive Mode, Docker)
-[//]: # (Type: Docker - Commands) --Here - is important otherwise my code gives error :-) 
+[//]: # (Type: Docker - Commands) --Here - is important otherwise my code gives error :-)
 [//]: # (Rating: 2)
 [//]: # (Languages:powershell,powershell,ini)
 [//]: # (ReadyState:Inprogress|Publish)

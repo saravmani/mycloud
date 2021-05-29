@@ -4,17 +4,17 @@
 
 ###### Docker File
 - It basically a configuration file. Which contains information about
-*Dependences, What to do? How to do etc.,*. We can say Docker file helps to dockerize a given applicaiton
+*Dependences, What to do? How to do etc.,*. We can say Docker file helps to dockerize a given application
 - Mostly It contains 2 parts
-  * Building the applicaiton
-  * Run the applicaiton
+  * Building the application
+  * Run the application
 
 
 
-To Orchestrate we need docker-compose file
-  - docker-compose.yml
-  - docker-compose.override.yml
-    *It can contain configuration overrides for existing services or entirely new services. Use case for multiple files is based on envrionment we can have multiple override files*
+To Orchestrate we need a docker-compose file
+  - docker-compose.yml
+  - docker-compose.override.yml
+    *It can contain configuration overrides for existing services or entirely new services. The use case for multiple files is based on the environment we can have multiple override files*
 
   ###### Sample docker-compose.yml file for .net core WebApi project
   ```ini
@@ -29,8 +29,8 @@ services:
         build:
           context: .
           dockerfile: BloggerService/Dockerfile
-volumes: # it specifies the storage outside of container. In our case if container restarts then mongo db data or other data will get lost.
-            #if it needs be persisted the we can use volumes. This data will get stored in hosting machine. Even if image has removed and recreated this data will be availabe in host machine
+volumes: # it specifies the storage outside of the container. In our case, if the container restarts then mongo DB data or other data will get lost.
+            #if it needs to be persisted we can use volumes. This data will get stored in the hosting machine. Even if the image has removed and recreated this data will be available in the host machine
     mongo_data:
   ```
 
@@ -56,7 +56,7 @@ services:
           # Within docker env. we have to use container name and *Actual* port
         depends_on:
            - bloggerdb
-           # Which means the second container WILL NOT wait till first container started completely. it just say the order
+           # This means the second container WILL NOT wait till the first container started completely. it just says the order
          volumes:
             - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
             - ${HOME}/.aspnet/https:/root/.aspnet/https/
@@ -65,17 +65,30 @@ services:
 
 
   ```
+> *Note - Docker environment-specific,  settings can be overridden under **Environment Section**
+*Example - In a Normal environment (Without a container), we may connect to other services with local ports. But within the Docker environment, the ports can be different*
 
-
-```ini
+###### To run and stop Docker compose file
+```powershell
 docker-compose -f docker-compose.yml  -f docker-compose.override.yml up -d
 # -d to run in background
 # Here based on env we can pass the override filename
+
+docker-compose -f docker-compose.yml  -f docker-compose.override.yml down -d
 ```
+
+
+###### To Build or rebuild services
+If you change Code/Configurations etc then run below command to rebuild.
+But docker file updates we no need to call build command.
+```powershell
+docker-compose -f docker-compose.yml  -f docker-compose.override.yml up --build
+```
+
 
 
 [//]: # (Tags: About dockerfile, docker-compose file, containerize )
 [//]: # (Type: Docker - containerize)
 [//]: # (Rating: 2)
-[//]: # (Languages:ini)
+[//]: # (Languages:powershell)
 [//]: # (ReadyState:Publish)

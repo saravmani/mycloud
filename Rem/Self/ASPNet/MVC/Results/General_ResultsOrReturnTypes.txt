@@ -7,6 +7,7 @@ return HttpNotFound();
 
 Base Type ActionResult
 -----------------------
+StatusCode(StatusCodes.Status201Created,objModel)
 ActionResult()
 View()
 IActionResult()
@@ -44,4 +45,3 @@ new ViewResult
         };
 create a ViewResult object and set the values of the ViewName and ViewData properties to specify the name of
 the view and the model object that will be passed to it.
- 

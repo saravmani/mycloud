@@ -1,3 +1,5 @@
 API gateway
 Archestration
 API discovery
+
+CQRS with event sourcing

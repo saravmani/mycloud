@@ -1,18 +1,10 @@
+CQRS with event sourcing
+
+Event driven design
+Message driven architecture
+Domain-Driven Design
+
 What are teh design patterns we can use for OCP , SOLID?
 Ex: Decorator pattern we can use for OCP
 
-What is enterprise application?
-Architecture patterns
-Design patterns
-SOLID
-
-SOA
-Event driven design
-Message driven architecture
-Object orianted design
-Domain-Driven Design
-
-Continuous Integration,Development and deployment
-
-agile principles patterns and practices in c#
-what is agail design?
+ 

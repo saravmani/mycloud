@@ -1,11 +1,11 @@
 #### Steps to use SQLite with Entity Framework Core - A quick start guide
-###### Simple steps to install and use SQLite & Entity framework Core along with .Net core applicaiton
+###### Simple steps to install and use SQLite & Entity framework Core along with .Net core application
 
 >
 
 1. Create new .net Core project
 
-2. Open Package manager console (Tools->Nuget Package Manager->Package Manager Console) and  Run below-mentioned commands to install the required packages
+2. Open Package manager console (Tools->Nuget Package Manager->Package Manager Console) and  run the below-mentioned commands to install the required packages
 
 ```powershell
 PM> Install-Package Microsoft.EntityFrameworkCore
@@ -33,31 +33,47 @@ PM> Install-Package Microsoft.EntityFrameworkCore.Tools
 //Sample DBContext Class
 public class StudentManagerContext : DbContext
 {
-        public DbSet<LockerItem> LockerItems { get; set; }
+        public DbSet<StudentDetails> StudentDetails { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite("Data Source=DBFileName.db");
 }
 ```
-5. Run below-mentioned commands to Create SQLLite db *(Run this in package manager console)*
+5. Run the below-mentioned commands to Create SQLLite db *(Run this in package manager console)*
 
 ```csharp
 PM> add-migration <MigrationName>  //Ex: add-migration IntialMigration
-
-PM> update-database
+PM> update-database --verbose // Note: Here verbose switch helps us to se generated sql
 ```
 
 6. Now database file get generated root folder and ready for usage
 
 
-Sample code to access db:
+Sample code to access DB:
 
 ```csharp
 using (var objDBContext = new StudentManagerContext())
 {
-     objDBContext.LockerItems.Add(objStudent);
+     objDBContext.StudentDetails.Add(objStudent);
      objDBContext.SaveChanges();
 }
 ```
+
+
+###### Advantages of SQLite
+1. Lightweight
+2. No Installation required. With help of Nuget Package, we can use this with .Net applications
+3. Options to use it as in-memory database
+
+###### Disadvantages
+1. Memory size limited
+2. It cannot handle a huge volume of requests
+3. Less tooling
+
+
+###### Use cases of SQLite
+1. We can use it for simple Desktop applications, Mobile applications
+2. Use it for Caching purpose
+
 
 
 [//]: # (Tags: SQLite with Entity Framework Core, SQLite with .Net Core, EF Core Migration)

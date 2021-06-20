@@ -2,7 +2,15 @@
 ######  How To Use Automapper
 >
 
-###### To Map the source object to **EXISTING** destination object 
+###### Required Nuget Packages to use Automapper in Asp.net Core application
+```powershell
+
+
+PM> Install-Package AutoMapper.Extensions.Microsoft.DependencyInjection
+
+```
+
+###### To Map the source object to **EXISTING** destination object
 ```csharp
 objMapper.Map(objStudentVm,objStudentEntity,typeof(StudentVm),typeof(StudentEntity))
 ```

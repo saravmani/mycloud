@@ -14,6 +14,8 @@ docker pull <image name>
 
 - Display Image from local
 ![](Versions/RefImages/.net5_openAPISwagar.PNG)
+![](../../../../../RefImages/DIPrinciple_Example1.PNG)
+![](../../../../../RefImagesPrivate/EFCoreGenericDBOperations.PNG)
 
 
 - Display Image Reference

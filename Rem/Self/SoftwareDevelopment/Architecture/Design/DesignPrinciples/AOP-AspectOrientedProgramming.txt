@@ -1,3 +1,8 @@
+
+
+Recently i found that mediator design pattern will helpful to implement this.
+(In .net we are having MediatR package to implement the mediator desing pattern)
+
 check this below .. they mentioned about helper methods to call attributed method. this gives some brain stroming
 https://stackoverflow.com/questions/2966730/can-i-use-the-decorator-pattern-to-wrap-a-method-body
 

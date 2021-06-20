@@ -1,0 +1,7 @@
+Add note for Udemy courses
+  Prefixes
+    FYI-<High level Title>-
+    BestPractices-<High level Title>-
+    WhileCoding-<High level Title>- //Helps while writing actual coding
+    TakeNotes-<High level Title> // To take notes later
+    //** ONCE notes taken you should delete this

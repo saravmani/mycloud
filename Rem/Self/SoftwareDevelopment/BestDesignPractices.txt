@@ -1,0 +1,8 @@
+
+
+In multi layer application Try to make different custom exceptions which specific to the layer.
+So we can identify which layer is throwing.
+But there are multiple different ways there to identify. It is depends on project need
+
+For c# code create custom exception class which should inherit from
+ApplicaitonException class (For application layer)

@@ -1,5 +1,5 @@
-Maintanability
-Extensibiliy
+Maintainability
+Extensibility
 High Availability
 Security
 Reliability
@@ -8,7 +8,7 @@ DR
 Performance
 Standards
 
-Interoperatability
+Interoperability
 ----------------------
-capability of different programs to exchange data via a common set of exchange formats, 
+capability of different programs to exchange data via a common set of exchange formats,
 to read and write the same file formats, and to use the same protocols. 

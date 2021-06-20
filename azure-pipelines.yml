@@ -14,7 +14,7 @@ steps:
   inputs:
     credentialsOption: 'inputs'
     serverUrl: 'ftp://win27.herosite.pro/'
-    username: 'saravmani'
+    username: 'saravmaninew'
     password: 'Catwarcv123#'
     rootDirectory: 
     filePatterns: '**/*.md'

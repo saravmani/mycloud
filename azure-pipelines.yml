@@ -18,7 +18,7 @@ steps:
     password: 'Catwarcv123#'
     rootDirectory: 
     filePatterns: '**/*.md'
-    remoteDirectory: '/httpdocs/wwwroot/Docs/'
+    remoteDirectory: '/wwwroot/Docs/'
     clean: true
     cleanContents: false
     preservePaths: false

@@ -1,6 +1,22 @@
 Created:15-12-2018;Saturday;From Home-Bangalore
 *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
 
+
+updated on - 15-jul-2021
+---------------------------
+To host asp.net core application in IIS we need ".NET Core Hosting bundle"
+The .NET Core Hosting bundle is an installer for the .NET Core Runtime and the ASP.NET Core Module. The bundle allows ASP.NET Core apps to run with IIS.
+.NET Core Hosting bundle = .NET Core Runtime + ASP.NET Core Module
+
+ASP.NET Core Module - sits with iis pipeline and allowing ASP.NET Core applications to work with IIS. ASP.NET Core Module is forward and backward compatible with LTS releases of .NET.
+Asp.net core module can run Asp.net core app by
+    Hosting an ASP.NET Core app inside of the IIS worker process (w3wp.exe), called the in-process hosting model.
+    Forwarding web requests to a backend ASP.NET Core app running the Kestrel server, called the out-of-process hosting model.
+
+
+
+-----------------------------------------------------------OLD stdy
+
 asp.ent core is seperate console applicaiton
 
 IIS will communciate with asp.netcore console app through some port

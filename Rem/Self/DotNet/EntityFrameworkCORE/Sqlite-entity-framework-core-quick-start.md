@@ -38,6 +38,9 @@ public class StudentManagerContext : DbContext
             => options.UseSqlite("Data Source=DBFileName.db");
 }
 ```
+
+
+
 5. Run the below-mentioned commands to Create SQLLite db *(Run this in package manager console)*
 
 ```csharp
@@ -58,6 +61,20 @@ using (var objDBContext = new StudentManagerContext())
 }
 ```
 
+---
+
+
+###### Best practices to create DB Context object and configure it
+Instead of creating the object directly we can use dependency injection.
+Microsoft.EntityFrameworkCore.Sqlite package provides extension methods to register DB context and configure.
+```csharp
+// Startup.cs file under ConfigureServices() method add below code
+  services.AddDbContext<StudentManagerContext>(opt=>opt.UseSqlite("Data Source=DBFileName.db"));
+
+```
+
+
+---
 
 ###### Advantages of SQLite
 1. Lightweight
@@ -69,7 +86,7 @@ using (var objDBContext = new StudentManagerContext())
 2. It cannot handle a huge volume of requests
 3. Less tooling
 
-
+---
 ###### Use cases of SQLite
 1. We can use it for simple Desktop applications, Mobile applications
 2. Use it for Caching purpose

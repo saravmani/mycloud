@@ -1,3 +1,13 @@
-A native cloud application (NCA) is a program that is designed specifically for a cloud computing architecture.
- NCAs are designed to take advantage of cloud computing frameworks, 
-which are composed of loosely-coupled cloud services.
+Cloud Native Apps
+
+
+Apps those are Engineered to run on cloud in all the aspects
+
+Cloud Native is a Methodology of building and Running the applications to fully use cloud features.
+Cloud native apps are developed as  micro services
+Cloud native apps are containerised  - Scalable, portable
+Continuous delivery model is implemented and released without affecting the entire application
+
+Application level
+  Standard Logging mechanism
+  

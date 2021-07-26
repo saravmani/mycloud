@@ -5,13 +5,16 @@
 docker -version #to Get installed docker version
 docker pull <image name>
 docker run -it -d <image name> #Creates container from image
+          # -it means interactive mode.
+          # --rm if we add this switch then container will get removed once its work done
+          # -e ENVIRNMENT_VARIABLE_NAME=SOMEVALUE
+
+docker run -e ENVIRNMENT_VARIABLE_NAME=SOMEVALUE <image name> # To set the environment variable for the container
 docker log <container id>
 docker compose up # to run multiple containers
-docker logs -t <container name> #to get the logs
-docker logs -f <container name> #to get the logs
 ```
 
-> To Remove
+###### To Remove Containers and Images
 ```powershell
 docker stop $(docker ps -aq) # to stop all containers
 docker rm $(docker ps -a -q) # to remove all stopped CONTAINERS
@@ -21,7 +24,7 @@ docker rm <container id> #to remove stopped container
 docker system purne # will remove stopped containers, not used networks, Cache  etc.,
 ```
 
-> To listdown
+###### To listdown
 
 ```powershell
 docker images   #to get list of images
@@ -29,16 +32,16 @@ docker container list # lists the containers with running status
 docker container list -a #lists the containers with or without running status
 docker ps #shows running list of running images
 docker ps -a #shows running list of running and exited containers
+docker port <container name>  # To listdown list ports used by the container
+docker logs <conainer name> # To read the Container logs. This will get the logs even if the container in not running state
 
 ```
 
-> To Start and Stop containers
+###### To Start and Stop containers
 
 ```powershell
 docker stop $(docker ps -aq) #to stop all containers
-
 docker start <container id>
-
 docker stop <container id>
 ```
 
@@ -60,7 +63,7 @@ Two switches are there for this command
 ###### Debugging/ View logs in docker
 ```ini
 docker logs -f <Contianer_Name>
-# To view the Image Running Status, Logs  and Live Logs 
+# To view the Image Running Status, Logs  and Live Logs
 ```
 
 ###### Docker Compose

@@ -1,0 +1,101 @@
+PS D:\Del\CF3_1\TestApp\TestApp> cf push
+Pushing app sample-aspnet_3_1 to org 14cfbbb8trial / space dev as saravmani.techlab@gmail.com...
+Applying manifest file D:\Del\CF3_1\TEstApp\TEstApp\manifest.yml...
+Manifest applied
+Packaging files to upload...
+Uploading files...
+ 9.36 KiB / 9.36 KiB [=========================================================================================================================================================================================================================================================] 100.00% 1s
+
+Waiting for API to complete processing files...
+
+Staging app and tracing logs...
+   Downloading sap_java_buildpack_1_34...
+   Downloading ruby_buildpack...
+   Downloading nginx_buildpack...  
+   Downloading sap_java_buildpack_1_35...
+   Downloaded dotnet_core_buildpack
+   Downloaded python_buildpack
+   Downloaded php_buildpack
+   Downloaded nodejs_buildpack
+   Downloaded sap_java_buildpack_1_35
+   Cell cce55b06-2c5b-4ea7-8313-428671edfdf0 creating container for instance 22781808-2bf9-4637-a5db-85b625f2535a
+   Cell cce55b06-2c5b-4ea7-8313-428671edfdf0 successfully created container for instance 22781808-2bf9-4637-a5db-85b625f2535a
+   Downloading app package...
+   Downloading build artifacts cache...
+   Downloaded app package (9.4K)
+   Downloaded build artifacts cache (222B)
+   -----> Dotnet-Core Buildpack version 2.3.30
+   -----> Supplying Dotnet Core
+   -----> Installing libunwind 1.5
+          Copy [/tmp/buildpacks/074e354a58c4d0fe77f568d72a5df2e9/dependencies/66a4a9541b55947fd8e80a9863001705/libunwind_1.5_linux_noarch_cflinuxfs3_6a1dd8f2.tgz]
+          using the default SDK
+   -----> Installing dotnet-sdk 3.1.410
+          Copy [/tmp/buildpacks/074e354a58c4d0fe77f568d72a5df2e9/dependencies/36c392d312af42f4cc446123289fcbe0/dotnet-sdk_3.1.410_linux_x64_any-stack_4e29959a.tar.xz]
+   -----> Installing dotnet-runtime 3.1.16
+          Copy [/tmp/buildpacks/074e354a58c4d0fe77f568d72a5df2e9/dependencies/03ba339dae8f856ae4c24ccf344d6847/dotnet-runtime_3.1.16_linux_x64_any-stack_b256d9fa.tar.xz]
+   -----> Finalizing Dotnet Core
+   -----> Installing dotnet-runtime 3.1.16
+          Copy [/tmp/buildpacks/074e354a58c4d0fe77f568d72a5df2e9/dependencies/03ba339dae8f856ae4c24ccf344d6847/dotnet-runtime_3.1.16_linux_x64_any-stack_b256d9fa.tar.xz]
+   -----> Publish dotnet
+
+          Welcome to .NET Core 3.1!
+          ---------------------
+          SDK Version: 3.1.410
+
+          Telemetry
+          ---------
+          The .NET Core tools collect usage data in order to help us improve your experience. It is collected by Microsoft and shared with the community. You can opt-out of telemetry by setting the DOTNET_CLI_TELEMETRY_OPTOUT environment variable to '1' or 'true' using your favorite shell.
+
+          Read more about .NET Core CLI Tools telemetry: https://aka.ms/dotnet-cli-telemetry
+
+          ----------------
+          Explore documentation: https://aka.ms/dotnet-docs
+          Report issues and find source on GitHub: https://github.com/dotnet/core
+          Find out what's new: https://aka.ms/dotnet-whats-new
+          Learn about the installed HTTPS developer cert: https://aka.ms/aspnet-core-https
+          Use 'dotnet --help' to see available commands or visit: https://aka.ms/dotnet-cli-docs
+          Write your first app: https://aka.ms/first-net-core-app
+          --------------------------------------------------------------------------------------
+          Microsoft (R) Build Engine version 16.7.2+b60ddb6f4 for .NET
+          Copyright (C) Microsoft Corporation. All rights reserved.
+
+            Determining projects to restore...
+            Restored /tmp/app/TEstApp.csproj (in 5.53 sec).
+            TEstApp -> /tmp/app/bin/Debug/netcoreapp3.1/ubuntu.18.04-x64/TEstApp.dll
+            TEstApp -> /tmp/contents366325976/deps/0/dotnet_publish/
+   -----> Cleaning staging area
+          Removing .nuget
+          Removing .local
+          Removing dotnet-sdk
+   Exit status 0
+   Uploading droplet, build artifacts cache...
+   Uploading droplet...
+   Uploading build artifacts cache...
+   Uploaded build artifacts cache (229B)
+
+Waiting for app sample-aspnet_3_1 to start...
+
+Instances starting...
+Instances starting...
+Instances starting...
+Instances starting...
+
+name:                sample-aspnet_3_1
+requested state:     started
+isolation segment:   trial
+routes:              sample-aspnet_3_1.cfapps.ap21.hana.ondemand.com
+last uploaded:       Sun 25 Jul 19:24:59 IST 2021
+stack:               cflinuxfs3
+buildpacks:
+isolation segment:   trial
+        name                    version   detect output   buildpack name
+        dotnet_core_buildpack   2.3.30    dotnet-core     dotnet-core
+
+type:            web
+sidecars:
+instances:       1/1
+memory usage:    512M
+start command:   cd ${DEPS_DIR}/0/dotnet_publish && exec ./TEstApp --server.urls http://0.0.0.0:${PORT}
+     state     since                  cpu    memory          disk           details
+#0   running   2021-07-25T13:55:13Z   0.0%   27.2M of 512M   192.3M of 1G
+PS D:\Del\CF3_1\TEstApp\TEstApp>

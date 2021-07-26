@@ -5,3 +5,6 @@ Add note for Udemy courses
     WhileCoding-<High level Title>- //Helps while writing actual coding
     TakeNotes-<High level Title> // To take notes later
     //** ONCE notes taken you should delete this
+
+    Attribute
+     **Important**

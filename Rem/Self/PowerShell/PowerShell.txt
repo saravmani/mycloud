@@ -1,3 +1,13 @@
+
+Create alias for the commands
+in powershell type below commands
+code #PROFILE //this will open powershell profile in vscode
+
+then copy below code
+New-Alias -Name k -Value  <command to execute>
+
+
+
 It can run 4 types of commands
   1. Native commands
   2. Scripts - ex: if else statements

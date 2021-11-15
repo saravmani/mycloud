@@ -24,7 +24,7 @@ public void ConfigureServices(IServiceCollection services)
           {
             IssuerSigningKey = symKey,
             ClockSkew = TimeSpan.FromMinutes(20), // Note: Can be taken from configuration
-            ValidIssuer = settings.Issuer,
+            ValidIssuer = "YOUR_DOMAIN_NAME", // Note: Can be taken from configuration
             ValidAudiences = new List<string> // Multiple Audiance can be added
                   {
                       "https://audience1.com",

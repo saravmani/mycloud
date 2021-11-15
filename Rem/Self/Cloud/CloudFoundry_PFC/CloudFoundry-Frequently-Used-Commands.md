@@ -1,24 +1,45 @@
 
 
 ```powershell
-cf target # provides api details
+CF API # provides api details
+cf target # provides api and user details
 cf orgs
 cf spaces # to list the available spaces
+cf target -s <spacename> # to switch to another space
+
 cf apps # to listdown the apps
-cf apps <appname> # to give app specific informations
+cf apps <appname> # To give app specific informations
+cf quotas # provide resource , quota details
+cf stop <appname> # To stop the specific applicaiton
+cf stacks # provides list of available file system (i.e linux file system cflinuxfs3)
+#Ex - cflinuxfs3
 
 cf push <appname> -p <applicaiton path> # app name should be unique
-
 cf create-app-manifest <appname> manifest.yml # To create sample manifest file with default parameters
-
-cf stacks # provides list of available file system (i.e linux file system cflinuxfs3)
-
-cf logs <appname> #To monitor the logs fromt the developper machine's console. This will print the logs which are written in console by the applicaiton
-cf logs --recent hello-spring-cloud #To view logs that have already been written (histoy)
 
 cf plugins # lists all the installed pluggins
 cf install-plugin <plugin-name> # To Install the plugin
+cf marketplace # List the services provided by the cloud foundry provider
+# Ex: mongo db, redis cache
+
+cf services # list of available services to my APP
 ```
+
+###### To view logs
+```powershell
+cf logs <appname> #To monitor the logs fromt the developper machine's console. This will print the logs which are written in console by the applicaiton
+cf logs --recent <appname> #To view logs that have already been written (histoy)
+cf events --recent <appname> # Displays major events Ex. app crash
+```
+
+###### To Work with environment vairables
+> *We can set environment variables using manifest file also*
+```powershell
+cf env <appname> # To list all the env variables for the applicaiton
+cf set-env <app> <variablename> <variablename> # To set env variable for an applicaiton
+cf unset-env <app> <variablename> # To remove an env variable for an applicaiton
+```
+
 
 ###### Work with environment variables
 ```powershell
@@ -31,4 +52,12 @@ cf set-env <APP_NAME> <ENV_VAR_NAME> <ENV_VAR_VALUE>
 ```powershell
 cf push <worker_app_name> --no-route --health-check-type=process
 # --health-check-type=process this indicates CF will continuously monitor  health of the applicaiton
+```
+
+
+###### Commands to scale the applicaiton
+```powershell
+cf scale <appname> -i 2 # To Increase the number of instances
+cf scale <appname> -m 250M # To Increase the ram
+cf scale <appname> -k 10G # To Increase the local storage size
 ```

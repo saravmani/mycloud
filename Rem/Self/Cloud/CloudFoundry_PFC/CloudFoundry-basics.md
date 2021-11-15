@@ -10,13 +10,15 @@ space:          dev
 Credentials
 saravmani/C-stdpwd
 
+Cloud foundry Source code
+https://github.com/cloudfoundry
+
 1. Within organisation splitup the teams with cleane boundary
 
 
 Support containers
 supports .Net
 Tasks, and continues running applicaitons (IIS)
-
 
 revisions - to roleback the changes
 Diego - Archestration tool (like Kubernetes)
@@ -25,10 +27,29 @@ It has market place from where we can use anything ex: Kafka
 
 ---
 
-in Cloud controller we have to create Namespace for our project
+###### What is Cloud foundry
+Cloud Foundry is opensource PaaS(Platform as a serivice) and it can run on Azure, OpenStack, Onprimise, AWS etc.,. We can call it as Vendor Neutral.
+CF is independent of any cloud provider.
+
+> *CF is best for microservices Architecture. It can run multiple runt times, handle different type of work loades, can use different OS*
 
 
-###### Diego
+
+###### Orgs
+Org is a development Account that an individual or multiple collaborators can own and use
+
+###### Spaces
+- Where we deploy the app
+- A space provides users with access to a shared location for app development, deployment, and  -maintenance.
+- An org can contain multiple spaces - Ex: Dev, UAT ,PROD etc.,
+- Every app, service, and route is scoped to a space
+
+
+
+
+In Cloud controller we have to create Namespace for our project
+
+###### Diego ..  (i.e TKGI is container)
 Diego is a self-healing container management system that attempts to keep the correct number of instances running in Diego cells to avoid network failures and crashes. Diego schedules and runs Tasks and Long-Running Processes (LRP)
 
 
@@ -54,27 +75,6 @@ Here lifecycle is - Pusing -> Staging ->Running
   Dont use domain level cookies
 
 
-###### Manifest.yaml
-This is the file used by Cloud foundry to proceed with deployment and run the applicaiton.
-Keep Manifest.yaml as the name of the manifest file, because by default CF will look for this name
-
-```ini
-applications:
-- name: my-first-app
-  disk_quota: 1G
-  memory: 1G
-  instances: 2
-  routes:
-  - route:hostname.cfapps.io
-  host: host-name
-  domain: domain-name
-  path: .
-  buildpack: https://github.com/<build_pack_path>.git
-  stack: cflinuxfs3
-  #indicates linux based file system
-```
-
-
 ###### Buildpacks
 Build pack service - Takes care of building the applicaion.
 While doing CF push it will detect the type of applicaiton by using config files and check the buildpacks for compatibility.
@@ -82,6 +82,8 @@ We can also provide a build pack expilicitly.
 
 
 ###### What CF push command do
+- Check YML file in local directroy (we can able to pass non standard YML file path as parameter to the command)
+- Cloud controller get intimation about new applicaion and CC will stores the meta data of the applicaition
 - run push command with run pack
 - Uploades the files
 - then creates deployment artifact by combining buildpack+source code+dependencies+configuration
@@ -92,44 +94,6 @@ We can also provide a build pack expilicitly.
 1. we can create internal domains to communicate the applications between them
 
 
-###### Scalling Vertically and Horizontally
-In terms of PCF Horizontal scallaing means - Increasing number of process
-Vertical scale means - Increase Core and memory
-Autoscalling is possible by defining Auto scale policy
-
-> *By default CF do round rboin between the instances*
-
-##### Autoscale policy
-we can abe to define autoscale policy like below
-throughput >=3 req/sec +2 instances
-(i.e if traffic increases >=3 req/ sec then it will add 2 more instances)
-This threashould is the average of all the instances
-
-**Sample Autoscale policy (autoscale-policy.json)**
-```json
-{
-  "instance_min_count": 1,
-  "instance_max_count": 5,
-  "scaling_rules": [
-    {
-      "metric_type": "throughput",
-      "operator": ">=",
-      "threshold": 30, // 30 seconds
-      "adjustment": "+2",
-      "breach_duration_secs": 120, // How long required to execute the threashould. Or How much time we have to wait to do autoscale
-      "cool_down_secs": 120
-    },
-    {
-      "metric_type": "throughput",
-      "operator": "<=",
-      "threshold": 10,
-      "adjustment": "-1",
-      "breach_duration_secs": 120,
-      "cool_down_secs": 120
-    }
-  ]
-}
-```
 
 ###### Revisions (i.e Deployment versions)
 We can relate Revisions to applicaiton versions. If we want to reverse back to old version

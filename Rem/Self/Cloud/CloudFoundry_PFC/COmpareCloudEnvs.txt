@@ -1,3 +1,0 @@
-
-AWS -
-GCP - DB services are cheaper

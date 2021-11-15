@@ -1,0 +1,7 @@
+CF push with sample applications
+Show logs cf logs <appname>
+Scaleup and down
+Deploy Multiple Applications
+Background Apps
+
+Inter service calls

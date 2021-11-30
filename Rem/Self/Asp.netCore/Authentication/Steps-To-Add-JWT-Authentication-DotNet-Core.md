@@ -50,7 +50,7 @@ public void ConfigureServices(IServiceCollection services)
       // Create claims object
       var _objClaimList = new List<Claim>
       {
-          new Claim(JwtRegisteredClaimNames.Sub, userName),
+          new Claim(JwtRegisteredClaimNames.Sub, "LOGGED_In_UserName"),
           new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
           new Claim("CUSTOM_TYPE_NAME1","CUSTOM_VALUE1"),
           new Claim("CUSTOM_TYPE_NAME2","CUSTOM_VALUE2") // More Number of claims can be added

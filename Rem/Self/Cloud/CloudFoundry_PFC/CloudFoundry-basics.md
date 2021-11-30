@@ -1,38 +1,11 @@
 
-
-MY IBM Cloud
-API endpoint:   https://api.cf.ap21.hana.ondemand.com
-API version:    3.101.0
-user:           saravmani.techlab@gmail.com
-org:            14cfbbb8trial
-space:          dev
-
-Credentials
-saravmani/C-stdpwd
-
-Cloud foundry Source code
-https://github.com/cloudfoundry
-
-1. Within organisation splitup the teams with cleane boundary
-
-
-Support containers
-supports .Net
-Tasks, and continues running applicaitons (IIS)
-
-revisions - to roleback the changes
-Diego - Archestration tool (like Kubernetes)
-
-It has market place from where we can use anything ex: Kafka
-
----
-
 ###### What is Cloud foundry
 Cloud Foundry is opensource PaaS(Platform as a serivice) and it can run on Azure, OpenStack, Onprimise, AWS etc.,. We can call it as Vendor Neutral.
 CF is independent of any cloud provider.
 
 > *CF is best for microservices Architecture. It can run multiple runt times, handle different type of work loades, can use different OS*
 
+Cloud foundry readily provides - VM, OS, N/W + Runtime
 
 
 ###### Orgs
@@ -65,20 +38,11 @@ Azure, Amazon, Google cloud platform (GCP), AliCloud, Vmware
 5. Messaging (Communicaiton)
 6. Logs and Metrics
 
-##### Cloud Controller
-Cloud Controller is responsible complete management of applicaiton lifecycle
-Here lifecycle is - Pusing -> Staging ->Running
-
 
 ##### Best practices for cloud native applicaiton
   Local file system should not be used. Try to use standard file system (cloud based is best)
   Dont use domain level cookies
 
-
-###### Buildpacks
-Build pack service - Takes care of building the applicaion.
-While doing CF push it will detect the type of applicaiton by using config files and check the buildpacks for compatibility.
-We can also provide a build pack expilicitly.
 
 
 ###### What CF push command do

@@ -1,4 +1,8 @@
 
+###### Run task
+```powershell
+> cf run-task <app-name> <command> # This should trigger the runnable (ex: Exe)
+```
 
 
 

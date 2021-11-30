@@ -5,7 +5,8 @@ A hosted service provides a mechanism for running background tasks within the li
 scope of the application. It is quite handy in scenarios where long-running tasks need to
 run in the background of an application continuously.
 ASP.NET Core provides the IHostedService interface for creating hosted services.
-Let’s take a look at its signature.
+
+
 public interface IHostedService
 {
 Task StartAsync(CancellationToken cancellationToken);

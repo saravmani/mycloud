@@ -1,9 +1,11 @@
 ###### High Level Cloud Foundry Components and Artifacts
 * Diego
 * Cloud Controller
-* Router
+* GoRouter
 * Blob Store
-* Auth Server (UAA)
+* Auth Service (UAA)
+* Services (Like DB services)
+* Logs and Metrics
 
 
 ###### Router

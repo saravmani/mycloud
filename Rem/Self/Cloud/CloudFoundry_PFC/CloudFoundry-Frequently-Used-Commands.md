@@ -41,7 +41,6 @@ cf events --recent <appname> # Displays major events , errors  Ex. app crash
 ###### Work with environment variables
 ```powershell
 cf env <app_name> # To get  System and User defined environment variables
-cf env <appname> # To list all the env variables for the applicaiton
 cf set-env <APP_NAME> <ENV_VAR_NAME> <ENV_VAR_VALUE>
 cf unset-env <APP_NAME> <ENV_VAR_NAME> # To Remove the env variable
 

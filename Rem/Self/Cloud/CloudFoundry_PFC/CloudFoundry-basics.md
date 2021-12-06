@@ -1,21 +1,29 @@
 
-###### What is Cloud foundry
-Cloud Foundry is opensource PaaS(Platform as a serivice) and it can run on Azure, OpenStack, Onprimise, AWS etc.,. We can call it as Vendor Neutral.
-CF is independent of any cloud provider.
+##### What is Cloud foundry
+Cloud Foundry is open-source PaaS (Platform as a service). We can think CF is a abstraction layer on top of Infra+OS+RunTime.
+Cloud Foundry can run on Onproimise or on IaaS like vSphere, AWS, Azure, GCP, or OpenStack. We can call it Vendor Neutral. CF is independent of any cloud provider.
 
-> *CF is best for microservices Architecture. It can run multiple runt times, handle different type of work loades, can use different OS*
 
 Cloud foundry readily provides - VM, OS, N/W + Runtime
 
+##### Infra stack for PCF
+In Cloud Foundry we can focus only on application and data. rest of the items will be taken case by Cloud Foundry
+
+![](../../RefImages/PCF_PaaS.PNG)
+
+---
+
+##### Cloud Foundry Isolation Levels
+Orgs and spaces are used to isolate the spaces within Cloud Foundry
+
+
 
 ###### Orgs
-Org is a development Account that an individual or multiple collaborators can own and use
+Org is a development Account that an individual or multiple collaborators can own and use. Org contain multiple spaces
 
 ###### Spaces
-- Where we deploy the app
-- A space provides users with access to a shared location for app development, deployment, and  -maintenance.
-- An org can contain multiple spaces - Ex: Dev, UAT ,PROD etc.,
-- Every app, service, and route is scoped to a space
+- Applicaiton will be deployed at space level. An org can contain multiple spaces - Ex: Dev, UAT ,PROD etc.,. Every app, service, and route is scoped to a space.
+- Space can host multiple apps. 
 
 
 
@@ -28,15 +36,6 @@ Diego is a self-healing container management system that attempts to keep the co
 
 Multiple infra providers for Cloud foundry including
 Azure, Amazon, Google cloud platform (GCP), AliCloud, Vmware
-
-
-###### Cloud foundry components
-1. Routing (Entry point .. act as load balancer also)
-2. Authentication (UAA service)
-3. Execution
-4. Services (Like DB services)
-5. Messaging (Communicaiton)
-6. Logs and Metrics
 
 
 ##### Best practices for cloud native applicaiton
@@ -56,12 +55,3 @@ Azure, Amazon, Google cloud platform (GCP), AliCloud, Vmware
 
 ###### Routes
 1. we can create internal domains to communicate the applications between them
-
-
-
-###### Revisions (i.e Deployment versions)
-We can relate Revisions to applicaiton versions. If we want to reverse back to old version
-of the deplyment we can use this revisions to rollback.
-A revision represents code and configuration used by an app at a specific time.
-This allows you to deploy a version of the app that you had running previously without needing to track that previous state yourself or have multiple apps running.
-> **Even if we update the environment variable this will create a new revision**

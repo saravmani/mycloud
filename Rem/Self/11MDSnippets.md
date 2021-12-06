@@ -15,7 +15,7 @@ docker pull <image name>
 >Refer- [Frequently used Docker commands](../Docker/Containers/Docker-Frequently-Used-Comments.md)
 
 - Display Image from local
-![](Versions/RefImages/.net5_openAPISwagar.PNG)
+![](RefImages/PCF_PaaS.PNG)
 ![](../../../../../RefImages/DIPrinciple_Example1.PNG)
 ![](../../../../../RefImagesPrivate/EFCoreGenericDBOperations.PNG)
 

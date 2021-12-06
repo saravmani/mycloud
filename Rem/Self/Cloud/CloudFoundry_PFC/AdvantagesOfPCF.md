@@ -5,6 +5,7 @@
 4. Developer can achive Ifrastructure as a code concept
 5. Within organisation splitup the teams with cleane boundary
 6. It has own market place from there we can start using any services easily (Ex: DB, RabbitMQ etc.,)
+7. CF is best for microservices Architecture. It can run multiple runt times, handle different type of work loades, can use different OS
 
 Ex: Developer can develop applicaiton local and pusth to CF. Then CF will take care of testing, deployment , routing, monitoring, logging, managing, auto-scallaing etc.,
 

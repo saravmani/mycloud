@@ -4,5 +4,5 @@ To Read
 
 Experiment
 ----------------
-1. Load one service and test
+1. Load one service and bind and Test
 2. Run back ground jobs

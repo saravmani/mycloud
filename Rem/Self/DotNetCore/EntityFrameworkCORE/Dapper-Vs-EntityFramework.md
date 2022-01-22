@@ -1,9 +1,9 @@
-#### Dapper Vs EntitiyFramework
+# Dapper Vs EntitiyFramework
 ##### Discussion on advantages of Dapper and practical scenario where we can use Dapper
 >
 
 ###### About Dapper
-  Dapper is not a full ORM framework like EntitiyFramework. It acts as a simple object mapper for the dataset. Also we call it as Micro ORM :-). 
+  Dapper is not a full ORM framework like EntitiyFramework. It acts as a simple object mapper for the dataset. Also we call it as Micro ORM :-).
 It is very lightweight and it is not having many features which are owned by EntitiyFramework
 * Ex: Dapper does not have below features
   * Caching

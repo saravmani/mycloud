@@ -1,4 +1,4 @@
-#### Ionic lifecycle events
+# Ionic lifecycle events
 ###### Know Ionic page life Cycle hooks. Ionic by default cache the pages. Becuase of caching mechanism we are having some new lifecycle hooks along with Angular lifecycle hooks
 
 ```

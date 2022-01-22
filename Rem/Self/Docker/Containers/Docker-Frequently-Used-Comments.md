@@ -1,16 +1,18 @@
-#### Docker Commands
+# Useful Docker Commands
 ###### Frequently used docker commands
->
+
+
 ```powershell
+
 docker -version #to Get installed docker version
-docker pull <image name>
-docker run -it -d <image name> #Creates container from image
+docker pull image-name
+docker run -it -d image-name #Creates container from image
           # -it means interactive mode.
           # --rm if we add this switch then container will get removed once its work done
           # -e ENVIRNMENT_VARIABLE_NAME=SOMEVALUE
 
-docker run -e ENVIRNMENT_VARIABLE_NAME=SOMEVALUE <image name> # To set the environment variable for the container
-docker log <container id>
+docker run -e ENVIRNMENT_VARIABLE_NAME=SOMEVALUE image-name # To set the environment variable for the container
+docker log container-id
 docker compose up # to run multiple containers
 ```
 

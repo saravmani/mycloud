@@ -1,0 +1,90 @@
+{
+  "main": {
+    "id": "560298e287bef4bc",
+    "type": "split",
+    "children": [
+      {
+        "id": "f965700ada535a7c",
+        "type": "leaf",
+        "state": {
+          "type": "empty",
+          "state": {}
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d87ed9a5a067bfa7",
+    "type": "split",
+    "children": [
+      {
+        "id": "0a47deb68546fd18",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3513040513082b51",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "1780a686a51df40d",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "4e0a72e567d678f4",
+    "type": "split",
+    "children": [
+      {
+        "id": "2b6a0772f51a347c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4aa429434f7ac4fa",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "f965700ada535a7c",
+  "lastOpenFiles": [
+    "Linux-Frequently-Used-Commands-Developer.md",
+    "MSDOS-Frequently-Used-Commands-Developers.md"
+  ]
+}

@@ -1,4 +1,4 @@
-#### Resharper Useful Tips
+# Resharper Useful Tips
 ###### Discussion on Resharper and Some of it's tips and tricks
 >
 

@@ -1,4 +1,4 @@
-#### How to change default Docker image installation path / Direcotory on Windows 10
+# How to change default Docker image installation path / Direcotory on Windows 10
 ###### Steps to change default image download path
 
 

@@ -1,4 +1,4 @@
-#### Benifits  of using Ionic with other Js frameworks
+# Benifits  of using Ionic with other Js frameworks
 ###### Why we need to use other JS frameworks along with Ionic ? What are the Benifits of using JS frameworks along with ionic
 
 - Without Angular or React also we can develop ionic apps. But using ionic with other UI frameworks

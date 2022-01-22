@@ -1,0 +1,6 @@
+
+local jenking url - http://localhost:8080/
+
+Credentials :saravmani/c-stdpwd
+
+Storage path - F:

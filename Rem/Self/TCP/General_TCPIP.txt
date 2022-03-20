@@ -1,10 +1,12 @@
 
+
+
 socket
 ---------
 A socket is an endpoint in a communication, and a network socket is an endpoint
 in a communication between applications running on two different computers
 on the network. The data flows between the sockets in what’s known as
-a stream. 
+a stream.
 The data in the stream can be transmitted as binary data in a buffer,
 or in UNICODE AS STRING.
 Both types of data are transmitted as packets: parts of
@@ -17,20 +19,20 @@ done.
 
   ip address  - internet protocl
     range from 0 to 255
-ip numbering system 
+ip numbering system
 -----------------------
 128 64 32 16  8 4 2 1
 0    0  1  0  0 1 0 0
 --.--.--.36
 
 see above example. based on binary 1 or 0, numbers are picked
-and added to generate the ip address. so the max number can be generated is 
+and added to generate the ip address. so the max number can be generated is
 255 if all the binrary valuse are 1
 
 IP address tells two informations.
 1. which network
 2. computer
-subnet mask used to tell which part of the ip address used for 
+subnet mask used to tell which part of the ip address used for
  networking and host
 
  if subnet mask is 255.255.255.0 then first 3 artifacts are used to identify the network.
@@ -50,7 +52,7 @@ formula is 2^8 -2
 
 Router connects different subnets
 
-    main purpose is used to communicate 
+    main purpose is used to communicate
 
 DNS used to resolve the domain name to ip
 
@@ -69,26 +71,26 @@ it s unique ly identified within local network
 
 DHCP server
 ---------------
-Dynamic Host Configuration Protocol (DHCP) 
+Dynamic Host Configuration Protocol (DHCP)
 ------------------------------------------
 is a  network protocol that enables a server to
   automatically assign an IP address to a computer
-   from a defined range of numbers (i.e., a scope) 
+   from a defined range of numbers (i.e., a scope)
    configured for a given network.
-DHCP will used to automatically assign 
+DHCP will used to automatically assign
 IP, Subnet mask, Default gateway, DNS.
 In huge network it is difficult to assing all those addresses manually
-DHCP also have lease period. In this lease period 
+DHCP also have lease period. In this lease period
 IP addresses can be used by the computer. after that
-it will get changed. this lease time can be 1 day or 4 day.. it is based on 
-system admin who conigured DHCP server
+it will get changed. this lease time can be 1 day or 4 day.. it is based on
+system admin who configured DHCP server
 
 TCP/IP 6 is much different than TCP/IP4
 
 
  subnet mask because it is used to identify network address of an IP address by perfoming a bitwise AND operation on the netmask. A Subnet mask is a 32-bit number that masks an IP address, and divides the IP address into network address and host address.
 
- 
+
 
 
  TCP/IP protocol is a group of multiple protocols
@@ -100,16 +102,16 @@ TCP/IP 6 is much different than TCP/IP4
 
  Default gateway
  ---------------
- when computer on some local network wants communicate to 
+ when computer on some local network wants communicate to
  another server or computer, first it will check in local network.
  If it not find then it will ask Default gateway
-Default gate way is a router or DSL Modam etc.,
+Default gate way is a router or DSL Modem etc.,
 
-basically default gate way is used to connect the sub network with other 
-networs
-in home i am having DSL modom. it s a gate way.
-if use ipconfig command then we can abel to find the 
-default gateway's ipaddress
+basically default gate way is used to connect the sub network with other
+networks
+in home i am having DSL modem. it s a gate way.
+if use ipconfig command then we can able to find the
+default gateway's IP-address
 
 
 DNS
@@ -124,7 +126,7 @@ Domain name server. which used to resolve the domain name.
 
 Windowing process
 ---------------------
-TCPIP uses this process to ensure transmission complete. it will detect transmission packtes count based on ack.,
+TCPIP uses this process to ensure transmission complete. it will detect transmission pockets count based on ack.,
 given by end system.
  windowing, is used by the Internet's Transmission Control Protocol (TCP) as a method of controlling the flow of packets between two computers or network hosts.
 
@@ -133,10 +135,10 @@ given by end system.
 NAT (It is built in to router)
 ---------
 Network  address translation.
-because of this NAT, devices no need to have unique ipaddress on whole world.
+because of this NAT, devices no need to have unique IP address on whole world.
 to external world router(default gateway) will communicate. and it will internally
-link to internal n/w comuptures with their interal ip address. this routers
-will remember whcih computer made a call or request
+link to internal n/w computers with their internal IP address. this routers
+will remember which computer made a call or request
 
 
 Router will have IP which is unique to the world.
@@ -159,6 +161,3 @@ OSI
 others are related to network
 bottom 3 layers are applicable all the nodes.
 ex: computers, routers, etc.,
-
-
-

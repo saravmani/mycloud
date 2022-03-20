@@ -8,3 +8,8 @@ Add note for Udemy courses
 
     Attribute
      **Important**
+
+
+     Document Naming
+     --------------------
+     {Name}_IssuesAndSolutions.md or .txt - Real time issues and solutions

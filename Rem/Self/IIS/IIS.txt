@@ -1,4 +1,4 @@
-IIS process are Inetinfo.exe, Dllhost.exe, and W3wp.exe. 
+IIS process are Inetinfo.exe, Dllhost.exe, and W3wp.exe.
 
 IIS architecture
 http://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture
@@ -18,7 +18,7 @@ point, the queue will fill up and any new requests will be rejected, returning a
 IIS 8.5 Features
 -----------------
 
-1. Idle worker process Page-Out in IIS 8.5. In 8.5 we can set the ideal time out action for 
+1. Idle worker process Page-Out in IIS 8.5. In 8.5 we can set the ideal time out action for
 application pool - Suspend or ternminate
 
 
@@ -37,7 +37,7 @@ Windows ships with a kernel-mode device driver called HTTP.sys, which listens fo
 2 http://server:80/app2   # hosted by a different process
 IIS builds on top of HTTP.sys - the request is initially received by HTTP.sys (which also performs some security filtering, like Windows Authentication or client certificates), which in turn hands it to IIS. It then sends the response from IIS back to the client.
 
-Each application running on IIS belongs to an application pool, and a worker process is created to serve requests to that application pool. This is the W3WP process you’ll sometimes see in task manager. If the process runs for significant time, or experiences severe memory leaks and runs out of memory, or hangs, IIS can terminate it and create a new worker process.
+Each application running on IIS belongs to an application pool, and a worker process is created to serve requests to that application pool. This is the W3WP process youï¿½ll sometimes see in task manager. If the process runs for significant time, or experiences severe memory leaks and runs out of memory, or hangs, IIS can terminate it and create a new worker process.
 
 The CLR was loaded into the worker process1
 
@@ -64,3 +64,21 @@ Register asp.net with IIS
 ------------------------------
 Type cd C:\Windows\Microsoft.NET\Framework\v4.0.30319\ and press ENTER.
 Type aspnet_regiis.exe -ir and press ENTER again.
+
+
+
+Machine key setup.
+-------------------------
+we can set machine key directly in web.config file or through iis management console.
+in web.config file we can set like below
+<system.web>
+	<machineKey decryptionKey="136F774C06F792F4E0620EA0B015947F9CDA33CD5C331828,IsolateApps" validationKey="47E07354B7E3A1233E9B2C0311F194B252FF553A9EB234D5A4BE492376046F548D07FE23B6C3F54FD5176335117364107DC9418BEBD3FE32BCDEAA528FF110BE,IsolateApps" />
+</system.web>
+
+in iis console
+Start the management console and then select the web site. Open the machine key configuration:
+Uncheck "Automatically generate at runtime" for both the validation key and the decryption key.
+
+Click "Generate Keys" under "Actions" on the right side of the panel.
+
+Click "Apply".

@@ -1,6 +1,5 @@
-My understanding is 
+My understanding is
 share point is used to manage the contents, documents.
-dnbwiki also uses share point i think
 
 Sharepoint is really two different technologies: Windows Sharepoint Services (WSS) and Microsoft Office Sharepoint Server (MOSS). WSS is free and it comes with Windows Server 2003. MOSS isn't free.
 
@@ -10,7 +9,7 @@ MOSS provides a better search (it's supposed to at least). It also has more publ
 
 WSS is popular partly because its free and partly because it just does so much out of the box. You can solve many common office requests with WSS. Stuff like issue trackers, project management and document management are trivial in WSS. That said, its a jack of all trades - good at many, master of none.
 
-Share point is 
+Share point is
 -------------------
 Document management server
 Web content management server

@@ -1,10 +1,9 @@
 OSI Model
- 	Layerd architecture
+ 	Layerd Architecture
 	Peer to peer processes
 	Encapsulation
 
-a. layerd architecture
----------------------------
+###### Layerd Architecture
 7. Application layer
 6. Presentation layer (formate of the data, compress , encrypt etc.,)
 5. Session layer (starts session btn server and client)
@@ -14,4 +13,7 @@ a. layerd architecture
 2. Data Link layer (how data shared btwn systems from router # it can be modem in my houses)
 1. physical layer (physical wires, or wireless)
 	ex: router
-	
+
+
+### Layers and Protocols
+![](../RefImagesPrivate/OSILayers-Protocols.jpg)

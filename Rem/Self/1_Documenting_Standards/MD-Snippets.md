@@ -14,10 +14,12 @@ docker pull <image name>
 >Document ref
 >Refer- [Frequently used Docker commands](../Docker/Containers/Docker-Frequently-Used-Comments.md)
 
-- Display Image from local
-![](RefImages/PCF_PaaS.PNG)
-![](../../../../../RefImages/DIPrinciple_Example1.PNG)
-![](../../../../../RefImagesPrivate/EFCoreGenericDBOperations.PNG)
+## Display Image from local
+
+### Public Images
+![](../RefImages/DIPrinciple_Example1.PNG)
+### Private Images
+![](../RefImagesPrivate/OSILayers-Protocols.jpg)
 
 
 - Display Image Reference

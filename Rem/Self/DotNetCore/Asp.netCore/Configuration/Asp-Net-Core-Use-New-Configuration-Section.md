@@ -14,6 +14,12 @@
 // ... Other settings
 ```
 
+###### Strongly Typed Configuration
+```csharp
+  var configObject = config.GetSection(nameof(TypedClassName)).Get<TypedClassName>();
+  // Try to use nameof(TypedClassName) instead of string. This approch will ensure type safety
+```
+
 ###### Create equalent model class
 ```csharp
 public class MongoDBSettings

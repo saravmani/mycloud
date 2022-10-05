@@ -32,8 +32,7 @@ public class MongoDBSettings
 
 ###### Configure the new section in Startup.cs file
 ```csharp
-service.Configure<MongoDBSettings>
-  (Configuration.GetSection(nameof(MongoDBSettings)));
+service.Configure<MongoDBSettings> (Configuration.GetSection(nameof(MongoDBSettings)));
 
 services.AddSingleton<MongoDBSettings>(
       sp=>sp.GetRequiredService<IOptions<MongoDBSettings>>().Value

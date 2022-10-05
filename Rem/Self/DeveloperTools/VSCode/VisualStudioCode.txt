@@ -1,2 +1,8 @@
-To debug with chrome we need to set remote debutting port in chrome.so start chrome with below option
+
+My Favourite Pluggings
+1. Peacock - If we are using multiple VSCODE windows, we can use this pluggin to change the colour for VSCODE seperately
+Ex: Front end app i can use Green colur. Backend app i can use yellow
+
+------------
+To debug with chrome we need to set remote debugging port in chrome.so start chrome with below option
 C:\Program Files (x86)\Google\Chrome\Application\chrome.exe --remote-debugging-port=9222

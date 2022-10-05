@@ -1,6 +1,5 @@
 
 
-
 Use Cosmos database
 Use Cognitive services
 Host docker containers

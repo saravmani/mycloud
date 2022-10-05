@@ -8,7 +8,8 @@ gRPC is a modern open source high performance Remote Procedure Call (RPC) framew
 > *GRPC is binary protocol*
 
 GRPC is implemented on top of HTTP/2 and Protocol buffer.
-> *HTTP/2 is mandatory*
+> *HTTP/2 is mandatory. And gRPC will not work with HTTP/1*
+
 
 
 GRPC is highly recomended for Internal Microservices Communication. Because it is more efficient, low latency.
@@ -60,6 +61,11 @@ gRPC uses Protobuf Language for Communication. Protobuf is a mechanism for seria
     }
 "
 ```
+
+##### Protocol negotiation With TLS
+TLS not only for security. If Server endpoint endpoint supports multiple protocol, TLS will negotiate the connection protocol between the client and the server (Ex: HTTP/1.1 or HTTP/2).
+
+If an HTTP/2 endpoint is configured without TLS, the endpoint's ListenOptions.Protocols must be set to HttpProtocols.Http2. An endpoint with multiple protocols  can't be used without TLS because there's no negotiation. Unsecured endpoint default to HTTP/1.1.
 
 
 

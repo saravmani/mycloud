@@ -48,13 +48,15 @@ docker stop <container id>
 ```
 
 ###### To Run Container with interactive mode
-> Note: With interactive mode we can able to execute the commands in our system's terminal and the command actually executes in container
+> *Note: With interactive mode we can able to execute the commands from our system's terminal and the command actually executes inside the container*
 
 ###### Command to run bash in docker
-
+> *docker exec -it <container-name> /bin/bash*
 ```powershell
-docker exec -it bloggerDocDB /bin/bash
 # Interact with Linux containers
+docker exec -it bloggerDocDB /bin/bash
+docker exec -it kafka /bin/bash
+
 docker exec -it microblogger_bloggerservice_1 cmd.exe
 # Interact with Windows containers
 ```

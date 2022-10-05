@@ -12,7 +12,4 @@ It will not support complex queries like RDBMS
 
 Supported data structures
 --------------------------------
-Most of the data structures supported
-by Redis will be familiar to developers, as they’re analogous to those frequently
-used in programming: hash tables, lists, Json,  and key/value pairs (which are used like simple
-variables). Hash table and key/value pair
+Most of the data structures supported -  Hash tables, lists, Json,  and key/value pairs 

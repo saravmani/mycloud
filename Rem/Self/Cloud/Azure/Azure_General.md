@@ -6,6 +6,7 @@
 
 Azure  uses virtualization (using Hyperviser technology) to separate the Hardware and software.
 
+---
 ##### How to interact with Azure Enivironment?
 1. Azure CLI  - Helpful in automation, Handy, Stable
 2. Azure powershell
@@ -44,7 +45,7 @@ also offers Azure Active Directory B2C (Azure AD B2C), which is a cloud identity
 solution for web applications that have a minimal configuration for
 authenticating against social, enterprise, and local accounts.
 
-
+---
 ### IOT Related services
 
 ###### Azure IOT hub
@@ -58,7 +59,7 @@ we will have More control, we can define how we collect data
  ###### Azure Sphere
  This is a complete IOT solution provided by Azure.
  > ***We have use the Hardware and Chipsets which are certified by Microsoft for Azure. Azure Sphere Operating system will be running on the device. Azure will manage the update and security etc., ***
-
+---
 
  ### Big data related offerings
  ###### Azure Data Lake Analytics
@@ -76,7 +77,7 @@ it is data warehouse offering. Used for data analytics
 Synapse SQL language can be used to slice and see the data for analytics
 
 
-
+---
 ### Machine Learning offerings
 ### Cognetive services
 Speach reconisation - Audio to text, identify the person based on voice
@@ -98,3 +99,10 @@ Provides visual tools for ML process. To view models
 ###### Machine learning service
 managing the machine learning project lifecycle..
 We can create a model in Azure Machine Learning or use a model built from an open-source platform, such as Pytorch, TensorFlow,
+
+----
+### Azure Blue prints
+It is more than ARM. It can have multiple ARMs
+Azure Blue prints consists set of resource groups, policies, role assignments, and ARM template deployments.
+Azure Blue prints consists set of resource groups, policies, role assignments, and ARM template deployments
+ARM template is a document that doesn't exist natively in Azure - each is stored either locally or in source control

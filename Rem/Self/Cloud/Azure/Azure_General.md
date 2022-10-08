@@ -99,10 +99,4 @@ Provides visual tools for ML process. To view models
 ###### Machine learning service
 managing the machine learning project lifecycle..
 We can create a model in Azure Machine Learning or use a model built from an open-source platform, such as Pytorch, TensorFlow,
-
-----
-### Azure Blue prints
-It is more than ARM. It can have multiple ARMs
-Azure Blue prints consists set of resource groups, policies, role assignments, and ARM template deployments.
-Azure Blue prints consists set of resource groups, policies, role assignments, and ARM template deployments
-ARM template is a document that doesn't exist natively in Azure - each is stored either locally or in source control
+ 

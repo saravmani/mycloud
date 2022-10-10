@@ -1,17 +1,11 @@
 ### Governance
-Set of rules, policies and rolses which control over your applications and resources in Azure
-It will help us to have fully governed environments
+mechanisms and processes to maintain control over your applications and resources in Azure
 
+This contains - Azure policy, Rolebased Access control (RBAC), Resource locks and blueprints.
 
-##### Features
-1. Do inventory management - visibility into all your resources fast
-2. Analyse costs and monitor usage from a single dashboard
-3. Apply policies -   Set of Rules and agreements
-4. Apply policies with flexible hierarchies to multiple subscriptions.
-5. Easily create fully compliant environments and apply group policies to new Azure subscriptions.
+---
 
-
-#### Key Elements
+### Key Elements
 #### Policy
 organization level to achieve its goal
 Set of Rules and agreements. Ex. We can set the budget limit for the resources
@@ -39,3 +33,13 @@ Also it provides the same for Business, people and process change
 
 #### Azure advisor for security assistance
 It is par of Azure security center
+
+---
+
+
+#### Features
+1. Do inventory management - visibility into all your resources fast
+2. Analyse costs and monitor usage from a single dashboard
+3. Apply policies -   Set of Rules and agreements
+4. Apply policies with flexible hierarchies to multiple subscriptions.
+5. Easily create fully compliant environments and apply group policies to new Azure subscriptions.

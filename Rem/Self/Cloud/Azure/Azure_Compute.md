@@ -32,6 +32,16 @@ Runs docker container on-demand
 ACR - Azure container registry is manages container images
 POD - Pods are simply the smallest unit of execution in Kubernetes. And it is a VM which hosts multiple containers
 
-###### Azure Virtual Desktop
+---
+#### Azure Virtual Desktop
 Windows 10 license can be reused
 Access any where and any device. Uses azure security
+
+##### Spot VM
+- Azure spot VMs allow customers to purchase VMs from a pool of unused spare capacity at a significantly lower price—up to 90% less—than pay-as-you-go.
+
+- Comes with discout
+
+- we can use it for non critical Tasks
+- we can able to use scale sets
+- within 30 sec notification azure can get back the VM

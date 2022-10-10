@@ -30,23 +30,34 @@ Provides VPN to on promise or hybrid environments
 private connectivity to single service instance / single storage account, single sql instance
 
 
-### Azure security center (microsot defender)
-It is a portal. provides set of tools for monitoring and managing the security of  cloud resources within the Microsoft Azure public cloud.
-Shows threat alerts.
-It can watch hybrid resources also
-Each VM installed the agent and sends the data to Security center
-Policy and complaince metrics widget,
-security score widget
-provides alerts
-Able to integrate with othere security providers.
-We can integrate Azure Sentinal
+### Azure security center
+- It is a portal. provides set of tools for monitoring and managing the security of  cloud resources within the Microsoft Azure public cloud.
+- Shows threat alerts.
+- It can watch hybrid resources also
+- Each VM installed the agent and sends the data to Security center
+- Policy and complaince metrics widget,
+- security score widget
+- Able to integrate with othere security providers.
+- We can integrate Azure Sentinal
+- This only raises the alerts but we have to act on that
 
-This only raises the alerts but we have to act on that
-We can configure our own security policy/ rules. Azure also provides predefined policies
+#### Security Policy in Security Center
+- We can configure our own security policy/ rules. Azure also provides predefined policies
 
-Security cetner provides below panels in UI
+
+### Sentinal -  SIEM (Security Information and Event Management)
+- Microsoft Sentinel is your birds-eye view across the enterprise. widly used tool.
+- AI based - Behavioural analytics
+It will collect data from all the resources and analyse the data and if it found any threat/ attacks then will notify to us. and we have to take action.
+- We can integrate this with Azure Security Center so that we can view the alert in one place
+- AWS integration available
+
+
+Security center provides below panels in UI
 1. Resource security hygine  - check the security standards and best practices for
-2. REgulatory complaince dashboard - it will look for standards, policies for compliances
+2. Regulatory complaince dashboard - it will look for standards, policies for compliances
+
+
 
 
 
@@ -61,7 +72,7 @@ Ex: Email attachment can be secured and sent. The user have to authenticate them
 We can abel to define the policies
 
 
-### Microsoft defender for identify
+#### Microsoft defender for identify
 Monitor user activity, permissions and memberships and logs if it found any suspicious.
 Also it provides suggestion to security practices
 
@@ -73,19 +84,14 @@ Microsoft defender will identify
 3. Elivate/ increasing privileges - if user tries to attempt to elivate his privileges
 
 
-### Sentinal -  SIEM (Security Information and Event Management)
-Microsoft Sentinel is your birds-eye view across the enterprise. widly used tool.
-AI based - Behavioural analytics
-It will collect data from all the resources and analyse the data and if it found any threat/ attacks then will notify to us. and we have to take action.
-We can integrate this with Azure Security Center so that we can view the alert in one place
-AWS integration available
 
-### Dedicated host
-It is like VM. But we can own the Hardware.
-It is like we are renting the Physical hardware to run our VM, so that we will have more controll over there.
-It is costly.
-Usecases:
+
+#### Dedicated host
+- It is like VM. But we can own the Hardware.
+- It is like we are renting the Physical hardware to run our VM, so that we will have more controll over there.
+- But still Cloud benefits can be used
+- It is costly
+
+**Usecases:**
 1. we can schedule our own maintanence hours
 2. we can sensure the CPU/RAM availability
-
-but still Cloud benefits can be used

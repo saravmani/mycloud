@@ -21,7 +21,7 @@ An Azure Resource Manager template is the framework by which resources are creat
 
 #### Resource Groups
 Resource Groups are mandatory. A resouce can be part of single resource group at a given time.
-REsource from one RG can interact with resource in another RG. RG has location bcs RG meta data should be stored in a particular location's data center
+Resource from one RG can interact with resource in another RG. RG has location bcs RG meta data should be stored in a particular location's data center
 we can move resource from one group to another. REsource group can contain resources from different regions.
 
 
@@ -40,3 +40,5 @@ Uses - > Failover, At a time one region may goes to maintanence, data recovery
 ###### Availablity Zone
   Groups of datacenters within a region, have their own isolated power, cooling, and networking.
 Minimum 3 Zone per Region
+
+>***Availability Zone is different from Zone. Zone is a geographical grouping of Azure Regions for billing purpose. Data transfer pricing is based on the Zones***

@@ -30,7 +30,7 @@ Cloud services, on-premises service also send telemetry data to Az Monitor.
 #### Log Analytics
 - Stores and queries data, Combine different type of logs.We can query and get the insights like - Desk space, errors, CPU usage etc,.
 - Pre built queries also provided by azure.
-- This query language called ***Kusto Query Language (KQL)***. Similar to SQL query
+- This query language called ***Kusto Query Language - KQL***. Similar to SQL query
 
 #### Monitor Alerts
 - Sends notification un unexpected event.

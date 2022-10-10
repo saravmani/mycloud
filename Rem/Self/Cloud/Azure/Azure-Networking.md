@@ -6,10 +6,20 @@
 6. Content delivery Network (CDN)
 
 ###### Application Gateway
-It is like Loadbalancer, but more than that.
-In application gateway we can able to configure the routing based on multiple parameters .. ex Http headers, Url part, Data in the request etc.,
-We can encrypt Appgateway -> VM or applicaiton
-up to 100 websites to the same instance of an Application Gateway
+- web traffic load balancer
+- It is like Loadbalancer, but more than that.
+- high-level layer 7 in the OSI model
+- In application gateway we can able to configure the routing based on multiple parameters .. ex Http headers, Url part, Data in the request etc.,
+- We can encrypt Appgateway -> VM or applicaiton
+- up to 100 websites to the same instance of an Application Gateway.
+
+
+Trafic Manager - Provides Loadbalancing, Routing
+
+
+
+ 
+
 
 ##### Virtual Network (VNet)
 it uses CIDR notation to create a IP range

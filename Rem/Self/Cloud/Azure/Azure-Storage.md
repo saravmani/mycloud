@@ -50,8 +50,8 @@ Ultra Desk - Suitable for data intensive work loads. 64TB (Gaming, )
 ---
 
 ###### File storage
-Alternative for on-premises file servers, SMB or NAS devices. Windows, mac, and Linux can directly mount Azure file shares.
-
-User can Store their files in cloud instead of own hard disk
+- Alternative for on-premises file servers, SMB or NAS devices. Windows, mac, and Linux can directly mount Azure file shares.
+- Works with Network File System (NFS), Server Message Block (SMB)
+- User can Store their files in cloud instead of own hard disk
 Easy accessible. Other cloud high availability options are optible.
-Lift and Shift scinarios - Moving existing onpromise system to cloud
+- Lift and Shift scinarios - Moving existing onpromise system to cloud

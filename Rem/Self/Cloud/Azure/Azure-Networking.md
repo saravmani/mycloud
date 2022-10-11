@@ -18,7 +18,7 @@ Trafic Manager - Provides Loadbalancing, Routing
 
 
 
- 
+
 
 
 ##### Virtual Network (VNet)
@@ -30,7 +30,10 @@ VNet belongs to single subscription. But subscription can have multiple VNets
 Vnets are easily scallable and High Available.
 
 ###### VNet Pearing
-Help to connect multiple VNets within Azure
+- Help to connect multiple VNets within Azure
+- No Down time
+- Can be used to transfer data btn Azure AD Tenants
+- Tthis creates Low latency , High bandwidth connection
 
 
 ###### Subnet

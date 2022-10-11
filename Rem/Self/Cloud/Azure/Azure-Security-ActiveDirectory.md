@@ -14,3 +14,7 @@ Tenant is a name of first AAD service which created automatically when we setup 
 ###### AAD features
 * Multi factor authentication
 * SSO
+
+>**Web apps must registered with azure AD to support authenticate and authrization services**
+
+Azure AD - supports authorization through use of Role based access control (RBAC)

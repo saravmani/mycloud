@@ -26,3 +26,5 @@ Benefits: Built-in machine learning feature provides optimization suggstions and
 2 options are there - SQL Server, SQL managed Instance.
 1. SQL Managed Instance (Platform-as-a-Service)
 2. SQL Server on Azure Virtual Machines (Infrastructure-as-a-Service).
+
+> Azure SQL database is cost effective, serverless, low compute utilization overtime. It is best for non frequent uses. AUtomatically pauses on inactivity period

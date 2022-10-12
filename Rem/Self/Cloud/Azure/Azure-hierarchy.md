@@ -4,6 +4,8 @@
 
 2. Region -> Availablity Zone - > Data center
 
+> NOt all regions supports Availability Zones
+
 ###  Management Groups -> Subscriptions-> Resource Groups -> Resources
 
 ###### Management Groups
@@ -27,11 +29,14 @@ we can move resource from one group to another. REsource group can contain resou
 
 
 ### Region -> Availablity Zone - > Data center
+> Minimum 3 zone per region
+> Zone can have one or more data centers
 
 ###### Region
-Two are more datacenters which somewhat closer in that region and connected with fiber cables.
+One or more datacenters which somewhat closer in that region and connected with fiber cables.
 Pricing may differe region to region. some features may not available in one region.
 Ex: Central US, West Europe, East Asia
+- Currently there are 55 regions available 
 
 ##### Region pair
 Regions paired with another region.

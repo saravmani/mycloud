@@ -38,8 +38,9 @@ Vnets are easily scallable and High Available.
 
 ###### Subnet
 Split the VNet as multiple subnets by splitting he IP ranges. So each subnet we can cotroll .
-We can assign Security Groups to individual subnet.
-Group resources to same subnet
+- We can assign Security Groups to individual subnet.
+- Group resources to same subnet
+- All the services , Subnets on Single VN can automatically connect each other. If u dont need connection to particular service then create separate VN fot that
 
 
 ###### VPN

@@ -6,7 +6,10 @@ File storage
 Desk Storage
 Archive Storage - Very low cost
 
+>**Data stored in storage account will automatically have 3 Copies (Synchronously). Minimum Replication option is LRS - Locally reduntant Storage. LRS is the default option**
 
+
+> **In GRS (Geo-redundant-Stroage) Data will have 3 copies (Synchronously) in Primary. Then replicated ASYNCHRONOUSLY to Secondary region**
 ###### Storage redundancy options
 Zone-redundant storage
 Geo-redundant storage

@@ -27,3 +27,6 @@ Reader                      |        |        |        |        |               
 MG Reader*                  |        |        |        |        |               |               | X
 Resource Policy Contributor |        |        |        |        |               | X             |
 User Access Administrator   |        |        |        |        | X             | X
+
+
+---

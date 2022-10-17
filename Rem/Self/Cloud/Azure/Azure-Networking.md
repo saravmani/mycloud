@@ -54,3 +54,20 @@ Contents can be cached in Edge nodes (servers which are close to the user). Cach
 ###### Express Route
  It is a private connections between Azure datacentres and on premises.
  It Don't route through the public internet.More reliable, Faster,High Bandwidth ,lower latency
+
+
+ ##### Azure traffi manager
+- It will not filter any traffic
+- It can distribute the traffic accross global Azure regions
+- It can distribute the traffic accross global Azure regions
+
+
+##### NSG
+- Specialized packet-filtering filrewalls that le you define security rules to controll traffice ina nd out of vnet, subnet, VM level.
+- An NSG works much like a firewall. While an Azure Firewall monitors traffic at more of a global level, an NSG is more defined and is applied to specific subnets and/or network interfaces.
+- Both firewall and NSG allow you to apply rules based on IP addresses, port numbers, networks, and subnets.
+
+
+##### ASG
+ASGs are used to protect groups of servers with a common function, such as web servers or database servers.
+ASGs are used within a NSG to apply a network security rule to a specific workload or group of VMs - defined by ASG

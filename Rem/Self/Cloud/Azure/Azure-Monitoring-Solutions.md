@@ -1,4 +1,5 @@
 
+> **Azure monitor can use AUTO SCALE to add/ remove resources to minimize cost and ensure the performance. We can have rules for this**
 
 ### Platform logs
 
@@ -43,6 +44,6 @@ Cloud services, on-premises service also send telemetry data to Az Monitor.
 - Web application can be App service, VM , On premise host etc.,
 - Info about web applicaiton performance, User Usage, Failed request, availability.
 
-
+---
 ### Service health portal
 It is free service.  shows insights of the service. Custom alerts

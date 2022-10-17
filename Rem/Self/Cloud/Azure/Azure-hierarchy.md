@@ -22,9 +22,12 @@ An Azure Resource Manager template is the framework by which resources are creat
 
 
 #### Resource Groups
-Resource Groups are mandatory. A resouce can be part of single resource group at a given time.
-Resource from one RG can interact with resource in another RG. RG has location bcs RG meta data should be stored in a particular location's data center
-we can move resource from one group to another. REsource group can contain resources from different regions.
+- It is logical group to help us easy management of resources. We can group resources having similar lifecycle
+- Resource Groups are mandatory. A resouce can be part of single resource group at a given time.
+- Resource from one RG can interact with resource in another RG. RG has location bcs RG meta data should be stored in a particular location's data center
+- we can move resource from one group to another.
+- Reesource group can contain resources from different regions.
+
 
 
 
@@ -36,7 +39,7 @@ we can move resource from one group to another. REsource group can contain resou
 One or more datacenters which somewhat closer in that region and connected with fiber cables.
 Pricing may differe region to region. some features may not available in one region.
 Ex: Central US, West Europe, East Asia
-- Currently there are 55 regions available 
+- Currently there are 55 regions available
 
 ##### Region pair
 Regions paired with another region.

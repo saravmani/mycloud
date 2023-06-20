@@ -6,6 +6,13 @@ docker -version #to Get installed docker version
 docker pull <image name>
 ```
 <u>For Under Line Text</u>
+<s>For Under Line Text</s>
+
+### Special Letter Format
+$Sarav$
+*Sarav*
+~Sarav~
+Sarav
 
 
 ##### To Add splittor line

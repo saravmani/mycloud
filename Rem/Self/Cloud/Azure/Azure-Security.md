@@ -10,9 +10,9 @@
 ### Network security
 1. Firewall
 2. DDOS Protection service - Azure will detect this type of attack and stop it. This contains multiple levels
-3. Network Security Group (NSG) - this is a set of rules and can be attached to Virtual network for a VM. I tcan filter the n/w traffic to and from resources
+3. Network Security Group (NSG) - this is a set of rules and can be attached to Virtual network for a VM. I tcan filter the n/w traffic to and from resources. **NSG can only be associated to a subnet or virtual machine instance, not a whole network.**
 4. Application Security Group - We can able to define n/w security, component security based on application .. not IP levels
- 
+
 Azure services by default publically accessible.
 To add security for that we have two options
 1. Service endpoints -  Allow traffic from service-endpoint enabled subnet

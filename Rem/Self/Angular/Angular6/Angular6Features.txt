@@ -5,6 +5,16 @@ new cli commands
 ---------------------------
 ng add
 
+npm install vs ng Add
+--------------------------
+ng add will install the package and then run the configuration/installation script.
+Ex.  "ng add @angular/material — Install" will install the package and then update the angular.json
+configuraiton file with required settings
+
+
+
+
+
 <<<<<<< HEAD
 ng update
     Under the hood the command will work with the project’s package.json file and use the project’s package manager (npm or Yarn) as well as apply code transforms where needed to update the code or configuration files where necessary.

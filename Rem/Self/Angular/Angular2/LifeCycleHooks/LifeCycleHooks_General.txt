@@ -2,7 +2,7 @@ ngOnChanges - Called before ngOnInit() and whenever one or more data-bound input
               SimpleChanges (OnChanges Lifecycle Hook will trigger only
               when input property's instance changes)
 ngOnInit  - Called once, after the first ngOnChanges()
-DoCheck
+DoCheck  - Change detection runs so you can implement your custom change detection action. ()
 ngAftercontentInit
    - # input properties got filled
 ngAfterContentChecked
@@ -10,6 +10,11 @@ ngAfterviewInit - at this stage, Angular has processed the component’s templat
         and set the result of the query. @ViewChild, ViewChildren will have values
 ngAfterViewChecked
 ngOnDestroy
+
+ngDoCheck
+-----------
+DoCheck  - Change detection runs so you can implement your custom change detection action.
+Also if ngOnChanges called (i.e only input changed), ngDoCheck will get called after that
 
 It is actually not mandatory for the class to implement the interface, one could just create
 the method of the hook. But it is considered good practice and has benefits from strong
@@ -53,7 +58,7 @@ IsFirstChange() - This method returns true if this is the call to the ngOnChange
 method that occurs before the ngOnInit method
 
 
-The easiest way to understand the way that changes are presented to the ngOnChanges method 
+The easiest way to understand the way that changes are presented to the ngOnChanges method
 is to serialize the object as JSON and look at it then.
 
   The ngOnChanges method receives a parameter which tells which properties have changed.

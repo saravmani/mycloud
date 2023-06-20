@@ -1,4 +1,9 @@
 
+Use Variables in Powershell
+$rg=Get-AzResourceGroup
+$rg
+$rg.Resources
+
 Create alias for the commands
 in powershell type below commands
 code #PROFILE //this will open powershell profile in vscode

@@ -12,4 +12,4 @@
 #### Root Management Group
 * Root Management group acess will not be given by default
 * This cannot be deleted or moved
-* Global administrator must be elevated to user access Administrator of root group
+* Global administrator must be elevated to user Access-Administrator of root group

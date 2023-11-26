@@ -1,0 +1,8 @@
+Appservice(PaaS)
+Service Fabric(PaaS) - easily to develop containerized and non containerized microservice architecture
+Virtual machines(IaaS) - we have to configure, take care of maintainance (IaaS)
+
+
+APp service provide abstraction on infra. we no need to configure os, web server.. all are available
+
+app service - winodws or linux

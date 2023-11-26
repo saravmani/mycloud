@@ -1,0 +1,43 @@
+# Load SSH.Net assembly
+Add-Type -Path "path\to\Renci.SshNet.dll"
+
+# SFTP server details
+$sftpServer = "your_sftp_server"
+$username = "your_username"
+$password = "your_password"
+$remoteDirectory = "/path/to/remote/directory"
+$localDirectory = "C:\path\to\local\directory"
+
+# Create a PasswordAuthenticationMethod
+$passwordAuthMethod = New-Object Renci.SshNet.PasswordAuthenticationMethod($username, $password)
+
+# Create a ConnectionInfo object
+$connectionInfo = New-Object Renci.SshNet.ConnectionInfo($sftpServer, $username, $passwordAuthMethod)
+
+# Create an SftpClient object
+$sftp = New-Object Renci.SshNet.SftpClient($connectionInfo)
+
+# Connect to the SFTP server
+$sftp.Connect()
+
+# Get the list of files in the remote directory
+$files = $sftp.ListDirectory($remoteDirectory)
+
+# Download each file
+foreach ($file in $files)
+{
+    if (!$file.IsDirectory)
+    {
+        # Define the source and destination paths
+        $sourceFilePath = $file.FullName
+        $destinationFilePath = Join-Path $localDirectory $file.Name
+
+        # Download the file
+        $fileStream = New-Object IO.FileStream($destinationFilePath, [IO.FileMode]::Create)
+        $sftp.DownloadFile($sourceFilePath, $fileStream)
+        $fileStream.Close()
+    }
+}
+
+# Disconnect from the SFTP server
+$sftp.Disconnect()

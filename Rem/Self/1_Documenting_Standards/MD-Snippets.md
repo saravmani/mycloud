@@ -1,3 +1,7 @@
+#Chat GBT snippets
+- Please note i am Going to ask few questions. Please answer all my questions in MarkDown (MD). And Answer should be  simple and  which should pullet points and sub headings. Provide both MarkDown text and preview for MarkDown
+
+
 #### Docker Commands
 ###### Frequently used docker commands
 >
@@ -12,14 +16,26 @@ docker pull <image name>
 $Sarav$
 *Sarav*
 ~Sarav~
-Sarav
+
 
 
 ##### To Add splittor line
 ---
-##### To Add References
+##### To Add References/ Give a link
 >Document ref
 >Refer- [Frequently used Docker commands](../Docker/Containers/Docker-Frequently-Used-Comments.md)
+---
+##### Cloapsable - show/ hide
+if you want to keep open by default then include open attribute otherwise remove it
+```html
+
+<details open>
+ <summary>Hello</summary>
+
+ some more text
+</details>
+```
+---
 
 ## Display Image from local
 
@@ -27,6 +43,8 @@ Sarav
 ![](../RefImages/DIPrinciple_Example1.PNG)
 ### Private Images
 ![](../RefImagesPrivate/OSILayers-Protocols.jpg)
+
+![](../RefImagesPrivate/Azure/Azure-WEbapp-PricingPlan.jpg)
 
 
 - Display Image Reference

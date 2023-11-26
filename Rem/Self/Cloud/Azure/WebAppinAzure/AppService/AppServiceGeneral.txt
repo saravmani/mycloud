@@ -1,2 +1,0 @@
-
-Supports devops tooling with bitbucket, github etc.,

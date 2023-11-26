@@ -1,0 +1,29 @@
+App services
+  - Slots
+  - App Settings and Connection string config
+  - Configure general settings
+
+
+
+
+
+
+
+
+
+
+
+Use Cosmos database
+Use Cognitive services
+Host docker containers
+use Kuberneties in azure
+Setting dash boards
+Backup plan
+
+Create support ticket
+Debug web applicaiton
+
+Done
+--------
+Setup continuous delivery
+Host appservice

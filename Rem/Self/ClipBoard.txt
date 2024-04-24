@@ -1,43 +1,38 @@
-# Load SSH.Net assembly
-Add-Type -Path "path\to\Renci.SshNet.dll"
-
-# SFTP server details
-$sftpServer = "your_sftp_server"
-$username = "your_username"
-$password = "your_password"
-$remoteDirectory = "/path/to/remote/directory"
-$localDirectory = "C:\path\to\local\directory"
-
-# Create a PasswordAuthenticationMethod
-$passwordAuthMethod = New-Object Renci.SshNet.PasswordAuthenticationMethod($username, $password)
-
-# Create a ConnectionInfo object
-$connectionInfo = New-Object Renci.SshNet.ConnectionInfo($sftpServer, $username, $passwordAuthMethod)
-
-# Create an SftpClient object
-$sftp = New-Object Renci.SshNet.SftpClient($connectionInfo)
-
-# Connect to the SFTP server
-$sftp.Connect()
-
-# Get the list of files in the remote directory
-$files = $sftp.ListDirectory($remoteDirectory)
-
-# Download each file
-foreach ($file in $files)
 {
-    if (!$file.IsDirectory)
+  "issues": [
     {
-        # Define the source and destination paths
-        $sourceFilePath = $file.FullName
-        $destinationFilePath = Join-Path $localDirectory $file.Name
-
-        # Download the file
-        $fileStream = New-Object IO.FileStream($destinationFilePath, [IO.FileMode]::Create)
-        $sftp.DownloadFile($sourceFilePath, $fileStream)
-        $fileStream.Close()
+      "engineId": "Mutation Testing",
+      "ruleId": "MutantNoCoverage",
+      "primaryLocation": {
+        "message": "A mutant was not covered by any of the tests. The Statement mutation was mutated to ; without any tests failing.",
+        "filePath": "D:\\StrykerTest\\SimpleConsoleAPp\\Program.cs",
+        "textRange": {
+          "startLine": 2,
+          "endLine": 2,
+          "startColumn": 0,
+          "endColumn": 35
+        }
+      },
+      "type": "CODE_SMELL",
+      "severity": "MAJOR",
+      "effortMinutes": 10
+    },
+    {
+      "engineId": "Mutation Testing",
+      "ruleId": "MutantNoCoverage",
+      "primaryLocation": {
+        "message": "A mutant was not covered by any of the tests. The String mutation was mutated to \"\" without any tests failing.",
+        "filePath": "D:\\StrykerTest\\SimpleConsoleAPp\\Program.cs",
+        "textRange": {
+          "startLine": 2,
+          "endLine": 2,
+          "startColumn": 18,
+          "endColumn": 33
+        }
+      },
+      "type": "CODE_SMELL",
+      "severity": "MAJOR",
+      "effortMinutes": 10
     }
+  ]
 }
-
-# Disconnect from the SFTP server
-$sftp.Disconnect()

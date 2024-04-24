@@ -44,7 +44,7 @@ if you want to keep open by default then include open attribute otherwise remove
 ### Private Images
 ![](../RefImagesPrivate/OSILayers-Protocols.jpg)
 
-![](../RefImagesPrivate/Azure/Azure-WEbapp-PricingPlan.jpg)
+![](../RefImagesPrivate/Azure/Azure-Storage-AccountTypes.jpg)
 
 
 - Display Image Reference

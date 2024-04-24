@@ -8,7 +8,7 @@
 2. Change a blob's access tier to an online tier
 
 
-#### Rehydration priority
+#### Rehydr¦ation priority
 
 1. Standard priority: Rehydration request is processed in the order it was received and might take up to 15 hours.
 

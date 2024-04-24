@@ -2,7 +2,7 @@
 > Note : *Azure Kevault is not the place to store the user passwords*
 
 We can store secure artifacts
-- SAS tokens
+- SAS tokens (Shared access signature)
 - Tokens
 - Keys
 - Manage the Certificates -  Automate the management (like Certificate expiry scenarios)

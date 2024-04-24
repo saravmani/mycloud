@@ -2,21 +2,26 @@
 AZ storage account contains different types of storages
  - Blobs, files, queues and Tables.
  - Azure Storage is automatically encrypted using Storage Service Encryption (SSE).
+
+
+
+
+
 #### Storage account name
 Storage Account name must contain only lowercase and numbers. length 3 - 24.
 It should universally unique
 
 #### Types of Storage accounts
-- **Standard**
+- **Standard Storage** *(Uses Hard Disk (HDD))*
     - General-purpose-v2 - Recomended type which covers more scenarios. This is type for all storage types ( Blobs, files, queues and Tables)
     - General-purpose-v1 - This is like V2. But used for legacy services. For new applicaitons dont choose this.
-- **Premium** *(Uses SSD)*
-    - BlockBlobs - Optimized for Block and Append blobs for larger amount. Not usable with other storage type. Not frequently used data we can store
-    - FileStorage account - Supports only File Store. This can be acced by SMB (Server Message Block) protocol
-    - Page Blobs - Used for random read/write operations and are ideal for storing virtual hard drive files (Max size 8 TB). AZ SQL, VMs uses page blobs as underlying storage
----
-![](../../../RefImagesPrivate/Azure/AzureStorage_Security.png)
+- **Premium Storage** *(Uses SSD)*
+    - low-latency performance    
+     - BlockBlobs - Optimized for Block and Append blobs for larger amount. Not usable with other storage type. Not frequently used data we can store
+     - FileStorage account - Supports only File Store. This can be acced by SMB (Server Message Block) protocol
+     - Page Blobs - Used for random read/write operations and are ideal for storing virtual hard drive files (Max size 8 TB). AZ SQL, VMs uses page blobs as underlying storage
 
+![](../../../RefImagesPrivate/Azure/Azure-Storage-AccountTypes.jpg)
 
 ---
 #### Where to select Block Blobs, Append Blobs, Page Blobs
@@ -123,7 +128,8 @@ Easy accessible. Other cloud high availability options are optible.
 
 ---
 #### Azure Data Lake
-- Azure Data Lake is a scalable data storage and analytics service
+- It is the Hadoop Distributed File System (HDFS) as a service
+- It is a scalable data storage and analytics service
 - It can accommodate all types of data from any source, from structured (database tables, Excel sheets) to semi-structured (XML files, webpages) to unstructured (images, audio files, tweets)
 - Azure Data Lake Storage Gen2 supports both Azure role-based access control (Azure RBAC) and POSIX-like access control lists (ACLs)
 ---

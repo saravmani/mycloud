@@ -8,12 +8,12 @@ Machine learning are having 3 different categories
 3. Un-Supervised Learning
 
 Supervised Learning
-  a superwiser will train the model that, based on input wethere output is correct or not. if not correct superwiser will correct it.
-This process will go on untill, the model gives accurate result in acceptable level.
+  a supervisor will train the model that, based on input wethere output is correct or not. if not correct superwiser will correct it.
+This process will go on until, the model gives accurate result in acceptable level.
 Ex: if we upload a picture of duck's different images it should identify it as  a duck
 
 Un - supervised learning
-  there is no exact output required. there is no superviser to tell that which is correct output. based on the input it will gives output with interesting
+  there is no exact output required. there is no supervisor to tell that which is correct output. based on the input it will gives output with interesting
   patterns in the data. without past knowledge it will produce output
   Ex1:Based on input data, based on the pattern in the data it produces output by group of characters
 

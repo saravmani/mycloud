@@ -1,3 +1,11 @@
+
+push docker container to remote repo
+
+docker login
+docker push <containername>
+
+
+
 # Useful Docker Commands
 ###### Frequently used docker commands
 

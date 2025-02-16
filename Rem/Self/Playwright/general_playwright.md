@@ -1,3 +1,9 @@
+to run code gen with uthenticator state
+
+npx playwright codegen --storage-state auth.json --url https://your-website.com/protected-page
+
+
+
 
 it dont require webdriver.
 

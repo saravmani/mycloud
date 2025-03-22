@@ -84,6 +84,10 @@ This document covers the functionalities defined in the Swagger document, includ
     * **Security:** Requires Bearer token authentication.
 * **4.2.5. Update PIN (`/api/account/pin/update` - POST)**
     * **Description:** Allows users to update their account PIN.
+    * **Business validations:**
+         1. It will validate the Old pin number is valid
+         2. Entered password is valid
+         3. PIN should contains minimum 6 letters
     * **Input:** A JSON object conforming to the `PinUpdateRequest` schema, containing:
         * `accountNumber` (string, required)
         * `oldPin` (string, required)
